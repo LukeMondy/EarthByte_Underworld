@@ -1,6 +1,15 @@
 
 ## Coding
 
+### Design
+Expectations at the python level
+Expectations at the c level
+Python / c interface & interaction
+Granularity of objects -- global contexts, global varialbes, lists of lists of lists
+Naming convections - for classes, instances, input parameters
+#### Class overview
+
+
 ### Whitespace
 
 ### Comments
@@ -27,3 +36,6 @@
 ### Bug reporting & tracking
 
 ### Useful tools
+
+### Licensing 
+#### Template Header
