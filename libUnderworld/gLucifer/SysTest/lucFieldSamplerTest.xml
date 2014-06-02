@@ -1,0 +1,58 @@
+<!-- Rayleigh-Taylor lucifer viewports -->
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+   <struct name="components" mergeType="merge">
+      <struct name="fieldFieldSampler1">
+         <param name="Type">lucFieldSampler</param>
+         <param name="sampleField">StrainRateInvariantField</param>
+         <param name="ColourMap">strainRateInvColourMap</param>
+         <param name="pointSize">10.0</param>
+         <param name="sampleGlobal">true</param>
+         <param name="resolution">10</param>
+         <param name="pointSmoothing">0</param>
+      </struct> 
+
+      <struct name="fieldFieldSampler2">
+         <param name="Type">lucFieldSampler</param>
+         <param name="sampleField">VelocityMagnitudeField</param>
+         <param name="ColourMap">velocityMagnitudeColourMap</param>
+         <param name="pointSize">6.0</param>
+         <param name="sampleGlobal">false</param>
+         <param name="resolution">20</param>
+         <param name="pointSmoothing">0</param>
+      </struct> 
+
+      <struct name="materialFieldSampler">
+         <param name="Type">lucFieldSampler</param>
+         <param name="sampleField">lightLayerField</param>
+         <param name="ColourMap">densityColourMap</param>
+         <param name="pointSize">3.0</param>
+         <param name="sampleGlobal">false</param>
+         <param name="resolution">40</param>
+         <param name="pointSmoothing">0</param>
+      </struct> 
+
+      <!-- Viewport -->
+      <struct name="lucFieldSamplerTestVP">
+         <param name="Type">lucViewport</param>
+         <param name="Camera">camera</param>
+         <list name="DrawingObject">
+            <param>fieldFieldSampler1</param>
+            <param>fieldFieldSampler2</param>
+            <param>materialFieldSampler</param>
+         </list>
+      </struct>
+
+      <struct name="windowFieldSampler">
+			<param name="Type">lucDefaultWindow</param>
+			<param name="Database">database</param>
+			<param name="antialias">false</param>
+         <list name="Viewport">
+            <param>lucFieldSamplerTestVP</param>
+         </list>
+      </struct>
+
+   </struct>
+
+</StGermainData>

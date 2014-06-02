@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+   <list name="import" mergeType="merge">
+		<param> Underworld </param>
+		<param> ImportersToolbox </param>
+	</list>
+
+	<include>StgFEM/LinearMesh.xml</include>
+	<include>StgFEM/ConstantMesh.xml</include>
+	<include>StgFEM/PressureField.xml</include>
+   <include> Underworld/GaussSwarm.xml </include>
+   <param name="elementMesh">linearMesh</param>
+   <param name="pressureMesh">constantMesh</param>
+	<include>exampleFieldVariableCondition.xml</include>
+
+	<!-- Geometry configuration -->
+	<param name="shadowDepth"> 1 </param>
+   <param name="minX">  0 </param>
+   <param name="maxX"> 10 </param>
+   <param name="minY">  0 </param>
+   <param name="maxY"> 10 </param>
+   <param name="minZ">  0 </param>
+   <param name="maxZ"> 10 </param>
+
+   <!-- Mesh configuration -->
+	<param name="dim"> 3 </param>
+	<param name="elementResI"> 4 </param>
+	<param name="elementResJ"> 4 </param>
+	<param name="elementResK"> 4 </param>
+	<param name="checkpointEvery"> 1 </param>
+	<param name="outputPath"> ./output </param>
+
+   <list name="FieldVariablesToCheckpoint">
+      <param>PressureField</param>
+   </list>
+
+	<!-- Material configuration -->
+	<struct name="components" mergeType="merge">
+		<struct name="context">
+			<param name="Type">UnderworldContext</param>
+		</struct>
+		<!-- Shape Stuff -->
+      <struct name="voxel_datahandlerMaterials" mergeType="merge">
+         <param name="Type">VoxelDataHandler_ASCII</param>
+         <param name="filename">data/sampleASCIIVoxelData.txt</param>
+         <param name="DataType">float</param>
+         <param name="IAxisScale" >     1    </param>
+         <param name="JAxisScale" >     1    </param>
+         <param name="KAxisScale" >     1    </param>
+         <param name="NumCellsI"  >     4    </param>
+         <param name="NumCellsJ"  >     4    </param>
+         <param name="NumCellsK"  >     4    </param>
+         <param name="StartCoordI">  1.25    </param>
+         <param name="StartCoordJ">  1.25    </param>
+         <param name="StartCoordK">  1.25    </param>
+         <param name="CellSizeI"  >   2.5    </param>
+         <param name="CellSizeJ"  >   2.5    </param>
+         <param name="CellSizeK"  >   2.5    </param>
+         <param name="DataStride" >     1    </param>
+         <param name="DataPos"    >     1    </param>
+         <param name="NoDataValue"> -9999    </param>
+      </struct>
+      <struct name="VoxelDataField">
+         <param name="Type">VoxelFieldVariable</param>
+         <param name="VoxelDataHandler">voxel_datahandlerMaterials</param>
+      </struct>
+
+	</struct>
+
+</StGermainData>

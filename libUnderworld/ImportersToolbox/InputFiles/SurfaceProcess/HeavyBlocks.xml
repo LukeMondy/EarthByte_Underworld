@@ -1,0 +1,250 @@
+
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+	<list name="import">
+  		<param> Underworld       </param>
+		<param> ImportersToolbox </param>
+	</list>
+
+	<include>Underworld/BaseApps/RayleighTaylor.xml</include>
+
+	<list name="plugins" mergeType="merge">
+		<struct>
+			<param name="Type">StgFEM_FrequentOutput</param>
+			<param name="Context">context</param>
+		</struct>
+		<struct>
+			<param name="Type">Underworld_Vrms</param>
+			<param name="Context">context</param>
+			<param name="GaussSwarm">gaussSwarm</param>
+			<param name="VelocityField">VelocityField</param>
+		</struct>
+		<struct>
+			<param name="Type">StgFEM_CPUTime</param>
+			<param name="Context">context</param>
+		</struct>
+		<struct>
+			<param name="Type">ImportersToolbox_SurfaceProcessCoupler</param>
+			<param name="Context">context</param>
+			<param name="MaterialPointsSwarm">materialSwarm</param>  <!-- materialSwarm which will be modified -->
+			<param name="UWDeformationTrackingSwarm">passiveTracerSwarm</param>  <!-- line/surface of passive particles used to measure UW deformation to pass back to SP -->
+			<param name="sync_folder">./</param>
+			<param name="sleep_interval">2</param>  <!-- this is the polling interval, when waiting for the SP code to complete -->
+			<param name="sync_time"> 5 </param>     <!-- time interval at which syncing occurs -->
+			<param name="BelowSurfaceShape">belowSPHeightFieldShape</param>  <!-- shape which is defined the surface process surface -->
+			<param name="air_material">background</param>  <!-- material to convert all points outside the BelowSurfaceShape -->
+			<param name="sediment_material">belowSPSurfaceMaterial</param>  <!-- material to convert air material points which are inside the BelowSurfaceShape -->
+			<param name="SP_tracer_vertical_coord" >0.3</param>  <!-- height at which we measure Underworld deformation to feed back to SP -->
+			<param name="SP_globalid_SwarmVariable">passiveTracerSwarm-GlobalID</param>  <!-- global ID of passive swarms required to pass info back, especially in parallel -->
+		</struct>
+	</list>
+
+	<struct name="components" mergeType="merge">
+		<struct name="context">
+			<param name="Type">UnderworldContext</param>
+		</struct>
+		<struct name="backgroundViscosity">
+			<param name="Type">MaterialViscosity</param>
+			<param name="eta0">1.0</param>
+		</struct>
+		<struct name="backgroundShape">
+			<param name="Type">Everywhere</param>
+		</struct>
+		<struct name="background">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">backgroundShape</param>
+			<param name="density">0.0</param>
+			<param name="Rheology">backgroundViscosity</param>
+		</struct>
+		
+		<!-- SP constructs -->
+		<struct name="ParticleData">
+			<param name="Type">Variable</param>
+			<param name="Rank">Scalar</param>
+			<param name="DataType">Int</param>
+		</struct>
+		<struct name="passiveTracerSwarm-GlobalID">
+			<param name="Type">SwarmVariable</param>
+			<param name="Swarm">passiveTracerSwarm</param>
+			<param name="Variable">ParticleData</param>
+		</struct>
+		<struct name="passiveTracerSwarm">
+			<param name="Type">MaterialPointsSwarm</param>
+			<param name="CellLayout">elementCellLayout</param>
+			<param name="ParticleLayout">voxelParticleLayout</param>
+			<param name="FeMesh">elementMesh</param>
+			<!--param name="EscapedRoutine">escapedRoutine</param-->
+			<list name="ParticleCommHandlers">
+				<param>pMovementHandler</param>
+			</list>
+		</struct>
+		<struct name="passiveTracerSwarmAdvector">
+			<param name="Type">SwarmAdvectionIJK</param>
+			<param name="Swarm">passiveTracerSwarm</param>
+			<param name="TimeIntegrator">timeIntegrator</param>
+			<param name="VelocityField">VelocityField</param>  
+			<param name="allowFallbackToFirstOrder">True</param>
+			<param name="suppressAxisI"> True </param>   
+			<param name="suppressAxisJ"> False </param>   
+			<param name="suppressAxisK"> True </param>   
+		</struct>
+		<struct name="voxel_datahandlerGlobalIds" mergeType="merge">
+			<param name="Type">VoxelDataHandler_ASCII</param>
+			<param name="filename"   >SPOuput.txt</param>
+			<param name="DataType"   > int       </param>
+			<param name="NumCellsI"  >  80       </param>
+			<param name="NumCellsJ"  >   1       </param>
+			<param name="NumCellsK"  >   1       </param>
+			<param name="StartCoordI">   0.00625 </param>  <!-- start of centre of first cell -->
+			<param name="StartCoordJ">   0.5     </param>
+			<param name="StartCoordK">   0.5     </param>
+			<param name="CellSizeI"  >   0.0125  </param>
+			<param name="CellSizeJ"  >   1       </param>
+			<param name="CellSizeK"  >   1       </param>
+			<param name="DataStride" >   2       </param>
+			<param name="DataPos"    >   1       </param>
+			<param name="NoDataValue"> -9999     </param>
+		</struct>
+		<struct name="voxelParticleLayout">
+			<param name="Type">VoxelParticleLayout</param>
+			<param name="swarmVariableName">passiveTracerSwarm-GlobalID</param>
+			<param name="VoxelDataHandler">voxel_datahandlerGlobalIds</param>
+		</struct>
+		<struct name="voxel_datahandlerSurfaceHeightField" mergeType="merge">
+			<param name="Type">VoxelDataHandler_ASCII</param>
+			<param name="filename"   >SPOuput.txt</param>
+			<param name="DataType"   > float     </param>
+			<param name="NumCellsI"  >  80       </param>
+			<param name="NumCellsJ"  >   1       </param>
+			<param name="NumCellsK"  >   1       </param>
+			<param name="StartCoordI">   0.00625 </param>  <!-- start of centre of first cell -->
+			<param name="StartCoordJ">   0.5     </param>
+			<param name="StartCoordK">   0.5     </param>
+			<param name="CellSizeI"  >   0.0125  </param>
+			<param name="CellSizeJ"  >   1       </param>
+			<param name="CellSizeK"  >   1       </param>
+			<param name="DataStride" >   2       </param>
+			<param name="DataPos"    >   2       </param>
+			<param name="NoDataValue"> -9999     </param>
+		</struct>
+		<struct name="SPHeightField">
+			<param name="Type">VoxelFieldVariable</param>
+			<param name="VoxelDataHandler">voxel_datahandlerSurfaceHeightField</param>
+		</struct>
+		<struct name="belowSPHeightFieldShape">
+			<param name="Type">BelowHeightField</param>
+			<param name="HeightField">SPHeightField</param>
+		</struct>
+		<struct name="sedimentViscosity">
+			<param name="Type">MaterialViscosity</param>
+			<param name="eta0">0.1</param>
+		</struct>
+		<struct name="belowSPSurfaceMaterial">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">belowSPHeightFieldShape</param>
+			<param name="Rheology">sedimentViscosity</param>
+			<param name="density">20</param>
+		</struct>
+		<struct name="heavyBlockShape">
+			<param name="Type">Box</param>
+			<param name="startX">0.</param>
+			<param name="endX"  >1.</param>
+			<param name="startY">0.  </param>
+			<param name="endY"  >0.4 </param>
+		</struct>
+		<struct name="heavyBlockViscosity">
+			<param name="Type">MaterialViscosity</param>
+			<param name="eta0">1.0</param>
+		</struct>
+		<struct name="heavyBlock">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">heavyBlockShape</param>
+			<param name="density">30.0</param>
+			<param name="Rheology">heavyBlockViscosity</param>
+		</struct>
+		<struct name="lightBlockShape">
+			<param name="Type">Box</param>
+			<param name="startX">0.375 </param>
+			<param name="endX"  >0.625 </param>
+			<param name="startY">0.  </param>
+			<param name="endY"  >0.6 </param>
+		</struct>
+		<struct name="lightBlockViscosity">
+			<param name="Type">MaterialViscosity</param>
+			<param name="eta0">50.0</param>
+		</struct>
+		<struct name="lightBlock">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">lightBlockShape</param>
+			<param name="density">1</param>
+			<param name="Rheology">lightBlockViscosity</param>
+		</struct>
+
+	</struct>
+
+	<param name="journal.info.Context-verbose">false</param>
+	<param name="journal.debug">f</param>
+	<param name="journal-level.info.Stg_ComponentFactory">1</param>
+	<param name="journal-enable-branch.debug.StgFEM">1</param>
+	<param name="journal-level-branch.debug.StgFEM">1</param>
+	<param name="journal-enable-branch.debug.Swarm">f</param>
+	<param name="journal-level-branch.debug.Swarm">1</param>
+
+	<!-- general simulation parameters -->
+	<param name="maxTimeSteps">100</param>
+	<param name="stopTime">20</param>
+	<param name="dumpEvery">1</param>
+	<param name="outputPath">./output/ </param>
+	<param name="gravity">1.0</param>
+	<param name="checkpointEvery">1</param>
+
+	<!--   choose what to checkpoint
+	<list name="FieldVariablesToCheckpoint">
+		<param>VelocityField</param>
+		<param>VelocityGradientsField</param>
+	</list>
+	-->
+
+  	<!--  restart from a previous checkpoint 
+  	<param name="restartTimestep">10</param>
+  	-->
+
+	<!-- general decomposition parameters -->
+	<param name="dim">2</param>
+	<!-- mesh parameters -->
+	<param name="elementResI">64</param>
+	<param name="elementResJ">64</param>
+	<param name="elementResK">1</param>
+
+	<param name="shadowDepth">1</param>
+	<param name="minX">0.0</param>
+	<param name="minY">0.0</param>
+	<param name="minZ">0.0</param>
+	<param name="maxX">1.0</param>
+	<param name="maxY">1.0</param>
+	<param name="maxZ">1.0</param>
+	<param name="allowUnbalancing">True</param>
+	<param name="buildElementNodeTbl">True</param>
+	
+	<!-- gauss integration point swarm parameters -->
+
+	<!-- Swarm parameters -->
+	<param name="particleLayoutType">random</param>
+	<param name="particlesPerCell">20</param>
+	<param name="seed">13</param>
+
+	<!-- Boundary conditions -->
+	<include>Underworld/VariableConditions/velocityBCs.freeslipSides.xml</include>
+
+	<!-- Visualisation stuff -->
+	<include>Underworld/Viewports/ParticleMaterialVP.xml</include>
+	<include>Underworld/Viewports/StrainRateInvariantVP.xml</include>
+	<include>gLucifer/window.xml</include>
+	<struct name="components" mergeType="merge">
+		<struct name="window" mergeType="merge">
+			<param name="Viewport">ParticleMaterialVP StrainRateInvariantVP</param>
+		</struct>
+	</struct>
+
+</StGermainData>

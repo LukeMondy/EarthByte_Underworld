@@ -1,0 +1,3 @@
+The SimpleExampleGocad.xml model may be generated and run using:
+
+./uwGocadPropertiesModelGenerator.sh --name=SimpleExampleGocad --voxetFilename=data/glac_H4000_T248_A60cm.vo --conductivityPropName=ThermalConduct --run

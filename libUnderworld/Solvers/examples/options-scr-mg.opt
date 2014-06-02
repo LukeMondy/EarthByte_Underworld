@@ -1,0 +1,52 @@
+#
+# Apply a multigrid preconditioner to the A11 block of a schur - complement
+# solve.
+#
+# NOTE: The number of multigrid levels needs to be added as an option to the
+# input XML file as follows:
+#
+#   <include>Experimental/MultigridForRegularSCR.xml</include>
+#   <param name="mgLevels">2</param>
+#
+
+# The schur-complement options; see 'options-scr.opt' for details.
+
+-scr_ksp_type fgmres
+
+# outer iteration tolerance (pressure)
+-scr_ksp_rtol 1.0e-7     
+
+# inner iteration tolerance (search velocity)    		
+-A11_ksp_rtol 1.0e-7  
+
+# back solver tolerance (velocity)       	
+-scr_vel_back_solve_rtol 1.0e-7
+-backsolveA11_ksp_type fgmres   
+-backsolveA11_ksp_rtol 1.0e-7
+
+-Xscr_use_previous_guess
+-XA11_ksp_type fgmres
+-Q22_pc_type uw
+# -no_scale
+
+# -pc_mg_monitor 
+
+#-mg_coarse_ksp_type cg
+-A11_mg_coarse_ksp_max_it 10
+#-A11_mg_coarse_ksp_rtol 1.0e-7
+#-mg_coarse_pc_type sor
+#-mg_coarse_sub_pc_type cholesky
+#-A11_mg_levels_ksp_rtol 1.0e-7
+-A11_mg_levels_ksp_max_it 5
+#-A11_mg_coarse_redundant_ksp_rtol 1.0e-8
+
+# These more aggressive options give a pretty robust / efficient solve
+
+-A11_pc_mg_smoothup 10
+-A11_pc_mg smoothdown 10
+
+-A11_mg_levels_ksp_type minres
+-A11_mg_levels_ksp_max_its 3
+-A11_mg_levels_pc_type sor
+-A11_mg_levels_pc_sub_type cholesky
+-A11_mg_levels_ksp_convergence_test skip

@@ -1,0 +1,18 @@
+<StgModelResult>
+  <modelName>Example_RBF_BetweenHeightField-referenceTest-np2</modelName>
+  <outputPath>/Users/julian/codes/underworld2/libUnderworld/Underworld/SysTest/RegressionTests/output/Example_RBF_BetweenHeightField-referenceTest-np2/testRun</outputPath>
+  <jobMetaInfo>
+    <runType>MPI</runType>
+    <simtime>0.0</simtime>
+    <submitTime>2014-06-02 16:42:25.394913</submitTime>
+    <platformInfo>
+      <release>12.5.0</release>
+      <machine>x86_64</machine>
+      <version>Darwin Kernel Version 12.5.0: Mon Jul 29 16:33:49 PDT 2013; root:xnu-2050.48.11~1/RELEASE_X86_64</version>
+      <node>reggie</node>
+      <system>Darwin</system>
+    </platformInfo>
+    <performanceInfo />
+    <runCommand>mpiexec -np 2 /Users/julian/codes/underworld2/libUnderworld/build/bin/StGermain Example_RBF_BetweenHeightField.xml /Users/julian/codes/underworld2/libUnderworld/Underworld/SysTest/RegressionTests/output/Example_RBF_BetweenHeightField-referenceTest-np2/testRun/credo-analysis.xml </runCommand>
+  </jobMetaInfo>
+</StgModelResult>

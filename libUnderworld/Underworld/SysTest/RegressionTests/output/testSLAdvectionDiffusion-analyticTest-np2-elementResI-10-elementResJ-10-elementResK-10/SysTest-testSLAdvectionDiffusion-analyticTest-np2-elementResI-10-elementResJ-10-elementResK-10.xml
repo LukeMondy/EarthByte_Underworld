@@ -1,0 +1,53 @@
+<StgSysTest name="testSLAdvectionDiffusion-analyticTest-np2-elementResI-10-elementResJ-10-elementResK-10" status="Pass" type="Analytic">
+  <description>Runs a Model that has a defined analytic solution,
+        and checks the outputted fields are within a given error tolerance
+        of that analytic solution.</description>
+  <testSpecification>
+    <basePath>/Users/julian/codes/underworld2/libUnderworld/Underworld/SysTest/RegressionTests</basePath>
+    <outputPathBase>output/testSLAdvectionDiffusion-analyticTest-np2-elementResI-10-elementResJ-10-elementResK-10</outputPathBase>
+    <nproc>2</nproc>
+    <timeout>0:30:00</timeout>
+    <inputFiles>
+      <inputFile>testSLAdvectionDiffusion.xml</inputFile>
+    </inputFiles>
+    <paramOverrides>
+      <param modelPath="elementResI" paramVal="10" />
+      <param modelPath="elementResK" paramVal="10" />
+      <param modelPath="elementResJ" paramVal="10" />
+    </paramOverrides>
+    <solverOpts />
+  </testSpecification>
+  <testComponents>
+    <singleRunTestComponents allPassed="True">
+      <run num="0" runPassed="True">
+        <testComponent name="Analytic Solution compare" status="Pass" type="fieldWithinTol">
+          <specification>
+            <fromXML value="True" />
+            <testTimestep value="0" />
+            <useReference value="False" />
+            <useHighResReference value="False" />
+            <fields>
+              <field name="TemperatureField" tol="0.001" />
+            </fields>
+          </specification>
+          <result status="Pass">
+            <statusMsg>Field comp 'TemperatureField' error within tol 0.001 of analytic solution.
+</statusMsg>
+            <fieldResultDetails>
+              <field allDofsWithinTol="True" name="TemperatureField">
+                <dofErrors>
+                  <dofError error="4.532231e-04" num="0" withinTol="True" />
+                </dofErrors>
+              </field>
+            </fieldResultDetails>
+          </result>
+        </testComponent>
+      </run>
+    </singleRunTestComponents>
+    <multiRunTestComponents allPassed="True" />
+  </testComponents>
+  <testResult status="Pass">
+    <statusMsg>All fields were within required tolerance of analytic solution at end of run.</statusMsg>
+  </testResult>
+  <generatedReports />
+</StgSysTest>

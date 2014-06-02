@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+   <list name="import">
+      <param>Underworld</param>
+      <param>ImportersToolbox</param>
+   </list>
+
+   <struct name="components" mergeType="merge">
+      <struct name="context">
+         <param name="Type">UnderworldContext</param>
+      </struct>
+   </struct>
+
+   <include>Underworld/BaseApps/LidDrivenPIC.xml</include>
+   <include>Underworld/StressField3D.xml</include>
+   <include>Underworld/StoreStress.xml</include>
+   <include>Underworld/ViscosityField.xml</include>
+   <include>Underworld/StoreViscosity.xml</include>
+
+   <param name="UsingTopPressure">True</param>
+   <param name="VerticalAxis">2</param>
+   
+   <list name="plugins" mergeType="merge">
+      <struct>
+         <param name="Type">StgFEM_FrequentOutput</param>
+         <param name="Context">context</param>
+      </struct>
+      <struct>
+         <param name="Type">Underworld_Vrms</param>
+         <param name="Context">context</param>
+         <param name="GaussSwarm">gaussSwarm</param>
+         <param name="VelocityField">VelocityField</param>
+      </struct>
+      <struct>
+         <param name="Type">StgFEM_CPUTime</param>
+         <param name="Context">context</param>
+      </struct>
+      <struct>
+         <param name="Type">Underworld_MaxVelocity</param>
+         <param name="Context">context</param>
+      </struct>
+      <struct>
+         <param name="Type">Underworld_MaxTemperature</param>
+         <param name="Context">context</param>
+      </struct>
+      <struct>
+         <param name="Type">Underworld_PressureCalibration</param>
+         <param name="Context">context</param>
+      </struct>
+      <struct>
+         <param name="Type">ImportersToolbox_VTKRegularFeVariableOutput</param>
+         <param name="Context">context</param>
+      </struct>
+   </list>
+
+   <struct name="components" mergeType="merge">
+       <struct name="default_ppcManager">
+         <param name="Type">PpcManager</param>
+         <param name="MaterialSwarm"> materialSwarm </param>
+         <param name="IntegrationSwarm"> picIntegrationPoints </param>
+         <param name="Mesh"> linearMesh </param>
+         <param name="Gravity"> @gravity </param>
+         <list name="Properties">
+            <struct>
+               <param name="PropertyName"> DensityLabel </param>
+               <param name="StoreOnMesh"> True </param>
+               <param name="StoreOnParticles"> True </param>
+            </struct>
+         </list>
+       </struct>
+      <struct name="default_scaling">
+         <param name="Type">Scaling</param>
+         <param name="spaceCoefficient_meters">1.0</param>
+         <param name="timeCoefficient_seconds">1.0</param>
+         <param name="massCoefficient_kilograms">1.0</param>
+         <param name="temperatureCoefficient_kelvin">1.0</param>
+      </struct>
+       <struct type="struct" name="buoyancyForceTerm" mergeType="replace">
+         <param name="Type">BuoyancyForceTermPpc</param>
+         <param name="ForceVector">mom_force</param>
+         <param name="Swarm">picIntegrationPoints</param>
+         <param name="Manager">default_ppcManager</param>
+       </struct>
+        <struct name="voxel_datahandlerTemperature" mergeType="merge">
+            <param name="Type">VoxelDataHandler_VTKStructuredPoints</param>
+            <param name="filename">@TemperatureVTKFilename</param>
+            <param name="DatasetName">@TemperatureVTKDataset</param>
+            <param name="mapIAxisToStgAxis">x</param>
+            <param name="mapJAxisToStgAxis">y</param>
+            <param name="mapKAxisToStgAxis">z</param>
+        </struct>
+        <struct name="TemperatureField">
+            <param name="Type">VoxelFieldVariable</param>
+            <param name="VoxelDataHandler">voxel_datahandlerTemperature</param>
+            <param name="UseNearestCellIfOutside">True</param>
+        </struct>
+        <struct name="TemperatureFieldPpc">
+            <param name="Type">Ppc_Variable</param>
+            <param name="FieldVariable">TemperatureField</param>
+        </struct>
+
+        <struct name="voxel_datahandlerDensity" mergeType="merge">
+            <param name="Type">VoxelDataHandler_VTKStructuredPoints</param>
+            <param name="filename">@DensityVTKFilename</param>
+            <param name="DatasetName">@DensityVTKDataset</param>
+            <param name="mapIAxisToStgAxis">x</param>
+            <param name="mapJAxisToStgAxis">y</param>
+            <param name="mapKAxisToStgAxis">z</param>
+        </struct>
+        <struct name="DensityField">
+            <param name="Type">VoxelFieldVariable</param>
+            <param name="VoxelDataHandler">voxel_datahandlerDensity</param>
+            <param name="UseNearestCellIfOutside">True</param>
+        </struct>
+        <struct name="DensityFieldPpc">
+            <param name="Type">Ppc_Variable</param>
+            <param name="FieldVariable">DensityField</param>
+        </struct>
+
+      <struct name="temperatureDependence">
+         <param name="Type">MaterialViscosity</param>
+         <param name="eta0">@eta0</param>
+      </struct>
+      <struct name="shape">
+         <param name="Type">Everywhere</param>
+      </struct>
+      <struct name="material">
+         <param name="Type">RheologyMaterial</param>
+         <param name="Shape">shape</param>
+         <param name="DensityLabel">DensityFieldPpc</param>
+         <list name="Rheology">
+            <param>temperatureDependence</param>
+            <param>yielding</param>
+            <param>storeViscosity</param>
+            <param>storeStress</param>
+         </list>
+      </struct>
+      <struct name="strainWeakening">
+         <!--This component is used by plastic rheology
+         it defines the strain weakening behaviour of the
+         material see component documentation for more details-->
+         <param name="Type">StrainWeakening</param>
+         <param name="TimeIntegrator">timeIntegrator</param>
+         <param name="MaterialPointsSwarm">materialSwarm</param>
+         <param name="softeningStrain">0.1</param>
+         <param name="initialDamageFraction">0.0</param>
+         <param name="initialDamageWavenumber">0.33333</param>
+         <param name="initialDamageFactor">0.1</param>
+         <param name="healingRate">0.0</param>
+      </struct>
+      <struct name="yielding">
+         <!--Mechanical properties of the plastic rheology
+         see component documentation for more details-->
+         <param name="Type">DruckerPrager</param>
+         <param name="StrainWeakening">strainWeakening</param>
+         <param name="PressureField">PressureField</param>
+         <param name="MaterialPointsSwarm">materialSwarm</param>
+         <param name="StrainRateField">StrainRateField</param>
+         <param name="Context">context</param>
+         <param name="cohesion">@cohesion</param>
+         <param name="cohesionAfterSoftening">@cohesion</param>
+         <param name="frictionCoefficient">@frictionCoefficient</param>
+         <param name="frictionCoefficientAfterSoftening">@frictionCoefficient</param>
+         <param name="minimumYieldStress">1.0e3</param>
+      </struct>
+   </struct><!-- End of components list -->
+
+   <!-- Simulation control -->
+   <param name="maxTimeSteps">0</param>
+   <param name="outputPath">./output</param>
+   <param name="dumpEvery">1</param>
+   <param name="checkpointEvery">1</param>
+
+   <list name="FieldVariablesToCheckpoint">
+      <param>VelocityField</param>
+      <param>PressureField</param>
+      <param>ViscosityField</param>
+      <param>StressField</param>
+   </list>
+            
+   <!-- Geometry & Mesh setup -->
+   <param name="dim">3</param>
+   <param name="elementResI">16</param>
+   <param name="elementResJ">16</param>
+   <param name="elementResK">16</param>
+
+   <param name="particleLayoutType">random</param>
+   <param name="particlesPerCell">20</param>
+   <param name="seed">13</param>
+   
+   <include>Underworld/VariableConditions/velocityBCs.freeslipSides.xml</include>
+
+</StGermainData>

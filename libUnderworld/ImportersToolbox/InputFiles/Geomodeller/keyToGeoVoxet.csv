@@ -1,0 +1,7 @@
+Model Unit,"Thermal Conductivity, W/mK","Heat Production, W/m3"
+Socle,  2.7, 3.3e-06
+Bunt,   2.6, 0.5e-06
+Musch,  2.2, 0.5e-06
+Keuper, 2.2, 0.5e-06
+Juras,  2.2, 0.5e-06
+Tert,   2.1, 0.5e-06

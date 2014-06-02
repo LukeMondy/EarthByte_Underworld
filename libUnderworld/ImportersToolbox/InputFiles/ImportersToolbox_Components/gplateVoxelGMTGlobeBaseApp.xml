@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+  <!-- Load the plugin that sets up the app, plus any others you require -->
+  <list name="import">
+    <param> Underworld </param>
+    <param> Spherical </param>
+    <param> ImportersToolbox </param>
+  </list>
+
+  <list name="plugins" mergeType="merge">
+    <struct>
+      <param name="Type">StgFEM_StandardConditionFunctions</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">StgFEM_FrequentOutput</param>
+      <param name="Context">context</param>
+    </struct>
+  </list>
+
+  <include>StgFEM/ConstantMesh.xml</include>
+  <include>Spherical/SphericalMesh.xml</include>
+  <include>StgFEM/VelocityField.xml</include>
+  <include>StgFEM/PressureField.xml</include>
+  <include>Underworld/GaussSwarm.xml</include>
+  <include>PICellerator/MaterialPointSwarm.xml</include>
+  <include>PICellerator/AllowOutflow.xml              </include>
+<!--   <include>../../../InputFiles/Spherical_Components/StokesFlowUzawaPIC.xml</include> -->
+  <include>Spherical/StokesFlowUzawaPIC.xml</include>
+
+  <list name="FieldVariablesToCheckpoint">
+    <param>VelocityField</param>
+  </list>
+
+
+  <!-- <param name="courantFactor">1.0</param> -->
+
+  <!-- Material configuration -->
+	<struct name="components" mergeType="merge">
+			<struct type="struct" name="buoyancyForceTerm">
+				<param name="Type">VectorAssemblyTerm_NA__F</param>
+				<param name="functionLabel">bodyForce</param>
+				<param name="ForceVector">mom_force</param>
+				<param name="Swarm">picIntegrationPoints</param>
+			</struct>
+
+			<struct name="bodyForce">
+				<param name="Type">Ppc_PointGravity</param>
+				<param name="Alpha">density</param>
+				<param name="xcoord">0.0</param>
+				<param name="ycoord">0.0</param>
+			</struct>
+    <struct name="context">
+      <param name="Type">UnderworldContext</param>
+    </struct>	
+    <struct name="materialSwarmParticleLayout" mergeType="merge">
+      <param name="Type" mergeType="replace">IrregularMeshParticleLayout</param>
+      <param name="cellParticleCount">20</param>
+      <param name="FeMesh">linearMesh</param>
+    </struct>
+    <struct name="everywhere">
+      <param name="Type">Everywhere</param>
+    </struct>
+    <struct name="background">
+      <param name="Type">RheologyMaterial</param>
+      <param name="Shape">everywhere</param>
+      <param name="Rheology">viscosity</param>
+      <param name="density">1</param>
+    </struct>
+    <struct name="viscosity">
+      <param name="Type">MaterialViscosity</param>
+      <param name="eta">1</param>
+    </struct>
+
+    <!-- PPC needs default scaling -->
+    <struct name="default_scaling">
+      <param name="Type">Scaling</param>
+      <param name="spaceCoefficient_meters"> 1.0 </param>
+      <param name="timeCoefficient_seconds"> 1.0 </param>
+      <param name="massCoefficient_kilograms"> 1.0 </param>
+      <param name="temperatureCoefficient_kelvin"> 1.0 </param>
+    </struct>
+
+    <!-- The Ppc Manager-->		
+    <struct name="default_ppcManager">
+      <param name="Type">PpcManager</param>
+      <param name="MaterialSwarm"> materialSwarm </param>
+      <param name="IntegrationSwarm"> picIntegrationPoints </param>
+      <param name="Mesh"> linearMesh </param>
+      <param name="Gravity"> @gravity </param>
+      <list name="Properties">
+        <struct>
+          <param name="PropertyName"> density </param>
+        </struct>
+      </list>
+    </struct>
+    <struct name="gradientStiffnessMatrixTerm" mergeType="replace">
+      <param name="Type">GradientStiffnessMatrixTerm</param>
+      <param name="Swarm">gaussSwarm</param>
+      <param name="StiffnessMatrix">g_matrix</param>
+    </struct>
+    <struct name="stokesEqn" mergeType="replace">
+      <param name="Type">Stokes_SLE</param>
+      <param name="SLE_Solver">uzawa</param>
+      <param name="Context">context</param>
+      <param name="StressTensorMatrix">k_matrix</param>
+      <param name="GradientMatrix">g_matrix</param>
+      <param name="CompressibilityMatrix">c_matrix</param>
+      <param name="VelocityVector">solutionVelocity</param>
+      <param name="PressureVector">solutionPressure</param>
+      <param name="ForceVector">mom_force</param>
+      <param name="ContinuityForceVector">cont_force</param>
+      <param name="killNonConvergent">false</param>
+      <param name="nonLinearMaxIterations">nonLinearMaxIterations</param>
+      <param name="nonLinearTolerance">nonLinearTolerance</param>
+      <param name="makeConvergenceFile">false</param>
+    </struct>
+    <struct name="div_matrix" mergeType="replace">
+      <param name="Type">DummyComponent</param>
+    </struct>
+    <struct name="divergenceDofTerm" mergeType="replace">
+      <param name="Type">DummyComponent</param>
+    </struct>
+    <struct name="uzawa" mergeType="merge">
+      <param name="Preconditioner" mergeType="replace" ></param>
+    </struct>
+
+  </struct>
+
+  <!-- Geometry & Mesh setup -->
+  <param name="velocityMesh">linearMesh</param>
+  <param name="pressureMesh">constantMesh</param>
+  <param name="elementMesh">linearMesh</param>
+  <param name="dim"> 3 </param>
+  <param name="shadowDepth"> 1 </param>
+
+  <!-- Aliases -->
+  <param name="minX"> @minR </param> <param name="maxX"> @maxR </param>
+  <param name="minY"> @minLong </param> <param name="maxY"> @maxLong </param>
+  <param name="minZ"> @minLat </param> <param name="maxZ"> @maxLat </param>
+  <param name="elementResK"> @elementResLat </param>
+  <param name="elementResI"> @elementResR </param>
+  <param name="elementResJ"> @elementResLong </param>
+
+  <!-- material points swarm parameters -->
+  <param name="particleLayoutType">random</param>
+  <param name="particlesPerCell">25</param>
+  <param name="seed">13</param>
+  <param name="gaussParticlesX"> 2 </param>
+  <param name="gaussParticlesY"> 2 </param>
+  <param name="gaussParticlesZ"> 2 </param>
+  
+
+
+
+</StGermainData>

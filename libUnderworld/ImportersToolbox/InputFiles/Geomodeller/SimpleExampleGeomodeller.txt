@@ -1,0 +1,3 @@
+The SimpleExampleGeomodeller.xml model may be generated and run using:
+
+./uwGeomodellerModelGenerator.sh --name=SimpleExampleGeomodeller --voxetFilename=data/m3Dvoxel.vox --keyFilename=keyToGeoVoxet.csv

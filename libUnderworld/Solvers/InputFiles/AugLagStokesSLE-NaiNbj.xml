@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+<!-- A StGermain input file -->
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+        <list name="import" mergeType="merge">
+             <param>Solvers</param>
+        </list>
+
+	<param name="penaltyNumber">0.0</param>
+	<param name="hFactor">0.0</param>
+
+	<struct name="components" mergeType="merge">
+
+        <!-- Build a  2nd Force Vector -->
+        <struct name="junk_force" mergeType="replace">
+            <param name="Type">ForceVector</param>
+            <param name="FeVariable">VelocityField</param>
+            <param name="ExtraInfo">context</param>
+        </struct>
+        <!-- If no term for assembly of junk_force ForceVector then will be zero vector -->
+
+	<!--Build a penalty Aug Lag Matrix -->
+	<struct name="m_matrix" mergeType="replace">
+	  <param name="Type">StiffnessMatrix</param>
+	  <param name="RowVariable">VelocityField</param>
+	  <param name="ColumnVariable">VelocityField</param>
+	  <!--  just for now use mom_force as RHS instead of junk_force  don't know why junk_force ends up null -->
+	  <param name="RHS">junk_force</param>
+	  <param name="allowZeroElementContributions">True</param>
+	</struct>
+	<!-- Adds a "term" for assembly of Mass matrix -->
+	<struct name="MatrixTerm">
+	  <param name="Type">Matrix_NaiNbj</param>
+	  <!-- parent parameters -->
+          <param name="Swarm">picIntegrationPoints</param>
+          <param name="StiffnessMatrix">m_matrix</param>
+	  <!-- parameters for this class -->
+	  <param name="viscosity_weighting"> false </param>
+          <param name="GeometryMesh">linearMesh</param>
+	  <param name="MaterialSwarm">materialSwarm</param>
+	  <param name="ConstitutiveMatrix">constitutiveMatrix</param>	  
+	  <param name="incompressibility_Penalty"> 1.0 </param>
+        </struct>
+
+	</struct>
+	<!-- 
+             The Augmented Lagrangian SLE Virtual Class
+         -->
+	<struct name="components" mergeType="merge">
+
+	  <element type="struct" name="stokesEqn" mergeType="replace">
+	    <element type="param" name="Type">AugLagStokes_SLE</element>
+	    <element type="param" name="SLE_Solver">uzawa</element>
+	    <element type="param" name="Context">context</element>
+	    <element type="param" name="StressTensorMatrix">k_matrix</element>
+	    <element type="param" name="2ndStressTensorMatrix"></element>
+	    <element type="param" name="GradientMatrix">g_matrix</element>
+	    <element type="param" name="MassMatrix">m_matrix</element>
+	    <element type="param" name="JunkForceVector">junk_force</element>
+	    <element type="param" name="DivergenceMatrix">d_matrix</element>
+	    <element type="param" name="CompressibilityMatrix">c_matrix</element>
+	    <element type="param" name="VelocityVector">solutionVelocity</element>
+	    <element type="param" name="PressureVector">solutionPressure</element>
+	    <element type="param" name="ForceVector">mom_force</element>
+	    <element type="param" name="2ndForceVector"></element>
+	    <element type="param" name="ContinuityForceVector">cont_force</element>
+	    <element type="param" name="killNonConvergent">false</element>
+	    <element type="param" name="nonLinearMaxIterations">nonLinearMaxIterations</element>
+	    <element type="param" name="nonLinearTolerance">nonLinearTolerance</element>
+	    <element type="param" name="makeConvergenceFile">false</element>
+	    <element type="param" name="penaltyNumber">penaltyNumber</element>
+	    <element type="param" name="hFactor">hFactor</element>
+	  </element>
+		
+	</struct>
+
+</StGermainData>

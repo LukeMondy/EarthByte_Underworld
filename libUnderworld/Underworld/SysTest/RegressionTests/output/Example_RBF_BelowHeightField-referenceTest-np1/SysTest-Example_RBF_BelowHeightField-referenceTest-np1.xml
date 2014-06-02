@@ -1,0 +1,54 @@
+<StgSysTest name="Example_RBF_BelowHeightField-referenceTest-np1" status="Pass" type="Reference">
+  <description>Runs a Model for a set number of timesteps,
+        then checks the specified fields match a previously-generated
+        reference solution.</description>
+  <testSpecification>
+    <basePath>/Users/julian/codes/underworld2/libUnderworld/Underworld/SysTest/RegressionTests</basePath>
+    <outputPathBase>output/Example_RBF_BelowHeightField-referenceTest-np1</outputPathBase>
+    <nproc>1</nproc>
+    <timeout>0:30:00</timeout>
+    <inputFiles>
+      <inputFile>Example_RBF_BelowHeightField.xml</inputFile>
+    </inputFiles>
+    <paramOverrides />
+    <solverOpts />
+    <runSteps>0</runSteps>
+    <fieldsToTest>
+      <field name="MaterialIndexField" />
+    </fieldsToTest>
+  </testSpecification>
+  <testComponents>
+    <singleRunTestComponents allPassed="True">
+      <run num="0" runPassed="True">
+        <testComponent name="Reference Solution compare" status="Pass" type="fieldWithinTol">
+          <specification>
+            <fromXML value="False" />
+            <testTimestep value="0" />
+            <useReference value="True" />
+            <useHighResReference value="False" />
+            <referencePath value="expected/Example_RBF_BelowHeightField-referenceTest" />
+            <fields>
+              <field name="MaterialIndexField" tol="0.01" />
+            </fields>
+          </specification>
+          <result status="Pass">
+            <statusMsg>Field comp 'MaterialIndexField' error within tol 0.01 of reference solution.
+</statusMsg>
+            <fieldResultDetails>
+              <field allDofsWithinTol="True" name="MaterialIndexField">
+                <dofErrors>
+                  <dofError error="0.000000e+00" num="0" withinTol="True" />
+                </dofErrors>
+              </field>
+            </fieldResultDetails>
+          </result>
+        </testComponent>
+      </run>
+    </singleRunTestComponents>
+    <multiRunTestComponents allPassed="True" />
+  </testComponents>
+  <testResult status="Pass">
+    <statusMsg>All fields were within required tolerance of reference soln at end of run.</statusMsg>
+  </testResult>
+  <generatedReports />
+</StgSysTest>

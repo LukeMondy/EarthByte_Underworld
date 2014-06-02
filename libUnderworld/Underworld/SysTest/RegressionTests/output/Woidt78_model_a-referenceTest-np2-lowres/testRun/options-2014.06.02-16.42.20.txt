@@ -1,0 +1,5 @@
+#PETSc Option Table entries:
+--elementResI=10
+--elementResJ=25
+--elementResK=10
+#End of PETSc Option Table entries

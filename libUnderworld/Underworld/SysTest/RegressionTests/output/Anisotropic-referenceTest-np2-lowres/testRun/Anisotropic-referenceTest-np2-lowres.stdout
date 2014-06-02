@@ -1,0 +1,1574 @@
+StGermain Framework Revision c4bda90f1c33c667ca4d7e599581e6faea061e35. Copyright (C) 2003-2005 VPAC.
+Toolbox "Underworld" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Toolboxmodule.dylib
+Toolbox "StgDomain" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgDomain_Toolboxmodule.dylib
+StgDomain (Domain Library) Revision 60f17a7cf3d49900869dbbd221568078762b7a29. Copyright (C) 2003-2007 VPAC.
+Toolbox "StgFEM" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_Toolboxmodule.dylib
+StgFEM (Finite Element Framework) Revision 1a2f5c4d3746b061a4e4848ece580179193d0574. Copyright (C) 2003-2005 VPAC.
+Toolbox "PICellerator" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/PICellerator_Toolboxmodule.dylib
+PICellerator (Particle-In-Cell Framework) Revision f3d21a42cd5b8646f8f4f44712ba647e3415b2be. Copyright (C) 2005-2010 VPAC & Monash University.
+Underworld (Geodynamics Framework) Revision d1a30765521592552eb91ce93ee21bc7f156c210. Copyright (C) 2005-2010 Monash University.
+Toolbox "gLucifer" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/gLucifer_Toolboxmodule.dylib
+gLucifer (Visualisation Framework) Revision 71d7f40d027fef8362ff421c099adecee384cb93. Copyright (C) 2005-2010 Monash University.
+
+Creating Stg_Components from the component-list
+
+	Instantiating UnderworldContext as context
+	Instantiating FeMesh as constantMesh
+	Instantiating C0Generator as constantMeshGenerator
+	Instantiating FeMesh as linearMesh
+	Instantiating CartesianGenerator as linearMeshGenerator
+	Instantiating MeshVariable as velocity
+	Instantiating CompositeVC as velocityBCs
+	Instantiating CompositeVC as velocityICs
+	Instantiating DofLayout as velocityDofLayout
+	Instantiating FeVariable as VelocityField
+	Instantiating OperatorFeVariable as VelocityMagnitudeField
+	Instantiating OperatorFeVariable as VelocityGradientsField
+	Instantiating OperatorFeVariable as VelocityGradientsInvariantField
+	Instantiating OperatorFeVariable as VelocityXXField
+	Instantiating OperatorFeVariable as VelocityYYField
+	Instantiating OperatorFeVariable as StrainRateField
+	Instantiating OperatorFeVariable as VorticityField
+	Instantiating OperatorFeVariable as StrainRateInvariantField
+	Instantiating OperatorFeVariable as StrainRateXXField
+	Instantiating OperatorFeVariable as StrainRateYYField
+	Instantiating MeshVariable as temperature
+	Instantiating CompositeVC as temperatureBCs
+	Instantiating CompositeVC as temperatureICs
+	Instantiating DofLayout as temperatureDofLayout
+	Instantiating FeVariable as TemperatureField
+	Instantiating OperatorFeVariable as TemperatureGradientsField
+	Instantiating MeshVariable as pressure
+	Instantiating CompositeVC as pressureBCs
+	Instantiating CompositeVC as pressureICs
+	Instantiating DofLayout as pressureDofLayout
+	Instantiating FeVariable as PressureField
+	Instantiating SingleCellLayout as cellLayout
+	Instantiating GaussParticleLayout as particleLayout
+	Instantiating IntegrationPointsSwarm as gaussSwarm
+	Instantiating TimeIntegrator as timeIntegrator
+	Instantiating ElementCellLayout as elementCellLayout
+	Instantiating PCDVC as weights
+	Instantiating MappedParticleLayout as localLayout
+	Instantiating IntegrationPointsSwarm as picIntegrationPoints
+	Instantiating CoincidentMapper as mapper
+	Instantiating SpaceFillerParticleLayout as materialSwarmParticleLayout
+	Instantiating ParticleMovementHandler as pMovementHandler
+	Instantiating ParticleShadowSync as pShadowSync
+	Instantiating MaterialPointsSwarm as materialSwarm
+	Instantiating SwarmAdvector as materialSwarmAdvector
+	Instantiating SolutionVector as solutionVelocity
+	Instantiating SolutionVector as solutionPressure
+	Instantiating ForceVector as mom_force
+	Instantiating ForceVector as cont_force
+	Instantiating StiffnessMatrix as k_matrix
+	Instantiating ConstitutiveMatrixCartesian as constitutiveMatrix
+	Instantiating StiffnessMatrix as g_matrix
+	Instantiating GradientStiffnessMatrixTerm as gradientStiffnessMatrixTerm
+	Instantiating StiffnessMatrix as preconditioner
+	Instantiating UzawaPreconditionerTerm as preconditionerTerm
+	Instantiating Stokes_SLE_UzawaSolver as uzawa
+	Instantiating Stokes_SLE as stokesEqn
+	Instantiating ForceVector as residual
+	Instantiating ForceVector as massMatrix
+	Instantiating AdvDiffMulticorrector as predictorMulticorrector
+	Instantiating AdvectionDiffusionSLE as EnergyEqn
+	Instantiating LumpedMassMatrixForceTerm as lumpedMassMatrixForceTerm
+	Instantiating AdvDiffResidualForceTerm as defaultResidualForceTerm
+	Instantiating ThermalBuoyancyForceTerm as buoyancyForceTerm
+	Instantiating Director as director
+	Instantiating MaterialViscosity as isotropicViscosity
+	Instantiating Anisotropic as anisotropic
+	Instantiating Everywhere as shape
+	Instantiating RheologyMaterial as material
+	Instantiating AlignmentSwarmVariable as alignment
+	Instantiating lucCamera as camera
+	Instantiating lucColourMap as temperatureColourMap
+	Instantiating lucTitle as tempandVelTitle
+	Instantiating lucScalarField as temperatureMap
+	Instantiating lucVectorArrows as velocityArrows
+	Instantiating lucFieldVariableBorder as border
+	Instantiating lucColourBar as temperatureColourBar
+	Instantiating lucViewport as TemperatureAndVelocityArrowsVP
+	Instantiating lucColourMap as velocityMagnitudeColourMap
+	Instantiating lucTimeStep as timeStep
+	Instantiating lucTitle as velocityMagnitudeTitle
+	Instantiating lucScalarField as velocityMagnitudeMap
+	Instantiating lucColourBar as velocityMagnitudeColourBar
+	Instantiating lucViewport as VelocityMagnitudeVP
+	Instantiating lucDatabase as database
+	Instantiating lucWindow as window
+	Instantiating lucColourMap as alignmentColourMap
+	Instantiating lucSwarmViewer as alignmentDrawingObject
+	Instantiating lucTitle as alignmentTitle
+	Instantiating lucViewport as AlignmentVP
+	Instantiating AnalyticFeVariable as AnalyticVelocityField
+	Instantiating OperatorFeVariable as AnalyticVelocityField-Mag
+	Instantiating ErrorFeVariable as ErrorVelocityField
+	Instantiating OperatorFeVariable as ErrorVelocityField-Mag
+	Instantiating AnalyticFeVariable as AnalyticPressureField
+	Instantiating OperatorFeVariable as AnalyticPressureField-Mag
+	Instantiating ErrorFeVariable as ErrorPressureField
+	Instantiating OperatorFeVariable as ErrorPressureField-Mag
+	Instantiating FieldTest as FieldTest
+
+Constructing Stg_Components from the live-component register
+
+	Constructing context..
+Plugin "StgFEM_StandardConditionFunctions" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_StandardConditionFunctionsmodule.dylib
+Plugin "Underworld_Ra_Scaling" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Ra_Scalingmodule.dylib
+Plugin "StgFEM_FrequentOutput" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_FrequentOutputmodule.dylib
+Plugin "Underworld_Nusselt" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Nusseltmodule.dylib
+Plugin "Underworld_Vrms" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Vrmsmodule.dylib
+Plugin "StgFEM_CPUTime" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_CPUTimemodule.dylib
+		Stg_Component 'context' cannot find non-essential component with key 'Scaling'.
+		Looking for non-essential component 'default_scaling': Not found.
+		Constructing MeshVariable as velocity
+		Constructing velocity..
+			Stg_Component 'velocity' cannot find non-essential component with key 'Context'.
+			Looking for essential component 'context': Found.
+			Looking for essential component 'linearMesh': Found.
+			linearMesh has not been constructed yet. Constructing now.
+				Constructing linearMesh..
+					Stg_Component 'linearMesh' cannot find non-essential component with key 'Context'.
+					Looking for essential component 'context': Found.
+					Getting parameter 'UseFeAlgorithms': Using default value = true
+					Getting parameter 'elementType': Found - Value = "linear"
+					Getting parameter 'isElementMesh': Using default value = false
+			Getting parameter 'topologicalDim': Using default value = 0
+			Getting parameter 'VectorComponentCount': Found - Value = "dim"
+			Key 'VectorComponentCount' points to key 'dim' in the root dictionary: Found - Value = "2"
+		Constructing MeshVariable as temperature
+		Constructing temperature..
+			Stg_Component 'temperature' cannot find non-essential component with key 'Context'.
+			Looking for essential component 'context': Found.
+			Looking for essential component 'linearMesh': Found.
+			Getting parameter 'topologicalDim': Using default value = 0
+		Constructing MeshVariable as pressure
+		Constructing pressure..
+			Stg_Component 'pressure' cannot find non-essential component with key 'Context'.
+			Looking for essential component 'context': Found.
+			Looking for essential component 'constantMesh': Found.
+			constantMesh has not been constructed yet. Constructing now.
+				Constructing constantMesh..
+					Stg_Component 'constantMesh' cannot find non-essential component with key 'Context'.
+					Looking for essential component 'context': Found.
+					Getting parameter 'UseFeAlgorithms': Using default value = true
+					Getting parameter 'elementType': Found - Value = "constant"
+					Getting parameter 'isElementMesh': Using default value = false
+			Getting parameter 'topologicalDim': Using default value = 0
+		Looking for non-essential component 'default_ppcManager': Not found.
+		Looking for non-essential component 'default_scaling': Not found.
+		Looking for non-essential component 'constitutiveMatrix': Found.
+		constitutiveMatrix has not been constructed yet. Constructing now.
+			Constructing constitutiveMatrix..
+				Stg_Component 'constitutiveMatrix' cannot find non-essential component with key 'Context'.
+				Looking for essential component 'context': Found.
+				Looking for essential component 'k_matrix': Found.
+				k_matrix has not been constructed yet. Constructing now.
+					Constructing k_matrix..
+						Stg_Component 'k_matrix' cannot find non-essential component with key 'Context'.
+						Looking for essential component 'context': Found.
+						Looking for essential component 'VelocityField': Found.
+						VelocityField has not been constructed yet. Constructing now.
+							Constructing VelocityField..
+								Stg_Component 'VelocityField' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Getting unsigned int from root dictionary with key 'dim' and default value '0'
+								Getting parameter 'dim': Using default value = 2
+								Getting parameter 'fieldComponentCount': Using default value = 0
+								Getting parameter 'useCacheMaxMin': Using default value = false
+								Getting parameter 'outputUnits': Found - Value = "cm/yr"
+								Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+								Looking for essential component 'linearMesh': Found.
+								Looking for essential component 'velocityDofLayout': Found.
+								velocityDofLayout has not been constructed yet. Constructing now.
+									Constructing velocityDofLayout..
+										Stg_Component 'velocityDofLayout' cannot find non-essential component with key 'Context'.
+										Looking for essential component 'context': Found.
+										Looking for non-essential component 'velocity': Found.
+								Looking for non-essential component 'velocityICs': Found.
+								velocityICs has not been constructed yet. Constructing now.
+									Constructing velocityICs..
+										Stg_Component 'velocityICs' cannot find non-essential component with key 'Context'.
+										Looking for essential component 'context': Found.
+										Getting parameter 'vcName': Using default value = "velocityICs"
+										Looking for non-essential component 'linearMesh': Found.
+								Looking for non-essential component 'velocityBCs': Found.
+								velocityBCs has not been constructed yet. Constructing now.
+									Constructing velocityBCs..
+										Stg_Component 'velocityBCs' cannot find non-essential component with key 'Context'.
+										Looking for essential component 'context': Found.
+										Getting parameter 'vcName': Using default value = "velocityBCs"
+										Looking for non-essential component 'linearMesh': Found.
+								Looking for non-essential component 'velocityLinkedDofs': Not found.
+								Getting parameter 'isReferenceSolution': Using default value = false
+								Getting parameter 'loadReferenceEachTimestep': Using default value = false
+								Getting parameter 'nonAxisAlignedBCs': Using default value = false
+								Getting parameter 'removeBCs': Using default value = true
+								Getting parameter 'PeriodicX': Using default value = false
+								Getting parameter 'PeriodicY': Using default value = false
+								Getting parameter 'PeriodicZ': Using default value = false
+						Looking for essential component 'VelocityField': Found.
+						Looking for non-essential component 'mom_force': Found.
+						mom_force has not been constructed yet. Constructing now.
+							Constructing mom_force..
+								Stg_Component 'mom_force' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Looking for essential component 'VelocityField': Found.
+								Getting unsigned int from root dictionary with key 'dim' and default value '0'
+						Stg_Component 'k_matrix' cannot find non-essential component with key 'ApplicationDepInfo'.
+						Getting unsigned int from root dictionary with key 'dim' and default value '0'
+						Getting parameter 'isNonLinear': Using default value = false
+						Getting parameter 'allowZeroElementContributions': Found - Value = "False"
+						Stg_Component 'k_matrix' cannot find non-essential component with key 'transposeRHS'.
+				Looking for essential component 'picIntegrationPoints': Found.
+				picIntegrationPoints has not been constructed yet. Constructing now.
+					Constructing picIntegrationPoints..
+						Stg_Component 'picIntegrationPoints' cannot find non-essential component with key 'Context'.
+						Looking for essential component 'context': Found.
+						Getting unsigned int from root dictionary with key 'dim' and default value '0'
+						Looking for essential component 'elementCellLayout': Found.
+						elementCellLayout has not been constructed yet. Constructing now.
+							Constructing elementCellLayout..
+								Stg_Component 'elementCellLayout' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Looking for essential component 'linearMesh': Found.
+						Looking for non-essential component 'localLayout': Found.
+						localLayout has not been constructed yet. Constructing now.
+							Constructing localLayout..
+								Stg_Component 'localLayout' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+						Getting parameter 'cellParticleTblDelta': Using default value = 4
+						Getting parameter 'extraParticlesFactor': Using default value = 0.05
+						Looking for list 'ParticleCommHandlers': Not Found.
+						Stg_Component 'picIntegrationPoints' cannot find non-essential component with key 'IC'.
+						Getting parameter 'createGlobalId': Using default value = false
+						Looking for essential component 'linearMesh': Found.
+						Looking for non-essential component 'timeIntegrator': Found.
+						timeIntegrator has not been constructed yet. Constructing now.
+							Constructing timeIntegrator..
+								Getting parameter 'order': Found - Value = "timeIntegratorOrder"
+								Key 'order' points to key 'timeIntegratorOrder' in the root dictionary: Using default value = 2
+								Getting parameter 'simultaneous': Found - Value = "f"
+								Looking for non-essential component 'context': Found.
+						Looking for non-essential component 'weights': Found.
+						weights has not been constructed yet. Constructing now.
+							Constructing weights..
+								Stg_Component 'weights' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Getting unsigned int from root dictionary with key 'dim' and default value '0'
+								Getting parameter 'resolution': Using default value = 10
+								Getting parameter 'resolutionX': Found - Value = "10"
+								Getting parameter 'resolutionY': Found - Value = "10"
+								Getting parameter 'resolutionZ': Found - Value = "10"
+								Looking for essential component 'materialSwarm': Found.
+								materialSwarm has not been constructed yet. Constructing now.
+									Constructing materialSwarm..
+										Stg_Component 'materialSwarm' cannot find non-essential component with key 'Context'.
+										Looking for essential component 'context': Found.
+										Getting unsigned int from root dictionary with key 'dim' and default value '0'
+										Looking for essential component 'elementCellLayout': Found.
+										Looking for non-essential component 'materialSwarmParticleLayout': Found.
+										materialSwarmParticleLayout has not been constructed yet. Constructing now.
+											Constructing materialSwarmParticleLayout..
+												Stg_Component 'materialSwarmParticleLayout' cannot find non-essential component with key 'Context'.
+												Looking for essential component 'context': Found.
+												Getting parameter 'mustUseAllParticles': Using default value = true
+												Getting parameter 'totalInitialParticles': Using default value = 0
+												Getting parameter 'averageInitialParticlesPerCell': Found - Value = "particlesPerCell"
+												Key 'averageInitialParticlesPerCell' points to key 'particlesPerCell' in the root dictionary: Found - Value = "20"
+												Getting unsigned int from root dictionary with key 'dim' and default value '0'
+										Getting parameter 'cellParticleTblDelta': Using default value = 4
+										Getting parameter 'extraParticlesFactor': Using default value = 0.05
+										Looking for list 'ParticleCommHandlers': Found.
+											Looking for essential component 'pMovementHandler': Found.
+											pMovementHandler has not been constructed yet. Constructing now.
+												Constructing pMovementHandler..
+											Looking for essential component 'pShadowSync': Found.
+											pShadowSync has not been constructed yet. Constructing now.
+												Constructing pShadowSync..
+										Stg_Component 'materialSwarm' cannot find non-essential component with key 'IC'.
+										Getting parameter 'createGlobalId': Using default value = false
+										Looking for non-essential component 'escapedRoutine': Not found.
+										Stg_Component 'materialSwarm' cannot find non-essential component with key 'Material'.
+										Getting parameter 'overrideMaterialCheck': Using default value = false
+								Getting parameter 'upperT': Found - Value = "25"
+								Getting parameter 'lowerT': Found - Value = "0.6"
+								Getting parameter 'maxDeletions': Found - Value = "3"
+								Getting parameter 'maxSplits': Found - Value = "3"
+								Getting parameter 'Inflow': Using default value = false
+								Getting parameter 'splitInInterfaceCells': Using default value = false
+								Getting parameter 'deleteInInterfaceCells': Using default value = false
+								Getting parameter 'Threshold': Using default value = 0.8
+								Getting parameter 'CentPosRatio': Using default value = 0.01
+								Getting unsigned int from root dictionary with key 'particlesPerCell' and default value '25'
+						Looking for non-essential component 'mapper': Found.
+						mapper has not been constructed yet. Constructing now.
+							Constructing mapper..
+								Stg_Component 'mapper' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Looking for essential component 'picIntegrationPoints': Found.
+								Looking for essential component 'materialSwarm': Found.
+						Getting parameter 'recalculateWeights': Using default value = true
+				Stg_Component 'constitutiveMatrix' cannot find non-essential component with key 'ExtraInfo'.
+				Getting unsigned int from root dictionary with key 'dim' and default value '0'
+				Getting parameter 'restartUsingPreviousStokesSol': Using default value = true
+				Getting parameter 'storeConstitutiveMatrix': Using default value = false
+	Constructing constantMeshGenerator..
+		Getting parameter 'partitioned': Using default value = true
+		Stg_Component 'constantMeshGenerator' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for non-essential component 'constantMesh': Found.
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'dims': Using default value = 2
+		Looking for essential component 'linearMesh': Found.
+	Constructing linearMeshGenerator..
+		Looking for essential component 'context': Found.
+		Getting parameter 'partitioned': Using default value = true
+		Stg_Component 'linearMeshGenerator' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for non-essential component 'linearMesh': Found.
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'dims': Found - Value = "dim"
+		Key 'dims' points to key 'dim' in the root dictionary: Found - Value = "2"
+		Getting parameter 'maxDecomposedDims': Using default value = 0
+		Getting parameter 'contactDepth-left': Using default value = 0
+		Getting parameter 'contactDepth-right': Using default value = 0
+		Getting parameter 'contactDepth-bottom': Using default value = 0
+		Getting parameter 'contactDepth-top': Using default value = 0
+		Getting parameter 'contactDepth-back': Using default value = 0
+		Getting parameter 'contactDepth-front': Using default value = 0
+		Getting parameter 'contactGeometry-x': Using default value = 0
+		Getting parameter 'contactGeometry-y': Using default value = 0
+		Getting parameter 'contactGeometry-z': Using default value = 0
+		Getting parameter 'shadowDepth': Found - Value = "shadowDepth"
+		Key 'shadowDepth' points to key 'shadowDepth' in the root dictionary: Found - Value = "1"
+		Getting parameter 'regular': Using default value = true
+		Getting parameter 'initial_vtk_file': Using default value = "(null)"
+		Getting parameter 'periodic_x': Using default value = false
+		Getting parameter 'periodic_y': Using default value = false
+		Getting parameter 'periodic_z': Using default value = false
+	Constructing VelocityMagnitudeField..
+		Stg_Component 'VelocityMagnitudeField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing VelocityGradientsField..
+		Stg_Component 'VelocityGradientsField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Gradient"
+	Constructing VelocityGradientsInvariantField..
+		Stg_Component 'VelocityGradientsInvariantField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TensorInvariant"
+	Constructing VelocityXXField..
+		Stg_Component 'VelocityXXField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "cm/yr"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TakeFirstComponent"
+	Constructing VelocityYYField..
+		Stg_Component 'VelocityYYField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "cm/yr"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TakeSecondComponent"
+	Constructing StrainRateField..
+		Stg_Component 'StrainRateField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TensorSymmetricPart"
+	Constructing VorticityField..
+		Stg_Component 'VorticityField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TensorAntisymmetricPart"
+	Constructing StrainRateInvariantField..
+		Stg_Component 'StrainRateInvariantField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "SymmetricTensor_Invariant"
+	Constructing StrainRateXXField..
+		Stg_Component 'StrainRateXXField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TakeFirstComponent"
+	Constructing StrainRateYYField..
+		Stg_Component 'StrainRateYYField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TakeSecondComponent"
+	Constructing temperatureBCs..
+		Stg_Component 'temperatureBCs' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'vcName': Using default value = "temperatureBCs"
+		Looking for non-essential component 'linearMesh': Found.
+	Constructing temperatureICs..
+		Stg_Component 'temperatureICs' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'vcName': Using default value = "temperatureICs"
+		Looking for non-essential component 'linearMesh': Found.
+	Constructing temperatureDofLayout..
+		Stg_Component 'temperatureDofLayout' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for non-essential component 'temperature': Found.
+	Constructing TemperatureField..
+		Stg_Component 'TemperatureField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "K"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Looking for essential component 'linearMesh': Found.
+		Looking for essential component 'temperatureDofLayout': Found.
+		Looking for non-essential component 'temperatureICs': Found.
+		Looking for non-essential component 'temperatureBCs': Found.
+		Looking for non-essential component 'temperatureLinkedDofs': Not found.
+		Getting parameter 'isReferenceSolution': Using default value = false
+		Getting parameter 'loadReferenceEachTimestep': Using default value = false
+		Getting parameter 'nonAxisAlignedBCs': Using default value = false
+		Getting parameter 'removeBCs': Using default value = true
+		Getting parameter 'PeriodicX': Using default value = false
+		Getting parameter 'PeriodicY': Using default value = false
+		Getting parameter 'PeriodicZ': Using default value = false
+	Constructing TemperatureGradientsField..
+		Stg_Component 'TemperatureGradientsField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "K/m"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Gradient"
+	Constructing pressureBCs..
+		Stg_Component 'pressureBCs' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'vcName': Using default value = "pressureBCs"
+		Looking for non-essential component 'constantMesh': Found.
+	Constructing pressureICs..
+		Stg_Component 'pressureICs' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'vcName': Using default value = "pressureICs"
+		Looking for non-essential component 'constantMesh': Found.
+	Constructing pressureDofLayout..
+		Stg_Component 'pressureDofLayout' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for non-essential component 'pressure': Found.
+	Constructing PressureField..
+		Stg_Component 'PressureField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "GPa"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Looking for essential component 'constantMesh': Found.
+		Looking for essential component 'pressureDofLayout': Found.
+		Looking for non-essential component 'pressureICs': Found.
+		Looking for non-essential component 'pressureBCs': Found.
+		Looking for non-essential component 'pressureLinkedDofs': Not found.
+		Getting parameter 'isReferenceSolution': Using default value = false
+		Getting parameter 'loadReferenceEachTimestep': Using default value = false
+		Getting parameter 'nonAxisAlignedBCs': Using default value = false
+		Getting parameter 'removeBCs': Using default value = true
+		Getting parameter 'PeriodicX': Using default value = false
+		Getting parameter 'PeriodicY': Using default value = false
+		Getting parameter 'PeriodicZ': Using default value = false
+	Constructing cellLayout..
+		Stg_Component 'cellLayout' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dimExistsI': Using default value = true
+		Getting parameter 'dimExistsJ': Using default value = true
+		Getting parameter 'dimExistsK': Using default value = false
+		Getting parameter 'minX': Using default value = -1
+		Getting parameter 'minY': Using default value = -1
+		Getting parameter 'minZ': Using default value = -1
+		Getting parameter 'maxX': Using default value = 1
+		Getting parameter 'maxY': Using default value = 1
+		Getting parameter 'maxZ': Using default value = 1
+	Constructing particleLayout..
+		Stg_Component 'particleLayout' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'gaussParticles': Using default value = 2
+		Getting parameter 'gaussParticlesX': Using default value = 2
+		Getting parameter 'gaussParticlesY': Using default value = 2
+	Constructing gaussSwarm..
+		Stg_Component 'gaussSwarm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Looking for essential component 'cellLayout': Found.
+		Looking for non-essential component 'particleLayout': Found.
+		Getting parameter 'cellParticleTblDelta': Using default value = 4
+		Getting parameter 'extraParticlesFactor': Using default value = 0.05
+		Looking for list 'ParticleCommHandlers': Not Found.
+		Stg_Component 'gaussSwarm' cannot find non-essential component with key 'IC'.
+		Getting parameter 'createGlobalId': Using default value = false
+		Looking for essential component 'linearMesh': Found.
+		Looking for non-essential component 'timeIntegrator': Found.
+		Stg_Component 'gaussSwarm' cannot find non-essential component with key 'WeightsCalculator'.
+		Stg_Component 'gaussSwarm' cannot find non-essential component with key 'IntegrationPointMapper'.
+		Getting parameter 'recalculateWeights': Using default value = true
+	Constructing materialSwarmAdvector..
+		Stg_Component 'materialSwarmAdvector' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Stg_Component 'materialSwarmAdvector' cannot find non-essential component with key 'Variable'.
+		Looking for essential component 'timeIntegrator': Found.
+		Looking for list 'data': Not Found.
+		Getting parameter 'allowFallbackToFirstOrder': Found - Value = "True"
+		Looking for essential component 'VelocityField': Found.
+		Looking for essential component 'materialSwarm': Found.
+		Looking for non-essential component 'periodicBCsManager': Not found.
+	Constructing solutionVelocity..
+		Stg_Component 'solutionVelocity' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'VelocityField': Found.
+	Constructing solutionPressure..
+		Stg_Component 'solutionPressure' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'PressureField': Found.
+	Constructing cont_force..
+		Stg_Component 'cont_force' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'PressureField': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+	Constructing g_matrix..
+		Stg_Component 'g_matrix' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'VelocityField': Found.
+		Looking for essential component 'PressureField': Found.
+		Looking for non-essential component 'mom_force': Found.
+		Stg_Component 'g_matrix' cannot find non-essential component with key 'ApplicationDepInfo'.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'isNonLinear': Using default value = false
+		Getting parameter 'allowZeroElementContributions': Found - Value = "False"
+		Looking for non-essential component 'cont_force': Found.
+	Constructing gradientStiffnessMatrixTerm..
+		Stg_Component 'gradientStiffnessMatrixTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'g_matrix': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Stg_Component 'gradientStiffnessMatrixTerm' cannot find non-essential component with key 'ExtraInfo'.
+	Constructing preconditioner..
+		Stg_Component 'preconditioner' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'PressureField': Found.
+		Looking for essential component 'PressureField': Found.
+		Looking for non-essential component 'cont_force': Found.
+		Stg_Component 'preconditioner' cannot find non-essential component with key 'ApplicationDepInfo'.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'isNonLinear': Using default value = false
+		Getting parameter 'allowZeroElementContributions': Found - Value = "True"
+		Stg_Component 'preconditioner' cannot find non-essential component with key 'transposeRHS'.
+	Constructing preconditionerTerm..
+		Stg_Component 'preconditionerTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'preconditioner': Found.
+		Looking for essential component 'picIntegrationPoints': Found.
+		Stg_Component 'preconditionerTerm' cannot find non-essential component with key 'ExtraInfo'.
+	Constructing uzawa..
+		Stg_Component 'uzawa' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'statSolve': Using default value = false
+		Getting parameter 'statReps': Using default value = 0
+		Getting parameter 'tolerance': Found - Value = "1.0e-5"
+		Getting parameter 'maxIterations': Found - Value = "5000"
+		Getting parameter 'minIterations': Found - Value = "1"
+		Getting parameter 'useAbsoluteTolerance': Using default value = false
+		Getting parameter 'monitor': Found - Value = "false"
+		Looking for non-essential component 'preconditioner': Found.
+	Constructing stokesEqn..
+		Looking for non-essential component 'uzawa': Found.
+		Getting parameter 'removeBCs': Using default value = true
+		Getting parameter 'makeConvergenceFile': Found - Value = "false"
+		Getting parameter 'isNonLinear': Using default value = false
+		Getting parameter 'nonLinearTolerance': Found - Value = "nonLinearTolerance"
+		Key 'nonLinearTolerance' points to key 'nonLinearTolerance' in the root dictionary: Using default value = 0.01
+		Getting parameter 'nonLinearMaxIterations': Found - Value = "nonLinearMaxIterations"
+		Key 'nonLinearMaxIterations' points to key 'nonLinearMaxIterations' in the root dictionary: Using default value = 500
+		Getting parameter 'killNonConvergent': Found - Value = "false"
+		Getting parameter 'nonLinearMinIterations': Using default value = 1
+		Getting parameter 'nonLinearSolutionType': Using default value = "default"
+		Getting parameter 'optionsPrefix': Using default value = ""
+		Getting parameter 'picard_FormFunctionType': Using default value = "PicardFormFunction_KSPResidual"
+		Getting parameter 'picard_alpha': Using default value = 1
+		Getting parameter 'picard_rtol': Using default value = 1e-08
+		Getting parameter 'picard_atol': Using default value = 1e-50
+		Getting parameter 'picard_stol': Using default value = 1e-08
+		Getting parameter 'picard_ActivateMonitor': Using default value = false
+		Looking for non-essential component 'context': Found.
+		Looking for essential component 'k_matrix': Found.
+		Looking for essential component 'g_matrix': Found.
+		Looking for non-essential component '': Not found.
+		Looking for non-essential component 'c_matrix': Not found.
+		Looking for essential component 'solutionVelocity': Found.
+		Looking for essential component 'solutionPressure': Found.
+		Looking for essential component 'mom_force': Found.
+		Looking for essential component 'cont_force': Found.
+	Constructing residual..
+		Stg_Component 'residual' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'TemperatureField': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+	Constructing massMatrix..
+		Stg_Component 'massMatrix' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'TemperatureField': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+	Constructing predictorMulticorrector..
+		Stg_Component 'predictorMulticorrector' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'statSolve': Using default value = false
+		Getting parameter 'statReps': Using default value = 0
+		Getting parameter 'gamma': Using default value = 0.5
+		Getting parameter 'multiCorrectorIterations': Using default value = 2
+	Constructing EnergyEqn..
+		Looking for non-essential component 'predictorMulticorrector': Found.
+		Getting parameter 'removeBCs': Using default value = true
+		Getting parameter 'makeConvergenceFile': Using default value = false
+		Getting parameter 'isNonLinear': Using default value = false
+		Getting parameter 'nonLinearTolerance': Using default value = 0.01
+		Getting parameter 'nonLinearMaxIterations': Using default value = 500
+		Getting parameter 'killNonConvergent': Using default value = true
+		Getting parameter 'nonLinearMinIterations': Using default value = 1
+		Getting parameter 'nonLinearSolutionType': Using default value = "default"
+		Getting parameter 'optionsPrefix': Using default value = ""
+		Getting parameter 'picard_FormFunctionType': Using default value = "PicardFormFunction_KSPResidual"
+		Getting parameter 'picard_alpha': Using default value = 1
+		Getting parameter 'picard_rtol': Using default value = 1e-08
+		Getting parameter 'picard_atol': Using default value = 1e-50
+		Getting parameter 'picard_stol': Using default value = 1e-08
+		Getting parameter 'picard_ActivateMonitor': Using default value = false
+		Looking for non-essential component 'context': Found.
+		Looking for essential component 'TemperatureField': Found.
+		Looking for essential component 'residual': Found.
+		Looking for essential component 'massMatrix': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'courantFactor': Found - Value = "courantFactor"
+		Key 'courantFactor' points to key 'courantFactor' in the root dictionary: Found - Value = "0.25"
+		Getting parameter 'pureDiffusion': Using default value = false
+	Constructing lumpedMassMatrixForceTerm..
+		Stg_Component 'lumpedMassMatrixForceTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'massMatrix': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Stg_Component 'lumpedMassMatrixForceTerm' cannot find non-essential component with key 'ExtraInfo'.
+	Constructing defaultResidualForceTerm..
+		Stg_Component 'defaultResidualForceTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'residual': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Looking for non-essential component 'EnergyEqn': Found.
+		Looking for essential component 'VelocityField': Found.
+		Stg_Component 'defaultResidualForceTerm' cannot find non-essential component with key 'DiffusivityVariable'.
+		Getting parameter 'UpwindXiFunction': Found - Value = "DoublyAsymptoticAssumption"
+		Getting parameter 'defaultDiffusivity': Found - Value = "defaultDiffusivity"
+		Key 'defaultDiffusivity' points to key 'defaultDiffusivity' in the root dictionary: Using default value = 1
+	Constructing buoyancyForceTerm..
+		Stg_Component 'buoyancyForceTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'mom_force': Found.
+		Looking for essential component 'picIntegrationPoints': Found.
+		Stg_Component 'buoyancyForceTerm' cannot find non-essential component with key 'ExtraInfo'.
+		Looking for essential component 'TemperatureField': Found.
+		Getting parameter 'Ra': Found - Value = "Ra"
+		Key 'Ra' points to key 'Ra' in the root dictionary: Found - Value = "5.6e5"
+	Constructing director..
+		Stg_Component 'director' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Stg_Component 'director' cannot find non-essential component with key 'Variable'.
+		Looking for essential component 'timeIntegrator': Found.
+		Looking for list 'data': Not Found.
+		Getting parameter 'allowFallbackToFirstOrder': Using default value = false
+		First Trying to find component by name 'VelocityGradientsField': Found.
+		Getting parameter 'SwarmVarName': Using default value = "Director"
+		Looking for essential component 'materialSwarm': Found.
+		Getting parameter 'initialDirectionType': Using default value = "global"
+		Getting parameter 'initialDirectionX': Found - Value = "1.0"
+		Getting parameter 'initialDirectionY': Found - Value = "0.0"
+		Getting parameter 'initialDirectionZ': Found - Value = "0.0"
+		Getting parameter 'randomInitialDirectionSeed': Using default value = 1
+		Getting parameter 'dontUpdate': Found - Value = "False"
+	Constructing isotropicViscosity..
+		Stg_Component 'isotropicViscosity' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Stg_Component 'isotropicViscosity' cannot find non-essential component with key 'Manager'.
+		Looking for essential component 'default_ppcManager': Found.
+		Getting parameter 'eta0': Found - Value = "1.0"
+	Constructing anisotropic..
+		Stg_Component 'anisotropic' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Stg_Component 'anisotropic' cannot find non-essential component with key 'Manager'.
+		Looking for essential component 'default_ppcManager': Found.
+		Looking for essential component 'director': Found.
+		Getting parameter 'viscosityRatio': Found - Value = "10.0"
+	Constructing shape..
+		Stg_Component 'shape' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'CentreX': Using default value = 0
+		Getting parameter 'CentreY': Using default value = 0
+		Getting parameter 'CentreZ': Using default value = 0
+		Getting parameter 'invert': Using default value = false
+		Getting parameter 'alpha': Using default value = 0
+		Getting parameter 'beta': Using default value = 0
+		Getting parameter 'gamma': Using default value = 0
+	Constructing material..
+		Stg_Component 'material' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'shape': Found.
+		Looking for list 'Rheology': Found.
+			Looking for essential component 'isotropicViscosity': Found.
+			Looking for essential component 'anisotropic': Found.
+		Stg_Component 'material' cannot find non-essential component with key 'Compressible'.
+	Constructing alignment..
+		Stg_Component 'alignment' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'materialSwarm': Found.
+		Stg_Component 'alignment' cannot find non-essential component with key 'Variable'.
+		Getting parameter 'dofCount': Using default value = 1
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'AddToSwarmParticleExtension': Using default value = true
+		Looking for essential component 'VelocityField': Found.
+		Getting parameter 'CalculateAlignmentSlip': Using default value = 0
+		Getting parameter 'slip1': Using default value = 0
+		Getting parameter 'slip2': Using default value = 0
+		Getting parameter 'slip3': Using default value = 0
+		Looking for essential component 'director': Found.
+	Constructing camera..
+		Stg_Component 'camera' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'CoordinateSystem': Using default value = "RightHanded"
+		Getting parameter 'focalPointX': Using default value = 0
+		Getting parameter 'focalPointY': Using default value = 0
+		Getting parameter 'focalPointZ': Using default value = 0
+		Getting parameter 'coordZ': Found - Value = "1.5"
+		Getting parameter 'translateX': Using default value = 0
+		Getting parameter 'translateY': Using default value = 0
+		Getting parameter 'translateZ': Using default value = -1.5
+		Getting parameter 'rotateX': Using default value = 0
+		Getting parameter 'rotateY': Using default value = 0
+		Getting parameter 'rotateZ': Using default value = 0
+		Getting parameter 'rotationCentreX': Using default value = 0
+		Getting parameter 'rotationCentreY': Using default value = 0
+		Getting parameter 'rotationCentreZ': Using default value = 0
+		Getting parameter 'upDirectionX': Using default value = 0
+		Getting parameter 'upDirectionY': Using default value = 1
+		Getting parameter 'upDirectionZ': Using default value = 0
+		Getting parameter 'focalLength': Using default value = 0
+		Getting parameter 'aperture': Using default value = 45
+		Getting parameter 'autoZoomTimestep': Using default value = 0
+		Looking for non-essential component 'VelocityMagnitudeField': Found.
+	Constructing temperatureColourMap..
+		Stg_Component 'temperatureColourMap' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'dynamicRange': Found - Value = "True"
+		Getting parameter 'centreValue': Not found.
+		Getting parameter 'logScale': Using default value = false
+		Getting parameter 'minimum': Using default value = 0
+		Getting parameter 'maximum': Using default value = 1
+		Getting parameter 'discrete': Using default value = false
+		Getting parameter 'colours': Found - Value = "#0B0133 White #B7210B"
+	Constructing tempandVelTitle..
+		Stg_Component 'tempandVelTitle' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Stg_Component 'tempandVelTitle' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'string': Found - Value = "TemperatureField and Velocity Arrows"
+		Getting parameter 'yPos': Using default value = 10
+	Constructing temperatureMap..
+		Stg_Component 'temperatureMap' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Looking for non-essential component 'temperatureColourMap': Found.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'X1': Not found.
+		Getting parameter 'crossSectionX': Not found.
+		Getting parameter 'crossSectionY': Not found.
+		Getting parameter 'crossSectionZ': Not found.
+		Getting parameter 'crossSection': Using default value = "z=0"
+		Getting parameter 'resolution': Found - Value = "128"
+		Getting parameter 'resolutionA': Using default value = 128
+		Getting parameter 'resolutionB': Using default value = 128
+		Getting parameter 'drawSides': Using default value = "xyzXYZ"
+	Constructing velocityArrows..
+		Stg_Component 'velocityArrows' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Stg_Component 'velocityArrows' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'X1': Not found.
+		Getting parameter 'crossSectionX': Not found.
+		Getting parameter 'crossSectionY': Not found.
+		Getting parameter 'crossSectionZ': Not found.
+		Getting parameter 'crossSection': Using default value = "z=0"
+		Getting parameter 'resolution': Using default value = 8
+		Getting parameter 'resolutionA': Using default value = 8
+		Getting parameter 'resolutionB': Using default value = 8
+		Getting parameter 'arrowHeadSize': Found - Value = "0.15"
+		Getting parameter 'maximum': Using default value = 1
+		Getting parameter 'dynamicRange': Using default value = true
+		Getting parameter 'lengthScale': Found - Value = "0.15"
+		Getting parameter 'glyphs': Using default value = 3
+		Getting parameter 'resolutionX': Using default value = 8
+		Getting parameter 'resolutionY': Using default value = 8
+		Getting parameter 'resolutionZ': Using default value = 8
+	Constructing border..
+		Stg_Component 'border' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Stg_Component 'border' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Looking for essential component 'VelocityMagnitudeField': Found.
+	Constructing temperatureColourBar..
+		Stg_Component 'temperatureColourBar' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Looking for non-essential component 'temperatureColourMap': Found.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'ticks': Using default value = 0
+		Getting parameter 'lengthFactor': Using default value = 0.8
+		Getting parameter 'height': Using default value = 10
+		Getting parameter 'margin': Using default value = 16
+		Getting parameter 'borderWidth': Using default value = 1
+		Getting parameter 'precision': Using default value = 2
+		Getting parameter 'scientific': Using default value = false
+		Getting parameter 'printTickValue': Using default value = true
+		Getting parameter 'printUnits': Using default value = false
+		Getting parameter 'scaleValue': Using default value = 1
+	Constructing TemperatureAndVelocityArrowsVP..
+		Stg_Component 'TemperatureAndVelocityArrowsVP' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'camera': Found.
+		Looking for list 'DrawingObject': Found.
+			Looking for essential component 'tempandVelTitle': Found.
+			Looking for essential component 'temperatureMap': Found.
+			Looking for essential component 'border': Found.
+			Looking for essential component 'velocityArrows': Found.
+			Looking for essential component 'temperatureColourBar': Found.
+		Getting parameter 'title': Using default value = ""
+		Getting parameter 'axis': Using default value = false
+		Getting parameter 'axisLength': Using default value = 0.2
+		Getting parameter 'antialias': Using default value = true
+		Getting parameter 'rulers': Using default value = false
+		Getting parameter 'timestep': Using default value = false
+		Getting parameter 'border': Using default value = 0
+		Getting parameter 'borderColour': Using default value = "#888888"
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'margin': Using default value = 32
+		Getting parameter 'nearClipPlane': Using default value = 0
+		Getting parameter 'farClipPlane': Using default value = 0
+		Getting parameter 'scaleX': Using default value = 1
+		Getting parameter 'scaleY': Using default value = 1
+		Getting parameter 'scaleZ': Using default value = 1
+	Constructing velocityMagnitudeColourMap..
+		Stg_Component 'velocityMagnitudeColourMap' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'dynamicRange': Found - Value = "true"
+		Getting parameter 'centreValue': Not found.
+		Getting parameter 'logScale': Using default value = false
+		Getting parameter 'minimum': Using default value = 0
+		Getting parameter 'maximum': Using default value = 1
+		Getting parameter 'discrete': Using default value = false
+		Getting parameter 'colours': Found - Value = "Purple Blue Green Yellow Orange Red"
+	Constructing timeStep..
+		Stg_Component 'timeStep' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Found - Value = "Black"
+		Stg_Component 'timeStep' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'frame': Found - Value = "false"
+		Getting parameter 'time': Found - Value = "true"
+		Getting parameter 'outputUnits': Using default value = ""
+	Constructing velocityMagnitudeTitle..
+		Stg_Component 'velocityMagnitudeTitle' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Stg_Component 'velocityMagnitudeTitle' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'string': Found - Value = "Velocity Magnitude"
+		Getting parameter 'yPos': Using default value = 10
+	Constructing velocityMagnitudeMap..
+		Stg_Component 'velocityMagnitudeMap' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Looking for non-essential component 'velocityMagnitudeColourMap': Found.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'X1': Not found.
+		Getting parameter 'crossSectionX': Not found.
+		Getting parameter 'crossSectionY': Not found.
+		Getting parameter 'crossSectionZ': Not found.
+		Getting parameter 'crossSection': Using default value = "z=0"
+		Getting parameter 'resolution': Found - Value = "128"
+		Getting parameter 'resolutionA': Using default value = 128
+		Getting parameter 'resolutionB': Using default value = 128
+		Getting parameter 'drawSides': Using default value = "xyzXYZ"
+	Constructing velocityMagnitudeColourBar..
+		Stg_Component 'velocityMagnitudeColourBar' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Looking for non-essential component 'velocityMagnitudeColourMap': Found.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'ticks': Using default value = 0
+		Getting parameter 'lengthFactor': Using default value = 0.8
+		Getting parameter 'height': Using default value = 10
+		Getting parameter 'margin': Using default value = 16
+		Getting parameter 'borderWidth': Using default value = 1
+		Getting parameter 'precision': Using default value = 2
+		Getting parameter 'scientific': Using default value = false
+		Getting parameter 'printTickValue': Using default value = true
+		Getting parameter 'printUnits': Using default value = false
+		Getting parameter 'scaleValue': Using default value = 1
+	Constructing VelocityMagnitudeVP..
+		Stg_Component 'VelocityMagnitudeVP' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'camera': Found.
+		Looking for list 'DrawingObject': Found.
+			Looking for essential component 'velocityMagnitudeTitle': Found.
+			Looking for essential component 'velocityMagnitudeMap': Found.
+			Looking for essential component 'timeStep': Found.
+			Looking for essential component 'border': Found.
+			Looking for essential component 'velocityArrows': Found.
+			Looking for essential component 'velocityMagnitudeColourBar': Found.
+		Getting parameter 'title': Using default value = ""
+		Getting parameter 'axis': Using default value = false
+		Getting parameter 'axisLength': Using default value = 0.2
+		Getting parameter 'antialias': Using default value = true
+		Getting parameter 'rulers': Using default value = false
+		Getting parameter 'timestep': Using default value = false
+		Getting parameter 'border': Using default value = 0
+		Getting parameter 'borderColour': Using default value = "#888888"
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'margin': Using default value = 32
+		Getting parameter 'nearClipPlane': Using default value = 0
+		Getting parameter 'farClipPlane': Using default value = 0
+		Getting parameter 'scaleX': Using default value = 1
+		Getting parameter 'scaleY': Using default value = 1
+		Getting parameter 'scaleZ': Using default value = 1
+	Constructing database..
+		Stg_Component 'database' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for list 'DrawingObject': Not Found.
+		Getting parameter 'deleteAfter': Using default value = 0
+		Getting parameter 'writeimage': Using default value = true
+		Getting parameter 'splitTransactions': Using default value = false
+		Getting parameter 'transparent': Using default value = false
+		Getting parameter 'compressed': Using default value = true
+		Getting parameter 'singleFile': Using default value = true
+		Getting parameter 'filename': Using default value = "gLucifer"
+		Getting parameter 'vfs': Using default value = "(null)"
+		Getting parameter 'timeUnits': Using default value = ""
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'blocking': Using default value = false
+		Getting double from root dictionary with key 'minX' and default value '0'
+		Getting double from root dictionary with key 'minY' and default value '0'
+		Getting double from root dictionary with key 'minZ' and default value '0'
+		Getting double from root dictionary with key 'maxX' and default value '1'
+		Getting double from root dictionary with key 'maxY' and default value '1'
+		Getting double from root dictionary with key 'maxZ' and default value '1'
+	Constructing window..
+		Looking for essential component 'TemperatureAndVelocityArrowsVP': Found.
+		Looking for essential component 'VelocityMagnitudeVP': Found.
+		Looking for essential component 'AlignmentVP': Found.
+		AlignmentVP has not been constructed yet. Constructing now.
+			Constructing AlignmentVP..
+				Stg_Component 'AlignmentVP' cannot find non-essential component with key 'Context'.
+				Looking for essential component 'context': Found.
+				Looking for essential component 'camera': Found.
+				Looking for list 'DrawingObject': Found.
+					Looking for essential component 'alignmentDrawingObject': Found.
+					alignmentDrawingObject has not been constructed yet. Constructing now.
+						Constructing alignmentDrawingObject..
+							Stg_Component 'alignmentDrawingObject' cannot find non-essential component with key 'Context'.
+							Looking for essential component 'context': Found.
+							Getting parameter 'lit': Using default value = true
+							Getting parameter 'disable': Using default value = false
+							Getting parameter 'lineWidth': Using default value = 1
+							Getting parameter 'colour': Using default value = "black"
+							Looking for non-essential component 'alignmentColourMap': Found.
+							alignmentColourMap has not been constructed yet. Constructing now.
+								Constructing alignmentColourMap..
+									Stg_Component 'alignmentColourMap' cannot find non-essential component with key 'Context'.
+									Looking for essential component 'context': Found.
+									Getting parameter 'dynamicRange': Using default value = false
+									Getting parameter 'logScale': Using default value = false
+									Getting parameter 'minimum': Using default value = 0
+									Getting parameter 'maximum': Using default value = 1
+									Getting parameter 'discrete': Using default value = false
+									Getting parameter 'colours': Found - Value = "Yellow Black"
+							Getting parameter 'opacity': Using default value = -1
+							Getting parameter 'wireframe': Using default value = false
+							Looking for essential component 'materialSwarm': Found.
+							Getting parameter 'ColourVariable': Found - Value = "alignment"
+							Getting parameter 'SizeVariable': Using default value = ""
+							Getting parameter 'OpacityVariable': Using default value = ""
+							Getting parameter 'MaskVariable': Using default value = ""
+							Getting parameter 'drawParticleNumber': Using default value = false
+							Getting parameter 'sameParticleColour': Using default value = false
+							Getting parameter 'subSample': Using default value = 0
+							Getting parameter 'positionRange': Using default value = false
+							Getting parameter 'minPositionX': Using default value = -inf
+							Getting parameter 'minPositionY': Using default value = -inf
+							Getting parameter 'minPositionZ': Using default value = -inf
+							Getting parameter 'maxPositionX': Using default value = inf
+							Getting parameter 'maxPositionY': Using default value = inf
+							Getting parameter 'maxPositionZ': Using default value = inf
+							Getting parameter 'maskValue': Using default value = 0
+							Getting parameter 'maskTolerance': Using default value = 0.001
+							Getting parameter 'maskType': Using default value = "GreaterThan"
+							Stg_Component 'alignmentDrawingObject' cannot find non-essential component with key 'OpacityColourMap'.
+							Getting parameter 'pointSize': Found - Value = "2.0"
+							Getting parameter 'pointSmoothing': Using default value = true
+					Looking for essential component 'border': Found.
+					Looking for essential component 'alignmentTitle': Found.
+					alignmentTitle has not been constructed yet. Constructing now.
+						Constructing alignmentTitle..
+							Stg_Component 'alignmentTitle' cannot find non-essential component with key 'Context'.
+							Looking for essential component 'context': Found.
+							Getting parameter 'lit': Using default value = true
+							Getting parameter 'disable': Using default value = false
+							Getting parameter 'lineWidth': Using default value = 1
+							Getting parameter 'colour': Using default value = "black"
+							Stg_Component 'alignmentTitle' cannot find non-essential component with key 'ColourMap'.
+							Getting parameter 'opacity': Using default value = -1
+							Getting parameter 'wireframe': Using default value = false
+							Getting parameter 'string': Found - Value = "Particle Alignment"
+							Getting parameter 'yPos': Using default value = 10
+				Getting parameter 'title': Using default value = ""
+				Getting parameter 'axis': Using default value = false
+				Getting parameter 'axisLength': Using default value = 0.2
+				Getting parameter 'antialias': Using default value = true
+				Getting parameter 'rulers': Using default value = false
+				Getting parameter 'timestep': Using default value = false
+				Getting parameter 'border': Using default value = 0
+				Getting parameter 'borderColour': Using default value = "#888888"
+				Getting parameter 'disable': Using default value = false
+				Getting parameter 'margin': Using default value = 32
+				Getting parameter 'nearClipPlane': Using default value = 0
+				Getting parameter 'farClipPlane': Using default value = 0
+				Getting parameter 'scaleX': Using default value = 1
+				Getting parameter 'scaleY': Using default value = 1
+				Getting parameter 'scaleZ': Using default value = 1
+		Getting parameter 'width': Using default value = 1200
+		Getting parameter 'height': Using default value = 400
+		Stg_Component 'window' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'backgroundColour': Using default value = "white"
+		Getting parameter 'antialias': Using default value = true
+		Looking for non-essential component 'database': Found.
+		Getting parameter 'useModelBounds': Using default value = true
+		Getting parameter 'disable': Using default value = false
+	Constructing AnalyticVelocityField..
+		Stg_Component 'AnalyticVelocityField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+	Constructing AnalyticVelocityField-Mag..
+		Stg_Component 'AnalyticVelocityField-Mag' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing ErrorVelocityField..
+		Stg_Component 'ErrorVelocityField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+	Constructing ErrorVelocityField-Mag..
+		Stg_Component 'ErrorVelocityField-Mag' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing AnalyticPressureField..
+		Stg_Component 'AnalyticPressureField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+	Constructing AnalyticPressureField-Mag..
+		Stg_Component 'AnalyticPressureField-Mag' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing ErrorPressureField..
+		Stg_Component 'ErrorPressureField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+	Constructing ErrorPressureField-Mag..
+		Stg_Component 'ErrorPressureField-Mag' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing FieldTest..
+		Stg_Component 'FieldTest' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+	Constructing StgFEM_StandardConditionFunctions..
+		Looking for essential component 'context': Found.
+	Constructing Underworld_Ra_Scaling_Type..
+		Looking for essential component 'context': Found.
+		Getting Bool from root dictionary with key 'Ra_ScalingCheck' and default value 'True'
+	Constructing StgFEM_FrequentOutput..
+		Looking for essential component 'context': Found.
+	Constructing Underworld_Nusselt..
+		Looking for essential component 'context': Found.
+		Looking for essential component 'gaussSwarm': Found.
+	Constructing Underworld_Vrms..
+		Looking for essential component 'context': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Looking for essential component 'VelocityField': Found.
+	Constructing StgFEM_CPUTime..
+		Looking for essential component 'context': Found.
+
+Building Stg_Components from the live-component register
+
+Cartesian generator: 'linearMeshGenerator'
+	Target mesh: 'linearMesh'
+	Global element size: 10x10
+	Local offset of rank 0: 0x0
+	Local range of rank 0: 10x5
+	Generating vertices...
+		... done.
+	Generating elements...
+		... done.
+	Generating edges...
+		... done.
+	Generating element-vertex incidence...
+		... done.
+	Generating face-edge incidence...
+		... done.
+	Generating edge-vertex incidence...
+		... done.
+	Generating vertex neighbours...
+		... done.
+	Generating geometry...
+		... done.
+	Generating element types...
+		... element types are 'Mesh_HexType',
+		... mesh algorithm type is 'Mesh_RegularAlgorithms',
+		... done.
+	Assigning FeMesh element types...
+		... FE element types are 'BilinearElementType',
+		... done.
+Warning - in _WallVC_GetSet: Can't build a MaxK_front wall VC when mesh has no elements in the K axis. Returning an empty set.
+Warning - in _WallVC_GetSet: Can't build a MinK_back wall VC when mesh has no elements in the K axis. Returning an empty set.
+Stiffness matrix: 'k_matrix'
+	Calculating number of nonzero entries...
+		Found 3008 nonzero entries.
+		Done.
+	Assigning FeMesh element types...
+		... FE element types are 'ConstantElementType',
+		... done.
+FeEquationNumber: 'defaultFeVariableFeEqName'
+	Generating equation numbers...
+		BCs set to be removed.
+		Assigned 100 global equation numbers.
+		[0] Assigned 50 local equation numbers, within range 0 to 50.
+	... Completed in 0.000139952 [min] / 0.000175953 [max] seconds.
+Stiffness matrix: 'g_matrix'
+	Calculating number of nonzero entries...
+		Found 720 nonzero entries.
+		Done.
+Stiffness matrix: 'preconditioner'
+	Calculating number of nonzero entries...
+		Found 100 nonzero entries.
+		Done.
+	Looking for essential component 'TemperatureField': Found.
+	Looking for essential component 'VelocityField': Found.
+	Looking for essential component 'VelocityMagnitudeField': Found.
+Linking materials and ppc... 
+done
+
+Initialising Stg_Components from the live-component register
+
+Run until simulation has stepped forward 5 timeSteps
+Laying out material 'material' within Everywhere 'shape':
+In func Materials_Register_AssignParticleProperties(): for swarm "materialSwarm"
+	Assigning initial particle properties to the 2000 global particles
+		done 10% (101 particles)...
+		done 20% (201 particles)...
+		done 30% (301 particles)...
+		done 40% (401 particles)...
+		done 50% (501 particles)...
+		done 60% (601 particles)...
+		done 70% (701 particles)...
+		done 80% (801 particles)...
+		done 90% (901 particles)...
+		done 100% (1001 particles)...
+Materials_Register_AssignParticleProperties(): finished setup of material properties for swarm "materialSwarm"
+	took 0.00124717 [min] / 0.001302 [max] secs
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 100 global cells
+		done 10% (5 cells)...
+		done 20% (10 cells)...
+		done 30% (15 cells)...
+		done 40% (20 cells)...
+		done 50% (25 cells)...
+		done 60% (30 cells)...
+		done 70% (35 cells)...
+		done 80% (40 cells)...
+		done 90% (45 cells)...
+		done 100% (50 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+Window: window, id 1
+      Drawing object: temperatureMap lucScalarField id 1
+         ColourMap: temperatureColourMap, id 1
+         Linking colourMap: temperatureColourMap to object temperatureMap
+      Drawing object: velocityArrows lucVectorArrows id 2
+      Drawing object: temperatureColourBar lucColourBar id 3
+         Linking colourMap: temperatureColourMap to object temperatureColourBar
+   Viewport: TemperatureAndVelocityArrowsVP id 1
+      Drawing object: velocityMagnitudeMap lucScalarField id 4
+         ColourMap: velocityMagnitudeColourMap, id 2
+         Linking colourMap: velocityMagnitudeColourMap to object velocityMagnitudeMap
+      Drawing object: velocityMagnitudeColourBar lucColourBar id 5
+         Linking colourMap: velocityMagnitudeColourMap to object velocityMagnitudeColourBar
+   Viewport: VelocityMagnitudeVP id 2
+      Drawing object: alignmentDrawingObject lucSwarmViewer id 6
+         ColourMap: alignmentColourMap, id 3
+         Linking colourMap: alignmentColourMap to object alignmentDrawingObject
+   Viewport: AlignmentVP id 3
+TimeStep = 0, Start time = 0, prev timeStep dt = 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0008 , Uzawa residual = 8.2405266392487e-06
+  |G^T u|/|u|               = 3.25987253e-06
+  |f - K u - G p|/|f|       = 1.16651233e-06
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.35420585e+03 , u_rms = 7.45192578e+02
+  |p|_{\infty} = 1.68137406e+05 , p_rms = 8.30732521e+04
+  min/max(u) = -1.35420585e+03 [108] / 1.35385474e+03 [193]
+  min/max(p) = -1.68137406e+05 [0] / 1.00942036e+05 [90]
+  \sum_i p_i = -4.31427566e+01 
+Linear solver (stokesEqn-execute), solution time 8.417845e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 2.856970e-03 (secs)
+Time Integration
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	       EP:            Director_UpdateVariables -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0036 [min] /    0.0037 [max] (secs)
+	2nd order:                            director -    0.0045 [min] /    0.0047 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0012 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0010 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 100 global cells
+		done 10% (5 cells)...
+		done 20% (10 cells)...
+		done 30% (15 cells)...
+		done 40% (20 cells)...
+		done 50% (25 cells)...
+		done 60% (30 cells)...
+		done 70% (35 cells)...
+		done 80% (40 cells)...
+		done 90% (45 cells)...
+		done 100% (50 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0054 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.016345 [min] / 0.0163651 [max] (secs)
+Time Integration - 0.01635 [min] / 0.01638 [max] (secs)
+TimeStep = 1, Start time = 1.8461e-05, prev timeStep dt = 1.8461e-05
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0005 , Uzawa residual = 5.7765875707288e-06
+  |G^T u|/|u|               = 2.31346715e-06
+  |f - K u - G p|/|f|       = 5.43331933e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.34302500e+03 , u_rms = 7.35606633e+02
+  |p|_{\infty} = 1.65850466e+05 , p_rms = 8.30846802e+04
+  min/max(u) = -1.34302500e+03 [108] / 1.34252530e+03 [89]
+  min/max(p) = -1.65850466e+05 [1] / 1.03666385e+05 [90]
+  \sum_i p_i = -5.92363473e+02 
+Linear solver (stokesEqn-execute), solution time 4.070044e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 2.496958e-03 (secs)
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	       EP:            Director_UpdateVariables -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0035 [min] /    0.0037 [max] (secs)
+	2nd order:                            director -    0.0045 [min] /    0.0047 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0008 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0010 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 100 global cells
+		done 10% (5 cells)...
+		done 20% (10 cells)...
+		done 30% (15 cells)...
+		done 40% (20 cells)...
+		done 50% (25 cells)...
+		done 60% (30 cells)...
+		done 70% (35 cells)...
+		done 80% (40 cells)...
+		done 90% (45 cells)...
+		done 100% (50 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0054 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.01558 [min] / 0.01559 [max] (secs)
+TimeStep = 2, Start time = 3.70757e-05, prev timeStep dt = 1.86147e-05
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 8.6845262552019e-06
+  |G^T u|/|u|               = 2.89410284e-06
+  |f - K u - G p|/|f|       = 9.00964716e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.62831913e+03 , u_rms = 8.80761961e+02
+  |p|_{\infty} = 1.68342160e+05 , p_rms = 8.31358426e+04
+  min/max(u) = -1.62759763e+03 [108] / 1.62831913e+03 [89]
+  min/max(p) = -1.68342160e+05 [3] / 1.09636601e+05 [90]
+  \sum_i p_i = -2.86121074e+03 
+Linear solver (stokesEqn-execute), solution time 4.557848e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 2.507925e-03 (secs)
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	       EP:            Director_UpdateVariables -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0034 [min] /    0.0036 [max] (secs)
+	2nd order:                            director -    0.0045 [min] /    0.0047 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0008 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0010 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 100 global cells
+		done 10% (5 cells)...
+		done 20% (10 cells)...
+		done 30% (15 cells)...
+		done 40% (20 cells)...
+		done 50% (25 cells)...
+		done 60% (30 cells)...
+		done 70% (35 cells)...
+		done 80% (40 cells)...
+		done 90% (45 cells)...
+		done 100% (50 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0054 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.01559 [min] / 0.0156 [max] (secs)
+TimeStep = 3, Start time = 5.2429e-05, prev timeStep dt = 1.53533e-05
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0008 , Uzawa residual = 6.1100496171840e-06
+  |G^T u|/|u|               = 1.76629387e-06
+  |f - K u - G p|/|f|       = 1.14576978e-06
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.89795449e+03 , u_rms = 1.00878147e+03
+  |p|_{\infty} = 1.72003753e+05 , p_rms = 8.32394421e+04
+  min/max(u) = -1.89795129e+03 [108] / 1.89795449e+03 [89]
+  min/max(p) = -1.72003753e+05 [3] / 1.15847747e+05 [90]
+  \sum_i p_i = -7.60854370e+03 
+Linear solver (stokesEqn-execute), solution time 5.522013e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 2.532005e-03 (secs)
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	       EP:            Director_UpdateVariables -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0034 [min] /    0.0036 [max] (secs)
+	2nd order:                            director -    0.0044 [min] /    0.0047 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0008 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0010 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 100 global cells
+		done 10% (5 cells)...
+		done 20% (10 cells)...
+		done 30% (15 cells)...
+		done 40% (20 cells)...
+		done 50% (25 cells)...
+		done 60% (30 cells)...
+		done 70% (35 cells)...
+		done 80% (40 cells)...
+		done 90% (45 cells)...
+		done 100% (50 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0054 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.01563 [min] / 0.01564 [max] (secs)
+TimeStep = 4, Start time = 6.5601e-05, prev timeStep dt = 1.31721e-05
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0009 , Uzawa residual = 6.5520337793657e-06
+  |G^T u|/|u|               = 1.71191793e-06
+  |f - K u - G p|/|f|       = 1.06357853e-06
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 2.12189554e+03 , u_rms = 1.10599980e+03
+  |p|_{\infty} = 1.75906158e+05 , p_rms = 8.33920262e+04
+  min/max(u) = -2.12189554e+03 [108] / 2.12133389e+03 [89]
+  min/max(p) = -1.75906158e+05 [4] / 1.21328508e+05 [90]
+  \sum_i p_i = -1.39136851e+04 
+Linear solver (stokesEqn-execute), solution time 6.167889e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 2.475977e-03 (secs)
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	       EP:            Director_UpdateVariables -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0034 [min] /    0.0036 [max] (secs)
+	2nd order:                            director -    0.0045 [min] /    0.0047 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0008 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0010 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 100 global cells
+		done 10% (5 cells)...
+		done 20% (10 cells)...
+		done 30% (15 cells)...
+		done 40% (20 cells)...
+		done 50% (25 cells)...
+		done 60% (30 cells)...
+		done 70% (35 cells)...
+		done 80% (40 cells)...
+		done 90% (45 cells)...
+		done 100% (50 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0054 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.0156 [min] / 0.01561 [max] (secs)
+TimeStep = 5, Start time = 7.73829e-05, prev timeStep dt = 1.17819e-05
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0010 , Uzawa residual = 8.5391192551684e-06
+  |G^T u|/|u|               = 2.07059995e-06
+  |f - K u - G p|/|f|       = 1.25570455e-06
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 2.30279274e+03 , u_rms = 1.17808572e+03
+  |p|_{\infty} = 1.80089900e+05 , p_rms = 8.35687781e+04
+  min/max(u) = -2.30279274e+03 [108] / 2.30256471e+03 [89]
+  min/max(p) = -1.80089900e+05 [4] / 1.26034755e+05 [90]
+  \sum_i p_i = -1.98088080e+04 
+Linear solver (stokesEqn-execute), solution time 6.689072e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 2.504826e-03 (secs)
+[FieldTest] Appending analysis results to file...
+[FieldTest] Appending analysis results to file...
+VelocityField - dof 0 normalised global error: 1.21375087e-03
+VelocityField - dof 1 normalised global error: 1.21585574e-03
+PressureField - dof 0 normalised global error: 2.88165699e-04
+Finalised: gLucifer (Visualisation Framework) Revision 71d7f40d027fef8362ff421c099adecee384cb93.
+Finalised: Underworld (Geodynamics Framework) Revision d1a30765521592552eb91ce93ee21bc7f156c210.
+Finalised: PICellerator (Particle-In-Cell Framework) Revision f3d21a42cd5b8646f8f4f44712ba647e3415b2be.
+Finalised: StgFEM (Finite Element Framework) Revision 1a2f5c4d3746b061a4e4848ece580179193d0574.
+Finalised: StgDomain (Domain Library) Revision 60f17a7cf3d49900869dbbd221568078762b7a29.

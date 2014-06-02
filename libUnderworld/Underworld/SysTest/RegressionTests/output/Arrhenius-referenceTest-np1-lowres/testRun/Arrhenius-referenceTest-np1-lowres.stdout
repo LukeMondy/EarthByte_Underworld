@@ -1,0 +1,1249 @@
+StGermain Framework Revision c4bda90f1c33c667ca4d7e599581e6faea061e35. Copyright (C) 2003-2005 VPAC.
+Using LD_LIBRARY_PATH=/Users/julian/codes/underworld2/libUnderworld/build/lib:
+Finding module: "Underworld"... Toolbox "Underworld" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Toolboxmodule.dylib
+Finding module: "StgDomain"... Toolbox "StgDomain" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgDomain_Toolboxmodule.dylib
+StgDomain (Domain Library) Revision 60f17a7cf3d49900869dbbd221568078762b7a29. Copyright (C) 2003-2007 VPAC.
+Finding module: "StgFEM"... Toolbox "StgFEM" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_Toolboxmodule.dylib
+Module StgDomain already loaded
+StgFEM (Finite Element Framework) Revision 1a2f5c4d3746b061a4e4848ece580179193d0574. Copyright (C) 2003-2005 VPAC.
+Finding module: "PICellerator"... Toolbox "PICellerator" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/PICellerator_Toolboxmodule.dylib
+Module StgDomain already loaded
+Module StgFEM already loaded
+PICellerator (Particle-In-Cell Framework) Revision f3d21a42cd5b8646f8f4f44712ba647e3415b2be. Copyright (C) 2005-2010 VPAC & Monash University.
+Underworld (Geodynamics Framework) Revision d1a30765521592552eb91ce93ee21bc7f156c210. Copyright (C) 2005-2010 Monash University.
+Module Underworld already loaded
+Finding module: "gLucifer"... Toolbox "gLucifer" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/gLucifer_Toolboxmodule.dylib
+Module StgDomain already loaded
+Module StgFEM already loaded
+gLucifer (Visualisation Framework) Revision 71d7f40d027fef8362ff421c099adecee384cb93. Copyright (C) 2005-2010 Monash University.
+
+Creating Stg_Components from the component-list
+
+	Instantiating UnderworldContext as context
+	Instantiating FeMesh as constantMesh
+	Instantiating C0Generator as constantMeshGenerator
+	Instantiating FeMesh as linearMesh
+	Instantiating CartesianGenerator as linearMeshGenerator
+	Instantiating MeshVariable as velocity
+	Instantiating CompositeVC as velocityBCs
+	Instantiating CompositeVC as velocityICs
+	Instantiating DofLayout as velocityDofLayout
+	Instantiating FeVariable as VelocityField
+	Instantiating OperatorFeVariable as VelocityMagnitudeField
+	Instantiating OperatorFeVariable as VelocityGradientsField
+	Instantiating OperatorFeVariable as VelocityGradientsInvariantField
+	Instantiating OperatorFeVariable as VelocityXXField
+	Instantiating OperatorFeVariable as VelocityYYField
+	Instantiating OperatorFeVariable as StrainRateField
+	Instantiating OperatorFeVariable as VorticityField
+	Instantiating OperatorFeVariable as StrainRateInvariantField
+	Instantiating OperatorFeVariable as StrainRateXXField
+	Instantiating OperatorFeVariable as StrainRateYYField
+	Instantiating MeshVariable as temperature
+	Instantiating CompositeVC as temperatureBCs
+	Instantiating CompositeVC as temperatureICs
+	Instantiating DofLayout as temperatureDofLayout
+	Instantiating FeVariable as TemperatureField
+	Instantiating OperatorFeVariable as TemperatureGradientsField
+	Instantiating MeshVariable as pressure
+	Instantiating CompositeVC as pressureBCs
+	Instantiating CompositeVC as pressureICs
+	Instantiating DofLayout as pressureDofLayout
+	Instantiating FeVariable as PressureField
+	Instantiating SingleCellLayout as cellLayout
+	Instantiating GaussParticleLayout as particleLayout
+	Instantiating IntegrationPointsSwarm as gaussSwarm
+	Instantiating GaussMapper as gaussMapper
+	Instantiating BackgroundParticleLayout as backgroundLayout
+	Instantiating ParticleMovementHandler as gaussMSwarmMovementHandler
+	Instantiating MaterialPointsSwarm as gaussMaterialSwarm
+	Instantiating TimeIntegrator as timeIntegrator
+	Instantiating SolutionVector as solutionVelocity
+	Instantiating SolutionVector as solutionPressure
+	Instantiating ForceVector as mom_force
+	Instantiating ForceVector as cont_force
+	Instantiating StiffnessMatrix as k_matrix
+	Instantiating ConstitutiveMatrixCartesian as constitutiveMatrix
+	Instantiating StiffnessMatrix as g_matrix
+	Instantiating GradientStiffnessMatrixTerm as gradientStiffnessMatrixTerm
+	Instantiating StiffnessMatrix as preconditioner
+	Instantiating UzawaPreconditionerTerm as preconditionerTerm
+	Instantiating Stokes_SLE_UzawaSolver as uzawa
+	Instantiating Stokes_SLE as stokesEqn
+	Instantiating ThermalBuoyancyForceTerm as buoyancyForceTerm
+	Instantiating ForceVector as residual
+	Instantiating ForceVector as massMatrix
+	Instantiating AdvDiffMulticorrector as predictorMulticorrector
+	Instantiating AdvectionDiffusionSLE as EnergyEqn
+	Instantiating LumpedMassMatrixForceTerm as lumpedMassMatrixForceTerm
+	Instantiating AdvDiffResidualForceTerm as defaultResidualForceTerm
+	Instantiating Arrhenius as temperatureDependence
+	Instantiating Everywhere as shape
+	Instantiating RheologyMaterial as material
+	Instantiating lucCamera as camera
+	Instantiating lucColourMap as temperatureColourMap
+	Instantiating lucTitle as tempContoursTitle
+	Instantiating lucScalarField as temperatureMap
+	Instantiating lucContour as temperatureContours
+	Instantiating lucFieldVariableBorder as border
+	Instantiating lucColourBar as temperatureColourBar
+	Instantiating lucViewport as TemperatureContoursVP
+	Instantiating lucColourMap as strainRateInvColourMap
+	Instantiating lucTitle as strainRateInvTitle
+	Instantiating lucScalarField as strainRateInvMap
+	Instantiating lucColourBar as strainRateInvColourBar
+	Instantiating lucViewport as StrainRateInvariantVP
+	Instantiating lucDatabase as database
+	Instantiating lucWindow as window
+	Instantiating AnalyticFeVariable as AnalyticVelocityField
+	Instantiating OperatorFeVariable as AnalyticVelocityField-Mag
+	Instantiating ErrorFeVariable as ErrorVelocityField
+	Instantiating OperatorFeVariable as ErrorVelocityField-Mag
+	Instantiating AnalyticFeVariable as AnalyticPressureField
+	Instantiating OperatorFeVariable as AnalyticPressureField-Mag
+	Instantiating ErrorFeVariable as ErrorPressureField
+	Instantiating OperatorFeVariable as ErrorPressureField-Mag
+	Instantiating FieldTest as FieldTest
+
+Constructing Stg_Components from the live-component register
+
+	Constructing context..
+Plugin "StgFEM_StandardConditionFunctions" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_StandardConditionFunctionsmodule.dylib
+Plugin "Underworld_Ra_Scaling" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Ra_Scalingmodule.dylib
+Plugin "StgFEM_FrequentOutput" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_FrequentOutputmodule.dylib
+Plugin "Underworld_Nusselt" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Nusseltmodule.dylib
+Plugin "Underworld_Vrms" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Vrmsmodule.dylib
+Plugin "StgFEM_CPUTime" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_CPUTimemodule.dylib
+		Stg_Component 'context' cannot find non-essential component with key 'Scaling'.
+		Looking for non-essential component 'default_scaling': Not found.
+		Constructing MeshVariable as velocity
+		Constructing velocity..
+			Stg_Component 'velocity' cannot find non-essential component with key 'Context'.
+			Looking for essential component 'context': Found.
+			Looking for essential component 'linearMesh': Found.
+			linearMesh has not been constructed yet. Constructing now.
+				Constructing linearMesh..
+					Stg_Component 'linearMesh' cannot find non-essential component with key 'Context'.
+					Looking for essential component 'context': Found.
+					Getting parameter 'UseFeAlgorithms': Using default value = true
+					Getting parameter 'elementType': Found - Value = "linear"
+					Getting parameter 'isElementMesh': Using default value = false
+			Getting parameter 'topologicalDim': Using default value = 0
+			Getting parameter 'VectorComponentCount': Found - Value = "dim"
+			Key 'VectorComponentCount' points to key 'dim' in the root dictionary: Found - Value = "2"
+		Constructing MeshVariable as temperature
+		Constructing temperature..
+			Stg_Component 'temperature' cannot find non-essential component with key 'Context'.
+			Looking for essential component 'context': Found.
+			Looking for essential component 'linearMesh': Found.
+			Getting parameter 'topologicalDim': Using default value = 0
+		Constructing MeshVariable as pressure
+		Constructing pressure..
+			Stg_Component 'pressure' cannot find non-essential component with key 'Context'.
+			Looking for essential component 'context': Found.
+			Looking for essential component 'constantMesh': Found.
+			constantMesh has not been constructed yet. Constructing now.
+				Constructing constantMesh..
+					Stg_Component 'constantMesh' cannot find non-essential component with key 'Context'.
+					Looking for essential component 'context': Found.
+					Getting parameter 'UseFeAlgorithms': Using default value = true
+					Getting parameter 'elementType': Found - Value = "constant"
+					Getting parameter 'isElementMesh': Using default value = false
+			Getting parameter 'topologicalDim': Using default value = 0
+		Looking for non-essential component 'default_ppcManager': Not found.
+		Looking for non-essential component 'default_scaling': Not found.
+		Looking for non-essential component 'constitutiveMatrix': Found.
+		constitutiveMatrix has not been constructed yet. Constructing now.
+			Constructing constitutiveMatrix..
+				Stg_Component 'constitutiveMatrix' cannot find non-essential component with key 'Context'.
+				Looking for essential component 'context': Found.
+				Looking for essential component 'k_matrix': Found.
+				k_matrix has not been constructed yet. Constructing now.
+					Constructing k_matrix..
+						Stg_Component 'k_matrix' cannot find non-essential component with key 'Context'.
+						Looking for essential component 'context': Found.
+						Looking for essential component 'VelocityField': Found.
+						VelocityField has not been constructed yet. Constructing now.
+							Constructing VelocityField..
+								Stg_Component 'VelocityField' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Getting unsigned int from root dictionary with key 'dim' and default value '0'
+								Getting parameter 'dim': Using default value = 2
+								Getting parameter 'fieldComponentCount': Using default value = 0
+								Getting parameter 'useCacheMaxMin': Using default value = false
+								Getting parameter 'outputUnits': Found - Value = "cm/yr"
+								Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+								Looking for essential component 'linearMesh': Found.
+								Looking for essential component 'velocityDofLayout': Found.
+								velocityDofLayout has not been constructed yet. Constructing now.
+									Constructing velocityDofLayout..
+										Stg_Component 'velocityDofLayout' cannot find non-essential component with key 'Context'.
+										Looking for essential component 'context': Found.
+										Looking for non-essential component 'velocity': Found.
+								Looking for non-essential component 'velocityICs': Found.
+								velocityICs has not been constructed yet. Constructing now.
+									Constructing velocityICs..
+										Stg_Component 'velocityICs' cannot find non-essential component with key 'Context'.
+										Looking for essential component 'context': Found.
+										Getting parameter 'vcName': Using default value = "velocityICs"
+										Looking for non-essential component 'linearMesh': Found.
+								Looking for non-essential component 'velocityBCs': Found.
+								velocityBCs has not been constructed yet. Constructing now.
+									Constructing velocityBCs..
+										Stg_Component 'velocityBCs' cannot find non-essential component with key 'Context'.
+										Looking for essential component 'context': Found.
+										Getting parameter 'vcName': Using default value = "velocityBCs"
+										Looking for non-essential component 'linearMesh': Found.
+								Looking for non-essential component 'velocityLinkedDofs': Not found.
+								Getting parameter 'isReferenceSolution': Using default value = false
+								Getting parameter 'loadReferenceEachTimestep': Using default value = false
+								Getting parameter 'nonAxisAlignedBCs': Using default value = false
+								Getting parameter 'removeBCs': Using default value = true
+								Getting parameter 'PeriodicX': Using default value = false
+								Getting parameter 'PeriodicY': Using default value = false
+								Getting parameter 'PeriodicZ': Using default value = false
+						Looking for essential component 'VelocityField': Found.
+						Looking for non-essential component 'mom_force': Found.
+						mom_force has not been constructed yet. Constructing now.
+							Constructing mom_force..
+								Stg_Component 'mom_force' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Looking for essential component 'VelocityField': Found.
+								Getting unsigned int from root dictionary with key 'dim' and default value '0'
+						Stg_Component 'k_matrix' cannot find non-essential component with key 'ApplicationDepInfo'.
+						Getting unsigned int from root dictionary with key 'dim' and default value '0'
+						Getting parameter 'isNonLinear': Using default value = false
+						Getting parameter 'allowZeroElementContributions': Found - Value = "False"
+						Stg_Component 'k_matrix' cannot find non-essential component with key 'transposeRHS'.
+				Looking for essential component 'gaussSwarm': Found.
+				gaussSwarm has not been constructed yet. Constructing now.
+					Constructing gaussSwarm..
+						Stg_Component 'gaussSwarm' cannot find non-essential component with key 'Context'.
+						Looking for essential component 'context': Found.
+						Getting unsigned int from root dictionary with key 'dim' and default value '0'
+						Looking for essential component 'cellLayout': Found.
+						cellLayout has not been constructed yet. Constructing now.
+							Constructing cellLayout..
+								Stg_Component 'cellLayout' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Getting unsigned int from root dictionary with key 'dim' and default value '0'
+								Getting parameter 'dimExistsI': Using default value = true
+								Getting parameter 'dimExistsJ': Using default value = true
+								Getting parameter 'dimExistsK': Using default value = false
+								Getting parameter 'minX': Using default value = -1
+								Getting parameter 'minY': Using default value = -1
+								Getting parameter 'minZ': Using default value = -1
+								Getting parameter 'maxX': Using default value = 1
+								Getting parameter 'maxY': Using default value = 1
+								Getting parameter 'maxZ': Using default value = 1
+						Looking for non-essential component 'particleLayout': Found.
+						particleLayout has not been constructed yet. Constructing now.
+							Constructing particleLayout..
+								Stg_Component 'particleLayout' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Getting unsigned int from root dictionary with key 'dim' and default value '0'
+								Getting parameter 'gaussParticles': Using default value = 2
+								Getting parameter 'gaussParticlesX': Using default value = 2
+								Getting parameter 'gaussParticlesY': Using default value = 2
+						Getting parameter 'cellParticleTblDelta': Using default value = 4
+						Getting parameter 'extraParticlesFactor': Using default value = 0.05
+						Looking for list 'ParticleCommHandlers': Not Found.
+						Stg_Component 'gaussSwarm' cannot find non-essential component with key 'IC'.
+						Getting parameter 'createGlobalId': Using default value = false
+						Looking for essential component 'linearMesh': Found.
+						Looking for non-essential component 'timeIntegrator': Found.
+						timeIntegrator has not been constructed yet. Constructing now.
+							Constructing timeIntegrator..
+								Getting parameter 'order': Found - Value = "timeIntegratorOrder"
+								Key 'order' points to key 'timeIntegratorOrder' in the root dictionary: Using default value = 2
+								Getting parameter 'simultaneous': Found - Value = "f"
+								Looking for non-essential component 'context': Found.
+						Stg_Component 'gaussSwarm' cannot find non-essential component with key 'WeightsCalculator'.
+						Looking for non-essential component 'gaussMapper': Found.
+						gaussMapper has not been constructed yet. Constructing now.
+							Constructing gaussMapper..
+								Stg_Component 'gaussMapper' cannot find non-essential component with key 'Context'.
+								Looking for essential component 'context': Found.
+								Looking for essential component 'gaussSwarm': Found.
+								Looking for essential component 'gaussMaterialSwarm': Found.
+								gaussMaterialSwarm has not been constructed yet. Constructing now.
+									Constructing gaussMaterialSwarm..
+										Stg_Component 'gaussMaterialSwarm' cannot find non-essential component with key 'Context'.
+										Looking for essential component 'context': Found.
+										Getting unsigned int from root dictionary with key 'dim' and default value '0'
+										Looking for essential component 'cellLayout': Found.
+										Looking for non-essential component 'backgroundLayout': Found.
+										backgroundLayout has not been constructed yet. Constructing now.
+											Constructing backgroundLayout..
+												Stg_Component 'backgroundLayout' cannot find non-essential component with key 'Context'.
+												Looking for essential component 'context': Found.
+										Getting parameter 'cellParticleTblDelta': Using default value = 4
+										Getting parameter 'extraParticlesFactor': Using default value = 0.05
+										Looking for list 'ParticleCommHandlers': Found.
+											Looking for essential component 'gaussMSwarmMovementHandler': Found.
+											gaussMSwarmMovementHandler has not been constructed yet. Constructing now.
+												Constructing gaussMSwarmMovementHandler..
+										Stg_Component 'gaussMaterialSwarm' cannot find non-essential component with key 'IC'.
+										Getting parameter 'createGlobalId': Using default value = false
+										Stg_Component 'gaussMaterialSwarm' cannot find non-essential component with key 'EscapedRoutine'.
+										Stg_Component 'gaussMaterialSwarm' cannot find non-essential component with key 'Material'.
+										Getting parameter 'overrideMaterialCheck': Using default value = false
+						Getting parameter 'recalculateWeights': Using default value = true
+				Stg_Component 'constitutiveMatrix' cannot find non-essential component with key 'ExtraInfo'.
+				Getting unsigned int from root dictionary with key 'dim' and default value '0'
+				Getting parameter 'restartUsingPreviousStokesSol': Using default value = true
+				Getting parameter 'storeConstitutiveMatrix': Using default value = false
+	Constructing constantMeshGenerator..
+		Getting parameter 'partitioned': Using default value = true
+		Stg_Component 'constantMeshGenerator' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for non-essential component 'constantMesh': Found.
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'dims': Using default value = 2
+		Looking for essential component 'linearMesh': Found.
+	Constructing linearMeshGenerator..
+		Looking for essential component 'context': Found.
+		Getting parameter 'partitioned': Using default value = true
+		Stg_Component 'linearMeshGenerator' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for non-essential component 'linearMesh': Found.
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'dims': Found - Value = "dim"
+		Key 'dims' points to key 'dim' in the root dictionary: Found - Value = "2"
+		Getting parameter 'maxDecomposedDims': Using default value = 0
+		Getting parameter 'contactDepth-left': Using default value = 0
+		Getting parameter 'contactDepth-right': Using default value = 0
+		Getting parameter 'contactDepth-bottom': Using default value = 0
+		Getting parameter 'contactDepth-top': Using default value = 0
+		Getting parameter 'contactDepth-back': Using default value = 0
+		Getting parameter 'contactDepth-front': Using default value = 0
+		Getting parameter 'contactGeometry-x': Using default value = 0
+		Getting parameter 'contactGeometry-y': Using default value = 0
+		Getting parameter 'contactGeometry-z': Using default value = 0
+		Getting parameter 'shadowDepth': Found - Value = "shadowDepth"
+		Key 'shadowDepth' points to key 'shadowDepth' in the root dictionary: Found - Value = "1"
+		Getting parameter 'regular': Using default value = true
+		Getting parameter 'initial_vtk_file': Using default value = "(null)"
+		Getting parameter 'periodic_x': Using default value = false
+		Getting parameter 'periodic_y': Using default value = false
+		Getting parameter 'periodic_z': Using default value = false
+	Constructing VelocityMagnitudeField..
+		Stg_Component 'VelocityMagnitudeField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing VelocityGradientsField..
+		Stg_Component 'VelocityGradientsField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Gradient"
+	Constructing VelocityGradientsInvariantField..
+		Stg_Component 'VelocityGradientsInvariantField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TensorInvariant"
+	Constructing VelocityXXField..
+		Stg_Component 'VelocityXXField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "cm/yr"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TakeFirstComponent"
+	Constructing VelocityYYField..
+		Stg_Component 'VelocityYYField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "cm/yr"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TakeSecondComponent"
+	Constructing StrainRateField..
+		Stg_Component 'StrainRateField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TensorSymmetricPart"
+	Constructing VorticityField..
+		Stg_Component 'VorticityField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TensorAntisymmetricPart"
+	Constructing StrainRateInvariantField..
+		Stg_Component 'StrainRateInvariantField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "SymmetricTensor_Invariant"
+	Constructing StrainRateXXField..
+		Stg_Component 'StrainRateXXField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TakeFirstComponent"
+	Constructing StrainRateYYField..
+		Stg_Component 'StrainRateYYField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "yr^-1"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "TakeSecondComponent"
+	Constructing temperatureBCs..
+		Stg_Component 'temperatureBCs' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'vcName': Using default value = "temperatureBCs"
+		Looking for non-essential component 'linearMesh': Found.
+	Constructing temperatureICs..
+		Stg_Component 'temperatureICs' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'vcName': Using default value = "temperatureICs"
+		Looking for non-essential component 'linearMesh': Found.
+	Constructing temperatureDofLayout..
+		Stg_Component 'temperatureDofLayout' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for non-essential component 'temperature': Found.
+	Constructing TemperatureField..
+		Stg_Component 'TemperatureField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "K"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Looking for essential component 'linearMesh': Found.
+		Looking for essential component 'temperatureDofLayout': Found.
+		Looking for non-essential component 'temperatureICs': Found.
+		Looking for non-essential component 'temperatureBCs': Found.
+		Looking for non-essential component 'temperatureLinkedDofs': Not found.
+		Getting parameter 'isReferenceSolution': Using default value = false
+		Getting parameter 'loadReferenceEachTimestep': Using default value = false
+		Getting parameter 'nonAxisAlignedBCs': Using default value = false
+		Getting parameter 'removeBCs': Using default value = true
+		Getting parameter 'PeriodicX': Using default value = false
+		Getting parameter 'PeriodicY': Using default value = false
+		Getting parameter 'PeriodicZ': Using default value = false
+	Constructing TemperatureGradientsField..
+		Stg_Component 'TemperatureGradientsField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "K/m"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Gradient"
+	Constructing pressureBCs..
+		Stg_Component 'pressureBCs' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'vcName': Using default value = "pressureBCs"
+		Looking for non-essential component 'constantMesh': Found.
+	Constructing pressureICs..
+		Stg_Component 'pressureICs' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'vcName': Using default value = "pressureICs"
+		Looking for non-essential component 'constantMesh': Found.
+	Constructing pressureDofLayout..
+		Stg_Component 'pressureDofLayout' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for non-essential component 'pressure': Found.
+	Constructing PressureField..
+		Stg_Component 'PressureField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Found - Value = "GPa"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Looking for essential component 'constantMesh': Found.
+		Looking for essential component 'pressureDofLayout': Found.
+		Looking for non-essential component 'pressureICs': Found.
+		Looking for non-essential component 'pressureBCs': Found.
+		Looking for non-essential component 'pressureLinkedDofs': Not found.
+		Getting parameter 'isReferenceSolution': Using default value = false
+		Getting parameter 'loadReferenceEachTimestep': Using default value = false
+		Getting parameter 'nonAxisAlignedBCs': Using default value = false
+		Getting parameter 'removeBCs': Using default value = true
+		Getting parameter 'PeriodicX': Using default value = false
+		Getting parameter 'PeriodicY': Using default value = false
+		Getting parameter 'PeriodicZ': Using default value = false
+	Constructing solutionVelocity..
+		Stg_Component 'solutionVelocity' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'VelocityField': Found.
+	Constructing solutionPressure..
+		Stg_Component 'solutionPressure' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'PressureField': Found.
+	Constructing cont_force..
+		Stg_Component 'cont_force' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'PressureField': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+	Constructing g_matrix..
+		Stg_Component 'g_matrix' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'VelocityField': Found.
+		Looking for essential component 'PressureField': Found.
+		Looking for non-essential component 'mom_force': Found.
+		Stg_Component 'g_matrix' cannot find non-essential component with key 'ApplicationDepInfo'.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'isNonLinear': Using default value = false
+		Getting parameter 'allowZeroElementContributions': Found - Value = "False"
+		Looking for non-essential component 'cont_force': Found.
+	Constructing gradientStiffnessMatrixTerm..
+		Stg_Component 'gradientStiffnessMatrixTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'g_matrix': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Stg_Component 'gradientStiffnessMatrixTerm' cannot find non-essential component with key 'ExtraInfo'.
+	Constructing preconditioner..
+		Stg_Component 'preconditioner' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'PressureField': Found.
+		Looking for essential component 'PressureField': Found.
+		Looking for non-essential component 'cont_force': Found.
+		Stg_Component 'preconditioner' cannot find non-essential component with key 'ApplicationDepInfo'.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'isNonLinear': Using default value = false
+		Getting parameter 'allowZeroElementContributions': Found - Value = "True"
+		Stg_Component 'preconditioner' cannot find non-essential component with key 'transposeRHS'.
+	Constructing preconditionerTerm..
+		Stg_Component 'preconditionerTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'preconditioner': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Stg_Component 'preconditionerTerm' cannot find non-essential component with key 'ExtraInfo'.
+	Constructing uzawa..
+		Stg_Component 'uzawa' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'statSolve': Using default value = false
+		Getting parameter 'statReps': Using default value = 0
+		Getting parameter 'tolerance': Found - Value = "1.0e-5"
+		Getting parameter 'maxIterations': Found - Value = "5000"
+		Getting parameter 'minIterations': Found - Value = "1"
+		Getting parameter 'useAbsoluteTolerance': Using default value = false
+		Getting parameter 'monitor': Found - Value = "false"
+		Looking for non-essential component 'preconditioner': Found.
+	Constructing stokesEqn..
+		Looking for non-essential component 'uzawa': Found.
+		Getting parameter 'removeBCs': Using default value = true
+		Getting parameter 'makeConvergenceFile': Found - Value = "false"
+		Getting parameter 'isNonLinear': Using default value = false
+		Getting parameter 'nonLinearTolerance': Found - Value = "nonLinearTolerance"
+		Key 'nonLinearTolerance' points to key 'nonLinearTolerance' in the root dictionary: Using default value = 0.01
+		Getting parameter 'nonLinearMaxIterations': Found - Value = "nonLinearMaxIterations"
+		Key 'nonLinearMaxIterations' points to key 'nonLinearMaxIterations' in the root dictionary: Using default value = 500
+		Getting parameter 'killNonConvergent': Found - Value = "false"
+		Getting parameter 'nonLinearMinIterations': Using default value = 1
+		Getting parameter 'nonLinearSolutionType': Using default value = "default"
+		Getting parameter 'optionsPrefix': Using default value = ""
+		Getting parameter 'picard_FormFunctionType': Using default value = "PicardFormFunction_KSPResidual"
+		Getting parameter 'picard_alpha': Using default value = 1
+		Getting parameter 'picard_rtol': Using default value = 1e-08
+		Getting parameter 'picard_atol': Using default value = 1e-50
+		Getting parameter 'picard_stol': Using default value = 1e-08
+		Getting parameter 'picard_ActivateMonitor': Using default value = false
+		Looking for non-essential component 'context': Found.
+		Looking for essential component 'k_matrix': Found.
+		Looking for essential component 'g_matrix': Found.
+		Looking for non-essential component '': Not found.
+		Looking for non-essential component 'c_matrix': Not found.
+		Looking for essential component 'solutionVelocity': Found.
+		Looking for essential component 'solutionPressure': Found.
+		Looking for essential component 'mom_force': Found.
+		Looking for essential component 'cont_force': Found.
+	Constructing buoyancyForceTerm..
+		Stg_Component 'buoyancyForceTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'mom_force': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Stg_Component 'buoyancyForceTerm' cannot find non-essential component with key 'ExtraInfo'.
+		Looking for essential component 'TemperatureField': Found.
+		Getting parameter 'Ra': Found - Value = "Ra"
+		Key 'Ra' points to key 'Ra' in the root dictionary: Found - Value = "1e6"
+	Constructing residual..
+		Stg_Component 'residual' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'TemperatureField': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+	Constructing massMatrix..
+		Stg_Component 'massMatrix' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'TemperatureField': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+	Constructing predictorMulticorrector..
+		Stg_Component 'predictorMulticorrector' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'statSolve': Using default value = false
+		Getting parameter 'statReps': Using default value = 0
+		Getting parameter 'gamma': Using default value = 0.5
+		Getting parameter 'multiCorrectorIterations': Using default value = 2
+	Constructing EnergyEqn..
+		Looking for non-essential component 'predictorMulticorrector': Found.
+		Getting parameter 'removeBCs': Using default value = true
+		Getting parameter 'makeConvergenceFile': Using default value = false
+		Getting parameter 'isNonLinear': Using default value = false
+		Getting parameter 'nonLinearTolerance': Using default value = 0.01
+		Getting parameter 'nonLinearMaxIterations': Using default value = 500
+		Getting parameter 'killNonConvergent': Using default value = true
+		Getting parameter 'nonLinearMinIterations': Using default value = 1
+		Getting parameter 'nonLinearSolutionType': Using default value = "default"
+		Getting parameter 'optionsPrefix': Using default value = ""
+		Getting parameter 'picard_FormFunctionType': Using default value = "PicardFormFunction_KSPResidual"
+		Getting parameter 'picard_alpha': Using default value = 1
+		Getting parameter 'picard_rtol': Using default value = 1e-08
+		Getting parameter 'picard_atol': Using default value = 1e-50
+		Getting parameter 'picard_stol': Using default value = 1e-08
+		Getting parameter 'picard_ActivateMonitor': Using default value = false
+		Looking for non-essential component 'context': Found.
+		Looking for essential component 'TemperatureField': Found.
+		Looking for essential component 'residual': Found.
+		Looking for essential component 'massMatrix': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'courantFactor': Found - Value = "courantFactor"
+		Key 'courantFactor' points to key 'courantFactor' in the root dictionary: Found - Value = "0.25"
+		Getting parameter 'pureDiffusion': Using default value = false
+	Constructing lumpedMassMatrixForceTerm..
+		Stg_Component 'lumpedMassMatrixForceTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'massMatrix': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Stg_Component 'lumpedMassMatrixForceTerm' cannot find non-essential component with key 'ExtraInfo'.
+	Constructing defaultResidualForceTerm..
+		Stg_Component 'defaultResidualForceTerm' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'residual': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Looking for non-essential component 'EnergyEqn': Found.
+		Looking for essential component 'VelocityField': Found.
+		Stg_Component 'defaultResidualForceTerm' cannot find non-essential component with key 'DiffusivityVariable'.
+		Getting parameter 'UpwindXiFunction': Found - Value = "DoublyAsymptoticAssumption"
+		Getting parameter 'defaultDiffusivity': Found - Value = "defaultDiffusivity"
+		Key 'defaultDiffusivity' points to key 'defaultDiffusivity' in the root dictionary: Using default value = 1
+	Constructing temperatureDependence..
+		Stg_Component 'temperatureDependence' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Stg_Component 'temperatureDependence' cannot find non-essential component with key 'Manager'.
+		Looking for essential component 'default_ppcManager': Found.
+		Looking for non-essential component 'TemperatureField': Found.
+Creating Ppc 'TemperatureField-ppc' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Creating Ppc 'TemperatureField' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+		Getting parameter 'eta0': Found - Value = "1.0e-6"
+		Getting parameter 'activationEnergy': Found - Value = "27.63102112"
+		Getting parameter 'activationVolume': Using default value = 0
+		Getting parameter 'referenceTemperature': Using default value = 1
+	Constructing shape..
+		Stg_Component 'shape' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'CentreX': Using default value = 0
+		Getting parameter 'CentreY': Using default value = 0
+		Getting parameter 'CentreZ': Using default value = 0
+		Getting parameter 'invert': Using default value = false
+		Getting parameter 'alpha': Using default value = 0
+		Getting parameter 'beta': Using default value = 0
+		Getting parameter 'gamma': Using default value = 0
+	Constructing material..
+		Stg_Component 'material' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'shape': Found.
+		Looking for list 'Rheology': Found.
+			Looking for essential component 'temperatureDependence': Found.
+		Stg_Component 'material' cannot find non-essential component with key 'Compressible'.
+	Constructing camera..
+		Stg_Component 'camera' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'CoordinateSystem': Using default value = "RightHanded"
+		Getting parameter 'focalPointX': Using default value = 0
+		Getting parameter 'focalPointY': Using default value = 0
+		Getting parameter 'focalPointZ': Using default value = 0
+		Getting parameter 'coordZ': Found - Value = "1.5"
+		Getting parameter 'translateX': Using default value = 0
+		Getting parameter 'translateY': Using default value = 0
+		Getting parameter 'translateZ': Using default value = -1.5
+		Getting parameter 'rotateX': Using default value = 0
+		Getting parameter 'rotateY': Using default value = 0
+		Getting parameter 'rotateZ': Using default value = 0
+		Getting parameter 'rotationCentreX': Using default value = 0
+		Getting parameter 'rotationCentreY': Using default value = 0
+		Getting parameter 'rotationCentreZ': Using default value = 0
+		Getting parameter 'upDirectionX': Using default value = 0
+		Getting parameter 'upDirectionY': Using default value = 1
+		Getting parameter 'upDirectionZ': Using default value = 0
+		Getting parameter 'focalLength': Using default value = 0
+		Getting parameter 'aperture': Using default value = 45
+		Getting parameter 'autoZoomTimestep': Using default value = 0
+		Looking for non-essential component 'StrainRateInvariantField': Found.
+	Constructing temperatureColourMap..
+		Stg_Component 'temperatureColourMap' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'dynamicRange': Found - Value = "True"
+		Getting parameter 'centreValue': Not found.
+		Getting parameter 'logScale': Using default value = false
+		Getting parameter 'minimum': Using default value = 0
+		Getting parameter 'maximum': Using default value = 1
+		Getting parameter 'discrete': Using default value = false
+		Getting parameter 'colours': Found - Value = "#0B0133 White #B7210B"
+	Constructing tempContoursTitle..
+		Stg_Component 'tempContoursTitle' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Stg_Component 'tempContoursTitle' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'string': Found - Value = "Temperature Contours"
+		Getting parameter 'yPos': Using default value = 10
+	Constructing temperatureMap..
+		Stg_Component 'temperatureMap' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Looking for non-essential component 'temperatureColourMap': Found.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'X1': Not found.
+		Getting parameter 'crossSectionX': Not found.
+		Getting parameter 'crossSectionY': Not found.
+		Getting parameter 'crossSectionZ': Not found.
+		Getting parameter 'crossSection': Using default value = "z=0"
+		Getting parameter 'resolution': Found - Value = "128"
+		Getting parameter 'resolutionA': Using default value = 128
+		Getting parameter 'resolutionB': Using default value = 128
+		Getting parameter 'drawSides': Using default value = "xyzXYZ"
+	Constructing temperatureContours..
+		Stg_Component 'temperatureContours' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Found - Value = "2"
+		Getting parameter 'colour': Found - Value = "black"
+		Stg_Component 'temperatureContours' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'X1': Not found.
+		Getting parameter 'crossSectionX': Not found.
+		Getting parameter 'crossSectionY': Not found.
+		Getting parameter 'crossSectionZ': Not found.
+		Getting parameter 'crossSection': Using default value = "z=0"
+		Getting parameter 'resolution': Found - Value = "20"
+		Getting parameter 'resolutionA': Using default value = 20
+		Getting parameter 'resolutionB': Using default value = 20
+		Getting parameter 'showValues': Found - Value = "False"
+		Getting parameter 'printUnits': Using default value = false
+		Getting parameter 'minIsovalue': Using default value = 0
+		Getting parameter 'maxIsovalue': Using default value = 0
+		Getting parameter 'interval': Found - Value = "0.2"
+	Constructing border..
+		Stg_Component 'border' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Stg_Component 'border' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Looking for essential component 'StrainRateInvariantField': Found.
+	Constructing temperatureColourBar..
+		Stg_Component 'temperatureColourBar' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Looking for non-essential component 'temperatureColourMap': Found.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'ticks': Using default value = 0
+		Getting parameter 'lengthFactor': Using default value = 0.8
+		Getting parameter 'height': Using default value = 10
+		Getting parameter 'margin': Using default value = 16
+		Getting parameter 'borderWidth': Using default value = 1
+		Getting parameter 'precision': Using default value = 2
+		Getting parameter 'scientific': Using default value = false
+		Getting parameter 'printTickValue': Using default value = true
+		Getting parameter 'printUnits': Using default value = false
+		Getting parameter 'scaleValue': Using default value = 1
+	Constructing TemperatureContoursVP..
+		Stg_Component 'TemperatureContoursVP' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'camera': Found.
+		Looking for list 'DrawingObject': Found.
+			Looking for essential component 'tempContoursTitle': Found.
+			Looking for essential component 'temperatureMap': Found.
+			Looking for essential component 'temperatureContours': Found.
+			Looking for essential component 'border': Found.
+			Looking for essential component 'temperatureColourBar': Found.
+		Getting parameter 'title': Using default value = ""
+		Getting parameter 'axis': Using default value = false
+		Getting parameter 'axisLength': Using default value = 0.2
+		Getting parameter 'antialias': Using default value = true
+		Getting parameter 'rulers': Using default value = false
+		Getting parameter 'timestep': Using default value = false
+		Getting parameter 'border': Using default value = 0
+		Getting parameter 'borderColour': Using default value = "#888888"
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'margin': Using default value = 32
+		Getting parameter 'nearClipPlane': Using default value = 0
+		Getting parameter 'farClipPlane': Using default value = 0
+		Getting parameter 'scaleX': Using default value = 1
+		Getting parameter 'scaleY': Using default value = 1
+		Getting parameter 'scaleZ': Using default value = 1
+	Constructing strainRateInvColourMap..
+		Stg_Component 'strainRateInvColourMap' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'dynamicRange': Found - Value = "True"
+		Getting parameter 'centreValue': Not found.
+		Getting parameter 'logScale': Using default value = false
+		Getting parameter 'minimum': Using default value = 0
+		Getting parameter 'maximum': Using default value = 1
+		Getting parameter 'discrete': Using default value = false
+		Getting parameter 'colours': Found - Value = "Purple Blue Green Yellow Orange Red"
+	Constructing strainRateInvTitle..
+		Stg_Component 'strainRateInvTitle' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Stg_Component 'strainRateInvTitle' cannot find non-essential component with key 'ColourMap'.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'string': Found - Value = "Strain Rate Invariant"
+		Getting parameter 'yPos': Using default value = 10
+	Constructing strainRateInvMap..
+		Stg_Component 'strainRateInvMap' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Looking for non-essential component 'strainRateInvColourMap': Found.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'X1': Not found.
+		Getting parameter 'crossSectionX': Not found.
+		Getting parameter 'crossSectionY': Not found.
+		Getting parameter 'crossSectionZ': Not found.
+		Getting parameter 'crossSection': Using default value = "z=0"
+		Getting parameter 'resolution': Using default value = 100
+		Getting parameter 'resolutionA': Using default value = 100
+		Getting parameter 'resolutionB': Using default value = 100
+		Getting parameter 'drawSides': Using default value = "xyzXYZ"
+	Constructing strainRateInvColourBar..
+		Stg_Component 'strainRateInvColourBar' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'lit': Using default value = true
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'lineWidth': Using default value = 1
+		Getting parameter 'colour': Using default value = "black"
+		Looking for non-essential component 'strainRateInvColourMap': Found.
+		Getting parameter 'opacity': Using default value = -1
+		Getting parameter 'wireframe': Using default value = false
+		Getting parameter 'ticks': Using default value = 0
+		Getting parameter 'lengthFactor': Using default value = 0.8
+		Getting parameter 'height': Using default value = 10
+		Getting parameter 'margin': Using default value = 16
+		Getting parameter 'borderWidth': Using default value = 1
+		Getting parameter 'precision': Using default value = 2
+		Getting parameter 'scientific': Using default value = false
+		Getting parameter 'printTickValue': Using default value = true
+		Getting parameter 'printUnits': Using default value = false
+		Getting parameter 'scaleValue': Using default value = 1
+	Constructing StrainRateInvariantVP..
+		Stg_Component 'StrainRateInvariantVP' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for essential component 'camera': Found.
+		Looking for list 'DrawingObject': Found.
+			Looking for essential component 'strainRateInvMap': Found.
+			Looking for essential component 'strainRateInvTitle': Found.
+			Looking for essential component 'border': Found.
+			Looking for essential component 'strainRateInvColourBar': Found.
+		Getting parameter 'title': Using default value = ""
+		Getting parameter 'axis': Using default value = false
+		Getting parameter 'axisLength': Using default value = 0.2
+		Getting parameter 'antialias': Using default value = true
+		Getting parameter 'rulers': Using default value = false
+		Getting parameter 'timestep': Using default value = false
+		Getting parameter 'border': Using default value = 0
+		Getting parameter 'borderColour': Using default value = "#888888"
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'margin': Using default value = 32
+		Getting parameter 'nearClipPlane': Using default value = 0
+		Getting parameter 'farClipPlane': Using default value = 0
+		Getting parameter 'scaleX': Using default value = 1
+		Getting parameter 'scaleY': Using default value = 1
+		Getting parameter 'scaleZ': Using default value = 1
+	Constructing database..
+		Stg_Component 'database' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Looking for list 'DrawingObject': Not Found.
+		Getting parameter 'deleteAfter': Using default value = 0
+		Getting parameter 'writeimage': Using default value = true
+		Getting parameter 'splitTransactions': Using default value = false
+		Getting parameter 'transparent': Using default value = false
+		Getting parameter 'compressed': Using default value = true
+		Getting parameter 'singleFile': Using default value = true
+		Getting parameter 'filename': Using default value = "gLucifer"
+		Getting parameter 'vfs': Using default value = "(null)"
+		Getting parameter 'timeUnits': Using default value = ""
+		Getting parameter 'disable': Using default value = false
+		Getting parameter 'blocking': Using default value = false
+		Getting double from root dictionary with key 'minX' and default value '0'
+		Getting double from root dictionary with key 'minY' and default value '0'
+		Getting double from root dictionary with key 'minZ' and default value '0'
+		Getting double from root dictionary with key 'maxX' and default value '1'
+		Getting double from root dictionary with key 'maxY' and default value '1'
+		Getting double from root dictionary with key 'maxZ' and default value '1'
+	Constructing window..
+		Looking for essential component 'TemperatureContoursVP': Found.
+		Looking for essential component 'StrainRateInvariantVP': Found.
+		Getting parameter 'width': Using default value = 800
+		Getting parameter 'height': Using default value = 400
+		Stg_Component 'window' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting parameter 'backgroundColour': Using default value = "white"
+		Getting parameter 'antialias': Using default value = true
+		Looking for non-essential component 'database': Found.
+		Getting parameter 'useModelBounds': Using default value = true
+		Getting parameter 'disable': Using default value = false
+	Constructing AnalyticVelocityField..
+		Stg_Component 'AnalyticVelocityField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+	Constructing AnalyticVelocityField-Mag..
+		Stg_Component 'AnalyticVelocityField-Mag' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing ErrorVelocityField..
+		Stg_Component 'ErrorVelocityField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+	Constructing ErrorVelocityField-Mag..
+		Stg_Component 'ErrorVelocityField-Mag' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing AnalyticPressureField..
+		Stg_Component 'AnalyticPressureField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+	Constructing AnalyticPressureField-Mag..
+		Stg_Component 'AnalyticPressureField-Mag' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing ErrorPressureField..
+		Stg_Component 'ErrorPressureField' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+	Constructing ErrorPressureField-Mag..
+		Stg_Component 'ErrorPressureField-Mag' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+		Getting unsigned int from root dictionary with key 'dim' and default value '0'
+		Getting parameter 'dim': Using default value = 2
+		Getting parameter 'fieldComponentCount': Using default value = 0
+		Getting parameter 'useCacheMaxMin': Using default value = false
+		Getting parameter 'outputUnits': Using default value = "(null)"
+		Getting parameter 'isCheckpointedAndReloaded': Using default value = false
+		Getting parameter 'Operator': Found - Value = "Magnitude"
+	Constructing FieldTest..
+		Stg_Component 'FieldTest' cannot find non-essential component with key 'Context'.
+		Looking for essential component 'context': Found.
+	Constructing StgFEM_StandardConditionFunctions..
+		Looking for essential component 'context': Found.
+	Constructing Underworld_Ra_Scaling_Type..
+		Looking for essential component 'context': Found.
+		Getting Bool from root dictionary with key 'Ra_ScalingCheck' and default value 'True'
+	Constructing StgFEM_FrequentOutput..
+		Looking for essential component 'context': Found.
+	Constructing Underworld_Nusselt..
+		Looking for essential component 'context': Found.
+		Looking for essential component 'gaussSwarm': Found.
+	Constructing Underworld_Vrms..
+		Looking for essential component 'context': Found.
+		Looking for essential component 'gaussSwarm': Found.
+		Looking for essential component 'VelocityField': Found.
+	Constructing StgFEM_CPUTime..
+		Looking for essential component 'context': Found.
+
+Building Stg_Components from the live-component register
+
+Cartesian generator: 'linearMeshGenerator'
+	Target mesh: 'linearMesh'
+	Global element size: 10x10
+	Local offset of rank 0: 0x0
+	Local range of rank 0: 10x10
+	Generating vertices...
+		... done.
+	Generating elements...
+		... done.
+	Generating edges...
+		... done.
+	Generating element-vertex incidence...
+		... done.
+	Generating face-edge incidence...
+		... done.
+	Generating edge-vertex incidence...
+		... done.
+	Generating vertex neighbours...
+		... done.
+	Generating geometry...
+		... done.
+	Generating element types...
+		... element types are 'Mesh_HexType',
+		... mesh algorithm type is 'Mesh_RegularAlgorithms',
+		... done.
+	Assigning FeMesh element types...
+		... FE element types are 'BilinearElementType',
+		... done.
+Warning - in _WallVC_GetSet: Can't build a MaxK_front wall VC when mesh has no elements in the K axis. Returning an empty set.
+Warning - in _WallVC_GetSet: Can't build a MinK_back wall VC when mesh has no elements in the K axis. Returning an empty set.
+Stiffness matrix: 'k_matrix'
+	Calculating number of nonzero entries...
+		Found 3008 nonzero entries.
+		Done.
+	Assigning FeMesh element types...
+		... FE element types are 'ConstantElementType',
+		... done.
+FeEquationNumber: 'defaultFeVariableFeEqName'
+	Generating equation numbers...
+		BCs set to be removed.
+		Assigned 100 global equation numbers.
+		[0] Assigned 100 local equation numbers, within range 0 to 100.
+	... Completed in 0.000178099 [min] / 0.000178099 [max] seconds.
+Stiffness matrix: 'g_matrix'
+	Calculating number of nonzero entries...
+		Found 720 nonzero entries.
+		Done.
+Stiffness matrix: 'preconditioner'
+	Calculating number of nonzero entries...
+		Found 100 nonzero entries.
+		Done.
+	Looking for essential component 'TemperatureField': Found.
+	Looking for essential component 'TemperatureField': Found.
+	Looking for essential component 'StrainRateInvariantField': Found.
+Linking materials and ppc... 
+done
+
+Initialising Stg_Components from the live-component register
+
+Laying out material 'material' within Everywhere 'shape':
+In func Materials_Register_AssignParticleProperties(): for swarm "gaussMaterialSwarm"
+	Assigning initial particle properties to the 1 global particles
+		done 100% (1 particles)...
+Materials_Register_AssignParticleProperties(): finished setup of material properties for swarm "gaussMaterialSwarm"
+	took 7.60555e-05 [min] / 7.60555e-05 [max] secs
+Run until simulation has stepped forward 5 timeSteps
+Window: window, id 1
+      Drawing object: temperatureMap lucScalarField id 1
+         ColourMap: temperatureColourMap, id 1
+         Linking colourMap: temperatureColourMap to object temperatureMap
+      Drawing object: temperatureContours lucContour id 2
+      Drawing object: temperatureColourBar lucColourBar id 3
+         Linking colourMap: temperatureColourMap to object temperatureColourBar
+   Viewport: TemperatureContoursVP id 1
+      Drawing object: strainRateInvMap lucScalarField id 4
+         ColourMap: strainRateInvColourMap, id 2
+         Linking colourMap: strainRateInvColourMap to object strainRateInvMap
+      Drawing object: strainRateInvColourBar lucColourBar id 5
+         Linking colourMap: strainRateInvColourMap to object strainRateInvColourBar
+   Viewport: StrainRateInvariantVP id 2
+TimeStep = 0, Start time = 0, prev timeStep dt = 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0009 , Uzawa residual = 8.8310336065645e-06
+  |G^T u|/|u|               = 3.87790579e-05
+  |f - K u - G p|/|f|       = 3.40980118e-03
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 6.31228785e+01 , u_rms = 1.26922588e+01
+  |p|_{\infty} = 4.23035976e+05 , p_rms = 2.70809079e+05
+  min/max(u) = -6.31228785e+01 [3] / 2.62267867e+01 [29]
+  min/max(p) = -6.68980861e+04 [0] / 4.23035976e+05 [99]
+  \sum_i p_i = 2.24658016e+07 
+Linear solver (stokesEqn-execute), solution time 4.079819e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.742146e-03 (secs)
+Time Integration
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 6.50883e-05 [min] / 6.50883e-05 [max] (secs)
+Time Integration - 7.701e-05 [min] / 7.701e-05 [max] (secs)
+TimeStep = 1, Start time = 0.000396053, prev timeStep dt = 0.000396053
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 5.4420952332360e-06
+  |G^T u|/|u|               = 2.38987213e-05
+  |f - K u - G p|/|f|       = 3.60180343e-05
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 6.31233019e+01 , u_rms = 1.26915922e+01
+  |p|_{\infty} = 4.21371660e+05 , p_rms = 2.70763278e+05
+  min/max(u) = -6.31233019e+01 [3] / 2.62257274e+01 [29]
+  min/max(p) = -6.68977667e+04 [0] / 4.21371660e+05 [99]
+  \sum_i p_i = 2.24630171e+07 
+Linear solver (stokesEqn-execute), solution time 8.089542e-04 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.473925e-03 (secs)
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 1.907e-05 [min] / 1.907e-05 [max] (secs)
+TimeStep = 2, Start time = 0.000792103, prev timeStep dt = 0.00039605
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 5.4077070289011e-06
+  |G^T u|/|u|               = 2.18497970e-05
+  |f - K u - G p|/|f|       = 3.78019059e-05
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 6.97342704e+01 , u_rms = 1.39028134e+01
+  |p|_{\infty} = 4.22262727e+05 , p_rms = 2.70890437e+05
+  min/max(u) = -6.97342704e+01 [3] / 3.00854433e+01 [29]
+  min/max(p) = -6.73070683e+04 [0] / 4.22262727e+05 [99]
+  \sum_i p_i = 2.24708393e+07 
+Linear solver (stokesEqn-execute), solution time 1.535892e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.439116e-03 (secs)
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 1.884e-05 [min] / 1.884e-05 [max] (secs)
+TimeStep = 3, Start time = 0.00115061, prev timeStep dt = 0.000358504
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 5.6852735554712e-06
+  |G^T u|/|u|               = 2.12879302e-05
+  |f - K u - G p|/|f|       = 4.26802251e-05
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 7.62004030e+01 , u_rms = 1.51320804e+01
+  |p|_{\infty} = 4.23281823e+05 , p_rms = 2.71034569e+05
+  min/max(u) = -7.62004030e+01 [3] / 3.41750176e+01 [29]
+  min/max(p) = -6.77142856e+04 [0] / 4.23281823e+05 [99]
+  \sum_i p_i = 2.24799469e+07 
+Linear solver (stokesEqn-execute), solution time 1.537085e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.511833e-03 (secs)
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 1.812e-05 [min] / 1.812e-05 [max] (secs)
+TimeStep = 4, Start time = 0.00147869, prev timeStep dt = 0.000328082
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 6.0823086801359e-06
+  |G^T u|/|u|               = 2.12339844e-05
+  |f - K u - G p|/|f|       = 4.87294930e-05
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 8.25028023e+01 , u_rms = 1.63763114e+01
+  |p|_{\infty} = 4.24279257e+05 , p_rms = 2.71187904e+05
+  min/max(u) = -8.25028023e+01 [3] / 3.85980436e+01 [29]
+  min/max(p) = -6.81203387e+04 [0] / 4.24279257e+05 [99]
+  \sum_i p_i = 2.24898259e+07 
+Linear solver (stokesEqn-execute), solution time 1.535892e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.444122e-03 (secs)
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 2.885e-05 [min] / 2.885e-05 [max] (secs)
+TimeStep = 5, Start time = 0.00178171, prev timeStep dt = 0.00030302
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 6.4613069236281e-06
+  |G^T u|/|u|               = 2.11468540e-05
+  |f - K u - G p|/|f|       = 5.50383014e-05
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 8.87724530e+01 , u_rms = 1.76315317e+01
+  |p|_{\infty} = 4.25275539e+05 , p_rms = 2.71350277e+05
+  min/max(u) = -8.87724530e+01 [2] / 4.33244855e+01 [29]
+  min/max(p) = -6.85222258e+04 [0] / 4.25275539e+05 [99]
+  \sum_i p_i = 2.25004667e+07 
+Linear solver (stokesEqn-execute), solution time 1.538992e-03 (secs)
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.514933e-03 (secs)
+[FieldTest] Appending analysis results to file...
+VelocityField - dof 0 normalised global error: 3.76925747e-06
+VelocityField - dof 1 normalised global error: 6.56449521e-06
+PressureField - dof 0 normalised global error: 3.65329201e-05
+Finalised: gLucifer (Visualisation Framework) Revision 71d7f40d027fef8362ff421c099adecee384cb93.
+Finalised: Underworld (Geodynamics Framework) Revision d1a30765521592552eb91ce93ee21bc7f156c210.
+Finalised: PICellerator (Particle-In-Cell Framework) Revision f3d21a42cd5b8646f8f4f44712ba647e3415b2be.
+Finalised: StgFEM (Finite Element Framework) Revision 1a2f5c4d3746b061a4e4848ece580179193d0574.
+Finalised: StgDomain (Domain Library) Revision 60f17a7cf3d49900869dbbd221568078762b7a29.

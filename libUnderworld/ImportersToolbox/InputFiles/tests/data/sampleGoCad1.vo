@@ -1,0 +1,110 @@
+GOCAD Voxet 1
+HEADER {
+name:sampleGoCad1
+*regions*Region_1*solid*color:0.5 1 0.25 1
+*regions*Region_2*solid*color:1 0.270588 0 1
+*regions*Region_3*solid*color:0.098039 0.8 0.87451 1
+*regions*Region_4*solid*color:0.611765 0.243137 0.807843 1
+*regions*Region_5*solid*color:1 1 0 1
+*regions*Region_6*solid*color:0.77647 0.65098 0.274509 1
+*regions*Region_7*solid*color:0.5 0.5 0.75 1
+*regions*Region_8*solid*color:0.5 0 0.25 1
+*regions*Region_9*solid*color:0.875 0.875 0.875 1
+*regions*Region_10*solid*color:0 0.5 1 1
+*regions*Region_11*solid*color:0 0.75 0 1
+*regions*Region_12*solid*color:0.854902 0.666667 0 1
+*regions*Region_13*solid*color:1 0.447059 0.337255 1
+*regions*Region_14*solid*color:0.313725 0.623529 0.411765 1
+*regions*Region_15*solid*color:0 0 0.247058 1
+*regions*Region_16*solid*color:0.588235 0.321569 0.176471 1
+*regions*Region_17*solid*color:0.486275 0.596078 0.827451 1
+*regions*Region_18*solid*color:0.25 0.25 0.25 1
+*regions*Region_19*solid*color:0.937255 0.517647 0.937255 1
+regions:on
+*regions*Region_1*visible:on
+*regions*Region_2*visible:on
+*regions*Region_3*visible:on
+*regions*Region_4*visible:on
+*regions*Region_5*visible:off
+*regions*Region_6*visible:on
+*regions*Region_7*visible:on
+*regions*Region_8*visible:on
+*regions*Region_9*visible:on
+*regions*Region_10*visible:on
+*regions*Region_11*visible:on
+*regions*Region_12*visible:on
+*regions*Region_13*visible:on
+*regions*Region_14*visible:on
+*regions*Region_15*visible:on
+*regions*Region_16*visible:on
+*regions*Region_17*visible:on
+*regions*Region_18*visible:on
+*regions*Region_19*visible:on
+painted:off
+*painted*variable:ID
+*regions*painted_grid:ID
+sections:3 1 0 139 2 0 97 3 0 0
+*regions*Region_20*visible:on
+*regions*Region_21*visible:on
+*regions*Region_22*visible:on
+*regions*Region_23*visible:on
+*regions*Region_24*visible:on
+*regions*Region_25*visible:on
+*regions*Region_26*visible:on
+*regions*Region_27*visible:on
+*regions*Region_28*visible:on
+*regions*Region_29*visible:on
+*regions*Region_30*visible:on
+*regions*Region_31*visible:off
+*regions*Region_20*solid*color:0 0.75 0 1
+*regions*Region_21*solid*color:0.854902 0.666667 0 1
+*regions*Region_22*solid*color:1 0.447059 0.337255 1
+*regions*Region_23*solid*color:0.313725 0.623529 0.411765 1
+*regions*Region_24*solid*color:0 0 0.247058 1
+*regions*Region_25*solid*color:0.588235 0.321569 0.176471 1
+*regions*Region_26*solid*color:0.486275 0.596078 0.827451 1
+*regions*Region_27*solid*color:0.25 0.25 0.25 1
+*regions*Region_28*solid*color:0.937255 0.517647 0.937255 1
+*regions*Region_29*solid*color:0.960784 0.870588 0.701961 1
+*regions*Region_30*solid*color:0.741176 0.321569 0.741176 1
+*regions*Region_31*solid*color:0.5 1 0.25 1
+*regions*Region_32*solid*color:1 0.270588 0 1
+*regions*Region_33*solid*color:0.098039 0.8 0.87451 1
+*regions*Region_34*solid*color:0.611765 0.243137 0.807843 1
+*regions*Region_35*solid*color:1 1 0 1
+*regions*Region_36*solid*color:0.77647 0.65098 0.274509 1
+*regions*Region_37*solid*color:0.5 0.5 0.75 1
+*regions*Region_38*solid*color:0.5 0 0.25 1
+*regions*Region_39*solid*color:0.875 0.875 0.875 1
+ascii:off
+}
+GOCAD_ORIGINAL_COORDINATE_SYSTEM
+NAME Lambert
+AXIS_NAME "X" "Y" "Z"
+AXIS_UNIT "m" "m" "m"
+ZPOSITIVE Elevation
+END_ORIGINAL_COORDINATE_SYSTEM
+AXIS_O 0 0 0
+AXIS_U -3980000 0 0
+AXIS_V 0 3180000 0
+AXIS_W 0 0 90000
+AXIS_MIN 0 0 0
+AXIS_MAX 1 1 1
+AXIS_N 200 160 10
+AXIS_NAME "axis-1" "axis-2" "axis-3"
+AXIS_UNIT " number" " number" " number"
+AXIS_TYPE even even even
+
+FLAGS_ARRAY_LENGTH 320000
+FLAGS_BIT_LENGTH 10
+FLAGS_ESIZE 2
+FLAGS_OFFSET 0
+FLAGS_FILE sampleGoCad1__flags@@
+
+REGION Region_1 6
+REGION Region_2 7
+REGION Region_3 8
+REGION Region_4 9
+
+
+END

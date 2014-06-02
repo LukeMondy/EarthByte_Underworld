@@ -1,0 +1,79 @@
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+  <param mergeType="replace" name="outputPath">output/PoiseuilleFlow-referenceTest-np1/testRun</param>
+  <param mergeType="replace" name="maxTimeSteps">0</param>
+  <param mergeType="replace" name="dumpEvery">0</param>
+  <param mergeType="replace" name="checkpointEvery">0</param>
+  <struct mergeType="merge" name="components">
+    <struct name="AnalyticPressureField">
+      <param name="Type">AnalyticFeVariable</param>
+      <param name="NumericField">PressureField</param>
+    </struct>
+    <struct name="AnalyticPressureField-Mag">
+      <param name="Type">OperatorFeVariable</param>
+      <param name="Operator">Magnitude</param>
+      <param name="Operand">AnalyticPressureField</param>
+    </struct>
+    <struct name="ErrorPressureField">
+      <param name="Type">ErrorFeVariable</param>
+      <param name="NumericField">PressureField</param>
+      <param name="ConstantMesh">constantMesh</param>
+    </struct>
+    <struct name="ErrorPressureField-Mag">
+      <param name="Type">OperatorFeVariable</param>
+      <param name="Operator">Magnitude</param>
+      <param name="Operand">ErrorPressureField</param>
+    </struct>
+    <struct name="AnalyticVelocityMagnitudeField">
+      <param name="Type">AnalyticFeVariable</param>
+      <param name="NumericField">VelocityMagnitudeField</param>
+    </struct>
+    <struct name="AnalyticVelocityMagnitudeField-Mag">
+      <param name="Type">OperatorFeVariable</param>
+      <param name="Operator">Magnitude</param>
+      <param name="Operand">AnalyticVelocityMagnitudeField</param>
+    </struct>
+    <struct name="ErrorVelocityMagnitudeField">
+      <param name="Type">ErrorFeVariable</param>
+      <param name="NumericField">VelocityMagnitudeField</param>
+      <param name="ConstantMesh">constantMesh</param>
+    </struct>
+    <struct name="ErrorVelocityMagnitudeField-Mag">
+      <param name="Type">OperatorFeVariable</param>
+      <param name="Operator">Magnitude</param>
+      <param name="Operand">ErrorVelocityMagnitudeField</param>
+    </struct>
+    <struct name="FieldTest">
+      <param name="Type">FieldTest</param>
+      <param name="useHighResReferenceSolutionFromFile">False</param>
+      <param name="useReferenceSolutionFromFile">True</param>
+      <param name="referenceSolutionFilePath">expected/PoiseuilleFlow-referenceTest</param>
+      <list name="ReferenceFields">
+        <param>PressureField</param>
+        <param>VelocityMagnitudeField</param>
+      </list>
+      <list name="FieldMappings">
+        <struct>
+          <param name="AnalyticField">AnalyticPressureField</param>
+          <param name="NumericField">PressureField</param>
+          <param name="ErrorField">ErrorPressureField</param>
+          <param name="AnalyticMagnitudeField">AnalyticPressureField-Mag</param>
+          <param name="ErrorMagnitudeField">ErrorPressureField-Mag</param>
+        </struct>
+        <struct>
+          <param name="AnalyticField">AnalyticVelocityMagnitudeField</param>
+          <param name="NumericField">VelocityMagnitudeField</param>
+          <param name="ErrorField">ErrorVelocityMagnitudeField</param>
+          <param name="AnalyticMagnitudeField">AnalyticVelocityMagnitudeField-Mag</param>
+          <param name="ErrorMagnitudeField">ErrorVelocityMagnitudeField-Mag</param>
+        </struct>
+      </list>
+      <param name="normaliseByAnalyticSolution">True</param>
+      <param name="appendToAnalysisFile">True</param>
+      <param name="IntegrationSwarm">gaussSwarm</param>
+      <param name="ElementMesh">linearMesh</param>
+      <param name="context">context</param>
+      <param name="testTimestep">0</param>
+      <param name="ConstantMesh">constantMesh</param>
+    </struct>
+  </struct>
+</StGermainData>

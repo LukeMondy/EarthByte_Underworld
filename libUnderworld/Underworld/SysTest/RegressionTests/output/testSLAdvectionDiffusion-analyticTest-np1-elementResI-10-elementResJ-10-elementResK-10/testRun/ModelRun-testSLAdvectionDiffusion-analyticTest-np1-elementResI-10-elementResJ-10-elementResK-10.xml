@@ -1,0 +1,33 @@
+<StgModelRun>
+  <name>testSLAdvectionDiffusion-analyticTest-np1-elementResI-10-elementResJ-10-elementResK-10</name>
+  <modelInputFiles>
+    <inputFile>testSLAdvectionDiffusion.xml</inputFile>
+  </modelInputFiles>
+  <basePath>/Users/julian/codes/underworld2/libUnderworld/Underworld/SysTest/RegressionTests</basePath>
+  <outputPath>output/testSLAdvectionDiffusion-analyticTest-np1-elementResI-10-elementResJ-10-elementResK-10/testRun</outputPath>
+  <jobParams>
+    <maxRunTime>None</maxRunTime>
+    <pollInterval>1</pollInterval>
+    <nproc>1</nproc>
+  </jobParams>
+  <simParams>
+    <restartstep>None</restartstep>
+    <stoptime>None</stoptime>
+    <nsteps>50</nsteps>
+    <dumpevery>1</dumpevery>
+    <cpevery>10</cpevery>
+  </simParams>
+  <paramOverrides>
+    <param modelPath="elementResI" paramVal="10" />
+    <param modelPath="elementResK" paramVal="10" />
+    <param modelPath="elementResJ" paramVal="10" />
+  </paramOverrides>
+  <solverOpts />
+  <analysisOps>
+    <fieldComparisonList fromXML="True" referencePath="None" testTimestep="0" useHighResReference="False" useReference="False">
+      <fields>
+        <field name="TemperatureField" />
+      </fields>
+    </fieldComparisonList>
+  </analysisOps>
+</StgModelRun>

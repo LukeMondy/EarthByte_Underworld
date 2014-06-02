@@ -1,0 +1,29 @@
+<StgModelRun>
+  <name>Example_RBF_FieldValueShape3D-referenceTest-np1</name>
+  <modelInputFiles>
+    <inputFile>Example_RBF_FieldValueShape3D.xml</inputFile>
+  </modelInputFiles>
+  <basePath>/Users/julian/codes/underworld2/libUnderworld/Underworld/SysTest/RegressionTests</basePath>
+  <outputPath>output/Example_RBF_FieldValueShape3D-referenceTest-np1/testRun</outputPath>
+  <jobParams>
+    <maxRunTime>None</maxRunTime>
+    <pollInterval>1</pollInterval>
+    <nproc>1</nproc>
+  </jobParams>
+  <simParams>
+    <restartstep>None</restartstep>
+    <stoptime>None</stoptime>
+    <nsteps>0</nsteps>
+    <dumpevery>0</dumpevery>
+    <cpevery>0</cpevery>
+  </simParams>
+  <paramOverrides />
+  <solverOpts />
+  <analysisOps>
+    <fieldComparisonList fromXML="False" referencePath="expected/Example_RBF_FieldValueShape3D-referenceTest" testTimestep="0" useHighResReference="False" useReference="True">
+      <fields>
+        <field name="MaterialIndexField" />
+      </fields>
+    </fieldComparisonList>
+  </analysisOps>
+</StgModelRun>

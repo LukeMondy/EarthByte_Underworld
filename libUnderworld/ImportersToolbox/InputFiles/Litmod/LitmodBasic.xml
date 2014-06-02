@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+   <list name="import" mergeType="merge">
+      <param> ImportersToolbox </param>
+   </list>
+
+   <include> ImportersToolbox/LitmodBase3D.xml </include>
+
+   <!-- User Defined Parameters -->
+   <!-- ####################### -->
+
+   <!-- Mesh Configuration -->
+   <param name="dim"> 3 </param>
+
+   <param name="elementResI"> 16 </param>
+   <param name="elementResJ"> 16 </param>
+   <param name="elementResK"> 16 </param>
+
+   <!-- Domain -->
+   <param name="minX"> -453454.736 </param>
+   <param name="minY"> -448840.168 </param>
+   <param name="minZ"> -439400.0 </param>
+   <param name="maxX"> 4502157.736 </param>
+   <param name="maxY"> 4456341.668 </param>
+   <param name="maxZ"> 45400.0 </param>
+
+   <param name="TemperatureVTKFilename"> Trhopvels.vtk </param>
+   <param name="TemperatureVTKDataset"> Temperature </param>
+   <param name="DensityVTKFilename"> Trhopvels.vtk </param>
+   <param name="DensityVTKDataset"> Density </param>
+
+   <param name="gravity"> 10 </param>
+   <param name="eta0"> 1 </param>
+   <param name="cohesion"> 1.0e10 </param>
+   <param name="frictionCoefficient"> 0.1 </param>
+
+   <!--  Simulation control  -->
+   <param name="maxTimeSteps"> 0 </param>
+   <param name="dumpEvery"> 1 </param>
+   <param name="checkpointEvery"> 1 </param>
+   <param name="outputPath"> ./output </param>
+
+</StGermainData>

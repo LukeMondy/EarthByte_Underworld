@@ -1,0 +1,111 @@
+========================
+  Important Message
+========================
+
+As of October 23, 2012, the repository paths of StGermain, StgDomain
+and StgFEM have been switched from csd.vpac.org to
+www.underworldproject.org.
+Please refer to 
+https://underworldproject.org/forums/viewtopic.php?f=19&t=156
+for update instructions.
+
+======================== 
+  README File
+========================
+
+Includes an installation guide, important notes, known bugs and
+contact information.
+Underworld manual and other relevant documentation are located inside
+the Docs directory.
+
+========================
+  Installation Guide
+========================
+
+------------------------
+1. Dependencies
+------------------------
+
+  - libXML2
+  - MPI
+  - PETSc
+  - HDF5
+
+For visualisation (optional):
+
+  - X11 ( for desktop machines ) or OSMesa (for cluster or machines
+    without displays) or SDL
+  - libPNG or libJPEG
+  - libFAME or libavcodec
+
+For more details see the "Underworld Software Dependencies" 
+page (http://www.underworldproject.org/documentation/Dependencies.html).
+
+------------------------
+2. Configuration
+------------------------
+
+To configure:
+
+  ./configure.py
+
+Available options can be listed with:
+
+  ./configure.py --help
+
+------------------------
+3. Build
+------------------------
+
+To build:
+
+  ./scons.py
+
+To rebuild as fast as possible (note that this is
+not guaraunteed to produce a consistent build):
+
+  ./fast-scons.py
+
+To run tests:
+
+  ./scons.py check ... runs unit-tests & low resolution integration
+                       tests 
+
+For more details refer to the "Running the Testing Suites provided
+with Underworld" section of the Underworld User Manual
+(http://www.underworldproject.org/downloads/manual/UnderworldUserManual.pdf).
+
+------------------------
+4. Install
+------------------------
+
+If an install location has been specified at the configuration stage
+(using the 'prefix' option), you may finally install Underworld to the
+provided location using the install option:
+
+  ./scons.py install
+
+========================
+  KNOWN ISSUES
+========================
+
+* On a MAC or when building static builds or when using icc/pgi
+  compilers, significant warnings are produced during compilation,
+  don't be alarmed, we are working on them.
+* Old Underworld input files prior to the 1.4.0 release are not
+  compatible to 1.4.0 and above releases.   
+
+========================
+  CONTACT INFORMATION
+========================
+Main web page:
+  http://www.underworldproject.org/
+  
+Email groups:
+   users@underworldproject.org       ... user group
+   development@underworldproject.org ... developer group
+
+Bug Report/General Info:
+   https://underworldproject.org/forums ... Underworld forums.
+
+Jerico Revote (25 Oct 2012)

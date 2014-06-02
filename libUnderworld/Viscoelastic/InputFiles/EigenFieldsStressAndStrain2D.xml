@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+<!-- A StGermain input file -->
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+   <!-- this file creates eigen value & vector fields for a provided symmetric tensor field             -->
+   <!-- you can use this file for only 2d simulations                                                   -->
+
+   <struct name="components" mergeType="merge">
+		<!-- Stress Rate Eigen Vectors -->
+	  <struct name="stressEigenFields">
+         <param name="Type">EigenFields</param>
+         <param name="TensorField">StressEigenTensorField</param>
+         <param name="EigenValueField1">stressEigenValue1Field</param>
+         <param name="EigenValueField2">stressEigenValue2Field</param>
+         <param name="EigenVectorField1">stressEigenVector1Field</param>
+         <param name="EigenVectorField2">stressEigenVector2Field</param>
+      </struct>
+      
+      <struct name="stressEigenValue1">
+         <param name="Type">MeshVariable</param>
+         <param name="mesh">elementMesh</param>
+         <param name="Rank">Scalar</param>
+         <param name="DataType">Double</param>
+      </struct>
+      <struct name="stressEigenValue1DofLayout">
+         <param name="Type">DofLayout</param>
+         <param name="MeshVariable">stressEigenValue1</param>
+      </struct>
+      <struct name="stressEigenValue1Field">
+         <param name="Type">FeVariable</param>
+         <param name="FEMesh">elementMesh</param>
+         <param name="DofLayout">stressEigenValue1DofLayout</param>
+      </struct>
+      <struct name="stressEigenValue2">
+         <param name="Type">MeshVariable</param>
+         <param name="mesh">elementMesh</param>
+         <param name="Rank">Scalar</param>
+         <param name="DataType">Double</param>
+      </struct>
+      <struct name="stressEigenValue2DofLayout">
+         <param name="Type">DofLayout</param>
+         <param name="MeshVariable">stressEigenValue2</param>
+      </struct>
+      <struct name="stressEigenValue2Field">
+         <param name="Type">FeVariable</param>
+         <param name="FEMesh">elementMesh</param>
+         <param name="DofLayout">stressEigenValue2DofLayout</param>
+      </struct>
+
+      <struct name="stressEigenVector1">
+         <param name="Type">MeshVariable</param>
+         <param name="mesh">elementMesh</param>
+         <param name="Rank">Vector</param>
+         <param name="DataType">Double</param>
+         <param name="VectorComponentCount">dim</param>
+         <list name="names">
+            <param>stressEv1x</param>
+            <param>stressEv1y</param>
+            <param>stressEv1z</param>
+         </list>
+      </struct>
+      <struct name="stressEigenVector1DofLayout">
+         <param name="Type">DofLayout</param>
+         <param name="MeshVariable"> stressEigenVector1 </param>
+      </struct>
+      <struct name="stressEigenVector1Field">
+         <param name="Type">FeVariable</param>
+         <param name="FEMesh">elementMesh</param>
+         <param name="DofLayout">stressEigenVector1DofLayout</param>
+      </struct>
+      
+      <struct name="stressEigenVector2">
+         <param name="Type">MeshVariable</param>
+         <param name="mesh">elementMesh</param>
+         <param name="Rank">Vector</param>
+         <param name="DataType">Double</param>
+         <param name="VectorComponentCount">dim</param>
+         <list name="names">
+            <param>stressEv2x</param>
+            <param>stressEv2y</param>
+            <param>stressEv2y</param>
+         </list>
+      </struct>
+      <struct name="stressEigenVector2DofLayout">
+         <param name="Type">DofLayout</param>
+         <param name="MeshVariable"> stressEigenVector2 </param>
+      </struct>
+      <struct name="stressEigenVector2Field">
+         <param name="Type">FeVariable</param>
+         <param name="FEMesh">elementMesh</param>
+         <param name="DofLayout">stressEigenVector2DofLayout</param>
+      </struct>
+
+		<!-- Strain Rate Eigen Vectors -->
+      <struct name="strainRateEigenFields">
+         <param name="Type">EigenFields</param>
+         <param name="TensorField">StrainRateEigenTensorField</param>
+         <param name="EigenValueField1">strainRateEigenValue1Field</param>
+         <param name="EigenValueField2">strainRateEigenValue2Field</param>
+         <param name="EigenVectorField1">strainRateEigenVector1Field</param>
+         <param name="EigenVectorField2">strainRateEigenVector2Field</param>
+      </struct>
+      <struct name="strainRateEigenValue1">
+         <param name="Type">MeshVariable</param>
+         <param name="mesh">elementMesh</param>
+         <param name="Rank">Scalar</param>
+         <param name="DataType">Double</param>
+      </struct>
+      <struct name="strainRateEigenValue1DofLayout">
+         <param name="Type">DofLayout</param>
+         <param name="MeshVariable">strainRateEigenValue1</param>
+      </struct>
+      <struct name="strainRateEigenValue1Field">
+         <param name="Type">FeVariable</param>
+         <param name="FEMesh">elementMesh</param>
+         <param name="DofLayout">strainRateEigenValue1DofLayout</param>
+      </struct>
+      <struct name="strainRateEigenValue2">
+         <param name="Type">MeshVariable</param>
+         <param name="mesh">elementMesh</param>
+         <param name="Rank">Scalar</param>
+         <param name="DataType">Double</param>
+      </struct>
+      <struct name="strainRateEigenValue2DofLayout">
+         <param name="Type">DofLayout</param>
+         <param name="MeshVariable">strainRateEigenValue2</param>
+      </struct>
+      <struct name="strainRateEigenValue2Field">
+         <param name="Type">FeVariable</param>
+         <param name="FEMesh">elementMesh</param>
+         <param name="DofLayout">strainRateEigenValue2DofLayout</param>
+      </struct>
+      <struct name="strainRateEigenVector1">
+         <param name="Type">MeshVariable</param>
+         <param name="mesh">elementMesh</param>
+         <param name="Rank">Vector</param>
+         <param name="DataType">Double</param>
+         <param name="VectorComponentCount">dim</param>
+         <list name="names">
+            <param>strainRateEv1xx</param>
+            <param>strainRateEv1yy</param>
+            <param>strainRateEv1xy</param>
+         </list>
+      </struct>
+      <struct name="strainRateEigenVector1DofLayout">
+         <param name="Type">DofLayout</param>
+         <param name="MeshVariable"> strainRateEigenVector1 </param>
+      </struct>
+      <struct name="strainRateEigenVector1Field">
+         <param name="Type">FeVariable</param>
+         <param name="FEMesh">elementMesh</param>
+         <param name="DofLayout">strainRateEigenVector1DofLayout</param>
+      </struct>
+      <struct name="strainRateEigenVector2">
+         <param name="Type">MeshVariable</param>
+         <param name="mesh">elementMesh</param>
+         <param name="Rank">Vector</param>
+         <param name="DataType">Double</param>
+         <param name="VectorComponentCount">dim</param>
+         <list name="names">
+            <param>strainRateEv2xx</param>
+            <param>strainRateEv2yy</param>
+            <param>strainRateEv2xy</param>
+         </list>
+      </struct>
+      <struct name="strainRateEigenVector2DofLayout">
+         <param name="Type">DofLayout</param>
+         <param name="MeshVariable"> strainRateEigenVector2 </param>
+      </struct>
+      <struct name="strainRateEigenVector2Field">
+         <param name="Type">FeVariable</param>
+         <param name="FEMesh">elementMesh</param>
+         <param name="DofLayout">strainRateEigenVector2DofLayout</param>
+      </struct>
+   </struct>
+   
+   	<list name="FieldVariablesToCheckpoint" mergeType="merge" >
+		<param>stressEigenValue1Field</param>
+		<param>stressEigenValue2Field</param>
+		<param>stressEigenVector1Field</param>
+		<param>stressEigenVector2Field</param>
+
+		<param>strainRateEigenValue1Field</param>
+		<param>strainRateEigenValue2Field</param>
+		<param>strainRateEigenVector1Field</param>
+		<param>strainRateEigenVector2Field</param>
+	</list>
+
+</StGermainData>

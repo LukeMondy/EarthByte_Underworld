@@ -1,0 +1,18 @@
+<StgModelResult>
+  <modelName>FrankKamenetskii-referenceTest-np1-lowres</modelName>
+  <outputPath>/Users/julian/codes/underworld2/libUnderworld/Underworld/SysTest/RegressionTests/output/FrankKamenetskii-referenceTest-np1-lowres/testRun</outputPath>
+  <jobMetaInfo>
+    <runType>MPI</runType>
+    <simtime>0.0</simtime>
+    <submitTime>2014-06-02 16:41:56.362319</submitTime>
+    <platformInfo>
+      <release>12.5.0</release>
+      <machine>x86_64</machine>
+      <version>Darwin Kernel Version 12.5.0: Mon Jul 29 16:33:49 PDT 2013; root:xnu-2050.48.11~1/RELEASE_X86_64</version>
+      <node>reggie</node>
+      <system>Darwin</system>
+    </platformInfo>
+    <performanceInfo />
+    <runCommand>mpiexec -np 1 /Users/julian/codes/underworld2/libUnderworld/build/bin/StGermain FrankKamenetskii.xml /Users/julian/codes/underworld2/libUnderworld/Underworld/SysTest/RegressionTests/output/FrankKamenetskii-referenceTest-np1-lowres/testRun/credo-analysis.xml --elementResI=10 --elementResJ=10 --elementResK=10</runCommand>
+  </jobMetaInfo>
+</StgModelResult>

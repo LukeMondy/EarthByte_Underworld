@@ -1,0 +1,19 @@
+# vtk DataFile Version 2.0
+Really cool data
+ASCII
+DATASET STRUCTURED_POINTS
+DIMENSIONS 3 3 3
+ORIGIN 0 0 0
+SPACING 1 1 1
+POINT_DATA 27
+SCALARS points double 1
+LOOKUP_TABLE default
+1 1 3
+1 1 3
+1 1 3
+0 0 0
+0 0 0
+0 0 0
+0 0 0
+0 0 0
+0 0 0

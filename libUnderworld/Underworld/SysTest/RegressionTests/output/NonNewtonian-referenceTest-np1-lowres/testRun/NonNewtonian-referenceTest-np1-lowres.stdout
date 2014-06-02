@@ -1,0 +1,921 @@
+StGermain Framework Revision c4bda90f1c33c667ca4d7e599581e6faea061e35. Copyright (C) 2003-2005 VPAC.
+Toolbox "Underworld" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Toolboxmodule.dylib
+Toolbox "StgDomain" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgDomain_Toolboxmodule.dylib
+StgDomain (Domain Library) Revision 60f17a7cf3d49900869dbbd221568078762b7a29. Copyright (C) 2003-2007 VPAC.
+Toolbox "StgFEM" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_Toolboxmodule.dylib
+StgFEM (Finite Element Framework) Revision 1a2f5c4d3746b061a4e4848ece580179193d0574. Copyright (C) 2003-2005 VPAC.
+Toolbox "PICellerator" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/PICellerator_Toolboxmodule.dylib
+PICellerator (Particle-In-Cell Framework) Revision f3d21a42cd5b8646f8f4f44712ba647e3415b2be. Copyright (C) 2005-2010 VPAC & Monash University.
+Underworld (Geodynamics Framework) Revision d1a30765521592552eb91ce93ee21bc7f156c210. Copyright (C) 2005-2010 Monash University.
+Toolbox "gLucifer" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/gLucifer_Toolboxmodule.dylib
+gLucifer (Visualisation Framework) Revision 71d7f40d027fef8362ff421c099adecee384cb93. Copyright (C) 2005-2010 Monash University.
+
+Creating Stg_Components from the component-list
+
+	Instantiating UnderworldContext as context
+	Instantiating FeMesh as constantMesh
+	Instantiating C0Generator as constantMeshGenerator
+	Instantiating FeMesh as linearMesh
+	Instantiating CartesianGenerator as linearMeshGenerator
+	Instantiating MeshVariable as velocity
+	Instantiating CompositeVC as velocityBCs
+	Instantiating CompositeVC as velocityICs
+	Instantiating DofLayout as velocityDofLayout
+	Instantiating FeVariable as VelocityField
+	Instantiating OperatorFeVariable as VelocityMagnitudeField
+	Instantiating OperatorFeVariable as VelocityGradientsField
+	Instantiating OperatorFeVariable as VelocityGradientsInvariantField
+	Instantiating OperatorFeVariable as VelocityXXField
+	Instantiating OperatorFeVariable as VelocityYYField
+	Instantiating OperatorFeVariable as StrainRateField
+	Instantiating OperatorFeVariable as VorticityField
+	Instantiating OperatorFeVariable as StrainRateInvariantField
+	Instantiating OperatorFeVariable as StrainRateXXField
+	Instantiating OperatorFeVariable as StrainRateYYField
+	Instantiating MeshVariable as temperature
+	Instantiating CompositeVC as temperatureBCs
+	Instantiating CompositeVC as temperatureICs
+	Instantiating DofLayout as temperatureDofLayout
+	Instantiating FeVariable as TemperatureField
+	Instantiating OperatorFeVariable as TemperatureGradientsField
+	Instantiating MeshVariable as pressure
+	Instantiating CompositeVC as pressureBCs
+	Instantiating CompositeVC as pressureICs
+	Instantiating DofLayout as pressureDofLayout
+	Instantiating FeVariable as PressureField
+	Instantiating SingleCellLayout as cellLayout
+	Instantiating GaussParticleLayout as particleLayout
+	Instantiating IntegrationPointsSwarm as gaussSwarm
+	Instantiating GaussMapper as gaussMapper
+	Instantiating BackgroundParticleLayout as backgroundLayout
+	Instantiating ParticleMovementHandler as gaussMSwarmMovementHandler
+	Instantiating MaterialPointsSwarm as gaussMaterialSwarm
+	Instantiating TimeIntegrator as timeIntegrator
+	Instantiating SolutionVector as solutionVelocity
+	Instantiating SolutionVector as solutionPressure
+	Instantiating ForceVector as mom_force
+	Instantiating ForceVector as cont_force
+	Instantiating StiffnessMatrix as k_matrix
+	Instantiating ConstitutiveMatrixCartesian as constitutiveMatrix
+	Instantiating StiffnessMatrix as g_matrix
+	Instantiating GradientStiffnessMatrixTerm as gradientStiffnessMatrixTerm
+	Instantiating StiffnessMatrix as preconditioner
+	Instantiating UzawaPreconditionerTerm as preconditionerTerm
+	Instantiating Stokes_SLE_UzawaSolver as uzawa
+	Instantiating Stokes_SLE as stokesEqn
+	Instantiating ThermalBuoyancyForceTerm as buoyancyForceTerm
+	Instantiating ForceVector as residual
+	Instantiating ForceVector as massMatrix
+	Instantiating AdvDiffMulticorrector as predictorMulticorrector
+	Instantiating AdvectionDiffusionSLE as EnergyEqn
+	Instantiating LumpedMassMatrixForceTerm as lumpedMassMatrixForceTerm
+	Instantiating AdvDiffResidualForceTerm as defaultResidualForceTerm
+	Instantiating FrankKamenetskii as temperatureDependence
+	Instantiating NonNewtonian as nonNewtonian
+	Instantiating Everywhere as shape
+	Instantiating RheologyMaterial as material
+	Instantiating lucCamera as camera
+	Instantiating lucColourMap as temperatureColourMap
+	Instantiating lucTitle as tempandVelTitle
+	Instantiating lucScalarField as temperatureMap
+	Instantiating lucVectorArrows as velocityArrows
+	Instantiating lucFieldVariableBorder as border
+	Instantiating lucColourBar as temperatureColourBar
+	Instantiating lucViewport as TemperatureAndVelocityArrowsVP
+	Instantiating lucDatabase as database
+	Instantiating lucWindow as window
+	Instantiating AnalyticFeVariable as AnalyticVelocityField
+	Instantiating OperatorFeVariable as AnalyticVelocityField-Mag
+	Instantiating ErrorFeVariable as ErrorVelocityField
+	Instantiating OperatorFeVariable as ErrorVelocityField-Mag
+	Instantiating AnalyticFeVariable as AnalyticPressureField
+	Instantiating OperatorFeVariable as AnalyticPressureField-Mag
+	Instantiating ErrorFeVariable as ErrorPressureField
+	Instantiating OperatorFeVariable as ErrorPressureField-Mag
+	Instantiating FieldTest as FieldTest
+
+Constructing Stg_Components from the live-component register
+
+	Constructing context..
+Plugin "StgFEM_StandardConditionFunctions" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_StandardConditionFunctionsmodule.dylib
+Plugin "Underworld_Ra_Scaling" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Ra_Scalingmodule.dylib
+Plugin "StgFEM_FrequentOutput" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_FrequentOutputmodule.dylib
+Plugin "Underworld_Nusselt" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Nusseltmodule.dylib
+Plugin "Underworld_Vrms" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/Underworld_Vrmsmodule.dylib
+Plugin "StgFEM_CPUTime" found using /Users/julian/codes/underworld2/libUnderworld/build/lib/StgFEM_CPUTimemodule.dylib
+		Constructing MeshVariable as velocity
+		Constructing velocity..
+			linearMesh has not been constructed yet. Constructing now.
+				Constructing linearMesh..
+		Constructing MeshVariable as temperature
+		Constructing temperature..
+		Constructing MeshVariable as pressure
+		Constructing pressure..
+			constantMesh has not been constructed yet. Constructing now.
+				Constructing constantMesh..
+		constitutiveMatrix has not been constructed yet. Constructing now.
+			Constructing constitutiveMatrix..
+				k_matrix has not been constructed yet. Constructing now.
+					Constructing k_matrix..
+						VelocityField has not been constructed yet. Constructing now.
+							Constructing VelocityField..
+								velocityDofLayout has not been constructed yet. Constructing now.
+									Constructing velocityDofLayout..
+								velocityICs has not been constructed yet. Constructing now.
+									Constructing velocityICs..
+								velocityBCs has not been constructed yet. Constructing now.
+									Constructing velocityBCs..
+						mom_force has not been constructed yet. Constructing now.
+							Constructing mom_force..
+				gaussSwarm has not been constructed yet. Constructing now.
+					Constructing gaussSwarm..
+						cellLayout has not been constructed yet. Constructing now.
+							Constructing cellLayout..
+						particleLayout has not been constructed yet. Constructing now.
+							Constructing particleLayout..
+						timeIntegrator has not been constructed yet. Constructing now.
+							Constructing timeIntegrator..
+						gaussMapper has not been constructed yet. Constructing now.
+							Constructing gaussMapper..
+								gaussMaterialSwarm has not been constructed yet. Constructing now.
+									Constructing gaussMaterialSwarm..
+										backgroundLayout has not been constructed yet. Constructing now.
+											Constructing backgroundLayout..
+											gaussMSwarmMovementHandler has not been constructed yet. Constructing now.
+												Constructing gaussMSwarmMovementHandler..
+	Constructing constantMeshGenerator..
+	Constructing linearMeshGenerator..
+	Constructing VelocityMagnitudeField..
+	Constructing VelocityGradientsField..
+	Constructing VelocityGradientsInvariantField..
+	Constructing VelocityXXField..
+	Constructing VelocityYYField..
+	Constructing StrainRateField..
+	Constructing VorticityField..
+	Constructing StrainRateInvariantField..
+	Constructing StrainRateXXField..
+	Constructing StrainRateYYField..
+	Constructing temperatureBCs..
+	Constructing temperatureICs..
+	Constructing temperatureDofLayout..
+	Constructing TemperatureField..
+	Constructing TemperatureGradientsField..
+	Constructing pressureBCs..
+	Constructing pressureICs..
+	Constructing pressureDofLayout..
+	Constructing PressureField..
+	Constructing solutionVelocity..
+	Constructing solutionPressure..
+	Constructing cont_force..
+	Constructing g_matrix..
+	Constructing gradientStiffnessMatrixTerm..
+	Constructing preconditioner..
+	Constructing preconditionerTerm..
+	Constructing uzawa..
+	Constructing stokesEqn..
+	Constructing buoyancyForceTerm..
+	Constructing residual..
+	Constructing massMatrix..
+	Constructing predictorMulticorrector..
+	Constructing EnergyEqn..
+	Constructing lumpedMassMatrixForceTerm..
+	Constructing defaultResidualForceTerm..
+	Constructing temperatureDependence..
+	Constructing nonNewtonian..
+	Constructing shape..
+	Constructing material..
+	Constructing camera..
+	Constructing temperatureColourMap..
+	Constructing tempandVelTitle..
+	Constructing temperatureMap..
+	Constructing velocityArrows..
+	Constructing border..
+	Constructing temperatureColourBar..
+	Constructing TemperatureAndVelocityArrowsVP..
+	Constructing database..
+	Constructing window..
+	Constructing AnalyticVelocityField..
+	Constructing AnalyticVelocityField-Mag..
+	Constructing ErrorVelocityField..
+	Constructing ErrorVelocityField-Mag..
+	Constructing AnalyticPressureField..
+	Constructing AnalyticPressureField-Mag..
+	Constructing ErrorPressureField..
+	Constructing ErrorPressureField-Mag..
+	Constructing FieldTest..
+	Constructing StgFEM_StandardConditionFunctions..
+	Constructing Underworld_Ra_Scaling_Type..
+	Constructing StgFEM_FrequentOutput..
+	Constructing Underworld_Nusselt..
+	Constructing Underworld_Vrms..
+	Constructing StgFEM_CPUTime..
+
+Building Stg_Components from the live-component register
+
+Cartesian generator: 'linearMeshGenerator'
+	Target mesh: 'linearMesh'
+	Global element size: 10x10
+	Local offset of rank 0: 0x0
+	Local range of rank 0: 10x10
+	Generating vertices...
+		... done.
+	Generating elements...
+		... done.
+	Generating edges...
+		... done.
+	Generating element-vertex incidence...
+		... done.
+	Generating face-edge incidence...
+		... done.
+	Generating edge-vertex incidence...
+		... done.
+	Generating vertex neighbours...
+		... done.
+	Generating geometry...
+		... done.
+	Generating element types...
+		... element types are 'Mesh_HexType',
+		... mesh algorithm type is 'Mesh_RegularAlgorithms',
+		... done.
+	Assigning FeMesh element types...
+		... FE element types are 'BilinearElementType',
+		... done.
+Warning - in _WallVC_GetSet: Can't build a MaxK_front wall VC when mesh has no elements in the K axis. Returning an empty set.
+Warning - in _WallVC_GetSet: Can't build a MinK_back wall VC when mesh has no elements in the K axis. Returning an empty set.
+Stiffness matrix: 'k_matrix'
+	Calculating number of nonzero entries...
+		Found 3008 nonzero entries.
+		Done.
+	Assigning FeMesh element types...
+		... FE element types are 'ConstantElementType',
+		... done.
+FeEquationNumber: 'defaultFeVariableFeEqName'
+	Generating equation numbers...
+		BCs set to be removed.
+		Assigned 100 global equation numbers.
+		[0] Assigned 100 local equation numbers, within range 0 to 100.
+	... Completed in 0.000183105 [min] / 0.000183105 [max] seconds.
+Stiffness matrix: 'g_matrix'
+	Calculating number of nonzero entries...
+		Found 720 nonzero entries.
+		Done.
+Stiffness matrix: 'preconditioner'
+	Calculating number of nonzero entries...
+		Found 100 nonzero entries.
+		Done.
+Linking materials and ppc... 
+done
+
+Initialising Stg_Components from the live-component register
+
+Run until simulation has stepped forward 5 timeSteps
+Laying out material 'material' within Everywhere 'shape':
+In func Materials_Register_AssignParticleProperties(): for swarm "gaussMaterialSwarm"
+	Assigning initial particle properties to the 1 global particles
+		done 100% (1 particles)...
+Materials_Register_AssignParticleProperties(): finished setup of material properties for swarm "gaussMaterialSwarm"
+	took 8.79765e-05 [min] / 8.79765e-05 [max] secs
+Window: window, id 1
+      Drawing object: temperatureMap lucScalarField id 1
+         ColourMap: temperatureColourMap, id 1
+         Linking colourMap: temperatureColourMap to object temperatureMap
+      Drawing object: velocityArrows lucVectorArrows id 2
+      Drawing object: temperatureColourBar lucColourBar id 3
+         Linking colourMap: temperatureColourMap to object temperatureColourBar
+   Viewport: TemperatureAndVelocityArrowsVP id 1
+TimeStep = 0, Start time = 0, prev timeStep dt = 0
+In SystemLinearEquations_NonLinearExecute
+
+Non linear solver - iteration 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0011 , Uzawa residual = 2.1461999829388e-06
+  |G^T u|/|u|               = 1.44944019e-05
+  |f - K u - G p|/|f|       = 1.21301468e-03
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 2.35962524e-06 , u_rms = 4.08697998e-07
+  |p|_{\infty} = 1.38254038e+07 , p_rms = 9.36099429e+06
+  min/max(u) = -2.35962524e-06 [3] / 7.04341925e-07 [29]
+  min/max(p) = -1.11640724e+06 [0] / 1.38254038e+07 [99]
+  \sum_i p_i = 8.05731510e+08 
+Linear solver (stokesEqn-execute), solution time 4.216909e-03 (secs)
+Non linear solver - iteration 1
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0007 , Uzawa residual = 8.5944222074679e-06
+  |G^T u|/|u|               = 3.17832631e-05
+  |f - K u - G p|/|f|       = 2.85509911e-06
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.05575590e-03 , u_rms = 2.04742149e-04
+  |p|_{\infty} = 1.35462273e+07 , p_rms = 9.34660146e+06
+  min/max(u) = -1.05575590e-03 [3] / 3.92255868e-04 [29]
+  min/max(p) = -1.16104072e+06 [0] / 1.35462273e+07 [80]
+  \sum_i p_i = 8.04871908e+08 
+Linear solver (stokesEqn-execute), solution time 1.729965e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 1 of 500 - Residual 0.99809 - Tolerance = 0.01
+Non linear solver - Residual 9.98089830e-01; Tolerance 1.0000e-02 - Not converged - 2.161098e-02 (secs)
+
+Non linear solver - iteration 2
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 8.2849947974156e-06
+  |G^T u|/|u|               = 2.40577672e-05
+  |f - K u - G p|/|f|       = 2.18641088e-06
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 4.47395674e-02 , u_rms = 9.50775423e-03
+  |p|_{\infty} = 1.35217301e+07 , p_rms = 9.34002919e+06
+  min/max(u) = -4.47395674e-02 [3] / 1.89372682e-02 [29]
+  min/max(p) = -1.17676441e+06 [0] / 1.35217301e+07 [80]
+  \sum_i p_i = 8.04451806e+08 
+Linear solver (stokesEqn-execute), solution time 1.634836e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 2 of 500 - Residual 0.97869 - Tolerance = 0.01
+Non linear solver - Residual 9.78688059e-01; Tolerance 1.0000e-02 - Not converged - 3.108096e-02 (secs)
+
+Non linear solver - iteration 3
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0005 , Uzawa residual = 9.5576673482385e-06
+  |G^T u|/|u|               = 2.46982500e-05
+  |f - K u - G p|/|f|       = 2.15948984e-06
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 4.23139737e-01 , u_rms = 9.51023991e-02
+  |p|_{\infty} = 1.35198290e+07 , p_rms = 9.33754880e+06
+  min/max(u) = -4.23139737e-01 [3] / 1.93181487e-01 [29]
+  min/max(p) = -1.18010919e+06 [0] / 1.35198290e+07 [80]
+  \sum_i p_i = 8.04284043e+08 
+Linear solver (stokesEqn-execute), solution time 1.474142e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 3 of 500 - Residual 0.90033 - Tolerance = 0.01
+Non linear solver - Residual 9.00329272e-01; Tolerance 1.0000e-02 - Not converged - 4.036808e-02 (secs)
+
+Non linear solver - iteration 4
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0005 , Uzawa residual = 3.9036566494598e-06
+  |G^T u|/|u|               = 9.50824901e-06
+  |f - K u - G p|/|f|       = 3.03288532e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.60323813e+00 , u_rms = 3.71965643e-01
+  |p|_{\infty} = 1.35203000e+07 , p_rms = 9.33665814e+06
+  min/max(u) = -1.60323813e+00 [4] / 7.61970068e-01 [29]
+  min/max(p) = -1.18089223e+06 [0] / 1.35203000e+07 [80]
+  \sum_i p_i = 8.04221719e+08 
+Linear solver (stokesEqn-execute), solution time 1.539946e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 4 of 500 - Residual 0.7446 - Tolerance = 0.01
+Non linear solver - Residual 7.44596745e-01; Tolerance 1.0000e-02 - Not converged - 4.979300e-02 (secs)
+
+Non linear solver - iteration 5
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0004 , Uzawa residual = 6.0874218364972e-06
+  |G^T u|/|u|               = 1.43806149e-05
+  |f - K u - G p|/|f|       = 2.95503467e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 3.51976544e+00 , u_rms = 8.29751620e-01
+  |p|_{\infty} = 1.35206561e+07 , p_rms = 9.33635231e+06
+  min/max(u) = -3.51976544e+00 [4] / 1.70569564e+00 [29]
+  min/max(p) = -1.18092930e+06 [0] / 1.35206561e+07 [80]
+  \sum_i p_i = 8.04200448e+08 
+Linear solver (stokesEqn-execute), solution time 1.357079e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 5 of 500 - Residual 0.55191 - Tolerance = 0.01
+Non linear solver - Residual 5.51911155e-01; Tolerance 1.0000e-02 - Not converged - 5.894494e-02 (secs)
+
+Non linear solver - iteration 6
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0003 , Uzawa residual = 6.4349789481233e-06
+  |G^T u|/|u|               = 1.49587234e-05
+  |f - K u - G p|/|f|       = 2.79555842e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 5.58215477e+00 , u_rms = 1.32786062e+00
+  |p|_{\infty} = 1.35210373e+07 , p_rms = 9.33616887e+06
+  min/max(u) = -5.58215477e+00 [4] / 2.73350014e+00 [29]
+  min/max(p) = -1.18084838e+06 [0] / 1.35210373e+07 [80]
+  \sum_i p_i = 8.04187285e+08 
+Linear solver (stokesEqn-execute), solution time 1.214981e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 6 of 500 - Residual 0.37525 - Tolerance = 0.01
+Non linear solver - Residual 3.75247699e-01; Tolerance 1.0000e-02 - Not converged - 6.799197e-02 (secs)
+
+Non linear solver - iteration 7
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0002 , Uzawa residual = 5.9255890882757e-06
+  |G^T u|/|u|               = 1.36539713e-05
+  |f - K u - G p|/|f|       = 2.76476380e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 7.31387001e+00 , u_rms = 1.74851243e+00
+  |p|_{\infty} = 1.35212362e+07 , p_rms = 9.33608497e+06
+  min/max(u) = -7.31387001e+00 [4] / 3.60078969e+00 [29]
+  min/max(p) = -1.18080740e+06 [0] / 1.35212362e+07 [80]
+  \sum_i p_i = 8.04181629e+08 
+Linear solver (stokesEqn-execute), solution time 1.039028e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 7 of 500 - Residual 0.24065 - Tolerance = 0.01
+Non linear solver - Residual 2.40652577e-01; Tolerance 1.0000e-02 - Not converged - 7.686090e-02 (secs)
+
+Non linear solver - iteration 8
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 9.0276364590831e-06
+  |G^T u|/|u|               = 2.07003228e-05
+  |f - K u - G p|/|f|       = 2.77257960e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 8.56709627e+00 , u_rms = 2.05388231e+00
+  |p|_{\infty} = 1.35211292e+07 , p_rms = 9.33608792e+06
+  min/max(u) = -8.56709627e+00 [4] / 4.22947656e+00 [29]
+  min/max(p) = -1.18078187e+06 [0] / 1.35211292e+07 [80]
+  \sum_i p_i = 8.04182316e+08 
+Linear solver (stokesEqn-execute), solution time 8.699894e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 8 of 500 - Residual 0.14872 - Tolerance = 0.01
+Non linear solver - Residual 1.48724113e-01; Tolerance 1.0000e-02 - Not converged - 8.552408e-02 (secs)
+
+Non linear solver - iteration 9
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 5.1598576448795e-06
+  |G^T u|/|u|               = 1.18002740e-05
+  |f - K u - G p|/|f|       = 2.78322357e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 9.39929581e+00 , u_rms = 2.25636590e+00
+  |p|_{\infty} = 1.35213817e+07 , p_rms = 9.33603273e+06
+  min/max(u) = -9.39929581e+00 [4] / 4.64564452e+00 [29]
+  min/max(p) = -1.18075789e+06 [0] / 1.35213817e+07 [80]
+  \sum_i p_i = 8.04178103e+08 
+Linear solver (stokesEqn-execute), solution time 8.668900e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 9 of 500 - Residual 0.089762 - Tolerance = 0.01
+Non linear solver - Residual 8.97623026e-02; Tolerance 1.0000e-02 - Not converged - 9.419703e-02 (secs)
+
+Non linear solver - iteration 10
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 4.6191312242611e-06
+  |G^T u|/|u|               = 1.05468145e-05
+  |f - K u - G p|/|f|       = 2.79327945e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 9.92362561e+00 , u_rms = 2.38403596e+00
+  |p|_{\infty} = 1.35212442e+07 , p_rms = 9.33605893e+06
+  min/max(u) = -9.92362561e+00 [4] / 4.90761207e+00 [29]
+  min/max(p) = -1.18075225e+06 [0] / 1.35212442e+07 [80]
+  \sum_i p_i = 8.04180177e+08 
+Linear solver (stokesEqn-execute), solution time 8.671284e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 10 of 500 - Residual 0.053566 - Tolerance = 0.01
+Non linear solver - Residual 5.35663226e-02; Tolerance 1.0000e-02 - Not converged - 1.029079e-01 (secs)
+
+Non linear solver - iteration 11
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 2.2790336593988e-06
+  |G^T u|/|u|               = 5.19940901e-06
+  |f - K u - G p|/|f|       = 2.79902201e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.02439418e+01 , u_rms = 2.46184687e+00
+  |p|_{\infty} = 1.35213877e+07 , p_rms = 9.33602797e+06
+  min/max(u) = -1.02439418e+01 [4] / 5.06687518e+00 [29]
+  min/max(p) = -1.18074715e+06 [0] / 1.35213877e+07 [80]
+  \sum_i p_i = 8.04177894e+08 
+Linear solver (stokesEqn-execute), solution time 8.621216e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 11 of 500 - Residual 0.031614 - Tolerance = 0.01
+Non linear solver - Residual 3.16139103e-02; Tolerance 1.0000e-02 - Not converged - 1.116300e-01 (secs)
+
+Non linear solver - iteration 12
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 1.6460454003469e-06
+  |G^T u|/|u|               = 3.75339283e-06
+  |f - K u - G p|/|f|       = 2.80405213e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.04361878e+01 , u_rms = 2.50855308e+00
+  |p|_{\infty} = 1.35213055e+07 , p_rms = 9.33604491e+06
+  min/max(u) = -1.04361878e+01 [4] / 5.16245204e+00 [29]
+  min/max(p) = -1.18074500e+06 [0] / 1.35213055e+07 [80]
+  \sum_i p_i = 8.04179169e+08 
+Linear solver (stokesEqn-execute), solution time 8.709431e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 12 of 500 - Residual 0.018623 - Tolerance = 0.01
+Non linear solver - Residual 1.86232813e-02; Tolerance 1.0000e-02 - Not converged - 1.203079e-01 (secs)
+
+Non linear solver - iteration 13
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 7.6068401555374e-07
+  |G^T u|/|u|               = 1.73410256e-06
+  |f - K u - G p|/|f|       = 2.80685397e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.05501579e+01 , u_rms = 2.53619274e+00
+  |p|_{\infty} = 1.35213687e+07 , p_rms = 9.33603171e+06
+  min/max(u) = -1.05501579e+01 [4] / 5.21893171e+00 [29]
+  min/max(p) = -1.18074272e+06 [0] / 1.35213687e+07 [80]
+  \sum_i p_i = 8.04178199e+08 
+Linear solver (stokesEqn-execute), solution time 8.640289e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 13 of 500 - Residual 0.0109 - Tolerance = 0.01
+Non linear solver - Residual 1.09003044e-02; Tolerance 1.0000e-02 - Not converged - 1.289999e-01 (secs)
+
+Non linear solver - iteration 14
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 4.9113814508445e-07
+  |G^T u|/|u|               = 1.11945303e-06
+  |f - K u - G p|/|f|       = 2.80830239e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.06173900e+01 , u_rms = 2.55249517e+00
+  |p|_{\infty} = 1.35213347e+07 , p_rms = 9.33603853e+06
+  min/max(u) = -1.06173900e+01 [4] / 5.25226256e+00 [29]
+  min/max(p) = -1.18074152e+06 [0] / 1.35213347e+07 [80]
+  \sum_i p_i = 8.04178708e+08 
+Linear solver (stokesEqn-execute), solution time 8.778572e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 14 of 500 - Residual 0.0063882 - Tolerance = 0.01
+Non linear solver - Residual 6.38824245e-03; Tolerance 1.0000e-02 - Converged - 1.376441e-01 (secs)
+
+In func SystemLinearEquations_NonLinearExecute: Converged after 14 iterations.
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.574060e-03 (secs)
+Time Integration
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 6.41346e-05 [min] / 6.41346e-05 [max] (secs)
+Time Integration - 7.51e-05 [min] / 7.51e-05 [max] (secs)
+TimeStep = 1, Start time = 0.00235463, prev timeStep dt = 0.00235463
+In SystemLinearEquations_NonLinearExecute
+
+Non linear solver - iteration 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 2.4162287907970e-07
+  |G^T u|/|u|               = 5.50688731e-07
+  |f - K u - G p|/|f|       = 2.81003463e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.06567988e+01 , u_rms = 2.56204184e+00
+  |p|_{\infty} = 1.35213569e+07 , p_rms = 9.33603406e+06
+  min/max(u) = -1.06567988e+01 [4] / 5.27176725e+00 [29]
+  min/max(p) = -1.18074032e+06 [0] / 1.35213569e+07 [80]
+  \sum_i p_i = 8.04178378e+08 
+Linear solver (stokesEqn-execute), solution time 8.680820e-04 (secs)
+Non linear solver - iteration 1
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 1.5777986760995e-07
+  |G^T u|/|u|               = 3.59582860e-07
+  |f - K u - G p|/|f|       = 2.81049944e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.06799001e+01 , u_rms = 2.56763731e+00
+  |p|_{\infty} = 1.35213457e+07 , p_rms = 9.33603617e+06
+  min/max(u) = -1.06799001e+01 [4] / 5.28321922e+00 [29]
+  min/max(p) = -1.18073962e+06 [0] / 1.35213457e+07 [80]
+  \sum_i p_i = 8.04178537e+08 
+Linear solver (stokesEqn-execute), solution time 8.640289e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 1 of 500 - Residual 0.0021797 - Tolerance = 0.01
+Non linear solver - Residual 2.17965460e-03; Tolerance 1.0000e-02 - Converged - 1.743603e-02 (secs)
+
+In func SystemLinearEquations_NonLinearExecute: Converged after 1 iterations.
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.327059e-03 (secs)
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 1.788e-05 [min] / 1.788e-05 [max] (secs)
+TimeStep = 2, Start time = 0.00469547, prev timeStep dt = 0.00234085
+In SystemLinearEquations_NonLinearExecute
+
+Non linear solver - iteration 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 3.8298511990900e-06
+  |G^T u|/|u|               = 8.24956485e-06
+  |f - K u - G p|/|f|       = 3.44121422e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.13729245e+01 , u_rms = 2.72709775e+00
+  |p|_{\infty} = 1.35159437e+07 , p_rms = 9.33716115e+06
+  min/max(u) = -1.13729245e+01 [3] / 5.74770010e+00 [29]
+  min/max(p) = -1.19240262e+06 [0] / 1.35159437e+07 [80]
+  \sum_i p_i = 8.04201882e+08 
+Linear solver (stokesEqn-execute), solution time 1.727819e-03 (secs)
+Non linear solver - iteration 1
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0003 , Uzawa residual = 7.3968068914529e-06
+  |G^T u|/|u|               = 1.60673677e-05
+  |f - K u - G p|/|f|       = 3.19753622e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.17874378e+01 , u_rms = 2.82041326e+00
+  |p|_{\infty} = 1.35150435e+07 , p_rms = 9.33723702e+06
+  min/max(u) = -1.17874378e+01 [3] / 5.98641232e+00 [29]
+  min/max(p) = -1.19230624e+06 [0] / 1.35150435e+07 [80]
+  \sum_i p_i = 8.04209941e+08 
+Linear solver (stokesEqn-execute), solution time 1.207113e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 1 of 500 - Residual 0.033696 - Tolerance = 0.01
+Non linear solver - Residual 3.36964245e-02; Tolerance 1.0000e-02 - Not converged - 1.850486e-02 (secs)
+
+Non linear solver - iteration 2
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0002 , Uzawa residual = 6.9705667427620e-06
+  |G^T u|/|u|               = 1.51969536e-05
+  |f - K u - G p|/|f|       = 3.27555062e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.20272719e+01 , u_rms = 2.87434478e+00
+  |p|_{\infty} = 1.35148099e+07 , p_rms = 9.33723212e+06
+  min/max(u) = -1.20272719e+01 [3] / 6.11491513e+00 [29]
+  min/max(p) = -1.19227722e+06 [0] / 1.35148099e+07 [80]
+  \sum_i p_i = 8.04209985e+08 
+Linear solver (stokesEqn-execute), solution time 1.035929e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 2 of 500 - Residual 0.019014 - Tolerance = 0.01
+Non linear solver - Residual 1.90138545e-02; Tolerance 1.0000e-02 - Not converged - 2.736902e-02 (secs)
+
+Non linear solver - iteration 3
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 7.8059927280924e-06
+  |G^T u|/|u|               = 1.70478357e-05
+  |f - K u - G p|/|f|       = 3.31739797e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.21662857e+01 , u_rms = 2.90568664e+00
+  |p|_{\infty} = 1.35147924e+07 , p_rms = 9.33721525e+06
+  min/max(u) = -1.21662857e+01 [3] / 6.18842927e+00 [29]
+  min/max(p) = -1.19227042e+06 [0] / 1.35147924e+07 [80]
+  \sum_i p_i = 8.04208307e+08 
+Linear solver (stokesEqn-execute), solution time 8.621216e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 3 of 500 - Residual 0.010919 - Tolerance = 0.01
+Non linear solver - Residual 1.09186726e-02; Tolerance 1.0000e-02 - Not converged - 3.609204e-02 (secs)
+
+Non linear solver - iteration 4
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 5.0731913576759e-06
+  |G^T u|/|u|               = 1.10892938e-05
+  |f - K u - G p|/|f|       = 3.34644388e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.22465080e+01 , u_rms = 2.92407978e+00
+  |p|_{\infty} = 1.35146299e+07 , p_rms = 9.33722599e+06
+  min/max(u) = -1.22465080e+01 [3] / 6.23110149e+00 [29]
+  min/max(p) = -1.19226366e+06 [0] / 1.35146299e+07 [80]
+  \sum_i p_i = 8.04209456e+08 
+Linear solver (stokesEqn-execute), solution time 8.630753e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 4 of 500 - Residual 0.0063472 - Tolerance = 0.01
+Non linear solver - Residual 6.34724899e-03; Tolerance 1.0000e-02 - Converged - 4.479504e-02 (secs)
+
+In func SystemLinearEquations_NonLinearExecute: Converged after 4 iterations.
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.273891e-03 (secs)
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 1.693e-05 [min] / 1.693e-05 [max] (secs)
+TimeStep = 3, Start time = 0.00673687, prev timeStep dt = 0.0020414
+In SystemLinearEquations_NonLinearExecute
+
+Non linear solver - iteration 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 5.4576256473164e-06
+  |G^T u|/|u|               = 1.13344710e-05
+  |f - K u - G p|/|f|       = 4.05920650e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.30450603e+01 , u_rms = 3.10158397e+00
+  |p|_{\infty} = 1.35124575e+07 , p_rms = 9.33936726e+06
+  min/max(u) = -1.30450603e+01 [3] / 6.76025749e+00 [29]
+  min/max(p) = -1.20353384e+06 [0] / 1.35124575e+07 [80]
+  \sum_i p_i = 8.04317106e+08 
+Linear solver (stokesEqn-execute), solution time 1.720905e-03 (secs)
+Non linear solver - iteration 1
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0003 , Uzawa residual = 5.4970234540389e-06
+  |G^T u|/|u|               = 1.14985160e-05
+  |f - K u - G p|/|f|       = 4.03519013e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.35121993e+01 , u_rms = 3.20677287e+00
+  |p|_{\infty} = 1.35117767e+07 , p_rms = 9.33948335e+06
+  min/max(u) = -1.35121993e+01 [3] / 7.03591224e+00 [29]
+  min/max(p) = -1.20346590e+06 [0] / 1.35117767e+07 [80]
+  \sum_i p_i = 8.04328887e+08 
+Linear solver (stokesEqn-execute), solution time 1.206160e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 1 of 500 - Residual 0.033306 - Tolerance = 0.01
+Non linear solver - Residual 3.33056267e-02; Tolerance 1.0000e-02 - Not converged - 1.859784e-02 (secs)
+
+Non linear solver - iteration 2
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0002 , Uzawa residual = 5.6557828112037e-06
+  |G^T u|/|u|               = 1.18683174e-05
+  |f - K u - G p|/|f|       = 4.13581481e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.37844486e+01 , u_rms = 3.26803652e+00
+  |p|_{\infty} = 1.35115776e+07 , p_rms = 9.33949169e+06
+  min/max(u) = -1.37844486e+01 [3] / 7.18636214e+00 [29]
+  min/max(p) = -1.20345135e+06 [0] / 1.35115776e+07 [80]
+  \sum_i p_i = 8.04330101e+08 
+Linear solver (stokesEqn-execute), solution time 1.032114e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 2 of 500 - Residual 0.018956 - Tolerance = 0.01
+Non linear solver - Residual 1.89558213e-02; Tolerance 1.0000e-02 - Not converged - 2.745986e-02 (secs)
+
+Non linear solver - iteration 3
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 6.4660457400104e-06
+  |G^T u|/|u|               = 1.35895629e-05
+  |f - K u - G p|/|f|       = 4.19689912e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.39434069e+01 , u_rms = 3.30378052e+00
+  |p|_{\infty} = 1.35114898e+07 , p_rms = 9.33948773e+06
+  min/max(u) = -1.39434069e+01 [3] / 7.27280604e+00 [29]
+  min/max(p) = -1.20344841e+06 [0] / 1.35114898e+07 [80]
+  \sum_i p_i = 8.04329495e+08 
+Linear solver (stokesEqn-execute), solution time 8.630753e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 3 of 500 - Residual 0.01093 - Tolerance = 0.01
+Non linear solver - Residual 1.09303468e-02; Tolerance 1.0000e-02 - Not converged - 3.612685e-02 (secs)
+
+Non linear solver - iteration 4
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 3.8588533415253e-06
+  |G^T u|/|u|               = 8.11660901e-06
+  |f - K u - G p|/|f|       = 4.23266105e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.40352791e+01 , u_rms = 3.32471555e+00
+  |p|_{\infty} = 1.35114071e+07 , p_rms = 9.33948987e+06
+  min/max(u) = -1.40352791e+01 [3] / 7.32255519e+00 [29]
+  min/max(p) = -1.20344506e+06 [0] / 1.35114071e+07 [80]
+  \sum_i p_i = 8.04329999e+08 
+Linear solver (stokesEqn-execute), solution time 8.587837e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 4 of 500 - Residual 0.0063463 - Tolerance = 0.01
+Non linear solver - Residual 6.34634438e-03; Tolerance 1.0000e-02 - Converged - 4.477787e-02 (secs)
+
+In func SystemLinearEquations_NonLinearExecute: Converged after 4 iterations.
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.310846e-03 (secs)
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 1.693e-05 [min] / 1.693e-05 [max] (secs)
+TimeStep = 4, Start time = 0.0085181, prev timeStep dt = 0.00178123
+In SystemLinearEquations_NonLinearExecute
+
+Non linear solver - iteration 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 7.1509857444401e-06
+  |G^T u|/|u|               = 1.43425434e-05
+  |f - K u - G p|/|f|       = 4.97094336e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.48930847e+01 , u_rms = 3.51679646e+00
+  |p|_{\infty} = 1.35132836e+07 , p_rms = 9.34268106e+06
+  min/max(u) = -1.48930847e+01 [3] / 7.91940427e+00 [29]
+  min/max(p) = -1.21455519e+06 [0] / 1.35132836e+07 [80]
+  \sum_i p_i = 8.04524333e+08 
+Linear solver (stokesEqn-execute), solution time 1.727104e-03 (secs)
+Non linear solver - iteration 1
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0003 , Uzawa residual = 4.2189207551519e-06
+  |G^T u|/|u|               = 8.51487905e-06
+  |f - K u - G p|/|f|       = 4.93367517e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.53980644e+01 , u_rms = 3.63079420e+00
+  |p|_{\infty} = 1.35129238e+07 , p_rms = 9.34287598e+06
+  min/max(u) = -1.53980644e+01 [3] / 8.22937638e+00 [29]
+  min/max(p) = -1.21449429e+06 [0] / 1.35129238e+07 [80]
+  \sum_i p_i = 8.04542808e+08 
+Linear solver (stokesEqn-execute), solution time 1.210928e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 1 of 500 - Residual 0.031828 - Tolerance = 0.01
+Non linear solver - Residual 3.18282280e-02; Tolerance 1.0000e-02 - Not converged - 1.857305e-02 (secs)
+
+Non linear solver - iteration 2
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 9.2207825619565e-06
+  |G^T u|/|u|               = 1.86604230e-05
+  |f - K u - G p|/|f|       = 4.98165506e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.56976079e+01 , u_rms = 3.69770447e+00
+  |p|_{\infty} = 1.35127818e+07 , p_rms = 9.34289365e+06
+  min/max(u) = -1.56976079e+01 [3] / 8.39895646e+00 [29]
+  min/max(p) = -1.21450567e+06 [0] / 1.35127818e+07 [80]
+  \sum_i p_i = 8.04544546e+08 
+Linear solver (stokesEqn-execute), solution time 8.618832e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 2 of 500 - Residual 0.018274 - Tolerance = 0.01
+Non linear solver - Residual 1.82737193e-02; Tolerance 1.0000e-02 - Not converged - 2.727413e-02 (secs)
+
+Non linear solver - iteration 3
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 5.9056677186489e-06
+  |G^T u|/|u|               = 1.19671434e-05
+  |f - K u - G p|/|f|       = 5.01394673e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.58709841e+01 , u_rms = 3.73696428e+00
+  |p|_{\infty} = 1.35126796e+07 , p_rms = 9.34293204e+06
+  min/max(u) = -1.58709841e+01 [3] / 8.49574587e+00 [29]
+  min/max(p) = -1.21450003e+06 [0] / 1.35126796e+07 [80]
+  \sum_i p_i = 8.04548099e+08 
+Linear solver (stokesEqn-execute), solution time 8.630753e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 3 of 500 - Residual 0.010585 - Tolerance = 0.01
+Non linear solver - Residual 1.05845386e-02; Tolerance 1.0000e-02 - Not converged - 3.595018e-02 (secs)
+
+Non linear solver - iteration 4
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 5.2608901339281e-06
+  |G^T u|/|u|               = 1.06694661e-05
+  |f - K u - G p|/|f|       = 5.03685086e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.59698489e+01 , u_rms = 3.75939136e+00
+  |p|_{\infty} = 1.35127029e+07 , p_rms = 9.34291598e+06
+  min/max(u) = -1.59698489e+01 [3] / 8.55128786e+00 [29]
+  min/max(p) = -1.21449520e+06 [0] / 1.35127029e+07 [80]
+  \sum_i p_i = 8.04546534e+08 
+Linear solver (stokesEqn-execute), solution time 8.618832e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 4 of 500 - Residual 0.0060164 - Tolerance = 0.01
+Non linear solver - Residual 6.01635404e-03; Tolerance 1.0000e-02 - Converged - 4.460502e-02 (secs)
+
+In func SystemLinearEquations_NonLinearExecute: Converged after 4 iterations.
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.297018e-03 (secs)
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 1.717e-05 [min] / 1.717e-05 [max] (secs)
+TimeStep = 5, Start time = 0.0100835, prev timeStep dt = 0.00156545
+In SystemLinearEquations_NonLinearExecute
+
+Non linear solver - iteration 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0006 , Uzawa residual = 8.4744843416235e-06
+  |G^T u|/|u|               = 1.64354229e-05
+  |f - K u - G p|/|f|       = 5.76673850e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.68921662e+01 , u_rms = 3.96732370e+00
+  |p|_{\infty} = 1.35177711e+07 , p_rms = 9.34694321e+06
+  min/max(u) = -1.68921662e+01 [3] / 9.22251642e+00 [29]
+  min/max(p) = -1.22553615e+06 [0] / 1.35177711e+07 [80]
+  \sum_i p_i = 8.04809178e+08 
+Linear solver (stokesEqn-execute), solution time 1.728058e-03 (secs)
+Non linear solver - iteration 1
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0002 , Uzawa residual = 8.5318206382527e-06
+  |G^T u|/|u|               = 1.66409904e-05
+  |f - K u - G p|/|f|       = 5.59561522e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.74430524e+01 , u_rms = 4.09113630e+00
+  |p|_{\infty} = 1.35179110e+07 , p_rms = 9.34718895e+06
+  min/max(u) = -1.74430524e+01 [3] / 9.56888069e+00 [29]
+  min/max(p) = -1.22552333e+06 [0] / 1.35179110e+07 [80]
+  \sum_i p_i = 8.04832151e+08 
+Linear solver (stokesEqn-execute), solution time 1.036167e-03 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 1 of 500 - Residual 0.030658 - Tolerance = 0.01
+Non linear solver - Residual 3.06582971e-02; Tolerance 1.0000e-02 - Not converged - 1.833892e-02 (secs)
+
+Non linear solver - iteration 2
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 9.8052151550545e-06
+  |G^T u|/|u|               = 1.91719580e-05
+  |f - K u - G p|/|f|       = 5.57479232e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.77687814e+01 , u_rms = 4.16412027e+00
+  |p|_{\infty} = 1.35174174e+07 , p_rms = 9.34726844e+06
+  min/max(u) = -1.77687814e+01 [3] / 9.76149133e+00 [29]
+  min/max(p) = -1.22552148e+06 [0] / 1.35174174e+07 [80]
+  \sum_i p_i = 8.04838820e+08 
+Linear solver (stokesEqn-execute), solution time 8.599758e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 2 of 500 - Residual 0.017681 - Tolerance = 0.01
+Non linear solver - Residual 1.76807594e-02; Tolerance 1.0000e-02 - Not converged - 2.702808e-02 (secs)
+
+Non linear solver - iteration 3
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 6.7608113934016e-06
+  |G^T u|/|u|               = 1.32367701e-05
+  |f - K u - G p|/|f|       = 5.57180090e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.79561746e+01 , u_rms = 4.20655407e+00
+  |p|_{\infty} = 1.35177578e+07 , p_rms = 9.34725929e+06
+  min/max(u) = -1.79561746e+01 [3] / 9.86887284e+00 [29]
+  min/max(p) = -1.22551389e+06 [0] / 1.35177578e+07 [80]
+  \sum_i p_i = 8.04838559e+08 
+Linear solver (stokesEqn-execute), solution time 8.621216e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 3 of 500 - Residual 0.010156 - Tolerance = 0.01
+Non linear solver - Residual 1.01558455e-02; Tolerance 1.0000e-02 - Not converged - 3.570199e-02 (secs)
+
+Non linear solver - iteration 4
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 5.2299408243066e-06
+  |G^T u|/|u|               = 1.02466491e-05
+  |f - K u - G p|/|f|       = 5.57834048e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.80657074e+01 , u_rms = 4.23133790e+00
+  |p|_{\infty} = 1.35174409e+07 , p_rms = 9.34729494e+06
+  min/max(u) = -1.80657074e+01 [3] / 9.93230872e+00 [29]
+  min/max(p) = -1.22551060e+06 [0] / 1.35174409e+07 [80]
+  \sum_i p_i = 8.04841237e+08 
+Linear solver (stokesEqn-execute), solution time 8.609295e-04 (secs)
+In func SystemLinearEquations_NonLinearExecute: Iteration 4 of 500 - Residual 0.0058946 - Tolerance = 0.01
+Non linear solver - Residual 5.89460104e-03; Tolerance 1.0000e-02 - Converged - 4.434299e-02 (secs)
+
+In func SystemLinearEquations_NonLinearExecute: Converged after 4 iterations.
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 4.220963e-03 (secs)
+[FieldTest] Appending analysis results to file...
+VelocityField - dof 0 normalised global error: 1.50535366e-06
+VelocityField - dof 1 normalised global error: 2.57767966e-06
+PressureField - dof 0 normalised global error: 1.79178974e-07
+Finalised: gLucifer (Visualisation Framework) Revision 71d7f40d027fef8362ff421c099adecee384cb93.
+Finalised: Underworld (Geodynamics Framework) Revision d1a30765521592552eb91ce93ee21bc7f156c210.
+Finalised: PICellerator (Particle-In-Cell Framework) Revision f3d21a42cd5b8646f8f4f44712ba647e3415b2be.
+Finalised: StgFEM (Finite Element Framework) Revision 1a2f5c4d3746b061a4e4848ece580179193d0574.
+Finalised: StgDomain (Domain Library) Revision 60f17a7cf3d49900869dbbd221568078762b7a29.

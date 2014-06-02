@@ -1,0 +1,52 @@
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+  <param mergeType="replace" name="outputPath">output/Example_RBF_BetweenHeightField-referenceTest-np1/testRun</param>
+  <param mergeType="replace" name="maxTimeSteps">0</param>
+  <param mergeType="replace" name="dumpEvery">0</param>
+  <param mergeType="replace" name="checkpointEvery">0</param>
+  <struct mergeType="merge" name="components">
+    <struct name="AnalyticMaterialIndexField">
+      <param name="Type">AnalyticFeVariable</param>
+      <param name="NumericField">MaterialIndexField</param>
+    </struct>
+    <struct name="AnalyticMaterialIndexField-Mag">
+      <param name="Type">OperatorFeVariable</param>
+      <param name="Operator">Magnitude</param>
+      <param name="Operand">AnalyticMaterialIndexField</param>
+    </struct>
+    <struct name="ErrorMaterialIndexField">
+      <param name="Type">ErrorFeVariable</param>
+      <param name="NumericField">MaterialIndexField</param>
+      <param name="ConstantMesh">constantMesh</param>
+    </struct>
+    <struct name="ErrorMaterialIndexField-Mag">
+      <param name="Type">OperatorFeVariable</param>
+      <param name="Operator">Magnitude</param>
+      <param name="Operand">ErrorMaterialIndexField</param>
+    </struct>
+    <struct name="FieldTest">
+      <param name="Type">FieldTest</param>
+      <param name="useHighResReferenceSolutionFromFile">False</param>
+      <param name="useReferenceSolutionFromFile">True</param>
+      <param name="referenceSolutionFilePath">expected/Example_RBF_BetweenHeightField-referenceTest</param>
+      <list name="ReferenceFields">
+        <param>MaterialIndexField</param>
+      </list>
+      <list name="FieldMappings">
+        <struct>
+          <param name="AnalyticField">AnalyticMaterialIndexField</param>
+          <param name="NumericField">MaterialIndexField</param>
+          <param name="ErrorField">ErrorMaterialIndexField</param>
+          <param name="AnalyticMagnitudeField">AnalyticMaterialIndexField-Mag</param>
+          <param name="ErrorMagnitudeField">ErrorMaterialIndexField-Mag</param>
+        </struct>
+      </list>
+      <param name="normaliseByAnalyticSolution">True</param>
+      <param name="appendToAnalysisFile">True</param>
+      <param name="IntegrationSwarm">gaussSwarm</param>
+      <param name="ElementMesh">linearMesh</param>
+      <param name="context">context</param>
+      <param name="testTimestep">0</param>
+      <param name="ConstantMesh">constantMesh</param>
+    </struct>
+  </struct>
+</StGermainData>

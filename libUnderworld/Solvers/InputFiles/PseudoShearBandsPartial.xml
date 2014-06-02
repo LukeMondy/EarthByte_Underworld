@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+	<list name="import" mergeType="merge">
+		<param>Underworld</param>
+		<param>gLucifer</param>
+	</list>
+
+	<include>PIC_Q1P0.xml</include>
+        <include>PICellerator/AllowOutflow.xml</include>
+
+	<list name="plugins" mergeType="merge">
+	  <struct>
+	    <param name="Type">StgFEM_FrequentOutput</param>
+	    <param name="Context">context</param>
+	  </struct>
+	  <struct>
+	    <param name="Type">StgFEM_CPUTime</param>
+	    <param name="Context">context</param>
+	  </struct>
+	</list>
+
+
+	<struct name="components" mergeType="merge">
+		<struct name="context">
+			<param name="Type">UnderworldContext</param>
+		</struct>
+		<struct name="backgroundViscosity">
+			<param name="Type">MaterialViscosity</param>
+			<param name="eta0">1.0</param>
+		</struct>
+		<struct name="backgroundShape">
+			<param name="Type">Everywhere</param>
+		</struct>
+		<struct name="background">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">backgroundShape</param>
+			<param name="density">1.0</param>
+			<param name="Rheology">backgroundViscosity</param>
+		</struct>
+		
+		<!-- START: Define bands -->
+		<!-- psuedo shear bands left and right -->
+    <struct name="bandViscosity">
+        <param name="Type">MaterialViscosity</param>
+        <param name="eta0">0.001</param>
+    </struct>
+
+<struct name="rbandShape">
+      <param name="Type">PolygonShape</param>
+      <list name="vertices">
+        <asciidata>
+          <columnDefinition name = "x" type="double"/>
+          <columnDefinition name = "y" type="double"/>
+          1 0.1
+          1.75 0.71875
+          1.75 0.75
+          1 0.13125
+          1 0.1
+        </asciidata>
+      </list>
+</struct>
+
+<struct name="lbandShape">
+      <param name="Type">PolygonShape</param>
+      <list name="vertices">
+        <asciidata>
+          <columnDefinition name = "x" type="double"/>
+          <columnDefinition name = "y" type="double"/>
+          1 0.1
+          1 0.13125
+          0.25 0.75
+          0.25 0.71875
+          1 0.1
+        </asciidata>
+      </list>
+</struct>
+
+    <struct name="bandsShape">
+      <param name="Type">Union</param>
+      <list name="shapes">
+        <param>rbandShape</param>
+        <param>lbandShape</param>
+      </list>
+    </struct> 
+    		<struct name="bands">
+		  <param name="Type">RheologyMaterial</param>
+		  <param name="Shape">bandsShape</param>
+		  <param name="density">1.0</param>
+		  <param name="Rheology">bandViscosity</param>
+		</struct>
+
+		<!-- END: Define bands -->
+
+		<struct name="weights" mergeType="replace">
+		  <param name="Type">PCDVC</param>
+		  <param name="resolutionX">12</param>
+		  <param name="resolutionY">12</param>
+		  <param name="resolutionZ">12</param>
+		  <param name="lowerT">0.6</param>
+		  <param name="upperT">25</param>
+		  <param name="maxDeletions">3</param>
+		  <param name="maxSplits">10</param>
+		  <param name="splitInInterfaceCells">True</param>
+		  <param name="MaterialPointsSwarm">materialSwarm</param>
+		  <param name="Inflow">True</param>
+		  <param name="Threshold">0.8</param>
+		  <param name="CentPosRatio">0.01</param>
+		</struct>
+
+	</struct>
+
+	<param name="journal.info.Context-verbose">False</param>
+	<param name="journal.debug">False</param>
+	<param name="journal-level.info.Stg_ComponentFactory">1</param>
+	<param name="journal-enable-branch.debug.StgFEM">1</param>
+	<param name="journal-level-branch.debug.StgFEM">False</param>
+	<param name="journal-enable-branch.debug.Swarm">f</param>
+	<param name="journal-level-branch.debug.Swarm">1</param>
+
+	<!-- general simulation parameters -->
+	<param name="maxTimeSteps">1</param>
+	<param name="dumpEvery">1</param>
+	<param name="outputPath">./outputbands/ </param>
+	<param name="gravity">1.0</param>
+	<param name="checkpointEvery">1</param>
+
+	<!--   choose what to checkpoint -->
+	<list name="FieldVariablesToCheckpoint">
+		<param>VelocityField</param>
+		<param>VelocityGradientsField</param>
+		<param>PressureField</param>
+		<param>StressField</param>
+		<param>StrainRateField</param>
+		<param>StressInvariantField</param>
+		<param>StrainRateInvariantField</param>
+	</list>
+
+  	<!--  restart from a previous checkpoint -->
+  	<!-- <param name="restartTimestep">740</param> -->
+  	
+
+	<!-- general decomposition parameters -->
+	<param name="dim">2</param>
+	<!-- mesh parameters -->
+	<param name="elementResI">64</param>
+	<param name="elementResJ">32</param>
+	<param name="elementResK">1</param>
+
+	<param name="shadowDepth">1</param>
+	<param name="minX">0.0</param>
+	<param name="minY">0.0</param>
+	<param name="minZ">0.0</param>
+	<param name="maxX">2.0</param>
+	<param name="maxY">1.0</param>
+	<param name="maxZ">1.0</param>
+	<param name="allowUnbalancing">True</param>
+	<param name="buildElementNodeTbl">True</param>
+	
+	<!-- gauss integration point swarm parameters -->
+
+	<!-- Swarm parameters -->
+	<param name="particleLayoutType">random</param>
+	<param name="particlesPerCell">36</param>
+	<param name="seed">13</param>
+
+	<!-- Boundary conditions -->
+	
+	<param name="CentroidMaterial">ball</param>
+
+
+	<!-- Visualisation stuff -->
+	<include>Underworld/Viewports/StrainRateInvariantVP.xml</include>
+	<include>gLucifer/window.xml</include>
+	<struct name="components" mergeType="merge">
+		<struct name="window" mergeType="merge">
+			<param name="Viewport">StrainRateInvariantVP</param>
+		</struct>
+	</struct>
+</StGermainData>

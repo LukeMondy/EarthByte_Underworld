@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+<!-- A StGermain input file -->
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+  <!-- ***************************
+       The z label corresponds to Latitude
+       The y label corresponds to Longitude in Jules' coordinate system
+       The x label corresponds to radius.
+  -->
+
+  <!-- Velocity BCs -->
+  <struct name="velocityBCs">
+    <param name="type">CompositeVC</param>
+    <list name="vcList">
+
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- walls along phi -->
+        <param name="wall"> front </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vz</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- walls along phi -->
+        <param name="wall"> back </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vz</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+        </list>
+      </struct>
+
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- wall of longitude -->
+        <param name="wall"> bottom </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vy</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- wall of longitude -->
+        <param name="wall"> top </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vy</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+        </list>
+      </struct>
+
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- inner radius -->
+        <param name="wall"> left </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vx</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+          <struct>
+            <param name="name">vz</param>
+            <param name="type">double</param>
+            <param name="value">0</param>
+          </struct>
+          <struct>
+            <param name="name">vy</param>
+            <param name="type">double</param>
+            <param name="value">0</param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- Outer radius - surface -->
+        <param name="wall"> right </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vx</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+        </list>
+      </struct>
+
+    </list>
+  </struct>
+
+</StGermainData>

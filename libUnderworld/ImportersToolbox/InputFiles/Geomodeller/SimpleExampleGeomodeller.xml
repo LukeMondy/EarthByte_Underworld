@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+   <list name="import" mergeType="merge">
+      <param> ImportersToolbox </param>
+   </list>
+
+   <include> Geothermal/HeatFlowApp.xml </include>
+   <include> Geothermal/_HeatFlowSolver_Ppc_UW.xml </include>
+
+   <!-- User Defined Parameters -->
+   <!-- ####################### -->
+
+   <!-- Mesh Configuration -->
+   <param name="dim"> 3 </param>
+
+   <param name="elementResI"> 16 </param>
+   <param name="elementResJ"> 16 </param>
+   <param name="elementResK"> 16 </param>
+
+   <!-- Domain -->
+   <param name="minX"> 992000.0 </param>
+   <param name="minY"> 2439755.0 </param>
+   <param name="minZ"> -6000.0 </param>
+   <param name="maxX"> 1023000.0 </param>
+   <param name="maxY"> 2458005.0 </param>
+   <param name="maxZ"> 1000.0 </param>
+
+   <!-- Boundary Conditions -->
+   <param name="upperTemp"> 0 </param>
+   <param name="lowerTemp"> 300 </param>
+
+   <!-- Data Output Path -->
+   <param name="outputPath"> ./output_SimpleExampleGeomodeller </param>
+
+   <!-- Write material properties -->
+   <param name="defaultConductivity"> 1. </param>
+   <param name="defaultHeatProduction"> 0. </param>
+
+   <param name=" Socle_k">     2.7 </param>
+   <param name=" Socle_q"> 3.3e-06 </param>
+   <param name="  Bunt_k">     2.6 </param>
+   <param name="  Bunt_q"> 0.5e-06 </param>
+   <param name=" Musch_k">     2.2 </param>
+   <param name=" Musch_q"> 0.5e-06 </param>
+   <param name="Keuper_k">     2.2 </param>
+   <param name="Keuper_q"> 0.5e-06 </param>
+   <param name=" Juras_k">     2.2 </param>
+   <param name=" Juras_q"> 0.5e-06 </param>
+   <param name="  Tert_k">     2.1 </param>
+   <param name="  Tert_q"> 0.5e-06 </param>
+
+   <!-- Voxet Files/Props to Load -->
+   <param name="MatVoxelFile"> m3Dvoxel.vox </param>
+
+   <!-- Model Construction (do not modify) -->
+   <!-- ################################## -->
+   <struct name="components" mergeType="merge">
+      <struct name="EverywhereShape">
+         <param name="Type"> Everywhere </param>
+      </struct>
+      <struct name="EverywhereMaterial">
+         <param name="Type"> Material </param>
+         <param name="Shape"> EverywhereShape </param>
+         <param name="thermalConductivity"> @defaultConductivity </param>
+         <param name="heatProduction"> @defaultHeatProduction </param>
+      </struct>
+
+      <struct name="Materials_Voxel_Datahandler">
+         <param name="Type"> VoxelDataHandler_Geomodeller </param>
+         <param name="filename"> @MatVoxelFile </param>
+         <param name="mapIAxisToStgAxis"> X </param>
+         <param name="mapJAxisToStgAxis"> Y </param>
+         <param name="mapKAxisToStgAxis"> Z </param>
+      </struct>
+      <struct name="Materials_VoxelField">
+         <param name="Type"> VoxelFieldVariable </param>
+         <param name="VoxelDataHandler"> Materials_Voxel_Datahandler </param>
+      </struct>
+      <struct name="Materials_VoxelFieldPpc">
+         <param name="Type"> Ppc_Variable </param>
+         <param name="FieldVariable"> Materials_VoxelField </param>
+      </struct>
+
+      <!-- Write materials -->
+      <struct name="Socle">
+         <param name="Type"> ShapedMaterial </param>
+         <param name="MaterialIndexField"> Materials_VoxelField </param>
+         <param name="thermalConductivity"> @Socle_k </param>
+         <param name="heatProduction"> @Socle_q </param>
+      </struct>
+      <struct name="Bunt">
+         <param name="Type"> ShapedMaterial </param>
+         <param name="MaterialIndexField"> Materials_VoxelField </param>
+         <param name="thermalConductivity"> @Bunt_k </param>
+         <param name="heatProduction"> @Bunt_q </param>
+      </struct>
+      <struct name="Musch">
+         <param name="Type"> ShapedMaterial </param>
+         <param name="MaterialIndexField"> Materials_VoxelField </param>
+         <param name="thermalConductivity"> @Musch_k </param>
+         <param name="heatProduction"> @Musch_q </param>
+      </struct>
+      <struct name="Keuper">
+         <param name="Type"> ShapedMaterial </param>
+         <param name="MaterialIndexField"> Materials_VoxelField </param>
+         <param name="thermalConductivity"> @Keuper_k </param>
+         <param name="heatProduction"> @Keuper_q </param>
+      </struct>
+      <struct name="Juras">
+         <param name="Type"> ShapedMaterial </param>
+         <param name="MaterialIndexField"> Materials_VoxelField </param>
+         <param name="thermalConductivity"> @Juras_k </param>
+         <param name="heatProduction"> @Juras_q </param>
+      </struct>
+      <struct name="Tert">
+         <param name="Type"> ShapedMaterial </param>
+         <param name="MaterialIndexField"> Materials_VoxelField </param>
+         <param name="thermalConductivity"> @Tert_k </param>
+         <param name="heatProduction"> @Tert_q </param>
+      </struct>
+
+   </struct>
+
+   <struct name="temperatureBCs" mergeType="replace">
+      <param name="type">CompositeVC</param>
+      <list name="vcList">
+         <struct>
+            <param name="type">WallVC</param>
+            <param name="wall">MinK</param>
+            <list name="variables">
+               <struct>
+                  <param name="name">temperature</param>
+                  <param name="type">double</param>
+                  <param name="value">@lowerTemp</param>
+               </struct>
+            </list>
+         </struct>
+         <struct>
+            <param name="type">WallVC</param>
+            <param name="wall">MaxK</param>
+            <list name="variables">
+               <struct>
+                  <param name="name">temperature</param>
+                  <param name="type">double</param>
+                  <param name="value">@upperTemp</param>
+               </struct>
+            </list>
+         </struct>
+      </list>
+   </struct>
+</StGermainData>

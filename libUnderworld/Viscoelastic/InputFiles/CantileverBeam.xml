@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+	
+	<list name="import" mergeType="mergeType">
+		<param>Underworld</param>
+		<param>Viscoelastic</param>
+	</list>
+
+	<!-- Component Stuff -->
+	<include>StgFEM/ConstantMesh.xml           </include>
+	<include>StgFEM/LinearMesh.xml             </include>
+	<include>StgFEM/VelocityField.xml          </include>
+	<include>StgFEM/PressureField.xml          </include>
+	<include>StgFEM/GaussSwarm.xml             </include>
+	<include>StgFEM/TimeIntegrator.xml </include>
+	<include>PICellerator/MaterialPointSwarm.xml        </include>
+	<include>Underworld/StokesFlowUzawaCompressible.xml </include>
+	<include>Underworld/ViscosityField.xml </include>
+
+	<list name="plugins" mergeType="merge">
+		<!-- Output Plugins -->
+      <struct>
+			<param name="Type">StgFEM_FrequentOutput</param>
+			<param name="Context">context</param>
+		</struct>
+		<struct>
+			<param name="Type">Underworld_Vrms</param>
+			<param name="Context">context</param>
+			<param name="GaussSwarm">gaussSwarm</param>
+			<param name="VelocityField">VelocityField</param>
+		</struct>
+		<struct>
+			<param name="Type">StgFEM_CPUTime</param>
+			<param name="Context">context</param>
+		</struct>
+     <struct>
+       <param name="Type">Viscoelastic_ViscoelasticCantileverBeam</param>
+       <param name="Context">context</param>
+     </struct>
+	</list>
+
+   <struct name="components" mergeType="merge">
+      <struct name="context">
+         <param name="Type">UnderworldContext</param>
+      </struct>
+   </struct>
+
+	<!-- Rheology Components -->
+	<struct name="components" mergeType="merge">
+		<struct name="buoyancyForceTerm">
+			<param name="Type">BuoyancyForceTerm</param>
+			<param name="ForceVector">mom_force</param>
+			<param name="TemperatureField">TemperatureField</param>
+			<param name="Swarm">picIntegrationPoints</param>
+			<param name="gravity">gravity</param>
+		</struct>
+
+		<!-- Background Material Stuff -->
+		<struct name="backgroundShape">
+			<param name="Type">Everywhere</param>
+		</struct>	
+		<struct name="backgroundViscosity">
+			<param name="Type">MaterialViscosity</param>
+			<param name="eta0">1.0e-2</param>
+		</struct>	
+		<struct name="compressible">
+		    <!--This component is necessary when you use a compressible layer-->
+			<param name="Type">Compressible</param>
+			<param name="GeometryMesh">linearMesh</param>
+			<param name="StiffnessMatrix">c_matrix</param>
+			<param name="Swarm">picIntegrationPoints</param>			
+			<param name="oneOnLambda">10.0</param>
+		</struct>		
+		<struct name="background">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">backgroundShape</param>
+			<param name="density">0.0</param>
+			<param name="Compressible">compressible</param>
+			<param name="Rheology">backgroundViscosity</param>
+		</struct>
+
+		<!-- Beam -->
+		<struct name="beamShape">
+			<param name="Type">Box</param>
+			<param name="startX"> minX </param> <param name="endX"> 0.8 </param>
+			<param name="startY"> 0.7 </param>  <param name="endY"> 0.8 </param>
+			<param name="startZ"> minZ </param> <param name="endZ"> maxZ </param>
+		</struct>	
+		<struct name="beamViscosity">
+			<param name="Type">MaterialViscosity</param>
+			<param name="eta0">1.0e7</param>
+		</struct>	
+		<struct name="viscoelasticForceTerm">
+				<param name="Type">ViscoelasticForceTerm</param>
+				<param name="ForceVector">mom_force</param>
+				<param name="Swarm">picIntegrationPoints</param>
+				<param name="ConstitutiveMatrix">constitutiveMatrix</param>
+				<param name="MaterialPointsSwarm">materialSwarm</param>
+				<param name="StrainRateField">StrainRateField</param>
+				<param name="JaumannRotator">jaumannRotator</param>
+		</struct>
+		<struct name="jaumannRotator">
+				<param name="Type">JaumannRotator</param>
+				<param name="TimeIntegrator">timeIntegrator</param>
+				<param name="VorticityField">VorticityField</param>
+				<param name="MaterialPointsSwarm">materialSwarm</param>
+				<param name="allowFallbackToFirstOrder">True</param>
+		</struct>		
+		<struct name="viscoelasticRheology">
+			<param name="Type">ViscoelasticRheology</param>
+			<param name="elasticTimeStep">1.0</param>
+			<param name="mu">1.0e6</param>
+			<param name="ViscoelasticForceTerm">viscoelasticForceTerm</param>
+		</struct>			
+		<struct name="storeVisc">
+			<param name="Type">StoreVisc</param>
+			<param name="MaterialPointsSwarm">materialSwarm</param>
+		</struct>	
+		<struct name="beam">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">beamShape</param>
+			<param name="density">2500.0</param>
+			<list name="Rheology">
+				<param>beamViscosity</param>
+				<param>viscoelasticRheology</param>
+				<param>storeVisc</param>
+			</list>
+		</struct>
+
+	</struct>
+
+    <param name="timeIntegratorOrder">1</param>
+
+	<param name="defMax"> 0.25 </param>
+	<param name="prescribedTime">-1.0e-8</param>
+	<param name="x_mid"> 0.70 </param>
+	<param name="y_mid"> 0.75 </param>
+	<param name="z_mid"> 0.50 </param>
+	<param name="gravity">500 </param>
+	<param name="storePrincipleValues">false</param>
+	<param name="dumpStressStrainRateFor_midPoint">false</param>
+	<param name="trackParticleForDeflection">true</param>
+	
+	<!-- Simulation control -->
+	<param name="maxTimeSteps"> 100 </param>
+	<param name="outputPath"> ./output/CantileverBeam </param>
+	<param name="dumpEvery"> 1 </param>	
+
+	<param name="particlesPerCell"> 60 </param>
+
+	<!-- Non-linear stuff -->
+	<param name="nonLinearMaxIterations"> 10 </param>	
+	
+	<!-- Journal Control -->
+	<param name="journal.info.Context-verbose">True</param>
+	<param name="journal-level.info.Stg_ComponentFactory">2</param>
+	<param name="journal.debug">t</param>
+	<param name="journal-enable-branch.debug.StgFEM">t</param>
+	<param name="journal-level-branch.debug.StgFEM"> 1 </param>	
+	
+	<!-- Geometry & Mesh setup -->
+	<param name="dim"> 2 </param>
+	<param name="elementResI"> 32 </param>
+	<param name="elementResJ"> 32 </param>
+	<param name="elementResK"> 1 </param>
+	<param name="shadowDepth"> 1 </param>
+	<param name="minX"> 0.0 </param>
+	<param name="minY"> 0.0 </param>
+	<param name="minZ"> 0.0 </param>
+	<param name="maxX"> 1.0 </param>
+	<param name="maxY"> 1.0 </param>
+	<param name="maxZ"> 1.0 </param>
+	<param name="allowUnbalancing"> True </param>
+
+	<!-- Set up BCs and ICs -->
+	<include>Underworld/VariableConditions/velocityBCs.noslip2D.xml </include>
+
+	<!-- Integration Scheme configuration -->
+	<param name="gaussParticlesX"> 2 </param>
+	<param name="gaussParticlesY"> 2 </param>
+	<param name="gaussParticlesZ"> 2 </param>
+
+	<!-- Visualisation stuff -->
+	
+	<include>Underworld/Viewports/ParticleDensityVP.xml</include>
+
+	<list name="plugins" mergeType="merge">
+		<param>lucPlugin</param>
+	</list>
+
+   <include>gLucifer/window.xml</include>
+	<struct name="components" mergeType="merge">
+		<struct name="window" mergeType="merge">
+			<param name="Viewport">ParticleDensityVP</param>
+		</struct>
+	</struct>
+ 	
+</StGermainData>
