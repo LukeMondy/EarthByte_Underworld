@@ -792,10 +792,6 @@ def _lucDatabase_Initialise(*args):
   return _gLucifer._lucDatabase_Initialise(*args)
 _lucDatabase_Initialise = _gLucifer._lucDatabase_Initialise
 
-def lucDatabase_Update(*args):
-  return _gLucifer.lucDatabase_Update(*args)
-lucDatabase_Update = _gLucifer.lucDatabase_Update
-
 def _lucDatabase_Execute(*args):
   return _gLucifer._lucDatabase_Execute(*args)
 _lucDatabase_Execute = _gLucifer._lucDatabase_Execute

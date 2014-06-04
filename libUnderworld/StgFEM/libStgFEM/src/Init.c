@@ -72,13 +72,7 @@ Bool StgFEM_Init( int* argc, char** argv[] ) {
       /* DO NOT CHANGE OR REMOVE */
       Journal_Printf( 
          Journal_Register( InfoStream_Type, (Name)"Context" ), 
-         "StgFEM (Finite Element Framework) Revision %s. Copyright (C) 2003-2005 VPAC.\n",
-         VERSION );
-
-      /* Add repo indentity info in the repo dictionary. */
-      Dictionary_Add( versionDict, "StgFEM", Dictionary_Entry_Value_FromString( VERSION ) );
-      Dictionary_Add( branchDict, "StgFEM", Dictionary_Entry_Value_FromString( BRANCH ) );
-      Dictionary_Add( pathDict, "StgFEM", Dictionary_Entry_Value_FromString( PATH ) );
+         "StgFEM (Finite Element Framework). Copyright (C) 2003-2005 VPAC.\n" );
 
       Stream_Flush( Journal_Register( InfoStream_Type, (Name)"Context" ) );
       Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context" ), tmp );

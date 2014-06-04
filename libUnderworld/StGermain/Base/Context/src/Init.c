@@ -60,11 +60,6 @@ Bool BaseContext_Init( int* argc, char** argv[] ) {
    /* DO NOT CHANGE OR REMOVE */   
    Journal_Printf( Journal_Register( DebugStream_Type, (Name)"Context"  ), "In: %s\n", __func__ );
 
-   /* Create dictionary for storing extracted repo identity information. */
-   versionDict = Dictionary_New();
-   branchDict = Dictionary_New();
-   pathDict = Dictionary_New();
-
    /* Create global ConditionFunction register. */
    condFunc_Register = ConditionFunction_Register_New();
 

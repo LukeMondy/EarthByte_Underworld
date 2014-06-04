@@ -163,14 +163,10 @@ Bool IO_Handler_WriteAllToFile(
    void*       io_handler,
    const char* filename,
    Dictionary* dictionary,
-   Dictionary* sources,
-   Dictionary* versions,
-   Dictionary* branches,
-   Dictionary* paths )
+   Dictionary* sources )
 {
    IO_Handler* self = (IO_Handler*)io_handler;
-   return self->_writeAllToFile( self, filename, dictionary, sources,
-      versions, branches, paths );
+   return self->_writeAllToFile( self, filename, dictionary, sources );
 }
 
 /* Add a new dictionary value depending on the parent type, or replace the existing value if found.

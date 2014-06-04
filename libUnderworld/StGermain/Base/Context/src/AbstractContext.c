@@ -90,11 +90,6 @@ const Type AbstractContext_Dict_Components = "components";
 const Type AbstractContext_Type = "Context";
 const Type AbstractContext_Type_Verbose = "Context-verbose";
 
-/* Global dictionary for storing repo identity information. */
-Dictionary* versionDict = NULL;
-Dictionary* branchDict = NULL;
-Dictionary* pathDict = NULL;
-
 AbstractContext* _AbstractContext_New( ABSTRACTCONTEXT_DEFARGS ) {
    AbstractContext* self;
    

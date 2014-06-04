@@ -71,13 +71,7 @@ Bool StGermain_Init( int* argc, char** argv[] ) {
    /* DO NOT CHANGE OR REMOVE */
    Journal_Printf( 
       Journal_Register( InfoStream_Type, "Context" ), 
-      "StGermain Framework Revision %s. Copyright (C) 2003-2005 VPAC.\n",
-      VERSION );
-
-   /* Add repo indentity info in the dictionary. */
-   Dictionary_Add( versionDict, "StGermain", Dictionary_Entry_Value_FromString( VERSION ) );
-   Dictionary_Add( branchDict, "StGermain", Dictionary_Entry_Value_FromString( BRANCH ) );
-   Dictionary_Add( pathDict, "StGermain", Dictionary_Entry_Value_FromString( PATH ) );
+      "StGermain Framework. Copyright (C) 2003-2005 VPAC.\n" );
 
    Stream_Flush( Journal_Register( InfoStream_Type, "Context" ) );
    Stream_SetPrintingRank( Journal_Register( InfoStream_Type, "Context" ), tmp );

@@ -93,13 +93,7 @@ Bool Underworld_Init( int* argc, char** argv[] ) {
       /* DO NOT CHANGE OR REMOVE */
       Journal_Printf( 
          Journal_Register( InfoStream_Type, (Name)"Context" ), 
-         "Underworld (Geodynamics Framework) Revision %s. Copyright (C) 2005-2010 Monash University.\n",
-         VERSION );
-
-      /* Add repo indentity info in the repo dictionary. */
-      Dictionary_Add( versionDict, "Underworld", Dictionary_Entry_Value_FromString( VERSION ) );
-      Dictionary_Add( branchDict, "Underworld", Dictionary_Entry_Value_FromString( BRANCH ) );
-      Dictionary_Add( pathDict, "Underworld", Dictionary_Entry_Value_FromString( PATH ) );
+         "Underworld (Geodynamics Framework). Copyright (C) 2005-2010 Monash University.\n");
 
       Stream_Flush( Journal_Register( InfoStream_Type, (Name)"Context" ) );
       Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context" ), tmp );
@@ -131,8 +125,7 @@ void Underworld_SignalHandler( int signal ) {
    fprintf(
       stderr, 
       "\n\n=====================================================================================\n"
-      "Error running Underworld (Revision %s) - Signal %d ",
-      VERSION,
+      "Error running Underworld - Signal %d ",
       signal );
 
    switch( signal ) {

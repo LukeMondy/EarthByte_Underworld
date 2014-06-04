@@ -73,7 +73,7 @@ void Geothermal_Toolbox_Finalise( ToolboxesManager* toolboxesManager ) {
    Geothermal_Finalise();
    
    Journal_RPrintf( Journal_Register( Info_Type, (Name)Geothermal_Toolbox_Type ),
-      "Finalised: Geothermal Toolbox Revision %s.\n", VERSION );
+      "Finalised: Geothermal Toolbox.\n" );
 }
 
 Index Geothermal_Toolbox_Register( ToolboxesManager* toolboxesManager ) {

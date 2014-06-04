@@ -3051,47 +3051,46 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_Dictionary_MergeType__Bool swig_types[138]
 #define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool swig_types[139]
 #define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool swig_types[140]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool swig_types[141]
-#define SWIGTYPE_p_f_p_void_p_struct_Module__Bool swig_types[142]
-#define SWIGTYPE_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void swig_types[143]
-#define SWIGTYPE_p_f_p_void_p_struct_Stream__void swig_types[144]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int__p_char swig_types[145]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int_p_char__Bool swig_types[146]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_p_struct__Dictionary_p_struct__Stg_ObjectList__void swig_types[147]
-#define SWIGTYPE_p_f_p_void_p_void__double swig_types[148]
-#define SWIGTYPE_p_f_p_void_p_void__p__Dictionary_Entry_Value swig_types[149]
-#define SWIGTYPE_p_f_p_void_p_void__unsigned_int swig_types[150]
-#define SWIGTYPE_p_f_p_void_p_void__void swig_types[151]
-#define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[152]
-#define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[153]
-#define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[154]
-#define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[155]
-#define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[156]
-#define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[157]
-#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__Bool swig_types[158]
-#define SWIGTYPE_p_f_p_void_unsigned_int__unsigned_int swig_types[159]
-#define SWIGTYPE_p_f_p_void_unsigned_int_enum_ReplacementOption__void swig_types[160]
-#define SWIGTYPE_p_f_p_void_unsigned_int_p_void__void swig_types[161]
-#define SWIGTYPE_p_f_p_void_unsigned_int_unsigned_int__unsigned_int swig_types[162]
-#define SWIGTYPE_p_f_unsigned_int_unsigned_int_p_void_p_void_p_void__void swig_types[163]
-#define SWIGTYPE_p_f_void__p_File swig_types[164]
-#define SWIGTYPE_p_int swig_types[165]
-#define SWIGTYPE_p_p_EntryPoint swig_types[166]
-#define SWIGTYPE_p_p_Stg_Component swig_types[167]
-#define SWIGTYPE_p_p__AnalyticFunction swig_types[168]
-#define SWIGTYPE_p_p__ConditionFunction swig_types[169]
-#define SWIGTYPE_p_p__Stg_Object swig_types[170]
-#define SWIGTYPE_p_p__Variable swig_types[171]
-#define SWIGTYPE_p_p__VariableCondition_Tuple swig_types[172]
-#define SWIGTYPE_p_p_char swig_types[173]
-#define SWIGTYPE_p_p_void swig_types[174]
-#define SWIGTYPE_p_stgComponent swig_types[175]
-#define SWIGTYPE_p_unsigned_char swig_types[176]
-#define SWIGTYPE_p_unsigned_int swig_types[177]
-#define SWIGTYPE_p_unsigned_long swig_types[178]
-#define SWIGTYPE_p_void swig_types[179]
-static swig_type_info *swig_types[181];
-static swig_module_info swig_module = {swig_types, 180, 0, 0, 0, 0};
+#define SWIGTYPE_p_f_p_void_p_struct_Module__Bool swig_types[141]
+#define SWIGTYPE_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void swig_types[142]
+#define SWIGTYPE_p_f_p_void_p_struct_Stream__void swig_types[143]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int__p_char swig_types[144]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int_p_char__Bool swig_types[145]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_p_struct__Dictionary_p_struct__Stg_ObjectList__void swig_types[146]
+#define SWIGTYPE_p_f_p_void_p_void__double swig_types[147]
+#define SWIGTYPE_p_f_p_void_p_void__p__Dictionary_Entry_Value swig_types[148]
+#define SWIGTYPE_p_f_p_void_p_void__unsigned_int swig_types[149]
+#define SWIGTYPE_p_f_p_void_p_void__void swig_types[150]
+#define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[151]
+#define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[152]
+#define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[153]
+#define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[154]
+#define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[155]
+#define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[156]
+#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__Bool swig_types[157]
+#define SWIGTYPE_p_f_p_void_unsigned_int__unsigned_int swig_types[158]
+#define SWIGTYPE_p_f_p_void_unsigned_int_enum_ReplacementOption__void swig_types[159]
+#define SWIGTYPE_p_f_p_void_unsigned_int_p_void__void swig_types[160]
+#define SWIGTYPE_p_f_p_void_unsigned_int_unsigned_int__unsigned_int swig_types[161]
+#define SWIGTYPE_p_f_unsigned_int_unsigned_int_p_void_p_void_p_void__void swig_types[162]
+#define SWIGTYPE_p_f_void__p_File swig_types[163]
+#define SWIGTYPE_p_int swig_types[164]
+#define SWIGTYPE_p_p_EntryPoint swig_types[165]
+#define SWIGTYPE_p_p_Stg_Component swig_types[166]
+#define SWIGTYPE_p_p__AnalyticFunction swig_types[167]
+#define SWIGTYPE_p_p__ConditionFunction swig_types[168]
+#define SWIGTYPE_p_p__Stg_Object swig_types[169]
+#define SWIGTYPE_p_p__Variable swig_types[170]
+#define SWIGTYPE_p_p__VariableCondition_Tuple swig_types[171]
+#define SWIGTYPE_p_p_char swig_types[172]
+#define SWIGTYPE_p_p_void swig_types[173]
+#define SWIGTYPE_p_stgComponent swig_types[174]
+#define SWIGTYPE_p_unsigned_char swig_types[175]
+#define SWIGTYPE_p_unsigned_int swig_types[176]
+#define SWIGTYPE_p_unsigned_long swig_types[177]
+#define SWIGTYPE_p_void swig_types[178]
+static swig_type_info *swig_types[180];
+static swig_module_info swig_module = {swig_types, 179, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -35170,7 +35169,7 @@ SWIGINTERN PyObject *_wrap__IO_Handler__writeAllToFile_set(PyObject *SWIGUNUSEDP
   }
   arg1 = (struct _IO_Handler *)(argp1);
   {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool);
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool);
     if (!SWIG_IsOK(res)) {
       SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IO_Handler__writeAllToFile_set" "', argument " "2"" of type '" "IO_Handler_WriteAllToFileFunction *""'"); 
     }
@@ -35198,7 +35197,7 @@ SWIGINTERN PyObject *_wrap__IO_Handler__writeAllToFile_get(PyObject *SWIGUNUSEDP
   }
   arg1 = (struct _IO_Handler *)(argp1);
   result = (IO_Handler_WriteAllToFileFunction *) ((arg1)->_writeAllToFile);
-  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool);
   return resultobj;
 fail:
   return NULL;
@@ -35652,7 +35651,7 @@ SWIGINTERN PyObject *_wrap__IO_Handler_New(PyObject *SWIGUNUSEDPARM(self), PyObj
     }
   }
   {
-    int res = SWIG_ConvertFunctionPtr(obj7, (void**)(&arg8), SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool);
+    int res = SWIG_ConvertFunctionPtr(obj7, (void**)(&arg8), SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool);
     if (!SWIG_IsOK(res)) {
       SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IO_Handler_New" "', argument " "8"" of type '" "IO_Handler_WriteAllToFileFunction *""'"); 
     }
@@ -35844,9 +35843,6 @@ SWIGINTERN PyObject *_wrap_IO_Handler_WriteAllToFile(PyObject *SWIGUNUSEDPARM(se
   char *arg2 = (char *) 0 ;
   Dictionary *arg3 = (Dictionary *) 0 ;
   Dictionary *arg4 = (Dictionary *) 0 ;
-  Dictionary *arg5 = (Dictionary *) 0 ;
-  Dictionary *arg6 = (Dictionary *) 0 ;
-  Dictionary *arg7 = (Dictionary *) 0 ;
   int res1 ;
   int res2 ;
   char *buf2 = 0 ;
@@ -35855,22 +35851,13 @@ SWIGINTERN PyObject *_wrap_IO_Handler_WriteAllToFile(PyObject *SWIGUNUSEDPARM(se
   int res3 = 0 ;
   void *argp4 = 0 ;
   int res4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  void *argp6 = 0 ;
-  int res6 = 0 ;
-  void *argp7 = 0 ;
-  int res7 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
   Bool result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOO:IO_Handler_WriteAllToFile",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:IO_Handler_WriteAllToFile",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IO_Handler_WriteAllToFile" "', argument " "1"" of type '" "void *""'"); 
@@ -35890,22 +35877,7 @@ SWIGINTERN PyObject *_wrap_IO_Handler_WriteAllToFile(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "IO_Handler_WriteAllToFile" "', argument " "4"" of type '" "Dictionary *""'"); 
   }
   arg4 = (Dictionary *)(argp4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p__Dictionary, 0 |  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "IO_Handler_WriteAllToFile" "', argument " "5"" of type '" "Dictionary *""'"); 
-  }
-  arg5 = (Dictionary *)(argp5);
-  res6 = SWIG_ConvertPtr(obj5, &argp6,SWIGTYPE_p__Dictionary, 0 |  0 );
-  if (!SWIG_IsOK(res6)) {
-    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "IO_Handler_WriteAllToFile" "', argument " "6"" of type '" "Dictionary *""'"); 
-  }
-  arg6 = (Dictionary *)(argp6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p__Dictionary, 0 |  0 );
-  if (!SWIG_IsOK(res7)) {
-    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "IO_Handler_WriteAllToFile" "', argument " "7"" of type '" "Dictionary *""'"); 
-  }
-  arg7 = (Dictionary *)(argp7);
-  result = (Bool)IO_Handler_WriteAllToFile(arg1,(char const *)arg2,arg3,arg4,arg5,arg6,arg7);
+  result = (Bool)IO_Handler_WriteAllToFile(arg1,(char const *)arg2,arg3,arg4);
   resultobj = SWIG_From_int((int)(result));
   if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return resultobj;
@@ -41378,75 +41350,6 @@ SWIGINTERN PyObject *_wrap_Stg_ObjectList_PrintSimilar(PyObject *SWIGUNUSEDPARM(
 fail:
   if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
-}
-
-
-SWIGINTERN int Swig_var_versionDict_set(PyObject *_val) {
-  {
-    void *argp = 0;
-    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p__Dictionary,  0 );  
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""versionDict""' of type '""Dictionary *""'");
-    }
-    versionDict = (Dictionary *)(argp);
-  }
-  return 0;
-fail:
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var_versionDict_get(void) {
-  PyObject *pyobj = 0;
-  
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(versionDict), SWIGTYPE_p__Dictionary,  0 );
-  return pyobj;
-}
-
-
-SWIGINTERN int Swig_var_branchDict_set(PyObject *_val) {
-  {
-    void *argp = 0;
-    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p__Dictionary,  0 );  
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""branchDict""' of type '""Dictionary *""'");
-    }
-    branchDict = (Dictionary *)(argp);
-  }
-  return 0;
-fail:
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var_branchDict_get(void) {
-  PyObject *pyobj = 0;
-  
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(branchDict), SWIGTYPE_p__Dictionary,  0 );
-  return pyobj;
-}
-
-
-SWIGINTERN int Swig_var_pathDict_set(PyObject *_val) {
-  {
-    void *argp = 0;
-    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p__Dictionary,  0 );  
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""pathDict""' of type '""Dictionary *""'");
-    }
-    pathDict = (Dictionary *)(argp);
-  }
-  return 0;
-fail:
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var_pathDict_get(void) {
-  PyObject *pyobj = 0;
-  
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(pathDict), SWIGTYPE_p__Dictionary,  0 );
-  return pyobj;
 }
 
 
@@ -56638,8 +56541,7 @@ static swig_type_info _swigt__p_f_p_void_p_char_q_const__unsigned_int__unsigned_
 static swig_type_info _swigt__p_f_p_void_p_double_p_double__void = {"_p_f_p_void_p_double_p_double__void", "void (*)(void *,double *,double *)|AnalyticFunction_SolFunc *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_Dictionary_MergeType__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_Dictionary_MergeType__Bool", "IO_Handler_DictSetAddValueFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,Dictionary_MergeType)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool", "IO_Handler_ReadAllFromBufferFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,char const *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool", "IO_Handler_ReadAllFromFileFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,struct _Dictionary *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool", "IO_Handler_WriteAllToFileFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,struct _Dictionary *,struct _Dictionary *,struct _Dictionary *,struct _Dictionary *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool", "IO_Handler_ReadAllFromFileFunction *|IO_Handler_WriteAllToFileFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,struct _Dictionary *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_struct_Module__Bool = {"_p_f_p_void_p_struct_Module__Bool", "enum Bool (*)(void *,struct Module *)|ModulesManager_LoadModuleFunction *|ModulesManager_UnloadModuleFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void = {"_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void", "void (*)(void *,struct Stg_ComponentFactory *,void *)|Stg_Component_ConstructFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_struct_Stream__void = {"_p_f_p_void_p_struct_Stream__void", "VariableCondition_PrintConciseFunc *|Stg_Class_PrintFunction *|void (*)(void *,struct Stream *)", 0, 0, (void*)0, 0};
@@ -56821,7 +56723,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_Dictionary_MergeType__Bool,
   &_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool,
   &_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool,
-  &_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool,
   &_swigt__p_f_p_void_p_struct_Module__Bool,
   &_swigt__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void,
   &_swigt__p_f_p_void_p_struct_Stream__void,
@@ -57003,7 +56904,6 @@ static swig_cast_info _swigc__p_f_p_void_p_double_p_double__void[] = {  {&_swigt
 static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_Dictionary_MergeType__Bool[] = {  {&_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_Dictionary_MergeType__Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool[] = {  {&_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool[] = {  {&_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool[] = {  {&_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_struct_Module__Bool[] = {  {&_swigt__p_f_p_void_p_struct_Module__Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void[] = {  {&_swigt__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_struct_Stream__void[] = {  {&_swigt__p_f_p_void_p_struct_Stream__void, 0, 0, 0},{0, 0, 0, 0}};
@@ -57185,7 +57085,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_Dictionary_MergeType__Bool,
   _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool,
   _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool,
-  _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool,
   _swigc__p_f_p_void_p_struct_Module__Bool,
   _swigc__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void,
   _swigc__p_f_p_void_p_struct_Stream__void,
@@ -57991,9 +57890,6 @@ SWIG_init(void) {
   SWIG_addvarlink(SWIG_globals(),(char*)"Stg_ObjectList_Type",Swig_var_Stg_ObjectList_Type_get, Swig_var_Stg_ObjectList_Type_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"DEFAULT_LIST_INITIAL_SIZE",Swig_var_DEFAULT_LIST_INITIAL_SIZE_get, Swig_var_DEFAULT_LIST_INITIAL_SIZE_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"DEFAULT_LIST_DELTA",Swig_var_DEFAULT_LIST_DELTA_get, Swig_var_DEFAULT_LIST_DELTA_set);
-  SWIG_addvarlink(SWIG_globals(),(char*)"versionDict",Swig_var_versionDict_get, Swig_var_versionDict_set);
-  SWIG_addvarlink(SWIG_globals(),(char*)"branchDict",Swig_var_branchDict_get, Swig_var_branchDict_set);
-  SWIG_addvarlink(SWIG_globals(),(char*)"pathDict",Swig_var_pathDict_get, Swig_var_pathDict_set);
   SWIG_Python_SetConstant(d, "CHECKPOINT_FORMAT_ASCII",SWIG_From_int((int)(CHECKPOINT_FORMAT_ASCII)));
   SWIG_Python_SetConstant(d, "CHECKPOINT_FORMAT_HDF5",SWIG_From_int((int)(CHECKPOINT_FORMAT_HDF5)));
   SWIG_addvarlink(SWIG_globals(),(char*)"AbstractContext_EP_AssignFromXML",Swig_var_AbstractContext_EP_AssignFromXML_get, Swig_var_AbstractContext_EP_AssignFromXML_set);

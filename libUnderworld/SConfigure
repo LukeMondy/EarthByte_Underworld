@@ -24,16 +24,11 @@ options = [
     ('--with-credo', 'with_credo', 'Enable the CREDO sys test system (default 1)', eval(os.getenv('WITH_CREDO','1')), 'int'),
     ('--with-glucifer', 'with_glucifer', 'Enable gLucifer (default 1)', eval(os.getenv('WITH_GLUCIFER','1')), 'int'),
     ('--with-viewer', 'with_viewer', 'Enable gLucifer viewer (default 1)', eval(os.getenv('WITH_VIEWER','1')), 'int'),
-    ('--with-experimental', 'with_experimental', 'Enable Experimental Repository compile', os.path.isdir("Experimental"), 'int'),
-    ('--with-spmodel', 'with_spmodel', 'Enable SPModel repository compile', os.path.isdir("SPModel"), 'int'),
     ('--with-geothermal', 'with_geothermal', 'Enable Geothermal repository compile', os.path.isdir("Geothermal"), 'int'),
-    ('--with-groundwater', 'with_groundwater', 'Enable groundwater repository compile', os.path.isdir("Groundwater"), 'int'),
     ('--with-solvers', 'with_solvers', 'Enable Solvers repository compile', os.path.isdir("Solvers"), 'int'),
-    ('--with-gocad', 'with_gocad', 'Enable gocad tools repository compile', os.path.isdir("GocadToolbox"), 'int'),
     ('--with-importers', 'with_importers', 'Enable importer toolbox compile', os.path.isdir("ImportersToolbox"), 'int'),
     ('--with-spherical', 'with_spherical', 'Enable Spherical repository compile', os.path.isdir("Spherical"), 'int'),
     ('--with-viscoelastic', 'with_viscoelastic', 'Enable Viscoelastic repository compile', os.path.isdir("Viscoelastic"), 'int'),
-    ('--with-pderework', 'with_pderework', 'Enable PDERework repository compile', os.path.isdir("PDERework"), 'int'),
     ('--with-osmesa', 'with_osmesa', 'Enable OSMesa output', osmesa_default, 'int'),
     ('--with-sdl', 'with_sdl', 'Enable SDL output (default 1)', eval(os.getenv('WITH_SDL','1')), 'int'),
     ('--with-x11', 'with_x11', 'Enable X11 output (default 1)', eval(os.getenv('WITH_X11','1')), 'int'),
@@ -45,8 +40,6 @@ options = [
     ('--eptiming', 'eptiming', 'Enable Entry point timings: \'1\' will enable profiling for proc 0 only \'2\' will enable profiling per proc (previous setup)', 0, 'int'),
     ('--with-memory-stats', 'with_memory_stats', 'Enable detailed Stg Memory statistics', 0, 'int'),
     ('--with-cautious-mode', 'with_cautious_mode', 'Enable extra checking on heavily used functions', 0, 'int'),
-    ('--with-sedsim', 'with_sedsim', 'Enable SedSim code to compile (default 0)', eval(os.getenv('WITH_SEDSIM','0')), 'int'),
-    ('--with-tellus', 'with_tellus', 'Enable Tellus code to compile (default 0)', eval(os.getenv('WITH_TELLUS','0')), 'int')
 ]
 
 #
@@ -89,9 +82,6 @@ env.UsePackage(packages.AGL)
 env.UsePackage(packages.libPNG)
 env.UsePackage(packages.libavcodec)
 env.UsePackage(packages.gl2ps)
-env.UsePackage(packages.SedSIM)
-env.UsePackage(packages.Tellus)
-env.UsePackage(packages.spatialdata)
 env.UsePackage(packages.Python)
 
 #
@@ -119,22 +109,6 @@ if not (GetOption('help') or GetOption('clean')):
         env.MergeFlags('-DENABLE_STGERMAIN_LOG=2')
 
 
-    # confirm with_experimental configure
-    if env.get('with_experimental', None):
-        if os.path.isdir("Experimental"):
-            print("Checking for Experimental... yes");
-        else:
-            print("Experimental not found");
-            env.Exit()
-
-    # confirm with_spmodel configure
-    if env.get('with_spmodel', None):
-        if os.path.isdir("SPModel"):
-            print("Checking for SPModel... yes");
-        else:
-            print("SPModel not found");
-            env.Exit()
-
     # confirm with_geothermal configure
     if env.get('with_geothermal', None):
         if os.path.isdir("Geothermal"):
@@ -143,21 +117,6 @@ if not (GetOption('help') or GetOption('clean')):
             print("Geothermal not found");
             env.Exit()
 
-    # confirm with_groundwater configure
-    if env.get('with_groundwater', None):
-        if os.path.isdir("Groundwater"):
-            print("Checking for Groundwater... yes");
-        else:
-            print("Groundwater not found");
-            env.Exit()
-
-    # confirm with_gocad configure
-    if env.get('with_gocad', None):
-        if os.path.isdir("GocadToolbox"):
-            print("Checking for Gocad toolbox... yes");
-        else:
-            print("Gocad toolbox not found");
-            env.Exit()
 
     # confirm with_importers configure
     if env.get('with_importers', None):
@@ -175,13 +134,6 @@ if not (GetOption('help') or GetOption('clean')):
             print("Solvers not found");
             env.Exit()
 
-    # confirm with_pderework configure
-    if env.get('with_pderework', None):
-        if os.path.isdir("PDERework"):
-            print("Checking for PDERework... yes");
-        else:
-            print("PDERework not found");
-            env.Exit()
 
     # confirm with_spherical configure
     if env.get('with_spherical', None):
@@ -234,15 +186,9 @@ if not (GetOption('help') or GetOption('clean')):
     env.ConfigurePackage(packages.libXML2)
     env.ConfigurePackage(packages.MPI)
     env.ConfigurePackage(packages.HDF5, required=False)
-    env.ConfigurePackage(packages.spatialdata, required=False)
     env.ConfigurePackage(packages.Python, required=False)
-
     env.ConfigurePackage(packages.PETSc)
     env.ConfigurePackage(packages.PETScExt, required=False)
-    if env.get('with_sedsim'):
-       env.ConfigurePackage(packages.SedSIM, required=False)
-    if env.get('with_tellus'):
-       env.ConfigurePackage(packages.Tellus, required=False)
 
     #Set debug and optimise settings last to override any from PETSc
     if env.get('optimisation_flag', None) == 'default':

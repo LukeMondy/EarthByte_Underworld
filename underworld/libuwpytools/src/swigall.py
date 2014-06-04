@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 import sys, subprocess, shutil, os, glob	
 
-dir = os.environ.get('UW_DIR',None)
-if dir is None:
-	print 'UW_DIR environment variable not set! this must point to your Underworld build directory.'
-	sys.exit()
+dir = "../../../libUnderworld/build"
 
 swigcommandbase = 'swig -Wextra -python -importall -ignoremissing'
 swigcommandbase +=  ' -I'+os.path.join( os.environ.get('UW_DIR'), 'include')

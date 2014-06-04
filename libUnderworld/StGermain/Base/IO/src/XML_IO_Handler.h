@@ -184,10 +184,7 @@
       void*       xml_io_handler,
       const char* filename,
       Dictionary* dictionary,
-      Dictionary* sources,
-      Dictionary* revisions,
-      Dictionary* branches,
-      Dictionary* paths );
+      Dictionary* sources );
    
    /* TODO: option to choose between overwrite / update ? */
    extern Bool XML_IO_Handler_WriteEntryToFile(
@@ -215,10 +212,7 @@
    char* _XML_IO_Handler_WriteAllMem(
       void*       xml_io_handler,
       Dictionary* dictionary,
-      Dictionary* sources,
-      Dictionary* versions,
-      Dictionary* branches,
-      Dictionary* paths );
+      Dictionary* sources );
 
 
 #endif /* __StGermain_Base_IO_XML_IO_Handler_h__ */

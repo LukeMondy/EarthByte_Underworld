@@ -57,10 +57,7 @@
       void*       io_handler,
       const char* filename,
       Dictionary* dictionary,
-      Dictionary* sources,
-      Dictionary* versions,
-      Dictionary* branches,
-      Dictionary* paths );
+      Dictionary* sources );
    typedef Bool ( IO_Handler_DictSetAddValueFunction )
       ( void* io_handler, const char* filename, Dictionary* dictionary, Dictionary_MergeType mergeType );
    
@@ -140,10 +137,7 @@
       void*       io_handler,
       const char* filename,
       Dictionary* dictionary,
-      Dictionary* sources,
-      Dictionary* versions,
-      Dictionary* branches,
-      Dictionary* paths );
+      Dictionary* sources );
    
    /* Set/add entry to dictionary given parent */
    extern Dictionary_Entry_Value* IO_Handler_DictSetAddValue( 

@@ -105,7 +105,7 @@ StgData* StgInit( int argc, char* argv[] ) {
 }
 
 char* StgDictAsXMLString(StgData* data){
-   return _XML_IO_Handler_WriteAllMem(XML_IO_Handler_New(), data->dictionary, data->sources, NULL, NULL, NULL);
+   return _XML_IO_Handler_WriteAllMem(XML_IO_Handler_New(), data->dictionary, data->sources );
 
 } 
 

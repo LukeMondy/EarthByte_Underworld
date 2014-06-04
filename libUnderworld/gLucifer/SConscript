@@ -30,38 +30,25 @@ libs = ['gLucifer'] + env.get('LIBS', [])
 # afterwards.
 #
 
-objs = []
-suites = []
-tst_exp = []
-tst_input = []
-
-# Get the revision definition.
-revision = "UNKNOWN"
-path = "UNKNOWN"
-branch = "UNKNOWN"
-for entry in env['IDDEFINES']:
-    if entry[0] == 'GLUCIFER':
-        revision = entry[1]
-        path = entry[2]
-        branch = entry[3]
-        break
-
-
 #Database types header...
 env.Install('include/gLucifer/Viewer', 'Viewer/src/Types.h')
 
 #
 # Process each directory uniformly.
 #
+
+objs = []
+suites = []
+tst_exp = []
+tst_input = []
+
 dirs = Split('Base DrawingObjects libgLucifer Viewer/src/sqlite3')
 for d in dirs:
 
     # Need the module name, which is just the directory.
     mod_name = env['ESCAPE']('"' + ''.join(d.split('/')) + '"')
     version_name = 'GLUCIFER_VERSION'
-    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) + \
-               [('VERSION', revision)] + [('PATH', path)] + \
-               [('BRANCH', branch)]
+    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', [])
 
     # Setup where to look for files.
     src_dir = d + '/src'
@@ -110,9 +97,7 @@ for d in dirs:
         name = 'gLucifer_' + d.split('/')[-1] + 'module'
 
     mod_name = env['ESCAPE']('"' + ''.join(d.split('/')) + '"')
-    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) + \
-               [('VERSION', revision)] + [('PATH', path)] + \
-               [('BRANCH', branch)]
+    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) 
 
     env.Install('include/gLucifer/' + d.split('/')[-1], Glob(d + '/*.h'))
 

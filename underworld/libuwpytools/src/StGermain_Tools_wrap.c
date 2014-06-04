@@ -3139,45 +3139,44 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool swig_types[226]
 #define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool swig_types[227]
 #define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool swig_types[228]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool swig_types[229]
-#define SWIGTYPE_p_f_p_void_p_struct_Module__Bool swig_types[230]
-#define SWIGTYPE_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void swig_types[231]
-#define SWIGTYPE_p_f_p_void_p_struct_Stream__void swig_types[232]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int__p_char swig_types[233]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int_p_char__Bool swig_types[234]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_p_struct__Dictionary_p_struct__Stg_ObjectList__void swig_types[235]
-#define SWIGTYPE_p_f_p_void_p_void__double swig_types[236]
-#define SWIGTYPE_p_f_p_void_p_void__int swig_types[237]
-#define SWIGTYPE_p_f_p_void_p_void__p__Dictionary_Entry_Value swig_types[238]
-#define SWIGTYPE_p_f_p_void_p_void__p_void swig_types[239]
-#define SWIGTYPE_p_f_p_void_p_void__unsigned_int swig_types[240]
-#define SWIGTYPE_p_f_p_void_p_void__void swig_types[241]
-#define SWIGTYPE_p_f_p_void_p_void_double__void swig_types[242]
-#define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[243]
-#define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[244]
-#define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[245]
-#define SWIGTYPE_p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void swig_types[246]
-#define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[247]
-#define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[248]
-#define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[249]
-#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__Bool swig_types[250]
-#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__p_char swig_types[251]
-#define SWIGTYPE_p_f_p_void_unsigned_int__unsigned_int swig_types[252]
-#define SWIGTYPE_p_f_p_void_unsigned_int_enum_ReplacementOption__void swig_types[253]
-#define SWIGTYPE_p_f_p_void_unsigned_int_p_void__void swig_types[254]
-#define SWIGTYPE_p_f_p_void_unsigned_int_unsigned_int__unsigned_int swig_types[255]
-#define SWIGTYPE_p_f_unsigned_int_unsigned_int_p_void_p_void_p_void__void swig_types[256]
-#define SWIGTYPE_p_f_void__p_File swig_types[257]
-#define SWIGTYPE_p_f_void__p_char swig_types[258]
-#define SWIGTYPE_p_int swig_types[259]
-#define SWIGTYPE_p_p_char swig_types[260]
-#define SWIGTYPE_p_p_p_char swig_types[261]
-#define SWIGTYPE_p_stgComponent swig_types[262]
-#define SWIGTYPE_p_unsigned_char swig_types[263]
-#define SWIGTYPE_p_unsigned_int swig_types[264]
-#define SWIGTYPE_p_unsigned_long swig_types[265]
-static swig_type_info *swig_types[267];
-static swig_module_info swig_module = {swig_types, 266, 0, 0, 0, 0};
+#define SWIGTYPE_p_f_p_void_p_struct_Module__Bool swig_types[229]
+#define SWIGTYPE_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void swig_types[230]
+#define SWIGTYPE_p_f_p_void_p_struct_Stream__void swig_types[231]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int__p_char swig_types[232]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int_p_char__Bool swig_types[233]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_p_struct__Dictionary_p_struct__Stg_ObjectList__void swig_types[234]
+#define SWIGTYPE_p_f_p_void_p_void__double swig_types[235]
+#define SWIGTYPE_p_f_p_void_p_void__int swig_types[236]
+#define SWIGTYPE_p_f_p_void_p_void__p__Dictionary_Entry_Value swig_types[237]
+#define SWIGTYPE_p_f_p_void_p_void__p_void swig_types[238]
+#define SWIGTYPE_p_f_p_void_p_void__unsigned_int swig_types[239]
+#define SWIGTYPE_p_f_p_void_p_void__void swig_types[240]
+#define SWIGTYPE_p_f_p_void_p_void_double__void swig_types[241]
+#define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[242]
+#define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[243]
+#define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[244]
+#define SWIGTYPE_p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void swig_types[245]
+#define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[246]
+#define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[247]
+#define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[248]
+#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__Bool swig_types[249]
+#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__p_char swig_types[250]
+#define SWIGTYPE_p_f_p_void_unsigned_int__unsigned_int swig_types[251]
+#define SWIGTYPE_p_f_p_void_unsigned_int_enum_ReplacementOption__void swig_types[252]
+#define SWIGTYPE_p_f_p_void_unsigned_int_p_void__void swig_types[253]
+#define SWIGTYPE_p_f_p_void_unsigned_int_unsigned_int__unsigned_int swig_types[254]
+#define SWIGTYPE_p_f_unsigned_int_unsigned_int_p_void_p_void_p_void__void swig_types[255]
+#define SWIGTYPE_p_f_void__p_File swig_types[256]
+#define SWIGTYPE_p_f_void__p_char swig_types[257]
+#define SWIGTYPE_p_int swig_types[258]
+#define SWIGTYPE_p_p_char swig_types[259]
+#define SWIGTYPE_p_p_p_char swig_types[260]
+#define SWIGTYPE_p_stgComponent swig_types[261]
+#define SWIGTYPE_p_unsigned_char swig_types[262]
+#define SWIGTYPE_p_unsigned_int swig_types[263]
+#define SWIGTYPE_p_unsigned_long swig_types[264]
+static swig_type_info *swig_types[266];
+static swig_module_info swig_module = {swig_types, 265, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4592,8 +4591,7 @@ static swig_type_info _swigt__p_f_p_void_p_double_p_double__void = {"_p_f_p_void
 static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool = {"_p_f_p_void_p_q_const__char_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool", "XML_IO_Handler_WriteEntryToFileFunction *|enum Bool (*)(void *,char const *,char *,struct _Dictionary_Entry_Value *,char *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool", "IO_Handler_DictSetAddValueFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,enum Dictionary_MergeType)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool", "IO_Handler_ReadAllFromBufferFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,char const *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool", "IO_Handler_ReadAllFromFileFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,struct _Dictionary *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool", "IO_Handler_WriteAllToFileFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,struct _Dictionary *,struct _Dictionary *,struct _Dictionary *,struct _Dictionary *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool = {"_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool", "IO_Handler_ReadAllFromFileFunction *|IO_Handler_WriteAllToFileFunction *|enum Bool (*)(void *,char const *,struct _Dictionary *,struct _Dictionary *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_struct_Module__Bool = {"_p_f_p_void_p_struct_Module__Bool", "enum Bool (*)(void *,struct Module *)|ModulesManager_LoadModuleFunction *|ModulesManager_UnloadModuleFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void = {"_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void", "void (*)(void *,struct Stg_ComponentFactory *,void *)|Stg_Component_ConstructFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_struct_Stream__void = {"_p_f_p_void_p_struct_Stream__void", "VariableCondition_PrintConciseFunc *|Stg_Class_PrintFunction *|Stg_ObjectAdaptor_PrintPointerFunction *|BTree_dataPrintFunction *|void (*)(void *,struct Stream *)", 0, 0, (void*)0, 0};
@@ -4861,7 +4859,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool,
   &_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool,
   &_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool,
-  &_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool,
   &_swigt__p_f_p_void_p_struct_Module__Bool,
   &_swigt__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void,
   &_swigt__p_f_p_void_p_struct_Stream__void,
@@ -5129,7 +5126,6 @@ static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_char_p_struct__Dictio
 static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool[] = {  {&_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool[] = {  {&_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool[] = {  {&_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool[] = {  {&_swigt__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_struct_Module__Bool[] = {  {&_swigt__p_f_p_void_p_struct_Module__Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void[] = {  {&_swigt__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_struct_Stream__void[] = {  {&_swigt__p_f_p_void_p_struct_Stream__void, 0, 0, 0},{0, 0, 0, 0}};
@@ -5397,7 +5393,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool,
   _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool,
   _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool,
-  _swigc__p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary_p_struct__Dictionary__Bool,
   _swigc__p_f_p_void_p_struct_Module__Bool,
   _swigc__p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void,
   _swigc__p_f_p_void_p_struct_Stream__void,

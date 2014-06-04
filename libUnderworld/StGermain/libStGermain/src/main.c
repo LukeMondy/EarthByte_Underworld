@@ -88,18 +88,15 @@ void stgGenerateFlattenedXML( Dictionary* dictionary, Dictionary* sources, char*
    Stg_asprintf( &flatFilenameStamped, "%s/%s-%s.%s",
       outputPath, "input", timeStamp, "xml" );
 
-   IO_Handler_WriteAllToFile( ioHandler, flatFilename, dictionary,
-      sources, versionDict, branchDict, pathDict );
+   IO_Handler_WriteAllToFile( ioHandler, flatFilename, dictionary, sources );
 
-   IO_Handler_WriteAllToFile( ioHandler, flatFilenameStamped, dictionary,
-      sources, versionDict, branchDict, pathDict );
+   IO_Handler_WriteAllToFile( ioHandler, flatFilenameStamped, dictionary, sources );
 
    if( outputSlim ) {
       ioHandler->writeSources = False;
       Stg_asprintf( &slimFilename, "%s/%s-%s.%s",
          outputPath, "input-basic", timeStamp, "xml" );
-      IO_Handler_WriteAllToFile( ioHandler, slimFilename, dictionary,
-         NULL, NULL, NULL, NULL );
+      IO_Handler_WriteAllToFile( ioHandler, slimFilename, dictionary, NULL);
    }
 
    Stream_EnableSelfOnly( s, isEnabled );

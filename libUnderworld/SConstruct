@@ -112,87 +112,6 @@ env.AppendUnique(RPATH=env.Dir(env['build_dir'] + '/lib').abspath)
 if not env['shared_libs']:
     env.AppendUnique(CPPDEFINES=['NOSHARED'])
 
-# Detect the subrepos available to be used for extracting revision ids
-# and paths for compilation defines later on.
-repos = {}
-paths = ['.']
-while paths:
-    path = paths.pop()
-    if os.path.realpath(path) in repos:
-        continue
-    for root, dirs, files in os.walk(path):
-        hgdirs = dirs[:]
-        for d in hgdirs:
-            if d == '.hg':
-                repos[os.path.realpath(root)] = root
-            else:
-                p = os.path.join(root, d)
-                if os.path.islink(p) and os.path.abspath(p) not in repos:                            
-                    paths.append(p) 
-repos = repos.values()
-repos.sort()
-
-# For each of the hg repos detected, identify each one and
-# extract repo info (revision, etc.) to be used for our defines later on.
-import re
-from string import upper
-# Check if we can use mercurial api libraries.
-try:
-    from mercurial import commands, error, hg, ui, util, node
-# If we can't, create default info.
-except ImportError:
-    print 'Mercurial not found, not identifying.'
-    for r in repos:
-        if r == '.':
-            r = 'ROOT'
-        repo_name = upper(re.sub('\W', '', r))
-        env.AppendUnique(IDDEFINES=[(repo_name, env["ESCAPE"]('"UNKNOWN"'), \
-                         env["ESCAPE"]('"UNKNOWN"'), env["ESCAPE"]('"UNKNOWN"'))])
-    pass
-else:
-    # Create local user interface for our repo.
-    localui = ui.ui()
-    for r in repos:
-        try:
-            # Retrieve hg repo instance.
-            repo = hg.repository(localui, r)
-        except RepoError:
-            # If repo is not found/valid, create default info.
-            print 'Repository not found, not identifying.'
-            if r == '.':
-                r = 'ROOT'
-            repo_name = upper(re.sub('\W', '', r))
-            env.AppendUnique(IDDEFINES=[(repo_name, env["ESCAPE"]('"UNKNOWN"'), \
-                             env["ESCAPE"]('"UNKNOWN"'), env["ESCAPE"]('"UNKNOWN"'))])
-            pass
-        else:
-            # Get repo actual user interface.
-            localui = repo.ui
-            try:
-                ctx = repo[None]
-            except TypeError:
-                ctx = repo.workingctx()
-            parents = ctx.parents()
-            # Get repo long revision id.
-            revision = [node.hex(parents[0].node())][0]
-            localui.pushbuffer()
-            commands.paths(localui, repo)
-            path = localui.popbuffer()
-            path = re.sub("http[s]?://[a-zA-Z]*:[a-zA-Z]*\**@","https://", path)
-            path = re.sub("default\s*=\s*","", path)
-            path = path.strip()
-            localui.pushbuffer()
-            commands.branch(localui, repo)
-            branch = localui.popbuffer()
-            branch = branch.strip()
-            from string import upper
-            if r == '.':
-                r = 'ROOT'
-            repo_name = upper(re.sub('\W', '', r))
-            # Pass repo path, revision info as defines to compilation.
-            env.AppendUnique(IDDEFINES=[(repo_name, env["ESCAPE"]('"' + revision + '"'), \
-                             env["ESCAPE"]('"' + path + '"'),  env["ESCAPE"]('"' + branch + '"'))])
-
 # Need to insert some 'HAVE_*' definitions based on what packages we
 # found during configuration.
 if 'HAVE_HDF5' in env['CPPDEFINES']:
@@ -257,18 +176,6 @@ SConscript('Underworld/SConscript',
            duplicate=0)
 env.Prepend(LIBS=['Underworld'])
 
-if env['with_experimental']:
-    SConscript('Experimental/SConscript',
-               variant_dir=env['build_dir'] + '/Experimental',
-               duplicate=0)
-    env.Prepend(LIBS=['Experimental'])
-
-if env['with_spmodel']:
-    SConscript('SPModel/SConscript',
-               variant_dir=env['build_dir'] + '/SPModel',
-               duplicate=0)
-    env.Prepend(LIBS=['SPModel'])
-
 if env['with_glucifer']:
     SConscript('gLucifer/SConscript',
                variant_dir=env['build_dir'] + '/gLucifer',
@@ -280,29 +187,11 @@ if env['with_viewer']:
                variant_dir=env['build_dir'] + '/gLucifer/Viewer',
                duplicate=0)
 
-if env['with_pderework']:
-    SConscript('PDERework/SConscript',
-               variant_dir=env['build_dir'] + '/PDERework',
-               duplicate=0)
-    env.Prepend(LIBS=['PDERework'])
-
 if env['with_geothermal']:
     SConscript('Geothermal/SConscript',
                variant_dir=env['build_dir'] + '/Geothermal',
                duplicate=0)
     env.Prepend(LIBS=['Geothermal'])
-
-if env['with_groundwater']:
-    SConscript('Groundwater/SConscript',
-               variant_dir=env['build_dir'] + '/Groundwater',
-               duplicate=0)
-    env.Prepend(LIBS=['Groundwater'])
-
-if env['with_gocad']:
-    SConscript('GocadToolbox/SConscript',
-               variant_dir=env['build_dir'] + '/GocadToolbox',
-               duplicate=0)
-    env.Prepend(LIBS=['GocadToolbox'])
 
 if env['with_importers']:
     SConscript('ImportersToolbox/SConscript',

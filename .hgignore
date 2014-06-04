@@ -1,0 +1,19 @@
+# use glob syntax.
+syntax: glob
+
+*~
+.scon*
+config.*
+build
+testLogs
+*.pyc
+*.cfg 
+.DS_Store
+*.dblite         #  
+
+
+# switch to regexp syntax.
+syntax: regexp
+(^|/)\.svn($|/)
+(^|/)\.hg($|/)
+(^|/)\.hgtags($|/)
