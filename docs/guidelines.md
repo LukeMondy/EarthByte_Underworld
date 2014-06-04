@@ -1,8 +1,16 @@
+http://matplotlib.org/devel/gitwash/git_development.html
+https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
+http://docs.scipy.org/doc/numpy/dev/index.html
 
-## Coding
 
-### Design
-Expectations at the python level
+Design
+------
+
+### User Interface
+
+The user level API should aim to provide functionality and classes which
+
+
 Expectations at the c level
 Python / c interface & interaction
 Granularity of objects -- global contexts, global varialbes, lists of lists of lists
