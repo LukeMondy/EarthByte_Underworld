@@ -36,7 +36,7 @@ Usage
 -----
 You will first need to make the project directory available to import within python:
 ```bash
-    $ export PYTHONPATH=$PYTHONPATH:/path/where/this/file/is
+    $ export PYTHONPATH=$PYTHONPATH:/top/directory/of/project
 ```
 (note that if you are not using the bash shell, the required command will be different.)
 
