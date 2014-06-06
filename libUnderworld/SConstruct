@@ -217,24 +217,16 @@ if env['with_viscoelastic']:
                duplicate=0)
     env.Prepend(LIBS=['Viscoelastic'])
 
+# lets finally build the wrappers
+SConscript('libUnderworldPy/SConscript',
+           variant_dir=env['build_dir'] + '/libUnderworldPy',
+           duplicate=0)
+env.Prepend(LIBS=['libUnderworldPy'])
 
 
-#
-# Build static version of StGermain.
-#
-
-if env['static_libs']:
-    env.Program('bin/StGermain',
-                ['StGermain/src/main.c',
-                 File(env['build_dir'] + '/StGermain/stg_static_modules.c').abspath])
-
-# Adding in documentation.
-#env.Alias("doc", None, env.Action(File("StGermain/script/createDocs.py").abspath))
-#env.AlwaysBuild("doc")
 
 # Dump package config.
 filename = env['build_dir'] + '/lib/pkgconfig/stgermain.pc'
-# env.write_pkgconfig(filename, 'StGermain', 'The StGermain Framework')
 
 env.Dist("underworld-%s"%env.GetOption("dist_version"),
          ["configure.py", "SConstruct", "config", "script", "StGermain",
@@ -251,13 +243,6 @@ env.Alias("doc-codex", None, env.Action(env.AddCodexSuite()))
 env.Alias("doc", None, env.Action(env.AddAllSuite()))
 env.Alias("doc-doxygen", None, env.Action(env.AddDoxygenSuite()))
 env.Alias("doc-doxygenlite", None, env.Action(env.AddDoxygenLiteSuite()))
-
-
-#AlwaysBuild("doc")
-#AlwaysBuild("doc-codex")
-#AlwaysBuild("doc-doxygen")
-#AlwaysBuild("doc-doxygenlite")
-
 
 # TODO: test targets and master suite runners currently go below,
 # see CREDO tool.
@@ -302,3 +287,4 @@ env.Alias(env['CHECK_COMPLETE_TARGET'], env['CHECK_CONVERGENCE_TARGET'])
 #Don't run scibench as part of 'complete', since could run for 
 # -very- long time.
 #env.Alias(env['CHECK_COMPLETE_TARGET'], env['CHECK_SCIBENCH_TARGET'])
+

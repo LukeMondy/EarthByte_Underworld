@@ -1,52 +1,59 @@
-http://matplotlib.org/devel/gitwash/git_development.html
-https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
-http://docs.scipy.org/doc/numpy/dev/index.html
 
 
 Design
-------
-
-### User Interface
-
-The user level API should aim to provide functionality and classes which
-
-
-Expectations at the c level
-Python / c interface & interaction
-Granularity of objects -- global contexts, global varialbes, lists of lists of lists
-Naming convections - for classes, instances, input parameters
-#### Class overview
+======
+User Interface?
+Naming convections - for classes, instances, input parameters?
+Class overview?
 
 
-### Whitespace
+Directory Structure
+===================
 
+* libUnderworld            - contains backend stack of tools (Underworld, StgFEM, etc)
+ * libUnderworldPy         - contains swig generated wrappers for backend as well as auxiliary implementations (such as StGermain_Tools)
+* underworld               - python only directory structure containing python frontend routines and supporting scripts
+* docs                     - contains various documentation including this file
+* InputFiles               - contains various examples input files
+
+
+
+Coding Style
+============
+
+Whitespace
+----------
 Spaces should be used for tabs.
 Indent levels should be 3 spaces deep.
 
-### Comments
+* Comments?
+* Error handling?
+ * Reporting?
+ * Checking / exceptions?
 
-### Error handling
-#### Reporting
-#### Checking / exceptions
 
-### Versions
-#### Development Workflow
-##### Bug fixes
-##### New Features / Redesigned interface or API
-#### Release candidates 
+License 
+=======
 
-### Testing
-#### Unit tests
-#### Regression tests
 
-### Directory Structure
 
-### Distribution
-#### Releases format
+Development
+===========
+* Versions?
+* Development Workflow?
+* Bug fixes & reporting?
+* New Features / Redesigned interface or API?
+* Release candidates?
+* Distribution?
 
-### Bug reporting & tracking
+Testing
+=======
+* Unit tests?
+* Regression tests?
 
-### Useful tools
 
-### Licensing 
-#### Template Header
+Useful Link
+===========
+http://matplotlib.org/devel/gitwash/git_development.html
+https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
+http://docs.scipy.org/doc/numpy/dev/index.html

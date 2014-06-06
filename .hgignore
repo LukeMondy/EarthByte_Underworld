@@ -10,7 +10,9 @@ testLogs
 *.cfg 
 .DS_Store
 *.dblite         #  
-
+*.orig
+*.bak
+:memory
 
 # switch to regexp syntax.
 syntax: regexp
