@@ -17,6 +17,7 @@ Dependencies
   * numpy
   * libpng
   * build tools (gcc etc)
+
 Note: Headers will be required for above libraries (-dev packages).  Required libraries regularly included in system distributions are not listed. 
 
 
@@ -27,7 +28,8 @@ Compilation
     $ ./configure.py
     $ ./scons.py
 ```
-Check available configuration options using `./configure.py --help`.
+
+Check available configuration options using `./configure.py --help`. <br /> 
 Library testing options may be found by running `./scons.py --help`.
 
 Usage
