@@ -29,14 +29,14 @@ Compilation
     $ ./scons.py
 ```
 
-Check available configuration options using `./configure.py --help`. <br /> 
+Check available configuration options using `./configure.py --help`.  
 Library testing options may be found by running `./scons.py --help`.
 
 Usage
 -----
 You will first need to make the project directory available to import within python:
 ```bash
-    $ export export PYTHONPATH=$PYTHONPATH:/path/where/this/file/is
+    $ export PYTHONPATH=$PYTHONPATH:/path/where/this/file/is
 ```
 (note that if you are not using the bash shell, the required command will be different.)
 
