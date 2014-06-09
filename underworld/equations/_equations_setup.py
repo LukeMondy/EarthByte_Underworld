@@ -32,7 +32,8 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
                        velocityField ="",
                        pressureField ="",
                        gaussIntSwarm ="",
-                       picIntSwarm   =""
+                       picIntSwarm   ="",
+                       StoreDensityOnParticles = "False"
                        ):
     """
     Create the full Stokes system of equations.
@@ -48,6 +49,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
        Rayleigh      : Rayleigh Number for thermal buoyancy
        pic           : True for particles or False for Gauss swarms
        penaltyNumber : Penalty number for the "stokesblockinterface" Augmented Lagrangian solver
+       StoreDensityOnParticles: If buoyancyType is compositional, set this to true in order to visualise temperature-dependent density on "your material swarm"-Density
 
     """
 
@@ -147,7 +149,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
     # Add buoyancy
     if buoyancy:
         if buoyancyType=="compositional":
-            addBuoyancy(forceVector=mom_forceVector, intSwarm=picIntSwarm) # changed from picIntSwarm..test this
+            addBuoyancy(forceVector=mom_forceVector, intSwarm=picIntSwarm, StoreDensityOnParticles=StoreDensityOnParticles) # changed from picIntSwarm..test this
         if buoyancyType=="thermal":
             addThermalBuoyancy(forceVector=mom_forceVector, intSwarm=picIntSwarm, Ra=str(Rayleigh))
             
@@ -260,7 +262,7 @@ def stokesCreate(equationName="stokesEqn",
     return stokesDict
 
 
-def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="TemperatureField", comment=""):
+def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="TemperatureField", comment="", StoreDensityOnParticles="False"):
 
     globalDict = _uw.GetCurrentPythonDictionary()
 
@@ -278,7 +280,8 @@ def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="Temperat
                                                ForceVector = forceVector,
                                                Swarm = intSwarm,
                                                gravity = "gravity",
-                                               comment = comment
+                                               comment = comment,
+                                               StoreDensityOnParticles = StoreDensityOnParticles
                                                )
     return buoyancy
 
