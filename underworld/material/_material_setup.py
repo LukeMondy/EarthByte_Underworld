@@ -16,7 +16,7 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 
 ########################################################################################################################
 
-def materialCreate(componentName="background", rheologyName="", shapeName="", density="1.0"):
+def materialCreate(componentName="background", rheologyName="", shapeName="", density="1.0", alpha="0.0", referenceTemperature="0.0"):
     """
     Creates a new material
 
@@ -39,11 +39,14 @@ def materialCreate(componentName="background", rheologyName="", shapeName="", de
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
     
     newComponentDict = _uw.NewComponentEntryInStgDict( globalDict,
-                                                       name     = componentName,
-                                                       Type     = "RheologyMaterial",
-                                                       density  = str(density),
-                                                       Shape    = shapeName,
-                                                       Rheology = rheologyName
+                                                       name                 = componentName,
+                                                       Type                 = "RheologyMaterial",
+                                                       density              = str(density),
+                                                       Shape                = shapeName,
+                                                       Rheology             = rheologyName,
+                                                       alpha                = str(alpha),
+                                                       referenceTemperature = str(referenceTemperature)
+
                                                        )
 
     return newComponentDict
