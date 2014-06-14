@@ -1,0 +1,11 @@
+Init solve 
+its 65 
+Same rhs 
+its 66 
+scale rhs solve 
+its 74 
+perturb rhs solve 
+its 114 
+Reset search directions 
+Init perturbed solve 
+its 75 

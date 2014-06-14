@@ -1,0 +1,571 @@
+\documentclass[10pt,a4paper]{amsart}
+%\documentclass[10pt,a4paper]{article}
+\usepackage{amsmath,pifont}
+\usepackage{amssymb,amsxtra}
+\usepackage{subfigure,epsfig}
+\usepackage{multirow, multicol}
+%\usepackage{setspace}
+%\onehalfspacing	% standard 1/2 spacing
+
+%% contains extensions to verbatim, and a /* */ like comment block. Use \begin{comment}  \end{comment}
+\usepackage{moreverb}   
+
+%\setlength{\voffset}{-28mm}
+%\setlength{\textheight}{250mm}
+%\setlength{\marginparsep}{0mm}
+\setlength{\textwidth}{165mm}
+\setlength{\oddsidemargin}{-2mm}
+\setlength{\evensidemargin}{-2mm}
+
+\renewcommand{\v}[1]{\boldsymbol{#1}}		% vector
+\newcommand{\m}[1]{\boldsymbol{#1}}		% matrix
+\newcommand{\code}[1]{{\fontfamily{txtt}\selectfont {#1}}}
+\newcommand{\diag}[1]{\mbox{diag}\left({#1}\right)}
+
+\begin{document}
+
+\title{PETScExt-v3.1: Block extensions to PETSc}
+\begin{comment}
+\author{Dave A. May \\
+	Geophysical Fluid Dynamics, Department of Earth Sciences, \\
+	ETH Z\"urich, Switzerland}
+\end{comment}
+\author{Dave A. May}
+\address{Geophysical Fluid Dynamics, Department of Earth Sciences \\ ETH Z\"urich, Switzerland}
+\urladdr{http://jupiter.ethz.ch/~dmay/Research/PetscExt}
+\email{dave.mayhem23@gmail.com}
+\date{\today}
+\maketitle
+
+\section{Overview}
+	The discrete form of coupled partial differential equations require some ordering of the unknowns. For example, fluid flow problems involving velocity $\v v$ and pressure $p$, might have their associated approximate nodal values ordered like $( u_1, v_1, p_1, u_2, v_2, p_2, \dots, u_N, v_N, p_N )^T$, where $u_i, v_i$ represent the x-component and y-component of the velocity field at node $i$. Implicit in this ordering is the assumption that we have the same number of unknowns for velocity and pressure. If we break this assumption, a more natural ordering may be to keep the like quantities grouped together, e.g. $( u_1, v_1, \dots, u_N, v_N, p_1, \dots p_N )^T$. In this case, we can separate the discrete solution into two vectors $\v x = ( \v u, \v p )^T$. 
+	
+	Physcially motivated splitting such as this can be desirable in solving coupled, multi-physics problems as they allow application programmers to apply efficient solution techniques to the individual operators or blocks. The block objects introduced in this library are designed to enable systems of linear equations to be described and solved at the block level. The block objects introduced are built within the PETSc \cite{petsc-efficient} library. 
+
+
+\section{Block vectors}
+%% creation
+	A block vector, $\v x = ( \v x_1, \v x_2, \dots, \v x_{N} )^T$, where $\v x \in \mathcal R^{N}$ and $\v x_1 \in \mathcal R^{n_1}, \dots , \v x_{N} \in \mathcal R^{n_N}$ can be defined. Each of the sub vectors $\v x_{i}, \medspace i=1,\dots, N$ may be any vector type supported by PETSc (VECSEQ, VECMPI, etc). This may include sub vectors which are themselves blocks, however not all vector operations support nested block vectors. There are no restrictions on the length of each sub vector. The creation of a block vector is shown below
+\begin{verbatimtab}[4]
+	Vec xb;
+	
+	VecCreate( PETSC_COMM_WORLD, &xb );
+	/* Define a 3 block vector */
+	VecSetSizes( xb, 3, 3 );
+	VecSetType( xb, "block" );
+\end{verbatimtab}
+The length of a block vector corresponds to the number of sub vectors within the block.
+When defining vectors of type ``block'', you must always specify the local $(n)$ and global $(N)$ sizes to be the same.  
+
+%% manipulating sub vectors
+By default when a block vector of size $N$ is created, $N$ sub vectors will also be created. The $i^{th}$ sub vectors can be extracted using
+\begin{verbatimtab}[4]
+	PetscErrorCode VecBlockGetSubVector( Vec X, PetscInt idxm, Vec *sx )
+\end{verbatimtab}
+where \code{X} is the block vector, \code{idxm} is index of the sub vector and \code{*sx} is the pointer to sub vector object. Note that \code{idxm} assumed a 0-based indexing system. Alternatively one can fetch all the sub vectors using 
+\begin{verbatimtab}[4]
+	PetscErrorCode VecBlockGetSubVectors( Vec X, Vec **sx )
+\end{verbatimtab}
+The array of sub vectors \code{*sx} should never be freed by the user. Whenever the sub vectors are no longer in use the user should always call 
+\begin{verbatimtab}[4]
+	PetscErrorCode VecBlockRestoreSubVectors( Vec x )
+\end{verbatimtab}	
+on the block vector	
+	
+The sub vectors of a block vector can be specified by fetching the sub vector using \code{VecBlockGetSubVector()} and then configuring (i.e. setting its size and type) the returned vector. Alternatively one can call 
+\begin{verbatimtab}[4]
+	PetscErrorCode VecBlockSetValue( Vec x, PetscInt idxm, Vec vec, InsertMode addv )
+\end{verbatimtab}	
+to set a single sub vector \code{vec} into the \code{idxm} location within the block vector \code{x}.  When \code{addv = INSERT\_VALUES}, the sub vector at location \code{idxm} will be destroyed and then be replaced by \code{vec}. Multiple sub vectors can be specified at one using 
+\begin{verbatimtab}[4]
+	PetscErrorCode VecBlockSetValues( Vec V, PetscInt m, const PetscInt idxm[], 
+		const Vec vec[], InsertMode addv )
+\end{verbatimtab}	
+The block vector object does not support sub vectors which are null. Once the sub vectors have been set, one should call \code{VecAssemblyBegin()} and \code{VecAssemblyEnd()} on the block vector to indicate that no more entries (which in this case are vectors) are to be inserted.
+
+\subsection{Example}
+In the following example, we will describe the block vector  $\v x_b = ( \v x_1, \v x_2, \v x_3 )^T$.
+\begin{verbatimtab}[4]
+	Vec xb;
+	Vec x1,x2,x3;
+	
+	/* user defines x1,x2,x3 */
+	.
+	.
+	.
+	
+	VecCreate( PETSC_COMM_WORLD, &xb );
+	VecSetSizes( xb, 3, 3 );
+	VecSetType( xb, "block" );
+	VecBlockSetValue( xb, 0, x1, INSERT_VALUES );
+	VecBlockSetValue( xb, 1, x2, INSERT_VALUES );
+	VecBlockSetValue( xb, 2, x3, INSERT_VALUES );
+	VecAssemblyBegin( xb );
+	VecAssemblyEnd( xb );
+
+	/* pass control of destroying sub vectors to the block */
+	VecDestroy( x1 );
+	VecDestroy( x2 );
+	VecDestroy( x3 );
+	
+	/* do some operations with the block vector xb */
+	.
+	.
+	.
+	
+	VecDestroy( xb );
+\end{verbatimtab}
+
+
+
+\section{Block matrices}
+%% creation
+	We define a block matrix $\m A$ as
+\begin{equation}
+\m A = 
+\begin{pmatrix}
+	\m A_{11}		&\m A_{12} 	&\dots 	&\m A_{1N} \\
+	\m A_{21}		&\m A_{22} 	&\dots 	&\m A_{2N} \\
+	\vdots		&\vdots		&\ddots	&\vdots \\
+	\m A_{M1}	&\m A_{M2} 	&\dots 	&\m A_{MN} \\
+\end{pmatrix}, \qquad \m A \in \mathcal R^{M \times N}.
+\end{equation}
+Each of the sub matrices $\v A_{ij}, \medspace i=1,\dots, M, \medspace j=1,\dots, N$ may be any matrix type supported by PETSc. This may include sub matrices which are themselves blocks, however not all matrix operations support nested block matrices. 
+	
+The creation of a block matrix is shown below
+\begin{verbatimtab}[4]
+	Mat Ab;
+	
+	MatCreate( PETSC_COMM_WORLD, &Ab );
+	/* Define a 3x3 block matrix */
+	MatSetSizes( Ab, 3,3, 3,3 );
+	MatSetType( Ab, "block" );
+\end{verbatimtab}
+The dimension $M \times N$ of a block matrix corresponds to the number of rows and columns of sub matrices within the block. When defining matrices of type ``block'', you must always specify the local rows $(m)$ and global rows $(M)$ to be the same size. Similarly the local $(n)$ and global $(N)$ columns must also be the same size.   
+
+Upon initial construction of a  block matrix, all the $M \times N$ sub matrices are null. The block matrix may be sparse (i.e. contain null blocks), but the user is required to set all non-zero sub matrices to define the sparsity pattern of the block matrix. Sub matrices can be set into a block matrix using either
+\begin{verbatimtab}[4]
+	PetscErrorCode MatBlockSetValues( Mat A, 
+		PetscInt m, const PetscInt idxm[], 
+		PetscInt n ,const PetscInt idxn[], 
+		const Mat mat[], MatStructure str, InsertMode addv )
+		
+	PetscErrorCode MatBlockSetValue( Mat A, PetscInt idxm, PetscInt idxn, 
+		Mat mat, MatStructure str, InsertMode addv )
+\end{verbatimtab}
+The argument \code{str} is only used for \code{addv=ADD\_VALUES}. When each sub matrix $\m A_{ij}$ is inserted into the block matrix $\m A$, we check that the dimension of $\m A_{ij}$ (global row and column size) is compatible with the other sub matrices already existing within the block structure.
+Once the sub matrices have been set, the user should call \code{MatAssemblyBegin()} and \code{MatAssemblyEnd()}. 
+
+%A block matrix and block vector are compatible and can thus be multiplied if the sub product $\m A_{ij} \v x_j$ is itself compatible.
+The sub matrices can be extracted using the following functions;
+\begin{verbatimtab}[4]
+	PetscErrorCode MatBlockGetSubMatrix( Mat A, PetscInt ridx, PetscInt cidx, Mat *sa )
+
+	PetscErrorCode MatBlockGetSubMatrices( Mat A, Mat ***sa )
+\end{verbatimtab}
+When the user is finished manipulating the sub blocks, one should always call 
+\begin{verbatimtab}[4]
+	PetscErrorCode MatBlockRestoreSubMatrices( Mat A )
+\end{verbatimtab}
+	
+The block matrix can generate a new compatible sub matrix for a particular location within the block using
+\begin{verbatimtab}[4]
+	PetscErrorCode MatBlockCreateSubMatrix( Mat A, 
+		MatType mtype, PetscInt r, PetscInt c, Mat *sA )
+\end{verbatimtab}
+The sub matrix \code{sA} can only be generated if the block already contains at least one sub matrix within row \code{r}, and column \code{c}.
+
+\section{Block preconditioners}
+	         
+	We allow three basic types of block preconditioners to be defined; diagonal, upper triangular and lower triangular, i.e.
+\begin{equation}
+\hat{\m A}_D = 
+\begin{pmatrix}
+	\hat{\m A}_{11}		& 				& \\
+					&\ddots			& \\
+					&		 		&\hat{\m A}_{MN} \\
+\end{pmatrix},  \quad
+\hat{\m A}_U = 
+\begin{pmatrix}
+	\hat{\m A}_{11}		&\dots 		&\m A_{1N} \\
+					&\ddots		&\vdots \\
+					&		 	&\hat{\m A}_{MN} \\
+\end{pmatrix}, \quad
+\hat{\m A}_L = 
+\begin{pmatrix}
+	\hat{\m A}_{11}		& 			& \\
+	\vdots			&\ddots		& \\
+	\m A_{M1}		&\dots 		&\hat{\m A}_{MN} \\
+\end{pmatrix}.
+\label{block_pc_def}
+\end{equation}
+Assuming we have the block matrix \code{Ab} available, a block preconditioner can be created via
+\begin{verbatimtab}[4]
+	PC pcA;
+	
+	PCCreate( PETSC_COMM_WORLD, &pcA );
+	PCSetOperators( pcA, Ab, Ab, SAME_NONZERO_PATTERN );
+	PCSetType( pcA, "block" );
+\end{verbatimtab}
+To facilitate inversion of the diagonal, blocks, the block preconditioner contains a \code{KSP} for each diagonal entry. By default, the operator used by the $i^{th}$ Krylov method is taken from $(i,i)$ sub matrix of the preconditioner matrix passed to the call \code{PCSetOperators()} used to configure the block preconditioner. Each Krylov method on the diagonal is by default, set to be of type ``preonly'' and will use the option prefix  \code{pc\_block\_Qii} where $i$ corresponds to the row index. Note that the $i$ used in the options prefix uses indices starting from 1. For example \code{-pc\_block\_Q11\_pc\_type ilu} will configure the first KSP in \eqref{block_pc_def} to be $ILU(0)$. The default ksp type can easily be over ridden from the command line via \code{-pc\_block\_Q11\_ksp\_type cg} for example.
+
+The \code{KSP} along the diagonal can be manipulated using the functions
+\begin{verbatimtab}[4]
+	PetscErrorCode PCBlockGetSubKSP( PC pc, PetscInt i, KSP *sub_ksp )
+	PetscErrorCode PCBlockSetSubKSP( PC pc, PetscInt i, KSP sub_ksp )
+\end{verbatimtab}
+Should the $(i,i)$ sub matrix in the preconditioner matrix be null, we can use \code{PCBlockSetSubKSP()} to define a suitable preconditioner for the $(i,i)$ component of the diagonal.
+
+The default block preconditioner is diagonal. This can be changed 
+\begin{verbatimtab}[4]
+	PetscErrorCode PCBlockSetBlockType( PC pc, PCBlockType bt )
+\end{verbatimtab}
+where 
+\begin{verbatimtab}[4]
+	bt = { PC_BLOCK_DIAGONAL, PC_BLOCK_UPPER, PC_BLOCK_LOWER } 
+\end{verbatimtab}
+The textual name of the block type can be obtained using 
+\begin{verbatimtab}[4]
+	PetscErrorCode PCBlockGetBlockType( PC pc, const char **bt )
+\end{verbatimtab}
+The block type can be changed from via the command line argument \code{-pc\_block\_type TYPE}, where \code{TYPE} is one of \code{ <diagonal, upper, lower>}. 
+
+
+%\begin{verbatim}
+%	PetscErrorCode PCBlockGetSubMatrix( PC pc, PetscInt i, PetscInt j, Mat *sub_mat );
+%	PetscErrorCode PCBlockSetSubMatrix( PC pc, PetscInt i, PetscInt j, Mat sub_mat );
+%\end{verbatim}
+
+
+
+
+\section{Schur complement}
+
+	Given a $2 \times 2$ block system, 
+\begin{equation}
+\begin{pmatrix}
+	\m A_{11}	&\m A_{12} \\
+	\m A_{21}	&\m A_{22}
+\end{pmatrix}
+\begin{pmatrix}
+	\v x_{1}	\\
+	\v x_{2}	
+\end{pmatrix}
+=
+\begin{pmatrix}
+	\v b_{1}	\\
+	\v b_{2}	
+\end{pmatrix},
+\end{equation}
+the following schur complement systems can be constructed
+\begin{equation}
+	\m S_{11} \v x_2 = \hat{\v f_1}, 
+	\quad \mbox{where } \m S_{11} = \m A_{21} \m A_{11}^{-1} \m A_{12} - \m A_{22}, 
+	\quad \hat{\v f_1} = \m A_{21} \m A_{11}^{-1} \v b_1 - \v b_2,
+	\label{schur_11}
+\end{equation}
+and
+\begin{equation}
+	\m S_{22} \v x_1 = \hat{\v f_2}, 
+	\quad \mbox{where } \m S_{22} = \m A_{12} \m A_{22}^{-1} \m A_{21} - \m A_{11}, 
+	\quad \hat{\v f_2} = \m A_{12} \m A_{22}^{-1} \v b_2 - \v b_1.
+	\label{schur_22}
+\end{equation}
+We note that this definition of the Schur complement negative of what is commonly used, thus we allow the system in \eqref{schur_11} and \eqref{schur_22} to be scaled by a parameter $\alpha$.
+
+Given the four matrices \code{A11, A12, A21, A22}, we define a matrix of type ``schur'' via
+\begin{verbatimtab}[4]
+	PetscErrorCode MatCreateSchur( MPI_Comm comm, 
+		Mat A11, Mat A12, Mat A21, Mat A22, 
+		PetscScalar alpha, MatSchurComplementType type, Mat *A )
+\end{verbatimtab}
+where the type of Schur complement ($\m S_{11}$ or $\m S_{22}$) is selected by selecting from 
+\begin{verbatimtab}[4]
+	MatSchurComplementType = { "MatSchur_A11", "MatSchur_A22" }
+\end{verbatimtab}
+A Schur complement matrix can also be constructed from a $2 \times 2$ block matrix (rather than having to specify the individual operators) via;
+\begin{verbatimtab}[4]
+	PetscErrorCode MatCreateSchurFromBlock( Mat bmat, PetscScalar alpha, 
+		MatSchurComplementType type, Mat *A )
+\end{verbatimtab}
+We support a null $(2,2)$ block when using ``MatSchur\_A11'',  and a null $(1,1)$ when using ``MatSchur\_A22''.
+
+The vectors $\hat{\v f_1}$ and $\hat{\v f_2}$ can be constructed using the functions
+\begin{verbatimtab}[4]
+	PetscErrorCode MatSchurApplyReductionToVec( Mat A, Vec f1, Vec f2, Vec subb )
+	PetscErrorCode MatSchurApplyReductionToVecFromBlock( Mat A, Vec F, Vec subb )
+\end{verbatimtab}
+The vector \code{subb} needs to be create by the user. The simplest way to do this is to call \code{MatGetVecs(schur, PETSC\_NULL, \&subb )} on the schur complement matrix. 
+Presently these functions do not support using null vectors. In the future I will add support to allow a null  $b_2$ block when using ``MatSchur\_A11'',  and a null $b_1$ when using ``MatSchur\_A22''.
+
+The matrix type ``schur'' is a matrix free representation of the Schur complement. This representation avoids the need to explicitly construct the inverse operator $\m A_{11}^{-1}$ or $\m A_{22}^{-1}$. To define the operation $\v y = \m S \v x$, we define the inverse via a Krylov method. The \code{KSP} used to define the inverse operator acting on a vector ($\v y = \m A_{11}^{-1} \v x$ or $\v y = \m A_{22}^{-1} \v x$) can be manipulated using the following functions.
+\begin{verbatimtab}[4]
+	PetscErrorCode MatSchurGetKSP( Mat A, KSP *ksp )
+	PetscErrorCode MatSchurSetKSP( Mat A, KSP ksp )
+\end{verbatimtab}
+By default, the \code{KSP} used to define the inverse operator will have the option prefix \code{"mat\_schur\_"}. Thus to configure this object from the command line to be of type ``cg'' for example, one would do \code{-mat\_schur\_ksp\_type cg}.
+
+Other interface to the Schur complement matrix are shown below
+\begin{verbatimtab}[4]
+	PetscErrorCode MatSchurGetSchurComplementType( Mat A, 
+		MatSchurComplementType *type )
+	PetscErrorCode MatSchurSetSchurComplementType( Mat A, 
+		MatSchurComplementType type )
+
+	PetscErrorCode MatSchurGetScalar( Mat A, PetscScalar *alpha )
+	PetscErrorCode MatSchurSetScalar( Mat A, PetscScalar alpha )
+\end{verbatimtab}
+
+
+
+\section{Miscellaneous Extensions}
+
+\subsection*{MatSymTrans}
+Description: Allows for the symbolic definition of the transpose of a matrix. 
+\begin{itemize}
+	\item \code{PetscErrorCode MatCreateSymTrans( MPI\_Comm comm, Mat A, Mat *symAt )}. \newline
+	Given $\m A$, this will create a new operator which symbolically defines $\m A^T$. Note that the operation \code{MatMult(symAt,x,y)} is identical to \code{MatMultTranspose(A,x,y)}.
+	\item \code{PetscErrorCode MatSymTransGetOperator( Mat symAt, Mat *A )} \newline
+	Returns the original operator in \code{A}
+	\item \code{PetscErrorCode MatSymTransGetExplicitOperator( Mat symAt, Mat *A )} \newline
+	Numerically constructs the transpose operator. This will probably never be used. If you actually require the $(i,j)$ components of the transpose operator, you might have been better off just using \code{MatTranspose}.
+\end{itemize}
+
+\section{Examples}
+
+	\subsection{Schur Complement Reduction (SCR) to solve Stokes equations}
+The discrete form of the Stokes equations will be denoted as
+\begin{equation}
+\begin{pmatrix}
+	\m A		&\m G \\
+	\m G^T	&\m 0
+\end{pmatrix}
+\begin{pmatrix}
+	\v u	\\
+	\v p	
+\end{pmatrix}
+=
+\begin{pmatrix}
+	\v f	\\
+	\v h	
+\end{pmatrix}.
+\end{equation}
+We will solve $\m G^T \m A^{-1} \m G \v p = \m G^T \m A^{-1} \v f - \v h$ for the pressure and then solve $\m A \v u = \v f - \m G \v p$ for velocity.
+In this example we will assume that the matrices \code{A,G} and vectors \code{u,p,f,h} have been provided by the user. We will assume that $u,p$ may contain a nonzero value which we will use as our initial guess.
+
+\begin{verbatimtab}[4]
+	Mat S, Gtrans;
+	Vec fhat, fstar;
+	KSP S_ksp, inner_ksp;
+	PC S_pc, inner_pc;
+
+	/* Represent the (2,1) block as symbolic, G^t */
+	MatCreateSymTrans( PETSC_COMM_WORLD, G, &Gtrans );
+
+	/* Define a schur complement matrix */	
+	MatCreateSchur( PETSC_COMM_WORLD, A, G, Gtrans, PETSC_NULL,  
+		PETSC_NULL, "MatSchur_A11", &S );
+	 MatAssemblyBegin( S, MAT_FINAL_ASSEMBLY );
+	 MatAssemblyEnd( S, MAT_FINAL_ASSEMBLY );
+
+	/* Configure definition of A^{-1} */
+	MatSchurGetKSP( S, &inner_ksp );
+	KSPSetType( inner_ksp, "preonly" );
+	KSPGetPC( inner_ksp, &inner_pc );
+	PCSetType( inner_pc, "lu" );
+
+	/* Build the SCR rhs */
+	MatGetVecs( S, PETSC_NULL, &fhat );
+	MatSchurApplyReductionToVec( S, f,h, fhat );	
+
+	/* Build solver for schur complement */
+	KSPCreate( PETSC_COMM_WORLD, &S_ksp );
+	KSPSetOperators( S_ksp, S, S, SAME_NONZERO_PATTERN );
+	KSPGetPC( S_ksp, &S_pc );
+	/* configure solver */
+	KSPSetType( S_ksp, "cg" );
+	PCSetType( S_pc, "none" );
+	KSPSetInitialGuessNonzero( S_ksp, PETSC_TRUE );
+	
+	/* Solve for pressure */
+	KSPSolve( S_ksp, fhat, p );
+	
+	/* Solve for velocity */
+	MatGetVecs( A, PETSC_NULL, &fstar );
+	MatMult( G, p, fstar );
+	VecAYPX( fstar, -1.0, f );  /* fstar <- -fstar + f */
+
+	MatSchurGetKSP( S, &inner_ksp );
+	KSPSetInitialGuessNonzero( inner_ksp, PETSC_TRUE );
+	KSPSolve( inner_ksp, fstar, u );	
+
+	/* tidy up */
+	VecDestroy( fstar );
+	VecDestroy( fhat );
+	MatDestroy( S );
+	KSPDestroy( S_ksp );
+\end{verbatimtab}
+
+	\subsection{Elman style coupled block solve for Stokes equations}
+The discrete form of the Stokes equations will be denoted as
+\begin{equation}
+\begin{pmatrix}
+	\m A		&\m G \\
+	\m G^T	&\m 0
+\end{pmatrix}
+\begin{pmatrix}
+	\v u	\\
+	\v p	
+\end{pmatrix}
+=
+\begin{pmatrix}
+	\v f	\\
+	\v h	
+\end{pmatrix}.
+\end{equation}
+We wish to solve the stokes flow equations in a fully coupled fashion. The system will be right preconditioned with an upper triangular matrix denoted as
+\begin{equation}
+\hat{\mathcal A}^{-1} = 
+\begin{pmatrix}
+	\hat{\m A}		&\m G \\
+	\m 0			&-\hat{\m S}
+\end{pmatrix}^{-1},
+\end{equation}
+where $\hat{\m S}$ is an approximate Schur complement.
+
+In this example we will assume that the matrices \code{A, G} and vectors \code{u,p,f,h} have been provided by the user. We also assume that a matrix approximating the Schur complement \code{s\_hat} has been provided and the both $u,p$ may contain a nonzero value which we will use our initial guess.
+
+\begin{verbatimtab}[4]
+	Mat stokes_A, Gtrans;
+	Vec stokes_x, stokes_b;
+	KSP stokes_ksp, sub_ksp, ksp_Q22;
+	PC stokes_pc, sub_pc, pc_Q22;
+
+	/* Build a block system for the Stokes operator */	
+	MatCreate( PETSC_COMM_WORLD, &stokes_A );
+	MatSetSizes( stokes_A, 2,2, 2,2 );
+	MatSetType( stokes_A, "block" );
+
+	/* Represent the (2,1) block as symbolic, G^t */
+	MatCreateSymTrans( PETSC_COMM_WORLD, G, &Gtrans );
+
+	/* Prescribe sub matrices within the block */
+	MatBlockSetValue( stokes_A, 0,0, A,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
+	MatBlockSetValue( stokes_A, 0,1, G,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
+	MatBlockSetValue( stokes_A, 1,0, Gtrans, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
+	/* Assemble */
+	MatAssemblyBegin( stokes_A, MAT_FINAL_ASSEMBLY );
+	MatAssemblyEnd( stokes_A, MAT_FINAL_ASSEMBLY );
+	
+	/* Create compatible block vectors for solution and rhs */
+	MatGetVecs( stokes_A, &stokes_x, &stokes_b );
+
+	/* Prescribe sub vectors within the rhs */
+	VecBlockSetValue( stokes_b, 0, f, INSERT_VALUES );
+	VecBlockSetValue( stokes_b, 1, h, INSERT_VALUES );
+	VecAssemblyBegin( stokes_b );
+	VecAssemblyEnd( stokes_b );
+
+	/* Prescribe sub vectors within the solution */
+	VecBlockSetValue( stokes_x, 0, u, INSERT_VALUES );
+	VecBlockSetValue( stokes_x, 1, p, INSERT_VALUES );
+	VecAssemblyBegin( stokes_x );
+	VecAssemblyEnd( stokes_x );
+	
+	/* Create a solver */
+	KSPCreate( PETSC_COMM_WORLD, &stokes_ksp );
+	/* Name the ksp for the fully coupled block operator */
+	KSPSetOptionsPrefix( stokes_ksp, "fc_);  
+	KSPSetOperators( stokes_ksp, stokes_A, stokes_A, SAME_NONZERO_PATTERN );
+	KSPSetType( stokes_ksp, "fgmres" );
+	
+	/* configure stokes pc to be block */
+	KSPGetPC( stokes_ksp, &stokes_pc );
+	PCSetType( stokes_pc, "block" );
+	KSPSetInitialGuessNonzero( stokes_ksp, PETSC_TRUE );
+	KSPSetFromOptions( stokes_ksp );
+
+	/* Configure sub ksp's on the block pc */
+
+	/* Q11 will be an iterative solve */
+	PCBlockGetSubKSP( stokes_pc, 0, &sub_ksp );	
+	KSPGetPC( sub_ksp, &sub_pc );
+	KSPSetType( sub_ksp, "cg" );
+	PCSetType( sub_pc, "ilu" );
+
+	/* Q22 will be defined as LU applied to -s_hat */	
+	MatScale( s_hat, -1.0 );
+	KSPCreate( PETSC_COMM_WORLD, &ksp_Q22 );
+	/* give Q22 a name to enable unique cmd. line configuration */
+	KSPSetOptionsPrefix( ksp_Q22, "Q22_);  
+	KSPSetOperators( ksp_Q22, s_hat, s_hat, SAME_NONZERO_PATTERN );
+	KSPSetType( ksp_Q22, "preonly" );
+	KSPGetPC( ksp_Q22, &pc_Q22 );
+	PCSetType( pc_Q22, "lu" );
+	KSPSetFromOptions( ksp_Q22 );
+	
+	PCBlockSetSubKSP( stokes_pc, 1, &sub_ksp );	
+	/* Hand control back to stokes_pc */
+	KSPDestroy( ksp_Q22 );  
+
+	/* perform solve */
+	KSPSolve( stokes_ksp, stokes_b, stokes_x );
+
+	/* tidy up */
+	VecDestroy( stokes_x );
+	VecDestroy( stokes_b );
+	MatDestroy( stokes_A );
+	MatDestroy( Gtrans );
+	KSPDestroy( stokes_ksp );
+\end{verbatimtab}
+
+It should be stressed that when the block preconditioner is created the operators (\code{Amat,Pmat}) are used to construct each the operators for each $(i,i)$ KSP. Thus in this example, initially the KSP at (2,2) block within \code{stokes\_pc} will have NULL operators for both (\code{Amat,Pmat}). This is not an issue provided that a KSP is created and  suitable operators are set for \code{Amat,Pmat} and this KSP replaces the NULL operator KSP within the block preconditioner. This was the approach adopted here. 
+When you do not have an explicit representation of $\hat{\m S}$, this approach should be followed.
+
+When $\hat{\m S}$ is an explicitly formed,  a cleaner approach would be to define a different block matrix for the block preconditioner. Such was the situation in the example above. In this case, assuming we still have access to \code{s\_hat} and \code{G}, in the above example one could have done;
+\begin{verbatimtab}[4]
+	Mat stokes_Pmat;
+
+	/* Build a block system for the Stokes block precondioning operator */	
+	MatCreate( PETSC_COMM_WORLD, &stokes_Pmat );
+	MatSetSizes( stokes_Pmat, 2,2, 2,2 );
+	MatSetType( stokes_Pmat, "block" );
+
+	/* Prescribe sub matrices within the block */
+	MatBlockSetValue( stokes_Pmat, 0,0, A,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
+	MatBlockSetValue( stokes_Pmat, 0,1, G,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
+
+	/* set the operator defining the matrix for the Schur complement preconditioner */
+	MatScale( s_hat, -1.0 );
+	MatBlockSetValue( stokes_Pmat, 1,1, s_hat, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
+
+	/* Assemble */
+	MatAssemblyBegin( stokes_Pmat, MAT_FINAL_ASSEMBLY );
+	MatAssemblyEnd( stokes_Pmat, MAT_FINAL_ASSEMBLY );
+	.
+	.
+	.
+	/* Create a solver for the fully coupled block system*/
+	KSPCreate( PETSC_COMM_WORLD, &stokes_ksp );
+	/* Name the ksp for the fully coupled block operator */
+	KSPSetOptionsPrefix( stokes_ksp, "fc_" );  
+	KSPSetOperators( stokes_ksp, stokes_A, stokes_Pmat, DIFFERENT_NONZERO_PATTERN );
+	.
+	.
+\end{verbatimtab}
+I
+
+
+
+%\subsection{Construct a crude preconditioner for $\m S$}
+%
+%	We will define an approximation to $\m S_{11} \approx \hat{\m S}_{11} = \m G^T \diag{K}^{-1} \mG$.
+
+
+
+\bibliographystyle{acm}
+\bibliography{manual}
+
+
+
+\end{document}

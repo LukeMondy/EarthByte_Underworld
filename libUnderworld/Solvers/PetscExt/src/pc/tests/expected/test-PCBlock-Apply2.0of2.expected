@@ -1,0 +1,156 @@
+test_pc_block_apply 
+PC Object:(sw_)
+  type: block
+    Block size:   2 x 2 
+    BlockPC type: upper 
+    PCSetUp_PCBlockApplyTranspose not yet called. 
+    PCBlock structure: 
+    [TYPE] (i,j) - (Name / ptr), type=, rows=, cols=
+      [KSP/PC]  (0,0) - (sw_pc_block_Q11_), type=preonly/bjacobi 
+      [Mat] (0,1) - (0x101835810), type=mpiaij, rows=3, cols=2 
+      [Mat] (1,0) - (PETSC_NULL) 
+      [KSP/PC]  (1,1) - (sw_pc_block_Q22_), type=preonly/bjacobi 
+    PCBlock contents: 
+    (i,j) - [sub TYPE]: (Name / ptr),  [parent pc]: (Name / ptr) 
+        -------------------- Begin ( 0x101824010 ) --------------------
+        (0,0) - [sub pc]: (sw_pc_block_Q11_), [parent pc]: sw_ 
+        KSP Object:(sw_pc_block_Q11_)
+          type: preonly
+          maximum iterations=10000, initial guess is zero
+          tolerances:  relative=1e-05, absolute=1e-50, divergence=10000
+          left preconditioning
+          using PRECONDITIONED norm type for convergence test
+        PC Object:(sw_pc_block_Q11_)
+          type: bjacobi
+            block Jacobi: number of blocks = 2
+            Local solve is same for all blocks, in the following KSP and PC objects:
+          KSP Object:(sw_pc_block_Q11_sub_)
+            type: preonly
+            maximum iterations=10000, initial guess is zero
+            tolerances:  relative=1e-05, absolute=1e-50, divergence=10000
+            left preconditioning
+            using PRECONDITIONED norm type for convergence test
+          PC Object:(sw_pc_block_Q11_sub_)
+            type: ilu
+              ILU: out-of-place factorization
+              0 levels of fill
+              tolerance for zero pivot 1e-12
+              using diagonal shift to prevent zero pivot
+              matrix ordering: natural
+              factor fill ratio given 1, needed 1
+                Factored matrix follows:
+                  Matrix Object:
+                    type=seqaij, rows=2, cols=2
+                    package used to perform factorization: petsc
+                    total: nonzeros=2, allocated nonzeros=10
+                      not using I-node routines
+            linear system matrix = precond matrix:
+            Matrix Object:
+              type=seqaij, rows=2, cols=2
+              total: nonzeros=2, allocated nonzeros=10
+                not using I-node routines
+          linear system matrix = precond matrix:
+          Matrix Object:
+            type=mpiaij, rows=3, cols=3
+            total: nonzeros=3, allocated nonzeros=21
+              not using I-node (on process 0) routines
+        --------------------   End ( 0x101824010 ) --------------------
+
+        -------------------- Begin ( 0x101835810 ) --------------------
+        (0,1) - [sub mat]: (0x101835810), [parent pc]: sw_ 
+        Matrix Object:
+          type=mpiaij, rows=3, cols=2
+          total: nonzeros=6, allocated nonzeros=21
+            using I-node (on process 0) routines: found 1 nodes, limit used is 5
+        --------------------   End ( 0x101835810 ) --------------------
+
+        (1,0) - [sub mat]: (PETSC_NULL), [parent pc]: sw_ 
+        
+        -------------------- Begin ( 0x101824610 ) --------------------
+        (1,1) - [sub pc]: (sw_pc_block_Q22_), [parent pc]: sw_ 
+        KSP Object:(sw_pc_block_Q22_)
+          type: preonly
+          maximum iterations=10000, initial guess is zero
+          tolerances:  relative=1e-05, absolute=1e-50, divergence=10000
+          left preconditioning
+          using PRECONDITIONED norm type for convergence test
+        PC Object:(sw_pc_block_Q22_)
+          type: bjacobi
+            block Jacobi: number of blocks = 2
+            Local solve is same for all blocks, in the following KSP and PC objects:
+          KSP Object:(sw_pc_block_Q22_sub_)
+            type: preonly
+            maximum iterations=10000, initial guess is zero
+            tolerances:  relative=1e-05, absolute=1e-50, divergence=10000
+            left preconditioning
+            using PRECONDITIONED norm type for convergence test
+          PC Object:(sw_pc_block_Q22_sub_)
+            type: ilu
+              ILU: out-of-place factorization
+              0 levels of fill
+              tolerance for zero pivot 1e-12
+              using diagonal shift to prevent zero pivot
+              matrix ordering: natural
+              factor fill ratio given 1, needed 1
+                Factored matrix follows:
+                  Matrix Object:
+                    type=seqaij, rows=1, cols=1
+                    package used to perform factorization: petsc
+                    total: nonzeros=1, allocated nonzeros=5
+                      not using I-node routines
+            linear system matrix = precond matrix:
+            Matrix Object:
+              type=seqaij, rows=1, cols=1
+              total: nonzeros=1, allocated nonzeros=5
+                not using I-node routines
+          linear system matrix = precond matrix:
+          Matrix Object:
+            type=mpiaij, rows=2, cols=2
+            total: nonzeros=2, allocated nonzeros=14
+              not using I-node (on process 0) routines
+        --------------------   End ( 0x101824610 ) --------------------
+
+  linear system matrix = precond matrix:
+  Matrix Object:
+    type=block, rows=2, cols=2
+        MatBlock structure: 
+        (i,j) - (Name / ptr), type=, rows=, cols=
+          (0,0) - (0x10183e410), type=block, rows=2, cols=2 
+            (0,0) - (0x10183aa10), type=mpiaij, rows=3, cols=3 
+            (0,1) - (0x101835810), type=mpiaij, rows=3, cols=2 
+            (1,0) - (PETSC_NULL) 
+            (1,1) - (0x101831410), type=mpiaij, rows=2, cols=2 
+        Block structure: DEFAULT_BLOCK 
+        MatBlock contents: 
+        (i,j) - [sub mat]: (Name / ptr) , [parent mat]: (Name / ptr) 
+            -------------------- Begin ( 0x10183aa10 ) --------------------
+            (0,0) - [sub mat]: (0x10183aa10), [parent mat]: 0x10183e410 
+            Matrix Object:
+              type=mpiaij, rows=3, cols=3
+              total: nonzeros=3, allocated nonzeros=21
+                not using I-node (on process 0) routines
+            --------------------   End ( 0x10183aa10 ) --------------------
+
+            -------------------- Begin ( 0x101835810 ) --------------------
+            (0,1) - [sub mat]: (0x101835810), [parent mat]: 0x10183e410 
+            Matrix Object:
+              type=mpiaij, rows=3, cols=2
+              total: nonzeros=6, allocated nonzeros=21
+                using I-node (on process 0) routines: found 1 nodes, limit used is 5
+            --------------------   End ( 0x101835810 ) --------------------
+
+            (1,0) - [sub mat]: (PETSC_NULL), [parent mat]: 0x10183e410 
+
+            -------------------- Begin ( 0x101831410 ) --------------------
+            (1,1) - [sub mat]: (0x101831410), [parent mat]: 0x10183e410 
+            Matrix Object:
+              type=mpiaij, rows=2, cols=2
+              total: nonzeros=2, allocated nonzeros=14
+                not using I-node (on process 0) routines
+            --------------------   End ( 0x101831410 ) --------------------
+
+-1340
+-21000
+-286000
+32
+45

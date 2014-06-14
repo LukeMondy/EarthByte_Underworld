@@ -1,0 +1,3 @@
+block_type: upper 
+(1,1) pc_type: bjacobi 
+(2,2) pc_type: lu 

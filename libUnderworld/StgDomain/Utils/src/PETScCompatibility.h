@@ -39,13 +39,28 @@
 
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 2 ) )
   	#define Stg_SETERRQ( arg1, arg2 ) SETERRQ( PETSC_COMM_SELF, arg1, arg2 )
-  	#define Stg_SETERRQ1( arg1, arg2, arg3 ) SETERRQ2( PETSC_COMM_SELF, arg1, arg2, arg3 )
+  	#define Stg_SETERRQ1( arg1, arg2, arg3 ) SETERRQ1( PETSC_COMM_SELF, arg1, arg2, arg3 )
   	#define Stg_SETERRQ2( arg1, arg2, arg3, arg4 ) SETERRQ2( PETSC_COMM_SELF, arg1, arg2, arg3, arg4 )
+    #define Stg_SETERRQ3( arg1, arg2, arg3, arg4, arg5 ) SETERRQ3( PETSC_COMM_SELF, arg1, arg2, arg3, arg4, arg5 )
   	#define Stg_MatZeroRows( arg1, arg2, arg3, arg4 ) MatZeroRows( arg1, arg2, arg3, arg4, NULL, NULL )
   	#define ISCreateGeneralWithArray( arg1, arg2, arg3, arg4 ) ISCreateGeneral( arg1, arg2, arg3, PETSC_USE_POINTER, arg4 )
   	#define PetscTruth PetscBool
   	#define PetscOptionsGetTruth PetscOptionsGetBool
+    #define PetscOptionsTruth PetscOptionsBool
   	#define PETSC_VIEWER_BINARY PETSCVIEWERBINARY
+    #define PETSC_VIEWER_ASCII PETSCVIEWERASCII
+    #define VecSqrt VecSqrtAbs
+    #define PetscPublishAll(v)  0
+    #define PetscViewerASCIIMonitorCreate(a1,a2,a3,a4) 0
+    #define PetscViewerASCIIMonitorDestroy(args) 0
+    #define PetscViewerASCIIMonitor PetscViewer
+    #define PetscViewerASCIIMonitorPrintf PetscViewerASCIIPrintf
+    #define KSP_NORM_NO KSP_NORM_NONE
+    #define KSPSetPreconditionerSide KSPSetPCSide
+    #define KSPGetPreconditionerSide KSPGetPCSide
+    #if !defined(EXTERN)
+    #define EXTERN extern
+    #endif
    #if ( PETSC_VERSION_MINOR > 2  )
       #define Stg_MatCreateAIJ MatCreateAIJ
       #define Stg_PetscObjectTypeCompare PetscObjectTypeCompare
@@ -63,6 +78,7 @@
    #define Stg_SETERRQ SETERRQ
    #define Stg_SETERRQ1 SETERRQ1
    #define Stg_SETERRQ2 SETERRQ2
+   #define Stg_SETERRQ3 SETERRQ3
    #define Stg_MatZeroRows MatZeroRows
    #define Stg_MatCreateAIJ MatCreateMPIAIJ
    #define Stg_PetscObjectTypeCompare PetscTypeCompare
