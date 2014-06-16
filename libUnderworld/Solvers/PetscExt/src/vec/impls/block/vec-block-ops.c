@@ -54,7 +54,12 @@
 
 #include <petsc.h>
 #include <petscvec.h>
-#include <private/vecimpl.h>
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include <petsc-private/vecimpl.h>
+#else
+  #include <private/vecimpl.h>
+#endif
 
 #include "vec_block_impl.h"
 #include "private/vec/petscvec-block.h"
@@ -142,7 +147,8 @@ PetscErrorCode VecDuplicate_Block( Vec x, Vec *y )
 	VecCreate( ((PetscObject)x)->comm, &_y );
 	VecSetSizes( _y, bx->nb, bx->nb );
 	VecSetType( _y, "block" );
-	
+	VecSetUp( _y );
+
 	//by = (Vec_Block*)_y->data;
 	for( i=0; i<bx->nb; i++ ) {
 		VecDuplicate( bx->v[i], &Y );
@@ -468,7 +474,7 @@ void __vec_max_block( Vec x, PetscInt *cnt, PetscInt *p, PetscReal *max )
 	PetscReal    _entry_val;
 	
 	
-	PetscTypeCompare( (PetscObject)x, "block", &isblock );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &isblock );
 	if( isblock == PETSC_FALSE ) {
 		/* Not block */
 		VecMax( x, &_entry_loc, &_entry_val );
@@ -523,7 +529,7 @@ void __vec_min_block( Vec x, PetscInt *cnt, PetscInt *p, PetscReal *min )
 	PetscReal    _entry_val;
 	
 	
-	PetscTypeCompare( (PetscObject)x, "block", &isblock );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &isblock );
 	if( isblock == PETSC_FALSE ) {
 		/* Not block */
 		VecMin( x, &_entry_loc, &_entry_val );
@@ -567,7 +573,7 @@ PetscErrorCode VecMin_Block( Vec x, PetscInt *p, PetscReal *min )
 void print_vec_structure( Vec x, int parent_index, PetscViewer viewer )
 {
 	Vec_Block	*bx;
-	const VecType		type;
+	VecType		type;
 	PetscInt	m;
 	int i;
 	const char *name;
@@ -579,7 +585,7 @@ void print_vec_structure( Vec x, int parent_index, PetscViewer viewer )
 	
 	
 	is_block = PETSC_FALSE;
-	PetscTypeCompare( (PetscObject)x, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &is_block );
 	if( is_block  == PETSC_FALSE ) {
 		VecGetSize( x, &m );
 		
@@ -611,7 +617,7 @@ void print_vec_structure( Vec x, int parent_index, PetscViewer viewer )
 void print_vec_contents( Vec x, Vec parent_vec, PetscInt pid, PetscViewer viewer )
 {
 	Vec_Block	*bx;
-	const VecType		type;
+	VecType		type;
 	PetscInt	m;
 	int i;
 	const char *name, *pname;
@@ -626,7 +632,7 @@ void print_vec_contents( Vec x, Vec parent_vec, PetscInt pid, PetscViewer viewer
 	
 	VecGetType( x, &type );
 	is_block = PETSC_FALSE;
-	PetscTypeCompare( (PetscObject)x, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &is_block );
 	
 	if( is_block  == PETSC_FALSE ) {
 		VecGetSize( x, &m );
@@ -674,7 +680,7 @@ PetscErrorCode VecView_Block( Vec x, PetscViewer viewer )
 	Vec_Block *bx = (Vec_Block*)x->data;
 	PetscTruth isascii;
 		
-	PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
+	Stg_PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
 	if (isascii) {
 
 		PetscViewerASCIIPrintf( viewer, "Vector Object:\n");

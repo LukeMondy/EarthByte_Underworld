@@ -116,7 +116,7 @@ void test_solve( void )
 	
 	/* Create block matrix */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	MatGetType( A, &type );
 	

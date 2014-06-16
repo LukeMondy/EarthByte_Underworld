@@ -49,7 +49,11 @@
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
-#include <private/matimpl.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/matimpl.h>
+#else
+  #include <private/matimpl.h>
+#endif
 
 #include "petscext_helpers.h"
 

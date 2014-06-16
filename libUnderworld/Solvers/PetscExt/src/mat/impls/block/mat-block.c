@@ -54,8 +54,15 @@
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
-#include <private/vecimpl.h>
-#include <private/matimpl.h>
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/vecimpl.h>
+  #include <petsc-private/matimpl.h>
+  #include <petsctime.h>
+#else
+  #include <private/vecimpl.h>
+  #include <private/matimpl.h>
+#endif
 
 #include "src/mat/impls/block/mat_block_impl.h"
 #include "src/mat/impls/block/mat-block-ops.h"
@@ -162,28 +169,43 @@ PetscErrorCode MatSetUp_Block( Mat A )
 	PetscFunctionReturn(0);
 }
 
+/* ops->setsizes is removed in petsc-3.3 so now use MatSetSizes_Block directly. */
+/* should still work with versions 3.1 3.2 */
 #undef __FUNCT__  
 #define __FUNCT__ "MatSetSizes_Block"
 PetscErrorCode  MatSetSizes_Block( Mat A, PetscInt m, PetscInt n, PetscInt M, PetscInt N )
 {
-	Mat_Block *ctx = (Mat_Block*)A->data;
+  Mat_Block *ctx = (Mat_Block*)A->data;
+
+  PetscFunctionBegin;
+
+  PetscValidHeaderSpecific(A,MAT_COOKIE,1); 
+  if (M > 0 && m > M) Stg_SETERRQ2(PETSC_ERR_ARG_INCOMP,"Local column size %D cannot be larger than global column size %D",m,M);
+  if (N > 0 && n > N) Stg_SETERRQ2(PETSC_ERR_ARG_INCOMP,"Local row size %D cannot be larger than global row size %D",n,N);
+ 
 	
+  if( M == PETSC_DETERMINE ) {
+    Stg_SETERRQ( PETSC_ERR_ARG_INCOMP, "MatBlock: Must specify global row size of matrix." );
+  }
+  if( N == PETSC_DETERMINE ) {
+    Stg_SETERRQ( PETSC_ERR_ARG_INCOMP, "MatBlock: Must specify global col size of matrix." );
+  }
 	
-	PetscFunctionBegin;
-	
-	if( M == PETSC_DETERMINE ) {
-		Stg_SETERRQ( PETSC_ERR_ARG_INCOMP, "MatBlock: Must specify global row size of matrix." );
-	}
-	if( N == PETSC_DETERMINE ) {
-		Stg_SETERRQ( PETSC_ERR_ARG_INCOMP, "MatBlock: Must specify global col size of matrix." );
-	}
-	
-	ctx->nr = M;
-	ctx->nc = N;
-	
-	MatSetUp_Block( A );
-	
-	PetscFunctionReturn(0);
+  ctx->nr = M;
+  ctx->nc = N;
+  
+
+  if ((A->rmap->n >= 0 || A->rmap->N >= 0) && (A->rmap->n != m || A->rmap->N != M)) Stg_SETERRQ4(PETSC_ERR_SUP,"Cannot change/reset row sizes to %D local %D global after previously setting them to %D local %D global",m,M,A->rmap->n,A->rmap->N);
+  if ((A->cmap->n >= 0 || A->cmap->N >= 0) && (A->cmap->n != n || A->cmap->N != N)) Stg_SETERRQ4(PETSC_ERR_SUP,"Cannot change/reset column sizes to %D local %D global after previously setting them to %D local %D global",n,N,A->cmap->n,A->cmap->N);
+
+  A->rmap->n = m;
+  A->cmap->n = n;
+  A->rmap->N = M;
+  A->cmap->N = N;
+
+  MatSetUp_Block( A ); // seemed like this was in wrong order. i.e. A->rmap->N being used before was set in this function.
+
+  PetscFunctionReturn(0);
 }
 
 
@@ -199,7 +221,7 @@ PetscErrorCode MatDestroy_Block( Mat A )
 	PetscFunctionBegin;
 	
 	/* if memory was published with AMS then destroy it */
-	ierr = PetscObjectDepublish(A);CHKERRQ(ierr);
+	ierr = Stg_PetscObjectDepublish(A);CHKERRQ(ierr);
 	
 	/* release the matrices and the place holders */
 	if( vs->m != PETSC_NULL ) {
@@ -726,8 +748,8 @@ PetscErrorCode MergeSubBlocksPreallocateMatAIJ( Mat bA, Mat A )
   PetscTruth has_info, flg;
 
 
-  PetscTypeCompare( (PetscObject)A, MATSEQAIJ, &is_seqaij );
-  PetscTypeCompare( (PetscObject)A, MATSEQAIJ, &is_mpiaij );
+  Stg_PetscTypeCompare( (PetscObject)A, MATSEQAIJ, &is_seqaij );
+  Stg_PetscTypeCompare( (PetscObject)A, MATSEQAIJ, &is_mpiaij );
 
   /* check type is aij */
   if( (is_seqaij==PETSC_FALSE) && (is_mpiaij==PETSC_FALSE) ) {
@@ -775,7 +797,7 @@ PetscErrorCode MergeSubBlocksPreallocateMatAIJ( Mat bA, Mat A )
       row_offset = row_offset + Mm;
     }
 
-    MatSeqAIJSetPreallocation( A, PETSC_NULL, dnnz );
+    MatSeqAIJSetPreallocation( A, 0, dnnz );
   
     PetscFree( dnnz );
   }
@@ -824,7 +846,7 @@ PetscErrorCode MatBlockMergeSubBlocks_Block( Mat Ab, InsertMode addv, const MatT
 	const PetscInt *ranges_A;
 	PetscInt rank, nprocs;
 	PetscTruth is_MATAIJ;
-        const MatType _mtype;	
+    MatType _mtype;	
 	PetscLogDouble tt0,tt1,t0,t1,dt0,dt1,time_mgr,time_msv;
 	PetscTruth has_info,flg;
 	
@@ -906,7 +928,7 @@ PetscErrorCode MatBlockMergeSubBlocks_Block( Mat Ab, InsertMode addv, const MatT
 			_mtype = mtype;
 		}
 
-		PetscTypeCompare( (PetscObject)(*A), _mtype, &is_same );
+		Stg_PetscTypeCompare( (PetscObject)(*A), _mtype, &is_same );
 		if( is_same==PETSC_FALSE ) {
 			Stg_SETERRQ( PETSC_ERR_ARG_NOTSAMETYPE, "Re-used matrix was wrong type" );
 		}
@@ -922,8 +944,10 @@ PetscErrorCode MatBlockMergeSubBlocks_Block( Mat Ab, InsertMode addv, const MatT
 	/* < prealloacte space  > */
 	MatGetOwnershipRanges( (*A), &ranges_A );
 	if(ranges_A==PETSC_NULL){
-		MatSetUp(*A);
-		MatGetOwnershipRanges( (*A), &ranges_A );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+            MatSetUp( *A );
+#endif
+            MatGetOwnershipRanges( (*A), &ranges_A );
 	}
 	MPI_Comm_size( comm, &nprocs );
 	MPI_Comm_rank( comm, &rank );
@@ -1036,11 +1060,11 @@ PetscErrorCode MatBlockMergeSubBlocks_Block( Mat Ab, InsertMode addv, const MatT
 
 
 	if( preallocated == PETSC_FALSE ) {
-		PetscTypeCompare( (PetscObject)(*A), MATSEQAIJ, &is_aij );
+		Stg_PetscTypeCompare( (PetscObject)(*A), MATSEQAIJ, &is_aij );
 		if(is_aij==PETSC_TRUE) {
 			MatSeqAIJSetPreallocation( *A, PETSC_NULL, nnz );
 		}
-		PetscTypeCompare( (PetscObject)(*A), MATMPIAIJ, &is_aij );
+		Stg_PetscTypeCompare( (PetscObject)(*A), MATMPIAIJ, &is_aij );
 		if(is_aij==PETSC_TRUE) {
 			MatMPIAIJSetPreallocation( *A, PETSC_NULL,nnz, PETSC_NULL,onnz );
 		}
@@ -1236,11 +1260,11 @@ PetscErrorCode MatSetOps_Block( struct _MatOps* ops )
 	ops->choleskyfactorsymbolic = 0; // MatCholeskyFactorSymbolic_EMPTY;
 	ops->choleskyfactornumeric  = 0; // MatCholeskyFactorNumeric_EMPTY;
 	/*29*/
-	ops->setuppreallocation = 0; // MatSetUpPreallocation_EMPTY;
+
 	ops->ilufactorsymbolic  = 0; // MatILUFactorSymbolic_EMPTY;
 	ops->iccfactorsymbolic  = 0; // MatICCFactorSymbolic_EMPTY;
-	ops->getarray           = 0; // MatGetArray_EMPTY;
-	ops->restorearray       = 0; // MatRestoreArray_EMPTY;
+
+
 	/*34*/
 	ops->duplicate     = MatDuplicate_Block; // MatDuplicate_EMPTY;
 	ops->forwardsolve  = 0; // MatForwardSolve_EMPTY;
@@ -1260,7 +1284,7 @@ PetscErrorCode MatSetOps_Block( struct _MatOps* ops )
 	ops->diagonalset = 0; // MatDiagonalSet_EMPTY;
 	////ops->dummy       = 0; // MatILUDTFactor_EMPTY;
 	/*49*/
-	ops->setblocksize    = 0; // MatSetBlockSize_EMPTY;
+
 	ops->getrowij        = 0; // MatGetRowIJ_EMPTY;
 	ops->restorerowij    = 0; // MatRestorRowIJ_EMPTY;
 	ops->getcolumnij     = 0; // MatGetColumnIJ_EMPTY;
@@ -1276,10 +1300,10 @@ PetscErrorCode MatSetOps_Block( struct _MatOps* ops )
 	ops->destroy       = MatDestroy_Block;
 	ops->view          = MatView_Block;
 	ops->convertfrom   = 0; // MatConvertFrom_EMPTY;
-	ops->usescaledform = 0; // MatUseScaledForm_EMPTY;
+
 	/*64*/
-	ops->scalesystem             = 0; // MatScaleSystem_EMPTY;
-	ops->unscalesystem           = 0; // MatUnScaleSystem_EMPTY;
+
+
 	ops->setlocaltoglobalmapping = 0; // MatSetLocalToGlobalMapping_EMPTY;
 	ops->setvalueslocal          = 0; // MatSetValuesLocal_EMPTY;
 	ops->zerorowslocal           = 0; // MatZeroRowsLocal_EMPTY;
@@ -1288,7 +1312,7 @@ PetscErrorCode MatSetOps_Block( struct _MatOps* ops )
 	ops->getrowminabs    = 0; // 
 	ops->convert         = MatConvert_Block;
 	ops->setcoloring     = 0; // MatSetColoring_EMPTY;
-	ops->setvaluesadic   = 0; // MatSetValuesAdic_EMPTY;
+
 	/* 74 */
 	ops->setvaluesadifor = 0; // MatSetValuesAdifor_EMPTY;
 	ops->fdcoloringapply              = 0; // MatFDColoringApply_EMPTY;
@@ -1315,16 +1339,16 @@ PetscErrorCode MatSetOps_Block( struct _MatOps* ops )
 	ops->ptapsymbolic    = 0; // MatPtAPSymbolic_EMPTY;
 	/*94*/
 	ops->ptapnumeric              = 0; // MatPtAPNumeric_EMPTY;
-	ops->matmulttranspose         = 0; // MatMatMultTranspose_EMPTY;
-	ops->matmulttransposesymbolic = 0; // MatMatMultTransposeSymbolic_EMPTY;
-	ops->matmulttransposenumeric  = 0; // MatMatMultTransposeNumeric_EMPTY;
-	ops->ptapsymbolic_seqaij      = 0; // MatPtAPSymbolic_SEQAIJ_EMPTY;
+
+
+
+
 	/*99*/
-	ops->ptapnumeric_seqaij  = 0; // MatPtAPNumeric_SEQAIJ_EMPTY;
-	ops->ptapsymbolic_mpiaij = 0; // MatPtAPSymbolic_MPIAIJ_EMPTY;
-	ops->ptapnumeric_mpiaij  = 0; // MatPtAPNumeric_MPIAIJ_EMPTY;
+
+
+
 	ops->conjugate           = 0; // MatConjugate_EMPTY;
-	ops->setsizes            = MatSetSizes_Block; // MatSetSizes_EMPTY;
+	//ops->setsizes            = MatSetSizes_Block; // Removed in pets 3.3 so now use MatSetSizes_Block directly.
 	/*104*/
 	ops->setvaluesrow              = 0; // MatSetValuesRow_EMPTY;
 	ops->realpart                  = 0; // MatRealPart_EMPTY;

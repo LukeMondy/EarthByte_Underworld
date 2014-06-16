@@ -57,9 +57,21 @@
 #include <petscmat.h>
 #include <petscksp.h>
 #include <petscpc.h>
-#include <private/kspimpl.h>
-#include <private/pcimpl.h>
-#include <private/matimpl.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/kspimpl.h>
+#else
+  #include <private/kspimpl.h>
+#endif
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/pcimpl.h>
+#else
+  #include <private/pcimpl.h>
+#endif
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/matimpl.h>
+#else
+  #include <private/matimpl.h>
+#endif
 
 #include "private/vec/petscvec-block.h"
 #include "private/mat/petscmat-block.h"
@@ -93,7 +105,7 @@ PetscErrorCode PCSetUp_BSchur(PC pc)
 	PCGetOperators( pc, &A, &B, 0 );
 	
 	is_block = PETSC_FALSE;
-	PetscTypeCompare( (PetscObject)B, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)B, "block", &is_block );
 	if( is_block == PETSC_FALSE ) {
 		Stg_SETERRQ( PETSC_ERR_SUP, "Preconditioner matrix B must be of type MAT_BLOCK" );
 	}
@@ -463,7 +475,7 @@ PetscErrorCode PCView_BSchur(PC pc,PetscViewer viewer)
 	
 	PetscFunctionBegin; 
 	
-	PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
+	Stg_PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
 	if (isascii) {
 	
 		PetscViewerASCIIPushTab( viewer );

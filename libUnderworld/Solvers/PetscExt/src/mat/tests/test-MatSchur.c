@@ -100,7 +100,7 @@ void test_schur_11_test1( void )
 	/* _MatView(G,"G"); */
 	
 	MatCreate( PETSC_COMM_WORLD, &A_bk );
-	MatSetSizes( A_bk, 2,2, 2,2 );
+	MatSetSizes_Block( A_bk, 2,2, 2,2 );
 	MatSetType( A_bk, "block" );
 	
 	MatBlockSetValue( A_bk, 0,0, K,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -163,7 +163,7 @@ void test_schur_11_test2( void )
 	
 	
 	MatCreate( PETSC_COMM_WORLD, &A_bk );
-	MatSetSizes( A_bk, 2,2, 2,2 );
+	MatSetSizes_Block( A_bk, 2,2, 2,2 );
 	MatSetType( A_bk, "block" );
 	
 	MatBlockSetValue( A_bk, 0,0, K,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -231,7 +231,7 @@ void test_schur_22_test3( void )
 	
 	
 	MatCreate( PETSC_COMM_WORLD, &A_bk );
-	MatSetSizes( A_bk, 2,2, 2,2 );
+	MatSetSizes_Block( A_bk, 2,2, 2,2 );
 	MatSetType( A_bk, "block" );
 	
 	MatBlockSetValue( A_bk, 0,0, K,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );

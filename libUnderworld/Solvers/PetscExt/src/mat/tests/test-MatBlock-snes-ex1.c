@@ -485,7 +485,7 @@ int block_system(int argc,char **argv)
 	Create block Jacobian matrix data structure
 	*/
 	MatCreate( PETSC_COMM_WORLD, &J );
-	MatSetSizes( J, 2,2, 2,2 );
+	MatSetSizes_Block( J, 2,2, 2,2 );
 	MatSetType( J, "block" );
 	
 	MatBlockSetValue( J, 0,0, j11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );

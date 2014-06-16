@@ -73,13 +73,13 @@ void convert_vec( const char infile[], const char outfile[] )
 	
 	/* Read petsc binary */
 	PetscViewerBinaryOpen( PETSC_COMM_WORLD, infile, FILE_MODE_READ, &viewer );
-	VecLoad( viewer, PETSC_NULL, &x );
-	Stg_PetscViewerDestroy( viewer );
+	Stg_VecLoad( viewer, PETSC_NULL, &x );
+	Stg_PetscViewerDestroy( &viewer );
 	
 	/* Write Matrix Market */
 	PetscViewerASCIIOpen( PETSC_COMM_WORLD, outfile, &viewer );
 	VecView_MatrixMarket( x, viewer );
-	Stg_PetscViewerDestroy( viewer );
+	Stg_PetscViewerDestroy( & viewer );
 	
 	Stg_VecDestroy( & x );
 }
@@ -92,14 +92,14 @@ void convert_mat( const char infile[], const char outfile[] )
 	/* Read petsc binary */
 	PetscViewerBinaryOpen( PETSC_COMM_WORLD, infile, FILE_MODE_READ, &viewer );
 	Stg_MatLoad( viewer, MATSEQAIJ, &A );
-	Stg_PetscViewerDestroy( viewer );
+	Stg_PetscViewerDestroy( & viewer );
 	
 	/* Write Matrix Market */
 	PetscViewerASCIIOpen( PETSC_COMM_WORLD, outfile, &viewer );
 	MatView_MatrixMarket( A, viewer );
-	Stg_PetscViewerDestroy( viewer );
+	Stg_PetscViewerDestroy( & viewer );
 	
-	Stg_MatDestroy( A );
+	MatDestroy( & A );
 }
 
 

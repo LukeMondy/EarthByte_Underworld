@@ -52,7 +52,11 @@
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
-#include <private/matimpl.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/matimpl.h>
+#else
+  #include <private/matimpl.h>
+#endif
 
 #include "private/vec/petscvec-block.h"
 #include "private/mat/petscmat-block.h"
@@ -106,7 +110,7 @@ PetscErrorCode MatDestroy_Schur( Mat A )
 	if (s->t1a) {	Stg_VecDestroy( & s->t1a );	}
 	if (s->t2a) {	Stg_VecDestroy( & s->t2a );	}
 	
-	if (s->ksp) {	KSPDestroy( & s->ksp );	}
+	if (s->ksp) {	Stg_KSPDestroy( & s->ksp );	}
 	
 	/* release implementation data pointer */
 	ierr=PetscFree(s);CHKERRQ(ierr);
@@ -190,7 +194,7 @@ PetscErrorCode MatSchurSetOperatorsFromBlock_Schur( Mat A, Mat BlockA )
 	PetscFunctionBegin;
 	
 	/* Check that BlockA is of type "block" */
-	PetscTypeCompare( (PetscObject)BlockA, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)BlockA, "block", &is_block );
 	if (!is_block) {
 		Stg_SETERRQ( PETSC_ERR_SUP, "MatSchurSetOperatorsFromBlock: Operator must be a block matrix" );
 	}
@@ -417,7 +421,7 @@ PetscErrorCode MatSchurApplyReductionToVecFromBlock_Schur( Mat A, Vec F, Vec sub
 	PetscFunctionBegin;
 	
 	/* Check b is of type "block" */
-	PetscTypeCompare( (PetscObject)F, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)F, "block", &is_block );
 	if (!is_block) {
 		Stg_SETERRQ( PETSC_ERR_SUP, "You can only apply reduction to a block vector. Try using MatSchurApplyReductionToVec()" );
 	}
@@ -551,7 +555,7 @@ PetscErrorCode MatSchurSetKSP_Schur( Mat A, KSP ksp )
 	PetscFunctionBegin;
 	
 	if (s->ksp) {
-		KSPDestroy( & s->ksp );
+		Stg_KSPDestroy( & s->ksp );
 	}
 	s->ksp = ksp;
 	PetscObjectReference( (PetscObject)ksp );
@@ -648,11 +652,11 @@ PetscErrorCode MatSetOps_Schur( struct _MatOps* ops )
 	ops->choleskyfactorsymbolic = 0; // MatCholeskyFactorSymbolic_Schur;
 	ops->choleskyfactornumeric  = 0; // MatCholeskyFactorNumeric_Schur;
 	/*29*/
-	ops->setuppreallocation = 0; // MatSetUpPreallocation_Schur;
+
 	ops->ilufactorsymbolic  = 0; // MatILUFactorSymbolic_Schur;
 	ops->iccfactorsymbolic  = 0; // MatICCFactorSymbolic_Schur;
-	ops->getarray           = 0; // MatGetArray_Schur;
-	ops->restorearray       = 0; // MatRestoreArray_Schur;
+
+
 	/*34*/
 	ops->duplicate     = 0; // MatDuplicate_Schur;
 	ops->forwardsolve  = 0; // MatForwardSolve_Schur;
@@ -672,7 +676,7 @@ PetscErrorCode MatSetOps_Schur( struct _MatOps* ops )
 	ops->diagonalset = 0; // MatDiagonalSet_Schur;
 	//ops->dummy       = 0; // MatILUDTFactor_Schur;
 	/*49*/
-	ops->setblocksize    = 0; // MatSetBlockSize_Schur;
+
 	ops->getrowij        = 0; // MatGetRowIJ_Schur;
 	ops->restorerowij    = 0; // MatRestorRowIJ_Schur;
 	ops->getcolumnij     = 0; // MatGetColumnIJ_Schur;
@@ -688,10 +692,10 @@ PetscErrorCode MatSetOps_Schur( struct _MatOps* ops )
 	ops->destroy       = MatDestroy_Schur;
 	ops->view          = MatView_Schur;
 	ops->convertfrom   = 0; // MatConvertFrom_Schur;
-	ops->usescaledform = 0; // MatUseScaledForm_Schur;
+
 	/*64*/
-	ops->scalesystem             = 0; // MatScaleSystem_Schur;
-	ops->unscalesystem           = 0; // MatUnScaleSystem_Schur;
+
+
 	ops->setlocaltoglobalmapping = 0; // MatSetLocalToGlobalMapping_Schur;
 	ops->setvalueslocal          = 0; // MatSetValuesLocal_Schur;
 	ops->zerorowslocal           = 0; // MatZeroRowsLocal_Schur;
@@ -700,7 +704,7 @@ PetscErrorCode MatSetOps_Schur( struct _MatOps* ops )
 	ops->getrowminabs    = 0; // 
 	ops->convert         = 0; // MatConvert_Schur;
 	ops->setcoloring     = 0; // MatSetColoring_Schur;
-	ops->setvaluesadic   = 0; // MatSetValuesAdic_Schur;
+
 	/* 74 */
 	ops->setvaluesadifor = 0; // MatSetValuesAdifor_Schur;
 	ops->fdcoloringapply              = 0; // MatFDColoringApply_Schur;
@@ -727,16 +731,16 @@ PetscErrorCode MatSetOps_Schur( struct _MatOps* ops )
 	ops->ptapsymbolic    = 0; // MatPtAPSymbolic_Schur;
 	/*94*/
 	ops->ptapnumeric              = 0; // MatPtAPNumeric_Schur;
-	ops->matmulttranspose         = 0; // MatMatMultTranspose_Schur;
-	ops->matmulttransposesymbolic = 0; // MatMatMultTransposeSymbolic_Schur;
-	ops->matmulttransposenumeric  = 0; // MatMatMultTransposeNumeric_Schur;
-	ops->ptapsymbolic_seqaij      = 0; // MatPtAPSymbolic_SEQAIJ_Schur;
+
+
+
+
 	/*99*/
-	ops->ptapnumeric_seqaij  = 0; // MatPtAPNumeric_SEQAIJ_Schur;
-	ops->ptapsymbolic_mpiaij = 0; // MatPtAPSymbolic_MPIAIJ_Schur;
-	ops->ptapnumeric_mpiaij  = 0; // MatPtAPNumeric_MPIAIJ_Schur;
+
+
+
 	ops->conjugate           = 0; // MatConjugate_Schur;
-	ops->setsizes            = 0; // MatSetSizes_Schur;
+
 	/*104*/
 	ops->setvaluesrow              = 0; // MatSetValuesRow_Schur;
 	ops->realpart                  = 0; // MatRealPart_Schur;
@@ -894,6 +898,9 @@ PetscErrorCode MatCreateSchur( MPI_Comm comm, Mat A11,Mat A12,Mat A21,Mat A22, P
 	if (flg) {		MatSetSizes( *A, m,m,M,M);		}
 	
 	MatSetType( *A, "schur" );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp( *A );
+#endif
 //	PetscObjectChangeTypeName((PetscObject)*A,"schur");
 	
 	
@@ -918,7 +925,7 @@ PetscErrorCode MatCreateSchurFromBlock( Mat bmat, PetscScalar alpha, MatSchurCom
 	PetscFunctionBegin;
 	
 	/* Check b is of type "block" */
-	PetscTypeCompare( (PetscObject)bmat, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)bmat, "block", &is_block );
 	if (!is_block) {		Stg_SETERRQ( PETSC_ERR_SUP, "MatCreateSchurFromBlock: Must supply a block matrix" );		}
 	
 	/* Check its a 2x2 block */

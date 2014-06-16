@@ -63,5 +63,7 @@
 /* registration */
 #include "pcx_register.h"
 
+#include <petscversion.h>
+#include "private/compat/petsccompat.h"
 
 #endif

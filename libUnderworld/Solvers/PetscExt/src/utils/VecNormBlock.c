@@ -65,7 +65,7 @@ PetscErrorCode VecGetNormBlock( Vec x, NormType type, PetscInt *bs, PetscReal *v
 	PetscFunctionBegin;
 	
 	/* Get block size */
-	PetscTypeCompare( (PetscObject)x, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &is_block );
 	/* Catch case if Vec is not a block vector */
 	if( is_block == PETSC_FALSE ) {
 		ierr=PetscMalloc( sizeof(PetscReal), &_val );CHKERRQ(ierr);
@@ -85,7 +85,7 @@ PetscErrorCode VecGetNormBlock( Vec x, NormType type, PetscInt *bs, PetscReal *v
 	for( i=0; i<_bs; i++ ) {
 		
 		VecBlockGetSubVector( x, i, &sub_x );
-		PetscTypeCompare( (PetscObject)sub_x, "block", &is_block );
+		Stg_PetscTypeCompare( (PetscObject)sub_x, "block", &is_block );
 		if( is_block == PETSC_TRUE ) {
 			Stg_SETERRQ( PETSC_ERR_ARG_WRONG, "VecGetNormBlock() does not support nested blocks." );
 		}

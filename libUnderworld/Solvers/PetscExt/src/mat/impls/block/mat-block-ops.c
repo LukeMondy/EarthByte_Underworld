@@ -56,7 +56,16 @@
 #include <petsc.h>
 #include <petscmat.h>
 #include <petscvec.h>
-#include <private/matimpl.h>
+
+/* need vecimpl.h so that Vec_Block is a fully formed type */
+/* with petsc 3.4 was error */
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/matimpl.h>
+  #include <petsc-private/vecimpl.h>
+#else
+  #include <private/matimpl.h>
+  #include <private/vecimpl.h>
+#endif
 
 
 #include "src/vec/impls/block/vec_block_impl.h"
@@ -66,7 +75,6 @@
 #include "private/mat/petscmat-block.h"
 
 
-
 extern const char *MatBlockStructureName[];
 
 
@@ -74,8 +82,8 @@ PetscErrorCode _check_mat_mat_compatibility( Mat A, Mat B )
 {
 	PetscTruth isAblock, isBblock;
 	
-	PetscTypeCompare( (PetscObject)A, "block", &isAblock );
-	PetscTypeCompare( (PetscObject)B, "block", &isBblock );
+	Stg_PetscTypeCompare( (PetscObject)A, "block", &isAblock );
+	Stg_PetscTypeCompare( (PetscObject)B, "block", &isBblock );
 	
 	if( isAblock == PETSC_TRUE && isBblock == PETSC_TRUE ) {
 		PetscFunctionReturn(0);
@@ -89,8 +97,8 @@ PetscErrorCode _check_mat_vec_compatibility( Mat A, Vec x )
 {
 	PetscTruth isAblock, isxblock;
 	
-	PetscTypeCompare( (PetscObject)A, "block", &isAblock );
-	PetscTypeCompare( (PetscObject)x, "block", &isxblock );
+	Stg_PetscTypeCompare( (PetscObject)A, "block", &isAblock );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &isxblock );
 	
 	if( isAblock == PETSC_TRUE && isxblock == PETSC_TRUE ) {
 		PetscFunctionReturn(0);
@@ -104,9 +112,9 @@ PetscErrorCode _check_mat_vec_compatibility2( Mat A, Vec x, Vec y )
 {
 	PetscTruth isAblock, isxblock, isyblock;
 	
-	PetscTypeCompare( (PetscObject)A, "block", &isAblock );
-	PetscTypeCompare( (PetscObject)x, "block", &isxblock );
-	PetscTypeCompare( (PetscObject)y, "block", &isyblock );
+	Stg_PetscTypeCompare( (PetscObject)A, "block", &isAblock );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &isxblock );
+	Stg_PetscTypeCompare( (PetscObject)y, "block", &isyblock );
 	
 	if( 		(isAblock == PETSC_TRUE)
 			&& 	(isxblock == PETSC_TRUE)
@@ -122,10 +130,10 @@ PetscErrorCode _check_mat_vec_compatibility3( Mat A, Vec x, Vec y, Vec w )
 {
 	PetscTruth isAblock, isxblock, isyblock, iswblock;
 	
-	PetscTypeCompare( (PetscObject)A, "block", &isAblock );
-	PetscTypeCompare( (PetscObject)x, "block", &isxblock );
-	PetscTypeCompare( (PetscObject)y, "block", &isyblock );
-	PetscTypeCompare( (PetscObject)w, "block", &iswblock );
+	Stg_PetscTypeCompare( (PetscObject)A, "block", &isAblock );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &isxblock );
+	Stg_PetscTypeCompare( (PetscObject)y, "block", &isyblock );
+	Stg_PetscTypeCompare( (PetscObject)w, "block", &iswblock );
 	
 	if( 		(isAblock == PETSC_TRUE)
 			&& 	(isxblock == PETSC_TRUE)
@@ -248,6 +256,8 @@ PetscErrorCode MatGetVecs_Block( Mat A, Vec *right, Vec *left )
 		VecCreate( comm, right );
 		VecSetSizes( *right, bA->nc, bA->nc );
 		VecSetType( *right, "block" );
+                VecSetUp( *right );
+
 		//br = (Vec_Block*)( (*right)->data );
 		
 		for( j=0; j<bA->nc; j++ ) {
@@ -285,6 +295,8 @@ PetscErrorCode MatGetVecs_Block( Mat A, Vec *right, Vec *left )
 		VecCreate( comm, left );
 		VecSetSizes( *left, bA->nr, bA->nr );
 		VecSetType( *left, "block" );
+                VecSetUp( *left );
+
 		//bl = (Vec_Block*)( (*left)->data );
 		
 		for( i=0; i<bA->nr; i++ ) {
@@ -325,7 +337,7 @@ if( (obj) != PETSC_NULL ) { \
 void print_mat_structure( Mat A, int pi,PetscInt pj, PetscViewer viewer )
 {
 	Mat_Block	*bA;
-	const MatType		type;
+	MatType		type;
 	PetscInt	m,n;
 	int i,j;
 	const char *name;
@@ -343,7 +355,7 @@ void print_mat_structure( Mat A, int pi,PetscInt pj, PetscViewer viewer )
 	MatGetType( A, &type );
 	name = ((PetscObject)A)->prefix;
 	is_block = PETSC_FALSE;
-	PetscTypeCompare( (PetscObject)A, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)A, "block", &is_block );
 	
 	if( is_block == PETSC_FALSE ) {
 		MatGetSize( A, &m, &n );
@@ -377,7 +389,7 @@ void print_mat_structure( Mat A, int pi,PetscInt pj, PetscViewer viewer )
 void print_mat_contents( Mat A, Mat parent_A, PetscInt pi, PetscInt pj, PetscViewer viewer )
 {
 	Mat_Block	*bA;
-	const MatType		type;
+	MatType		type;
 	PetscInt	m,n;
 	int i,j;
 	const char *name, *pname;
@@ -408,7 +420,7 @@ void print_mat_contents( Mat A, Mat parent_A, PetscInt pi, PetscInt pj, PetscVie
 	
 	MatGetType( A, &type );
 	is_block = PETSC_FALSE;
-	PetscTypeCompare( (PetscObject)A, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)A, "block", &is_block );
 	
 	if( is_block  == PETSC_FALSE ) {
 		MatGetSize( A, &m, &n );
@@ -451,7 +463,7 @@ PetscErrorCode MatView_Block( Mat A, PetscViewer viewer )
         Mat_Block *block = (Mat_Block*)A->data;
 	PetscTruth isascii;
 	
-	PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
+	Stg_PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
 	if (isascii) {
 
 		PetscViewerASCIIPushTab( viewer );		// push0

@@ -50,7 +50,11 @@
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
-#include <private/matimpl.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/matimpl.h>
+#else
+  #include <private/matimpl.h>
+#endif
 
 #include "mat-restrictscatter-impl.h"
 #include "mat-restrictscatter-ops.h"
@@ -198,7 +202,7 @@ PetscErrorCode MatCreateRestrictScatter( MPI_Comm comm, Mat A, IS row, IS col, M
 	PetscInt M,N, m,n;
 	Vec L,R;
 	PetscMPIInt size;
-	const VecType vt;
+	VecType vt;
 	
 	PetscObjectGetComm( (PetscObject)A, &commA );
 	if( comm != commA ) {
@@ -282,11 +286,11 @@ PetscErrorCode MatSetOps_RestrictScatter( struct _MatOps* ops )
 	ops->choleskyfactorsymbolic = 0; 
 	ops->choleskyfactornumeric  = 0; 
 	/*29*/
-	ops->setuppreallocation = 0; 
+
 	ops->ilufactorsymbolic  = 0; 
 	ops->iccfactorsymbolic  = 0; 
-	ops->getarray           = 0; 
-	ops->restorearray       = 0; 
+
+
 	/*34*/
 	ops->duplicate     = 0; 
 	ops->forwardsolve  = 0; 
@@ -306,7 +310,7 @@ PetscErrorCode MatSetOps_RestrictScatter( struct _MatOps* ops )
 	ops->diagonalset = 0; 
 	//ops->dummy       = 0; 
 	/*49*/
-	ops->setblocksize    = 0; 
+
 	ops->getrowij        = 0; 
 	ops->restorerowij    = 0; 
 	ops->getcolumnij     = 0; 
@@ -322,10 +326,10 @@ PetscErrorCode MatSetOps_RestrictScatter( struct _MatOps* ops )
 	ops->destroy       = Stg_MatDestroy_RestrictScatter;
 	ops->view          = 0;
 	ops->convertfrom   = 0; 
-	ops->usescaledform = 0; 
+
 	/*64*/
-	ops->scalesystem             = 0; 
-	ops->unscalesystem           = 0; 
+
+
 	ops->setlocaltoglobalmapping = 0; 
 	ops->setvalueslocal          = 0; 
 	ops->zerorowslocal           = 0; 
@@ -334,7 +338,7 @@ PetscErrorCode MatSetOps_RestrictScatter( struct _MatOps* ops )
 	ops->getrowminabs    = 0; // 
 	ops->convert         = 0; 
 	ops->setcoloring     = 0; 
-	ops->setvaluesadic   = 0; 
+
 	/* 74 */
 	ops->setvaluesadifor = 0; 
 	ops->fdcoloringapply              = 0; 
@@ -361,16 +365,16 @@ PetscErrorCode MatSetOps_RestrictScatter( struct _MatOps* ops )
 	ops->ptapsymbolic    = 0; 
 	/*94*/
 	ops->ptapnumeric              = 0; 
-	ops->matmulttranspose         = 0; 
-	ops->matmulttransposesymbolic = 0; 
-	ops->matmulttransposenumeric  = 0; 
-	ops->ptapsymbolic_seqaij      = 0; 
+
+
+
+
 	/*99*/
-	ops->ptapnumeric_seqaij  = 0; 
-	ops->ptapsymbolic_mpiaij = 0; 
-	ops->ptapnumeric_mpiaij  = 0; 
+
+
+
 	ops->conjugate           = 0; 
-	ops->setsizes            = 0; 
+
 	/*104*/
 	ops->setvaluesrow              = 0; 
 	ops->realpart                  = 0; 

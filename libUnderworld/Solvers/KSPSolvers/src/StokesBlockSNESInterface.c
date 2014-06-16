@@ -18,7 +18,12 @@
 #include <petscext.h>
 #include <petscext_pc.h>
 
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
+#else
+  #include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#endif
 
 //#include "ksptypes.h"
 #include "ksp-register.h"
@@ -176,6 +181,12 @@ void SBSNES_FormBlockOperator(	Mat A11, Mat A12, Mat A21, Mat A22, Mat* A )
 	MatCreate( MPI_COMM_WORLD, A );
 	MatSetSizes( *A, 2, 2, 2, 2 );
 	MatSetType( *A, "block" );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp(*A);
+#endif
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+	MatSetSizes_Block( *A, 2, 2, 2, 2 );
+#endif
     }
 
     if( A11 ) MatBlockSetValue( *A, 0, 0, A11, SAME_NONZERO_PATTERN, INSERT_VALUES );
@@ -222,7 +233,8 @@ PetscErrorCode SBSNES_CreateStokesBlockOperators( MPI_Comm comm,
 {
     
     MatCreate( comm, A );
-    MatSetSizes( *A, 2,2, 2,2 );
+    MatSetSizes_Block( *A, 2,2, 2,2 );
+    MatSetUp(*A);
     MatSetType( *A, "block" );
     
     if(K) {MatBlockSetValue( *A, 0,0, K, SAME_NONZERO_PATTERN, INSERT_VALUES );}

@@ -50,11 +50,15 @@
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
+#include "private/compat/petsccompat.h"
 
-#include "private/matimpl.h"
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include "petsc-private/matimpl.h"
+#else
+  #include "private/matimpl.h"
+#endif
 #include "src/mat/impls/aij/mpi/mpiaij.h"
 
-#include "private/compat/petsccompat.h"
 
 PetscErrorCode PetscExtMatGetRowMax_MPIAIJ(Mat mat,Vec v,PetscInt idx[])
 {
@@ -168,7 +172,7 @@ PetscErrorCode PetscExtMatGetRowMax(Mat mat,Vec vec,PetscInt idx[])
 {
         PetscTruth is_mpiaij;
 
-        PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
+        Stg_PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
         if (is_mpiaij==PETSC_TRUE) {    PetscExtMatGetRowMax_MATAIJ(mat,vec,idx);       }
         else {                          MatGetRowMax(mat,vec,idx);                      }
 
@@ -290,7 +294,7 @@ PetscErrorCode PetscExtMatGetRowMin(Mat mat,Vec vec,PetscInt idx[])
 {       
         PetscTruth is_mpiaij;
 
-        PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
+        Stg_PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
         if (is_mpiaij==PETSC_TRUE) {    PetscExtMatGetRowMin_MATAIJ(mat,vec,idx);       }
         else {                          MatGetRowMin(mat,vec,idx);                      }
 
@@ -415,7 +419,7 @@ PetscErrorCode PetscExtMatGetRowMaxAbs(Mat mat,Vec vec,PetscInt idx[])
 {
         PetscTruth is_mpiaij;
 
-        PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
+        Stg_PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
         if (is_mpiaij==PETSC_TRUE) {    PetscExtMatGetRowMaxAbs_MATAIJ(mat,vec,idx);       }
         else {                          MatGetRowMaxAbs(mat,vec,idx);                      }
 
@@ -540,7 +544,7 @@ PetscErrorCode PetscExtMatGetRowMinAbs(Mat mat,Vec vec,PetscInt idx[])
 {
         PetscTruth is_mpiaij;
 
-        PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
+        Stg_PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
         if (is_mpiaij==PETSC_TRUE) {    PetscExtMatGetRowMinAbs_MATAIJ(mat,vec,idx);       }
         else {                          PetscExtMatGetRowMinAbs_MATAIJ(mat,vec,idx);       }
 
@@ -552,7 +556,7 @@ PetscErrorCode PetscExtLoadMPIAIJOperations(Mat mat)
 {
 	PetscTruth is_mpiaij;
 	
-	PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
+	Stg_PetscTypeCompare( (PetscObject)mat, MATMPIAIJ, &is_mpiaij );
 	if (is_mpiaij!=PETSC_TRUE) {
 		PetscFunctionReturn(0);
 	}

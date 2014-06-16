@@ -60,8 +60,8 @@ EXTERN_C_END
 
 PetscErrorCode PetscExtPCRegisterAll( void )
 {
-	PCRegister(	"block",	"src/pc/impls/block",		"PCCreate_Block",		PCCreate_Block 			);
-	PCRegister(	"bschur",	"src/pc/impls/bschur",		"PCCreate_BSchur",		PCCreate_BSchur 		);
+	Stg_PCRegister(	"block",	"src/pc/impls/block",		"PCCreate_Block",		PCCreate_Block 			);
+	Stg_PCRegister(	"bschur",	"src/pc/impls/bschur",		"PCCreate_BSchur",		PCCreate_BSchur 		);
 	
 	
 	

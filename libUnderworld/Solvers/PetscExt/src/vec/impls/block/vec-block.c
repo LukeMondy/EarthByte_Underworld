@@ -66,7 +66,12 @@ More testing needs to be done to verify this.
 #include <petscvec.h>
 #include <petscmat.h>
 #include <petscksp.h>
-#include <private/vecimpl.h>
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include <petsc-private/vecimpl.h>
+#else
+  #include <private/vecimpl.h>
+#endif
 
 #include "vec_block_impl.h"
 #include "private/vec/petscvec-block.h"
@@ -118,7 +123,7 @@ PetscErrorCode VecDestroy_Block( Vec v )
 	PetscFunctionBegin;
 	
 	/* if memory was published with AMS then destroy it */
-	ierr = PetscObjectDepublish(v);CHKERRQ(ierr);
+	ierr = Stg_PetscObjectDepublish(v);CHKERRQ(ierr);
 	
 	if( vs->v != PETSC_NULL ) {
 		for( i=0; i<vs->nb; i++ ) {
@@ -374,7 +379,7 @@ void _do_sum_entries( Vec x, PetscInt *n )
 	
 	if( x == PETSC_NULL ) return;
 	
-	PetscTypeCompare( (PetscObject)x, "block", &isblock );
+	Stg_PetscTypeCompare( (PetscObject)x, "block", &isblock );
 	if( isblock == PETSC_TRUE ) {
 		ctx = (Vec_Block*)x->data;
 		if( ctx->v == PETSC_NULL ) return;
@@ -433,7 +438,7 @@ PetscErrorCode VecCreateFromVecBlock_Block( Vec x, const VecType type, Vec *mX )
   PetscInt sum, len;
   MPI_Comm comm;      
 
-  PetscTypeCompare( (PetscObject)x, "block", &is_block );
+  Stg_PetscTypeCompare( (PetscObject)x, "block", &is_block );
   if( !is_block ) Stg_SETERRQ( PETSC_ERR_SUP, "Cannot merge non-block vectors \n" ); 
         
        
@@ -441,7 +446,7 @@ PetscErrorCode VecCreateFromVecBlock_Block( Vec x, const VecType type, Vec *mX )
   sum = 0;
   for( i=0; i<bx->nb; i++ ) {
     /* check sub vectors are not blocks themselves */
-    PetscTypeCompare( (PetscObject)bx->v[i], "block", &is_block );
+    Stg_PetscTypeCompare( (PetscObject)bx->v[i], "block", &is_block );
     if( is_block ) Stg_SETERRQ( PETSC_ERR_SUP, "Cannot merge sub vectors which are themselves block vectors \n" );
     VecGetSize( bx->v[i], &len );
     sum = sum + len;
@@ -498,7 +503,7 @@ PetscErrorCode VecBlockMergeSubVectors_Block( Vec x, InsertMode addv, const VecT
 
     /* check type matches existing vector */
     is_same = PETSC_FALSE;
-    PetscTypeCompare( (PetscObject)(*mX), type, &is_same );
+    Stg_PetscTypeCompare( (PetscObject)(*mX), type, &is_same );
     if(is_same==PETSC_FALSE) {
       Stg_SETERRQ( PETSC_ERR_ARG_NOTSAMETYPE, "Vector being re-used is of wrong type");
     }

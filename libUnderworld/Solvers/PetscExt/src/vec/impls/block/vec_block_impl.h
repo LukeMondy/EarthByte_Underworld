@@ -50,6 +50,9 @@
 #ifndef __vec_block_impl_h__
 #define __vec_block_impl_h__
 
+#include <petsc.h>
+#include <petscmat.h>
+#include <petscvec.h>
 #include "private/compat/petsccompat.h"
 
 typedef struct {

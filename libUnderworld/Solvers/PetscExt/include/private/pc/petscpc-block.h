@@ -48,6 +48,8 @@
 
 #ifndef __PETSC_PC_BLOCK_H__
 #define __PETSC_PC_BLOCK_H__
+#include <petscversion.h>
+#include "private/compat/petsccompat.h"
 
 PETSC_EXTERN_CXX_BEGIN
 

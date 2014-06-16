@@ -26,7 +26,13 @@ is required whenever you wish to extract the timing information.
 #include <StgDomain/StgDomain.h>
 
 #include "common-driver-utils.h"
-#include "private/kspimpl.h"
+
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/kspimpl.h"
+#else
+  #include "private/kspimpl.h"
+#endif
 
 struct timed_cvg_ctx {
 	PetscInt monitor_index;

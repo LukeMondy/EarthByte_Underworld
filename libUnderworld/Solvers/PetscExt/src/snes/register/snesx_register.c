@@ -60,7 +60,7 @@ EXTERN_C_END
 
 PetscErrorCode PetscExtSNESRegisterAll( void )
 {
-	SNESRegister(	"picardext",	"src/snes/impls/picardext",	"SNESCreate_PicardExt", 	SNESCreate_PicardExt 	);
+	Stg_SNESRegister(	"picardext",	"src/snes/impls/picardext",	"SNESCreate_PicardExt", 	SNESCreate_PicardExt 	);
 	
 	PetscFunctionReturn(0);
 }

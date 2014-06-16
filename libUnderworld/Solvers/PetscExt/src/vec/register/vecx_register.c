@@ -50,6 +50,7 @@
 #include <petsc.h>
 #include "private/vec/petscext_vecimpls.h"
 //#include "include/petscext_vec.h"
+#include "private/compat/petsccompat.h"
 
 EXTERN_C_BEGIN
 
@@ -60,7 +61,7 @@ EXTERN_C_END
 
 PetscErrorCode PetscExtVecRegisterAll( void )
 {
-	VecRegister(	"block",		"src/vec/impls/block",		"VecCreate_Block", VecCreate_Block 		);
+	Stg_VecRegister(	"block",		"src/vec/impls/block",		"VecCreate_Block", VecCreate_Block 		);
 	
 	
 	

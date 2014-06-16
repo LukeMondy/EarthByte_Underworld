@@ -73,7 +73,7 @@ void test_VecLoadMatrixMarket( void )
 	PetscPrintf( PETSC_COMM_WORLD, "Dump as MM \n");
 	PetscViewerASCIIOpen( PETSC_COMM_WORLD, "petsc_rhs1.mtx", &viewer );
 	VecView_MatrixMarket( x, viewer );
-	Stg_PetscViewerDestroy( viewer );
+	Stg_PetscViewerDestroy( & viewer );
 	
 	Stg_VecDestroy( & x );
 	
@@ -90,13 +90,10 @@ void test_MatAIJLoadMatrixMarket( void )
 	PetscViewer viewer;
 	Vec x,y;
 	PetscScalar v_norm, m_norm;
-	int size, i;
-	MPI_Comm comm;
 	
+	__MatLoadMatrixMarket( PETSC_COMM_WORLD, "input/e05r0000.mtx", MATAIJ, &A );
 	
-	__Stg_MatLoadMatrixMarket( PETSC_COMM_WORLD, "input/e05r0000.mtx", MATAIJ, &A );
-	
-	PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_INFO );
+	PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_INFO );
 	MatView( A, PETSC_VIEWER_STDOUT_WORLD );
 	
 	
@@ -115,14 +112,14 @@ void test_MatAIJLoadMatrixMarket( void )
 	PetscPrintf( PETSC_COMM_WORLD, "Dump as MM \n");
 	PetscViewerASCIIOpen( PETSC_COMM_WORLD, "petsc.mtx", &viewer );
 	__MatViewMatrixMarket( A, viewer );
-	Stg_PetscViewerDestroy( viewer );
+	Stg_PetscViewerDestroy( & viewer );
 	
-	Stg_MatDestroy( A );
+	MatDestroy( & A );
 	
 
 	/* Read it back in and compute norms */
-	__Stg_MatLoadMatrixMarket( PETSC_COMM_WORLD, "petsc.mtx", MATAIJ, &An );
-	PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_INFO );
+	__MatLoadMatrixMarket( PETSC_COMM_WORLD, "petsc.mtx", MATAIJ, &An );
+	PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_INFO );
 	MatView( An, PETSC_VIEWER_STDOUT_WORLD );
 	
 	MatNorm( An, NORM_1, &m_norm );
@@ -137,7 +134,7 @@ void test_MatAIJLoadMatrixMarket( void )
 	PetscPrintf( PETSC_COMM_WORLD, "norm(An) = %5.5e \n\n", m_norm );
 	
 	
-	Stg_MatDestroy( An );
+	MatDestroy( & An );
 	Stg_VecDestroy( & x );
 	Stg_VecDestroy( & y );
 }

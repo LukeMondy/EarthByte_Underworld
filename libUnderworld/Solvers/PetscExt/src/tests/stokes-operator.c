@@ -62,6 +62,7 @@
 #include "petscext_vec.h"
 #include "petscext_mat.h"
 
+#include "private/compat/petsccompat.h"
 
 void test_stokes_operator_K_expG( PetscTruth view  )
 {
@@ -84,7 +85,7 @@ void test_stokes_operator_K_expG( PetscTruth view  )
 	MatTranspose( G, MAT_INITIAL_MATRIX, &Gt );
 	
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	
 	MatBlockSetValue( A, 0,0, K,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -93,9 +94,9 @@ void test_stokes_operator_K_expG( PetscTruth view  )
 	
 	MatAssemblyBegin(A,MAT_FINAL_ASSEMBLY);
 	MatAssemblyEnd(A,MAT_FINAL_ASSEMBLY);
-	Stg_MatDestroy( K );
-	Stg_MatDestroy( G );
-	Stg_MatDestroy( Gt );
+	MatDestroy( & K );
+	MatDestroy( & G );
+	MatDestroy( & Gt );
 	
 	
 	MatGetVecs( A, &x, &b );
@@ -115,13 +116,13 @@ void test_stokes_operator_K_expG( PetscTruth view  )
 	
 	MatMult( A, b, x );
 	if( view ) {
-		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_INFO_DETAIL );
+		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_INFO_DETAIL );
 		VecView( x, PETSC_VIEWER_STDOUT_WORLD );
 	}
 	
 	
 	
-	Stg_MatDestroy( A );
+	Stg_MatDestroy( & A );
 	Stg_VecDestroy( & x );
 	Stg_VecDestroy( & b );
 	
@@ -157,7 +158,7 @@ void test_stokes_operator_K_symG( PetscTruth view )
 	MatFillStride( G, 2.0, 4.4 );
 	
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	
 	MatBlockSetValue( A, 0,0, K,  DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -166,9 +167,9 @@ void test_stokes_operator_K_symG( PetscTruth view )
 	
 	MatAssemblyBegin(A,MAT_FINAL_ASSEMBLY);
 	MatAssemblyEnd(A,MAT_FINAL_ASSEMBLY);
-	Stg_MatDestroy( K );
-	Stg_MatDestroy( G );
-	Stg_MatDestroy( Gt );
+	Stg_MatDestroy( & K );
+	Stg_MatDestroy( & G );
+	Stg_MatDestroy( & Gt );
 	
 	
 	MatGetVecs( A, &x, &b );
@@ -188,13 +189,13 @@ void test_stokes_operator_K_symG( PetscTruth view )
 	
 	MatMult( A, b, x );
 	if( view ) {
-		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_INFO_DETAIL );
+		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_INFO_DETAIL );
 		VecView( x, PETSC_VIEWER_STDOUT_WORLD );
 	}
 	
 	
 	
-	Stg_MatDestroy( A );
+	Stg_MatDestroy( & A );
 	Stg_VecDestroy( & x );
 	Stg_VecDestroy( & b );
 	

@@ -48,6 +48,9 @@
 
 #ifndef __PETSC_MAT_RESTRICT_SCATTER_H__
 #define __PETSC_MAT_RESTRICT_SCATTER_H__
+#include <petscversion.h>
+#include "private/compat/petsccompat.h"
+
 PETSC_EXTERN_CXX_BEGIN
 
 PetscErrorCode MatRestrictScatterSetMatIS( Mat rsA, Mat A, IS row, IS col );

@@ -54,9 +54,14 @@
 #include <petscmat.h>
 #include <petscksp.h>
 #include <petscpc.h>
-#include <private/kspimpl.h>
-#include <private/pcimpl.h>
-
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include <petsc-private/kspimpl.h>
+  #include <petsc-private/pcimpl.h>
+#else
+  #include <private/kspimpl.h>
+  #include <private/pcimpl.h>
+#endif
 
 #include "private/vec/petscvec-block.h"
 #include "private/mat/petscmat-block.h"
@@ -83,7 +88,7 @@ PetscErrorCode Stg_PCDestroy_Block( PC pc )
 	
 	/* release implemenation internals */
 	for( i=0; i<s->nr; i++ ) {
-		KSPDestroy( & s->diag[i] );
+		Stg_KSPDestroy( & s->diag[i] );
 	}
 	free( s->diag );
 	
@@ -183,7 +188,7 @@ PetscErrorCode PCBlockSetSubKSP_Block( PC pc, PetscInt i, KSP sub_ksp )
 	
 	
 	if( s->diag[i] != PETSC_NULL ) {
-		KSPDestroy( & s->diag[i] );
+		Stg_KSPDestroy( & s->diag[i] );
 	}
 	PetscObjectReference( (PetscObject)sub_ksp );
 	

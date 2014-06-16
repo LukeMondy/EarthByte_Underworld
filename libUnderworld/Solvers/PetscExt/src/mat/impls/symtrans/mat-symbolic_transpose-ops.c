@@ -48,9 +48,14 @@
 
 
 #include <petsc.h>
+#include <petscversion.h>
 #include <petscvec.h>
 #include <petscmat.h>
-#include <private/matimpl.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/matimpl.h>
+#else
+  #include <private/matimpl.h>
+#endif
 
 #include "mat-symbolic_transpose-impl.h"
 #include "private/mat/mat-symbolic_transpose.h"
@@ -908,7 +913,7 @@ PetscErrorCode MatMatMult_SymTrans(Mat A,Mat B,MatReuse scall,PetscReal fill,Mat
 	*/
 	
 	is_Asym = PETSC_FALSE;
-	PetscTypeCompare( (PetscObject)A, "symtrans", &is_Asym );
+	Stg_PetscTypeCompare( (PetscObject)A, "symtrans", &is_Asym );
 	if( is_Asym == PETSC_TRUE ) {
 		sA = (Mat_SymTrans)A->data;
 		

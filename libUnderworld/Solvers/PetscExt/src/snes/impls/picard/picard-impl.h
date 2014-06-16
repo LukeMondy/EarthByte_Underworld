@@ -52,7 +52,13 @@
 
 #ifndef __SNES_EMPTY_IMPL_H
 #define __SNES_EMPTY_IMPL_H
-#include "include/private/snesimpl.h"
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/snesimpl.h"
+#else
+  #include "private/snesimpl.h"
+#endif
+
 #include "petscext_snes.h"
 
 typedef struct {

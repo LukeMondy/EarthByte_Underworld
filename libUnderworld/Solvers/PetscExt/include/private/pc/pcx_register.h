@@ -50,6 +50,9 @@
 #ifndef __PETSC_EXT_PC_REGISTER_H__
 #define __PETSC_EXT_PC_REGISTER_H__
 
+#include <petscversion.h>
+#include "private/compat/petsccompat.h"
+
 PETSC_EXTERN_CXX_BEGIN
 
 PetscErrorCode PetscExtPCRegisterAll( void );

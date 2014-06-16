@@ -140,7 +140,7 @@ void test_block_solve( void )
 	
 	/* Create a block matrix */
 	MatCreate( PETSC_COMM_WORLD, &Amat );
-	MatSetSizes( Amat, 2,2, 2,2 );
+	MatSetSizes_Block( Amat, 2,2, 2,2 );
 	MatSetType( Amat, "block" );
 	MatBlockSetValue( Amat, 0,0, A11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
 	MatBlockSetValue( Amat, 1,1, A22, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );

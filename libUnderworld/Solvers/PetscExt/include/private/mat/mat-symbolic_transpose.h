@@ -48,6 +48,9 @@
 
 #ifndef __PETSC_MAT_SYMBOLIC_TRANSPOSE_H__
 #define __PETSC_MAT_SYMBOLIC_TRANSPOSE_H__
+#include <petscversion.h>
+#include "private/compat/petsccompat.h"
+
 PETSC_EXTERN_CXX_BEGIN
 
 PetscErrorCode MatCreateSymTrans( MPI_Comm comm, Mat A, Mat *symAt );

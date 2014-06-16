@@ -14,7 +14,12 @@
 #include <petscext.h>
 #include <petscext_pc.h>
 
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
+#else
+  #include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#endif
 
 //#include "ksptypes.h"
 #include "ksp-register.h"
@@ -183,7 +188,12 @@ PetscErrorCode SBKSP_CreateStokesBlockOperators( MPI_Comm comm,
     MatCreate( comm, A );
     MatSetSizes( *A, 2,2, 2,2 );
     MatSetType( *A, "block" );
-    
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+    MatSetUp(*A);
+#endif
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+    MatSetSizes_Block( *A, 2,2, 2,2 ); /* maybe need different name for this */
+#endif
     if(K) {MatBlockSetValue( *A, 0,0, K, SAME_NONZERO_PATTERN, INSERT_VALUES );}
     if(G) {MatBlockSetValue( *A, 0,1, G, SAME_NONZERO_PATTERN, INSERT_VALUES );}
     if(D) {MatBlockSetValue( *A, 1,0, D, SAME_NONZERO_PATTERN, INSERT_VALUES );}
@@ -292,6 +302,14 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	    MatCreate( PETSC_COMM_WORLD, &stokes_P );
 	    MatSetSizes( stokes_P, 2, 2, 2, 2 );
 	    MatSetType( stokes_P, "block" );
+
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+            MatSetUp(stokes_P);
+#endif
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+	    MatSetSizes_Block( stokes_P, 2, 2, 2, 2 );
+#endif
+
 	    MatBlockSetValue( stokes_P, 0, 0, K, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
 	    MatBlockSetValue( stokes_P, 0, 1, G, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
 	    MatBlockSetValue( stokes_P, 1, 1, approxS, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );

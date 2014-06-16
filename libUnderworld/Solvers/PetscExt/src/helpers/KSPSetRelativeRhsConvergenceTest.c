@@ -46,11 +46,15 @@
  **
  ** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@*/
 
-
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
 #include <petscksp.h>
-
 #include "private/compat/petsccompat.h"
+
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3 ) )
+  #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
+#else
+  #include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#endif
+
 
 /*
 Convergence occurs when

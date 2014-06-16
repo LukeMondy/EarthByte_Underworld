@@ -112,7 +112,7 @@ void test_MatSeqAIJOps( void )
 	*/
 	
 	PetscFree( idx );
-	Stg_MatDestroy( A );
+	MatDestroy( & A );
 	Stg_VecDestroy( & y );
 }
 
@@ -148,7 +148,7 @@ void test_MatMPIAIJOps( void )
 	
 	
 	PetscFree( idx );
-	Stg_MatDestroy( A );
+	MatDestroy( & A );
 	Stg_VecDestroy( & y );
 }
 
@@ -185,7 +185,7 @@ void test_MatMPIAIJOps2( void )
 	
 	
 	PetscFree( idx );
-	Stg_MatDestroy( A );
+	MatDestroy( & A );
 	Stg_VecDestroy( & y );
 }
 

@@ -54,9 +54,14 @@
 #include <petscmat.h>
 #include <petscksp.h>
 #include <petscpc.h>
-#include <private/kspimpl.h>
-#include <private/pcimpl.h>
-
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include <petsc-private/kspimpl.h>
+  #include <petsc-private/pcimpl.h>
+#else
+  #include <private/kspimpl.h>
+  #include <private/pcimpl.h>
+#endif
 
 #include "private/vec/petscvec-block.h"
 #include "private/mat/petscmat-block.h"

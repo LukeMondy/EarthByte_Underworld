@@ -49,8 +49,11 @@
 
 static char help[] = "Newton's method to solve a two-variable system, sequentially.\n"\
 		"The same problem is solved twice - i) fully assembled system + ii) block system\n\n";
-
-#include "private/snesimpl.h"
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3 ) )
+  #include "petsc-private/snesimpl.h"
+#else
+  #include "private/snesimpl.h"
+#endif
 
 #include "petscsnes.h"
 #include "petscext_vec.h"
@@ -136,12 +139,10 @@ int block_system_force(int argc,char **argv)
 		/* Set function evaluation routine and vector. */
 		ierr = SNESSetFunction(snes,r,FormFunction1_block,PETSC_NULL);CHKERRQ(ierr);
 		MatCreateSNESBlockMFFD( snes, &J );
-//		SNESSetJacobian(snes,J,J,BlockMatMFFDComputeJacobian, FormFunction1_block );
 		SNESSetJacobian(snes,J,J,SNESDefaultComputeJacobian_Block, PETSC_NULL );
 	} else {
 		ierr = SNESSetFunction(snes,r,FormFunction2_block,PETSC_NULL);CHKERRQ(ierr);
 		MatCreateSNESBlockMFFD( snes, &J );
-//		SNESSetJacobian(snes,J,J,BlockMatMFFDComputeJacobian, FormFunction2_block );
 		SNESSetJacobian(snes,J,J,SNESDefaultComputeJacobian_Block, PETSC_NULL );
 	}
 	
@@ -210,7 +211,7 @@ int block_system_force(int argc,char **argv)
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	
 	ierr = Stg_VecDestroy( &x);CHKERRQ(ierr); ierr = Stg_VecDestroy( &r);CHKERRQ(ierr);
-	ierr = Stg_MatDestroy(J);CHKERRQ(ierr); ierr = Stg_SNESDestroy(snes);CHKERRQ(ierr);
+	ierr = Stg_MatDestroy( &J);CHKERRQ(ierr); ierr = Stg_SNESDestroy( &snes);CHKERRQ(ierr);
 	
 	return 0;
 }

@@ -134,7 +134,7 @@ PetscErrorCode MatBlockMergeRootBlocks( Mat B, Mat *_merge )
 			MatBlockGetSubMatrix( B, i,j, &sb );
 			if( sb != PETSC_NULL ) {
 				
-				PetscTypeCompare( (PetscObject)sb, "block", &same );
+				Stg_PetscTypeCompare( (PetscObject)sb, "block", &same );
 				if( same == PETSC_TRUE ) {
 					Stg_SETERRQ( PETSC_ERR_SUP, "Operation is not recursive. Cannot merge nested blocks" );
 				}
@@ -259,7 +259,7 @@ PetscErrorCode test_3_field( void )
 	/* BB */
 	MatCreate( PETSC_COMM_WORLD, &BB );
 	MatSetOptionsPrefix( BB, "BB" );
-	MatSetSizes( BB, 2,1, 2,1 );
+	MatSetSizes_Block( BB, 2,1, 2,1 );
 	MatSetType( BB, "block" );
 	
 	MatBlockSetValue( BB, 1,0, A13, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
@@ -270,7 +270,7 @@ PetscErrorCode test_3_field( void )
 	/* CC */
 	MatCreate( PETSC_COMM_WORLD, &CC );
 	MatSetOptionsPrefix( CC, "CC" );
-	MatSetSizes( CC, 1,2, 1,2 );
+	MatSetSizes_Block( CC, 1,2, 1,2 );
 	MatSetType( CC, "block" );
 	
 	MatBlockSetValue( CC, 0,1, A31, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
@@ -281,7 +281,7 @@ PetscErrorCode test_3_field( void )
 	/* AA */
 	MatCreate( PETSC_COMM_WORLD, &AA );
 	MatSetOptionsPrefix( AA, "AA" );
-	MatSetSizes( AA, 2,2, 2,2 );
+	MatSetSizes_Block( AA, 2,2, 2,2 );
 	MatSetType( AA, "block" );
 	
 	MatBlockSetValue( AA, 0,0, A, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
@@ -362,7 +362,7 @@ PetscErrorCode test_2_block( void )
 	/* G */
 	MatCreate( PETSC_COMM_WORLD, &G );
 	MatSetOptionsPrefix( G, "G" );
-	MatSetSizes( G, 2,1, 2,1 );
+	MatSetSizes_Block( G, 2,1, 2,1 );
 	MatSetType( G, "block" );
 	
 	ierr=MatBlockSetValue( G, 0,0, A13, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);CHKERRQ(ierr);
@@ -374,7 +374,7 @@ PetscErrorCode test_2_block( void )
 	/* D */
 	MatCreate( PETSC_COMM_WORLD, &D );
 	MatSetOptionsPrefix( D, "D" );
-	MatSetSizes( D, 1,2, 1,2 );
+	MatSetSizes_Block( D, 1,2, 1,2 );
 	MatSetType( D, "block" );
 	
 	MatBlockSetValue( D, 0,0, A31, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);

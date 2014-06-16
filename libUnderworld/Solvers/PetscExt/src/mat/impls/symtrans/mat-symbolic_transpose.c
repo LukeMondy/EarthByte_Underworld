@@ -50,7 +50,11 @@
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
-#include <private/matimpl.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/matimpl.h>
+#else
+  #include <private/matimpl.h>
+#endif
 
 #include "mat-symbolic_transpose-impl.h"
 #include "mat-symbolic_transpose-ops.h"
@@ -89,7 +93,7 @@ PetscErrorCode _MatSymTransSetOperator_SymTrans( Mat symAt, Mat A )
 	PetscFunctionBegin;
 	
 	is_sym = PETSC_FALSE;
-	PetscTypeCompare( (PetscObject)A, "symtrans", &is_sym );
+	Stg_PetscTypeCompare( (PetscObject)A, "symtrans", &is_sym );
 	if( is_sym == PETSC_TRUE ) {
 		Stg_SETERRQ(PETSC_ERR_ARG_WRONG,"The operator for MatSymTrans must not be symbolic.");
 	}
@@ -165,7 +169,7 @@ PetscErrorCode _MatSymTransGetExplicitOperator_SymTrans( Mat symA, Mat *A )
 	PetscFunctionBegin;
 	
 	is_sym = PETSC_FALSE;
-	PetscTypeCompare( (PetscObject)symA, "symtrans", &is_sym );
+	Stg_PetscTypeCompare( (PetscObject)symA, "symtrans", &is_sym );
 	if( is_sym == PETSC_FALSE ) {
 		*A = symA;
 		PetscObjectReference( (PetscObject)symA );
@@ -217,6 +221,7 @@ PetscErrorCode MatCreateSymTrans( MPI_Comm comm, Mat A, Mat *symAt )
 	MatCreate( comm, symAt );
 	MatSetSizes( *symAt, n,m, N,M );
 	MatSetType( *symAt, "symtrans" );
+        MatSetUp( *symAt );
 	MatSymTransSetOperator( *symAt, A );
 	
 	
@@ -267,11 +272,11 @@ PetscErrorCode MatSetOps_SymTrans( struct _MatOps* ops )
 	ops->choleskyfactorsymbolic = 0; // MatCholeskyFactorSymbolic_EMPTY;
 	ops->choleskyfactornumeric  = 0; // MatCholeskyFactorNumeric_EMPTY;
 	/*29*/
-	ops->setuppreallocation = 0; // MatSetUpPreallocation_EMPTY;
+
 	ops->ilufactorsymbolic  = 0; // MatILUFactorSymbolic_EMPTY;
 	ops->iccfactorsymbolic  = 0; // MatICCFactorSymbolic_EMPTY;
-	ops->getarray           = 0; // MatGetArray_EMPTY;
-	ops->restorearray       = 0; // MatRestoreArray_EMPTY;
+
+
 	/*35*/
 	ops->duplicate     = 0; // MatDuplicate_EMPTY;
 	ops->forwardsolve  = 0; // MatForwardSolve_EMPTY;
@@ -291,7 +296,7 @@ PetscErrorCode MatSetOps_SymTrans( struct _MatOps* ops )
 	ops->diagonalset = 0; // MatDiagonalSet_EMPTY;
 	//ops->dummy       = 0; // MatILUDTFactor_EMPTY;
 	/*49*/
-	ops->setblocksize    = 0; // MatSetBlockSize_EMPTY;
+
 	ops->getrowij        = 0; // MatGetRowIJ_EMPTY;
 	ops->restorerowij    = 0; // MatRestorRowIJ_EMPTY;
 	ops->getcolumnij     = 0; // MatGetColumnIJ_EMPTY;
@@ -307,10 +312,10 @@ PetscErrorCode MatSetOps_SymTrans( struct _MatOps* ops )
 	ops->destroy       = Stg_MatDestroy_SymTrans;
 	ops->view          = 0;
 	ops->convertfrom   = 0; // MatConvertFrom_EMPTY;
-	ops->usescaledform = 0; // MatUseScaledForm_EMPTY;
+
 	/*64*/
-	ops->scalesystem             = 0; // MatScaleSystem_EMPTY;
-	ops->unscalesystem           = 0; // MatUnScaleSystem_EMPTY;
+
+
 	ops->setlocaltoglobalmapping = 0; // MatSetLocalToGlobalMapping_EMPTY;
 	ops->setvalueslocal          = 0; // MatSetValuesLocal_EMPTY;
 	ops->zerorowslocal           = 0; // MatZeroRowsLocal_EMPTY;
@@ -319,7 +324,7 @@ PetscErrorCode MatSetOps_SymTrans( struct _MatOps* ops )
 	ops->getrowminabs    = 0; // 
 	ops->convert         = 0; // MatConvert_EMPTY;
 	ops->setcoloring     = 0; // MatSetColoring_EMPTY;
-	ops->setvaluesadic   = 0; // MatSetValuesAdic_EMPTY;
+
 	/* 74 */
 	ops->setvaluesadifor = 0; // MatSetValuesAdifor_EMPTY;
 	ops->fdcoloringapply              = 0; // MatFDColoringApply_EMPTY;
@@ -346,16 +351,16 @@ PetscErrorCode MatSetOps_SymTrans( struct _MatOps* ops )
 	ops->ptapsymbolic    = 0; // MatPtAPSymbolic_EMPTY;
 	/*94*/
 	ops->ptapnumeric              = 0; // MatPtAPNumeric_EMPTY;
-	ops->matmulttranspose         = 0; // MatMatMultTranspose_EMPTY;
-	ops->matmulttransposesymbolic = 0; // MatMatMultTransposeSymbolic_EMPTY;
-	ops->matmulttransposenumeric  = 0; // MatMatMultTransposeNumeric_EMPTY;
-	ops->ptapsymbolic_seqaij      = 0; // MatPtAPSymbolic_SEQAIJ_EMPTY;
+
+
+
+
 	/*99*/
-	ops->ptapnumeric_seqaij  = 0; // MatPtAPNumeric_SEQAIJ_EMPTY;
-	ops->ptapsymbolic_mpiaij = 0; // MatPtAPSymbolic_MPIAIJ_EMPTY;
-	ops->ptapnumeric_mpiaij  = 0; // MatPtAPNumeric_MPIAIJ_EMPTY;
+
+
+
 	ops->conjugate           = 0; // MatConjugate_EMPTY;
-	ops->setsizes            = 0; // MatSetSizes_EMPTY;
+
 	/*104*/
 	ops->setvaluesrow              = 0; // MatSetValuesRow_EMPTY;
 	ops->realpart                  = 0; // MatRealPart_EMPTY;

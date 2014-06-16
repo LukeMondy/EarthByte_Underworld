@@ -109,7 +109,7 @@ void test_MatBlock_merge( PetscInt FAC, PetscTruth view_merged_mat )
 	
 	/* Create block matrix */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	MatGetType( A, &type );
 	

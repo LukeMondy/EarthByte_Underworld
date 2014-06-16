@@ -21,8 +21,16 @@ Performs y = ( G^T G )^{-1} ( G^T K G ) ( G^T G )^{-1} x
 
 #include "common-driver-utils.h"
 
-#include "private/pcimpl.h"
-#include "private/kspimpl.h"
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/pcimpl.h"
+  #include "petsc-private/kspimpl.h"
+#else
+  #include "private/pcimpl.h"
+  #include "private/kspimpl.h"
+#endif
+
+
 #include "pc_ScaledGtKG.h"
 
 #include <StGermain/StGermain.h>
@@ -779,6 +787,9 @@ PetscErrorCode BSSCR_PCScGtKGUseStandardBBtOperator( PC pc )
 	PetscObjectGetComm( (PetscObject)ctx->F, &comm ); 
 	MatCreate( comm, &diag_mat );
 	MatSetSizes( diag_mat, m,m , M, M );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp(diag_mat);
+#endif
 	MatGetType( ctx->Bt, &mtype );
 	MatSetType( diag_mat, mtype );
 	

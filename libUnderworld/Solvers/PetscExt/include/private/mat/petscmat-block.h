@@ -57,6 +57,8 @@
 PETSC_EXTERN_CXX_BEGIN
 
 /* interfaces */
+
+PetscErrorCode MatSetSizes_Block( Mat A, PetscInt m, PetscInt n, PetscInt M, PetscInt N );
 PetscErrorCode MatBlockSetValues( Mat A, PetscInt m, const PetscInt idxm[], PetscInt n ,const PetscInt idxn[], const Mat mat[], MatStructure str, InsertMode addv );
 PetscErrorCode MatBlockSetValue( Mat A, PetscInt idxm, PetscInt idxn, Mat mat, MatStructure str, InsertMode addv );
 

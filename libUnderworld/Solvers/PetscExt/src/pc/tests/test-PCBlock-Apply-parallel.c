@@ -129,7 +129,7 @@ void test_pc_block_apply_USymTrans( void )
 	
 	/* Create + Setup A */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	
 	MatBlockSetValue( A, 0,0, A11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );

@@ -5,11 +5,21 @@
 #include <petscksp.h>
 #include <petscsnes.h>
 
-#include "private/vecimpl.h"
-#include "private/matimpl.h"
-#include "private/pcimpl.h"
-#include "private/kspimpl.h"
-#include "private/snesimpl.h"
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/vecimpl.h"
+  #include "petsc-private/matimpl.h"
+  #include "petsc-private/pcimpl.h"
+  #include "petsc-private/kspimpl.h"
+  #include "petsc-private/snesimpl.h"
+#else
+  #include "private/vecimpl.h"
+  #include "private/matimpl.h"
+  #include "private/pcimpl.h"
+  #include "private/kspimpl.h"
+  #include "private/snesimpl.h"
+#endif
+
 
 
 #include "common-driver-utils.h"
@@ -23,7 +33,7 @@
 PetscErrorCode BSSCR_MatListOperations( Mat A, PetscViewer v )
 {
 	MatOps ops = A->ops;
-	const MatType type;
+	MatType type;
 	PetscInt i;
 	
 	MatGetType( A, &type );
@@ -78,11 +88,11 @@ PetscErrorCode BSSCR_MatListOperations( Mat A, PetscViewer v )
 	BSSCR_report_op( ops->choleskyfactornumeric, v,  i++, "MatCholeskyFactorNumeric" );
 	
 	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->setuppreallocation, v, i++, "MatSetupPreallocation" );
+
 	BSSCR_report_op( ops->ilufactorsymbolic, v,  i++, "MatILUFactorSymbolic" );
 	BSSCR_report_op( ops->iccfactorsymbolic, v,  i++, "MatICCFactorSymbolic" );
-	BSSCR_report_op( ops->getarray, v,           i++, "MatGetArray" );
-	BSSCR_report_op( ops->restorearray, v,       i++, "MatRestoreArray" );
+
+
 	
 	BSSCR_report_op( ops->duplicate, v,     i++, "MatDuplicate" );
 	BSSCR_report_op( ops->forwardsolve, v,  i++, "MatForwardSolve" );
@@ -106,7 +116,7 @@ PetscErrorCode BSSCR_MatListOperations( Mat A, PetscViewer v )
 #endif
 	
 	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->setblocksize, v,    i++, "MatSetBlockSize" );
+
 	BSSCR_report_op( ops->getrowij, v,        i++, "MatGetRowIJ" );
 	BSSCR_report_op( ops->restorerowij, v,    i++, "MatRestoreRowIJ" );
 	BSSCR_report_op( ops->getcolumnij, v,     i++, "MatGetColumnIJ" );
@@ -123,10 +133,10 @@ PetscErrorCode BSSCR_MatListOperations( Mat A, PetscViewer v )
 	BSSCR_report_op( ops->destroy, v,       i++, "MatDestroy" );
 	BSSCR_report_op( ops->view, v,          i++, "MatView" );
 	BSSCR_report_op( ops->convertfrom, v,   i++, "MatConvertFrom" );
-	BSSCR_report_op( ops->usescaledform, v, i++, "MatUseScaledForm" );
+
 	
-	BSSCR_report_op( ops->scalesystem, v,             i++, "MatScaleSystem" );
-	BSSCR_report_op( ops->unscalesystem, v,           i++, "MatUnScaleSystem" );
+
+
 	BSSCR_report_op( ops->setlocaltoglobalmapping, v, i++, "MatSetLocalToGlobalMapping" );
 	BSSCR_report_op( ops->setvalueslocal, v,          i++, "MatSetValuesLocal" );
 	BSSCR_report_op( ops->zerorowslocal, v,           i++, "Stg_MatZeroRowsLocal" );
@@ -135,7 +145,7 @@ PetscErrorCode BSSCR_MatListOperations( Mat A, PetscViewer v )
 	BSSCR_report_op( ops->getrowmaxabs, v,    i++, "MatGetRowMaxAbs" );
 	BSSCR_report_op( ops->convert, v,         i++, "MatConvert" );
 	BSSCR_report_op( ops->setcoloring, v,     i++, "MatSetColoring" );
-	BSSCR_report_op( ops->setvaluesadic, v,   i++, "MatSetValuesAdic" );
+
 	BSSCR_report_op( ops->setvaluesadifor, v, i++, "MatSetValuesAdicfor" );
 	
 	BSSCR_report_op( ops->fdcoloringapply, v,              i++, "MatFDCloringApply" );
@@ -171,17 +181,17 @@ PetscErrorCode BSSCR_MatListOperations( Mat A, PetscViewer v )
 	BSSCR_report_op( ops->ptapsymbolic, v,    i++, "MatPtAPSymbolic" );
 	
 	BSSCR_report_op( ops->ptapnumeric, v,              i++, "MatPtAPNumeric" );
-	BSSCR_report_op( ops->matmulttranspose, v,         i++, "MatMatMultTranspose" );
-	BSSCR_report_op( ops->matmulttransposesymbolic, v, i++, "MatMatMultTransposeSymbolic" );
-	BSSCR_report_op( ops->matmulttransposenumeric, v,  i++, "MatMatMultTransposeNumeric" );
-	BSSCR_report_op( ops->ptapsymbolic_seqaij, v,      i++, "MatPtAPSymbolic_SEQAIJ" );
+
+
+
+
 	
 	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->ptapnumeric_seqaij, v,  i++, "MatPtAPNumeric_SEQAIJ" );
-	BSSCR_report_op( ops->ptapsymbolic_mpiaij, v, i++, "MatPtAPSymbolic_MPIAIJ" );
-	BSSCR_report_op( ops->ptapnumeric_mpiaij, v,  i++, "MatPtAPNumeric_MPIAIJ" );
+
+
+
 	BSSCR_report_op( ops->conjugate, v,           i++, "MatConjugate" );
-	BSSCR_report_op( ops->setsizes, v,            i++, "MatSetSizes" );
+	//BSSCR_report_op( ops->setsizes, v,            i++, "MatSetSizes" );
 	
 	BSSCR_report_op( ops->setvaluesrow, v,              i++, "MatSetValuesRow" );
 	BSSCR_report_op( ops->realpart, v,                  i++, "MatRealPart" );
@@ -205,7 +215,7 @@ PetscErrorCode BSSCR_MatListOperations( Mat A, PetscViewer v )
 PetscErrorCode BSSCR_VecListOperations( Vec x, PetscViewer v )
 {
 	VecOps ops = x->ops;
-	const VecType type;
+	VecType type;
 	PetscInt i;
 	
 	VecGetType( x, &type );
@@ -296,7 +306,7 @@ PetscErrorCode BSSCR_VecListOperations( Vec x, PetscViewer v )
 PetscErrorCode BSSCR_KSPListOperations( KSP ksp, PetscViewer v )
 {
 	KSPOps ops = ksp->ops;
-	const KSPType type;
+	KSPType type;
 	PetscInt i;
 	
 	KSPGetType( ksp, &type );
@@ -326,7 +336,7 @@ PetscErrorCode BSSCR_KSPListOperations( KSP ksp, PetscViewer v )
 PetscErrorCode BSSCR_PCListOperations( PC pc, PetscViewer v )
 {
 	PCOps ops = pc->ops;
-	const PCType type;
+	PCType type;
 	PetscInt i;
 	
 	PCGetType( pc, &type );
@@ -365,7 +375,7 @@ PetscErrorCode BSSCR_PCListOperations( PC pc, PetscViewer v )
 PetscErrorCode BSSCR_SNESListOperations( SNES snes, PetscViewer v )
 {
 	SNESOps ops = snes->ops;
-	const SNESType type;
+	SNESType type;
 	PetscInt i;
 	
 	SNESGetType( snes, &type );
@@ -375,8 +385,8 @@ PetscErrorCode BSSCR_SNESListOperations( SNES snes, PetscViewer v )
 	
 	i=0;
 	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->computefunction, v, i++, "SNESComputeFunction" );
-	BSSCR_report_op( ops->computejacobian, v, i++, "SNESComputeJacobian" );
+
+
 	BSSCR_report_op( ops->computescaling, v,  i++, "SNESComputeScaling" );
 	BSSCR_report_op( ops->update, v,          i++, "SNESUpdate" );
 	BSSCR_report_op( ops->converged, v,       i++, "SNESConverged" );

@@ -112,8 +112,11 @@ extern PetscErrorCode FormJacobian2_block(SNES,Vec,Mat*,Mat*,MatStructure*,void*
 extern PetscErrorCode FormFunction2_block(SNES,Vec,Vec,void*);
 
 
-
-#include "private/snesimpl.h"
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3 ) )
+  #include "petsc-private/snesimpl.h"
+#else
+  #include "private/snesimpl.h"
+#endif
 
 PetscErrorCode PETSCSNES_DLLEXPORT SNESBlockDefaultComputeJacobian(SNES snes,Vec x1,Mat *J,Mat *B,MatStructure *flag,void *ctx)
 {
@@ -275,19 +278,22 @@ PetscErrorCode PETSCSNES_DLLEXPORT SNESBlockDefaultComputeJacobian(SNES snes,Vec
 PetscErrorCode SNESSetFromOptions_BlockFD( SNES snes )
 {
 	PetscTruth flg;
+	PetscErrorCode ierr;
+    PetscFunctionBegin;
 	
-	
-	PetscOptionsBegin( ((PetscObject)snes)->comm, ((PetscObject)snes)->prefix,"Nonlinear solver (SNES) options for block matrices", "SNES" );
+	//PetscOptionsBegin( ((PetscObject)snes)->comm, ((PetscObject)snes)->prefix,"Nonlinear solver (SNES) options for block matrices", "SNES" );
+	ierr = PetscOptionsHead("Nonlinear solver (SNES) options for block matrices");CHKERRQ(ierr);
 	
 	PetscOptionsName("-snes_block_fd","Use block finite difference (slow) to compute Jacobian", "SNESBlockDefaultComputeJacobian", &flg );
 	if (flg) {
-		SNESSetJacobian( snes, snes->jacobian, snes->jacobian_pre, SNESBlockDefaultComputeJacobian, snes->funP );
+		SNESSetJacobian( snes, snes->jacobian, snes->jacobian_pre, SNESBlockDefaultComputeJacobian, PETSC_NULL) );
 		PetscInfo( snes, "Setting block finite difference Jacobian matrix \n");
 	}
 	
-	PetscOptionsEnd();
+    //PetscOptionsEnd();
+	ierr = PetscOptionsTail();CHKERRQ(ierr);
 	
-	PetscFunctionReturn(0);
+    PetscFunctionReturn(0);
 }
 
 
@@ -396,18 +402,22 @@ PetscErrorCode _SNESDefaultComputeJacobian(SNES snes,Vec x1,Mat *J,Mat *B,MatStr
 PetscErrorCode _SNESSetFromOptions_FDDebug( SNES snes )
 {
 	PetscTruth flg;
+	PetscErrorCode ierr;
+    PetscFunctionBegin;
 	
+	//PetscOptionsBegin( ((PetscObject)snes)->comm, ((PetscObject)snes)->prefix,"Nonlinear solver (SNES) options for debug", "SNES" );
+	ierr = PetscOptionsHead("Nonlinear solver (SNES) options for debug");CHKERRQ(ierr);
 	
-	PetscOptionsBegin( ((PetscObject)snes)->comm, ((PetscObject)snes)->prefix,"Nonlinear solver (SNES) options for debug", "SNES" );
-	
-	PetscOptionsName("-snes_fd","Use block finite difference (slow) to compute Jacobian", "_SNESDefaultComputeJacobian", &flg );
+    PetscOptionsName("-snes_fd","Use block finite difference (slow) to compute Jacobian", "_SNESDefaultComputeJacobian", &flg );
 	if (flg) {
-		SNESSetJacobian( snes, snes->jacobian, snes->jacobian_pre, _SNESDefaultComputeJacobian, snes->funP );
+		SNESSetJacobian( snes, snes->jacobian, snes->jacobian_pre, _SNESDefaultComputeJacobian, PETSC_NULL) );
 		PetscInfo( snes, "Setting block finite difference Jacobian matrix \n");
 	}
 	
-	PetscOptionsEnd();
-	
+    
+	//PetscOptionsEnd();
+	ierr = PetscOptionsTail();CHKERRQ(ierr);
+
 	PetscFunctionReturn(0);
 }
 
@@ -529,7 +539,7 @@ int assembled_system(int argc,char **argv)
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	
 	ierr = Stg_VecDestroy( &x);CHKERRQ(ierr); ierr = Stg_VecDestroy( &r);CHKERRQ(ierr);
-	ierr = Stg_MatDestroy(J);CHKERRQ(ierr); ierr = Stg_SNESDestroy(snes);CHKERRQ(ierr);
+	ierr = Stg_MatDestroy( &J);CHKERRQ(ierr); ierr = Stg_SNESDestroy( &snes);CHKERRQ(ierr);
 	
 	return 0;
 }
@@ -788,7 +798,7 @@ int block_system(int argc,char **argv)
 	Create block Jacobian matrix data structure
 	*/
 	MatCreate( PETSC_COMM_WORLD, &J );
-	MatSetSizes( J, 2,2, 2,2 );
+	MatSetSizes_Block( J, 2,2, 2,2 );
 	MatSetType( J, "block" );
 	
 	MatBlockSetValue( J, 0,0, j11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -817,7 +827,7 @@ int block_system(int argc,char **argv)
 	MatSetType( pj22, MATSEQAIJ );
 	
 	MatCreate( PETSC_COMM_WORLD, &pJ );
-	MatSetSizes( pJ, 2,2, 2,2 );
+	MatSetSizes_Block( pJ, 2,2, 2,2 );
 	MatSetType( pJ, "block" );
 	
 	MatBlockSetValue( pJ, 0,0, pj11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -906,7 +916,7 @@ int block_system(int argc,char **argv)
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 	
 	ierr = Stg_VecDestroy( &x);CHKERRQ(ierr); ierr = Stg_VecDestroy( &r);CHKERRQ(ierr);
-	ierr = Stg_MatDestroy(J);CHKERRQ(ierr); ierr = Stg_SNESDestroy(snes);CHKERRQ(ierr);
+	ierr = Stg_MatDestroy( &J);CHKERRQ(ierr); ierr = Stg_SNESDestroy( &snes);CHKERRQ(ierr);
 	
 	return 0;
 }
@@ -966,8 +976,6 @@ PetscErrorCode FormJacobian1_block(SNES snes,Vec x,Mat *jac,Mat *B,MatStructure 
 	PetscInt index;
 	PetscScalar A_00, A_01, A_10, A_11;
 	Mat j11, j12, j21, j22;
-	PetscInt idx[2] = {0,1};
-	Mat mats[4];
 	
 	/* get blocks for solution */
 	VecBlockGetSubVectors( x, &xx );

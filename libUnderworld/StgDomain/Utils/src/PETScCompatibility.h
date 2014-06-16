@@ -30,11 +30,35 @@
 #define __StgDomain_Utils_PETScCompatibility_h__
 
 #include "petsc.h"
+#include "petscversion.h"
 
 #if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
    #define Stg_PCMGDefaultResidual NULL
+   #define KSP_DIVERGED_NAN KSP_DIVERGED_NANORINF
+   #define Stg_VecRegister(a1,a2,a3,a4) VecRegister(a1,a4)
+   #define Stg_PetscObjectDepublish PetscObjectAMSViewOff
+   #define PetscObjectTakeAccess PetscObjectAMSTakeAccess
+   #define PetscObjectGrantAccess PetscObjectAMSGrantAccess
+   #define PetscGetTime PetscTime
+   #define PetscObjectComposeFunctionDynamic( arg1, arg2, arg3, arg4 ) PetscObjectComposeFunction( arg1, arg2, arg4 )
+   #define Stg_MatRegister(a1,a2,a3,a4) MatRegister(a1,a4)
+   #define Stg_KSPRegister(a1,a2,a3,a4) KSPRegister(a1,a4)
+   #define Stg_SNESRegister(a1,a2,a3,a4) SNESRegister(a1,a4)
+   #define Stg_PCRegister(a1,a2,a3,a4) PCRegister(a1,a4)
+   #define KSPDefaultDestroy KSPDestroyDefault
+   #define SNESDefaultConverged SNESConvergedDefault
+   #define SNESLogConvHistory SNESLogConvergenceHistory
+   #define KSPDefaultBuildSolution KSPBuildSolutionDefault
+   #define KSPDefaultBuildResidual KSPBuildResidualDefault
+   #define PETSC_NULL NULL
 #else
    #define Stg_PCMGDefaultResidual PCMGDefaultResidual
+   #define Stg_VecRegister(a1,a2,a3,a4) VecRegister(a1,a2,a3,a4)
+   #define Stg_PetscObjectDepublish PetscObjectDepublish
+   #define Stg_MatRegister MatRegister
+   #define Stg_KSPRegister KSPRegister
+   #define Stg_SNESRegister SNESRegister
+   #define Stg_PCRegister PCRegister
 #endif
 
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 2 ) )
@@ -42,6 +66,7 @@
   	#define Stg_SETERRQ1( arg1, arg2, arg3 ) SETERRQ1( PETSC_COMM_SELF, arg1, arg2, arg3 )
   	#define Stg_SETERRQ2( arg1, arg2, arg3, arg4 ) SETERRQ2( PETSC_COMM_SELF, arg1, arg2, arg3, arg4 )
     #define Stg_SETERRQ3( arg1, arg2, arg3, arg4, arg5 ) SETERRQ3( PETSC_COMM_SELF, arg1, arg2, arg3, arg4, arg5 )
+    #define Stg_SETERRQ4( arg1, arg2, arg3, arg4, arg5, arg6 ) SETERRQ4( PETSC_COMM_SELF, arg1, arg2, arg3, arg4, arg5, arg6 )
   	#define Stg_MatZeroRows( arg1, arg2, arg3, arg4 ) MatZeroRows( arg1, arg2, arg3, arg4, NULL, NULL )
   	#define ISCreateGeneralWithArray( arg1, arg2, arg3, arg4 ) ISCreateGeneral( arg1, arg2, arg3, PETSC_USE_POINTER, arg4 )
   	#define PetscTruth PetscBool
@@ -62,11 +87,15 @@
     #define EXTERN extern
     #endif
    #if ( PETSC_VERSION_MINOR > 2  )
+      #define PETSC_EXTERN_CXX_BEGIN EXTERN_C_BEGIN
+      #define PETSC_EXTERN_CXX_END EXTERN_C_END
       #define Stg_MatCreateAIJ MatCreateAIJ
       #define Stg_PetscObjectTypeCompare PetscObjectTypeCompare
+      #define Stg_PetscTypeCompare PetscObjectTypeCompare
    #else
       #define Stg_MatCreateAIJ MatCreateMPIAIJ
       #define Stg_PetscObjectTypeCompare PetscTypeCompare
+      #define Stg_PetscTypeCompare PetscTypeCompare
    #endif
 #else
 /* need these for Mat Vec KSP etc in versions of petsc < 3.2 */
@@ -79,6 +108,7 @@
    #define Stg_SETERRQ1 SETERRQ1
    #define Stg_SETERRQ2 SETERRQ2
    #define Stg_SETERRQ3 SETERRQ3
+   #define Stg_SETERRQ4 SETERRQ4
    #define Stg_MatZeroRows MatZeroRows
    #define Stg_MatCreateAIJ MatCreateMPIAIJ
    #define Stg_PetscObjectTypeCompare PetscTypeCompare

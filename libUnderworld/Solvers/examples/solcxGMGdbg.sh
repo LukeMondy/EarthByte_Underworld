@@ -44,7 +44,7 @@ for UW in uwscale
 do
 for SCR in fgmres
 do
-for A11 in fgmres
+for A11 in preonly
 do
 for SCRTOL in 1e-5
 do
@@ -101,7 +101,7 @@ MGOP=" "
     fi
 
 ID=$SCR$A11
-RES=16
+RES=64
 RESX=$RES
 RESY=$RES
 PP=40
@@ -177,8 +177,8 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCx.xml \
                -XA11_use_norm_inf_stopping_condition \
                -XA11_ksp_monitor_true_residual \
                 -XA11_ksp_view \
-                -backsolveA11_ksp_type fgmres -backsolveA11_ksp_monitor \
-                -backsolveA11_ksp_rtol 1.0e-6 \
+                -XbacksolveA11_ksp_type fgmres -backsolveA11_ksp_monitor \
+                -XbacksolveA11_ksp_rtol 1.0e-6 \
   		--elementResI=$RES --elementResJ=$RES \
   		--maxTimeSteps=0 -Xdump_matvec -Xmatsuffix "_${RES}x${RES}_${VV}_noscale_solcx" \
 

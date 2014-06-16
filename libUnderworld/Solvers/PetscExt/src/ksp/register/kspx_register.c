@@ -60,7 +60,7 @@ EXTERN_C_END
 PetscErrorCode PetscExtKSPRegisterAll( void )
 {
 	
-	KSPRegister(	"cgr",		"src/ksp/impls/cgr",		"KSPCreate_CGR", KSPCreate_CGR 		);
+	Stg_KSPRegister(	"cgr",		"src/ksp/impls/cgr",		"KSPCreate_CGR", KSPCreate_CGR 		);
 	
 	
 	

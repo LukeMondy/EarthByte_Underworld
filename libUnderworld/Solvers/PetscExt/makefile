@@ -11,6 +11,13 @@ FFLAGS	 =
 
 INSTALL_DIR=${PETSC_DIR}/${PETSC_ARCH}
 
+version:
+	version_release=`grep '^#define PETSC_VERSION_RELEASE ' include/petscversion.h |tr -s ' ' | cut -d ' ' -f 3`; \
+	version_major=`grep '^#define PETSC_VERSION_MAJOR ' include/petscversion.h |tr -s ' ' | cut -d ' ' -f 3`; \
+	version_minor=`grep '^#define PETSC_VERSION_MINOR ' include/petscversion.h |tr -s ' ' | cut -d ' ' -f 3`; \
+	version_subminor=`grep '^#define PETSC_VERSION_SUBMINOR ' include/petscversion.h |tr -s ' ' | cut -d ' ' -f 3`; \
+	echo ${version_release}
+
 #include ${PETSC_DIR}/conf/base
 #include ${PETSC_DIR}/conf/test
 include ${PETSCEXT_DIR}/conf/petscext_common
@@ -22,8 +29,7 @@ include ${PETSCEXT_DIR}/conf/petscext_common
 all: 
 	-@echo "BUILDSHAREDLIB: ${BUILDSHAREDLIB}"
 	-@${MAKE} clean_check
-	@${OMAKE}  PETSC_ARCH=${PETSC_ARCH}  chkpetsc_dir
-	@${OMAKE}  PETSC_ARCH=${PETSC_ARCH}  chkpetscext_dir
+	@${OMAKE}  PETSC_ARCH=${PETSC_ARCH}  chkpetscdirpext
 	-@${OMAKE} all_build 2>&1 | tee ${PETSC_ARCH}/conf/make.log
 	-@echo "BUILDSHAREDLIB: ${BUILDSHAREDLIB}"
 	-@egrep -i "( error | error:)" ${PETSC_ARCH}/conf/make.log > /dev/null; if [ "$$?" = "0" ]; then \
@@ -34,6 +40,19 @@ all:
            exit 1; fi
 
 all_build: chk_petsc_dir chk_petscext_dir chklib_dir info info_h deletelibs  build shared_pext
+
+chkpetscdirpext:
+	@mypwd=`pwd`; cd ${PETSC_DIR} 2>&1 > /dev/null; true_PETSC_DIR=`pwd`; cd $${mypwd} 2>&1 >/dev/null; \
+        newpwd=`echo $${mypwd} | sed "s+$${true_PETSC_DIR}+DUMMY+g"`;\
+        haspetsc=`echo $${mypwd} | sed "s+petsc-+DUMMY+g"`;\
+        if [ $${mypwd} = $${newpwd} -a $${haspetsc} != $${mypwd} ]; then \
+          printf ${PETSC_TEXT_HILIGHT}"*********************W-a-r-n-i-n-g*************************\n" ; \
+          echo "Your PETSC_DIR may not match the directory you are in";\
+          echo "PETSC_DIR " $${true_PETSC_DIR} "Current directory" $${mypwd};\
+          echo "Ignore this if you are running make test             ";\
+          printf "******************************************************"${PETSC_TEXT_NORMAL}"\n" ; \
+        fi
+
 #
 # Prints information about the system and version of PETSc being compiled
 #
@@ -118,11 +137,12 @@ build:
 
 build_check:
 	-@${MAKE} all -C src/vec/tests
-	-@${MAKE} all -C src/mat/tests
-	-@${MAKE} all -C src/pc/tests
-	-@${MAKE} all -C src/ksp/tests
-	-@${MAKE} all -C src/snes/tests
 	-@${MAKE} all -C src/tests
+
+#	-@${MAKE} all -C src/mat/tests
+#	-@${MAKE} all -C src/pc/tests
+#	-@${MAKE} all -C src/ksp/tests
+#	-@${MAKE} all -C src/snes/tests
 
 check: build_check
 	-@echo "======================================================"
@@ -132,10 +152,6 @@ check: build_check
 	-@echo "======================================================"
 	-@echo ""
 	-@${MAKE} check -C src/vec/tests
-	-@${MAKE} check -C src/mat/tests
-	-@${MAKE} check -C src/pc/tests
-	-@${MAKE} check -C src/ksp/tests
-	-@${MAKE} check -C src/snes/tests
 	-@${MAKE} check -C src/tests
 	-@echo ""
 	-@echo "Completed compiling and running test examples"
@@ -149,6 +165,10 @@ clean_check:
 	-@${MAKE} clean_test -C src/snes/tests
 	-@${MAKE} clean_test -C src/tests
 
+#	-@${MAKE} check -C src/mat/tests
+#	-@${MAKE} check -C src/pc/tests
+#	-@${MAKE} check -C src/ksp/tests
+#	-@${MAKE} check -C src/snes/tests
 
 
 

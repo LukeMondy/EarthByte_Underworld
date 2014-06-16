@@ -221,7 +221,7 @@ PetscErrorCode SNESPicardComputeOperator(SNES snes,Vec X,Mat *A,Mat *B,MatStruct
 	PetscFunctionBegin;
 	
 	picard = PETSC_TRUE;
-	PetscTypeCompare( (PetscObject)snes, "picardext", &picard );
+	Stg_PetscTypeCompare( (PetscObject)snes, "picardext", &picard );
 	if( !picard ) {
 		Stg_SETERRQ(PETSC_ERR_ARG_WRONGSTATE, "SNESPicardComputeOperator() only valid if SNESType = picardext \n" );
 	}
@@ -248,7 +248,7 @@ PetscErrorCode SNESPicardComputeRhs(SNES snes,Vec x,Vec rhs)
 	PetscFunctionBegin;
 	
 	picard = PETSC_TRUE;
-	PetscTypeCompare( (PetscObject)snes, "picardext", &picard );
+	Stg_PetscTypeCompare( (PetscObject)snes, "picardext", &picard );
 	if( !picard ) {
 		Stg_SETERRQ(PETSC_ERR_ARG_WRONGSTATE, "SNESPicardComputeRhs() only valid if SNESType = picardext \n" );
 	}
@@ -310,8 +310,17 @@ PetscErrorCode SNESSolve_PicardExt(SNES snes)
 		
 		
 		/* Solve [A]{u} = {b} */
-		ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
-		ierr = SNES_KSPSolve(snes,snes->ksp,ctx->rhs,X);CHKERRQ(ierr);
+        #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3 ) )
+           Stg_KSPDestroy(&(snes->ksp));
+           /* by destroying the ksp this function will set the SNESKSPEW_Pre/PostSolve functions for the new KSP */
+           /* the ksp is attached to snes here at same time */
+           SNESGetKSP(snes, NULL);
+           ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
+           ierr = KSPSolve(snes->ksp,ctx->rhs,X);CHKERRQ(ierr);
+        #else
+           ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
+		   ierr = SNES_KSPSolve(snes,snes->ksp,ctx->rhs,X);CHKERRQ(ierr); // this function deprecated in petsc 3.4.4
+        #endif
 		ierr = KSPGetConvergedReason(snes->ksp,&kspreason);CHKERRQ(ierr);
 		if (kspreason < 0) {
 			if (++snes->numLinearSolveFailures >= snes->maxLinearSolveFailures) {
@@ -449,12 +458,22 @@ PetscErrorCode SNESSolve_InexactPicard(SNES snes)
 		eta_k = tau * fnorm;
 		
 		/* Solve [A]{u} = {b} */
-		ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
-		
-		ierr = KSPSetTolerances(snes->ksp, eta_k,eta_k, PETSC_DEFAULT,PETSC_DEFAULT );
-		ierr = SNES_KSPSolve(snes,snes->ksp,ctx->rhs,X);CHKERRQ(ierr);
-		
-		ierr = KSPGetConvergedReason(snes->ksp,&kspreason);CHKERRQ(ierr);
+        #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3 ) )
+           Stg_KSPDestroy(&(snes->ksp));
+           /* by destroying the ksp this function will set the SNESKSPEW_Pre/PostSolve functions for the new KSP */
+           /* the ksp is attached to snes here at same time */
+           SNESGetKSP(snes, NULL);
+           ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
+           ierr = KSPSetTolerances(snes->ksp, eta_k,eta_k, PETSC_DEFAULT,PETSC_DEFAULT );
+           ierr = KSPSolve(snes->ksp,ctx->rhs,X);CHKERRQ(ierr);
+           ierr = KSPGetConvergedReason(snes->ksp,&kspreason);CHKERRQ(ierr);
+        #else
+           ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
+           ierr = KSPSetTolerances(snes->ksp, eta_k,eta_k, PETSC_DEFAULT,PETSC_DEFAULT );
+		   ierr = SNES_KSPSolve(snes,snes->ksp,ctx->rhs,X);CHKERRQ(ierr); // this function deprecated in petsc 3.4.4
+           ierr = KSPGetConvergedReason(snes->ksp,&kspreason);CHKERRQ(ierr);
+        #endif
+
 		if (kspreason < 0) {
 			if (++snes->numLinearSolveFailures >= snes->maxLinearSolveFailures) {
 				snes->reason = SNES_DIVERGED_LINEAR_SOLVE;

@@ -57,9 +57,21 @@
 #include <petscmat.h>
 #include <petscksp.h>
 #include <petscpc.h>
-#include <private/kspimpl.h>
-#include <private/pcimpl.h>
-#include <private/matimpl.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/kspimpl.h>
+#else
+  #include <private/kspimpl.h>
+#endif
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/pcimpl.h>
+#else
+  #include <private/pcimpl.h>
+#endif
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 3) )
+  #include <petsc-private/matimpl.h>
+#else
+  #include <private/matimpl.h>
+#endif
 
 #include "private/vec/petscvec-block.h"
 #include "private/mat/petscmat-block.h"
@@ -354,7 +366,7 @@ PetscErrorCode PCSetUp_Block(PC pc)
 	/* Now allocate space */
 	PCGetOperators( pc, &Amat, &Pmat, &flg );
 	/* check Pmat is block */
-	PetscTypeCompare( (PetscObject)Pmat, "block", &same );
+	Stg_PetscTypeCompare( (PetscObject)Pmat, "block", &same );
 	if( same != PETSC_TRUE ) {
 		Stg_SETERRQ( PETSC_ERR_ARG_WRONG, "PCBlock requires Pmat to be of type \"block\" \n" );
 	}
@@ -784,7 +796,7 @@ PetscErrorCode PCSetFromOptions_Block(PC pc)
 	
 	PCGetOperators( pc, &Amat, &Pmat, &str );
 	/* check Pmat is block */
-	PetscTypeCompare( (PetscObject)Pmat, "block", &same );
+	Stg_PetscTypeCompare( (PetscObject)Pmat, "block", &same );
 	if( same != PETSC_TRUE ) {
 		Stg_SETERRQ( PETSC_ERR_ARG_WRONG, "PCBlock requires Pmat to be of type \"block\" \n" );
 	}
@@ -872,9 +884,9 @@ if( (obj) != PETSC_NULL ) { \
 void print_pc_structure( PC pc, PetscViewer viewer )
 {
 	PC_Block	bA = (PC_Block)pc->data;
-	const PCType		pc_type;
-	const KSPType		ksp_type;
-	const MatType		mat_type;
+	PCType		pc_type;
+	KSPType		ksp_type;
+	MatType		mat_type;
 	PetscInt	m,n;
 	int i,j;
 	const char *mat_name, *pc_name;
@@ -1053,7 +1065,7 @@ PetscErrorCode PCView_Block(PC pc,PetscViewer viewer)
 	
 	PetscFunctionBegin; 
 	
-	PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
+	Stg_PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
 	if (isascii) {
 	
 		PetscViewerASCIIPushTab( viewer );

@@ -162,7 +162,7 @@ PetscErrorCode BSSCR_MatKBlock_ConstructScaling( MatStokesBlockScaling BA, Mat A
 		PetscTruth is_block;
 		
 		/* check A is 2x2 block matrix */
-		PetscTypeCompare( (PetscObject)A, "block", &is_block );
+		Stg_PetscTypeCompare( (PetscObject)A, "block", &is_block );
 		if (is_block==PETSC_FALSE) {
 			Stg_SETERRQ( PETSC_ERR_SUP, "Only valid for MatType = block" );
 		}
@@ -269,7 +269,7 @@ PetscErrorCode BSSCR_MatStokesKBlockReportOperatorScales( Mat A, PetscTruth sym 
 	
 	
 	/* check A is 2x2 block matrix */
-	PetscTypeCompare( (PetscObject)A, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)A, "block", &is_block );
 	if (is_block==PETSC_FALSE) {
 		Stg_SETERRQ( PETSC_ERR_SUP, "Only valid for MatType = block" );
 	}

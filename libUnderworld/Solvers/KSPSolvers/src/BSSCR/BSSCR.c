@@ -14,7 +14,12 @@
 #include <petscext.h>
 #include <petscext_pc.h>
 
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
+#else
+  #include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#endif
 
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
@@ -126,7 +131,7 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPRegisterBSSCR(const char path[])
     PetscErrorCode ierr;
 
     PetscFunctionBegin;
-    ierr = KSPRegister(KSPBSSCR, path, "KSPCreate_BSSCR", KSPCreate_BSSCR );CHKERRQ(ierr);
+    ierr = Stg_KSPRegister(KSPBSSCR, path, "KSPCreate_BSSCR", KSPCreate_BSSCR );CHKERRQ(ierr);
     PetscFunctionReturn(0);
 }
 
@@ -391,15 +396,15 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_BSSCR(KSP ksp)
     ksp->ops->buildresidual        = KSPDefaultBuildResidual;
 
 //    bsscr->k2type=K2_GMG;
-    bsscr->k2type      = PETSC_NULL;
+    bsscr->k2type      = 0;
     bsscr->do_scaling  = PETSC_FALSE;
     bsscr->scaled      = PETSC_FALSE;
     bsscr->K2built     = PETSC_FALSE;
     bsscr->check_cb_pressureNS     = PETSC_FALSE;/* checker board nullspace */
     bsscr->check_const_pressureNS  = PETSC_FALSE;/* constant nullspace */
     bsscr->check_pressureNS        = PETSC_FALSE;/* is true if either of above two are true */
-    bsscr->t           = PETSC_NULL;/* null space vectors for pressure */
-    bsscr->v           = PETSC_NULL;
+    bsscr->t           = NULL;/* null space vectors for pressure */
+    bsscr->v           = NULL;
     bsscr->nstol       = 1e-7;/* null space detection tolerance */
     PetscFunctionReturn(0);
 }

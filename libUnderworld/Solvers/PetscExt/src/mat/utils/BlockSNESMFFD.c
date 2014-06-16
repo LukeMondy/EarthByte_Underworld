@@ -50,8 +50,11 @@
 #include "petscsnes.h"
 #include "petscext_vec.h"
 #include "petscext_mat.h"
-
-#include "private/snesimpl.h"
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3 ) )
+  #include "petsc-private/snesimpl.h"
+#else
+  #include "private/snesimpl.h"
+#endif
 
 PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1,Mat *J,Mat *B,MatStructure *flag,void *ctx)
 {
@@ -219,8 +222,8 @@ PetscErrorCode SNESSetFromOptions_Block( SNES snes )
 	
 	PetscOptionsName("-snes_fd","Use finite difference (slow) to compute Jacobian on block matrices", "SNESDefaultComputeJacobian_Block", &flg );
 	if (flg) {
-		SNESSetJacobian( snes, snes->jacobian, snes->jacobian_pre, SNESDefaultComputeJacobian_Block, snes->funP );
-		PetscInfo( snes, "Setting block finite difference Jacobian matrix \n");
+      SNESSetJacobian( snes, snes->jacobian, snes->jacobian_pre, SNESDefaultComputeJacobian_Block, 0 );
+      PetscInfo( snes, "Setting block finite difference Jacobian matrix \n");
 	}
 	
 	PetscOptionsEnd();
@@ -242,7 +245,7 @@ PetscErrorCode MatCreateSNESBlockMFFD(SNES snes,Mat *J)
 	
 	
 	if( !snes->vec_func) Stg_SETERRQ(PETSC_ERR_ARG_WRONGSTATE, "SNESSetFunction() must be called first");
-	PetscTypeCompare( (PetscObject)snes->vec_func, "block", &is_block );
+	Stg_PetscTypeCompare( (PetscObject)snes->vec_func, "block", &is_block );
 	if( !is_block ) Stg_SETERRQ(PETSC_ERR_ARG_WRONGSTATE, "MatCreateSNESBlockMFFD() only valid for block objects");
 	
 	PetscObjectGetComm( (PetscObject)snes, &comm );
@@ -258,7 +261,7 @@ PetscErrorCode MatCreateSNESBlockMFFD(SNES snes,Mat *J)
 	
 	
 	MatCreate( comm, J );
-	MatSetSizes( *J, Mr,Mr, Mr,Mr );
+	MatSetSizes_Block( *J, Mr,Mr, Mr,Mr );
 	MatSetType( *J, "block" );
 	
 	for( i=0; i<Mr; i++ ) {

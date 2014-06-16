@@ -49,7 +49,7 @@
 
 #ifndef __PETSC_MAT_OPS_SYM_TRANS_H__
 #define __PETSC_MAT_OPS_SYM_TRANS_H__
-
+#include <petscversion.h>
 #include "petscext_helpers.h"
 
 /* 0*/

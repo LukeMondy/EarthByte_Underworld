@@ -68,8 +68,11 @@
 #include "petscksp.h"
 #include "petscmat.h"
 #include "petscvec.h"
-
-#include "private/kspimpl.h"
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3 ) )
+  #include "petsc-private/kspimpl.h"
+#else
+  #include "private/kspimpl.h"
+#endif
 #include "private/ksp/cgr.h"
 
 
@@ -199,7 +202,7 @@ PetscErrorCode KSPView_CGR(KSP ksp,PetscViewer viewer)
 	
 	PetscFunctionBegin;
 
-	PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
+	Stg_PetscTypeCompare((PetscObject)viewer,PETSC_VIEWER_ASCII,&isascii);
 	if (isascii) {
 	
 		PetscViewerASCIIPushTab(viewer); //1

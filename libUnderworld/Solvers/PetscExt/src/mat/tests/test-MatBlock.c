@@ -117,7 +117,7 @@ void test_solve( void )
 	
 	/* Create block matrix */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	MatGetType( A, &type );
 	
@@ -242,7 +242,7 @@ void test_3_field( void )
 */	
 	MatCreate( PETSC_COMM_WORLD, &BB );
 	MatSetOptionsPrefix( BB, "BB" );
-	MatSetSizes( BB, 2,1, 2,1 );
+	MatSetSizes_Block( BB, 2,1, 2,1 );
 	MatSetType( BB, "block" );
 	MatBlockSetValue( BB, 1,0, Bp, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
 	MatAssemblyBegin(BB,MAT_FINAL_ASSEMBLY);
@@ -315,7 +315,7 @@ void test_3_field( void )
 	
 	MatCreate( PETSC_COMM_WORLD, &AA );
 	MatSetOptionsPrefix( AA, "AA" );
-	MatSetSizes( AA, 2,2, 2,2 );
+	MatSetSizes_Block( AA, 2,2, 2,2 );
 	MatSetType( AA, "block" );
 	MatBlockSetValue( AA, 0,0, A, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
 	MatBlockSetValue( AA, 0,1, B, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
@@ -331,7 +331,7 @@ void test_3_field( void )
 	MatCreate( PETSC_COMM_WORLD, &THREE_FIELD_OPERATOR );
 	MatSetOptionsPrefix( THREE_FIELD_OPERATOR, "3-field" );
 //	PetscObjectSetName( (PetscObject)THREE_FIELD_OPERATOR, "3-field" );
-	MatSetSizes( THREE_FIELD_OPERATOR, 2,2, 2,2 );
+	MatSetSizes_Block( THREE_FIELD_OPERATOR, 2,2, 2,2 );
 	MatSetType( THREE_FIELD_OPERATOR, "block" );
 	MatBlockSetValue( THREE_FIELD_OPERATOR, 0,0, AA, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
 	MatBlockSetValue( THREE_FIELD_OPERATOR, 0,1, BB, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
@@ -384,7 +384,7 @@ void test_mat_get_vecs( void )
 */	
 	MatCreate( PETSC_COMM_WORLD, &BB );
 	MatSetOptionsPrefix( BB, "BB" );
-	MatSetSizes( BB, 2,1, 2,1 );
+	MatSetSizes_Block( BB, 2,1, 2,1 );
 	MatSetType( BB, "block" );
 	MatBlockSetValue( BB, 1,0, Bp, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
 	MatAssemblyBegin(BB,MAT_FINAL_ASSEMBLY);
@@ -428,7 +428,7 @@ void test_mat_get_vecs( void )
 */	
 	MatCreate( PETSC_COMM_WORLD, &CC );
 	MatSetOptionsPrefix( CC, "CC" );
-	MatSetSizes( CC, 1,2, 1,2 );
+	MatSetSizes_Block( CC, 1,2, 1,2 );
 	MatSetType( CC, "block" );
 	MatBlockSetValue( CC, 0,0, D, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
 	MatBlockSetValue( CC, 0,1, Cp, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
@@ -490,7 +490,7 @@ void test_mat_get_vecs( void )
 	
 	MatCreate( PETSC_COMM_WORLD, &AA );
 	MatSetOptionsPrefix( AA, "AA" );
-	MatSetSizes( AA, 2,2, 2,2 );
+	MatSetSizes_Block( AA, 2,2, 2,2 );
 	MatSetType( AA, "block" );
 	MatBlockSetValue( AA, 0,0, A, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
 	MatBlockSetValue( AA, 0,1, B, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
@@ -506,7 +506,7 @@ void test_mat_get_vecs( void )
 	MatCreate( PETSC_COMM_WORLD, &THREE_FIELD_OPERATOR );
 	MatSetOptionsPrefix( THREE_FIELD_OPERATOR, "3-field" );
 //	PetscObjectSetName( (PetscObject)THREE_FIELD_OPERATOR, "3-field" );
-	MatSetSizes( THREE_FIELD_OPERATOR, 2,2, 2,2 );
+	MatSetSizes_Block( THREE_FIELD_OPERATOR, 2,2, 2,2 );
 	MatSetType( THREE_FIELD_OPERATOR, "block" );
 	MatBlockSetValue( THREE_FIELD_OPERATOR, 0,0, AA, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);
 	MatBlockSetValue( THREE_FIELD_OPERATOR, 0,1, BB, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES);

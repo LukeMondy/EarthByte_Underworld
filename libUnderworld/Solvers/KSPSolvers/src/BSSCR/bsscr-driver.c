@@ -5,7 +5,13 @@
 #include <petscvec.h>
 #include <petscksp.h>
 #include <petscpc.h>
-#include <private/kspimpl.h>
+
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include <petsc-private/kspimpl.h>
+#else
+  #include <private/kspimpl.h>
+#endif
 
 
 #include "common-driver-utils.h"

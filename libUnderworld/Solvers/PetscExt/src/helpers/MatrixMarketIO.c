@@ -278,7 +278,7 @@ PetscErrorCode MatSEQAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 	}
 	fclose( fp );
 	
-	MatSeqAIJSetPreallocation( *A, PETSC_NULL, nz );
+	MatSeqAIJSetPreallocation( *A, 0, nz );
 	
 	
 	/* PHASE 2. Assemble matrix */
@@ -403,7 +403,7 @@ PetscErrorCode MatMPIAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 	}
 	fclose( fp );
 	
-	MatMPIAIJSetPreallocation( *A, PETSC_NULL,dnz, PETSC_NULL,onz );
+	MatMPIAIJSetPreallocation( *A, 0, dnz, 0,onz );
 	
 	
 	/* PHASE 2. Assemble matrix */
@@ -529,7 +529,7 @@ PetscErrorCode MatSeqAIJCreateBinaryFromMatrixMarket( const char fname[], const 
 	}
 	fclose( fp );
 	
-	MatSeqAIJSetPreallocation( seq_A, PETSC_NULL, nz );
+	MatSeqAIJSetPreallocation( seq_A, 0, nz );
 	
 	
 	/* PHASE 2. Assemble matrix */
@@ -588,7 +588,7 @@ PetscErrorCode MatSeqAIJCreateBinaryFromMatrixMarket( const char fname[], const 
 	PetscFunctionReturn(0);
 }
 
-PetscErrorCode __Stg_MatLoadMatrixMarket( MPI_Comm comm, const char fname[], const MatType type, Mat *A )
+PetscErrorCode __MatLoadMatrixMarket( MPI_Comm comm, const char fname[], const MatType type, Mat *A )
 {
 	PetscViewer viewer;
 	time_t      currTime;
@@ -867,9 +867,9 @@ PetscErrorCode __MatViewMatrixMarket( Mat A, PetscViewer mm_viewer )
 	PetscFunctionBegin;
 	
 	/* check mm_viewer is either PETSC_VIEWER_STDOUT_WORLD or PETSC_VIEWER_STDOUT_SELF or PETSC_VIEWER_ASCII_MATLAB */
-	PetscTypeCompare((PetscObject)mm_viewer,PETSC_VIEWER_ASCII,&is_ascii);
+	Stg_PetscTypeCompare((PetscObject)mm_viewer,PETSC_VIEWER_ASCII,&is_ascii);
 	if(is_ascii==PETSC_FALSE) {
-		Stg_SETERRQ(PETSC_ERR_SUP,"Only for viewers of type PETSC_VIEWER_ASCII_MATLAB");
+		Stg_SETERRQ(PETSC_ERR_SUP,"Only for viewers of type PETSC_VIEWER_ASCII");
 	}
 	
 	PetscObjectGetComm( (PetscObject)A, &comm );

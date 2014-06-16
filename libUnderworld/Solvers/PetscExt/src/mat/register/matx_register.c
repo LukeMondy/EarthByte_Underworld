@@ -49,6 +49,8 @@
 
 #include <petsc.h>
 #include "private/mat/petscext_matimpls.h"
+#include <petscversion.h>
+#include "private/compat/petsccompat.h"
 
 EXTERN_C_BEGIN
 
@@ -69,10 +71,10 @@ EXTERN_C_END
 
 PetscErrorCode PetscExtMatRegisterAll( void )
 {
-	MatRegister(	"block",			"src/mat/impls/block",				"MatCreate_Block",				MatCreate_Block 		);
-	MatRegister(	"symtrans",			"src/mat/impls/symtrans",			"MatCreate_SymTrans",			MatCreate_SymTrans 	);	
-	MatRegister(	"schur",			"src/mat/impls/schur",				"MatCreate_Schur",				MatCreate_Schur 		);	
-	MatRegister(	"restrictscatter",	"src/mat/impls/restrictscatter",	"MatCreate_RestrictScatter",	MatCreate_RestrictScatter	);	
+	Stg_MatRegister(	"block",			"src/mat/impls/block",				"MatCreate_Block",				MatCreate_Block 		);
+	Stg_MatRegister(	"symtrans",			"src/mat/impls/symtrans",			"MatCreate_SymTrans",			MatCreate_SymTrans 	);	
+	Stg_MatRegister(	"schur",			"src/mat/impls/schur",				"MatCreate_Schur",				MatCreate_Schur 		);	
+	Stg_MatRegister(	"restrictscatter",	"src/mat/impls/restrictscatter",	"MatCreate_RestrictScatter",	MatCreate_RestrictScatter	);	
 	
 	/* init logging for schur */
 	PetscLogStageRegister( "PETScExt_MatSchur_MatMult", &__PETScExt_MatSchur_MatMult_Stage );

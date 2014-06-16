@@ -25,11 +25,11 @@ all:
 		${MAKE} $$a; \
 	done
 
-%.app: %.o
+%.app: %.o petsccompat.o
 	-@echo ""
-	-${CLINKER} ${CFLAGS} -o $*.app $*.o ${INC} ${LIB}
+	-${CLINKER} ${CFLAGS} -o $*.app $*.o petsccompat.o ${INC} ${LIB}
 
-%.o: %.c
+%.o: %.c ../compat/petsccompat.c
 	-@echo ""
 	${PCC} ${CFLAGS} -c $*.c ${INC}
 

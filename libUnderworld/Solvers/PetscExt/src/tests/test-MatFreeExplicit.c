@@ -70,8 +70,8 @@ void test_MatFreeExplicit( void )
 	MatFreeComputeExplicitOperator( A, MATAIJ, 1.0e-6, &AE );
 	MatViewContents(AE,"AE_");
 
-	Stg_MatDestroy(A);
-	Stg_MatDestroy(AE);
+	MatDestroy( &&A);
+	MatDestroy( &&AE);
 }
 
 void test_MatFreeSchurExplicit_11( void )
@@ -96,8 +96,8 @@ void test_MatFreeSchurExplicit_11( void )
 	K = MATAIJIdentityNew( PETSC_COMM_WORLD, M );
 
         MatCreateSchur( PETSC_COMM_WORLD, K,G,D,C, PETSC_NULL, "MatSchur_A11", &schur );
-        Stg_MatDestroy( K );        Stg_MatDestroy( G );
-	Stg_MatDestroy( D );        Stg_MatDestroy( C );
+        MatDestroy( & K );        MatDestroy( & G );
+	MatDestroy( & D );        MatDestroy( & C );
 
         MatSchurGetKSP( schur, &ksp );
         KSPSetType( ksp, "preonly" );
@@ -110,8 +110,8 @@ void test_MatFreeSchurExplicit_11( void )
 	MatFreeComputeExplicitOperator( schur, MATAIJ, 1.0e-6, &S );
 	MatViewContents(S,"S_");
 
-	Stg_MatDestroy(schur);
-	Stg_MatDestroy(S);
+	MatDestroy( &schur);
+	MatDestroy( &S);
 }
 
 void test_MatFreeSchurExplicit_22( void )
@@ -137,8 +137,8 @@ void test_MatFreeSchurExplicit_22( void )
 
 
         MatCreateSchur( PETSC_COMM_WORLD, K,G,D,C, PETSC_NULL, "MatSchur_A22", &schur );
-        Stg_MatDestroy( K );        Stg_MatDestroy( G );
-	Stg_MatDestroy( D );        Stg_MatDestroy( C );
+        MatDestroy( & K );        MatDestroy( & G );
+	MatDestroy( & D );        MatDestroy( & C );
 
         MatSchurGetKSP( schur, &ksp );
         KSPSetType( ksp, "preonly" );
@@ -151,8 +151,8 @@ void test_MatFreeSchurExplicit_22( void )
 	MatFreeComputeExplicitOperator( schur, MATAIJ, 1.0e-6, &S );
 	MatViewContents(S,"S_");
 
-	Stg_MatDestroy(schur);
-	Stg_MatDestroy(S);
+	MatDestroy( &schur);
+	MatDestroy( &S);
 }
 
 int main( int argc, char **args )

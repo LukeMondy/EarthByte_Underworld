@@ -112,10 +112,10 @@ void MatFillStride( Mat A, PetscScalar start_val, PetscScalar stride )
 void test_magma_operator( PetscTruth view )
 {
 	Mat A;
-	Mat Astokes, K,G,Gt,C;
-	Mat Acomp, A11,A12,A21,A22;
+	Mat K,G,Gt,C;
+	Mat A11,A12,A21,A22;
 	Mat A23, A31;
-	PetscInt M,N,m,n;
+	PetscInt M,N;
 	Vec x, phi,Pstar,u,p;
 	Vec b, f_phi,f_Pstar,f,h;
 	
@@ -159,7 +159,7 @@ void test_magma_operator( PetscTruth view )
 	
 	/* Global */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 4,4, 4,4 );
+	MatSetSizes_Block( A, 4,4, 4,4 );
 	MatSetType( A, "block" );
 	
 	MatSetOptionsPrefix( A, "A" );
@@ -179,8 +179,8 @@ void test_magma_operator( PetscTruth view )
 	
 	MatAssemblyBegin(A,MAT_FINAL_ASSEMBLY);
 	MatAssemblyEnd(A,MAT_FINAL_ASSEMBLY);
-	Stg_MatDestroy( K );		Stg_MatDestroy( G );
-	Stg_MatDestroy( Gt );		Stg_MatDestroy( C );
+	MatDestroy( & K );		MatDestroy( & G );
+	MatDestroy( & Gt );		MatDestroy( & C );
 	
 	
 	/* Get space for vectors */
@@ -207,13 +207,13 @@ void test_magma_operator( PetscTruth view )
 	
 	MatMult( A, b, x );
 	if( view ) {
-		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_INFO_DETAIL );
+		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_INFO_DETAIL );
 		VecView( x, PETSC_VIEWER_STDOUT_WORLD );
 	}
 	
 	
 	
-	Stg_MatDestroy( A );
+	MatDestroy( & A );
 	Stg_VecDestroy( & x );
 	Stg_VecDestroy( & b );
 	
@@ -227,7 +227,7 @@ void test_magma_operator_2( PetscTruth view )
 	Mat Astokes, K,G,Gt,C;
 	Mat Acomp, A11,A12,A21,A22;
 	Mat A23, A31;
-	PetscInt M,N,m,n;
+	PetscInt M,N;
 	Vec x, phi,Pstar,u,p;
 	Vec b, f_phi,f_Pstar,f,h;
 	Vec x_comp, x_stokes;
@@ -274,7 +274,7 @@ void test_magma_operator_2( PetscTruth view )
 	
 	/* Global */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 4,4, 4,4 );
+	MatSetSizes_Block( A, 4,4, 4,4 );
 	MatSetType( A, "block" );
 	
 	MatSetOptionsPrefix( A, "A" );
@@ -298,13 +298,13 @@ void test_magma_operator_2( PetscTruth view )
 	/* 
 	We hand off ownership of ALL sub matrices to A. Thus, A will release memory for sub matrices 
 	*/
-	Stg_MatDestroy( A11 );		Stg_MatDestroy( A12);
-	Stg_MatDestroy( A21 );		Stg_MatDestroy( A22 );
+	MatDestroy( & A11 );		MatDestroy( & A12);
+	MatDestroy( & A21 );		MatDestroy( & A22 );
 	
-	Stg_MatDestroy( K );		Stg_MatDestroy( G );
-	Stg_MatDestroy( Gt );		Stg_MatDestroy( C );
+	MatDestroy( & K );		MatDestroy( & G );
+	MatDestroy( & Gt );		MatDestroy( & C );
 	
-	Stg_MatDestroy( A23 );		Stg_MatDestroy( A31 );
+	MatDestroy( & A23 );		MatDestroy( & A31 );
 	
 	/* Get space for vectors */
 	MatGetVecs( A, &x, &b );
@@ -328,7 +328,7 @@ void test_magma_operator_2( PetscTruth view )
 	
 	/* Assemble compaction */
 	MatCreate( PETSC_COMM_WORLD, &Acomp );
-	MatSetSizes( Acomp, 2,2, 2,2 );
+	MatSetSizes_Block( Acomp, 2,2, 2,2 );
 	MatSetType( Acomp, "block" );
 	
 	MatSetOptionsPrefix( Acomp, "Acomp" );
@@ -343,7 +343,7 @@ void test_magma_operator_2( PetscTruth view )
 	
 	/* Assemble stokes */
 	MatCreate( PETSC_COMM_WORLD, &Astokes );
-	MatSetSizes( Astokes, 2,2, 2,2 );
+	MatSetSizes_Block( Astokes, 2,2, 2,2 );
 	MatSetType( Astokes, "block" );
 	
 	MatSetOptionsPrefix( Astokes, "Astokes" );
@@ -391,7 +391,7 @@ void test_magma_operator_2( PetscTruth view )
 	MatMult( A, b, x );
 	if( view ) {
 		PetscPrintf( PETSC_COMM_WORLD, "[A]{b} = \n" );
-		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_INFO_DETAIL );
+		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_INFO_DETAIL );
 		VecView( x, PETSC_VIEWER_STDOUT_WORLD );
 	}
 	
@@ -399,32 +399,32 @@ void test_magma_operator_2( PetscTruth view )
 	MatMult( Astokes, b_stokes, x_stokes );
 	if( view ) {
 		PetscPrintf( PETSC_COMM_WORLD, "[Astokes]{b_stokes} = \n" );
-		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_INFO_DETAIL );
+		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_INFO_DETAIL );
 		VecView( x_stokes, PETSC_VIEWER_STDOUT_WORLD );
 	}
 	
 	MatMult( Acomp, b_comp, x_comp );
 	if( view ) {
 		PetscPrintf( PETSC_COMM_WORLD, "[Acomp]{b_comp} = \n" );
-		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_INFO_DETAIL );
+		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_INFO_DETAIL );
 		VecView( x_comp, PETSC_VIEWER_STDOUT_WORLD );
 	}
 	
 	if( view ) {
-		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_DENSE );
+		PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_DENSE );
 		MatView( A, PETSC_VIEWER_STDOUT_WORLD );
 	}
 	
 	
-	Stg_MatDestroy( Astokes );
+	MatDestroy( & Astokes );
 	Stg_VecDestroy( & x_stokes );
 	Stg_VecDestroy( & b_stokes );
 	
-	Stg_MatDestroy( Acomp );
+	MatDestroy( & Acomp );
 	Stg_VecDestroy( & x_comp );
 	Stg_VecDestroy( & b_comp );
 	
-	Stg_MatDestroy( A );
+	MatDestroy( & A );
 	Stg_VecDestroy( & x );
 	Stg_VecDestroy( & b );
 	

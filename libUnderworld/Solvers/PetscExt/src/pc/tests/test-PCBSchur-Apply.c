@@ -158,7 +158,7 @@ void test_pc_bschur_apply_U( void )
 	
 	/* Create + Setup A */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	
 	MatBlockSetValue( A, 0,0, A11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -339,7 +339,7 @@ void test_pc_block_apply_L( void )
 	
 	/* Create + Setup A */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	
 	MatBlockSetValue( A, 0,0, A11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -527,7 +527,7 @@ void test_pc_block_apply_FULL( void )
 	
 	/* Create + Setup A */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, (nu+np),(nu+np), (nu+np),(nu+np) );
+	MatSetSizes_Block( A, (nu+np),(nu+np), (nu+np),(nu+np) );
 	MatSetType( A, "block" );
 	MatBlock_SetOperators( A,
 			A11, A12, A21, PETSC_NULL, 
@@ -681,7 +681,7 @@ void test_pc_block_apply_LTrans( void )
 	
 	/* Create + Setup A */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	
 	MatBlockSetValue( A, 0,0, A11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -852,7 +852,7 @@ void test_pc_block_apply_UTrans( void )
 	
 	/* Create + Setup A */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	
 	MatBlockSetValue( A, 0,0, A11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -1037,7 +1037,7 @@ void test_pc_block_apply_USymTrans( void )
 	
 	/* Create + Setup A */
 	MatCreate( PETSC_COMM_WORLD, &A );
-	MatSetSizes( A, 2,2, 2,2 );
+	MatSetSizes_Block( A, 2,2, 2,2 );
 	MatSetType( A, "block" );
 	
 	MatBlockSetValue( A, 0,0, A11, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
