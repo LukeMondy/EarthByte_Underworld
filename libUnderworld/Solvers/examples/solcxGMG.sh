@@ -37,6 +37,7 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
+export UWEXEC="mpirun -n 4 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
 for VC in 3
@@ -196,8 +197,8 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
                 -backsolveA11_ksp_type fgmres \
                 -backsolveA11_ksp_rtol 1.0e-6 \
   		--elementResI=$RES --elementResJ=$RES \
-  		--maxTimeSteps=0 -A11_ksp_view -XA11_mg_levels_ksp_view \
-    -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -matdumpdir $OUT -solutiondumpdir $OUT \
+  		--maxTimeSteps=0 -XA11_ksp_view -XA11_mg_levels_ksp_view \
+    -Xdump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -matdumpdir $OUT -solutiondumpdir $OUT \
    --components.stokesblockkspinterface.OptionsString="-A11_ksp_type cg -A11_ksp_rtol 1e-3 -A11_ksp_monitor -backsolveA11_ksp_type cg -log_summary" \
 
 #    > "./$OUT/output.txt" 2>&1

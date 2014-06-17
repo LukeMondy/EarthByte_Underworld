@@ -202,7 +202,12 @@ PetscErrorCode MatCreateRestrictScatter( MPI_Comm comm, Mat A, IS row, IS col, M
 	PetscInt M,N, m,n;
 	Vec L,R;
 	PetscMPIInt size;
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
 	VecType vt;
+#else
+	const 	VecType vt;
+#endif
+
 	
 	PetscObjectGetComm( (PetscObject)A, &commA );
 	if( comm != commA ) {
@@ -236,6 +241,9 @@ PetscErrorCode MatCreateRestrictScatter( MPI_Comm comm, Mat A, IS row, IS col, M
 	MatCreate( comm, rsA );
 	MatSetSizes( *rsA, m,n, M,N );
 	MatSetType( *rsA, "restrictscatter" );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp( *rsA );
+#endif
 	MatRestrictScatterSetMatIS( *rsA, A, row, col );
 	
 	MatAssemblyBegin(*rsA,MAT_FINAL_ASSEMBLY);

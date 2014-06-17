@@ -337,7 +337,11 @@ if( (obj) != PETSC_NULL ) { \
 void print_mat_structure( Mat A, int pi,PetscInt pj, PetscViewer viewer )
 {
 	Mat_Block	*bA;
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
 	MatType		type;
+#else
+	const MatType		type;
+#endif
 	PetscInt	m,n;
 	int i,j;
 	const char *name;
@@ -389,7 +393,11 @@ void print_mat_structure( Mat A, int pi,PetscInt pj, PetscViewer viewer )
 void print_mat_contents( Mat A, Mat parent_A, PetscInt pi, PetscInt pj, PetscViewer viewer )
 {
 	Mat_Block	*bA;
-	MatType		type;
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+	MatType         type;
+#else
+	const MatType   type;
+#endif
 	PetscInt	m,n;
 	int i,j;
 	const char *name, *pname;

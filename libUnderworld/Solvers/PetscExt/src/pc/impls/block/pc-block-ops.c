@@ -884,9 +884,16 @@ if( (obj) != PETSC_NULL ) { \
 void print_pc_structure( PC pc, PetscViewer viewer )
 {
 	PC_Block	bA = (PC_Block)pc->data;
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+        KSPType		ksp_type;
 	PCType		pc_type;
-	KSPType		ksp_type;
 	MatType		mat_type;
+#else
+	const KSPType   ksp_type;
+        const PCType    pc_type;
+        const MatType   mat_type;
+#endif
+
 	PetscInt	m,n;
 	int i,j;
 	const char *mat_name, *pc_name;

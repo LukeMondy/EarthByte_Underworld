@@ -573,7 +573,11 @@ PetscErrorCode VecMin_Block( Vec x, PetscInt *p, PetscReal *min )
 void print_vec_structure( Vec x, int parent_index, PetscViewer viewer )
 {
 	Vec_Block	*bx;
-	VecType		type;
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+	VecType         type;
+#else
+	const VecType   type;
+#endif
 	PetscInt	m;
 	int i;
 	const char *name;
@@ -617,7 +621,11 @@ void print_vec_structure( Vec x, int parent_index, PetscViewer viewer )
 void print_vec_contents( Vec x, Vec parent_vec, PetscInt pid, PetscViewer viewer )
 {
 	Vec_Block	*bx;
-	VecType		type;
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+	VecType         type;
+#else
+	const VecType   type;
+#endif
 	PetscInt	m;
 	int i;
 	const char *name, *pname;

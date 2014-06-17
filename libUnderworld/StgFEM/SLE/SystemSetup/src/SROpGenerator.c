@@ -442,6 +442,9 @@ void SROpGenerator_GenOps( SROpGenerator* self, Mat* pOps, Mat* rOps ) {
 		//Matrix_SetLocalSize( P, nRows, nCols );
 		MatCreate( self->solver->comm, &P );
 		MatSetSizes( P, nRows, nCols, PETSC_DETERMINE, PETSC_DETERMINE );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+                MatSetUp(P);
+#endif
 		MatSetFromOptions( P );
 		//if( !strcmp( P->type, PETScMatrix_Type ) ) {
 		//	unsigned	*nDiagNonZeros, *nOffDiagNonZeros;
@@ -830,6 +833,10 @@ Mat SROpGenerator_SimpleFinestLevel( SROpGenerator *self ) {
    MatCreate( MPI_COMM_WORLD, &P );
    MatSetSizes( P, self->fineVar->eqNum->localEqNumsOwnedCount, PETSC_DECIDE, PETSC_DECIDE, nGlobalEqs[0] ); 
    MatSetType( P, MATAIJ );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+   MatSetUp(P);
+#endif
+
 //   MatGetOwnershipRange( P, &sr, &er );
 
    PetscObjectGetComm( (PetscObject)P, &comm );
@@ -1141,6 +1148,9 @@ Mat SROpGenerator_SimpleCoarserLevel( SROpGenerator *self, int level ) {
    MatCreate( MPI_COMM_WORLD, &P );
    MatSetSizes( P, PETSC_DECIDE, PETSC_DECIDE, nGlobalEqs[1], nGlobalEqs[0] );
    MatSetType( P, MATAIJ );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+   MatSetUp(P);
+#endif
    MatGetOwnershipRange( P, &eqRangeBegin, &eqRangeEnd );
 
    {  

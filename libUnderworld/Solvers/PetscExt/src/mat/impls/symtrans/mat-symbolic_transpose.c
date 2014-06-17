@@ -221,7 +221,10 @@ PetscErrorCode MatCreateSymTrans( MPI_Comm comm, Mat A, Mat *symAt )
 	MatCreate( comm, symAt );
 	MatSetSizes( *symAt, n,m, N,M );
 	MatSetType( *symAt, "symtrans" );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
         MatSetUp( *symAt );
+#endif
+
 	MatSymTransSetOperator( *symAt, A );
 	
 	

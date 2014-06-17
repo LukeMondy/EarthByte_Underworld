@@ -191,7 +191,7 @@ PetscErrorCode SBKSP_CreateStokesBlockOperators( MPI_Comm comm,
 #if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
     MatSetUp(*A);
 #endif
-#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
     MatSetSizes_Block( *A, 2,2, 2,2 ); /* maybe need different name for this */
 #endif
     if(K) {MatBlockSetValue( *A, 0,0, K, SAME_NONZERO_PATTERN, INSERT_VALUES );}
@@ -306,7 +306,7 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 #if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
             MatSetUp(stokes_P);
 #endif
-#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
 	    MatSetSizes_Block( stokes_P, 2, 2, 2, 2 );
 #endif
 

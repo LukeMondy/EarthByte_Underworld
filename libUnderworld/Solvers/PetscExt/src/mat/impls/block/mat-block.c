@@ -143,7 +143,7 @@ PetscErrorCode MatSetUp_Block( Mat A )
 	if( ctx->setup_called == PETSC_TRUE ) PetscFunctionReturn(0);
 	
 	
-	ctx->nr = A->rmap->N;
+	ctx->nr = A->rmap->N; // N's etc correct here. 
 	ctx->nc = A->cmap->N;
 	
 	if( ctx->nr < 0 ) {
@@ -616,6 +616,9 @@ PetscErrorCode MatBlockCreateSubMatrix_Block( Mat A, const MatType mtype, PetscI
 	if(mtype!=PETSC_NULL) {
 		MatSetType( subA, mtype );
 	}
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp( subA );
+#endif
 	MatSetFromOptions(subA);	
 
 	MatBlockSetValue( A, r,c, subA, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
@@ -710,6 +713,9 @@ PetscErrorCode MatCreateFromMatBlock_Block( Mat bA, const MatType type,Mat *mA )
   if( type!=PETSC_NULL) {
     MatSetType( *mA, type );
   }
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+  MatSetUp( *mA );
+#endif
   MatSetFromOptions( *mA );
 
 
@@ -846,7 +852,11 @@ PetscErrorCode MatBlockMergeSubBlocks_Block( Mat Ab, InsertMode addv, const MatT
 	const PetscInt *ranges_A;
 	PetscInt rank, nprocs;
 	PetscTruth is_MATAIJ;
-    MatType _mtype;	
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+	MatType		_mtype;
+#else
+	const MatType	_mtype;
+#endif
 	PetscLogDouble tt0,tt1,t0,t1,dt0,dt1,time_mgr,time_msv;
 	PetscTruth has_info,flg;
 	
@@ -905,6 +915,9 @@ PetscErrorCode MatBlockMergeSubBlocks_Block( Mat Ab, InsertMode addv, const MatT
 		if( mtype!=PETSC_NULL) {
 			MatSetType( *A, mtype );
 		}
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+                MatSetUp( *A );
+#endif
 		MatSetFromOptions( *A );
 	}
 	else {
@@ -1348,7 +1361,14 @@ PetscErrorCode MatSetOps_Block( struct _MatOps* ops )
 
 
 	ops->conjugate           = 0; // MatConjugate_EMPTY;
-	//ops->setsizes            = MatSetSizes_Block; // Removed in pets 3.3 so now use MatSetSizes_Block directly.
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+	//ops->setsizes            = MatSetSizes_Block; // Removed in petsc-3.3 so now use MatSetSizes_Block directly.
+        //todo.. replace with the MatSetUp_Block function ( and rewrite this function )
+        //ops->setup  = MatSetUp_Block;
+#else
+	ops->setsizes            = MatSetSizes_Block;
+#endif
+
 	/*104*/
 	ops->setvaluesrow              = 0; // MatSetValuesRow_EMPTY;
 	ops->realpart                  = 0; // MatRealPart_EMPTY;
@@ -1378,7 +1398,7 @@ PetscErrorCode MatSetOps_Block( struct _MatOps* ops )
 
 
 /*
-The following operations are not to used with MatBlock
+The following operations are not to be used with MatBlock
  - MatGetOwnershipRange(A,&s,&e):  Result, s=0,e=0.
  - MatGetOwnershripRanges(A,&r):   Result, error.
 */
@@ -1421,8 +1441,8 @@ PetscErrorCode MatCreate_Block( Mat A )
 	/* 
 	For whatever reason this breaks my parallel tests. I really only
 	needed to setup the maps to make map->range not NULL. This requirment
-	was needed as MatDuplicate copys the map and complains if the range is NULL.
-	I think I'll added a little hack in MatDuplicate_Block to shut this up. 09 Jan, 2008
+	was needed as MatDuplicate copies the map and complains if the range is NULL.
+	I think I'll add a little hack in MatDuplicate_Block to shut this up. 09 Jan, 2008
 	*/
 	
 	/*

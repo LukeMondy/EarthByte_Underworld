@@ -112,6 +112,7 @@
    #define Stg_MatZeroRows MatZeroRows
    #define Stg_MatCreateAIJ MatCreateMPIAIJ
    #define Stg_PetscObjectTypeCompare PetscTypeCompare
+   #define Stg_PetscTypeCompare PetscTypeCompare
 #endif
 /* wrapper functions for compatibility between Petsc version 3.2 and lower versions */
 PetscErrorCode Stg_MatDestroy(Mat *A);

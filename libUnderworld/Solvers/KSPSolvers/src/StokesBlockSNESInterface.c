@@ -184,7 +184,7 @@ void SBSNES_FormBlockOperator(	Mat A11, Mat A12, Mat A21, Mat A22, Mat* A )
 #if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
         MatSetUp(*A);
 #endif
-#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
 	MatSetSizes_Block( *A, 2, 2, 2, 2 );
 #endif
     }
@@ -233,9 +233,14 @@ PetscErrorCode SBSNES_CreateStokesBlockOperators( MPI_Comm comm,
 {
     
     MatCreate( comm, A );
-    MatSetSizes_Block( *A, 2,2, 2,2 );
-    MatSetUp(*A);
     MatSetType( *A, "block" );
+    MatSetSizes( *A, 2,2, 2,2 );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+    MatSetUp(*A);
+#endif
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+    MatSetSizes_Block( *A, 2, 2, 2, 2 );
+#endif
     
     if(K) {MatBlockSetValue( *A, 0,0, K, SAME_NONZERO_PATTERN, INSERT_VALUES );}
     if(G) {MatBlockSetValue( *A, 0,1, G, SAME_NONZERO_PATTERN, INSERT_VALUES );}

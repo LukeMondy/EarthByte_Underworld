@@ -40,7 +40,7 @@ export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
 
-for UW in uwscale
+for UW in gkgdiag 
 do
 for SCR in fgmres
 do
@@ -115,7 +115,7 @@ SCALE="-rescale_equations 0"
 let "count+=1"
 VC=0
 VV=`echo "10^($VC)" | bc -l`
-VC=0
+VC=4
 VB=`echo "10^(-$VC)" | bc -l`
 PCRES=15
 
