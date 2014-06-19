@@ -48,7 +48,7 @@ def cartesianMeshCreate( componentName="",
         print "Error: Need to choose one of  ( constant, linear, quadratic ) for meshElementType"
         return
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
     
     if componentName == "":  # Then create a name automatically
         componentName = meshElementType+"Mesh"    # e.g. linearMesh
@@ -59,7 +59,7 @@ def cartesianMeshCreate( componentName="",
 
     # At this point we should have ensured a new unique name for our new Mesh component
     # e.g. Now we can have more than one linear cartesian mesh
-    newComponentMeshDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentMeshDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                            name=componentName,
                                                            Type=baseMeshType,    # currently always "FeMesh"
                                                            elementType=meshElementType
@@ -90,7 +90,7 @@ def cartesianMeshCreate( componentName="",
             print "       The constant Mesh gets it's dimensions from this \"primary\" Mesh"
             return
 
-        newComponentMeshGenDict = _uw.NewComponentEntryInStgDict( globalDict,
+        newComponentMeshGenDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                                   name=componentName,
                                                                   Type="C0Generator",         ## This is the generator function for a constant Mesh
                                                                   mesh=thisMeshName,
@@ -108,7 +108,7 @@ def cartesianMeshCreate( componentName="",
     maxCoordList = [maxX, maxY, maxZ]
     sizeList     = [resX, resY, resZ]
      
-    newComponentMeshGenDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentMeshGenDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                               name     = componentName,
                                                               Type     = genType,      ## This is the generator function for a linear Mesh
                                                               mesh     = thisMeshName,

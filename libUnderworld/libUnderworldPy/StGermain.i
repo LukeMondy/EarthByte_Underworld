@@ -15,6 +15,7 @@ float  Variable_GetValueAtFloat(Variable* , unsigned int, unsigned int);
 double Variable_GetValueAtDouble(Variable*, unsigned int, unsigned int);
 
 
+%include "libStGermain/main.h"
 %include "Base/Automation/types.h"
 %include "Base/Context/types.h"
 %include "Base/Extensibility/types.h"
@@ -36,12 +37,18 @@ double Variable_GetValueAtDouble(Variable*, unsigned int, unsigned int);
 %include "Base/Context/VariableCondition_Register.h"
 %include "Base/Context/VariableCondition.h"
 %include "Base/Extensibility/EntryPoint.h"
+%include "Base/Extensibility/Init.h"
 %include "Base/Extensibility/EntryPoint_Register.h"      
 %include "Base/Extensibility/ExtensionManager_Register.h"      
 %include "Base/Extensibility/ModulesManager.h"
 %include "Base/Foundation/NamedObject_Register.h"       
 %include "Base/IO/IO_Handler.h"       
+%include "Base/IO/XML_IO_Handler.h"       
 %include "Base/IO/File.h"
+%include "Base/IO/Dictionary.h"
+%include "Base/IO/DictionaryUtils.h"
+%include "Base/IO/Dictionary_Entry.h"
+%include "Base/IO/Dictionary_Entry_Value.h"
 %include "Base/Foundation/ObjectList.h"       
 %include "Base/Foundation/ObjectList.h"
 %include "Base/Context/AbstractContext.h"

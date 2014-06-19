@@ -8,8 +8,7 @@ You can feed your XML/JSON files directly in, along with the usual commandline a
 
 import underworld
 
-underworld.InitFromCommandLine()
+underworld.Init()
 underworld.Construct()
-underworld.BuildAndInitialise()
 underworld.RunMainLoop()
 underworld.Finalise()

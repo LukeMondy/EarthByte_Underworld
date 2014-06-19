@@ -45,7 +45,7 @@ def feVariableCreate( componentName="",
         return -1
    
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
     _uw.utils.warnMissingComponent(globalDict, meshName )
     _uw.utils.warnMissingComponent(globalDict, meshVariableName )
     
@@ -62,7 +62,7 @@ def feVariableCreate( componentName="",
 
     dofLayoutName = meshName+"DofLayout"
     dofLayoutName = _uw.utils.checkForNewComponentName(globalDict, dofLayoutName)
-    newDofLayout = _uw.NewComponentEntryInStgDict( globalDict,
+    newDofLayout = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                    name = dofLayoutName,
                                                    Type = "DofLayout",
                                                    MeshVariable = meshVariableName
@@ -73,18 +73,18 @@ def feVariableCreate( componentName="",
     # in the component dictionary <-- weird
 
     newBCname = _uw.utils.checkForNewComponentName(globalDict, meshName+"BCs")
-    newBC =  _uw.NewComponentEntryInStgDict( globalDict,
+    newBC =  _uw.dictionary.UpdateDictWithComponent( globalDict,
                                              name = newBCname,
                                              Type = "CompositeVC",
                                              Data = meshName
                                              )
     newICname = _uw.utils.checkForNewComponentName(globalDict, meshName+"ICs")
-    newIC =  _uw.NewComponentEntryInStgDict( globalDict,
+    newIC =  _uw.dictionary.UpdateDictWithComponent( globalDict,
                                              name = newICname,
                                              Type = "CompositeVC",
                                              Data = meshName
                                              )
-    newComponentFeVarDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentFeVarDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                             name      = componentName,
                                                             Type      = "FeVariable",
                                                             FEMesh    = meshName,
@@ -152,7 +152,7 @@ def operatorFeVariableCreate( componentName="",
     if operator not in opList:
         _uw.utils.sendWarning("Operator "+operator+" not in list of known operators.")
    
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
     _uw.utils.warnMissingComponent(globalDict, feVariableName )
 
     if componentName == "":
@@ -165,7 +165,7 @@ def operatorFeVariableCreate( componentName="",
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
     
     # At this point we should have ensured a new unique name for the new Fe Variable component
-    newComponentFeVarDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentFeVarDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                             name     = componentName,
                                                             Type     = "OperatorFeVariable",
                                                             Operator = operator,
@@ -225,7 +225,7 @@ def meshVariableCreate( componentName="",
  
     if rankType == "Vector":
         namesList=["vx","vy","vz"]
-        newComponentMeshVarDict = _uw.StgComponentToGlobalDict(   name=componentName,
+        newComponentMeshVarDict = _uw.dictionary.UpdateDictWithComponent(   name=componentName,
                                                                   Type="MeshVariable",
                                                                   Rank=rankType,
                                                                   DataType=dataType,
@@ -235,7 +235,7 @@ def meshVariableCreate( componentName="",
                                                                   )
  
     if rankType == "Scalar":
-        newComponentMeshVarDict = _uw.StgComponentToGlobalDict(   name=componentName,
+        newComponentMeshVarDict = _uw.dictionary.UpdateDictWithComponent(   name=componentName,
                                                                   Type="MeshVariable",
                                                                   Rank=rankType,
                                                                   DataType=dataType,
@@ -271,12 +271,12 @@ def _meshVariableClobber( componentName="myMeshVariable",
         dim  (int)                     :
         meshName (string)              : Mesh which this Variable is defined on 
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
     newComponentMeshVarDict = -1
     if componentName in globalDict["components"]: # Then clobber it!
         if rankType == "Vector":
             namesList=["vx","vy","vz"]
-            newComponentMeshVarDict = _uw.StgComponentToGlobalDict(   name=componentName,
+            newComponentMeshVarDict = _uw.dictionary.UpdateDictWithComponent(   name=componentName,
                                                                       Type="MeshVariable",
                                                                       Rank=rankType,
                                                                       DataType=dataType,
@@ -285,7 +285,7 @@ def _meshVariableClobber( componentName="myMeshVariable",
                                                                       mesh =meshName
                                                                       )
         if rankType == "Scalar":
-            newComponentMeshVarDict = _uw.StgComponentToGlobalDict(   name=componentName,
+            newComponentMeshVarDict = _uw.dictionary.UpdateDictWithComponent(   name=componentName,
                                                                       Type="MeshVariable",
                                                                       Rank=rankType,
                                                                       DataType=dataType,

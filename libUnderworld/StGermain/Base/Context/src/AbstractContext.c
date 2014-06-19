@@ -347,6 +347,8 @@ void _AbstractContext_AssignFromXML( void* context, Stg_ComponentFactory* cf, vo
     * The following just pauses at this point to allow time to attach a debugger.
     * Useful for mpi debugging.
     */
+   self->dictionary = cf->rootDict;
+   self->CF = cf;
    sleep( Dictionary_Entry_Value_AsUnsignedInt(
       Dictionary_GetDefault( self->dictionary, "pauseToAttachDebugger", Dictionary_Entry_Value_FromUnsignedInt( 0 ) ) ) ); 
       

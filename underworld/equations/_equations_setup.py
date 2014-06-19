@@ -53,7 +53,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
 
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     c_mat=""
 
@@ -70,7 +70,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
         if picIntSwarm=="":
             picIntSwarm=globalDict["info"]["picIntSwarm"]
 
-    _uw.addCheckPointVariables([velocityField, pressureField])
+    _uw.dictionary.addCheckPointVariables([velocityField, pressureField])
 
     # Create Stokes Matrices and Vectors
     [kmatDict, kmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "k_matrix", 
@@ -108,7 +108,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
     vm_mat=""
     m_mat=""
     if solver=="stokesblockkspinterface":
-        _uw.importToolBox('Solvers')
+        _uw.dictionary.importToolBox('Solvers')
         _solvers.setup.stokesBlockKSPInterfaceCreate(preconditionerMatrix=pmatDict["name"])
         # create some auxiliary stuff
         [mmatDict, mmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "m_matrix", 
@@ -199,7 +199,7 @@ def stokesCreate(equationName="stokesEqn",
     Sets up a stokes equation system with provided matrices and solution vectors.
     """
     
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
     missing=_uw.utils.warnMissingComponent(globalDict, solver )
     _uw.utils.warnMissingComponent(globalDict, preconditionerMatrix )
     _uw.utils.warnMissingComponent(globalDict, stressTensorMatrix )
@@ -213,7 +213,7 @@ def stokesCreate(equationName="stokesEqn",
 
     stokesDict={} # empty dictionary
     if solver == "uzawa":
-        stokesDict = _uw.NewComponentEntryInStgDict( globalDict,
+        stokesDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                      name = equationName,
                                                      Type = "Stokes_SLE",
                                                      SLE_Solver = solver,
@@ -232,7 +232,7 @@ def stokesCreate(equationName="stokesEqn",
                                                      makeConvergenceFile    = str(False)
                                                      )
     if solver == "stokesblockkspinterface":
-        stokesDict = _uw.NewComponentEntryInStgDict( globalDict,
+        stokesDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                      name = equationName,
                                                      Type = "AugLagStokes_SLE",
                                                      SLE_Solver = solver,
@@ -264,7 +264,7 @@ def stokesCreate(equationName="stokesEqn",
 
 def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="TemperatureField", comment="", StoreDensityOnParticles="False"):
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if temperatureField not in globalDict["components"].keys():
         comment = "Temperature field is dummy variable here."
@@ -273,7 +273,7 @@ def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="Temperat
         _uw.utils.sendWarning("The 'gravity' parameter is missing from the Dictionary: adding it with default value = 1")
         globalDict["gravity"]=1
 
-    buoyancy = _uw.NewComponentEntryInStgDict( globalDict, 
+    buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict, 
                                                name = "buoyancyForceTerm",
                                                Type = "BuoyancyForceTerm",
                                                TemperatureField = temperatureField,  #optional: temp of 0.0 used if no Field
@@ -287,7 +287,7 @@ def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="Temperat
 
 def addThermalBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="TemperatureField", Ra="1e6", comment=""):
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if temperatureField not in globalDict["components"].keys():
         _uw.utils.sendWarning("Temperature field is missing from dictionary")
@@ -295,7 +295,7 @@ def addThermalBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="T
         _uw.utils.sendWarning("The 'gravity' parameter is missing from the Dictionary: adding it with default value = 1")
         globalDict["gravity"]=1
 
-    buoyancy = _uw.NewComponentEntryInStgDict( globalDict, 
+    buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict, 
                                                name = "thermalBuoyancyForceTerm",
                                                Type = "ThermalBuoyancyForceTerm",
                                                TemperatureField = temperatureField,  #optional: temp of 0.0 used if no Field
@@ -327,7 +327,7 @@ def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
       upwindFunc : one of ["DoublyAsymptoticAssumption", "CriticalAssumption", "Exact"]
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if phiField=="": # should handle case where these don't exist I suppose...
         phiField=globalDict["info"]["temperatureField"]
@@ -346,20 +346,20 @@ def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
     massMat="massMatrix"
     residual="residual"
 
-    _uw.addCheckPointVariables([phiField, phiField+"-phiDotField"])
+    _uw.dictionary.addCheckPointVariables([phiField, phiField+"-phiDotField"])
 
     force = _matrix.setup.vectorCreate(vectorName=residual, feVariable=phiField, vectorType="ForceVector")
     mass  = _matrix.setup.vectorCreate(vectorName=massMat, feVariable=phiField, vectorType="ForceVector")
-    predictor = _uw.NewComponentEntryInStgDict( globalDict, name="predictorMulticorrector", Type="AdvDiffMulticorrector")
+    predictor = _uw.dictionary.UpdateDictWithComponent( globalDict, name="predictorMulticorrector", Type="AdvDiffMulticorrector")
     
-    lumped = _uw.NewComponentEntryInStgDict( globalDict, 
+    lumped = _uw.dictionary.UpdateDictWithComponent( globalDict, 
                                              name = "lumpedMassMatrixForceTerm",
                                              Type = "LumpedMassMatrixForceTerm",
                                              ForceVector = massMat,
                                              Swarm = gaussIntSwarm
                                              )
 
-    defRes = _uw.NewComponentEntryInStgDict( globalDict,
+    defRes = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                              name= "defaultResidualForceTerm",
                                              Type= "AdvDiffResidualForceTerm",
                                              Swarm=gaussIntSwarm,
@@ -371,7 +371,7 @@ def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
                                              UpwindXiFunction=upwindFunc
                                              )
 
-    advDiffDict = _uw.NewComponentEntryInStgDict( globalDict,
+    advDiffDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                   name = equationName,
                                                   Type = "AdvectionDiffusionSLE",
                                                   SLE_Solver = "predictorMulticorrector",

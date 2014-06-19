@@ -10,10 +10,10 @@ import underworld
 import math
 
 # init using json
-underworld.InitWithArgs("RayleighTaylorBenchmark.json")
+underworld.Init("RayleighTaylorBenchmark.xml")
 
 # grab the dict
-stgdict = underworld.GetCurrentDictionary()
+stgdict = underworld.dictionary.GetDictionary()
 
 # modify domain
 stgdict["minX"]=-1.
@@ -52,7 +52,8 @@ for ii in range(0,20):
 
 # ok, lets create a union shape
 # first delete old light layer shape
-del stgdict["components"]["lightLayerShape"]
+if "lightLayerShape" in stgdict["components"]:
+	del stgdict["components"]["lightLayerShape"]
 # create union shape
 stgdict["components"]["lightLayerShape"] = dict()
 # set type, add shapes list
@@ -60,10 +61,9 @@ stgdict["components"]["lightLayerShape"]["Type"] = "Union"
 stgdict["components"]["lightLayerShape"]["shapes"] = namelist
 
 # don't forget to set the dict back again to affect the above changes
-underworld.SetDictionary(stgdict)
+underworld.dictionary.SetDictionary(stgdict)
 
 underworld.Construct()
-underworld.BuildAndInitialise()
 # run through till end 
 underworld.RunMainLoop()
 underworld.Finalise()

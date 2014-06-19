@@ -24,7 +24,7 @@ def getAssignFuncFromType(typ):
 
 def listComponentTypesDict():
 
-    gd=uw.GetCurrentPythonDictionary()
+    gd=uw.dictionary.GetDictionary()
 
     
     comps=gd["components"]
@@ -38,7 +38,7 @@ def getListComponentTypesDict():
 
     tlist=[]
     
-    gd=uw.GetCurrentPythonDictionary()
+    gd=uw.dictionary.GetDictionary()
 
     
     comps=gd["components"]

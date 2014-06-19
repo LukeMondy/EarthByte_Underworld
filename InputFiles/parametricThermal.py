@@ -15,21 +15,18 @@ import underworld
 
 
 # init using json
-underworld.InitWithArgs("SimpleThermal.xml")
-
-stgdict = underworld.GetCurrentDictionary()
+underworld.Init("SimpleThermal.xml")
 
 underworld.Construct()
-underworld.BuildAndInitialise()
 
 # grab the context
 #context = underworld.GetLiveComponent("context")
 
 # grab the LowerBoundaryPpc
-LowerBoundaryPpc = underworld.GetLiveComponent("LowerBoundaryPpc")
+LowerBoundaryPpc = underworld._stgermain.GetLiveComponent("LowerBoundaryPpc")
 
 # grab the TemperatureField
-TemperatureField = underworld.GetLiveComponent("TemperatureField")
+TemperatureField = underworld._stgermain.GetLiveComponent("TemperatureField")
 
 temperatureMesh = TemperatureField.feMesh
 
@@ -53,8 +50,8 @@ for val in lowerBCVals:
 	# print some things
 	if underworld.rank() == 0:
 		print "------------------------------------"
-		print "TemperatureField min value", underworld.FieldVariable_GetMinFieldMagnitude(TemperatureField)
-		print "TemperatureField max value", underworld.FieldVariable_GetMaxFieldMagnitude(TemperatureField)
+		print "TemperatureField min value", underworld.fields.tools.FieldVariable_GetMinFieldMagnitude(TemperatureField)
+		print "TemperatureField max value", underworld.fields.tools.FieldVariable_GetMaxFieldMagnitude(TemperatureField)
 		print "------------------------------------"
 
 

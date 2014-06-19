@@ -598,6 +598,21 @@ Bool _Dictionary_Set( void* dictionary, Dictionary_Entry_Key key, Dictionary_Ent
    return True;
 }
 
+Bool Dictionary_SetWithSource(
+    void*                   dictionary,
+    Dictionary_Entry_Key    key,
+    Dictionary_Entry_Value* value,
+    Dictionary_Entry_Source source )
+{
+   Dictionary* self = (Dictionary*) dictionary;
+   self->setWithSource( dictionary,
+                        key,
+                        value,
+                        source );
+
+   
+}
+
 Bool _Dictionary_SetWithSource(
    void*                   dictionary,
    Dictionary_Entry_Key    key,

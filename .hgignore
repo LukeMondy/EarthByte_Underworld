@@ -2,6 +2,7 @@
 syntax: glob
 
 *~
+.ipynb_checkpoints
 .scon*
 config.*
 build
@@ -13,6 +14,7 @@ testLogs
 *.orig
 *.bak
 :memory
+*/output/*
 
 # switch to regexp syntax.
 syntax: regexp

@@ -40,9 +40,6 @@
 #ifndef __StGermain_main_h__
 #define __StGermain_main_h__
 
-	/* The StGermain main - the context life cycle */
-	void stgMain( Dictionary* dictionary, MPI_Comm CommWorld );
-
    /* Generate flattened XML. */
    void stgGenerateFlattenedXML( Dictionary* dictionary, Dictionary* sources, char* timeStamp );
 

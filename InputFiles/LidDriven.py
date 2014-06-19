@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 # coding: utf-8
 
@@ -127,10 +128,9 @@ visual.setup.windowCreate(viewPortList=["PressureFieldVP magnitudeVelocityFieldV
 # In[9]:
 
 # Let particles leave box just in case
-uw.NewComponentEntryInStgDict( gdict, name="escapedRoutine", Type="EscapedRoutine")
+uw.dictionary.UpdateDictWithComponent( gdict, name="escapedRoutine", Type="EscapedRoutine")
 
 uw.Construct()
-uw.BuildAndInitialise()
 uw.Step(steps=steps)
 uw.Finalise()
 

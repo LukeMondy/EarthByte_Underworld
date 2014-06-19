@@ -20,7 +20,7 @@ import underworld.PICellerator as PICellerator
 import underworld.Underworld as Underworld
 
 # init using simple models
-underworld.InitWithArgs("RayleighTaylorBenchmark.xml")
+underworld.Init("RayleighTaylorBenchmark.xml")
 
 # grab the dictionary
 stgdict = underworld.GetCurrentDictionary()
@@ -41,14 +41,14 @@ stgdict["maxY"] =  1.
 # Add a passive swarm and the required advector component
 # Add a new variable for the visuals
 
-passiveTracerSwarm = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+passiveTracerSwarm = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="passiveTracerSwarm", 
 								 Type="GeneralSwarm", 
 								 CellLayout= "elementCellLayout",
 								 FeMesh= "elementMesh",
 								 ParticleCommHandlers= [ "pMovementHandler" ] )
 
-passiveTracerAdvector = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+passiveTracerAdvector = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="passiveTracerAdvector", 
 								 Type="SwarmAdvector", 
 								 Swarm= "passiveTracerSwarm",
@@ -56,13 +56,13 @@ passiveTracerAdvector = underworld.NewComponentEntryInStgDict( globalDict=stgdic
 								 VelocityField= "VelocityField",
 								 PeriodicBCsManager= "periodicBCsManager" )
 
-colourVariable = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+colourVariable = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="passiveTracerSwarm-colourVariable", 
 								 Type="Variable", 
 								 Rank= "Scalar",
 								 DataType= "Double" )
  
-colourSwarmVariable = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+colourSwarmVariable = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="passiveTracerSwarm-colour", 
 								 Type="SwarmVariable",
 								 Swarm= "passiveTracerSwarm",
@@ -75,7 +75,7 @@ stgdict["components"]["particleDots"]["ColourVariable"] = colourSwarmVariable["n
 # Add a variable and a shape 
 # It might be useful to bundle all of this up into one call
 
-rbfTracerSwarm = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+rbfTracerSwarm = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="rbfTracerSwarm", 
 								 Type="Swarm", 
 								 CellLayout = "CLLCellLayout",
@@ -83,14 +83,14 @@ rbfTracerSwarm = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
 								 # ParticleCommHandlers = [ "pMovementHandler" ] )   # only needed if moving 
 
 
-RBFCellLayout = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+RBFCellLayout = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="CLLCellLayout",
 								 Type="CLLCellLayout",
 								 GeometryMesh="linearMesh",
 								 CellSize="0.025",
  								 MeshDim="2" )
 
-rbfManager = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+rbfManager = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="rbfManager", 
 								 Type="RBFManager", 
 								 ParticleSupportRadius="0.05",
@@ -98,19 +98,19 @@ rbfManager = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
 								 RBFSwarm=rbfTracerSwarm["name"] )
 
 
-rbfTracerVariable = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+rbfTracerVariable = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="rbfTracerSwarm-valueVariable", 
 								 Type="Variable", 
 								 Rank= "Scalar", 
 								 DataType= "Double" )
 
-rbfTracerSwarmVariable = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+rbfTracerSwarmVariable = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 								 name="rbfTracerSwarm-value", 
 								 Type="SwarmVariable", 
 								 Swarm= rbfTracerSwarm["name"],
 								 Variable= rbfTracerVariable["name"] )
 
-rbfFieldVariable = underworld.NewComponentEntryInStgDict( globalDict=stgdict, 
+rbfFieldVariable = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict, 
 								 name="rbfFieldVariable",
 								 Type="RBFFieldVariable",
 								 RBFManager=rbfManager["name"],
@@ -120,14 +120,14 @@ rbfFieldVariable = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
 
 # New heightfield shape (Does this work for a 2D model ?) 
 
-rbfHeightFieldShape = underworld.NewComponentEntryInStgDict( globalDict=stgdict, 
+rbfHeightFieldShape = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict, 
 								 name="rbfHeightFieldShape",
 								 Type="BelowHeightField", 
 								 HeightField=rbfFieldVariable["name"] )
 
 # New rbf field-value shape 
 
-rbfFieldValueShape = underworld.NewComponentEntryInStgDict( globalDict=stgdict, 
+rbfFieldValueShape = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict, 
 								 name="rbfFieldValueShape",
 								 Type="FieldValueShape", 
 								 ValueField=rbfFieldVariable["name"], 
@@ -135,7 +135,7 @@ rbfFieldValueShape = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
 								 UpperLimit="1.5"	 )
 
 
-rbfParticleDots = underworld.NewComponentEntryInStgDict( globalDict=stgdict,
+rbfParticleDots = underworld.dictionary.UpdateDictWithComponent( globalDict=stgdict,
 			name="rbfParticleDots", Type="lucSwarmViewer", Swarm=rbfTracerSwarm["name"], 
 			Colour="Black", pointSize = "2.0" )
 
@@ -155,8 +155,6 @@ stgdict["components"]["densityColourMap"]["maximum"] = "250.0"
 underworld.SetDictionary(stgdict)
 
 underworld.Construct()
-underworld.BuildAndInitialise()
-
 
 
 # Components are now live !

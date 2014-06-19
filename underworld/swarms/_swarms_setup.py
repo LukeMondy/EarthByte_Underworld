@@ -76,7 +76,7 @@ def integrationSwarmCreate(  componentName="",
       print "Error: Need to choose one of  ( PIC, Gauss ) for swarmType"
       return
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if swarmType in ["PIC", "pic"]:
         # we have a chicken and egg scenario here.
@@ -121,16 +121,16 @@ def integrationSwarmCreate(  componentName="",
     ########################################################################################################################################
  
     if swarmType in ["Gauss", "gauss"]:
-        cellLayout     = _uw.StgComponentToGlobalDict( name="cellLayout", 
+        cellLayout     = _uw.dictionary.UpdateDictWithComponent( name="cellLayout", 
                                                        Type="SingleCellLayout")
-        particleLayout = _uw.StgComponentToGlobalDict( name="gaussParticleLayout",
+        particleLayout = _uw.dictionary.UpdateDictWithComponent( name="gaussParticleLayout",
                                                        Type="GaussParticleLayout",
                                                        gaussParticlesX = "gaussParticlesX",
                                                        gaussParticlesY = "gaussParticlesY",
                                                        gaussParticlesZ = "gaussParticlesZ",
                                                       )
 
-        newComponentSwarmDict = _uw.StgComponentToGlobalDict( name           =            componentName,
+        newComponentSwarmDict = _uw.dictionary.UpdateDictWithComponent( name           =            componentName,
                                                               Type           = "IntegrationPointsSwarm",
                                                               CellLayout     =       cellLayout["name"],
                                                               ParticleLayout =   particleLayout["name"],
@@ -145,9 +145,9 @@ def integrationSwarmCreate(  componentName="",
 
     if swarmType in ["PIC", "pic"]:
         # Now we need some pic specific stuff
-        particleLayout    = _uw.StgComponentToGlobalDict( name="mappedParticleLayout", 
+        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="mappedParticleLayout", 
                                                           Type="MappedParticleLayout")
-        #elementCellLayout = _uw.StgComponentToGlobalDict( name="elementCellLayout", Type="ElementCellLayout", Mesh=meshName)
+        #elementCellLayout = _uw.dictionary.UpdateDictWithComponent( name="elementCellLayout", Type="ElementCellLayout", Mesh=meshName)
         elementCellLayoutName = materialSwarm["CellLayout"]
 
         if weightsName not in globalDict["components"]:
@@ -156,7 +156,7 @@ def integrationSwarmCreate(  componentName="",
                                                # create a weights component with basic defaults.
             weightsName = weights["name"]
 
-        newComponentSwarmDict = _uw.StgComponentToGlobalDict( name           =             componentName,
+        newComponentSwarmDict = _uw.dictionary.UpdateDictWithComponent( name           =             componentName,
                                                               Type           =  "IntegrationPointsSwarm",
                                                               CellLayout     =     elementCellLayoutName,
                                                               ParticleLayout =    particleLayout["name"],
@@ -173,7 +173,7 @@ def integrationSwarmCreate(  componentName="",
 
         matPointSwarmName = newComponentSwarmDict["name"]
 
-        mapper = _uw.StgComponentToGlobalDict(   name                   =                 intMapperName,
+        mapper = _uw.dictionary.UpdateDictWithComponent(   name                   =                 intMapperName,
                                                  Type                   =                    mapperType, 
                                                  IntegrationPointsSwarm = newComponentSwarmDict["name"], 
                                                  MaterialPointsSwarm    =             materialSwarmName)
@@ -195,7 +195,7 @@ def weightCalculatorCreate( componentName="weights",
     Create the weights Calculator (This one is used in PIC)
     """
 
-    weights = _uw.StgComponentToGlobalDict( name="weights",
+    weights = _uw.dictionary.UpdateDictWithComponent( name="weights",
                                             Type="PCDVC",
                                             MaterialPointsSwarm=materialPointsSwarmName,
                                             resolutionX=resX,
@@ -219,7 +219,7 @@ def materialSwarmCreate( componentName="materialSwarm",
     Create a material points Swarm
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if meshName == "" or meshName not in globalDict["components"]:
         print "Error: Need a Mesh to exist and it's name passed in"
@@ -227,27 +227,27 @@ def materialSwarmCreate( componentName="materialSwarm",
         return -1
 
     if pic:
-        particleLayout    = _uw.StgComponentToGlobalDict( name="spaceFillerParticleLayout", 
+        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="spaceFillerParticleLayout", 
                                                           Type="SpaceFillerParticleLayout",
                                                           averageInitialParticlesPerCell=particlesPerCell )
     else:
-        particleLayout    = _uw.StgComponentToGlobalDict( name="backgroundParticleLayout", 
+        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="backgroundParticleLayout", 
                                                                                              Type="BackgroundParticleLayout" )
 
-    elementCellLayout = _uw.StgComponentToGlobalDict( name="elementCellLayout", 
+    elementCellLayout = _uw.dictionary.UpdateDictWithComponent( name="elementCellLayout", 
                                                       Type="ElementCellLayout", 
                                                       Mesh=meshName
                                                     )
-    pMovementHandler  = _uw.StgComponentToGlobalDict( name="pMovementHandler", 
+    pMovementHandler  = _uw.dictionary.UpdateDictWithComponent( name="pMovementHandler", 
                                                       Type="ParticleMovementHandler"
                                                     )
-    pShadowSync       = _uw.StgComponentToGlobalDict( name="pShadowSync", 
+    pShadowSync       = _uw.dictionary.UpdateDictWithComponent( name="pShadowSync", 
                                                       Type="ParticleShadowSync"
                                                     )
 
     pList  = [pMovementHandler["name"],pShadowSync["name"]]
 
-    newComponentMaterialSwarmDict = _uw.StgComponentToGlobalDict( name             =             componentName,
+    newComponentMaterialSwarmDict = _uw.dictionary.UpdateDictWithComponent( name             =             componentName,
                                                                   Type             =     "MaterialPointsSwarm",
                                                                   CellLayout       = elementCellLayout["name"],
                                                                   ParticleLayout   =    particleLayout["name"],
@@ -270,7 +270,7 @@ def timeIntegratorCreate( componentName="timeIntegrator",
     """
     # todo check for existence of context or just warn if not exist...
     
-    integrator = _uw.StgComponentToGlobalDict( name  = componentName,
+    integrator = _uw.dictionary.UpdateDictWithComponent( name  = componentName,
                                                Type  = "TimeIntegrator",
                                                order = order,
                                                simultaneous = simultaneousFlag,
@@ -290,7 +290,7 @@ def materialSwarmAdvectorCreate(componentName  = "materialSwarmAdvector",
     Create a material Swarm Advector Component in the global Dictionary
     """
     
-    newComponentMaterialSwarmAdvectorDict = _uw.StgComponentToGlobalDict( name  = componentName,
+    newComponentMaterialSwarmAdvectorDict = _uw.dictionary.UpdateDictWithComponent( name  = componentName,
                                                                           Type  = "SwarmAdvector",
                                                                           Swarm = swarmName,
                                                                           TimeIntegrator = integratorName,

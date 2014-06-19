@@ -148,9 +148,6 @@ void _Stg_ComponentFactory_Delete( void* cf )
 
    assert( self );
 
-   LiveComponentRegister_DestroyAll( self->LCRegister );
-
-   Stg_Class_Delete( self->LCRegister ); /* this deletes all the components on the LCRegister */
    _Stg_Class_Delete( self );
 }
    

@@ -26,7 +26,7 @@ def materialCreate(componentName="background", rheologyName="", shapeName="", de
        rheologyName: 
        shapeName:
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if rheologyName=="":
         _uw.utils.sendError("Must specify a Rheology name")
@@ -38,7 +38,7 @@ def materialCreate(componentName="background", rheologyName="", shapeName="", de
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
     
-    newComponentDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                        name                 = componentName,
                                                        Type                 = "RheologyMaterial",
                                                        density              = str(density),

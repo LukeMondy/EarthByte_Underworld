@@ -51,7 +51,7 @@ def matrixCreate( matrixName="stokes_matrix",
        intSwarmName       : An integration swarm for the matrix element assembly routine struct (required)
 
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     mList = [ "ConstitutiveMatrixCartesian", "GradientStiffnessMatrixTerm", 
               "UzawaPreconditionerTerm", "PressMassMatrixTerm"]
@@ -88,7 +88,7 @@ def matrixCreate( matrixName="stokes_matrix",
     else: # create a default one if nothing passed in
         newRHSName = matrixName+"RHS"
         newRHSName = _uw.utils.checkForNewComponentName(globalDict, newRHSName)
-        newRHS     = _uw.NewComponentEntryInStgDict( globalDict, 
+        newRHS     = _uw.dictionary.UpdateDictWithComponent( globalDict, 
                                                      name = newRHSName,
                                                      Type="ForceVector",
                                                      FeVariable=rowFeVariable,
@@ -103,7 +103,7 @@ def matrixCreate( matrixName="stokes_matrix",
     if createTransposeRHS:
         newRHSName = matrixName+"TransposeRHS"
         newRHSName = _uw.utils.checkForNewComponentName(globalDict, newRHSName)
-        newRHS     = _uw.NewComponentEntryInStgDict( globalDict, 
+        newRHS     = _uw.dictionary.UpdateDictWithComponent( globalDict, 
                                                      name = newRHSName,
                                                      Type="ForceVector",
                                                      FeVariable=colFeVariable,
@@ -112,7 +112,7 @@ def matrixCreate( matrixName="stokes_matrix",
         transposeRHS = newRHSName
 
     matrixName = _uw.utils.checkForNewComponentName(globalDict, matrixName)
-    newMatrixDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newMatrixDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                     name     = matrixName,
                                                     Type     = "StiffnessMatrix",
                                                     RowVariable    = rowFeVariable,
@@ -137,7 +137,7 @@ def matrixCreate( matrixName="stokes_matrix",
         termName="constitutiveMatrix"
         commentStr ="If the Type is ConstitutiveMatrixCartesian then we HAVE to name it 'constitutiveMatrix' or the PpcManager doesn't get built unless we explicitly set it up!"
     termName = _uw.utils.checkForNewComponentName(globalDict, termName)
-    newTermDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newTermDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                   name    = termName,
                                                   Type    = matrixTermType,
                                                   Swarm   = intSwarmName,
@@ -153,10 +153,10 @@ def vectorCreate( vectorName="solutionVelocity",
                   comment="",
                   Context="context"):
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     vectorName  = _uw.utils.checkForNewComponentName(globalDict, vectorName)
-    newVectDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newVectDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                   name     = vectorName,
                                                   Type     = vectorType,
                                                   FeVariable = feVariable,

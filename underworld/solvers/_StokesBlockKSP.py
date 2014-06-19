@@ -30,7 +30,7 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
      # The preconditioner does not use material point information 
     integrationSwarm = "gaussSwarm"
 
-    globalDict = _underworld.GetCurrentPythonDictionary()    
+    globalDict = _underworld.dictionary.GetDictionary()    
 
 
 # Add the solver toolbox 
@@ -48,14 +48,14 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
 
 # RHS vector for mass matrix
 
-    scratchForceVector = _underworld.NewComponentEntryInStgDict( globalDict,
+    scratchForceVector = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="scratchForceVector", 
                                 Type="ForceVector", 
                                 FeVariable= "PressureField",
                                 ExtraInfo= "context"
                                 )            
 
-    mass_matrix = _underworld.NewComponentEntryInStgDict( globalDict,
+    mass_matrix = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="m_matrix", 
                                 Type="StiffnessMatrix",
                                 RowVariable="PressureField",
@@ -64,7 +64,7 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
                                 allowZeroElementContributions="True"
                                 )
 
-    mass_matrix_assembly = _underworld.NewComponentEntryInStgDict( globalDict,
+    mass_matrix_assembly = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="PressureMassMatrixTerm",
                                 Type="PressMassMatrixTerm",
                                 Swarm=integrationSwarm,
@@ -121,14 +121,14 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
 ## Dictionary changes / definitions from VelocityMassMatrixSLE.xml
 ##############################################################################
 
-    scratchVelForceVector = _underworld.NewComponentEntryInStgDict( globalDict,
+    scratchVelForceVector = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="scratchVelForceVector", 
                                 Type="ForceVector", 
                                 FeVariable= "VelocityField",
                                 ExtraInfo= "context"
                                 )            
 
-    vel_mass_matrix = _underworld.NewComponentEntryInStgDict( globalDict,
+    vel_mass_matrix = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="vm_matrix", 
                                 Type="StiffnessMatrix",
                                 RowVariable="VelocityField",
@@ -137,7 +137,7 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
                                 allowZeroElementContributions="True"
                                 )
 
-    vel_mass_matrix_assembly = _underworld.NewComponentEntryInStgDict( globalDict,
+    vel_mass_matrix_assembly = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="VelocityMassMatrixTerm",
                                 Type="VelocityMassMatrixTerm",
                                 Swarm=integrationSwarm,
@@ -167,7 +167,7 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
     if "uzawa" in globalDict["components"].keys():
         del globalDict["components"]["uzawa"]
 
-    stokesblockkspinterface = _underworld.NewComponentEntryInStgDict( globalDict,
+    stokesblockkspinterface = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="stokesblockkspinterface",
                                 Type="StokesBlockKSPInterface",
                                 Preconditioner="preconditioner"

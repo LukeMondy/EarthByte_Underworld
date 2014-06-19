@@ -46,41 +46,23 @@
 			<param name="density">1.0</param>
 			<param name="Rheology">backgroundViscosity</param>
 		</struct>
-		<struct name="heavyLayerShape">
+		<struct name="lightLayerShape">
 			<param name="Type">BelowCosinePlane</param>
 			<param name="offset">0.2</param>
 			<param name="amplitude">0.02</param>
 			<param name="wavelength">1.8284</param>
 			<param name="phase">0.0</param>
 		</struct>
-		<struct name="heavyLayerViscosity">
+		<struct name="lightLayerViscosity">
 			<param name="Type">MaterialViscosity</param>
 			<param name="eta0">1.0</param>
 		</struct>
-		<struct name="heavyLayer">
+		<struct name="lightLayer">
 			<param name="Type">RheologyMaterial</param>
-			<param name="Shape">heavyLayerShape</param>
+			<param name="Shape">lightLayerShape</param>
 			<param name="density">0.0</param>
-			<param name="Rheology">heavyLayerViscosity</param>
+			<param name="Rheology">lightLayerViscosity</param>
 		</struct>
-
-	<struct name="colourLayerShape">
-			<param name="Type">BelowCosinePlane</param>
-			<param name="offset">0.2</param>
-			<param name="amplitude">0.02</param>
-			<param name="wavelength">1.8284</param>
-			<param name="phase">0.0</param>
-	</struct>
-	<struct name="colourLayerViscosity">
-			<param name="Type">MaterialViscosity</param>
-			<param name="eta0">1.0</param>
-	</struct>
-	<struct name="colourLayer">
-			<param name="Type">RheologyMaterial</param>
-			<param name="Shape">colourLayerShape</param>
-			<param name="density">0.0</param>
-			<param name="Rheology">colourLayerViscosity</param>
-	</struct>
 
 	</struct>
 

@@ -21,7 +21,7 @@ def emptyBoundaryConditionCreate(bcEntry=""):
     but has it's own entry at the top level.
     (usually "velocityBCs" or  "temperatureBCs" )
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if bcEntry=="":
         field = globalDict["info"]["velocityField"]
@@ -40,7 +40,7 @@ def wallFreeSlipCreate(bcEntry="", wall="left"):
     Set a wall to be Free Slip for a Cartesian Mesh
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     # Is it a good idea to make sure we have things like this on the dictionary always?
     # it makes some things a lot easier though
@@ -110,7 +110,7 @@ def wallNoSlipCreate(bcEntry="", wall="left"):
     Set a wall to be No Slip for a Cartesian Mesh
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     # Is it a good idea to make sure we have things like this on the dictionary always?
     # it makes some things a lot easier though
@@ -178,7 +178,7 @@ def wallSetFuncCreate(bcEntry="", wall="top", func="", **params):
     if func=="":
         _uw.utils.sendWarning("No function provided. A function must be set")
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if bcEntry=="":
         field = globalDict["info"]["velocityField"]
@@ -256,7 +256,7 @@ def wallTemperatureCreate(bcEntry="", wall="bottom", value=0.0):
     Set a temperature on a given 'wall' on a Cartesian Temperature mesh
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if bcEntry=="":
         field = globalDict["info"]["temperatureField"]
@@ -304,7 +304,7 @@ def temperatureICSinusoidalCreate(
     Set initial sinusoidal temperature on Mesh
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if icEntry=="":
         field = globalDict["info"]["temperatureField"]

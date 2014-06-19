@@ -20,7 +20,7 @@ def multigrid( mgLevels ):
         return
 
 
-    globalDict = _underworld.GetCurrentPythonDictionary()    
+    globalDict = _underworld.dictionary.GetDictionary()    
 
     globalDict['mgLevels'] = mgLevels
 
@@ -30,14 +30,14 @@ def multigrid( mgLevels ):
         globalDict["plugins"].append( {"Type" : "StgFEM_Multigrid" , "Context":"context" } ) 
 
 
-    mgsolver = _underworld.NewComponentEntryInStgDict( globalDict,
+    mgsolver = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="mgSolver",
                                 Type="PETScMGSolver",
                                 levels=mgLevels,
                                 opGenerator="mgOpGenerator"
                                 )
 
-    mgOpGenerator = _underworld.NewComponentEntryInStgDict( globalDict,
+    mgOpGenerator = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                                 name="mgOpGenerator",
                                 Type="SROpGenerator",
                                 fineVariable="VelocityField"

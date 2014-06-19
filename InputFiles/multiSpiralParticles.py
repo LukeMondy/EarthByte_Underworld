@@ -14,7 +14,7 @@ import underworld.PICellerator as PICellerator
 import underworld.Underworld as Underworld
 
 # init using simple models
-underworld.InitWithArgs("RayleighTaylorBenchmark.xml PICellerator/PassiveTracerSwarm.xml")
+underworld.Init("RayleighTaylorBenchmark.xml PICellerator/PassiveTracerSwarm.xml")
 
 # grab the dict
 stgdict = underworld.GetCurrentDictionary()
@@ -61,8 +61,6 @@ stgdict["components"]["densityColourMap"]["maximum"] = "100.0"
 underworld.SetDictionary(stgdict)
 
 underworld.Construct()
-underworld.BuildAndInitialise()
-
 
 # for y in range(-100,100):
 # 	t = (0.0, y/100.0, 0.0 )

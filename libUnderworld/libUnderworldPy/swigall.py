@@ -15,15 +15,6 @@ swigcommandbase +=  ' -I'+os.path.join( dir, 'include', 'petsc')
 swigcommandbase +=  ' -I'+os.path.join( '..', 'ctools')
 
 swigfiles = [ 
-              "c_arrays.i",
-              "c_pointers.i",
-              "petsc.i",
-              "StGermain_Tools.i",
-              "gLucifer.i",
-              "Underworld.i",
-              "PICellerator.i",
-              "StgFEM.i",
-              "StgDomain.i",
               "StGermain.i"
              ]
 

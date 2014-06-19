@@ -130,12 +130,11 @@ bc._wallNoSlipCreate(bcEntry="velocityMeshBCs", wall="top")
 bc._wallNoSlipCreate(bcEntry="velocityMeshBCs", wall="bottom")
 
 # Let particles leave box just in case                                                                                          
-uw.NewComponentEntryInStgDict( gdict, name="escapedRoutine", Type="EscapedRoutine")
+uw.dictionary.UpdateDictWithComponent( gdict, name="escapedRoutine", Type="EscapedRoutine")
 
 #pd(gdict)                                                                                                                      
 #help(swarm._integrationSwarmCreate)                                                                                            
 #uw.Construct()
-#uw.BuildAndInitialise()
 #uw.Step(steps=12)
 #uw.Finalise()
 

@@ -92,7 +92,13 @@ void _Stg_Component_Delete( void* component ) {
    Stg_Component* self = (Stg_Component*)component;
    
    /* just make sure the component is destroyed */
-    Stg_Component_Destroy( self, NULL, False );
+   Stg_Component_Destroy( self, NULL, False );
+   
+   /* lets remove from live component register if registered */
+   if( LiveComponentRegister_Get( LiveComponentRegister_GetLiveComponentRegister(), self->name ) )
+   {
+      LiveComponentRegister_RemoveOneComponentsEntry( LiveComponentRegister_GetLiveComponentRegister(), self->name );
+   }
    
    Memory_Free( self->destroyType );
    Memory_Free( self->executeType );

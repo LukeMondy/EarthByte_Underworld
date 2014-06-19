@@ -199,6 +199,11 @@ void _Stokes_SLE_UzawaSolver_Build( void* solver, void* stokesSLE ) {
 	Stokes_SLE_UzawaSolver*	self  = (Stokes_SLE_UzawaSolver*)solver;
 	Stokes_SLE*             sle   = (Stokes_SLE*)stokesSLE;
 
+   /* ok, this is far from satisfactory, but let's just bail if we have not been called from within
+      the SLE routine  JM20140618 */
+   if( sle == NULL )
+      return;
+   
  	Journal_DPrintf( self->debug, "In %s\n", __func__ );
 	Stream_IndentBranch( StgFEM_Debug );
 	
@@ -292,7 +297,12 @@ void _Stokes_SLE_UzawaSolver_Destroy( void* solver, void* data ) {
 void _Stokes_SLE_UzawaSolver_Initialise( void* solver, void* stokesSLE ) {
 	Stokes_SLE_UzawaSolver* self = (Stokes_SLE_UzawaSolver*) solver;
 	Stokes_SLE*             sle  = (Stokes_SLE*)             stokesSLE;
-	
+
+   /* ok, this is far from satisfactory, but let's just bail if we have not been called from within
+    the SLE routine  JM20140618 */
+   if( sle == NULL )
+      return;
+
 	/* Initialise Parent */
 	_SLE_Solver_Initialise( self, sle );
 	

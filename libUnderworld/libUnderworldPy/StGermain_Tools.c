@@ -53,7 +53,7 @@ static int hasBeenMPIInit = 0;
 
 StgData* StgInit( int argc, char* argv[] ) {
    StgData* data = (StgData*) malloc(sizeof(StgData));
-   *data = (StgData){.commworld = NULL, .rank=-1, .nProcs=-1, .dictionary=NULL, .sources=NULL, .cf=NULL, .argcCpy=NULL, .argvCpy=NULL, .ioHandler=NULL}; 
+   *data = (StgData){.commworld = NULL, .rank=-1, .nProcs=-1, .dictionary=NULL, .argcCpy=NULL, .argvCpy=NULL }; 
 
    //lets copy all this data for safety
    data->argcCpy = (int*) malloc(sizeof(int));
@@ -97,66 +97,19 @@ StgData* StgInit( int argc, char* argv[] ) {
 
    /* Create the application's dictionary & read input. */
    data->dictionary = Dictionary_New();
-   data->sources = Dictionary_New();
-   data->ioHandler = XML_IO_Handler_New();
-   IO_Handler_ReadAllFromCommandLine( data->ioHandler, *(data->argcCpy), *(data->argvCpy), data->dictionary, data->sources );
-
-   return data;
-}
-
-char* StgDictAsXMLString(StgData* data){
-   return _XML_IO_Handler_WriteAllMem(XML_IO_Handler_New(), data->dictionary, data->sources );
-
-} 
-
-void StgSetDictFromXMLString(StgData* data, const char* xmlString, const char* tag){
-   Stg_Class_Delete( data->dictionary );
-   Stg_Class_Delete( data->sources );
-   Stg_Class_Delete( data->ioHandler );
-   data->dictionary = Dictionary_New();
-   data->sources = Dictionary_New();
-   data->ioHandler = XML_IO_Handler_New();
-   StgAddToDictFromXMLString(data, xmlString, tag);
-}
-
-void StgAddToDictFromXMLString(StgData* data, const char* xmlString, const char* tag){
-   data->ioHandler->currSources = data->sources;
-   IO_Handler_ReadAllFromBuffer( data->ioHandler, xmlString, data->dictionary, tag );
-}
-
-int StgConstruct(StgData* data){
-   Journal_ReadFromDictionary( data->dictionary );
-   /* now dereference aliases */
-   DictionaryUtils_AliasDereferenceDictionary( data->dictionary );
    
-   ModulesManager_Load( stgToolboxesManager, data->dictionary, (Name)"" );
+   Dictionary* sources = Dictionary_New();
 
-   data->cf = stgMainConstruct( data->dictionary, data->sources, data->commworld, NULL );
-   return 0;
-}
-
-int StgBuildAndInitialise(StgData* data){
-   stgMainBuildAndInitialise( data->cf );
-   return 0;
-}
-
-int StgMainLoop(StgData* data){
-   stgMainLoop( data->cf );
-   return 0;
-}
-
-int StgRun(StgData* data){
-   StgConstruct( data );
-   StgBuildAndInitialise( data );
-   StgMainLoop( data );
-   return 0;
+   XML_IO_Handler* ioHandler = XML_IO_Handler_New();
+   IO_Handler_ReadAllFromCommandLine( ioHandler, *(data->argcCpy), *(data->argvCpy), data->dictionary, sources );
+   Stg_Class_Delete( ioHandler );
+   Stg_Class_Delete( sources );
+   
+   return data;
 }
 
 int StgFinalise(StgData* data){
    /* Close off everything */
-   Stg_Class_Delete( data->sources );
-   Stg_Class_Delete( data->ioHandler );
-   stgMainDestroy( data->cf );
    StGermain_Finalise();
    //MPI_Finalize();
 

@@ -43,14 +43,14 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
 
     In the first case, matching parameters must be set at the top level of the dictionary and given
     numerical values.
-    This is easily done using the 'setParameters' function in the main module.
+    This is easily done using the 'dictionary.setParameters' function in the main module.
     
     (It might be better to have the variables created in another function?)
 
     """
     namesDict={}  # to be returned
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     # Set minX etc to info dictionary
     globalDict["info"]["minX"]=minX

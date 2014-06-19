@@ -75,13 +75,14 @@ LiveComponentRegister* LiveComponentRegister_New() {
     * The following terms are parameters that have been passed into or defined in this
     * function but are being set before being passed onto the parent.
     */
-   self = _LiveComponentRegister_New( LIVECOMPONENTREGISTER_PASSARGS );
-   LiveComponentRegister_Init( self );
-
-   if( !stgLiveComponentRegister ) 
+   
+   if( !stgLiveComponentRegister ){
+      self = _LiveComponentRegister_New( LIVECOMPONENTREGISTER_PASSARGS );
+      LiveComponentRegister_Init( self );
       stgLiveComponentRegister = self;
+   }
 
-   return self;
+   return stgLiveComponentRegister;
 }
 
 void _LiveComponentRegister_Init( LiveComponentRegister *self ) { }
@@ -95,10 +96,8 @@ void LiveComponentRegister_Init( LiveComponentRegister *self ) {
 void _LiveComponentRegister_Delete( void* liveComponentRegister ) {
    LiveComponentRegister *self = (LiveComponentRegister *) liveComponentRegister;
 
-   assert( self );
-
-   /* TODO: add some debug printing about this... */
-   LiveComponentRegister_DeleteAll( self );
+   if(!self)
+      return;
    Stg_Class_Delete( self->componentList );
 
    /* 
@@ -113,7 +112,7 @@ void _LiveComponentRegister_Delete( void* liveComponentRegister ) {
 
 void _LiveComponentRegister_Print( void* liveComponentRegister, Stream* stream ) {
    LiveComponentRegister *self = (LiveComponentRegister *) liveComponentRegister;
-
+   
    assert( self );
    
    /* General info */
@@ -124,6 +123,10 @@ void _LiveComponentRegister_Print( void* liveComponentRegister, Stream* stream )
    
    Journal_Printf( (void*)stream, "componentList (ptr): %p\n", self->componentList );
    Stg_Class_Print( self->componentList, stream );
+}
+
+void LiveComponentRegister_Delete() {
+   _LiveComponentRegister_Delete( stgLiveComponentRegister ) ;
 }
 
 Index LiveComponentRegister_Add( LiveComponentRegister *self, Stg_Component *component ) {
@@ -148,7 +151,8 @@ Index LiveComponentRegister_IfRegThenAdd( Stg_Component *component ) {
 }
    
 Stg_Component *LiveComponentRegister_Get( LiveComponentRegister *self, Name name ) {
-   assert( self );
+   if( self == NULL )
+      return NULL;
    
    return ( Stg_Component* ) Stg_ObjectList_Get( self->componentList, name );
 }
@@ -204,17 +208,13 @@ void LiveComponentRegister_InitialiseAll( void* liveComponentRegister, void* dat
 void LiveComponentRegister_DeleteAll( void* liveComponentRegister ) {
    LiveComponentRegister* self = (LiveComponentRegister*)liveComponentRegister;
    Stg_Component*         component;
-   Index                  index;
-   
-   /* 
-    * Note: have to recompute count dynamically each loop in case a component deletes
-    * some other components.
-    */
-   for( index = 0; index < LiveComponentRegister_GetCount( self ); index++ ) {
-      component = LiveComponentRegister_At( self, index );
+
+   while (LiveComponentRegister_GetCount( self ) > 0){
+      /* delete from back of list forward */
+      component = LiveComponentRegister_At( self, LiveComponentRegister_GetCount( self ) - 1 );
+      LiveComponentRegister_RemoveOneComponentsEntry( self, component->name );
       Stg_Class_Delete( component );
    }
-   self->componentList->count = 0;
 }
 
 LiveComponentRegister* LiveComponentRegister_GetLiveComponentRegister() {

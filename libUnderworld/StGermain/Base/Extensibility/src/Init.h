@@ -44,6 +44,7 @@
 	/** The toolboxes singleton... this is the manager of loading and unloading toolboxes */
 	extern ToolboxesManager* stgToolboxesManager;
 
+   ToolboxesManager* GetToolboxManagerInstance();
 	Bool BaseExtensibility_Init( int* argc, char** argv[] );
 	
 #endif /* __StGermain_Base_BaseExtensibility_Init_h__ */

@@ -135,34 +135,6 @@ void _DomainContext_AssignFromXML( void* context, Stg_ComponentFactory* cf, void
          Scaling, False, data ); 
    }
 
-       /* The following is for backward compatiblity with old (GALE) xml files. */
-   {
-      /* Post change 1d3dc4e00549 in this repositroy, the old style of DofLayout 
-       * XML definition was illegal. This change allows for the old style.
-       *
-       * Here we build all 'MeshVariable' components first.
-       *
-       * This is a hack, selective construction of general component over other is
-       * a weakness to the object model and should be avoided. This section should
-       * be removed in future and xml files updated in accordance with change 1d3dc4e00549  
-       */
-
-      Stg_Component *component=NULL;
-      Index         component_I;
-      for( component_I = 0; component_I < LiveComponentRegister_GetCount( cf->LCRegister ); component_I++ ){
-         /* Grab component from register */
-         component = LiveComponentRegister_At( cf->LCRegister, component_I ); 
-         /* if not a "MeshVariable" do nothing */
-         if( strcmp( component->type, MeshVariable_Type ) ) continue;
-
-         if( component && !component->isConstructed ){
-            Journal_Printf( cf->infoStream, "Constructing %s as %s\n", component->type, component->name );
-            Stg_Component_AssignFromXML( component, cf, data, True );
-         }
-
-      }
-   }
-
    _DomainContext_Init( self );
 }
 

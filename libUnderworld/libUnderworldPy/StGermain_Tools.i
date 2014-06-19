@@ -14,6 +14,5 @@
 
 /* Parse the header file to generate wrappers */
 %include <argcargv.i>
-%newobject StgDictAsXMLString(StgData* data); 
 %apply (int ARGC, char **ARGV) { (int argc, char *argv[]) }
 %include "StGermain_Tools.h"

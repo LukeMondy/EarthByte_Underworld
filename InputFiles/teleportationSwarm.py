@@ -16,7 +16,7 @@ import underworld.PICellerator as PICellerator
 import underworld.Underworld as Underworld
 
 # init using simple models
-underworld.InitWithArgs("RayleighTaylorBenchmark.xml PICellerator/PassiveTracerSwarm.xml")
+underworld.Init("RayleighTaylorBenchmark.xml PICellerator/PassiveTracerSwarm.xml")
 
 # grab the dict
 stgdict = underworld.GetCurrentDictionary()
@@ -72,7 +72,6 @@ teleporterBox["endY"]   = 0.45
 underworld.SetDictionary(stgdict)
 
 underworld.Construct()
-underworld.BuildAndInitialise()
 
 # Components are now live !
 

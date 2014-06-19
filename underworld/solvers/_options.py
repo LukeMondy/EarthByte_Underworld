@@ -32,7 +32,7 @@ def options( optionsFilename="", optionsString="" ):
         print " !! Petsc Options cannot be set in code for the Uzawa solver"
         return
 
-    globalDict = _underworld.GetCurrentPythonDictionary()    
+    globalDict = _underworld.dictionary.GetDictionary()    
     
     # If it exists, pass it to PETSc (can't really check if it is sane)
 

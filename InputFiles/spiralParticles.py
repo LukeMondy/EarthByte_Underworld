@@ -10,7 +10,7 @@ Note that Scipy / Numpy are required for this example
 import underworld
 
 # init using simple models
-underworld.InitWithArgs("BuoyancyDrivenVanilla.xml PICellerator/PassiveTracerSwarm.xml")
+underworld.Init("BuoyancyDrivenVanilla.xml PICellerator/PassiveTracerSwarm.xml")
 
 # grab the dict
 stgdict = underworld.GetCurrentDictionary()
@@ -40,7 +40,6 @@ stgdict["components"]["window"]["Viewport"] = "ParticleDensityVP"       # only v
 underworld.SetDictionary(stgdict)
 
 underworld.Construct()
-underworld.BuildAndInitialise()
 
 ##  lets reinit swarm guys
 #   grab the passiveTracerSwarm guy

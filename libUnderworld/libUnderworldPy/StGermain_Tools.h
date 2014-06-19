@@ -51,19 +51,9 @@ typedef struct StgData
    int rank;
    int nProcs;
    Dictionary* dictionary;
-   Dictionary* sources;
-   Stg_ComponentFactory* cf;
    int* argcCpy;
    char*** argvCpy;
-   XML_IO_Handler* ioHandler;
 } StgData;
 
 StgData* StgInit( int argc, char* argv[] ) ;
-char* StgDictAsXMLString(StgData* data) ;
-void StgSetDictFromXMLString(StgData* data, const char* xmlString, const char* tag ) ;
-void StgAddToDictFromXMLString(StgData* data, const char* xmlString, const char* tag ) ;
-int StgConstruct(StgData* data) ; 
-int StgBuildAndInitialise(StgData* data) ;
-int StgMainLoop(StgData* data) ;
-int StgRun(StgData* data) ;
 int StgFinalise(StgData* data) ;

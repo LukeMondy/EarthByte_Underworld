@@ -23,10 +23,10 @@ def uzawaCreate(preconditionerMatrix="preconditioner", tol="1.0e-5", monitor=Fal
     Args:
         preconditionerMatrix  : a matrix for preconditioning.
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
     _uw.utils.warnMissingComponent(globalDict, preconditionerMatrix )
 
-    uzawaDict = _uw.NewComponentEntryInStgDict( globalDict,
+    uzawaDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                 name = "uzawa",
                                                 Type = "Stokes_SLE_UzawaSolver",
                                                 velocitySolver = "matrixSolver",  # not used atm?
@@ -52,10 +52,10 @@ def stokesBlockKSPInterfaceCreate(preconditionerMatrix="preconditioner", tol="1.
     Args:
         preconditionerMatrix  : a matrix for preconditioning.
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
     _uw.utils.warnMissingComponent(globalDict, preconditionerMatrix )
 
-    sbkiDict = _uw.NewComponentEntryInStgDict( globalDict,
+    sbkiDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                 name = "stokesblockkspinterface",
                                                 Type = "StokesBlockKSPInterface",
                                                 Preconditioner = preconditionerMatrix

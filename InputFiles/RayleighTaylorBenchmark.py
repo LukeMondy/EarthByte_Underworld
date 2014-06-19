@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 # coding: utf-8
 
@@ -116,7 +117,7 @@ bc.setup.wallNoSlipCreate( wall="top")
 bc.setup.wallNoSlipCreate( wall="bottom")
 
 # Let particles leave box just in case                                                                                          
-uw.NewComponentEntryInStgDict( gdict, name="escapedRoutine", Type="EscapedRoutine")
+uw.dictionary.UpdateDictWithComponent( gdict, name="escapedRoutine", Type="EscapedRoutine")
 
 #pd(gdict)                                                                                                                      
 #help(swarm._integrationSwarmCreate)     
@@ -148,7 +149,6 @@ visual.setup.windowCreate(viewPortList=["PressureFieldVP magnitudeVelocityFieldV
 # In[10]:
 
 uw.Construct()
-uw.BuildAndInitialise()
 uw.Step(steps=steps)
 uw.Finalise()
 

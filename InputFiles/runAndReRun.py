@@ -22,7 +22,7 @@ print "======================="
 
 for ii in range(1,5):
 	# init using json
-	underworld.InitWithArgs("RayleighTaylorBenchmark.json")
+	underworld.Init("RayleighTaylorBenchmark.json")
 
 	# grab the dict
 	stgdict = underworld.GetCurrentDictionary()
@@ -37,7 +37,6 @@ for ii in range(1,5):
 	underworld.SetDictionary(stgdict)
 
 	underworld.Construct()
-	underworld.BuildAndInitialise()
 	# run through till end 
 	underworld.RunMainLoop()
 	underworld.Finalise()

@@ -24,10 +24,10 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 
 def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="TemperatureField"):
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     
-    buoyancy = _uw.NewComponentEntryInStgDict( globalDict, 
+    buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict, 
                                                name = "buoyancyForceTerm",
                                                Type = "BuoyancyForceTerm",
                                                TemperatureField = temperatureField,  #optional: temp of 0.0 used if no Field

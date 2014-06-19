@@ -121,7 +121,7 @@ bc.setup.wallTemperatureCreate(wall="top", value=0.0)
 bc.setup.temperatureICSinusoidalCreate(TopLayerCoord=maxY, BottomLayerCoord=minY, BottomLayerBC=1.0)
 
 # Let particles leave box just in case                                                                                          
-uw.NewComponentEntryInStgDict( gdict, name="escapedRoutine", Type="EscapedRoutine")
+uw.dictionary.UpdateDictWithComponent( gdict, name="escapedRoutine", Type="EscapedRoutine")
 
 #pd(gdict)                                                                                                                      
 #help(swarm._integrationSwarmCreate)     
@@ -138,7 +138,7 @@ fields.setup.operatorFeVariableCreate(feVariableName="VelocityField", operator="
 fields.setup.operatorFeVariableCreate(feVariableName="VelocityField", operator="Gradient", componentName="VelocityGradientsField")
 fields.setup.operatorFeVariableCreate(feVariableName="VelocityGradientsField", operator="TensorInvariant", componentName="VelocityGradientsInvariantField")
 
-uw.addCheckPointVariables(["TemperatureGradientsField", "VelocityGradientsField", "VelocityGradientsInvariantField"])
+uw.dictionary.addCheckPointVariables(["TemperatureGradientsField", "VelocityGradientsField", "VelocityGradientsInvariantField"])
 
 visual.setup.cameraCreate(centreFieldVariable="VelocityField", name="camera")
 #create some arrows for visualisation
@@ -158,7 +158,6 @@ visual.setup.windowCreate(viewPortList=["TemperatureFieldVP VelocityMagnitudeFie
 # In[10]:
 
 uw.Construct()
-uw.BuildAndInitialise()
 uw.Step(steps=steps)
 uw.Finalise()
 

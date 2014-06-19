@@ -69,7 +69,9 @@
    void LiveComponentRegister_Init( LiveComponentRegister *self );
 
    void _LiveComponentRegister_Delete( void* liveComponentRegister );
-   
+   void LiveComponentRegister_Delete();
+
+
    void _LiveComponentRegister_Print( void* liveComponentRegister, Stream* stream );
    
    Index LiveComponentRegister_Add( LiveComponentRegister *self, Stg_Component *component );

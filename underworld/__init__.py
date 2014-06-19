@@ -8,9 +8,21 @@ _oldflags = _sys.getdlopenflags()
 _sys.setdlopenflags( _oldflags | _ctypes.RTLD_GLOBAL )
 
 import libUnderworld
-
 from _underworld import *
-
+import boundary
+import equations
+import fields
+import geometry
+import live
+import material
+import matrix
+import meshing
+import physics
+import rheology
+import shapes
+import solvers
+import swarms
+import utils
 import visualisation
 
 # ok, now set this back to the original value
@@ -24,5 +36,35 @@ def _signal_handler(_signal, frame):
 
 _signal.signal(_signal.SIGINT, _signal_handler)
 
+
+# lets go right ahead and init now.  user can re-init if necessary.
+import _stgermain
+_stgermain.StgInit()
+_rank = _stgermain.getData().rank
+_nprocs = _stgermain.getData().nProcs
+
+def rank():
+   """
+      Returns the rank of the current processors.
+      
+      Args:
+      None
+      Returns:
+      rank (unsigned) : Rank of current processor.
+      """
+   global _rank
+   return _rank
+
+def nProcs():
+   """
+      Returns the number of processors being utilised by the simulation.
+      
+      Args:
+      None
+      Returns:
+      nProcs (unsigned) : Number of processors.
+      """
+   global _nprocs
+   return _nprocs
 
 

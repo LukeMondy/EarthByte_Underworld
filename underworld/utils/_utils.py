@@ -103,7 +103,7 @@ def checkForNewComponentName(globalDict, componentName):
 
 def uniqueComponentNameGlobalDict(componentName):
 
-    globalDict = underworld.GetCurrentPythonDictionary()
+    globalDict = underworld.dictionary.GetDictionary()
 
     if componentName in globalDict["components"]:             # We could just make a new name or refuse to add here.
         count=1

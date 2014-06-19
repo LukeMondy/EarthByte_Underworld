@@ -1951,7 +1951,7 @@ static int _XML_IO_Handler_WriteAllToDoc(
    _XML_IO_Handler_WriteDictionary( self, dictionary, rootNode );
 
    /* Write sources information. */
-   if( self->writeSources )
+   if( self->writeSources && sources)
       _XML_IO_Handler_WriteSources( self, sources, rootNode );
 
    return True;

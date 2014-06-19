@@ -18,11 +18,11 @@ def everywhereCreate( componentName="backgroundShape"):
     """
     Create the main background "Everywhere" shape.
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
 
-    newComponentShapeDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentShapeDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                             name     = componentName,
                                                             Type     = "Everywhere"
                                                             )
@@ -36,11 +36,11 @@ def belowCosinePlaneCreate( componentName="belowCosinePlaneShape",
     Create the main background "BelowCosinePlane" shape.
     The defaults set up the Rayleigh Taylor benchmark model shape for the lower material
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
 
-    newComponentShapeDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentShapeDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                             name       = componentName,
                                                             Type       = "BelowCosinePlane",
                                                             offset     = str(offset),
@@ -54,7 +54,7 @@ def belowCosinePlaneCreate( componentName="belowCosinePlaneShape",
 def boxCreate( componentName="boxShape",
                 startList="", endList=""):
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     sZ=0.0
     eZ=1.0
@@ -62,7 +62,7 @@ def boxCreate( componentName="boxShape",
         sZ=startList[2]
     if endList.__len__() == 3:
         eZ=endList[2]
-    newComponentShapeDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentShapeDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                             name   = componentName,
                                                             Type   = "Box",
                                                             startX = startList[0],
@@ -78,12 +78,12 @@ def boxCreate( componentName="boxShape",
 def sphereCreate( componentName="sphereShape",
                    centreList="", radius="1.0"):
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     cZ=0.0
     if centrelist.__len__() == 3:
         cZ=centreList[2]
-    newComponentShapeDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentShapeDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                             name    = componentName,
                                                             Type    = "Sphere",
                                                             CentreX = centreList[0],

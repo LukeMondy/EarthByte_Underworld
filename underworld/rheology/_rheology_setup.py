@@ -18,11 +18,11 @@ def isoviscousCreate( componentName="backgroundViscosity", eta0="eta0"):
     """
     Create an isoviscous constant viscosity rheology.
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
 
-    newComponentIsoviscosityDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentIsoviscosityDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                                    name = componentName,
                                                                    Type = "MaterialViscosity",
                                                                    eta0 = str(eta0)
@@ -35,11 +35,11 @@ def vonMisesCreate(componentName="vonMisesYieldRheology", eta0="1.0"):
     Set up a Von Mises Yield rheology.
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
     
-    newDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                                name = componentName,
                                                                Type = "VonMises",
                                                                eta0 = str(eta0)
@@ -51,11 +51,11 @@ def arrheniusCreate(componentName="arrheniusRheology", eta0="1.0e-6", temperatur
     Set up  Arrhenius (temperature dependent) rheology
     """
 
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
     
-    newDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                                name = componentName,
                                                                Type = "Arrhenius",
                                                                eta0 = str(eta0),
@@ -70,7 +70,7 @@ def joinRheologyAndShape(componentName="background", rheologyName="", shapeName=
     """
     Set the Rheology associated with a Shape and vice-versa
     """
-    globalDict = _uw.GetCurrentPythonDictionary()
+    globalDict = _uw.dictionary.GetDictionary()
 
     if rheologyName=="":
         _uw.utils.sendError("Must specify a Rheology name")
@@ -82,7 +82,7 @@ def joinRheologyAndShape(componentName="background", rheologyName="", shapeName=
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
     
-    newComponentDict = _uw.NewComponentEntryInStgDict( globalDict,
+    newComponentDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                        name     = componentName,
                                                        Type     = "RheologyMaterial",
                                                        density  = str(density),

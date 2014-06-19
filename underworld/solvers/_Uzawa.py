@@ -36,9 +36,9 @@ def Uzawa( PIC=True ):
         integrationSwarm = "gaussSwarm"
         _solverType = "Uzawa"
 
-    globalDict = _underworld.GetCurrentPythonDictionary()    
+    globalDict = _underworld.dictionary.GetDictionary()    
 
-    preconditioner = _underworld.NewComponentEntryInStgDict( globalDict,
+    preconditioner = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                         name="preconditioner", 
                         Type="StiffnessMatrix",
                         RowVariable="PressureField",
@@ -46,14 +46,14 @@ def Uzawa( PIC=True ):
                         RHS="cont_force",
                         allowZeroElementContributions="True"
                         )
-    preconditionerTerm = _underworld.NewComponentEntryInStgDict( globalDict,
+    preconditionerTerm = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                         name="preconditionerTerm",
                         Type="UzawaPreconditionerTerm",
                         Swarm=integrationSwarm,
                         StiffnessMatrix=preconditioner["name"]
                         )
     
-    uzawaSolver = _underworld.NewComponentEntryInStgDict( globalDict,
+    uzawaSolver = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                         name="uzawaSolver",
                         Type="Stokes_SLE_UzawaSolver",
                         velocitySolver="matrixSolver",
@@ -65,7 +65,7 @@ def Uzawa( PIC=True ):
                         )
 
     # Not really a solver as such !!
-    stokesEqn = _underworld.NewComponentEntryInStgDict( globalDict,
+    stokesEqn = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                         name="stokesEqn",
                         Type="Stokes_SLE",
                         SLE_Solver="uzawa",
