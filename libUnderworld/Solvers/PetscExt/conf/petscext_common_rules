@@ -1,0 +1,37 @@
+#include ${PETSC_DIR}/${PETSC_ARCH}/conf/petscrules
+
+chkpetscext_dir:
+        @mypwd=`pwd`; cd ${true_PETSCEXT_DIR} 2>&1 > /dev/null; true_PETSCEXT_DIR=`pwd`; cd $${mypwd} 2>&1 >/dev/null; \
+        newpwd=`echo $${mypwd} | sed "s+$${true_PETSCEXT_DIR}+DUMMY+g"`;\
+        haspetscext=`echo $${mypwd} | sed "s+petscext-+DUMMY+g"`;\
+        if [ $${mypwd} = $${newpwd} -a $${haspetscext} != $${mypwd} ]; then \
+          echo "*********************Warning*************************" ; \
+          echo "Your true_PETSCEXT_DIR may not match the directory you are in";\
+          echo "true_PETSCEXT_DIR " $${true_PETSCEXT_DIR} "Current directory" $${mypwd};\
+          echo "******************************************************" ; \
+        fi
+
+petscext_includes:
+	-@echo ${PETSCEXT_INCLUDE}
+
+petscext_libs:
+	-@echo ${PETSCEXT_LIB}
+
+
+#
+# shared_pext is a rule defined for petscext to enable me to disable building shared libraries - 
+#   this is a work around
+#
+
+shared_pext: shared
+#shared_pext: shared_pext_tmp
+
+shared_pext_tmp: shared_nomesg_pext
+	-@if [ "${BUILDSHAREDLIB}" = "no" ]; then \
+	    echo "Shared libraries disabled"; \
+          fi
+
+shared_nomesg_pext: 
+	-@if [ "${BUILDSHAREDLIB}" != "no" ]; then \
+	    echo "DISABLED making shared libraries in ${INSTALL_LIB_DIR} for PetscExt - DAM : March 29, 2010"; \
+	fi

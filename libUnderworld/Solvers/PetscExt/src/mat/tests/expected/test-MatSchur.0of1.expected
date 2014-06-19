@@ -1,0 +1,76 @@
+Test: test_schur_11_test1 
+vec: S{1}
+1152.16
+1495.36
+vec: S^T{1}
+1152.16
+1495.36
+
+Test: test_schur_11_test2 
+vec: S{1}
+534.16
+834.36
+vec: S^T{1}
+576.36
+792.16
+
+Test: test_schur_22_test3 
+vec: S{1}
+567.518
+1634.74
+2701.96
+vec: S^T{1}
+1386.31
+1634.74
+1883.17
+
+Test: test_schur_22_test4 
+vec: S{1}
+567.518
+1634.74
+2701.96
+vec: S^T{1}
+1386.31
+1634.74
+1883.17
+
+Test: test_schur_22_view 
+Matrix Object:
+  type=schur, rows=3, cols=3
+    complement type: MatSchur_A22
+    scaling factor=4.900000
+    A11:---------------------
+    Matrix Object:(I_3x3)
+      type=seqaij, rows=3, cols=3
+      total: nonzeros=3, allocated nonzeros=3
+        not using I-node routines
+    A12:---------------------
+    Matrix Object:(G_)
+      type=seqaij, rows=3, cols=2
+      total: nonzeros=6, allocated nonzeros=60
+        using I-node routines: found 1 nodes, limit used is 5
+    A21:---------------------
+    Matrix Object:(D_)
+      type=seqaij, rows=2, cols=3
+      total: nonzeros=6, allocated nonzeros=40
+        using I-node routines: found 1 nodes, limit used is 5
+    A22:---------------------
+    Matrix Object:(I_2x2)
+      type=seqaij, rows=2, cols=2
+      total: nonzeros=2, allocated nonzeros=2
+        not using I-node routines
+    Inner KSP:---------------------
+    KSP Object:(mat_schur_)
+      type: cg
+      maximum iterations=10000, initial guess is zero
+      tolerances:  relative=1e-05, absolute=1e-50, divergence=10000
+      left preconditioning
+      using PRECONDITIONED norm type for convergence test
+    PC Object:(mat_schur_)
+      type: jacobi
+      linear system matrix = precond matrix:
+      Matrix Object:(I_2x2)
+        type=seqaij, rows=2, cols=2
+        total: nonzeros=2, allocated nonzeros=2
+          not using I-node routines
+

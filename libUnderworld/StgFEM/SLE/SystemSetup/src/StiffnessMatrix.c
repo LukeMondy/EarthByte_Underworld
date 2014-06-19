@@ -1123,7 +1123,7 @@ void StiffnessMatrix_RefreshMatrix( StiffnessMatrix* self ) {
         else
             MatSeqAIJSetPreallocation( self->matrix, self->nonZeroCount, PETSC_NULL );
     }
-#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR==3) )
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3) )
     // required as of petsc-3.3 don't know about future petsc versions - JG 15-Nov-2012
     MatSetOption(self->matrix,MAT_NEW_NONZERO_ALLOCATION_ERR,PETSC_FALSE);
 #endif

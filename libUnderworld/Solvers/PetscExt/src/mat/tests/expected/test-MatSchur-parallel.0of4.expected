@@ -1,0 +1,48 @@
+Test: test_schur_11_test2 
+vec: S{1}
+Process [0]
+27912.2
+52348
+Process [1]
+76783.8
+Process [2]
+101220
+Process [3]
+125655
+vec: S^T{1}
+Process [0]
+68447
+72615.4
+Process [1]
+76783.8
+Process [2]
+80952.2
+Process [3]
+85120.6
+
+Test: test_schur_22_test3 
+vec: S{1}
+Process [0]
+31959.3
+83083.4
+Process [1]
+134208
+185332
+Process [2]
+236456
+287580
+Process [3]
+338704
+vec: S^T{1}
+Process [0]
+159648
+168209
+Process [1]
+176770
+185332
+Process [2]
+193893
+202454
+Process [3]
+211016
+

@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+    <!-- ##################################################### -->
+    <!-- ##################################################### -->
+    <!-- VonMises Bar with Notch with compressible background above and below bar -->
+    <param name="Cohesion"> 30 </param>
+    <param name="StrainRateMax"> 3 </param>
+    <param name="alpha"> 1.0 </param>
+    <param name="beta">  0.0 </param>
+    <!-- Geometry & Mesh setup -->
+    <param name="dim"> 2 </param>
+    <param name="elementResI"> 256 </param>
+    <param name="elementResJ"> 128 </param>
+    <param name="elementResK"> 1 </param>
+    <!-- Simulation control -->
+    <param name="maxTimeSteps"> 60 </param>
+    <param name="outputPath">./VMQ_BarWithNotch</param>
+
+    <param name="dumpEvery"> 1 </param>
+    <param name="checkpointEvery"> 0 </param> <!-- not used right now -->
+
+    <param name="shadowDepth"> 1 </param>
+    <param name="minX"> 0.0 </param>
+    <param name="minY"> 0.0 </param>
+    <param name="minZ"> 0.0 </param>
+    <param name="maxX"> 2.0 </param>
+    <param name="maxY"> 1.0 </param>
+    <param name="maxZ"> 1.0 </param>
+    <param name="allowUnbalancing"> True </param>
+
+    <param name="particlesPerCell"> 30 </param>
+
+    <param name="mgLevels">2</param>
+    <!-- ##################################################### -->
+    <!-- ##################################################### -->
+    
+    <list name="import">
+	<param> Experimental </param>
+    </list>
+
+    <param name="timeIntegratorOrder"> 1 </param>
+
+    <!-- Component Stuff -->
+    <include>StgFEM/LinearMesh.xml                      </include>
+    <include>StgFEM/ConstantMesh.xml                    </include>
+    <include>StgFEM/VelocityField.xml                   </include>
+    <include>StgFEM/PressureField.xml                   </include>
+    <include>Underworld/GaussSwarm.xml                  </include>
+    <include>StgFEM/TimeIntegrator.xml                  </include> <!-- for advection? -->
+    <include>PICellerator/MaterialPointSwarm.xml        </include>
+    <include>PICellerator/AllowOutflow.xml              </include> <!-- Just in case -->
+    <include>Underworld/StokesFlowUzawaCompressible.xml </include>
+    <!--   <include>Experimental/StoreViscosity.xml</include> -->
+
+    <!-- <include>Experimental/KeepVelocityBCs.xml</include> causes PCDVC to have an empty cell error!? -->
+
+
+    <struct name="components" mergeType="merge">
+	<struct name="weights" mergeType="replace">
+	    <param name="Type">PCDVC</param>
+	    <param name="resolutionX">12</param>
+	    <param name="resolutionY">12</param>
+	    <param name="resolutionZ">12</param>
+	    <param name="lowerT">0.6</param>
+	    <param name="upperT">25</param>
+	    <param name="maxDeletions">3</param>
+	    <param name="maxSplits">10</param>
+	    <param name="splitInInterfaceCells">True</param>
+	    <param name="MaterialPointsSwarm">materialSwarm</param>
+	    <param name="Inflow">True</param>
+	    <param name="Threshold">0.8</param>
+	    <param name="CentPosRatio">0.01</param>
+	</struct>
+
+	<struct name="context">
+	    <param name="Type">UnderworldContext</param>
+	</struct>
+	<struct name="buoyancyForceTerm">
+	    <param name="Type">BuoyancyForceTerm</param>
+	    <param name="ForceVector">mom_force</param>
+	    <param name="TemperatureField">TemperatureField</param>
+	    <param name="Swarm">picIntegrationPoints</param>
+	    <param name="gravity">gravity</param>
+	</struct>
+    </struct>
+
+    <!-- Some Standard plugins -->
+    <list name="plugins" mergeType="merge">
+	<struct>
+	    <param name="Type">StgFEM_FrequentOutput</param>
+	    <param name="Context">context</param>
+	</struct>
+	<struct>
+	    <param name="Type">Underworld_Vrms</param>
+	    <param name="Context">context</param>
+	    <param name="GaussSwarm">gaussSwarm</param>
+	    <param name="VelocityField">VelocityField</param>
+	</struct>
+	<struct>
+	    <param name="Type">StgFEM_CPUTime</param>
+	    <param name="Context">context</param>
+	</struct>    
+    </list>
+    
+    <!-- ##################################################### -->
+    <!-- Components -->
+    <!-- ##################################################### -->
+    <struct name="components" mergeType="merge"> 
+	<!-- ##################################################### -->
+	<!-- Background Shape  -->
+	<struct name="backgroundShape">
+	    <param name="Type">Everywhere</param>
+	</struct>
+	
+	<!-- ##################################################### -->
+	<!-- Box is basic bar shape -->
+	<struct name="box">
+	    <param name="Type">Box</param>
+	    <param name="startX"> minX </param> <param name="endX"> maxX </param>
+	    <param name="startY"> 0.1 </param>  <param name="endY"> 0.9 </param>
+	    <param name="startZ"> minZ </param> <param name="endZ"> maxZ </param>
+	</struct>
+	<struct name="weakZone">
+	    <param name="Type">Box</param>
+	    <param name="startX"> 0.984375 </param> <param name="endX"> 1.015625 </param>
+	    <param name="startY"> 0.1 </param>   <param name="endY"> 0.21875 </param>
+	    <param name="startZ"> minZ </param>  <param name="endZ"> maxZ </param>
+	</struct>
+
+	<struct name="barShape">
+	    <param name="Type">Intersection</param>
+	    <list name="shapes">
+		<param>box</param>
+		<param>!weakZone</param>
+	    </list>
+	</struct>
+	<!-- ##################################################### -->
+
+	<!-- ##################################################### -->
+	<!-- Background Material is Isoviscous and Compressible -->
+	<struct name="backgroundViscosity">
+	    <param name="Type">MaterialViscosity</param>
+	    <param name="eta0">1.0</param>
+	</struct>
+	<struct name="compressibility">
+	    <param name="Type">Compressible</param>
+	    <param name="GeometryMesh">linearMesh</param>
+	    <param name="StiffnessMatrix">c_matrix</param>
+	    <param name="Swarm">picIntegrationPoints</param>
+	    <param name="oneOnLambda">10.0</param>
+	</struct>
+
+	<struct name="background">
+	    <param name="Type">RheologyMaterial</param>
+	    <param name="Shape">backgroundShape</param>
+	    <list name="Rheology">
+		<param>backgroundViscosity</param>
+	    </list>
+	    <param name="Compressible">compressibility</param>
+	</struct>
+	<!-- ##################################################### -->
+
+	<!-- ##################################################### -->
+	<!-- Bar Material is Incompressible VonMises -->
+	<struct name="barViscosity">
+	    <param name="Type">MaterialViscosity</param>
+	    <param name="eta0">100.0</param>
+	</struct>
+	<struct name="vonMisesX">
+	    <param name="Type">VonMisesX</param>
+	    <param name="StrainRateField">StrainRateField</param>
+	    <param name="MaterialPointsSwarm">materialSwarm</param>
+	    <param name="IntegrationSwarm">picIntegrationPoints</param>
+	    <param name="Context">context</param>
+	    <param name="cohesion">Cohesion</param>
+	    <param name="alpha">alpha</param>
+	    <param name="beta">beta</param>
+	</struct>
+	
+	<struct name="bar">
+	    <param name="Type">RheologyMaterial</param>
+	    <param name="Shape">barShape</param>
+	    <list name="Rheology">
+		<param>barViscosity</param>
+		<param>vonMisesX</param>
+	    </list>
+	</struct>
+	<!-- ##################################################### -->
+    </struct>
+
+  <list name="FieldVariablesToCheckpoint">
+   <param>VelocityField</param>
+   <param>PressureField</param>
+   <param>VelocityGradientsField</param>
+   <param>StressField</param>
+   <param>StrainRateField</param>
+   <param>StressInvariantField</param>
+   <param>StrainRateInvariantField</param>
+  </list>
+
+    <!-- Journal Control -->
+    <param name="journal.info.Context-verbose">False</param>
+    <param name="journal-level.info.Stg_ComponentFactory">2</param>
+    <param name="journal.debug">False</param>
+    <param name="journal-enable-branch.debug.StgFEM">False</param>
+    <param name="journal-level-branch.debug.StgFEM"> 2 </param>
+
+
+</StGermainData>

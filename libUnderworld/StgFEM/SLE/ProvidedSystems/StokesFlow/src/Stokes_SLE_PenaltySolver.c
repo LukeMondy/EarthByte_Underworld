@@ -243,6 +243,9 @@ void _Stokes_SLE_PenaltySolver_Solve( void* solver,void* stokesSLE ) {
         MatCreate( sle->comm, &GTrans );
         MatSetSizes( GTrans, size[0], size[1], PETSC_DECIDE, PETSC_DECIDE );
         MatSetType( GTrans, type );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp(GTrans);
+#endif
         MatCopy( sle->dStiffMat->matrix, GTrans, DIFFERENT_NONZERO_PATTERN );
         divMat = GTrans;
 
