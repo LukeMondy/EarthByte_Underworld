@@ -931,7 +931,7 @@ void _StokesFullMatrixSNESInterface_Solve( void* solver, void* _stokesSLE ) {
 
 	SFMSNES_GetStokesOperators( stokesSLE, &K,&G,&D,&C, &Smat, &f,&h, &u,&p );
 	flg = PETSC_FALSE;
-	ierr = PetscOptionsGetBool(PETSC_NULL,"-snes_dump_suboperators2",&flg,PETSC_NULL);CHKERRQ(ierr);
+	ierr = PetscOptionsGetBool(PETSC_NULL,"-snes_dump_suboperators2",&flg,PETSC_NULL);CHKERRABORT(PETSC_COMM_WORLD,ierr);
 	if(flg){
 	    sfm_writeMat( K, "K", "Dumping K Matrix");
 	    sfm_writeMat( G, "G", "Dumping G Matrix");
