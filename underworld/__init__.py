@@ -1,6 +1,6 @@
 # ok, first need to change default python dlopen flags to global
 # this is because when python imports the module, the shared libraries are loaded as RTLD_LOCAL
-# and then when MPI_Init is called, OpenMPI tries to dlopen its plugin, they are unable to 
+# and then when MPI_Init is called, OpenMPI tries to dlopen its plugin, they are unable to
 # link to the openmpi libraries as they are private
 import sys as _sys
 import ctypes as _ctypes
@@ -31,8 +31,8 @@ _sys.setdlopenflags( _oldflags )
 # add this to allow ctrl+c signal
 import signal as _signal
 def _signal_handler(_signal, frame):
-        print 'You pressed Ctrl+C!'
-        sys.exit(0)
+    print 'You pressed Ctrl+C!'
+    sys.exit(0)
 
 _signal.signal(_signal.SIGINT, _signal_handler)
 
@@ -44,27 +44,25 @@ _rank = _stgermain.getData().rank
 _nprocs = _stgermain.getData().nProcs
 
 def rank():
-   """
-      Returns the rank of the current processors.
-      
-      Args:
-      None
-      Returns:
-      rank (unsigned) : Rank of current processor.
-      """
-   global _rank
-   return _rank
+    """
+       Returns the rank of the current processors.
+
+       Args:
+       None
+       Returns:
+       rank (unsigned) : Rank of current processor.
+       """
+    global _rank
+    return _rank
 
 def nProcs():
-   """
-      Returns the number of processors being utilised by the simulation.
-      
-      Args:
-      None
-      Returns:
-      nProcs (unsigned) : Number of processors.
-      """
-   global _nprocs
-   return _nprocs
+    """
+       Returns the number of processors being utilised by the simulation.
 
-
+       Args:
+       None
+       Returns:
+       nProcs (unsigned) : Number of processors.
+       """
+    global _nprocs
+    return _nprocs

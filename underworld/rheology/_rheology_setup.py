@@ -1,7 +1,7 @@
 # Rheology package
 import underworld as _uw
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## to set up various Rheologies for Underworld.
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
@@ -38,7 +38,7 @@ def vonMisesCreate(componentName="vonMisesYieldRheology", eta0="1.0"):
     globalDict = _uw.dictionary.GetDictionary()
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
-    
+
     newDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                                name = componentName,
                                                                Type = "VonMises",
@@ -54,7 +54,7 @@ def arrheniusCreate(componentName="arrheniusRheology", eta0="1.0e-6", temperatur
     globalDict = _uw.dictionary.GetDictionary()
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
-    
+
     newDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                                name = componentName,
                                                                Type = "Arrhenius",
@@ -81,7 +81,7 @@ def joinRheologyAndShape(componentName="background", rheologyName="", shapeName=
     _uw.utils.warnMissingComponent(globalDict, rheologyName )
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
-    
+
     newComponentDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                        name     = componentName,
                                                        Type     = "RheologyMaterial",

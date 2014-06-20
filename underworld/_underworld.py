@@ -4,7 +4,7 @@ import libUnderworld
 import dictionary
 
 ### These functions allow us to build, merge and manipulate the global dictionary as a python object
-### and, later, it can be converted back to XML strings for the blessed StGermain to injest.     
+### and, later, it can be converted back to XML strings for the blessed StGermain to injest.
 
 
 def Init(args=[], prependCommandLineArgs=True):
@@ -24,7 +24,7 @@ def Init(args=[], prependCommandLineArgs=True):
         args = args.split()
 
     if prependCommandLineArgs:
-        args = _sys.argv[0:]+args 
+        args = _sys.argv[0:]+args
     else:
         args = _sys.argv[0:1]+args
 
@@ -40,7 +40,7 @@ def Init(args=[], prependCommandLineArgs=True):
         uwdict["info"] = {}
 
     dictionary.SetDictionary( uwdict )
-      
+
     return
 
 
@@ -57,15 +57,15 @@ def Construct( buildNow=True ):
     _AssertConstructStateIs(False)
 
     globalDict = dictionary.GetDictionary()
-    
+
     _stgermain.StgConstruct(globalDict, setAsRootDict=True)
     _setConstructFlag(True)
     _stgermain.WriteFlattenedFile(globalDict)
-    
+
     # lets go right ahead and build
     if buildNow:
-       _stgermain.StgBuild(globalDict)
-       _stgermain.StgInitialise(globalDict)
+        _stgermain.StgBuild(globalDict)
+        _stgermain.StgInitialise(globalDict)
 
 def RunMainLoop(context=None):
     """
@@ -88,12 +88,12 @@ def RunMainLoop(context=None):
 
 def Step(context=None, steps=1):
     """
-    Performs required number of steps of the simulation. 
+    Performs required number of steps of the simulation.
     An Init function must be called before this, as well as the Construc routine.
     This step will ignore all simulation flow control parameters (such as maxTimeStep).
 
     Args:
-        context (Swig Context*): (optional) Context for current simulation.  
+        context (Swig Context*): (optional) Context for current simulation.
             If none provided, will search LiveComponentRegister    for component with name "context".
         steps (int): is the number of steps to take
     Returns:
@@ -102,7 +102,7 @@ def Step(context=None, steps=1):
     _AssertConstructStateIs(True)
 
     if context == None:
-       context = _stgermain.GetLiveComponent("context")
+        context = _stgermain.GetLiveComponent("context")
     assert context, "No context found. You must either pass in a context, or one must exists in the dictionary."
 
     for i in range(0,steps):
@@ -114,7 +114,7 @@ def Step(context=None, steps=1):
 def Finalise():
     """
       Finalise the underworld simulation and tools.  Clears the global dictionary.
-      
+
       Args:
          None
     """
@@ -128,26 +128,25 @@ def _resetAll():
 
 
 def _AssertConstructStateIs(isConstructed):
-   if isConstructed:
-      assert ConstructState() is isConstructed, "Underworld has not been constructed.  You will need to call Construct() before you can perform this operation."
-   else:
-      assert ConstructState() is isConstructed, "Underworld has already been constructed.  You will need to call Init() again before you can perform this operation."
+    if isConstructed:
+        assert ConstructState() is isConstructed, "Underworld has not been constructed.  You will need to call Construct() before you can perform this operation."
+    else:
+        assert ConstructState() is isConstructed, "Underworld has already been constructed.  You will need to call Init() again before you can perform this operation."
 
 def ConstructState():
-   """
-      Returns the construct state of the simulation.  True=Constructed.
-      
-      Args:
-      None
-   """
-   global _constructFlag
-   return _constructFlag
+    """
+       Returns the construct state of the simulation.  True=Constructed.
+
+       Args:
+       None
+    """
+    global _constructFlag
+    return _constructFlag
 
 def _setConstructFlag(isConstructed):
-   global _constructFlag
-   _constructFlag = isConstructed
+    global _constructFlag
+    _constructFlag = isConstructed
 
 
-# init all 
+# init all
 _constructFlag = False
-

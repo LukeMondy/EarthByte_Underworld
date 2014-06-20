@@ -1,7 +1,7 @@
 # Shapes package - configures Shapes
 import underworld as _uw
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## to set up Shapes for Underworld.
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
@@ -29,7 +29,7 @@ def everywhereCreate( componentName="backgroundShape"):
 
     return newComponentShapeDict
 
-def belowCosinePlaneCreate( componentName="belowCosinePlaneShape", 
+def belowCosinePlaneCreate( componentName="belowCosinePlaneShape",
                                   offset="0.2", amplitude="0.02",
                                   wavelength="1.8284", phase="0.0"):
     """

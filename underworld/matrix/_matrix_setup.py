@@ -3,7 +3,7 @@ import underworld as _uw
 #import underworld as _uw
 #import underworld.utils._utils as utils
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## to set up the Matrices for a system of equations
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
@@ -34,7 +34,7 @@ def matrixCreate( matrixName="stokes_matrix",
                   Context="context"):
     """
     Create a matrix element Term with Matrix and its (required) ForceVector
-    
+
     Args:
        rowFeVariable      : An FeVariable that determines the row dimension (required)
        colFeVariable      : An FeVariable that determines the col dimension (required)
@@ -53,13 +53,13 @@ def matrixCreate( matrixName="stokes_matrix",
     """
     globalDict = _uw.dictionary.GetDictionary()
 
-    mList = [ "ConstitutiveMatrixCartesian", "GradientStiffnessMatrixTerm", 
+    mList = [ "ConstitutiveMatrixCartesian", "GradientStiffnessMatrixTerm",
               "UzawaPreconditionerTerm", "PressMassMatrixTerm"]
     if matrixTermType=="":
-         _uw.utils.sendError("matrixTermType is a required argument")
-         print "Choose one of:"
-         print mList
-         return -1
+        _uw.utils.sendError("matrixTermType is a required argument")
+        print "Choose one of:"
+        print mList
+        return -1
 
     if matrixTermType not in mList:
         _uw.utils.sendWarning("The matrix term type: "+matrixTermType+" is not in a list of known types")
@@ -88,13 +88,13 @@ def matrixCreate( matrixName="stokes_matrix",
     else: # create a default one if nothing passed in
         newRHSName = matrixName+"RHS"
         newRHSName = _uw.utils.checkForNewComponentName(globalDict, newRHSName)
-        newRHS     = _uw.dictionary.UpdateDictWithComponent( globalDict, 
+        newRHS     = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                      name = newRHSName,
                                                      Type="ForceVector",
                                                      FeVariable=rowFeVariable,
                                                      ExtraInfo ="context"
                                                     )
-        
+
         rhsVector = newRHSName
 
     # no default creation for the transpose vector.
@@ -103,7 +103,7 @@ def matrixCreate( matrixName="stokes_matrix",
     if createTransposeRHS:
         newRHSName = matrixName+"TransposeRHS"
         newRHSName = _uw.utils.checkForNewComponentName(globalDict, newRHSName)
-        newRHS     = _uw.dictionary.UpdateDictWithComponent( globalDict, 
+        newRHS     = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                      name = newRHSName,
                                                      Type="ForceVector",
                                                      FeVariable=colFeVariable,

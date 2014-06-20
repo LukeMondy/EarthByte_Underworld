@@ -3,12 +3,12 @@
 # This is the "proper" way to do things ... differentiate the kernel etc etc.
 # But this is not particularly stable and needs a lot of points to work.
 # We probably need a more sophisticated weighting scheme to make this work
-# But calculating a FD gradient is quite accurate ... 
+# But calculating a FD gradient is quite accurate ...
 
 def RBFGradientVariable_InterpolateValueAt1( RBFfieldVar, coord , axis ):
     """
     Returns the interpolated result of an RBF variable.
-    
+
     Args:
         fieldVar (str, Swig FieldVariable*): Field variable to query, either provided by name (str) or with a swig pointer.
         coord (tuple(float)): The location to query
@@ -19,9 +19,9 @@ def RBFGradientVariable_InterpolateValueAt1( RBFfieldVar, coord , axis ):
                        "SHADOW"         - Query location is in shadow space of this processor
                        "OUTSIDE_GLOBAL" - Query location is outside the global domain of this field variable
     """
-    
+
     import c_arrays
-    
+
     if type(RBFfieldVar)==str:
         RBFfieldVar = GetLiveComponent(RBFfieldVar)
 
@@ -50,13 +50,13 @@ def RBFGradientVariable_InterpolateValueAt1( RBFfieldVar, coord , axis ):
     return toreturn, InterpolationResult
 
 
-# 
-# This is a Finite Difference calculation of the gradient of the RBF field 
+#
+# This is a Finite Difference calculation of the gradient of the RBF field
 
 def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
     """
     Returns the interpolated result of an RBF variable.
-    
+
     Args:
         fieldVar (str, Swig FieldVariable*): Field variable to query, either provided by name (str) or with a swig pointer.
         coord (tuple(float)): The location to query
@@ -67,9 +67,9 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
                        "SHADOW"         - Query location is in shadow space of this processor
                        "OUTSIDE_GLOBAL" - Query location is outside the global domain of this field variable
     """
-    
+
     import c_arrays
-    
+
     if type(RBFfieldVar)==str:
         RBFfieldVar = GetLiveComponent(RBFfieldVar)
 
@@ -86,7 +86,7 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
     # Compare it with this result
 
     supportSize = RBFfieldVar.rbfManager.particleSupportRadius
-    
+
     InterpolationResult = Underworld._RBFFieldVariable_InterpolateValueAt( RBFfieldVar, coordArray.cast(), result0.cast())
 
     if InterpolationResult == 3:
@@ -98,8 +98,8 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
     coordArray[axis] += supportSize
     InterpolationResultP = Underworld._RBFFieldVariable_InterpolateValueAt( RBFfieldVar, coordArray.cast(), resultP.cast())
 
-    
-    # Weights 
+
+    # Weights
 
     WM = -1.0; W0 =  0.0; WP =  1.0
     delta = supportSize
@@ -111,7 +111,7 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
 
     if InterpolationResultP == 3:
         WP = 0.0
-        W0 += 1.0  # If both the sample points are outside the domain, the result is zero ... 
+        W0 += 1.0  # If both the sample points are outside the domain, the result is zero ...
         delta = 0.5 * supportSize
 
     # if(axis == 1):
@@ -137,5 +137,3 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
 
 
     return toreturn, InterpolationResult
-
-

@@ -3,7 +3,7 @@ import underworld as _uw
 
 
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## to set up a Swarm for Underworld.
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
@@ -35,7 +35,7 @@ def integrationSwarmCreate(  componentName="",
     """
     Set up an integration Swarm in the dictionary.
     Possible swarmTypes are ( PIC, Gauss )
-    
+
     When swarmType is PIC:
        An integration Swarm needs a Mapper.
        The Mapper in turn needs the integration Swarm and a material Swarm.
@@ -55,11 +55,11 @@ def integrationSwarmCreate(  componentName="",
 
     Returns:
 
-        
+
     """
 
     swarmAllowedTypes=["PIC", "pic", "Gauss", "gauss"]
-    
+
     # mcount=0
     # for m in swarmAllowedTypes:
     #   if( swarmType != m ):
@@ -71,10 +71,10 @@ def integrationSwarmCreate(  componentName="",
     if meshName=="":
         print "Error: Need to provide a meshName"
         return
-    
+
     if not swarmType in swarmAllowedTypes:
-      print "Error: Need to choose one of  ( PIC, Gauss ) for swarmType"
-      return
+        print "Error: Need to choose one of  ( PIC, Gauss ) for swarmType"
+        return
 
     globalDict = _uw.dictionary.GetDictionary()
 
@@ -93,20 +93,20 @@ def integrationSwarmCreate(  componentName="",
         materialSwarm = globalDict["components"][materialSwarmName]
         meshName = materialSwarm["FeMesh"]
         intMapperName = "integrationPointsMapper"
-        
+
     if componentName == "":
         componentName = "integration"+swarmType+"Swarm"    # e.g. integrationPICSwarm
-    
+
     # Need to test if we already have a Swarm of the name we are going to use here.
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
 
     # At this point we should have ensured a unique name for our new Swarm component
-    
+
     ############################################################################################
     # We need a time Integrator for the swarm.
     # The usual name is "timeIntegrator" so will check for that
     # If it doesn't already exist then let's make one
-    ############################################################################################    
+    ############################################################################################
 
     if integratorName not in globalDict["components"]:
         integrator = timeIntegratorCreate(componentName="timeIntegrator", contextName=contextName, order="2", simultaneousFlag="False")
@@ -119,9 +119,9 @@ def integrationSwarmCreate(  componentName="",
     ########################################################################################################################################
     # GAUSS integration swarm
     ########################################################################################################################################
- 
+
     if swarmType in ["Gauss", "gauss"]:
-        cellLayout     = _uw.dictionary.UpdateDictWithComponent( name="cellLayout", 
+        cellLayout     = _uw.dictionary.UpdateDictWithComponent( name="cellLayout",
                                                        Type="SingleCellLayout")
         particleLayout = _uw.dictionary.UpdateDictWithComponent( name="gaussParticleLayout",
                                                        Type="GaussParticleLayout",
@@ -145,14 +145,14 @@ def integrationSwarmCreate(  componentName="",
 
     if swarmType in ["PIC", "pic"]:
         # Now we need some pic specific stuff
-        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="mappedParticleLayout", 
+        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="mappedParticleLayout",
                                                           Type="MappedParticleLayout")
         #elementCellLayout = _uw.dictionary.UpdateDictWithComponent( name="elementCellLayout", Type="ElementCellLayout", Mesh=meshName)
         elementCellLayoutName = materialSwarm["CellLayout"]
 
         if weightsName not in globalDict["components"]:
             weights = weightCalculatorCreate( componentName=weightsName,
-                                               materialPointsSwarmName=materialSwarmName) 
+                                               materialPointsSwarmName=materialSwarmName)
                                                # create a weights component with basic defaults.
             weightsName = weights["name"]
 
@@ -165,7 +165,7 @@ def integrationSwarmCreate(  componentName="",
                                                               IntegrationPointMapper =     intMapperName,
                                                               WeightsCalculator      =       weightsName
                                                             )
- 
+
         # There is some circularity here. We might want different mappers but will do this for now.
         # int swarm needs a mapper; mapper needs an int swarm (as well as a material swarm)
         # might be better to pass in existing mapperName and make a new one if not exist as with the timeIntegrator
@@ -174,11 +174,11 @@ def integrationSwarmCreate(  componentName="",
         matPointSwarmName = newComponentSwarmDict["name"]
 
         mapper = _uw.dictionary.UpdateDictWithComponent(   name                   =                 intMapperName,
-                                                 Type                   =                    mapperType, 
-                                                 IntegrationPointsSwarm = newComponentSwarmDict["name"], 
+                                                 Type                   =                    mapperType,
+                                                 IntegrationPointsSwarm = newComponentSwarmDict["name"],
                                                  MaterialPointsSwarm    =             materialSwarmName)
     ########################################################################################################################################
- 
+
     return [newComponentSwarmDict,integratorName, mapper]
 
 ############################################################################################################################################
@@ -211,8 +211,8 @@ def weightCalculatorCreate( componentName="weights",
     return weights
 
 
-def materialSwarmCreate( componentName="materialSwarm", 
-                                           meshName="", 
+def materialSwarmCreate( componentName="materialSwarm",
+                                           meshName="",
                                            particlesPerCell="particlesPerCell",
                                            pic=True):
     """
@@ -227,21 +227,21 @@ def materialSwarmCreate( componentName="materialSwarm",
         return -1
 
     if pic:
-        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="spaceFillerParticleLayout", 
+        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="spaceFillerParticleLayout",
                                                           Type="SpaceFillerParticleLayout",
                                                           averageInitialParticlesPerCell=particlesPerCell )
     else:
-        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="backgroundParticleLayout", 
+        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="backgroundParticleLayout",
                                                                                              Type="BackgroundParticleLayout" )
 
-    elementCellLayout = _uw.dictionary.UpdateDictWithComponent( name="elementCellLayout", 
-                                                      Type="ElementCellLayout", 
+    elementCellLayout = _uw.dictionary.UpdateDictWithComponent( name="elementCellLayout",
+                                                      Type="ElementCellLayout",
                                                       Mesh=meshName
                                                     )
-    pMovementHandler  = _uw.dictionary.UpdateDictWithComponent( name="pMovementHandler", 
+    pMovementHandler  = _uw.dictionary.UpdateDictWithComponent( name="pMovementHandler",
                                                       Type="ParticleMovementHandler"
                                                     )
-    pShadowSync       = _uw.dictionary.UpdateDictWithComponent( name="pShadowSync", 
+    pShadowSync       = _uw.dictionary.UpdateDictWithComponent( name="pShadowSync",
                                                       Type="ParticleShadowSync"
                                                     )
 
@@ -254,22 +254,22 @@ def materialSwarmCreate( componentName="materialSwarm",
                                                                   FeMesh           =                  meshName,
                                                                   ParticleCommHandlers = pList,
                                                                   SplittingRoutine = "splittingRoutine",  # this one not needed anymore?
-                                                                  RemovalRoutine   = "removalRoutine", 
+                                                                  RemovalRoutine   = "removalRoutine",
                                                                   EscapedRoutine   = "escapedRoutine"
                                                                 )
-    
+
     return newComponentMaterialSwarmDict
 
 
-def timeIntegratorCreate( componentName="timeIntegrator", 
-                          contextName="context", 
-                          order="2", 
+def timeIntegratorCreate( componentName="timeIntegrator",
+                          contextName="context",
+                          order="2",
                           simultaneousFlag="False"):
     """
     Create a time integrator (needed by integration swarm)
     """
     # todo check for existence of context or just warn if not exist...
-    
+
     integrator = _uw.dictionary.UpdateDictWithComponent( name  = componentName,
                                                Type  = "TimeIntegrator",
                                                order = order,
@@ -289,7 +289,7 @@ def materialSwarmAdvectorCreate(componentName  = "materialSwarmAdvector",
     Used for PIC
     Create a material Swarm Advector Component in the global Dictionary
     """
-    
+
     newComponentMaterialSwarmAdvectorDict = _uw.dictionary.UpdateDictWithComponent( name  = componentName,
                                                                           Type  = "SwarmAdvector",
                                                                           Swarm = swarmName,

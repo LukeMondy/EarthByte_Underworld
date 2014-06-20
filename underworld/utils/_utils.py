@@ -12,11 +12,11 @@ Um ...
 def pathToBuild():
 
     # If the build is separated from the source, then usually this will need to be set
-    uwpathvariable = os.environ["UW_DIR"]  
+    uwpathvariable = os.environ["UW_DIR"]
     uwexecutable = os.path.join(uwpathvariable,"bin","Underworld")
 
-    # I think this is about how much effort we should put in - somebody set this 
-    # variable and it point to an executable file ...  
+    # I think this is about how much effort we should put in - somebody set this
+    # variable and it point to an executable file ...
 
     if os.path.exists(uwpathvariable) and os.path.exists(uwexecutable) and os.access(uwexecutable, os.X_OK):
         return uwpathvariable
@@ -34,13 +34,13 @@ def pathToBuild():
         print "Unable to find a unique build path - try setting the $UW_DIR environment variable"
         return ""
 
-    uwpathvariable = os.path.dirname(uwconfigpathlist[0])    
+    uwpathvariable = os.path.dirname(uwconfigpathlist[0])
     uwexecutable = uwpathvariable + "/bin/Underworld"
 
     if os.path.exists(uwexecutable) and os.access(uwexecutable, os.X_OK):
         return uwpathvariable
 
-    return ""    
+    return ""
 
 
 def pathToConfigFile():
@@ -61,22 +61,22 @@ def pathToConfigFile():
 
 
 def configDictFromConfigFile():
-    
+
     configFileName = pathToConfigFile()
-    
+
     if (configFileName == ""):
         print "Unable to locate config.cfg file"
         return ""
 
     configFile = open(configFileName,"r")
-    rawconfig = configFile.read()    
+    rawconfig = configFile.read()
     lineslist = rawconfig.splitlines()
 
     confDict={}
     for string in lineslist:
         confKey,separator,confValue = string.partition(' = ')
         confDict[confKey] = confValue
-    
+
     return confDict
 
 # This is not just a check !!
@@ -99,7 +99,7 @@ def checkForNewComponentName(globalDict, componentName):
 
 
 
-## Should make a point of using globalDict for this 
+## Should make a point of using globalDict for this
 
 def uniqueComponentNameGlobalDict(componentName):
 
@@ -140,11 +140,11 @@ def sendError(message):
     return
 
 def listComponentsByType(globalDict, Type):
-    
+
     compList=[]
     comps=globalDict["components"]
     for compkey in comps:
         if Type in comps[compkey]["Type"]:  # looser test than ==
             compList.append(comps[compkey])
-    
+
     return compList

@@ -1,4 +1,4 @@
-import underworld as _underworld 
+import underworld as _underworld
 
 
 ## These ones belong with meshes !
@@ -6,7 +6,7 @@ import underworld as _underworld
 def constant_mesh( meshName="constantMesh", elementMeshName="elementMesh"):
     """
     ConstantMesh.xml !
-    Args: 
+    Args:
         name (string)
     """
 
@@ -16,7 +16,7 @@ def constant_mesh( meshName="constantMesh", elementMeshName="elementMesh"):
     _underworld.dictionary.UpdateDictWithComponent(
          name = meshName,
          Type = "FeMesh",
-         elementType = "constant" 
+         elementType = "constant"
          )
 
     _underworld.dictionary.UpdateDictWithComponent(
@@ -25,7 +25,7 @@ def constant_mesh( meshName="constantMesh", elementMeshName="elementMesh"):
         mesh = meshName,
         elementMesh = elementMeshName
         )
-    
+
 
     return
 
@@ -34,14 +34,14 @@ def linear_mesh( meshName="linearMesh", meshSize = (32,32,32), span=[(0.0,0.0,0.
         LinearMesh.xml !
         Args:
             name (string)
-            meshSize = (int elementResI, int elementResJ, int elementResK) 
+            meshSize = (int elementResI, int elementResJ, int elementResK)
             span = [(float minX, float minY, float minZ), (float maxX, float maxY, float maxZ) ]
             dimensions = (int) - mesh dimensions dim=2 or dim=3
             shadowDepth = (int) - whatever that really means !
     """
 
-    ## Should do some error checking that the tuples / lists are the correct size 
-    ## for the specified dimensions 
+    ## Should do some error checking that the tuples / lists are the correct size
+    ## for the specified dimensions
 
     if dimensions == None:
         print "Please specify mesh dimensions !"
@@ -69,7 +69,7 @@ def linear_mesh( meshName="linearMesh", meshSize = (32,32,32), span=[(0.0,0.0,0.
 
 ## Velocity and Pressure Field
 
-## Can we generalise this to vector fields in general 
+## Can we generalise this to vector fields in general
 
 def velocity_field( fieldName="velocity", meshName="velocityMesh", dimensions=2  ):
 
@@ -117,7 +117,7 @@ def velocity_field( fieldName="velocity", meshName="velocityMesh", dimensions=2 
 
 
     ## Pre-define a "standard collection" of operators
-    
+
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = fieldName+"MagnitudeField",
@@ -169,7 +169,7 @@ def velocity_field( fieldName="velocity", meshName="velocityMesh", dimensions=2 
             outputUnits="cm/yr"
         )
 
- 
+
      # Usually Strain rate ... but I want to tag it with the field name so this seems more appropriate (LM)
      # Probably s^-1 would be better too
 
@@ -279,7 +279,7 @@ def velocity_field( fieldName="velocity", meshName="velocityMesh", dimensions=2 
 #   <param name="elementMesh">linearMesh</param>
 
 # Note: This creates "pressureField" and not "PressureField"
-   
+
 def pressure_field( fieldName="pressure", meshName="pressureMesh", dimensions=2  ):
 
     # This is general (cf. velocity - we just need to change Rank, DataType, Units)
@@ -366,12 +366,12 @@ def time_integration( timeIntegratorName="timeIntegrator", timeIntegratorOrder=2
 
 
 
-def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="materialSwarm", 
-                          meshName="elementMesh", timeIntegratorName="timeIntegrator", 
+def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="materialSwarm",
+                          meshName="elementMesh", timeIntegratorName="timeIntegrator",
                           pcdvcResolution=(10,10,10), particlesPerCell=20,
                           velocityFieldName="velocityField", periodicBCsManagerName="periodicBCsManager" ):
 
-    
+
     print " *  Material point integration component: ", picIntSwarmName
 
 
@@ -408,14 +408,14 @@ def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="
         WeightsCalculator = "integrationWeights",
         TimeIntegrator = timeIntegratorName,
         IntegrationPointMapper = "ipMapper"
-        )    
+        )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "ipMapper",
         Type = "CoincidentMapper",
         IntegrationPointsSwarm = picIntSwarmName,
         MaterialPointsSwarm = matSwarmName
-        )    
+        )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "materialSwarmParticleLayout",
@@ -433,7 +433,7 @@ def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="
         Type = "ParticleShadowSync"
         )
 
-        
+
     _underworld.dictionary.UpdateDictWithComponent(
         name = matSwarmName,
         Type = "MaterialPointsSwarm",
@@ -455,13 +455,13 @@ def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="
         PeriodicBCsManager = periodicBCsManagerName,
         allowFallbackToFirstOrder = "True"
         )
-    
+
 
 ## Stokes flow setup & Solver (which we can remove)
 
 
-def stokes_equation(velocityFieldName="velocityField", 
-                    pressureFieldName="pressureField", 
+def stokes_equation(velocityFieldName="velocityField",
+                    pressureFieldName="pressureField",
                     gaussSwarmName="GaussSwarm",
                     nonLinearMaxIterations = "100",
                     nonLinearTolerance = "1e-4",
@@ -485,23 +485,23 @@ def stokes_equation(velocityFieldName="velocityField",
         Type = "SolutionVector",
         FeVariable = pressureFieldName
         )
-    
+
     # RHS vectors
 
-    _underworld.dictionary.UpdateDictWithComponent(  
+    _underworld.dictionary.UpdateDictWithComponent(
         name = "mom_force",
         Type = "ForceVector",
         FeVariable = velocityFieldName,
         ExtraInfo = contextName
         )
-        
-    _underworld.dictionary.UpdateDictWithComponent(  
+
+    _underworld.dictionary.UpdateDictWithComponent(
         name = "cont_force",
         Type = "ForceVector",
         FeVariable = pressureFieldName,
         ExtraInfo = contextName
         )
-        
+
 
     # Saddle point system: matrices
 
@@ -539,7 +539,7 @@ def stokes_equation(velocityFieldName="velocityField",
         StiffnessMatrix = "g_matrix"
         )
 
-    # SLE 
+    # SLE
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "stokesEqn",
@@ -567,7 +567,7 @@ def thermal_compositional_buoyancy_rhs( forceVectorName="mom_force", integration
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "buoyancyForceTerm",
-        Type="BuoyancyForceTerm", 
+        Type="BuoyancyForceTerm",
         ForceVector = forceVectorName,
         TemperatureField = temperatureFieldName,
         Swarm = integrationSwarmName,
@@ -576,12 +576,12 @@ def thermal_compositional_buoyancy_rhs( forceVectorName="mom_force", integration
 
 ## Boundary conditions
 
-def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),  
-                                  bottom = (None,None,0.0 ,None,None,None), 
-                                    left   = (0.0 ,None,None,None,None,None), 
-                                    right  = (0.0 ,None,None,None,None,None), 
-                                    front  = (None,None,None,None,0.0 ,None), 
-                                    back   = (None,None,None,None,0.0 ,None), 
+def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
+                                  bottom = (None,None,0.0 ,None,None,None),
+                                    left   = (0.0 ,None,None,None,None,None),
+                                    right  = (0.0 ,None,None,None,None,None),
+                                    front  = (None,None,None,None,0.0 ,None),
+                                    back   = (None,None,None,None,0.0 ,None),
                                     periodicX="False",
                                     periodicY="False",
                                     periodicZ="False",
@@ -590,7 +590,7 @@ def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
     '''
         Semi-automatic boundary conditions for Cartesian or Regional Spherical meshes
         - specify for each wall (top, bottom, left, right, front, back)
-        - Tuple of (vx, Fx, vy, Fy, vz, Fz) - v values will over-ride sigma. 
+        - Tuple of (vx, Fx, vy, Fy, vz, Fz) - v values will over-ride sigma.
           Leave Fx,Fy,Fz as None if a zero-stress condition is appropriate (sigma_s not yet implemented)
         - periodicX / periodicY / periodicZ which will over-ride the above choices (not yet implemented)
 
@@ -613,10 +613,10 @@ def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
 
 
     ## Note: This is not a component so we don't have a python wrapper to stuff this in the dictionary !!
-    
-    globalDict = _underworld.dictionary.GetDictionary()        
+
+    globalDict = _underworld.dictionary.GetDictionary()
     globalDict["velocityBCs"] = { "type" : "CompositeVC" }
-          
+
     ## Make a list of all the boundary conditions as dictionaries;
 
     noSlip = [ { "name": "vx", "type": "double", "value": 0.0 },
@@ -627,7 +627,7 @@ def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
     freeslipXwall = [ { "name": "vx", "type": "double", "value": 0.0 } ]
     freeslipYwall = [ { "name": "vy", "type": "double", "value": 0.0 } ]
     freeslipZwall = [ { "name": "vz", "type": "double", "value": 0.0 } ]
-    
+
 
     ## Periodic - set relevant wall boundary conditions to None and then set up as required
 
@@ -639,9 +639,9 @@ def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
 
     for wall in [ "top", "bottom", "left", "right", "front", "back" ]:
         # Velocity degrees of freedom
-        for dof in range(0,dimensions*2-1 ,2):  
+        for dof in range(0,dimensions*2-1 ,2):
             if BCdict[wall][dof] != None:
-            #    print wall, " -> ", mapBCs[dof], " -> ", BCdict[wall][dof]        
+            #    print wall, " -> ", mapBCs[dof], " -> ", BCdict[wall][dof]
                 vcList.append( {"type":"WallVC", "wall": wall, "variables": { "name": mapBCs[dof], "type": "double", "value": BCdict[wall][dof] } } )
 
 
@@ -650,11 +650,3 @@ def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
     globalDict["velocityBCs"]["vcList"] = vcList
 
     print vcList
-
-
-
-
-
-
-
-

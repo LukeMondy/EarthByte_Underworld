@@ -1,7 +1,7 @@
 # Fields package - configures Fields and Variables on a Mesh
 import underworld as _uw
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## to set up Fields and Variables for Underworld.
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
@@ -43,12 +43,12 @@ def feVariableCreate( componentName="",
         _uw.utils.sendError("meshVariableName=\"someMeshVariable\" is a required argument")
         print "e.g. use meshVariableCreate from the this module to create one"
         return -1
-   
+
 
     globalDict = _uw.dictionary.GetDictionary()
     _uw.utils.warnMissingComponent(globalDict, meshName )
     _uw.utils.warnMissingComponent(globalDict, meshVariableName )
-    
+
     if componentName == "":
         mName=meshName[0].upper() + meshName[1:]  # capitalize only first letter and leave others as they were.
         componentName = "feVariable"+mName     # e.g. feVariableVelocityMesh
@@ -69,7 +69,7 @@ def feVariableCreate( componentName="",
                                                    )
     # It seems we always need some BCs and ICs structs when we create a Fe Variable
     # We then need to create a struct of the same name outside of the "components" dictionary
-    # at the top level dictionary to set BCs etc. This struct must have the same name as the BC structs 
+    # at the top level dictionary to set BCs etc. This struct must have the same name as the BC structs
     # in the component dictionary <-- weird
 
     newBCname = _uw.utils.checkForNewComponentName(globalDict, meshName+"BCs")
@@ -101,7 +101,7 @@ def feVariableCreate( componentName="",
     # e.g. we might have velocity and temperature but both live on the velocity mesh
     globalDict["info"][componentName+"BCs"]=newBCname
     globalDict["info"][componentName+"ICs"]=newICname
-    
+
     return [newBCname, newComponentFeVarDict, newDofLayout, newBC, newIC]
 
 
@@ -117,7 +117,7 @@ def operatorFeVariableCreate( componentName="",
 
     """
     Args:
-        feVariableName  :  input fe variable for new variable 
+        feVariableName  :  input fe variable for new variable
         operator        :  operator that takes feVariableName as an argument. See list of Operators below
         units           :  optional. e.g. "cm/yr"
     Operators:
@@ -151,7 +151,7 @@ def operatorFeVariableCreate( componentName="",
 
     if operator not in opList:
         _uw.utils.sendWarning("Operator "+operator+" not in list of known operators.")
-   
+
     globalDict = _uw.dictionary.GetDictionary()
     _uw.utils.warnMissingComponent(globalDict, feVariableName )
 
@@ -163,7 +163,7 @@ def operatorFeVariableCreate( componentName="",
     # Want to test if we already have an operator Fe Variable of the name we are going to use here.
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
-    
+
     # At this point we should have ensured a new unique name for the new Fe Variable component
     newComponentFeVarDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                             name     = componentName,
@@ -185,17 +185,17 @@ def meshVariableCreate( componentName="",
     """
     Set up a Mesh Variable in the dictionary.
     Possible rankTypes are ( Scalar, Vector )
-    
+
     Needed by DofLayouts which are in turn needed by FeVariables (e.g. VelocityFeVariable)
-    
+
     Args:
-        componentName (string)         : The name of the mesh Variable. 
+        componentName (string)         : The name of the mesh Variable.
         rankType  (string)             : type of Variable ( Scalar, Vector )
         dataType  (string)             : data type (Int, Float, Double, Possoms)
         dim  (int)                     :
-        meshName (string)              : Mesh which this Variable is defined on 
+        meshName (string)              : Mesh which this Variable is defined on
         mergeType (string)             : If this is "replace" then then any existing variable of the same name will be clobbered
- 
+
     Returns:
         Dictionary node for the component definition
 
@@ -209,11 +209,11 @@ def meshVariableCreate( componentName="",
     if (rankType not in rankAllowedTypes):
         _uw.utils.sendError("Need to choose one of  ( Scalar, Vector ) for rankType")
         return -1
-    
+
     if componentName == "":
         mergeType = "merge"                  # Should not over-write auto-generated variables.
         componentName = "mesh"+rankType      # e.g. meshVector
-    
+
     # Want to test if we already have a mesh Variable of the name we are going to use here.
 
     if mergeType != "replace":
@@ -222,7 +222,7 @@ def meshVariableCreate( componentName="",
     # At this point we should have ensured a new unique name for the new mesh Variable component
 
     # Will these vx,vy,vz sub-names be unique global names in the dictionary ?
- 
+
     if rankType == "Vector":
         namesList=["vx","vy","vz"]
         newComponentMeshVarDict = _uw.dictionary.UpdateDictWithComponent(   name=componentName,
@@ -233,7 +233,7 @@ def meshVariableCreate( componentName="",
                                                                   names=namesList,
                                                                   mesh =meshName
                                                                   )
- 
+
     if rankType == "Scalar":
         newComponentMeshVarDict = _uw.dictionary.UpdateDictWithComponent(   name=componentName,
                                                                   Type="MeshVariable",
@@ -242,7 +242,7 @@ def meshVariableCreate( componentName="",
                                                                   mesh =meshName
                                                                   )
 
-    
+
     return newComponentMeshVarDict
 
 ########################################################################################################################
@@ -261,15 +261,15 @@ def _meshVariableClobber( componentName="myMeshVariable",
     are probably armed and don't want no steenkin' warnings.
 
     Possible rankTypes are ( Scalar, Vector )
-    
+
     Needed by DofLayouts which are in turn needed by FeVariables (e.g. VelocityFeVariable)
-    
+
     Args:
-        componentName (string)         : The name of the mesh Variable. 
+        componentName (string)         : The name of the mesh Variable.
         rankType  (string)             : type of Variable ( Scalar, Vector )
         dataType  (string)             : data type (Int, Float, Double, Possums)
         dim  (int)                     :
-        meshName (string)              : Mesh which this Variable is defined on 
+        meshName (string)              : Mesh which this Variable is defined on
     """
     globalDict = _uw.dictionary.GetDictionary()
     newComponentMeshVarDict = -1
@@ -292,12 +292,12 @@ def _meshVariableClobber( componentName="myMeshVariable",
                                                                       mesh =meshName
                                                                       )
     else:
-        newComponentMeshVarDict = meshVariableCreate( componentName=componentName, 
-                                                      dim=dim, 
-                                                      rankType=rankType, 
-                                                      dataType=dataType, 
+        newComponentMeshVarDict = meshVariableCreate( componentName=componentName,
+                                                      dim=dim,
+                                                      rankType=rankType,
+                                                      dataType=dataType,
                                                       meshName=meshName )
 
 
-    
+
     return newComponentMeshVarDict

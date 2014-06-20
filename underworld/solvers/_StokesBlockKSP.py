@@ -1,4 +1,4 @@
-import underworld as _underworld 
+import underworld as _underworld
 
 def StokesBlockKSP( penaltyNumber=0.0 ):
 
@@ -9,7 +9,7 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
         penaltyNumber (float)      : Augmented Lagrangian penalty number (0.0 reverts to non-penalty form)
 
     Returns:
-        Nothing     
+        Nothing
     """
 
     global _solversOn
@@ -26,14 +26,14 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
 
     print "Initialising Velic & Moresi robust solver toolbox (penalty = {})".format(penaltyNumber)
 
- 
-     # The preconditioner does not use material point information 
+
+     # The preconditioner does not use material point information
     integrationSwarm = "gaussSwarm"
 
-    globalDict = _underworld.dictionary.GetDictionary()    
+    globalDict = _underworld.dictionary.GetDictionary()
 
 
-# Add the solver toolbox 
+# Add the solver toolbox
 
     globalDict["import"].append('Solvers')
 
@@ -49,14 +49,14 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
 # RHS vector for mass matrix
 
     scratchForceVector = _underworld.dictionary.UpdateDictWithComponent( globalDict,
-                                name="scratchForceVector", 
-                                Type="ForceVector", 
+                                name="scratchForceVector",
+                                Type="ForceVector",
                                 FeVariable= "PressureField",
                                 ExtraInfo= "context"
-                                )            
+                                )
 
     mass_matrix = _underworld.dictionary.UpdateDictWithComponent( globalDict,
-                                name="m_matrix", 
+                                name="m_matrix",
                                 Type="StiffnessMatrix",
                                 RowVariable="PressureField",
                                 ColumnVariable="PressureField",
@@ -85,8 +85,8 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
 
 #    del globalDict["components"]["stokesEqn"]
 
-# Note, since the names of some of the input parameters for this component start with 
-# numbers, we have to pass the arguments to the function as a dictionary explicitly. 
+# Note, since the names of some of the input parameters for this component start with
+# numbers, we have to pass the arguments to the function as a dictionary explicitly.
 # (Maybe this is work adopting anyway, since it is general)
 
     stokesEqn =    globalDict["components"]["stokesEqn"] = {
@@ -122,14 +122,14 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
 ##############################################################################
 
     scratchVelForceVector = _underworld.dictionary.UpdateDictWithComponent( globalDict,
-                                name="scratchVelForceVector", 
-                                Type="ForceVector", 
+                                name="scratchVelForceVector",
+                                Type="ForceVector",
                                 FeVariable= "VelocityField",
                                 ExtraInfo= "context"
-                                )            
+                                )
 
     vel_mass_matrix = _underworld.dictionary.UpdateDictWithComponent( globalDict,
-                                name="vm_matrix", 
+                                name="vm_matrix",
                                 Type="StiffnessMatrix",
                                 RowVariable="VelocityField",
                                 ColumnVariable="VelocityField",
@@ -186,6 +186,3 @@ def StokesBlockKSP( penaltyNumber=0.0 ):
         _solverType = _solverType + "+Penalty"
 
     _underworld.solvers.setSolverType( _solverType )
-
-
-

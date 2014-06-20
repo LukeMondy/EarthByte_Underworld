@@ -26,10 +26,3 @@ def buoyancy_driven_stokes_flow_pic():
     '''
 
     return
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 # Fields package - configures Fields and Variables on a Mesh
 import underworld as _uw
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## to set up Fields and Variables for Underworld.
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
@@ -23,7 +23,7 @@ def materialCreate(componentName="background", rheologyName="", shapeName="", de
     Requires a rheology and a shape to create a material with an initial shape.
 
     Args:
-       rheologyName: 
+       rheologyName:
        shapeName:
     """
     globalDict = _uw.dictionary.GetDictionary()
@@ -37,7 +37,7 @@ def materialCreate(componentName="background", rheologyName="", shapeName="", de
     _uw.utils.warnMissingComponent(globalDict, rheologyName )
 
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
-    
+
     newComponentDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                        name                 = componentName,
                                                        Type                 = "RheologyMaterial",

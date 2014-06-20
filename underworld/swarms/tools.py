@@ -4,9 +4,9 @@ from libUnderworld import StGermain
 
 def Swarm_GetVariables( swarm ):
     """
-    Returns a python list of swarm variables. 
+    Returns a python list of swarm variables.
     Note that some swarm variables (such as MaterialSwarmVariables) are excluded as the user cannot modify their data.
-    
+
     Args:
         swarm (Swig Swarm*): Swarm
     Returns:
@@ -29,9 +29,9 @@ def Swarm_GetVariables( swarm ):
 
 def Swarm_GetVariablesAsDict( swarm ):
     """
-    Returns a python dictionary of swarm variables with variable names as keys. 
+    Returns a python dictionary of swarm variables with variable names as keys.
     Note that some swarm variables (such as MaterialSwarmVariables) are excluded as the user cannot modify their data.
-    
+
     Args:
         swarm (Swig Swarm*): Swarm
     Returns:
@@ -48,14 +48,14 @@ def Swarm_GetVariablesAsDict( swarm ):
             varDict[swarmObject.name] = {}
             varDict[swarmObject.name]['swarmVariable'] = swarmObject
             varDict[swarmObject.name]['dataType'] = SwarmVariable_GetType(datatype)
-    
+
     return varDict
 
 def Swarm_PrintVariables( swarm ):
     """
     Formatted print to standard out of swarm's variables.
     Note that some swarm variables (such as MaterialSwarmVariables) are excluded as the user cannot modify their data.
-    
+
     Args:
         swarm (Swig Swarm*): Swarm
     Returns:
@@ -83,7 +83,7 @@ def Swarm_PrintVariables( swarm ):
 def SwarmVariable_GetType( datatype ):
     """
     Returns a string describing the variable type for the swarm variable datatype (as enum) provided
-    
+
     Args:
         datatype (int / enum): swarm variable datatype enumeration
     Returns:
@@ -112,7 +112,7 @@ def SwarmVariable_GetType( datatype ):
 def SwarmVariable_GetValueAt( swarmVar, localParticleIndex ):
     """
     Returns the swarm variable value from a local particle
-    
+
     Args:
         swarmVar (Swig SwarmVariable*): Swarm variable to query.
         localParticleIndex (int)      : Local particle index for particle of interest
@@ -139,7 +139,7 @@ def SwarmVariable_GetValueAt( swarmVar, localParticleIndex ):
 def SwarmVariable_SetValueAt( swarmVar, localParticleIndex, values ):
     """
     Sets the swarm variable value for a local particle
-    
+
     Args:
         swarmVar (Swig SwarmVariable*): Swarm variable to set value for.
         localParticleIndex (int)      : Local particle index for particle of interest
@@ -148,7 +148,7 @@ def SwarmVariable_SetValueAt( swarmVar, localParticleIndex, values ):
         None
     """
     from libUnderworld import c_arrays
-    
+
     if( swarmVar.dofCount < len(values) ):
         return "Error: size of values list is greater than variable dofCount"
 
@@ -167,7 +167,3 @@ def SwarmVariable_SetValueAt( swarmVar, localParticleIndex, values ):
         valuePtr[ii] = values[ii]
 
     StGermain.Variable_SetValue( swarmVar.variable, localParticleIndex, valuePtr.cast() )
-
-
-
- 

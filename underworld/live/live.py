@@ -26,7 +26,7 @@ def listComponentTypesDict():
 
     gd=uw.dictionary.GetDictionary()
 
-    
+
     comps=gd["components"]
 
     for key in comps.keys():
@@ -37,16 +37,16 @@ def listComponentTypesDict():
 def getListComponentTypesDict():
 
     tlist=[]
-    
+
     gd=uw.dictionary.GetDictionary()
 
-    
+
     comps=gd["components"]
 
     for key in comps.keys():
         #print comps[key]["Type"]
         tlist.append(comps[key]["Type"])
-        
+
     return tlist
 
 def getAssignFromXMLFuncList():
@@ -59,5 +59,5 @@ def getAssignFromXMLFuncList():
         flist.append(func)
         if func==0:
             print typ
-            
+
     return flist

@@ -3,8 +3,8 @@
 #    LidDriven.xml
 #    LidDrivenPIC.xml
 #    RayleighTaylor.xml
-#    ...   
-# 
+#    ...
+#
 import setup
 
 _problem_type = "None"
@@ -20,9 +20,9 @@ def setProblemType( typeString ):
     """
     Sets the string representing the physics of the problem that has been set up
 
-    """    
-    
+    """
+
     global _problem_type
     _problem_type = typeString
 
-    return    
+    return

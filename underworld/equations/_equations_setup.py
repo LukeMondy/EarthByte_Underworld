@@ -3,7 +3,7 @@ import underworld as _uw
 import underworld.matrix as _matrix
 import underworld.solvers as _solvers
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
 ## itself up.
@@ -22,12 +22,12 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 # velocityField etc have default names here.
 # these names get created in _geometry_setup in meshQ1P0CartesianCreate
 # we can get these names as output from meshQ1P0CartesianCreate and then pass them into here to ensure consistency
-def stokesSystemCreate(equationName="stokesEqn", solver="uzawa", 
+def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
                        buoyancy=False,
                        buoyancyType="compositional",
                        Rayleigh=1e6,
-                       compressibility=False, 
-                       oneOverlambda=10.0, 
+                       compressibility=False,
+                       oneOverlambda=10.0,
                        pic=True, penaltyNumber=0.0,
                        velocityField ="",
                        pressureField ="",
@@ -38,7 +38,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
     """
     Create the full Stokes system of equations.
     Creates the required matrices and solver.
-    
+
     This function also sets the FeVariables and Integration Swarm names on the top level of the
     dictionary as parameters.
 
@@ -63,7 +63,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
         pressureField=globalDict["info"]["pressureField"]
     if gaussIntSwarm=="":
         gaussIntSwarm=globalDict["info"]["gaussIntSwarm"]
-        
+
     if not pic:
         picIntSwarm=gaussIntSwarm
     else:
@@ -73,10 +73,10 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
     _uw.dictionary.addCheckPointVariables([velocityField, pressureField])
 
     # Create Stokes Matrices and Vectors
-    [kmatDict, kmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "k_matrix", 
-                                                          rowFeVariable  = velocityField, 
+    [kmatDict, kmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "k_matrix",
+                                                          rowFeVariable  = velocityField,
                                                           colFeVariable  = velocityField,
-                                                          matrixTermType = "ConstitutiveMatrixCartesian", 
+                                                          matrixTermType = "ConstitutiveMatrixCartesian",
                                                           intSwarmName   = picIntSwarm,
                                                           comment        = "momentum"
                                                           )
@@ -86,20 +86,20 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
                                           feVariable=pressureField,
                                           vectorType="ForceVector",
                                           Context   ="context" )
-    [gmatDict, gmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "g_matrix", 
-                                                          rowFeVariable  = velocityField, 
+    [gmatDict, gmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "g_matrix",
+                                                          rowFeVariable  = velocityField,
                                                           colFeVariable  = pressureField,
-                                                          matrixTermType = "GradientStiffnessMatrixTerm", 
+                                                          matrixTermType = "GradientStiffnessMatrixTerm",
                                                           intSwarmName   = gaussIntSwarm,
                                                           rhsVector      = mom_forceVector,
                                                           transposeRHSVector = "g_matrixTransRHS",
                                                           comment        = "gradient"
                                                           )
     cont_forceVector="g_matrixTransRHS" # continuity force vector - needed for _stokesCreate
-    [pmatDict, pmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "preconditioner", 
-                                                          rowFeVariable  = pressureField, 
+    [pmatDict, pmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "preconditioner",
+                                                          rowFeVariable  = pressureField,
                                                           colFeVariable  = pressureField,
-                                                          matrixTermType = "UzawaPreconditionerTerm", 
+                                                          matrixTermType = "UzawaPreconditionerTerm",
                                                           intSwarmName   = picIntSwarm,
                                                           comment        = "preconditioner"
                                                           )
@@ -111,10 +111,10 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
         _uw.dictionary.importToolBox('Solvers')
         _solvers.setup.stokesBlockKSPInterfaceCreate(preconditionerMatrix=pmatDict["name"])
         # create some auxiliary stuff
-        [mmatDict, mmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "m_matrix", 
-                                                              rowFeVariable  = pressureField, 
+        [mmatDict, mmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "m_matrix",
+                                                              rowFeVariable  = pressureField,
                                                               colFeVariable  = pressureField,
-                                                              matrixTermType = "PressMassMatrixTerm", 
+                                                              matrixTermType = "PressMassMatrixTerm",
                                                               intSwarmName   = gaussIntSwarm,
                                                               comment        = "pressure Mass matrix for Aug Lag Solver"
                                                               )
@@ -127,10 +127,10 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
         globalDict["components"]["m_matrixAssemblyTerm"]["GeometryMesh"] = globalDict["components"][velocityField]["FEMesh"]  ## Attach the Q1 (Velocity) Mesh here.
         mass_forceVector=mmatDict["RHS"]
         m_mat=mmatDict["name"]
-        [vmmatDict, vmmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "vm_matrix", 
-                                                       rowFeVariable  = velocityField, 
+        [vmmatDict, vmmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "vm_matrix",
+                                                       rowFeVariable  = velocityField,
                                                        colFeVariable  = velocityField,
-                                                       matrixTermType = "VelocityMassMatrixTerm", 
+                                                       matrixTermType = "VelocityMassMatrixTerm",
                                                        intSwarmName   = gaussIntSwarm,
                                                        comment        = "velocity Mass matrix for Aug Lag Solver"
                                                        )
@@ -141,9 +141,9 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
         _solvers.setup.uzawaCreate(preconditionerMatrix=pmatDict["name"])
 
     # Now we need Solution Vectors (maybe should put these at top level dictionary too)
-    velSol   = _matrix.setup.vectorCreate(vectorName="solutionVelocity", feVariable=velocityField,   
+    velSol   = _matrix.setup.vectorCreate(vectorName="solutionVelocity", feVariable=velocityField,
                                           vectorType="SolutionVector",   Context=globalDict["context"])
-    pressSol = _matrix.setup.vectorCreate(vectorName="solutionPressure", feVariable=pressureField, 
+    pressSol = _matrix.setup.vectorCreate(vectorName="solutionPressure", feVariable=pressureField,
                                           vectorType="SolutionVector",   Context=globalDict["context"])
 
     # Add buoyancy
@@ -152,9 +152,9 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
             addBuoyancy(forceVector=mom_forceVector, intSwarm=picIntSwarm, StoreDensityOnParticles=StoreDensityOnParticles) # changed from picIntSwarm..test this
         if buoyancyType=="thermal":
             addThermalBuoyancy(forceVector=mom_forceVector, intSwarm=picIntSwarm, Ra=str(Rayleigh))
-            
+
     # Can now set up the stokesEqn entry which connects the Solver to the Matrix system of equations
-    
+
     stokesCreate( equationName="stokesEqn",
                   solver=solver,
                   preconditionerMatrix = pmatDict["name"],
@@ -176,7 +176,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
 
 
 def stokesCreate(equationName="stokesEqn",
-                 solver="uzawa", 
+                 solver="uzawa",
                  preconditionerMatrix="preconditioner",
                  stressTensorMatrix="k_matrix",    # maybe we could store these default names to ensure consistency across modules.
                  gradientMatrix="g_matrix",
@@ -198,7 +198,7 @@ def stokesCreate(equationName="stokesEqn",
     """
     Sets up a stokes equation system with provided matrices and solution vectors.
     """
-    
+
     globalDict = _uw.dictionary.GetDictionary()
     missing=_uw.utils.warnMissingComponent(globalDict, solver )
     _uw.utils.warnMissingComponent(globalDict, preconditionerMatrix )
@@ -268,12 +268,12 @@ def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="Temperat
 
     if temperatureField not in globalDict["components"].keys():
         comment = "Temperature field is dummy variable here."
-    
+
     if "gravity" not in globalDict.keys():
         _uw.utils.sendWarning("The 'gravity' parameter is missing from the Dictionary: adding it with default value = 1")
         globalDict["gravity"]=1
 
-    buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict, 
+    buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                name = "buoyancyForceTerm",
                                                Type = "BuoyancyForceTerm",
                                                TemperatureField = temperatureField,  #optional: temp of 0.0 used if no Field
@@ -295,7 +295,7 @@ def addThermalBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="T
         _uw.utils.sendWarning("The 'gravity' parameter is missing from the Dictionary: adding it with default value = 1")
         globalDict["gravity"]=1
 
-    buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict, 
+    buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                name = "thermalBuoyancyForceTerm",
                                                Type = "ThermalBuoyancyForceTerm",
                                                TemperatureField = temperatureField,  #optional: temp of 0.0 used if no Field
@@ -307,7 +307,7 @@ def addThermalBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="T
                                                )
     return buoyancy
 
-def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="", 
+def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
                                      gaussIntSwarm="", velocityField="",
                                      diffusivity=1.0,
                                      upwindFunc="DoublyAsymptoticAssumption",
@@ -318,7 +318,7 @@ def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
     Set up an Advection Diffusion Equation and solver.
 
     Based on:
-    "Streamline upwind/Petrov-Galerkin formulations for convection dominated flows 
+    "Streamline upwind/Petrov-Galerkin formulations for convection dominated flows
             with particular emphasis on the incompressible Navier-Stokes equations"
     AN Brooks, TJR Hughes,    Computer methods in applied mechanics and engineering 32 (1), 199-259, 1982
 
@@ -351,8 +351,8 @@ def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
     force = _matrix.setup.vectorCreate(vectorName=residual, feVariable=phiField, vectorType="ForceVector")
     mass  = _matrix.setup.vectorCreate(vectorName=massMat, feVariable=phiField, vectorType="ForceVector")
     predictor = _uw.dictionary.UpdateDictWithComponent( globalDict, name="predictorMulticorrector", Type="AdvDiffMulticorrector")
-    
-    lumped = _uw.dictionary.UpdateDictWithComponent( globalDict, 
+
+    lumped = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                              name = "lumpedMassMatrixForceTerm",
                                              Type = "LumpedMassMatrixForceTerm",
                                              ForceVector = massMat,
@@ -385,4 +385,3 @@ def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
 
 
     return
-

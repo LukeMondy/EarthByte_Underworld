@@ -23,8 +23,16 @@ Coding Style
 
 Whitespace
 ----------
+PEP 8
+http://legacy.python.org/dev/peps/pep-0008/
+
+Most importantly:
 Spaces should be used for tabs.
-Indent levels should be 3 spaces deep.
+Indent levels should be 4 spaces deep.
+
+autopep8 tool can be used to tidy when necessary:
+https://pypi.python.org/pypi/autopep8/
+
 
 * Comments?
 * Error handling?

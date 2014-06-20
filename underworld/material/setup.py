@@ -3,4 +3,3 @@
 # Setup simply imports all the definitions files which are bulky strings of json dictionary stuff
 
 from _material_setup import *
-

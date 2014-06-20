@@ -11,7 +11,7 @@ import underworld.swarms as _swarms
 
 
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
 ## itself up.
@@ -34,17 +34,17 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
                             ):
     """
     Creates a Q1-P0 mesh system.
-    
+
     The function creates the required FeMeshes along with
     MeshVariables and FeVariables to match.
-    
+
     Arguments like "minX" etc can be left to their default values as string parameters.
     It is also possible to set them to numerical values here.
 
     In the first case, matching parameters must be set at the top level of the dictionary and given
     numerical values.
     This is easily done using the 'dictionary.setParameters' function in the main module.
-    
+
     (It might be better to have the variables created in another function?)
 
     """
@@ -78,7 +78,7 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
     globalDict["resZ"]=resZ
     globalDict["dim"]=dim
     globalDict["particlesPerCell"]=particlesPerCell
-    
+
     # The velocity mesh Q1 (linear)
     meshQ1Name="linearMesh"
     meshDictQ1 = _meshing.setup.cartesianMeshCreate(meshElementType="linear",
@@ -89,10 +89,10 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
                                                     dim=dim
                                                     )
     # The pressure mesh P0 (constant)
-    
+
     # This might be the correct level for this?
     globalDict["info"]["velocityMesh"]=meshQ1Name  # This is what the BC setup functions will refer to by default
-    
+
     meshP0Name="constantMesh"
     meshDictP0 = _meshing.setup.cartesianMeshCreate(meshElementType="constant", componentName=meshP0Name, primaryMeshName=meshQ1Name)
 
@@ -109,21 +109,21 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
 
     # Name the field exactly this because stuff in Underworld assumes these names
     # e.g. the Standard Condition functions.
-    # But it is annoying because the capitalisation is not consistent everywhere !! 
+    # But it is annoying because the capitalisation is not consistent everywhere !!
 
     velName = "VelocityField"
     velFeVar = _fields.setup.feVariableCreate( componentName=velName, meshName=meshQ1Name, meshVariableName=velMeshVarName)
     globalDict["info"]["velocityField"]=velName
-        
+
     pressMeshVarName="pressureMeshVariable"
     pressMeshVarName="pressure"
     _fields.setup.meshVariableCreate( componentName=pressMeshVarName, dim=dim, rankType="Scalar", dataType="Double", meshName=meshP0Name)
-    
+
     pressName  = "PressureField"
     pressFeVar = _fields.setup.feVariableCreate( componentName=pressName, meshName=meshP0Name, meshVariableName=pressMeshVarName)
     globalDict["info"]["pressureField"]=pressName
 
-    
+
     if withTemperature:
         tempMeshVar = "temperatureMeshVariable"   # temp lives on velocity mesh
         tempMeshVar = "temperature"   # temp lives on velocity mesh
@@ -135,7 +135,7 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
 
     # we usually need the Gauss swarm in any case
 
-    # this should be _swarms.integrationSwarmCreate 
+    # this should be _swarms.integrationSwarmCreate
 
     swarmType="Gauss"
     [gaussIntSwarm, integratorName, emptymapper] = _swarms.setup.integrationSwarmCreate(swarmType=swarmType, meshName=meshQ1Name)
@@ -150,7 +150,7 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
 
         # This function creates what it needs for a functioning integration swarm by default
 
-        [picIntSwarm, integratorName, mapper] = _swarms.setup.integrationSwarmCreate( materialSwarmName=swarmDict["name"], 
+        [picIntSwarm, integratorName, mapper] = _swarms.setup.integrationSwarmCreate( materialSwarmName=swarmDict["name"],
                                                                                       swarmType=swarmType,
                                                                                       integratorName = integratorName,
                                                                                       meshName=meshQ1Name)
@@ -164,7 +164,7 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
 
     # Set FeVariable names on the dictionary at top level.
     # Other functions can then access these names so users don't have to think about this stuff.
-    # BUT NOT IN THE ROOT DICTIONARY, SURELY !!!!! 
+    # BUT NOT IN THE ROOT DICTIONARY, SURELY !!!!!
 
     #globalDict["velocityFeVariable"]= velName
     #globalDict["pressureFeVariable"]= pressName
@@ -182,4 +182,3 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
     namesDict["gaussIntSwarm"]     =gaussIntSwarm["name"]
     namesDict["picIntSwarm"]       =picIntSwarm["name"]
     return namesDict
-

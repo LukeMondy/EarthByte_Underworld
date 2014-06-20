@@ -1,7 +1,7 @@
 # Boundary package - activates and configures boundary conditions
 import underworld as _uw
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## to set up a Boundary Conditions for Underworld.
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
@@ -71,7 +71,7 @@ def wallFreeSlipCreate(bcEntry="", wall="left"):
     wallVCdict["wall"]=wall
     wallVCdict["variables"]=[]
 
-    
+
     vx=dict()
     vx["name"]="vx"
     vx["type"]="double"
@@ -139,7 +139,7 @@ def wallNoSlipCreate(bcEntry="", wall="left"):
     wallVCdict["wall"]=wall
     wallVCdict["variables"]=[]
 
-    
+
     vx=dict()
     vx["name"]="vx"
     vx["type"]="double"
@@ -278,7 +278,7 @@ def wallTemperatureCreate(bcEntry="", wall="bottom", value=0.0):
     wallVCdict["wall"]=wall
     wallVCdict["variables"]=[]
 
-    
+
     temp=dict()
     temp["name"]="temperature"   # is the mesh variable name
     temp["type"]="double"
@@ -325,7 +325,7 @@ def temperatureICSinusoidalCreate(
     globalDict["SinusoidalTempIC_PerturbationAmplitude"]    = str(PerturbationAmplitude)
     globalDict["SinusoidalTempIC_HorizontalWaveNumber"] = str(HorizontalWaveNumber)
     globalDict["SinusoidalTempIC_VerticalWaveNumber"]     = str(VerticalWaveNumber)
-        
+
     # structure here is dict->list->dict->list
     vcListList = globalDict[icEntry]["vcList"] # get list from BC dictionary (which is attached to main dictionary)
 
@@ -333,7 +333,7 @@ def temperatureICSinusoidalCreate(
     wallVCdict["type"]="AllNodesVC"
     wallVCdict["variables"]=[]
 
-    
+
     temp=dict()
     temp["name"]="temperatureMeshVariable"
     temp["name"]="temperature"   # is the mesh variable name
@@ -345,4 +345,3 @@ def temperatureICSinusoidalCreate(
     vcListList.append(wallVCdict)
 
     return globalDict[icEntry]
-

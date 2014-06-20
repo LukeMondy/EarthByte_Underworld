@@ -7,7 +7,7 @@
 '''
 
 import setup
-import live 
+import live
 
 # Initialisation
 _gLucifer = False
@@ -22,9 +22,9 @@ def gLucifer():
 def setGLucifer( Flag ):
     """
     Sets the flag to determine if gLucifer is active
-    """    
-    
+    """
+
     global _gLucifer
-    
+
     _gLucifer = Flag
-    return    
+    return

@@ -36,7 +36,7 @@ def _elementToDict(elem):
                         # if that fails, lets create a list and add item
                         value[childkey] = []
                         value[childkey].append(valueGuy)
-                else: 
+                else:
                     print "Error.. param cannot contain sub values"
                     print childkey, valueguy
                     _sys.exit(2)
@@ -104,7 +104,7 @@ def _itemToElement(inputItem,inputItemName,inputEl):
         subEl = _ET.SubElement(inputEl, 'param')
         if inputItemName != '':
             subEl.attrib['name']=inputItemName
-        subEl.text = "\t"        
+        subEl.text = "\t"
     else:
         print "Error.. Unknown type encountered"
         print "key =", inputItemName
@@ -150,228 +150,228 @@ def GetStgDictionaryAsPyDict( stgDict ):
 
 
 def SetStgDictionaryFromPyDict( pyDict, stgDict ):
-   """
-      Sets the provided python dictionary as the StGermain dictionary.
-      This routines can only be utilised after the Init phase has been completed, and
-      should usually be run before the Construct phase.
-      
-      Args:
-      pyDict (dict): Python dictionary to build a StGermain dictionary from.
-      stgDict (Swig StGermain Dictionary*):  Pointer to StGermain dictionary to add python dictionary contents to.
-      
-      Returns:
-      Nothing.
-      """
-   _AssertInitStateIs(True)
-   root = _dictToUWElementTree(pyDict)
-   xmlString = _ET.tostring(root,encoding = 'utf-8', method = 'xml')
-   ioHandler = StGermain.XML_IO_Handler_New()
-   StGermain.IO_Handler_ReadAllFromBuffer( ioHandler, xmlString, stgDict, "" )
-   StGermain.Stg_Class_Delete( ioHandler )
-   
-   return
+    """
+       Sets the provided python dictionary as the StGermain dictionary.
+       This routines can only be utilised after the Init phase has been completed, and
+       should usually be run before the Construct phase.
+
+       Args:
+       pyDict (dict): Python dictionary to build a StGermain dictionary from.
+       stgDict (Swig StGermain Dictionary*):  Pointer to StGermain dictionary to add python dictionary contents to.
+
+       Returns:
+       Nothing.
+       """
+    _AssertInitStateIs(True)
+    root = _dictToUWElementTree(pyDict)
+    xmlString = _ET.tostring(root,encoding = 'utf-8', method = 'xml')
+    ioHandler = StGermain.XML_IO_Handler_New()
+    StGermain.IO_Handler_ReadAllFromBuffer( ioHandler, xmlString, stgDict, "" )
+    StGermain.Stg_Class_Delete( ioHandler )
+
+    return
 
 def LoadModules( pyUWDict ):
-   """
-      Loads any Toolboxes found within provided dictionary.
+    """
+       Loads any Toolboxes found within provided dictionary.
 
-      Args:
-      pyUWDict (dict): Python version of underworld root dictionary.
-      
-      Returns:
-      Nothing.
-   """
-   _AssertInitStateIs(True)
-   stgRootDict = StGermain.Dictionary_New()
-   SetStgDictionaryFromPyDict( pyUWDict, stgRootDict )
-   StGermain.ModulesManager_Load( StGermain.GetToolboxManagerInstance(), stgRootDict, "" );
-   StGermain.Stg_Class_Delete( stgRootDict )
+       Args:
+       pyUWDict (dict): Python version of underworld root dictionary.
+
+       Returns:
+       Nothing.
+    """
+    _AssertInitStateIs(True)
+    stgRootDict = StGermain.Dictionary_New()
+    SetStgDictionaryFromPyDict( pyUWDict, stgRootDict )
+    StGermain.ModulesManager_Load( StGermain.GetToolboxManagerInstance(), stgRootDict, "" );
+    StGermain.Stg_Class_Delete( stgRootDict )
 
 def StgInit( args=[] ):
-   """
-      Calls the StGermain Init function with provided arguments.
-      
-      Args:
-      args (list): List of arguments to pass to Init stage.  Usually command line like arguments.  Default none.
-      
-      Returns:
-      Nothing.
-   """
-   _AssertInitStateIs(False)
-   setData( StGermain_Tools.StgInit( args ) )
-   return
+    """
+       Calls the StGermain Init function with provided arguments.
+
+       Args:
+       args (list): List of arguments to pass to Init stage.  Usually command line like arguments.  Default none.
+
+       Returns:
+       Nothing.
+    """
+    _AssertInitStateIs(False)
+    setData( StGermain_Tools.StgInit( args ) )
+    return
 
 def WriteFlattenedFile( uwdict, timestamp=None ):
-   """
-      Writes a flattened XML file using provided dictionary.  File generated is input.xml.
-      
-      Args:
-      uwdict (dict): Dictionary to write to flattened xml file.
-      timestamp (str):  If provided, generates timestampted filenames alongside input.xml.
+    """
+       Writes a flattened XML file using provided dictionary.  File generated is input.xml.
 
-      Returns:
-      Nothing.
-   """
-   _AssertInitStateIs(True)
-   if not isinstance(uwdict, dict):
-      raise TypeError("object passed in must be of python type 'dict' or subclass")
-   stgDict = StGermain.Dictionary_New()
-   SetStgDictionaryFromPyDict( uwdict,stgDict )
-   StGermain.stgGenerateFlattenedXML( stgDict, None, None );
-   StGermain.Stg_Class_Delete(stgDict)
+       Args:
+       uwdict (dict): Dictionary to write to flattened xml file.
+       timestamp (str):  If provided, generates timestampted filenames alongside input.xml.
+
+       Returns:
+       Nothing.
+    """
+    _AssertInitStateIs(True)
+    if not isinstance(uwdict, dict):
+        raise TypeError("object passed in must be of python type 'dict' or subclass")
+    stgDict = StGermain.Dictionary_New()
+    SetStgDictionaryFromPyDict( uwdict,stgDict )
+    StGermain.stgGenerateFlattenedXML( stgDict, None, None );
+    StGermain.Stg_Class_Delete(stgDict)
 
 def StgConstruct( pyUWDict, setAsRootDict=False ):
-   """
-      Calls the construct phase for all components & plugins found in provided dictionary.
-      
-      Args:
-        pyUWDict (dict): Underworld root type dictionary containing components and plugins.
-        setAsRootDict (bool):  If true, retains generated stg_componentfactory and stg root dictionary. Default false.
-      
-      Returns:
-        Nothing.
-   """
-   _AssertInitStateIs(True)
-   if not isinstance(pyUWDict, dict):
-      raise TypeError("object passed in must be of python type 'dict' or subclass")
-   
-   LoadModules(pyUWDict)
+    """
+       Calls the construct phase for all components & plugins found in provided dictionary.
 
-   stgRootDict = StGermain.Dictionary_New()
-   SetStgDictionaryFromPyDict( pyUWDict, stgRootDict )
-   # now lets de-alias
-   StGermain.DictionaryUtils_AliasDereferenceDictionary( stgRootDict );
+       Args:
+         pyUWDict (dict): Underworld root type dictionary containing components and plugins.
+         setAsRootDict (bool):  If true, retains generated stg_componentfactory and stg root dictionary. Default false.
 
-   stgCompDict = StGermain.Dictionary_Entry_Value_AsDictionary( StGermain.Dictionary_Get( stgRootDict, "components" ) );
+       Returns:
+         Nothing.
+    """
+    _AssertInitStateIs(True)
+    if not isinstance(pyUWDict, dict):
+        raise TypeError("object passed in must be of python type 'dict' or subclass")
 
-   cf = StGermain.Stg_ComponentFactory_New( stgRootDict, stgCompDict )
+    LoadModules(pyUWDict)
 
-   # lets create instances of components
-   StGermain.Stg_ComponentFactory_CreateComponents( cf )
+    stgRootDict = StGermain.Dictionary_New()
+    SetStgDictionaryFromPyDict( pyUWDict, stgRootDict )
+    # now lets de-alias
+    StGermain.DictionaryUtils_AliasDereferenceDictionary( stgRootDict );
 
-   # lets go ahead and construct component
-   if "components" in pyUWDict:
-      for compName,compDict in pyUWDict["components"].iteritems():
-         compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
-         StGermain.Stg_Component_AssignFromXML( compPointer, cf, None, False )
+    stgCompDict = StGermain.Dictionary_Entry_Value_AsDictionary( StGermain.Dictionary_Get( stgRootDict, "components" ) );
 
-   # don't like this, but not much choice at this point
-   # we retain the concept of a root dict, and also the component factor object, as some things require it during the build phase (annoyingly)
-   # note that below is mainly book keeping / mem management.  the items (except compdict) are stored on the context in abstractcontext_assignfromxml()
-   if setAsRootDict is True:
-      StGermain.Stg_Class_Delete(getData().dictionary)
-      getData().dictionary = stgRootDict
-      StGermain.Stg_Class_Delete(getData().cf)
-      getData().cf = cf
-   else:
-      StGermain.Stg_Class_Delete(cf)
-      StGermain.Stg_Class_Delete(stgRootDict)
+    cf = StGermain.Stg_ComponentFactory_New( stgRootDict, stgCompDict )
+
+    # lets create instances of components
+    StGermain.Stg_ComponentFactory_CreateComponents( cf )
+
+    # lets go ahead and construct component
+    if "components" in pyUWDict:
+        for compName,compDict in pyUWDict["components"].iteritems():
+            compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
+            StGermain.Stg_Component_AssignFromXML( compPointer, cf, None, False )
+
+    # don't like this, but not much choice at this point
+    # we retain the concept of a root dict, and also the component factor object, as some things require it during the build phase (annoyingly)
+    # note that below is mainly book keeping / mem management.  the items (except compdict) are stored on the context in abstractcontext_assignfromxml()
+    if setAsRootDict is True:
+        StGermain.Stg_Class_Delete(getData().dictionary)
+        getData().dictionary = stgRootDict
+        StGermain.Stg_Class_Delete(getData().cf)
+        getData().cf = cf
+    else:
+        StGermain.Stg_Class_Delete(cf)
+        StGermain.Stg_Class_Delete(stgRootDict)
 
 
 def StgBuild( pyUWDict ):
-   """
-      Calls the build phase for all components & plugins found in provided dictionary.
-      
-      Args:
-      pyUWDict (dict): Underworld root type dictionary containing components and plugins.
-      
-      Returns:
-      Nothing.
-   """
+    """
+       Calls the build phase for all components & plugins found in provided dictionary.
 
-   _AssertInitStateIs(True)
-   if not isinstance(pyUWDict, dict):
-      raise TypeError("object passed in must be of python type 'dict' or subclass")
+       Args:
+       pyUWDict (dict): Underworld root type dictionary containing components and plugins.
 
-   if "components" in pyUWDict:
-      for compName,compDict in pyUWDict["components"].iteritems():
-         compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
-         StGermain.Stg_Component_Build( compPointer, None, False )
-   if "plugins" in pyUWDict:
-      for guy in pyUWDict["plugins"]:
-         compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), guy["Type"] )
-         StGermain.Stg_Component_Build( compPointer, None, False )
+       Returns:
+       Nothing.
+    """
+
+    _AssertInitStateIs(True)
+    if not isinstance(pyUWDict, dict):
+        raise TypeError("object passed in must be of python type 'dict' or subclass")
+
+    if "components" in pyUWDict:
+        for compName,compDict in pyUWDict["components"].iteritems():
+            compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
+            StGermain.Stg_Component_Build( compPointer, None, False )
+    if "plugins" in pyUWDict:
+        for guy in pyUWDict["plugins"]:
+            compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), guy["Type"] )
+            StGermain.Stg_Component_Build( compPointer, None, False )
 
 
 def StgInitialise( pyUWDict ):
-   """
-      Calls the Initialise phase for all components & plugins found in provided dictionary.
-      
-      Args:
-      pyUWDict (dict): Underworld root type dictionary containing components and plugins.
-      
-      Returns:
-      Nothing.
-   """
+    """
+       Calls the Initialise phase for all components & plugins found in provided dictionary.
 
-   _AssertInitStateIs(True)
-   if not isinstance(pyUWDict, dict):
-      raise TypeError("object passed in must be of python type 'dict' or subclass")
+       Args:
+       pyUWDict (dict): Underworld root type dictionary containing components and plugins.
 
-   if "components" in pyUWDict:
-      for compName,compDict in pyUWDict["components"].iteritems():
-         compPointer = GetLiveComponent( compName )
-         StGermain.Stg_Component_Initialise( compPointer, None, False )
-   if "plugins" in pyUWDict:
-      for guy in pyUWDict["plugins"]:
-         compPointer = GetLiveComponent( guy["Type"] )
-         StGermain.Stg_Component_Initialise( compPointer, None, False )
+       Returns:
+       Nothing.
+    """
+
+    _AssertInitStateIs(True)
+    if not isinstance(pyUWDict, dict):
+        raise TypeError("object passed in must be of python type 'dict' or subclass")
+
+    if "components" in pyUWDict:
+        for compName,compDict in pyUWDict["components"].iteritems():
+            compPointer = GetLiveComponent( compName )
+            StGermain.Stg_Component_Initialise( compPointer, None, False )
+    if "plugins" in pyUWDict:
+        for guy in pyUWDict["plugins"]:
+            compPointer = GetLiveComponent( guy["Type"] )
+            StGermain.Stg_Component_Initialise( compPointer, None, False )
 
 def StgDestroy( pyUWDict ):
-   """
-      Calls the Destroy phase for all components & plugins found in provided dictionary.
-      
-      Args:
-      pyUWDict (dict): Underworld root type dictionary containing components and plugins.
-      
-      Returns:
-      Nothing.
-   """
-   _AssertInitStateIs(True)
-   if not isinstance(pyUWDict, dict):
-      raise TypeError("object passed in must be of python type 'dict' or subclass")
-   
-   if "components" in pyUWDict:
-      for compName,compDict in pyUWDict["components"].iteritems():
-         compPointer = GetLiveComponent( compName )
-         StGermain.Stg_Component_Destroy( compPointer, None, False )
-   if "plugins" in pyUWDict:
-      for guy in pyUWDict["plugins"]:
-         compPointer = GetLiveComponent( guy["Type"] )
-         StGermain.Stg_Component_Destroy( compPointer, None, False )
+    """
+       Calls the Destroy phase for all components & plugins found in provided dictionary.
+
+       Args:
+       pyUWDict (dict): Underworld root type dictionary containing components and plugins.
+
+       Returns:
+       Nothing.
+    """
+    _AssertInitStateIs(True)
+    if not isinstance(pyUWDict, dict):
+        raise TypeError("object passed in must be of python type 'dict' or subclass")
+
+    if "components" in pyUWDict:
+        for compName,compDict in pyUWDict["components"].iteritems():
+            compPointer = GetLiveComponent( compName )
+            StGermain.Stg_Component_Destroy( compPointer, None, False )
+    if "plugins" in pyUWDict:
+        for guy in pyUWDict["plugins"]:
+            compPointer = GetLiveComponent( guy["Type"] )
+            StGermain.Stg_Component_Destroy( compPointer, None, False )
 
 def StgFinalise():
-   """
-      Finalises / tears down the StGermain simulation.
-      
-      Args:
-      None
-      Returns:
-      Nothing
-   """
-   if getData():
-      StGermain_Tools.StgFinalise( getData() )
-      setData(None)
-   return
+    """
+       Finalises / tears down the StGermain simulation.
+
+       Args:
+       None
+       Returns:
+       Nothing
+    """
+    if getData():
+        StGermain_Tools.StgFinalise( getData() )
+        setData(None)
+    return
 
 def GetLiveComponent(compName):
-   """
-      Returns component with provided name if found within live component register.  Otherwise returns None.
-      
-      Args:
-      compName (str):  Name of component to return.
-      Returns:
-      component (Swig Ptr):  Returns a pointer to the component object.  If not found, returns None.
-   """
-   _AssertInitStateIs(True)
-   if not isinstance(compName, str):
-      raise TypeError("object passed in must be of python type 'str' or subclass")
+    """
+       Returns component with provided name if found within live component register.  Otherwise returns None.
 
-   try:
-      return StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
-   except:
-      print "Component \'%s\' not found in the live component register." % compName
-      return None
+       Args:
+       compName (str):  Name of component to return.
+       Returns:
+       component (Swig Ptr):  Returns a pointer to the component object.  If not found, returns None.
+    """
+    _AssertInitStateIs(True)
+    if not isinstance(compName, str):
+        raise TypeError("object passed in must be of python type 'str' or subclass")
+
+    try:
+        return StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
+    except:
+        print "Component \'%s\' not found in the live component register." % compName
+        return None
 
 
 def StgXMLFileAsPyDictionary( xmlFile, flatten=False ):
@@ -379,18 +379,18 @@ def StgXMLFileAsPyDictionary( xmlFile, flatten=False ):
     Converts the provided XML file into a python dictionary.
 
     Args:
-        xmlFile (str, File): File to convert.  Either an opened file, or the filename as a string. 
-        flatten (Bool): if xmlFile is a string, the flattenXML command may be called to flatten the file. 
+        xmlFile (str, File): File to convert.  Either an opened file, or the filename as a string.
+        flatten (Bool): if xmlFile is a string, the flattenXML command may be called to flatten the file.
     Returns:
         dict (OrderedDict): Python ordered dictionary containing the file contents.
-    
+
     """
 
     if flatten:
         if (type(xmlFile) == file):
-            print "Unable to flatten a file object - this option requires the file path"        
+            print "Unable to flatten a file object - this option requires the file path"
         else:
-            # Use the StGermain FlattenXML executable 
+            # Use the StGermain FlattenXML executable
             build_path = utils.pathToBuild()
             flattenXML = _os.path.join(build_path,"bin","FlattenXML")
             current_dir = _os.getcwd()
@@ -401,21 +401,21 @@ def StgXMLFileAsPyDictionary( xmlFile, flatten=False ):
             _os.chdir(current_dir)
 
     if type(xmlFile) == str:
-        theFile = open(xmlFile,'r') 
+        theFile = open(xmlFile,'r')
     elif type(xmlFile) == file:
         theFile = xmlFile
     else:
         print "You must pass in a file or a filename"
         return
 
-    xmlString = theFile.read().replace('\n', '')    
+    xmlString = theFile.read().replace('\n', '')
     root = _ET.fromstring(xmlString)
     dict = _elementToDict(root)
     if type(xmlFile) == str:
         theFile.close()
 
 
-    ## remove any temp files ... 
+    ## remove any temp files ...
     ## HERE
 
     return dict
@@ -423,16 +423,16 @@ def StgXMLFileAsPyDictionary( xmlFile, flatten=False ):
 def WritePyDictToJSONFile( theDict, jsonFile ):
     """
     Converts the provided python dictionary into a JSON file.
-    If running in parallel, make sure only one processor executes this command. 
+    If running in parallel, make sure only one processor executes this command.
 
     Args:
         theDict (dict): Python dictionary to convert.
-        jsonFile (str, File): File to write to.  Either an opened file, or the filename as a string. 
-    
+        jsonFile (str, File): File to write to.  Either an opened file, or the filename as a string.
+
     """
     import json
     if type(jsonFile) == str:
-        theFile = open(jsonFile,'w') 
+        theFile = open(jsonFile,'w')
     elif type(jsonFile) == file:
         theFile = jsonFile
     else:
@@ -448,15 +448,15 @@ def ReadJSONFileToPyDict( jsonFile ):
     Converts the provided JSON file into a python dictionary
 
     Args:
-        jsonFile (str, File): File to convert.  Either an opened file, or the filename as a string. 
-    
+        jsonFile (str, File): File to convert.  Either an opened file, or the filename as a string.
+
     Returns:
         dict (OrderedDict): Python ordered dictionary containing the file contents.
     """
 
     import json
     if type(jsonFile) == str:
-        theFile = open(jsonFile,'r') 
+        theFile = open(jsonFile,'r')
     elif type(jsonFile) == file:
         theFile = jsonFile
     else:
@@ -469,21 +469,21 @@ def ReadJSONFileToPyDict( jsonFile ):
     return theDict
 
 def _AssertInitStateIs(isInit):
-   if isInit:
-      assert     getData(), "StGermain has not been initialised.  You will need to call StgInit() before you can perform this operation."
-   else:
-      assert not getData(), "StGermain has been initialised.  You will need to call StgFinalise() before you can perform this operation."
+    if isInit:
+        assert     getData(), "StGermain has not been initialised.  You will need to call StgInit() before you can perform this operation."
+    else:
+        assert not getData(), "StGermain has been initialised.  You will need to call StgFinalise() before you can perform this operation."
 
 
 
 def getData():
-   global _data
-   return _data
+    global _data
+    return _data
 
 def setData(data):
-   global _data
-   _data = data
-   if _data:
-      _data.cf = None
+    global _data
+    _data = data
+    if _data:
+        _data.cf = None
 
 _data = None

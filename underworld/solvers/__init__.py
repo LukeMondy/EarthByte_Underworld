@@ -14,8 +14,8 @@
 
 '''
 import setup
-import live 
-## These are all just dictionary setup as well 
+import live
+## These are all just dictionary setup as well
 # from _multigrid import *
 #from _options import *
 
@@ -34,9 +34,9 @@ def setSolverType( typeString ):
     """
     Sets the string representing the solver
 
-    """    
-    
+    """
+
     global _solverType
     _solverType = typeString
 
-    return    
+    return

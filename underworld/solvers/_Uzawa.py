@@ -1,5 +1,5 @@
 
-import underworld as _underworld 
+import underworld as _underworld
 
 
 def Uzawa( PIC=True ):
@@ -14,7 +14,7 @@ def Uzawa( PIC=True ):
         PIC (Bool)                   : Whether to use gauss or PIC integration
 
     Returns:
-        Nothing     
+        Nothing
     """
 
     global _solversOn
@@ -32,14 +32,14 @@ def Uzawa( PIC=True ):
     if PIC == True:
         integrationSwarm = "picIntegrationPoints"
         _solverType = "Uzawa+PIC"
-    else: 
+    else:
         integrationSwarm = "gaussSwarm"
         _solverType = "Uzawa"
 
-    globalDict = _underworld.dictionary.GetDictionary()    
+    globalDict = _underworld.dictionary.GetDictionary()
 
     preconditioner = _underworld.dictionary.UpdateDictWithComponent( globalDict,
-                        name="preconditioner", 
+                        name="preconditioner",
                         Type="StiffnessMatrix",
                         RowVariable="PressureField",
                         ColumnVariable="PressureField",
@@ -52,7 +52,7 @@ def Uzawa( PIC=True ):
                         Swarm=integrationSwarm,
                         StiffnessMatrix=preconditioner["name"]
                         )
-    
+
     uzawaSolver = _underworld.dictionary.UpdateDictWithComponent( globalDict,
                         name="uzawaSolver",
                         Type="Stokes_SLE_UzawaSolver",
@@ -85,7 +85,7 @@ def Uzawa( PIC=True ):
                         )
 
 
-    _solversOn = True    
+    _solversOn = True
 
     _underworld.solvers.setSolverType( _solverType )
 

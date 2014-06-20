@@ -2,7 +2,7 @@
 def StartVisualisationWebServer(host='127.0.0.1', port=-99999, certfile=None):
     """
     Starts a visualisation web server (via root processor) in a new thread.
-    An Init function first needs to be called so that MPI_Init has delegated processor Ids. 
+    An Init function first needs to be called so that MPI_Init has delegated processor Ids.
 
     Args:
         host     (string)        : (optional) The server host address.  Defaults to localhost (127.0.0.1).
@@ -13,7 +13,7 @@ def StartVisualisationWebServer(host='127.0.0.1', port=-99999, certfile=None):
         Nothing
     """
     import underworld
-    
+
     _data = underworld.data()
 
     if _data == None:
@@ -90,6 +90,3 @@ def StopVisualisationWebServer():
 
 
 _httpd = None
-
-
-

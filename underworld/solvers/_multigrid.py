@@ -1,8 +1,8 @@
 
-import underworld as _underworld 
+import underworld as _underworld
 
 ##############################################################################
-## Dictionary changes / definitions from MultigridForRegularSCR.xml or 
+## Dictionary changes / definitions from MultigridForRegularSCR.xml or
 ##  from MultigridForRegular.xml
 ##############################################################################
 
@@ -20,14 +20,14 @@ def multigrid( mgLevels ):
         return
 
 
-    globalDict = _underworld.dictionary.GetDictionary()    
+    globalDict = _underworld.dictionary.GetDictionary()
 
     globalDict['mgLevels'] = mgLevels
 
     # The old-style solver requires a plugin for the MG, the new does not
 
     if "Uzawa" in _solverType:
-        globalDict["plugins"].append( {"Type" : "StgFEM_Multigrid" , "Context":"context" } ) 
+        globalDict["plugins"].append( {"Type" : "StgFEM_Multigrid" , "Context":"context" } )
 
 
     mgsolver = _underworld.dictionary.UpdateDictWithComponent( globalDict,
@@ -51,5 +51,4 @@ def multigrid( mgLevels ):
 
 
 
-    return    
-
+    return

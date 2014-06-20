@@ -2,7 +2,7 @@
 import underworld as _uw
 
 ##############################################################################
-## This code adds what is required to the python dictionary 
+## This code adds what is required to the python dictionary
 ## to set up the Solvers for Underworld.
 ## We eventually pass the python dictionary back to Underworld
 ## and Underworld then uses this information to configure and set
@@ -19,7 +19,7 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 def uzawaCreate(preconditionerMatrix="preconditioner", tol="1.0e-5", monitor=False, maxIts=5000, minIts=1, verbose=False):
     """
     Set up the Uzawa Solver in the dictionary
-    
+
     Args:
         preconditionerMatrix  : a matrix for preconditioning.
     """
@@ -48,7 +48,7 @@ def uzawaCreate(preconditionerMatrix="preconditioner", tol="1.0e-5", monitor=Fal
 def stokesBlockKSPInterfaceCreate(preconditionerMatrix="preconditioner", tol="1.0e-5", verbose=False):
     """
     Set up the Block Stokes SCR Solver in the dictionary
-    
+
     Args:
         preconditionerMatrix  : a matrix for preconditioning.
     """

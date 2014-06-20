@@ -7,7 +7,7 @@ import underworld._stgermain as _stgermain
 def FieldVariable_InterpolateValueAt( fieldVar, coord ):
     """
     Returns the interpolated result of a field variable.
-    
+
     Args:
         fieldVar (str, Swig FieldVariable*): Field variable to query, either provided by name (str) or with a swig pointer.
         coord (tuple(float)): The location to query
@@ -19,7 +19,7 @@ def FieldVariable_InterpolateValueAt( fieldVar, coord ):
                        "OUTSIDE_GLOBAL" - Query location is outside the global domain of this field variable
     """
     from libUnderworld import c_arrays
-    
+
     if type(fieldVar)==str:
         fieldVar = GetLiveComponent(fieldVar)
 
@@ -45,7 +45,7 @@ def FieldVariable_InterpolateValueAt( fieldVar, coord ):
 def FieldVariable_GetMinFieldMagnitude( fieldVar ):
     """
     Returns the minimum value of a field variable
-    
+
     Args:
         fieldVar (Swig FieldVariable*): Field Variable to query
     Returns:
@@ -56,7 +56,7 @@ def FieldVariable_GetMinFieldMagnitude( fieldVar ):
 def FieldVariable_GetMaxFieldMagnitude( fieldVar ):
     """
     Returns the maximum value of a field variable
-    
+
     Args:
         fieldVar (Swig FieldVariable*): Field Variable to query
     Returns:
@@ -67,7 +67,7 @@ def FieldVariable_GetMaxFieldMagnitude( fieldVar ):
 def FieldVariable_GetMinAndMaxLocalCoords( fieldVar ):
     """
     Returns the domain of this field variable local to this process as two tuples (min,max)
-    
+
     Args:
         fieldVar (Swig FieldVariable*): Field Variable to query
     Returns:
@@ -81,7 +81,7 @@ def FieldVariable_GetMinAndMaxLocalCoords( fieldVar ):
 def FieldVariable_GetMinAndMaxGlobalCoords( fieldVar ):
     """
     Returns the domain of this field variable globally as two tuples (min,max)
-    
+
     Args:
         fieldVar (Swig FieldVariable*): Field Variable to query
     Returns:
@@ -97,7 +97,7 @@ def FeVariable_Integrate( feVar, gaussSwarm=None ):
     """
     Returns the integral of this FE variable.
     Note that this is currently only compatible with scalar fields.
-    
+
     Args:
         fieldVar (Swig FeVariable*): Field Variable to query
         gaussSwarm (Swig Swarm*): (optional) Gauss swarm to integrate over. If nothing provided,

@@ -20,7 +20,7 @@ def GetDictionary():
 
 def SetDictionary( pyDict ):
     """
-    Sets / Overwrites the global copy of the python global dictionary. 
+    Sets / Overwrites the global copy of the python global dictionary.
 
     Args:
         dict (OrderedDict): Python ordered dictionary in the required format (be careful !)
@@ -36,7 +36,7 @@ def SetDictionary( pyDict ):
 
 def ClearDictionary():
     """
-    Clears the global Underworld dictionary. 
+    Clears the global Underworld dictionary.
 
     Args:
         None
@@ -48,7 +48,7 @@ def ClearDictionary():
     global _globalDict
 
     if _globalDict != None:
-       _globalDict.clear()
+        _globalDict.clear()
 
     return
 
@@ -56,29 +56,29 @@ def GetConformingDictionary(uwdict={}):
     """
     Checks the provided dictionary has the required structure elements.
     Returns a new dictionary with all required structure (and content of provided dictionary).
-    
+
     Args:
         dict (dict,OrderedDict) : Dictionary to check. Default is None.
     Returns:
         dict (OrderedDict)      : New conforming dictionary
     """
     if not isinstance(uwdict, dict):
-       raise TypeError("object passed in must be of python type 'dict' or subclass")
+        raise TypeError("object passed in must be of python type 'dict' or subclass")
 
     dictionary = _collections.OrderedDict(uwdict)
     if not "plugins" in dictionary:
-       dictionary["plugins"]=[]
+        dictionary["plugins"]=[]
     if not "import" in dictionary:
-       dictionary["import"]=[]
+        dictionary["import"]=[]
     if not "parameters" in dictionary:
-       dictionary["parameters"]={}
+        dictionary["parameters"]={}
     if not "info" in dictionary:
-       dictionary["info"]={}
+        dictionary["info"]={}
 
     if not "components" in dictionary:
-       dictionary["components"]=_collections.OrderedDict()
+        dictionary["components"]=_collections.OrderedDict()
     else:
-       dictionary["components"]=_collections.OrderedDict(dictionary["components"])
+        dictionary["components"]=_collections.OrderedDict(dictionary["components"])
 
     return dictionary
 
@@ -91,22 +91,22 @@ def UpdateDictWithComponent( uwdict=None, **cptDefinitionArgs ):
 
     Args:
         uwdict (dict)            : Dictionary to update.  Default is globalDict.
-        name=(string)            : The name of the component (must be unique) 
+        name=(string)            : The name of the component (must be unique)
         Type=(string)            : The component type
         mergeType (string)       : The equivalent of the U/W mergeType (replace or merge)
         XXX=(some data)          : As defined by the component itself
 
     Returns:
-        stgDictionary dictionary node for the (new) component 
+        stgDictionary dictionary node for the (new) component
     """
 
     if not uwdict:
-       uwdict = GetDictionary()
+        uwdict = GetDictionary()
     if not "name" in cptDefinitionArgs:
         print "Error: UpdateDictWithComponent requires a (unique) 'name' "
         print "Cpt: ", cptDefinitionArgs
         return
-    
+
     if not "Type" in cptDefinitionArgs:
         print "Error: UpdateDictWithComponent requires a (valid) 'Type' "
         print "Cpt: ", cptDefinitionArgs
@@ -127,17 +127,17 @@ def UpdateDictWithComponent( uwdict=None, **cptDefinitionArgs ):
 
 
 def setParameters(**params):
-    
+
     global _globalDict
 
-    ## No way this special case can be left in here !!!!! 
+    ## No way this special case can be left in here !!!!!
 
     for key in params.keys():
         if key=="outputPath":
             _globalDict["checkpointWritePath"]=params[key]+"/Checkpoints"
             _globalDict["checkpointReadPath"]=params[key]+"/Checkpoints"
         _globalDict[key]=params[key]
-    
+
     return
 
 def importToolBox(toolBox):
@@ -173,7 +173,7 @@ def addPlugin(plugin,  context="context", **other ):
     global _globalDict
 
     #todo: check for known plugins?
-    #todo: eliminate plugins completely. 
+    #todo: eliminate plugins completely.
 
     pdict={}
     pdict["Type"]=plugin
@@ -183,12 +183,12 @@ def addPlugin(plugin,  context="context", **other ):
         pdict[key]=other[key]
 
     _globalDict["plugins"].append(pdict)
-        
+
     return
 
 # These should not be set here, they should be in the initialisation for each of the modules
 # and they should be in the parameters list of the dictionary
-# e.g. 
+# e.g.
 # globalDict["parameters"]["geometry"]["dim"] = 2
 def addCheckPointVariables(checkVars=[]):
     """
@@ -202,7 +202,7 @@ def addCheckPointVariables(checkVars=[]):
             _globalDict["FieldVariablesToCheckpoint"].append(item)
     else:
         _globalDict["FieldVariablesToCheckpoint"]=checkVars
-        
+
     return
 
 # We want o put these somewhere else..
@@ -218,14 +218,14 @@ def addSaveVariables(saveVars=[]):
             _globalDict["FieldVariablesToSave"].append(item)
     else:
         _globalDict["FieldVariablesToSave"]=saveVars
-        
+
     return
 
 
 def initDefaultParameters():
 
     global _globalDict
-    
+
     output="output"
 
  #   _globalDict["dim"]=2
@@ -271,7 +271,7 @@ def initDefaultParameters():
     _globalDict["picIntSwarm"]=0
     _globalDict["FeVariableQ1"]=0 # maybe too abstract?
     _globalDict["FeVariableP0"]=0
-    _globalDict["velocityFeVariable"]=0 # use these for now <-- will be set by mesh Creation 
+    _globalDict["velocityFeVariable"]=0 # use these for now <-- will be set by mesh Creation
     _globalDict["pressureFeVariable"]=0
     _globalDict["solver"]=0
 
@@ -282,22 +282,21 @@ def initDefaultParameters():
     return
 
 def PrintPretty(dict=None, indent=3):
-   """
-      Prints the provided dictionary in a human format.
-      
-      Args:
-      dict (dict): The dictionary to print. Default is the global dictionary.
-      indent (unsigned): (optional) Required indent level
-      Returns:
-      PrettyDict (str):  The formated dictionary as a string.
-      """
-   
-   import json
-   if not dict:
-      global _globalDict
-      dict = _globalDict
-   print json.dumps(dict, indent=indent)
+    """
+       Prints the provided dictionary in a human format.
+
+       Args:
+       dict (dict): The dictionary to print. Default is the global dictionary.
+       indent (unsigned): (optional) Required indent level
+       Returns:
+       PrettyDict (str):  The formated dictionary as a string.
+       """
+
+    import json
+    if not dict:
+        global _globalDict
+        dict = _globalDict
+    print json.dumps(dict, indent=indent)
 
 
 _globalDict = None
-
