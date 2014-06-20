@@ -30,6 +30,8 @@ _sys.setdlopenflags( _oldflags )
 
 # add this to allow ctrl+c signal
 import signal as _signal
+
+
 def _signal_handler(_signal, frame):
     print 'You pressed Ctrl+C!'
     sys.exit(0)
@@ -43,6 +45,7 @@ _stgermain.StgInit()
 _rank = _stgermain.getData().rank
 _nprocs = _stgermain.getData().nProcs
 
+
 def rank():
     """
        Returns the rank of the current processors.
@@ -54,6 +57,7 @@ def rank():
        """
     global _rank
     return _rank
+
 
 def nProcs():
     """

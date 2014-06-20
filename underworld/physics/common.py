@@ -1,7 +1,7 @@
 import underworld as _underworld
 
 
-## These ones belong with meshes !
+# These ones belong with meshes !
 
 def constant_mesh( meshName="constantMesh", elementMeshName="elementMesh"):
     """
@@ -12,24 +12,23 @@ def constant_mesh( meshName="constantMesh", elementMeshName="elementMesh"):
 
     print " *  Piecewise constant mesh name - ", meshName
 
-
     _underworld.dictionary.UpdateDictWithComponent(
-         name = meshName,
-         Type = "FeMesh",
-         elementType = "constant"
-         )
+        name = meshName,
+        Type = "FeMesh",
+        elementType = "constant"
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = meshName + "Generator",
         Type = "C0Generator",
         mesh = meshName,
         elementMesh = elementMeshName
-        )
-
+    )
 
     return
 
-def linear_mesh( meshName="linearMesh", meshSize = (32,32,32), span=[(0.0,0.0,0.0),(1.0,1.0,1.0)], dimensions=None, shadowDepth=1):
+
+def linear_mesh( meshName="linearMesh", meshSize = (32, 32, 32), span=[(0.0, 0.0, 0.0), (1.0, 1.0, 1.0)], dimensions=None, shadowDepth=1):
     """
         LinearMesh.xml !
         Args:
@@ -40,8 +39,8 @@ def linear_mesh( meshName="linearMesh", meshSize = (32,32,32), span=[(0.0,0.0,0.
             shadowDepth = (int) - whatever that really means !
     """
 
-    ## Should do some error checking that the tuples / lists are the correct size
-    ## for the specified dimensions
+    # Should do some error checking that the tuples / lists are the correct size
+    # for the specified dimensions
 
     if dimensions == None:
         print "Please specify mesh dimensions !"
@@ -49,15 +48,14 @@ def linear_mesh( meshName="linearMesh", meshSize = (32,32,32), span=[(0.0,0.0,0.
 
     print " *  Piecewise linear mesh name - ", meshName
 
-
     _underworld.dictionary.UpdateDictWithComponent(
         name = meshName,
         Type = "FeMesh",
         elementType = "linear"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = meshName+"Generator",
+        name = meshName + "Generator",
         Type = "CartesianGenerator",
         mesh = meshName,
         dims = dimensions,
@@ -65,16 +63,16 @@ def linear_mesh( meshName="linearMesh", meshSize = (32,32,32), span=[(0.0,0.0,0.
         size = meshSize,  # Tuple should create a list
         minCoord = span[0],
         maxCoord = span[1]
-        )
+    )
 
-## Velocity and Pressure Field
+# Velocity and Pressure Field
 
-## Can we generalise this to vector fields in general
+# Can we generalise this to vector fields in general
+
 
 def velocity_field( fieldName="velocity", meshName="velocityMesh", dimensions=2  ):
 
     print " *  Velocity field name - ", fieldName
-
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = fieldName,
@@ -84,195 +82,192 @@ def velocity_field( fieldName="velocity", meshName="velocityMesh", dimensions=2 
         DataType = "double",
         VectorComponentCount = dimensions,
         names = ("vx", "vy", "vz")
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"Field",
+        name = fieldName + "Field",
         Type = "FeVariable",
         FEMesh = meshName,
-        DofLayout = fieldName+"DofLayout",
-        BC = fieldName+"BCs",
-        IC = fieldName+"ICs",
-        LinkedDofInfo = fieldName+"LinkedDofs",
+        DofLayout = fieldName + "DofLayout",
+        BC = fieldName + "BCs",
+        IC = fieldName + "ICs",
+        LinkedDofInfo = fieldName + "LinkedDofs",
         outputUnits="cm/yr"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"BCs",
+        name = fieldName + "BCs",
         Type = "CompositeVC",
         Data = meshName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"ICs",
+        name = fieldName + "ICs",
         Type = "CompositeVC",
         Data = meshName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"DofLayout",
+        name = fieldName + "DofLayout",
         Type = "DofLayout",
         MeshVariable = fieldName
-        )
+    )
 
-
-    ## Pre-define a "standard collection" of operators
-
+    # Pre-define a "standard collection" of operators
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"MagnitudeField",
+        name = fieldName + "MagnitudeField",
         Type = "OperatorFeVariable",
         Operator = "Magnitude",
-        Operand = fieldName+"Field",
+        Operand = fieldName + "Field",
         outputUnits="cm/yr"
 
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"GradientsField",
+        name = fieldName + "GradientsField",
         Type = "OperatorFeVariable",
         Operator = "Gradient",
-        Operand = fieldName+"Field"
-        )
+        Operand = fieldName + "Field"
+    )
 
     # Do we use this for anything ?
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"GradientsInvariantField",
+        name = fieldName + "GradientsInvariantField",
         Type = "OperatorFeVariable",
         Operator = "Gradient",
-        Operand = fieldName+"Field"
-        )
+        Operand = fieldName + "Field"
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"Xcomponent",
+        name = fieldName + "Xcomponent",
         Type = "OperatorFeVariable",
         Operator = "TakeFirstComponent",
-        Operand = fieldName+"Field",
+        Operand = fieldName + "Field",
         outputUnits="cm/yr"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"Ycomponent",
+        name = fieldName + "Ycomponent",
         Type = "OperatorFeVariable",
         Operator = "TakeSecondComponent",
-        Operand = fieldName+"Field",
+        Operand = fieldName + "Field",
         outputUnits="cm/yr"
-        )
+    )
 
     if (dimensions == 3):
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"Zcomponent",
+            name = fieldName + "Zcomponent",
             Type = "OperatorFeVariable",
             Operator = "TakeThirdComponent",
-            Operand = fieldName+"Field",
+            Operand = fieldName + "Field",
             outputUnits="cm/yr"
         )
-
 
      # Usually Strain rate ... but I want to tag it with the field name so this seems more appropriate (LM)
      # Probably s^-1 would be better too
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"SymmetricGradient",
+        name = fieldName + "SymmetricGradient",
         Type = "OperatorFeVariable",
         Operator = "TensorSymmetricPart",
-        Operand = fieldName+"GradientsField",
+        Operand = fieldName + "GradientsField",
         outputUnits="yr^-1"
-        )
+    )
 
     # Spin tensor (was called vorticity, but conventionally, we should use that name for curl(field))
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"AntiSymmetricGradient",
+        name = fieldName + "AntiSymmetricGradient",
         Type = "OperatorFeVariable",
         Operator = "TensorAntiSymmetricPart",
-        Operand = fieldName+"GradientsField",
+        Operand = fieldName + "GradientsField",
         outputUnits="yr^-1"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"GradientInvariantSymmetricPart",
+        name = fieldName + "GradientInvariantSymmetricPart",
         Type = "OperatorFeVariable",
         Operator = "SymmetricTensor_Invariant",
-        Operand = fieldName+"SymmetricGradient",
+        Operand = fieldName + "SymmetricGradient",
         outputUnits="yr^-1"
-        )
+    )
 
     if dimensions == 2:
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientXXSymmetricPart",
+            name = fieldName + "GradientXXSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeFirstComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientYYSymmetricPart",
+            name = fieldName + "GradientYYSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeSecondComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientXYSymmetricPart",
+            name = fieldName + "GradientXYSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeThirdComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
     else:   # 3D
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientXXSymmetricPart",
+            name = fieldName + "GradientXXSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeFirstComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientYYSymmetricPart",
+            name = fieldName + "GradientYYSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeSecondComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientZZSymmetricPart",
+            name = fieldName + "GradientZZSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeThirdComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientXYSymmetricPart",
+            name = fieldName + "GradientXYSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeFourthComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientXZSymmetricPart",
+            name = fieldName + "GradientXZSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeFifthComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
         _underworld.dictionary.UpdateDictWithComponent(
-            name = fieldName+"GradientYZSymmetricPart",
+            name = fieldName + "GradientYZSymmetricPart",
             Type = "OperatorFeVariable",
             Operator = "TakeSixthComponent",
-            Operand = fieldName+"SymmetricGradient",
+            Operand = fieldName + "SymmetricGradient",
             outputUnits="yr^-1"
-            )
+        )
 
 
 #   <param name="velocityMesh">linearMesh</param>
@@ -286,44 +281,41 @@ def pressure_field( fieldName="pressure", meshName="pressureMesh", dimensions=2 
 
     print " *  Pressure field name - ", fieldName
 
-
-
     _underworld.dictionary.UpdateDictWithComponent(
         name = fieldName,
         Type = "MeshVariable",
         Rank = "Scalar",
         DataType = "Double"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"BCs",
+        name = fieldName + "BCs",
         Type = "CompositeVC",
         Data = meshName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"ICs",
+        name = fieldName + "ICs",
         Type = "CompositeVC",
         Data = meshName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"DofLayout",
+        name = fieldName + "DofLayout",
         Type = "DofLayout",
         MeshVariable = fieldName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
-        name = fieldName+"Field",
+        name = fieldName + "Field",
         Type = "FeVariable",
         FEMesh = meshName,
-        DofLayout = fieldName+"DofLayout",
-        BC = fieldName+"BCs",
-        IC = fieldName+"ICs",
-        LinkedDofInfo = fieldName+"LinkedDofs",
+        DofLayout = fieldName + "DofLayout",
+        BC = fieldName + "BCs",
+        IC = fieldName + "ICs",
+        LinkedDofInfo = fieldName + "LinkedDofs",
         outputUnits="GPa"
-        )
-
+    )
 
 
 def gauss_point_integration_swarm( gaussSwarmName="GaussSwarm", meshName="elementMesh", timeIntegratorName="timeIntegrator"):
@@ -335,12 +327,12 @@ def gauss_point_integration_swarm( gaussSwarmName="GaussSwarm", meshName="elemen
     _underworld.dictionary.UpdateDictWithComponent(
         name = "cellLayout",
         Type = "SingleCellLayout"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "particleLayout",
         Type = "GaussParticleLayout"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "gaussSwarm",
@@ -349,7 +341,7 @@ def gauss_point_integration_swarm( gaussSwarmName="GaussSwarm", meshName="elemen
         ParticleLayout = "particleLayout",
         FeMesh = meshName,
         TimeIntegrator = timeIntegratorName
-        )
+    )
 
 
 def time_integration( timeIntegratorName="timeIntegrator", timeIntegratorOrder=2, simultaneous="False", contextName="context"):
@@ -362,29 +354,26 @@ def time_integration( timeIntegratorName="timeIntegrator", timeIntegratorOrder=2
         order= timeIntegratorOrder,
         simultaneous = simultaneous,
         Context = contextName
-        )
-
+    )
 
 
 def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="materialSwarm",
                           meshName="elementMesh", timeIntegratorName="timeIntegrator",
-                          pcdvcResolution=(10,10,10), particlesPerCell=20,
+                          pcdvcResolution=(10, 10, 10), particlesPerCell=20,
                           velocityFieldName="velocityField", periodicBCsManagerName="periodicBCsManager" ):
 
-
     print " *  Material point integration component: ", picIntSwarmName
-
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "elementCellLayout",
         Type = "ElementCellLayout",
         mesh = meshName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "localLayout",
         Type = "MappedParticleLayout"
-        )
+    )
 
     # We can always drill down and change stuff, but here are some defaults
     _underworld.dictionary.UpdateDictWithComponent(
@@ -398,7 +387,7 @@ def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="
         maxDeletions = 3,
         maxSplits = 3,
         MaterialPointsSwarm = matSwarmName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = picIntSwarmName,
@@ -408,31 +397,30 @@ def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="
         WeightsCalculator = "integrationWeights",
         TimeIntegrator = timeIntegratorName,
         IntegrationPointMapper = "ipMapper"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "ipMapper",
         Type = "CoincidentMapper",
         IntegrationPointsSwarm = picIntSwarmName,
         MaterialPointsSwarm = matSwarmName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "materialSwarmParticleLayout",
         Type = "SpaceFillerParticleLayout",
         averageInitialParticlesPerCell = particlesPerCell
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "pMovementHandler",
         Type = "ParticleMovementHandler"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "pShadowSync",
         Type = "ParticleShadowSync"
-        )
-
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = matSwarmName,
@@ -444,7 +432,7 @@ def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="
         SplittingRoutine = "splittingRoutine",
         RemovalRoutine = "removalRoutine",
         EscapedRoutine = "escapedRoutine"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "materialSwarmAdvector",
@@ -454,10 +442,10 @@ def material_point_swarm( picIntSwarmName="picIntegrationPoints", matSwarmName="
         VelocityField = velocityFieldName,
         PeriodicBCsManager = periodicBCsManagerName,
         allowFallbackToFirstOrder = "True"
-        )
+    )
 
 
-## Stokes flow setup & Solver (which we can remove)
+# Stokes flow setup & Solver (which we can remove)
 
 
 def stokes_equation(velocityFieldName="velocityField",
@@ -467,10 +455,7 @@ def stokes_equation(velocityFieldName="velocityField",
                     nonLinearTolerance = "1e-4",
                     contextName="context"):
 
-
     print " *  Stokes Equation defined as: stokesEqn"
-
-
 
     # Solution vectors
 
@@ -478,13 +463,13 @@ def stokes_equation(velocityFieldName="velocityField",
         name = "solutionVelocity",
         Type = "SolutionVector",
         FeVariable = velocityFieldName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "solutionPressure",
         Type = "SolutionVector",
         FeVariable = pressureFieldName
-        )
+    )
 
     # RHS vectors
 
@@ -493,15 +478,14 @@ def stokes_equation(velocityFieldName="velocityField",
         Type = "ForceVector",
         FeVariable = velocityFieldName,
         ExtraInfo = contextName
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "cont_force",
         Type = "ForceVector",
         FeVariable = pressureFieldName,
         ExtraInfo = contextName
-        )
-
+    )
 
     # Saddle point system: matrices
 
@@ -512,14 +496,14 @@ def stokes_equation(velocityFieldName="velocityField",
         ColumnVariable = velocityFieldName,
         RHS = "mom_force",
         allowZeroElementContributions = "False"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "constitutiveMatrix",
         Type = "ConstitutiveMatrixCartesian",
         Swarm = gaussSwarmName,
         StiffnessMatrix = "k_matrix"
-        )
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "g_matrix",
@@ -529,15 +513,14 @@ def stokes_equation(velocityFieldName="velocityField",
         RHS = "mom_force",
         transposeRHS = "cont_force",
         allowZeroElementContributions = "False"
-        )
-
+    )
 
     _underworld.dictionary.UpdateDictWithComponent(
         name = "gradientStiffnessMatrixTerm",
         Type = "GradientStiffnessMatrixTerm",
         Swarm = gaussSwarmName,
         StiffnessMatrix = "g_matrix"
-        )
+    )
 
     # SLE
 
@@ -557,7 +540,7 @@ def stokes_equation(velocityFieldName="velocityField",
         nonLinearMaxIterations = nonLinearMaxIterations,
         nonLinearTolerance = nonLinearTolerance,
         makeConvergenceFile = "False"
-        )
+    )
 
 
 # Need to expose / exchange some of these values with other components - but what is the best way ?
@@ -572,21 +555,21 @@ def thermal_compositional_buoyancy_rhs( forceVectorName="mom_force", integration
         TemperatureField = temperatureFieldName,
         Swarm = integrationSwarmName,
         gravity = gravity
-        )
+    )
 
-## Boundary conditions
+# Boundary conditions
 
-def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
-                                  bottom = (None,None,0.0 ,None,None,None),
-                                    left   = (0.0 ,None,None,None,None,None),
-                                    right  = (0.0 ,None,None,None,None,None),
-                                    front  = (None,None,None,None,0.0 ,None),
-                                    back   = (None,None,None,None,0.0 ,None),
-                                    periodicX="False",
-                                    periodicY="False",
-                                    periodicZ="False",
-                                    dimensions=None):
 
+def velocity_boundary_conditions( top    = (None, None, 0.0, None, None, None),
+                                  bottom = (None, None, 0.0, None, None, None),
+                                  left   = (0.0, None, None, None, None, None),
+                                  right  = (0.0, None, None, None, None, None),
+                                  front  = (None, None, None, None, 0.0, None),
+                                  back   = (None, None, None, None, 0.0, None),
+                                  periodicX="False",
+                                  periodicY="False",
+                                  periodicZ="False",
+                                  dimensions=None):
     '''
         Semi-automatic boundary conditions for Cartesian or Regional Spherical meshes
         - specify for each wall (top, bottom, left, right, front, back)
@@ -600,7 +583,6 @@ def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
         print "Please specify mesh dimensions - 2D or 3D !"
         return
 
-
     print " *  Setting boundary conditions: (vx, Fx, vy, Fy, vz, Fz) - "
     print "    Top    - ", top
     print "    Bottom - ", bottom
@@ -610,14 +592,12 @@ def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
         print "    Front  - ", front
         print "    Back   - ", back
 
-
-
-    ## Note: This is not a component so we don't have a python wrapper to stuff this in the dictionary !!
+    # Note: This is not a component so we don't have a python wrapper to stuff this in the dictionary !!
 
     globalDict = _underworld.dictionary.GetDictionary()
-    globalDict["velocityBCs"] = { "type" : "CompositeVC" }
+    globalDict["velocityBCs"] = { "type": "CompositeVC" }
 
-    ## Make a list of all the boundary conditions as dictionaries;
+    # Make a list of all the boundary conditions as dictionaries;
 
     noSlip = [ { "name": "vx", "type": "double", "value": 0.0 },
                { "name": "vy", "type": "double", "value": 0.0 } ]
@@ -628,24 +608,19 @@ def velocity_boundary_conditions( top    = (None,None,0.0 ,None,None,None),
     freeslipYwall = [ { "name": "vy", "type": "double", "value": 0.0 } ]
     freeslipZwall = [ { "name": "vz", "type": "double", "value": 0.0 } ]
 
-
-    ## Periodic - set relevant wall boundary conditions to None and then set up as required
-
+    # Periodic - set relevant wall boundary conditions to None and then set up as required
 
     mapBCs = [ "vx", "Fx", "vy", "Fy", "vz", "Fz" ]
-    BCdict = { "top":top, "bottom":bottom, "left":left, "right":right, "front":front, "back":back }
+    BCdict = { "top": top, "bottom": bottom, "left": left, "right": right, "front": front, "back": back }
 
     vcList = []
 
     for wall in [ "top", "bottom", "left", "right", "front", "back" ]:
         # Velocity degrees of freedom
-        for dof in range(0,dimensions*2-1 ,2):
+        for dof in range(0, dimensions * 2 - 1, 2):
             if BCdict[wall][dof] != None:
-            #    print wall, " -> ", mapBCs[dof], " -> ", BCdict[wall][dof]
-                vcList.append( {"type":"WallVC", "wall": wall, "variables": { "name": mapBCs[dof], "type": "double", "value": BCdict[wall][dof] } } )
-
-
-
+                #    print wall, " -> ", mapBCs[dof], " -> ", BCdict[wall][dof]
+                vcList.append( {"type": "WallVC", "wall": wall, "variables": { "name": mapBCs[dof], "type": "double", "value": BCdict[wall][dof] } } )
 
     globalDict["velocityBCs"]["vcList"] = vcList
 

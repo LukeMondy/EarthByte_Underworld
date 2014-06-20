@@ -3,8 +3,8 @@ import _stgermain
 import libUnderworld
 import dictionary
 
-### These functions allow us to build, merge and manipulate the global dictionary as a python object
-### and, later, it can be converted back to XML strings for the blessed StGermain to injest.
+# These functions allow us to build, merge and manipulate the global dictionary as a python object
+# and, later, it can be converted back to XML strings for the blessed StGermain to injest.
 
 
 def Init(args=[], prependCommandLineArgs=True):
@@ -24,9 +24,9 @@ def Init(args=[], prependCommandLineArgs=True):
         args = args.split()
 
     if prependCommandLineArgs:
-        args = _sys.argv[0:]+args
+        args = _sys.argv[0:] + args
     else:
-        args = _sys.argv[0:1]+args
+        args = _sys.argv[0:1] + args
 
     _stgermain.StgInit( args )
 
@@ -67,6 +67,7 @@ def Construct( buildNow=True ):
         _stgermain.StgBuild(globalDict)
         _stgermain.StgInitialise(globalDict)
 
+
 def RunMainLoop(context=None):
     """
     Runs the Underworld main simulation loop.
@@ -85,6 +86,7 @@ def RunMainLoop(context=None):
     assert context, "No context found. You must either pass in a context, or one must exists in the dictionary."
 
     libUnderworld.StGermain.Stg_Component_Execute( context, None, True)
+
 
 def Step(context=None, steps=1):
     """
@@ -105,11 +107,12 @@ def Step(context=None, steps=1):
         context = _stgermain.GetLiveComponent("context")
     assert context, "No context found. You must either pass in a context, or one must exists in the dictionary."
 
-    for i in range(0,steps):
+    for i in range(0, steps):
         if( context.needUpdate == 1 ):
             libUnderworld.StGermain.AbstractContext_Update(context)
 
         libUnderworld.StGermain.AbstractContext_Step(context, context.dt)
+
 
 def Finalise():
     """
@@ -120,6 +123,7 @@ def Finalise():
     """
     _stgermain.StgFinalise()
     _resetAll()
+
 
 def _resetAll():
     global _isConstructed
@@ -133,6 +137,7 @@ def _AssertConstructStateIs(isConstructed):
     else:
         assert ConstructState() is isConstructed, "Underworld has already been constructed.  You will need to call Init() again before you can perform this operation."
 
+
 def ConstructState():
     """
        Returns the construct state of the simulation.  True=Constructed.
@@ -142,6 +147,7 @@ def ConstructState():
     """
     global _constructFlag
     return _constructFlag
+
 
 def _setConstructFlag(isConstructed):
     global _constructFlag

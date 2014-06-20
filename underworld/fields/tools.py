@@ -4,6 +4,7 @@ from libUnderworld import StgDomain
 from libUnderworld import StgFEM
 import underworld._stgermain as _stgermain
 
+
 def FieldVariable_InterpolateValueAt( fieldVar, coord ):
     """
     Returns the interpolated result of a field variable.
@@ -20,7 +21,7 @@ def FieldVariable_InterpolateValueAt( fieldVar, coord ):
     """
     from libUnderworld import c_arrays
 
-    if type(fieldVar)==str:
+    if type(fieldVar) == str:
         fieldVar = GetLiveComponent(fieldVar)
 
     result = c_arrays.DoubleArray(fieldVar.fieldComponentCount)
@@ -37,10 +38,11 @@ def FieldVariable_InterpolateValueAt( fieldVar, coord ):
         InterpolationResult = "OUTSIDE_GLOBAL"
 
     toreturn = []
-    for i in range(0,fieldVar.fieldComponentCount):
+    for i in range(0, fieldVar.fieldComponentCount):
         toreturn.append(result.__getitem__(i))
 
     return toreturn, InterpolationResult
+
 
 def FieldVariable_GetMinFieldMagnitude( fieldVar ):
     """
@@ -53,6 +55,7 @@ def FieldVariable_GetMinFieldMagnitude( fieldVar ):
     """
     return StgDomain.FieldVariable_GetMinGlobalFieldMagnitude( fieldVar )
 
+
 def FieldVariable_GetMaxFieldMagnitude( fieldVar ):
     """
     Returns the maximum value of a field variable
@@ -63,6 +66,7 @@ def FieldVariable_GetMaxFieldMagnitude( fieldVar ):
         max (float): the maximum field variable magnitude
     """
     return StgDomain.FieldVariable_GetMaxGlobalFieldMagnitude( fieldVar )
+
 
 def FieldVariable_GetMinAndMaxLocalCoords( fieldVar ):
     """
@@ -75,8 +79,9 @@ def FieldVariable_GetMinAndMaxLocalCoords( fieldVar ):
         max (tuple(float)): the maximum local coordinate range
     """
 
-    result = StgDomain.FieldVariable_GetMinAndMaxLocalCoords( fieldVar );
+    result = StgDomain.FieldVariable_GetMinAndMaxLocalCoords( fieldVar )
     return result[0], result[1]
+
 
 def FieldVariable_GetMinAndMaxGlobalCoords( fieldVar ):
     """
@@ -89,7 +94,7 @@ def FieldVariable_GetMinAndMaxGlobalCoords( fieldVar ):
         max (tuple(float)): the maximum global coordinate range
     """
 
-    result = StgDomain.FieldVariable_GetMinAndMaxGlobalCoords( fieldVar );
+    result = StgDomain.FieldVariable_GetMinAndMaxGlobalCoords( fieldVar )
     return result[0], result[1]
 
 

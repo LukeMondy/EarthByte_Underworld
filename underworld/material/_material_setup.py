@@ -1,11 +1,11 @@
 # Fields package - configures Fields and Variables on a Mesh
 import underworld as _uw
 ##############################################################################
-## This code adds what is required to the python dictionary
-## to set up Fields and Variables for Underworld.
-## We eventually pass the python dictionary back to Underworld
-## and Underworld then uses this information to configure and set
-## itself up.
+# This code adds what is required to the python dictionary
+# to set up Fields and Variables for Underworld.
+# We eventually pass the python dictionary back to Underworld
+# and Underworld then uses this information to configure and set
+# itself up.
 ##############################################################################
 
 '''
@@ -15,6 +15,7 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 '''
 
 ########################################################################################################################
+
 
 def materialCreate(componentName="background", rheologyName="", shapeName="", density="1.0", alpha="0.0", referenceTemperature="0.0"):
     """
@@ -28,7 +29,7 @@ def materialCreate(componentName="background", rheologyName="", shapeName="", de
     """
     globalDict = _uw.dictionary.GetDictionary()
 
-    if rheologyName=="":
+    if rheologyName == "":
         _uw.utils.sendError("Must specify a Rheology name")
     if shapeName == "":
         _uw.utils.sendError("Must specify a Shape name")
@@ -39,14 +40,14 @@ def materialCreate(componentName="background", rheologyName="", shapeName="", de
     componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
 
     newComponentDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                       name                 = componentName,
-                                                       Type                 = "RheologyMaterial",
-                                                       density              = str(density),
-                                                       Shape                = shapeName,
-                                                       Rheology             = rheologyName,
-                                                       alpha                = str(alpha),
-                                                       referenceTemperature = str(referenceTemperature)
+                                                               name                 = componentName,
+                                                               Type                 = "RheologyMaterial",
+                                                               density              = str(density),
+                                                               Shape                = shapeName,
+                                                               Rheology             = rheologyName,
+                                                               alpha                = str(alpha),
+                                                               referenceTemperature = str(referenceTemperature)
 
-                                                       )
+                                                               )
 
     return newComponentDict

@@ -3,11 +3,11 @@ import underworld as _uw
 #import underworld as _uw
 #import underworld.utils._utils as utils
 ##############################################################################
-## This code adds what is required to the python dictionary
-## to set up the Matrices for a system of equations
-## We eventually pass the python dictionary back to Underworld
-## and Underworld then uses this information to configure and set
-## itself up.
+# This code adds what is required to the python dictionary
+# to set up the Matrices for a system of equations
+# We eventually pass the python dictionary back to Underworld
+# and Underworld then uses this information to configure and set
+# itself up.
 ##############################################################################
 
 '''
@@ -23,6 +23,8 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 # hence this function creates 3 structs in the dictionary
 #
 # This function attempts to make it very easy to create the usual suspects
+
+
 def matrixCreate( matrixName="stokes_matrix",
                   rowFeVariable="", colFeVariable="",
                   rhsVector="", transposeRHSVector="",
@@ -55,26 +57,26 @@ def matrixCreate( matrixName="stokes_matrix",
 
     mList = [ "ConstitutiveMatrixCartesian", "GradientStiffnessMatrixTerm",
               "UzawaPreconditionerTerm", "PressMassMatrixTerm"]
-    if matrixTermType=="":
+    if matrixTermType == "":
         _uw.utils.sendError("matrixTermType is a required argument")
         print "Choose one of:"
         print mList
         return -1
 
     if matrixTermType not in mList:
-        _uw.utils.sendWarning("The matrix term type: "+matrixTermType+" is not in a list of known types")
+        _uw.utils.sendWarning("The matrix term type: " + matrixTermType + " is not in a list of known types")
         print "The known types are:"
         print mList
 
-    if rowFeVariable=="":
+    if rowFeVariable == "":
         _uw.utils.sendError("rowFeVariable is a required argument")
         print "create one using feVariableCreate in the fields module"
         return -1
-    if colFeVariable=="":
+    if colFeVariable == "":
         _uw.utils.sendError("colFeVariable is a required argument")
         print "create one using feVariableCreate in the fields module"
         return -1
-    if intSwarmName=="":
+    if intSwarmName == "":
         _uw.utils.sendError("intSwarmName is a required argument")
         print "create one using integrationSwarmCreate in the swarms module"
         return -1
@@ -85,15 +87,15 @@ def matrixCreate( matrixName="stokes_matrix",
 
     if rhsVector != "" and rhsVector != None:
         _uw.utils.warnMissingComponent(globalDict, rhsVector )
-    else: # create a default one if nothing passed in
-        newRHSName = matrixName+"RHS"
+    else:  # create a default one if nothing passed in
+        newRHSName = matrixName + "RHS"
         newRHSName = _uw.utils.checkForNewComponentName(globalDict, newRHSName)
         newRHS     = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                     name = newRHSName,
-                                                     Type="ForceVector",
-                                                     FeVariable=rowFeVariable,
-                                                     ExtraInfo ="context"
-                                                    )
+                                                             name = newRHSName,
+                                                             Type="ForceVector",
+                                                             FeVariable=rowFeVariable,
+                                                             ExtraInfo ="context"
+                                                             )
 
         rhsVector = newRHSName
 
@@ -101,29 +103,29 @@ def matrixCreate( matrixName="stokes_matrix",
     if transposeRHSVector != "" and transposeRHSVector != None:
         _uw.utils.warnMissingComponent(globalDict, transposeRHSVector )
     if createTransposeRHS:
-        newRHSName = matrixName+"TransposeRHS"
+        newRHSName = matrixName + "TransposeRHS"
         newRHSName = _uw.utils.checkForNewComponentName(globalDict, newRHSName)
         newRHS     = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                     name = newRHSName,
-                                                     Type="ForceVector",
-                                                     FeVariable=colFeVariable,
-                                                     ExtraInfo ="context"
-                                                     )
+                                                             name = newRHSName,
+                                                             Type="ForceVector",
+                                                             FeVariable=colFeVariable,
+                                                             ExtraInfo ="context"
+                                                             )
         transposeRHS = newRHSName
 
     matrixName = _uw.utils.checkForNewComponentName(globalDict, matrixName)
     newMatrixDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                    name     = matrixName,
-                                                    Type     = "StiffnessMatrix",
-                                                    RowVariable    = rowFeVariable,
-                                                    ColumnVariable = colFeVariable,
-                                                    RHS            = rhsVector,
-                                                    transposeRHS   = transposeRHSVector,
-                                                    comment        = comment,
-                                                    allowZeroElementContributions = str(allowZeroElementContributions)
-                                                             )
+                                                            name     = matrixName,
+                                                            Type     = "StiffnessMatrix",
+                                                            RowVariable    = rowFeVariable,
+                                                            ColumnVariable = colFeVariable,
+                                                            RHS            = rhsVector,
+                                                            transposeRHS   = transposeRHSVector,
+                                                            comment        = comment,
+                                                            allowZeroElementContributions = str(allowZeroElementContributions)
+                                                            )
 
-    termName = matrixName+"AssemblyTerm"
+    termName = matrixName + "AssemblyTerm"
     # If the Type is ConstitutiveMatrixCartesian then we HAVE to name it
     # 'constitutiveMatrix' or the PpcManager doesn't get built unless we explicitly set it up!
     # This is too restrictive.
@@ -132,19 +134,20 @@ def matrixCreate( matrixName="stokes_matrix",
     # because we want the option of creating some names automatically and also
     # the freedom to name them what we want.
     # For now we do this HACK
-    commentStr=""
-    if matrixTermType=="ConstitutiveMatrixCartesian":
-        termName="constitutiveMatrix"
-        commentStr ="If the Type is ConstitutiveMatrixCartesian then we HAVE to name it 'constitutiveMatrix' or the PpcManager doesn't get built unless we explicitly set it up!"
+    commentStr = ""
+    if matrixTermType == "ConstitutiveMatrixCartesian":
+        termName = "constitutiveMatrix"
+        commentStr = "If the Type is ConstitutiveMatrixCartesian then we HAVE to name it 'constitutiveMatrix' or the PpcManager doesn't get built unless we explicitly set it up!"
     termName = _uw.utils.checkForNewComponentName(globalDict, termName)
     newTermDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                  name    = termName,
-                                                  Type    = matrixTermType,
-                                                  Swarm   = intSwarmName,
-                                                  StiffnessMatrix = matrixName,
-                                                  comment         = commentStr
-                                                  )
+                                                          name    = termName,
+                                                          Type    = matrixTermType,
+                                                          Swarm   = intSwarmName,
+                                                          StiffnessMatrix = matrixName,
+                                                          comment         = commentStr
+                                                          )
     return [newMatrixDict, newTermDict]
+
 
 def vectorCreate( vectorName="solutionVelocity",
                   feVariable="",
@@ -157,9 +160,9 @@ def vectorCreate( vectorName="solutionVelocity",
 
     vectorName  = _uw.utils.checkForNewComponentName(globalDict, vectorName)
     newVectDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                  name     = vectorName,
-                                                  Type     = vectorType,
-                                                  FeVariable = feVariable,
-                                                  ExtraInfo  = Context   # might be better if the name on the struct was 'Context'?
-                                                  )
+                                                          name     = vectorName,
+                                                          Type     = vectorType,
+                                                          FeVariable = feVariable,
+                                                          ExtraInfo  = Context   # might be better if the name on the struct was 'Context'?
+                                                          )
     return newVectDict

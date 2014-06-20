@@ -9,12 +9,14 @@ import setup
 
 _problem_type = "None"
 
+
 def problemType():
     """
     Returns a string representing the physics of the problem that has been set up
 
     """
     return (_problem_type)
+
 
 def setProblemType( typeString ):
     """

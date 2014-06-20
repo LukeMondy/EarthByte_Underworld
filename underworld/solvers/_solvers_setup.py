@@ -2,11 +2,11 @@
 import underworld as _uw
 
 ##############################################################################
-## This code adds what is required to the python dictionary
-## to set up the Solvers for Underworld.
-## We eventually pass the python dictionary back to Underworld
-## and Underworld then uses this information to configure and set
-## itself up.
+# This code adds what is required to the python dictionary
+# to set up the Solvers for Underworld.
+# We eventually pass the python dictionary back to Underworld
+# and Underworld then uses this information to configure and set
+# itself up.
 ##############################################################################
 
 '''
@@ -27,17 +27,17 @@ def uzawaCreate(preconditionerMatrix="preconditioner", tol="1.0e-5", monitor=Fal
     _uw.utils.warnMissingComponent(globalDict, preconditionerMatrix )
 
     uzawaDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                name = "uzawa",
-                                                Type = "Stokes_SLE_UzawaSolver",
-                                                velocitySolver = "matrixSolver",  # not used atm?
-                                                Preconditioner = preconditionerMatrix,
-                                                tolerance      = tol,
-                                                monitor = str(monitor),
-                                                maxIterations = maxIts,
-                                                minIterations = minIts
-                                                )
+                                                        name = "uzawa",
+                                                        Type = "Stokes_SLE_UzawaSolver",
+                                                        velocitySolver = "matrixSolver",  # not used atm?
+                                                        Preconditioner = preconditionerMatrix,
+                                                        tolerance      = tol,
+                                                        monitor = str(monitor),
+                                                        maxIterations = maxIts,
+                                                        minIterations = minIts
+                                                        )
 
-    globalDict["solver"]="UzawaSolver"
+    globalDict["solver"] = "UzawaSolver"
     if verbose:
         print "Now you need to set up a system of equations to attach this to:"
         print "use the stokesEquationCreate function in the equations module"
@@ -56,15 +56,15 @@ def stokesBlockKSPInterfaceCreate(preconditionerMatrix="preconditioner", tol="1.
     _uw.utils.warnMissingComponent(globalDict, preconditionerMatrix )
 
     sbkiDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                name = "stokesblockkspinterface",
-                                                Type = "StokesBlockKSPInterface",
-                                                Preconditioner = preconditionerMatrix
-                                                )
+                                                       name = "stokesblockkspinterface",
+                                                       Type = "StokesBlockKSPInterface",
+                                                       Preconditioner = preconditionerMatrix
+                                                       )
 
-    _uw.solvers.setSolverType("StokesBlockKSP") # So the options function can check is this solver active
-    #_uw.solvers._solverType = "StokesBlockKSP"  # So the options function can check is this solver active
+    _uw.solvers.setSolverType("StokesBlockKSP")  # So the options function can check is this solver active
+    # _uw.solvers._solverType = "StokesBlockKSP"  # So the options function can check is this solver active
 
-    globalDict["solver"]="StokesBlockInterfaceSolver"
+    globalDict["solver"] = "StokesBlockInterfaceSolver"
     if verbose:
         print "Now you need to set up a system of equations to attach this to:"
         print "use the stokesEquationCreate function in the equations module"

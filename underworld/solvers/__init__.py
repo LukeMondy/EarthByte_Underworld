@@ -15,7 +15,7 @@
 '''
 import setup
 import live
-## These are all just dictionary setup as well
+# These are all just dictionary setup as well
 # from _multigrid import *
 #from _options import *
 
@@ -24,11 +24,13 @@ import live
 _solversOn = False  # obsolete
 _solverType = "None"
 
+
 def solverType():
     """
         Returns a string detailing the solver
     """
     return _solverType
+
 
 def setSolverType( typeString ):
     """

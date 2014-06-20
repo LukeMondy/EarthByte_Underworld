@@ -12,6 +12,7 @@ import live
 # Initialisation
 _gLucifer = False
 
+
 def gLucifer():
     """
     Flag to determine if gLucifer is active

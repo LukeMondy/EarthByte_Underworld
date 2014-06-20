@@ -5,7 +5,8 @@
 # We probably need a more sophisticated weighting scheme to make this work
 # But calculating a FD gradient is quite accurate ...
 
-def RBFGradientVariable_InterpolateValueAt1( RBFfieldVar, coord , axis ):
+
+def RBFGradientVariable_InterpolateValueAt1( RBFfieldVar, coord, axis ):
     """
     Returns the interpolated result of an RBF variable.
 
@@ -22,7 +23,7 @@ def RBFGradientVariable_InterpolateValueAt1( RBFfieldVar, coord , axis ):
 
     import c_arrays
 
-    if type(RBFfieldVar)==str:
+    if type(RBFfieldVar) == str:
         RBFfieldVar = GetLiveComponent(RBFfieldVar)
 
     result = c_arrays.DoubleArray(RBFfieldVar.fieldComponentCount)
@@ -44,7 +45,7 @@ def RBFGradientVariable_InterpolateValueAt1( RBFfieldVar, coord , axis ):
         InterpolationResult = "OUTSIDE_GLOBAL"
 
     toreturn = []
-    for i in range(0,RBFfieldVar.fieldComponentCount):
+    for i in range(0, RBFfieldVar.fieldComponentCount):
         toreturn.append(result.__getitem__(i))
 
     return toreturn, InterpolationResult
@@ -53,7 +54,7 @@ def RBFGradientVariable_InterpolateValueAt1( RBFfieldVar, coord , axis ):
 #
 # This is a Finite Difference calculation of the gradient of the RBF field
 
-def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
+def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord, axis ):
     """
     Returns the interpolated result of an RBF variable.
 
@@ -70,7 +71,7 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
 
     import c_arrays
 
-    if type(RBFfieldVar)==str:
+    if type(RBFfieldVar) == str:
         RBFfieldVar = GetLiveComponent(RBFfieldVar)
 
     result0 = c_arrays.DoubleArray(RBFfieldVar.fieldComponentCount)
@@ -98,10 +99,11 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
     coordArray[axis] += supportSize
     InterpolationResultP = Underworld._RBFFieldVariable_InterpolateValueAt( RBFfieldVar, coordArray.cast(), resultP.cast())
 
-
     # Weights
 
-    WM = -1.0; W0 =  0.0; WP =  1.0
+    WM = -1.0
+    W0 = 0.0
+    WP = 1.0
     delta = supportSize
 
     if InterpolationResultM == 3:
@@ -120,11 +122,9 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
     #     print "Values  {}/{}/{} ".format(resultM[0],result0[0],resultP[0])
     #     print "Results {}/{}/{} ".format(InterpolationResultM,InterpolationResult,InterpolationResultP)
 
-
     toreturn = []
-    for i in range(0,RBFfieldVar.fieldComponentCount):
+    for i in range(0, RBFfieldVar.fieldComponentCount):
         toreturn.append( (WM * resultM[i] + W0 * result0[i] + WP * resultP[i]) / delta )
-
 
     if InterpolationResult == 0:
         InterpolationResult = "OTHER_PROC"
@@ -134,6 +134,5 @@ def RBFGradientVariable_InterpolateValueAt( RBFfieldVar, coord , axis ):
         InterpolationResult = "SHADOW"
     elif InterpolationResult == 3:
         InterpolationResult = "OUTSIDE_GLOBAL"
-
 
     return toreturn, InterpolationResult

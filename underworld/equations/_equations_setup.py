@@ -3,10 +3,10 @@ import underworld as _uw
 import underworld.matrix as _matrix
 import underworld.solvers as _solvers
 ##############################################################################
-## This code adds what is required to the python dictionary
-## We eventually pass the python dictionary back to Underworld
-## and Underworld then uses this information to configure and set
-## itself up.
+# This code adds what is required to the python dictionary
+# We eventually pass the python dictionary back to Underworld
+# and Underworld then uses this information to configure and set
+# itself up.
 ##############################################################################
 
 '''
@@ -22,6 +22,8 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 # velocityField etc have default names here.
 # these names get created in _geometry_setup in meshQ1P0CartesianCreate
 # we can get these names as output from meshQ1P0CartesianCreate and then pass them into here to ensure consistency
+
+
 def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
                        buoyancy=False,
                        buoyancyType="compositional",
@@ -55,20 +57,20 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
 
     globalDict = _uw.dictionary.GetDictionary()
 
-    c_mat=""
+    c_mat = ""
 
-    if velocityField=="":
-        velocityField=globalDict["info"]["velocityField"]
-    if pressureField=="":
-        pressureField=globalDict["info"]["pressureField"]
-    if gaussIntSwarm=="":
-        gaussIntSwarm=globalDict["info"]["gaussIntSwarm"]
+    if velocityField == "":
+        velocityField = globalDict["info"]["velocityField"]
+    if pressureField == "":
+        pressureField = globalDict["info"]["pressureField"]
+    if gaussIntSwarm == "":
+        gaussIntSwarm = globalDict["info"]["gaussIntSwarm"]
 
     if not pic:
-        picIntSwarm=gaussIntSwarm
+        picIntSwarm = gaussIntSwarm
     else:
-        if picIntSwarm=="":
-            picIntSwarm=globalDict["info"]["picIntSwarm"]
+        if picIntSwarm == "":
+            picIntSwarm = globalDict["info"]["picIntSwarm"]
 
     _uw.dictionary.addCheckPointVariables([velocityField, pressureField])
 
@@ -80,7 +82,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
                                                           intSwarmName   = picIntSwarm,
                                                           comment        = "momentum"
                                                           )
-    mom_forceVector=kmatDict["RHS"] # momentum force vector - needed for _stokesCreate and  buoyancy
+    mom_forceVector = kmatDict["RHS"]  # momentum force vector - needed for _stokesCreate and  buoyancy
     # Need to make a transposeRHSvector first for this matrix
     transRHS = _matrix.setup.vectorCreate(vectorName="g_matrixTransRHS",
                                           feVariable=pressureField,
@@ -95,7 +97,7 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
                                                           transposeRHSVector = "g_matrixTransRHS",
                                                           comment        = "gradient"
                                                           )
-    cont_forceVector="g_matrixTransRHS" # continuity force vector - needed for _stokesCreate
+    cont_forceVector = "g_matrixTransRHS"  # continuity force vector - needed for _stokesCreate
     [pmatDict, pmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "preconditioner",
                                                           rowFeVariable  = pressureField,
                                                           colFeVariable  = pressureField,
@@ -103,11 +105,11 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
                                                           intSwarmName   = picIntSwarm,
                                                           comment        = "preconditioner"
                                                           )
-    mass_forceVector=""
-    vmass_forceVector=""
-    vm_mat=""
-    m_mat=""
-    if solver=="stokesblockkspinterface":
+    mass_forceVector = ""
+    vmass_forceVector = ""
+    vm_mat = ""
+    m_mat = ""
+    if solver == "stokesblockkspinterface":
         _uw.dictionary.importToolBox('Solvers')
         _solvers.setup.stokesBlockKSPInterfaceCreate(preconditionerMatrix=pmatDict["name"])
         # create some auxiliary stuff
@@ -124,33 +126,33 @@ def stokesSystemCreate(equationName="stokesEqn", solver="uzawa",
         # We know that the correct Mesh is attached to the Q1(velocity) FeVariable
         # going to have to think about this a little.
         # m_matrixAssemblyTerm is the auto name the matrix Create routine makes up
-        globalDict["components"]["m_matrixAssemblyTerm"]["GeometryMesh"] = globalDict["components"][velocityField]["FEMesh"]  ## Attach the Q1 (Velocity) Mesh here.
-        mass_forceVector=mmatDict["RHS"]
-        m_mat=mmatDict["name"]
+        globalDict["components"]["m_matrixAssemblyTerm"]["GeometryMesh"] = globalDict["components"][velocityField]["FEMesh"]  # Attach the Q1 (Velocity) Mesh here.
+        mass_forceVector = mmatDict["RHS"]
+        m_mat = mmatDict["name"]
         [vmmatDict, vmmatTermDict] = _matrix.setup.matrixCreate(matrixName     = "vm_matrix",
-                                                       rowFeVariable  = velocityField,
-                                                       colFeVariable  = velocityField,
-                                                       matrixTermType = "VelocityMassMatrixTerm",
-                                                       intSwarmName   = gaussIntSwarm,
-                                                       comment        = "velocity Mass matrix for Aug Lag Solver"
-                                                       )
-        vmass_forceVector=vmmatDict["RHS"]
-        vm_mat=vmmatDict["name"]
+                                                                rowFeVariable  = velocityField,
+                                                                colFeVariable  = velocityField,
+                                                                matrixTermType = "VelocityMassMatrixTerm",
+                                                                intSwarmName   = gaussIntSwarm,
+                                                                comment        = "velocity Mass matrix for Aug Lag Solver"
+                                                                )
+        vmass_forceVector = vmmatDict["RHS"]
+        vm_mat = vmmatDict["name"]
     else:
         # create uzawa solver
         _solvers.setup.uzawaCreate(preconditionerMatrix=pmatDict["name"])
 
     # Now we need Solution Vectors (maybe should put these at top level dictionary too)
     velSol   = _matrix.setup.vectorCreate(vectorName="solutionVelocity", feVariable=velocityField,
-                                          vectorType="SolutionVector",   Context=globalDict["context"])
+                                          vectorType="SolutionVector", Context=globalDict["context"])
     pressSol = _matrix.setup.vectorCreate(vectorName="solutionPressure", feVariable=pressureField,
-                                          vectorType="SolutionVector",   Context=globalDict["context"])
+                                          vectorType="SolutionVector", Context=globalDict["context"])
 
     # Add buoyancy
     if buoyancy:
-        if buoyancyType=="compositional":
-            addBuoyancy(forceVector=mom_forceVector, intSwarm=picIntSwarm, StoreDensityOnParticles=StoreDensityOnParticles) # changed from picIntSwarm..test this
-        if buoyancyType=="thermal":
+        if buoyancyType == "compositional":
+            addBuoyancy(forceVector=mom_forceVector, intSwarm=picIntSwarm, StoreDensityOnParticles=StoreDensityOnParticles)  # changed from picIntSwarm..test this
+        if buoyancyType == "thermal":
             addThermalBuoyancy(forceVector=mom_forceVector, intSwarm=picIntSwarm, Ra=str(Rayleigh))
 
     # Can now set up the stokesEqn entry which connects the Solver to the Matrix system of equations
@@ -200,7 +202,7 @@ def stokesCreate(equationName="stokesEqn",
     """
 
     globalDict = _uw.dictionary.GetDictionary()
-    missing=_uw.utils.warnMissingComponent(globalDict, solver )
+    missing = _uw.utils.warnMissingComponent(globalDict, solver )
     _uw.utils.warnMissingComponent(globalDict, preconditionerMatrix )
     _uw.utils.warnMissingComponent(globalDict, stressTensorMatrix )
     _uw.utils.warnMissingComponent(globalDict, gradientMatrix )
@@ -211,54 +213,54 @@ def stokesCreate(equationName="stokesEqn",
     _uw.utils.warnMissingComponent(globalDict, continuityForceVector )
     _uw.utils.warnMissingComponent(globalDict, context )
 
-    stokesDict={} # empty dictionary
+    stokesDict = {}  # empty dictionary
     if solver == "uzawa":
         stokesDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                     name = equationName,
-                                                     Type = "Stokes_SLE",
-                                                     SLE_Solver = solver,
-                                                     Context    = context,
-                                                     StressTensorMatrix     = stressTensorMatrix,
-                                                     GradientMatrix         = gradientMatrix,
-                                                     DivergenceMatrix       = divergenceMatrix,
-                                                     CompressibilityMatrix  = compressibilityMatrix,
-                                                     VelocityVector         = velocitySolution,
-                                                     PressureVector         = pressureSolution,
-                                                     ForceVector            = momentumForceVector,
-                                                     ContinuityForceVector  = continuityForceVector,
-                                                     killNonConvergent      = str(False),
-                                                     nonLinearMaxIterations = "nonLinearMaxIterations",
-                                                     nonLinearTolerance     = "nonLinearTolerance",
-                                                     makeConvergenceFile    = str(False)
-                                                     )
+                                                             name = equationName,
+                                                             Type = "Stokes_SLE",
+                                                             SLE_Solver = solver,
+                                                             Context    = context,
+                                                             StressTensorMatrix     = stressTensorMatrix,
+                                                             GradientMatrix         = gradientMatrix,
+                                                             DivergenceMatrix       = divergenceMatrix,
+                                                             CompressibilityMatrix  = compressibilityMatrix,
+                                                             VelocityVector         = velocitySolution,
+                                                             PressureVector         = pressureSolution,
+                                                             ForceVector            = momentumForceVector,
+                                                             ContinuityForceVector  = continuityForceVector,
+                                                             killNonConvergent      = str(False),
+                                                             nonLinearMaxIterations = "nonLinearMaxIterations",
+                                                             nonLinearTolerance     = "nonLinearTolerance",
+                                                             makeConvergenceFile    = str(False)
+                                                             )
     if solver == "stokesblockkspinterface":
         stokesDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                     name = equationName,
-                                                     Type = "AugLagStokes_SLE",
-                                                     SLE_Solver = solver,
-                                                     Context    = context,
-                                                     StressTensorMatrix     = stressTensorMatrix,
-                                                     GradientMatrix         = gradientMatrix,
-                                                     DivergenceMatrix       = divergenceMatrix,
-                                                     CompressibilityMatrix  = compressibilityMatrix,
-                                                     VelocityVector         = velocitySolution,
-                                                     PressureVector         = pressureSolution,
-                                                     ForceVector            = momentumForceVector,
-                                                     ContinuityForceVector  = continuityForceVector,
-                                                     killNonConvergent      = str(False),
-                                                     nonLinearMaxIterations = "nonLinearMaxIterations",
-                                                     nonLinearTolerance     = "nonLinearTolerance",
-                                                     makeConvergenceFile    = str(False),
-                                                     MassMatrix              = massMatrix,
-                                                     penaltyNumber           = penaltyNumber,
-                                                     hFactor                 = "hFactor",
-                                                     VelocityMassMatrix      = velocityMassMatrix,
-                                                     VMassForceVector        = velocityMassForceVector,
-                                                     JunkForceVector         = junkForceVector
-                                                     )
+                                                             name = equationName,
+                                                             Type = "AugLagStokes_SLE",
+                                                             SLE_Solver = solver,
+                                                             Context    = context,
+                                                             StressTensorMatrix     = stressTensorMatrix,
+                                                             GradientMatrix         = gradientMatrix,
+                                                             DivergenceMatrix       = divergenceMatrix,
+                                                             CompressibilityMatrix  = compressibilityMatrix,
+                                                             VelocityVector         = velocitySolution,
+                                                             PressureVector         = pressureSolution,
+                                                             ForceVector            = momentumForceVector,
+                                                             ContinuityForceVector  = continuityForceVector,
+                                                             killNonConvergent      = str(False),
+                                                             nonLinearMaxIterations = "nonLinearMaxIterations",
+                                                             nonLinearTolerance     = "nonLinearTolerance",
+                                                             makeConvergenceFile    = str(False),
+                                                             MassMatrix              = massMatrix,
+                                                             penaltyNumber           = penaltyNumber,
+                                                             hFactor                 = "hFactor",
+                                                             VelocityMassMatrix      = velocityMassMatrix,
+                                                             VMassForceVector        = velocityMassForceVector,
+                                                             JunkForceVector         = junkForceVector
+                                                             )
         # have to get a bit "hacky" because of bad names we want in the dictionary. We should just change these names in UW itself.
-        globalDict["components"][equationName]["2ndStressTensorMatrix"]=secondStressTensorMatrix
-        globalDict["components"][equationName]["2ndForceVector"]= secondForceVector
+        globalDict["components"][equationName]["2ndStressTensorMatrix"] = secondStressTensorMatrix
+        globalDict["components"][equationName]["2ndForceVector"] = secondForceVector
     return stokesDict
 
 
@@ -271,19 +273,20 @@ def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="Temperat
 
     if "gravity" not in globalDict.keys():
         _uw.utils.sendWarning("The 'gravity' parameter is missing from the Dictionary: adding it with default value = 1")
-        globalDict["gravity"]=1
+        globalDict["gravity"] = 1
 
     buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                               name = "buoyancyForceTerm",
-                                               Type = "BuoyancyForceTerm",
-                                               TemperatureField = temperatureField,  #optional: temp of 0.0 used if no Field
-                                               ForceVector = forceVector,
-                                               Swarm = intSwarm,
-                                               gravity = "gravity",
-                                               comment = comment,
-                                               StoreDensityOnParticles = StoreDensityOnParticles
-                                               )
+                                                       name = "buoyancyForceTerm",
+                                                       Type = "BuoyancyForceTerm",
+                                                       TemperatureField = temperatureField,  # optional: temp of 0.0 used if no Field
+                                                       ForceVector = forceVector,
+                                                       Swarm = intSwarm,
+                                                       gravity = "gravity",
+                                                       comment = comment,
+                                                       StoreDensityOnParticles = StoreDensityOnParticles
+                                                       )
     return buoyancy
+
 
 def addThermalBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="TemperatureField", Ra="1e6", comment=""):
 
@@ -293,21 +296,22 @@ def addThermalBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="T
         _uw.utils.sendWarning("Temperature field is missing from dictionary")
     if "gravity" not in globalDict.keys():
         _uw.utils.sendWarning("The 'gravity' parameter is missing from the Dictionary: adding it with default value = 1")
-        globalDict["gravity"]=1
+        globalDict["gravity"] = 1
 
     buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                               name = "thermalBuoyancyForceTerm",
-                                               Type = "ThermalBuoyancyForceTerm",
-                                               TemperatureField = temperatureField,  #optional: temp of 0.0 used if no Field
-                                               ForceVector = forceVector,
-                                               Swarm = intSwarm,
-                                               gravity = "gravity",
-                                               Ra      = str(Ra),
-                                               comment = comment
-                                               )
+                                                       name = "thermalBuoyancyForceTerm",
+                                                       Type = "ThermalBuoyancyForceTerm",
+                                                       TemperatureField = temperatureField,  # optional: temp of 0.0 used if no Field
+                                                       ForceVector = forceVector,
+                                                       Swarm = intSwarm,
+                                                       gravity = "gravity",
+                                                       Ra      = str(Ra),
+                                                       comment = comment
+                                                       )
     return buoyancy
 
-def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
+
+def advectionDiffusionEquationCreate(equationName="energyEqn", phiField="",
                                      gaussIntSwarm="", velocityField="",
                                      diffusivity=1.0,
                                      upwindFunc="DoublyAsymptoticAssumption",
@@ -329,12 +333,12 @@ def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
 
     globalDict = _uw.dictionary.GetDictionary()
 
-    if phiField=="": # should handle case where these don't exist I suppose...
-        phiField=globalDict["info"]["temperatureField"]
-    if velocityField=="":
-        velocityField=globalDict["info"]["velocityField"]
-    if gaussIntSwarm=="":
-        gaussIntSwarm=globalDict["info"]["gaussIntSwarm"]
+    if phiField == "":  # should handle case where these don't exist I suppose...
+        phiField = globalDict["info"]["temperatureField"]
+    if velocityField == "":
+        velocityField = globalDict["info"]["velocityField"]
+    if gaussIntSwarm == "":
+        gaussIntSwarm = globalDict["info"]["gaussIntSwarm"]
 
     if phiField not in globalDict["components"].keys():
         _uw.utils.sendWarning("Required field is missing from dictionary")
@@ -343,45 +347,43 @@ def advectionDiffusionEquationCreate(equationName="energyEqn",phiField="",
     if velocityField not in globalDict["components"].keys():
         _uw.utils.sendWarning("Velocity Field is missing from dictionary")
 
-    massMat="massMatrix"
-    residual="residual"
+    massMat = "massMatrix"
+    residual = "residual"
 
-    _uw.dictionary.addCheckPointVariables([phiField, phiField+"-phiDotField"])
+    _uw.dictionary.addCheckPointVariables([phiField, phiField + "-phiDotField"])
 
     force = _matrix.setup.vectorCreate(vectorName=residual, feVariable=phiField, vectorType="ForceVector")
     mass  = _matrix.setup.vectorCreate(vectorName=massMat, feVariable=phiField, vectorType="ForceVector")
     predictor = _uw.dictionary.UpdateDictWithComponent( globalDict, name="predictorMulticorrector", Type="AdvDiffMulticorrector")
 
     lumped = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                             name = "lumpedMassMatrixForceTerm",
-                                             Type = "LumpedMassMatrixForceTerm",
-                                             ForceVector = massMat,
-                                             Swarm = gaussIntSwarm
-                                             )
+                                                     name = "lumpedMassMatrixForceTerm",
+                                                     Type = "LumpedMassMatrixForceTerm",
+                                                     ForceVector = massMat,
+                                                     Swarm = gaussIntSwarm
+                                                     )
 
     defRes = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                             name= "defaultResidualForceTerm",
-                                             Type= "AdvDiffResidualForceTerm",
-                                             Swarm=gaussIntSwarm,
-                                             ForceVector=residual,
-                                             ExtraInfo=equationName,
-                                             VelocityField=velocityField,
-                                             DiffusivityVariable=diffusivityVariable,
-                                             defaultDiffusivity=str(diffusivity),
-                                             UpwindXiFunction=upwindFunc
-                                             )
+                                                     name= "defaultResidualForceTerm",
+                                                     Type= "AdvDiffResidualForceTerm",
+                                                     Swarm=gaussIntSwarm,
+                                                     ForceVector=residual,
+                                                     ExtraInfo=equationName,
+                                                     VelocityField=velocityField,
+                                                     DiffusivityVariable=diffusivityVariable,
+                                                     defaultDiffusivity=str(diffusivity),
+                                                     UpwindXiFunction=upwindFunc
+                                                     )
 
     advDiffDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                                  name = equationName,
-                                                  Type = "AdvectionDiffusionSLE",
-                                                  SLE_Solver = "predictorMulticorrector",
-                                                  Context    = context,
-                                                  MassMatrix = massMat,
-                                                  Residual   = "residual",
-                                                  PhiField   = phiField,
-                                                  courantFactor = str(courantFactor)
-                                                  )
-
-
+                                                          name = equationName,
+                                                          Type = "AdvectionDiffusionSLE",
+                                                          SLE_Solver = "predictorMulticorrector",
+                                                          Context    = context,
+                                                          MassMatrix = massMat,
+                                                          Residual   = "residual",
+                                                          PhiField   = phiField,
+                                                          courantFactor = str(courantFactor)
+                                                          )
 
     return

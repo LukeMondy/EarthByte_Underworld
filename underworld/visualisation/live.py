@@ -45,7 +45,7 @@ def StartVisualisationWebServer(host='127.0.0.1', port=-99999, certfile=None):
                     _httpd = SocketServer.TCPServer((host, _port), Handler)
                     trying = False
                 except Exception, e:
-                    _port +=1
+                    _port += 1
                     if _port > defaultport + 10:
                         print "Error. Tried multiple ports without success. Perhaps try setting a port explicitly"
                         print "using the port= option, or shutdown any already running servers."
@@ -55,10 +55,10 @@ def StartVisualisationWebServer(host='127.0.0.1', port=-99999, certfile=None):
             try:
                 _httpd = SocketServer.TCPServer((host, _port), Handler)
             except Exception, e:
-                #print "Error. Unable to open port ", _port
+                # print "Error. Unable to open port ", _port
                 print "Port already being used, continuing as if nothing is wrong. ", _port
-                #print str(e)
-                #raise
+                # print str(e)
+                # raise
                 return
 
         if certfile:
@@ -67,9 +67,9 @@ def StartVisualisationWebServer(host='127.0.0.1', port=-99999, certfile=None):
         httpd_thread = threading.Thread(target=_httpd.serve_forever)
         httpd_thread.setDaemon(True)
         httpd_thread.start()
-        print("Serving visualisation web server at %s:%i" % (host,_port))
+        print("Serving visualisation web server at %s:%i" % (host, _port))
 
-        return host+str(port)
+        return host + str(port)
 
 
 def StopVisualisationWebServer():

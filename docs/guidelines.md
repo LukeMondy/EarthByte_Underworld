@@ -33,6 +33,8 @@ Indent levels should be 4 spaces deep.
 autopep8 tool can be used to tidy when necessary:
 https://pypi.python.org/pypi/autopep8/
 
+This command seems to give good results (not overly aggressive):
+autopep8 -v -i -r  --ignore E201,E202,E501,E221,E251 .
 
 * Comments?
 * Error handling?

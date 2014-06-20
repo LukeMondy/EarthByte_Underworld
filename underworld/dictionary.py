@@ -2,6 +2,7 @@
 
 import collections as _collections
 
+
 def GetDictionary():
     """
     Returns the Underworld dictionary.
@@ -52,6 +53,7 @@ def ClearDictionary():
 
     return
 
+
 def GetConformingDictionary(uwdict={}):
     """
     Checks the provided dictionary has the required structure elements.
@@ -67,24 +69,23 @@ def GetConformingDictionary(uwdict={}):
 
     dictionary = _collections.OrderedDict(uwdict)
     if not "plugins" in dictionary:
-        dictionary["plugins"]=[]
+        dictionary["plugins"] = []
     if not "import" in dictionary:
-        dictionary["import"]=[]
+        dictionary["import"] = []
     if not "parameters" in dictionary:
-        dictionary["parameters"]={}
+        dictionary["parameters"] = {}
     if not "info" in dictionary:
-        dictionary["info"]={}
+        dictionary["info"] = {}
 
     if not "components" in dictionary:
-        dictionary["components"]=_collections.OrderedDict()
+        dictionary["components"] = _collections.OrderedDict()
     else:
-        dictionary["components"]=_collections.OrderedDict(dictionary["components"])
+        dictionary["components"] = _collections.OrderedDict(dictionary["components"])
 
     return dictionary
 
 
 def UpdateDictWithComponent( uwdict=None, **cptDefinitionArgs ):
-
     """
     Updates the global python dictionary components with the information supplied.
     Will add a component if not found within dictionary.
@@ -121,24 +122,23 @@ def UpdateDictWithComponent( uwdict=None, **cptDefinitionArgs ):
         else:
             uwdict["components"][cptDefinitionArgs["name"]] = cptDefinitionArgs
 
-
     return uwdict["components"][cptDefinitionArgs["name"]]
-
 
 
 def setParameters(**params):
 
     global _globalDict
 
-    ## No way this special case can be left in here !!!!!
+    # No way this special case can be left in here !!!!!
 
     for key in params.keys():
-        if key=="outputPath":
-            _globalDict["checkpointWritePath"]=params[key]+"/Checkpoints"
-            _globalDict["checkpointReadPath"]=params[key]+"/Checkpoints"
-        _globalDict[key]=params[key]
+        if key == "outputPath":
+            _globalDict["checkpointWritePath"] = params[key] + "/Checkpoints"
+            _globalDict["checkpointReadPath"] = params[key] + "/Checkpoints"
+        _globalDict[key] = params[key]
 
     return
+
 
 def importToolBox(toolBox):
     """
@@ -151,17 +151,19 @@ def importToolBox(toolBox):
 
     global _globalDict
 
-    #todo: check for known ToolBoxes
-    #todo: check config to see which toolboxes are available
+    # todo: check for known ToolBoxes
+    # todo: check config to see which toolboxes are available
     _globalDict["import"].append(toolBox)
 
     return
+
 
 def getInfo():
 
     return GetDictionary()["info"]
 
-def addPlugin(plugin,  context="context", **other ):
+
+def addPlugin(plugin, context="context", **other ):
     """
     Known Plugins:
                StgFEM_FrequentOutput                  - (deprecated)
@@ -172,15 +174,15 @@ def addPlugin(plugin,  context="context", **other ):
     """
     global _globalDict
 
-    #todo: check for known plugins?
-    #todo: eliminate plugins completely.
+    # todo: check for known plugins?
+    # todo: eliminate plugins completely.
 
-    pdict={}
-    pdict["Type"]=plugin
-    pdict["Context"]=context
+    pdict = {}
+    pdict["Type"] = plugin
+    pdict["Context"] = context
 
     for key in other.keys():
-        pdict[key]=other[key]
+        pdict[key] = other[key]
 
     _globalDict["plugins"].append(pdict)
 
@@ -190,6 +192,8 @@ def addPlugin(plugin,  context="context", **other ):
 # and they should be in the parameters list of the dictionary
 # e.g.
 # globalDict["parameters"]["geometry"]["dim"] = 2
+
+
 def addCheckPointVariables(checkVars=[]):
     """
     Add FieldVariables to Checkpoint
@@ -201,12 +205,14 @@ def addCheckPointVariables(checkVars=[]):
         for item in checkVars:
             _globalDict["FieldVariablesToCheckpoint"].append(item)
     else:
-        _globalDict["FieldVariablesToCheckpoint"]=checkVars
+        _globalDict["FieldVariablesToCheckpoint"] = checkVars
 
     return
 
 # We want o put these somewhere else..
 # But for the moment I think UW requires them at top level in dict.
+
+
 def addSaveVariables(saveVars=[]):
     """
     Add FieldVariables to Save
@@ -217,7 +223,7 @@ def addSaveVariables(saveVars=[]):
         for item in saveVars:
             _globalDict["FieldVariablesToSave"].append(item)
     else:
-        _globalDict["FieldVariablesToSave"]=saveVars
+        _globalDict["FieldVariablesToSave"] = saveVars
 
     return
 
@@ -226,7 +232,7 @@ def initDefaultParameters():
 
     global _globalDict
 
-    output="output"
+    output = "output"
 
  #   _globalDict["dim"]=2
  #  _globalDict["maxX"]=1.0
@@ -238,48 +244,49 @@ def initDefaultParameters():
    # _globalDict["resX"]=4
    # _globalDict["resY"]=4
    # _globalDict["resZ"]=1
-    _globalDict["outputPath"]=output
-    _globalDict["shadowDepth"]=1
-    _globalDict["maxTimeSteps"]=1
-    _globalDict["courantFactor"]=0.25
-    _globalDict["particlesPerCell"]=20
-    _globalDict["seed"]=13
-    _globalDict["allowUnbalancing"]=True
-    _globalDict["buildElementNodeTbl"]=True
-    _globalDict["particleLayoutType"]="random"
-    _globalDict["dumpEvery"]= 1
+    _globalDict["outputPath"] = output
+    _globalDict["shadowDepth"] = 1
+    _globalDict["maxTimeSteps"] = 1
+    _globalDict["courantFactor"] = 0.25
+    _globalDict["particlesPerCell"] = 20
+    _globalDict["seed"] = 13
+    _globalDict["allowUnbalancing"] = True
+    _globalDict["buildElementNodeTbl"] = True
+    _globalDict["particleLayoutType"] = "random"
+    _globalDict["dumpEvery"] = 1
     _globalDict["import"].append("Underworld")
     UpdateDictWithComponent(    name = "context",
                                 Type = "UnderworldContext"
                                 )
-    _globalDict["penaltyNumber"]=0.1
-    _globalDict["mgLevels"]=3
-    _globalDict["saveDataEvery"]=1
-    _globalDict["checkpointEvery"]=1
-    _globalDict["checkpointWritePath"]=output+"/Checkpoints"
-    _globalDict["checkpointReadPath"]=output+"/Checkpoints"
-    _globalDict["checkpointAppendStep"]=0
-    _globalDict["outputSlimmedXML"]=True
+    _globalDict["penaltyNumber"] = 0.1
+    _globalDict["mgLevels"] = 3
+    _globalDict["saveDataEvery"] = 1
+    _globalDict["checkpointEvery"] = 1
+    _globalDict["checkpointWritePath"] = output + "/Checkpoints"
+    _globalDict["checkpointReadPath"] = output + "/Checkpoints"
+    _globalDict["checkpointAppendStep"] = 0
+    _globalDict["outputSlimmedXML"] = True
 
-    _globalDict["gaussParticlesX"]=2
-    _globalDict["gaussParticlesY"]=2
-    _globalDict["gaussParticlesZ"]=2
+    _globalDict["gaussParticlesX"] = 2
+    _globalDict["gaussParticlesY"] = 2
+    _globalDict["gaussParticlesZ"] = 2
 
     # I think having these might make life easier for everyone - these are just names/flags
-    _globalDict["context"]="context"
-    _globalDict["gaussIntSwarm"]=0
-    _globalDict["picIntSwarm"]=0
-    _globalDict["FeVariableQ1"]=0 # maybe too abstract?
-    _globalDict["FeVariableP0"]=0
-    _globalDict["velocityFeVariable"]=0 # use these for now <-- will be set by mesh Creation
-    _globalDict["pressureFeVariable"]=0
-    _globalDict["solver"]=0
+    _globalDict["context"] = "context"
+    _globalDict["gaussIntSwarm"] = 0
+    _globalDict["picIntSwarm"] = 0
+    _globalDict["FeVariableQ1"] = 0  # maybe too abstract?
+    _globalDict["FeVariableP0"] = 0
+    _globalDict["velocityFeVariable"] = 0  # use these for now <-- will be set by mesh Creation
+    _globalDict["pressureFeVariable"] = 0
+    _globalDict["solver"] = 0
 
     addPlugin("StgFEM_FrequentOutput")
     addPlugin("StgFEM_CPUTime")
     addPlugin("StgFEM_StandardConditionFunctions")
 
     return
+
 
 def PrintPretty(dict=None, indent=3):
     """

@@ -2,11 +2,11 @@
 import underworld as _uw
 
 ##############################################################################
-## This code adds what is required to the python dictionary
-## to configure physics
-## We eventually pass the python dictionary back to Underworld
-## and Underworld then uses this information to configure and set
-## itself up.
+# This code adds what is required to the python dictionary
+# to configure physics
+# We eventually pass the python dictionary back to Underworld
+# and Underworld then uses this information to configure and set
+# itself up.
 ##############################################################################
 
 '''
@@ -21,17 +21,15 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 # having to supply them
 
 
-
 def addBuoyancy(forceVector="mom_force", intSwarm="", temperatureField="TemperatureField"):
 
     globalDict = _uw.dictionary.GetDictionary()
 
-
     buoyancy = _uw.dictionary.UpdateDictWithComponent( globalDict,
-                                               name = "buoyancyForceTerm",
-                                               Type = "BuoyancyForceTerm",
-                                               TemperatureField = temperatureField,  #optional: temp of 0.0 used if no Field
-                                               Swarm = intSwarm,
-                                               gravity = "gravity"
-                                               )
+                                                       name = "buoyancyForceTerm",
+                                                       Type = "BuoyancyForceTerm",
+                                                       TemperatureField = temperatureField,  # optional: temp of 0.0 used if no Field
+                                                       Swarm = intSwarm,
+                                                       gravity = "gravity"
+                                                       )
     return buoyancy

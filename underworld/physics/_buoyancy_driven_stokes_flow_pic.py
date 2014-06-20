@@ -1,10 +1,10 @@
-## Rayleigh Taylor
+# Rayleigh Taylor
 
 
-import underworld.meshing  as meshing
+import underworld.meshing as meshing
 import underworld.geometry as geometry
-import underworld.fields   as fields
-import underworld.swarms   as swarms
+import underworld.fields as fields
+import underworld.swarms as swarms
 import underworld.material as material
 import underworld.visualisation as vis
 # import underworld.fields._fields as fields
@@ -18,6 +18,7 @@ import underworld.equations as eq
 
 import underworld
 import underworld as uw
+
 
 def buoyancy_driven_stokes_flow_pic():
     '''

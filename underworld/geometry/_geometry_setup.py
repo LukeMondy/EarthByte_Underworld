@@ -11,10 +11,10 @@ import underworld.swarms as _swarms
 
 
 ##############################################################################
-## This code adds what is required to the python dictionary
-## We eventually pass the python dictionary back to Underworld
-## and Underworld then uses this information to configure and set
-## itself up.
+# This code adds what is required to the python dictionary
+# We eventually pass the python dictionary back to Underworld
+# and Underworld then uses this information to configure and set
+# itself up.
 ##############################################################################
 
 '''
@@ -48,39 +48,39 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
     (It might be better to have the variables created in another function?)
 
     """
-    namesDict={}  # to be returned
+    namesDict = {}  # to be returned
 
     globalDict = _uw.dictionary.GetDictionary()
 
     # Set minX etc to info dictionary
-    globalDict["info"]["minX"]=minX
-    globalDict["info"]["maxX"]=maxX
-    globalDict["info"]["minY"]=minY
-    globalDict["info"]["maxY"]=maxY
-    globalDict["info"]["minZ"]=minZ
-    globalDict["info"]["maxZ"]=maxZ
-    globalDict["info"]["resX"]=resX
-    globalDict["info"]["resY"]=resY
-    globalDict["info"]["resZ"]=resZ
-    globalDict["info"]["dim"]=dim
-    globalDict["info"]["pic"]=str(pic)
-    globalDict["info"]["withTemperature"]=str(withTemperature)
-    globalDict["info"]["particlesPerCell"]=particlesPerCell
+    globalDict["info"]["minX"] = minX
+    globalDict["info"]["maxX"] = maxX
+    globalDict["info"]["minY"] = minY
+    globalDict["info"]["maxY"] = maxY
+    globalDict["info"]["minZ"] = minZ
+    globalDict["info"]["maxZ"] = maxZ
+    globalDict["info"]["resX"] = resX
+    globalDict["info"]["resY"] = resY
+    globalDict["info"]["resZ"] = resZ
+    globalDict["info"]["dim"] = dim
+    globalDict["info"]["pic"] = str(pic)
+    globalDict["info"]["withTemperature"] = str(withTemperature)
+    globalDict["info"]["particlesPerCell"] = particlesPerCell
     # Unfortunately we currently need these on top level of Dicitionary as well.
-    globalDict["minX"]=minX
-    globalDict["maxX"]=maxX
-    globalDict["minY"]=minY
-    globalDict["maxY"]=maxY
-    globalDict["minZ"]=minZ
-    globalDict["maxZ"]=maxZ
-    globalDict["resX"]=resX
-    globalDict["resY"]=resY
-    globalDict["resZ"]=resZ
-    globalDict["dim"]=dim
-    globalDict["particlesPerCell"]=particlesPerCell
+    globalDict["minX"] = minX
+    globalDict["maxX"] = maxX
+    globalDict["minY"] = minY
+    globalDict["maxY"] = maxY
+    globalDict["minZ"] = minZ
+    globalDict["maxZ"] = maxZ
+    globalDict["resX"] = resX
+    globalDict["resY"] = resY
+    globalDict["resZ"] = resZ
+    globalDict["dim"] = dim
+    globalDict["particlesPerCell"] = particlesPerCell
 
     # The velocity mesh Q1 (linear)
-    meshQ1Name="linearMesh"
+    meshQ1Name = "linearMesh"
     meshDictQ1 = _meshing.setup.cartesianMeshCreate(meshElementType="linear",
                                                     componentName=meshQ1Name,
                                                     minX=minX, minY=minY, minZ=minZ,
@@ -91,19 +91,19 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
     # The pressure mesh P0 (constant)
 
     # This might be the correct level for this?
-    globalDict["info"]["velocityMesh"]=meshQ1Name  # This is what the BC setup functions will refer to by default
+    globalDict["info"]["velocityMesh"] = meshQ1Name  # This is what the BC setup functions will refer to by default
 
-    meshP0Name="constantMesh"
+    meshP0Name = "constantMesh"
     meshDictP0 = _meshing.setup.cartesianMeshCreate(meshElementType="constant", componentName=meshP0Name, primaryMeshName=meshQ1Name)
 
-    globalDict["info"]["pressureMesh"]=meshP0Name
+    globalDict["info"]["pressureMesh"] = meshP0Name
 
     # Let's put some useful variables on the Mesh
     # Need a Velocity FeVariable for a velocity field on the mesh
     # need a mesh variable first
 
-    velMeshVarName="velocityMeshVariable"
-    velMeshVarName="velocity"
+    velMeshVarName = "velocityMeshVariable"
+    velMeshVarName = "velocity"
 
     _fields.setup.meshVariableCreate( componentName=velMeshVarName, dim=dim, rankType="Vector", dataType="Double", meshName=meshQ1Name)
 
@@ -113,16 +113,15 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
 
     velName = "VelocityField"
     velFeVar = _fields.setup.feVariableCreate( componentName=velName, meshName=meshQ1Name, meshVariableName=velMeshVarName)
-    globalDict["info"]["velocityField"]=velName
+    globalDict["info"]["velocityField"] = velName
 
-    pressMeshVarName="pressureMeshVariable"
-    pressMeshVarName="pressure"
+    pressMeshVarName = "pressureMeshVariable"
+    pressMeshVarName = "pressure"
     _fields.setup.meshVariableCreate( componentName=pressMeshVarName, dim=dim, rankType="Scalar", dataType="Double", meshName=meshP0Name)
 
     pressName  = "PressureField"
     pressFeVar = _fields.setup.feVariableCreate( componentName=pressName, meshName=meshP0Name, meshVariableName=pressMeshVarName)
-    globalDict["info"]["pressureField"]=pressName
-
+    globalDict["info"]["pressureField"] = pressName
 
     if withTemperature:
         tempMeshVar = "temperatureMeshVariable"   # temp lives on velocity mesh
@@ -130,20 +129,20 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
         _fields.setup.meshVariableCreate( componentName=tempMeshVar, dim=dim, rankType="Scalar", dataType="Double", meshName=meshQ1Name)
         tempName = "TemperatureField"
         tempFeVar = _fields.setup.feVariableCreate( componentName=tempName, meshName=meshQ1Name, meshVariableName=tempMeshVar)
-        namesDict["temperatureFeVariable"]=tempName
-        globalDict["info"]["temperatureField"]=tempName
+        namesDict["temperatureFeVariable"] = tempName
+        globalDict["info"]["temperatureField"] = tempName
 
     # we usually need the Gauss swarm in any case
 
     # this should be _swarms.integrationSwarmCreate
 
-    swarmType="Gauss"
+    swarmType = "Gauss"
     [gaussIntSwarm, integratorName, emptymapper] = _swarms.setup.integrationSwarmCreate(swarmType=swarmType, meshName=meshQ1Name)
-    globalDict["info"]["gaussIntSwarm"]=gaussIntSwarm["name"]
+    globalDict["info"]["gaussIntSwarm"] = gaussIntSwarm["name"]
 
-    picIntSwarm={}
+    picIntSwarm = {}
     if pic:
-        swarmType="PIC"
+        swarmType = "PIC"
         # need a material Swarm first if swarm is type PIC (let it create one with a default name)
 
         swarmDict = _swarms.setup.materialSwarmCreate(meshName=meshQ1Name, particlesPerCell=particlesPerCell)
@@ -155,7 +154,7 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
                                                                                       integratorName = integratorName,
                                                                                       meshName=meshQ1Name)
 
-        globalDict["info"]["picIntSwarm"]=picIntSwarm["name"]
+        globalDict["info"]["picIntSwarm"] = picIntSwarm["name"]
 
         # Need an advector for the swarm
         _swarms.setup.materialSwarmAdvectorCreate( integratorName    = integratorName,
@@ -175,10 +174,10 @@ def meshQ1P0CartesianCreate(resX="resX", resY="resY", resZ="resZ",
     globalDict["pressureMesh"]       = meshP0Name
 
     # It is easier to just return some names here (... but we should actually be consistent)
-    namesDict["linearMesh"]=meshQ1Name
-    namesDict["constantMesh"]=meshP0Name
-    namesDict["velocityField"]=velName
-    namesDict["pressureField"]=pressName
-    namesDict["gaussIntSwarm"]     =gaussIntSwarm["name"]
-    namesDict["picIntSwarm"]       =picIntSwarm["name"]
+    namesDict["linearMesh"] = meshQ1Name
+    namesDict["constantMesh"] = meshP0Name
+    namesDict["velocityField"] = velName
+    namesDict["pressureField"] = pressName
+    namesDict["gaussIntSwarm"]     = gaussIntSwarm["name"]
+    namesDict["picIntSwarm"]       = picIntSwarm["name"]
     return namesDict

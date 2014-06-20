@@ -2,9 +2,10 @@
 import underworld as _underworld
 
 ##############################################################################
-## Dictionary changes / definitions from MultigridForRegularSCR.xml or
-##  from MultigridForRegular.xml
+# Dictionary changes / definitions from MultigridForRegularSCR.xml or
+# from MultigridForRegular.xml
 ##############################################################################
+
 
 def multigrid( mgLevels ):
     """
@@ -19,7 +20,6 @@ def multigrid( mgLevels ):
         print "solvers.multigrid(): You should first call one of the solvers.setup functions"
         return
 
-
     globalDict = _underworld.dictionary.GetDictionary()
 
     globalDict['mgLevels'] = mgLevels
@@ -27,28 +27,24 @@ def multigrid( mgLevels ):
     # The old-style solver requires a plugin for the MG, the new does not
 
     if "Uzawa" in _solverType:
-        globalDict["plugins"].append( {"Type" : "StgFEM_Multigrid" , "Context":"context" } )
-
+        globalDict["plugins"].append( {"Type": "StgFEM_Multigrid", "Context": "context" } )
 
     mgsolver = _underworld.dictionary.UpdateDictWithComponent( globalDict,
-                                name="mgSolver",
-                                Type="PETScMGSolver",
-                                levels=mgLevels,
-                                opGenerator="mgOpGenerator"
-                                )
+                                                               name="mgSolver",
+                                                               Type="PETScMGSolver",
+                                                               levels=mgLevels,
+                                                               opGenerator="mgOpGenerator"
+                                                               )
 
     mgOpGenerator = _underworld.dictionary.UpdateDictWithComponent( globalDict,
-                                name="mgOpGenerator",
-                                Type="SROpGenerator",
-                                fineVariable="VelocityField"
-                                )
+                                                                    name="mgOpGenerator",
+                                                                    Type="SROpGenerator",
+                                                                    fineVariable="VelocityField"
+                                                                    )
 
     print " *  Added MG Solver to Stokes Eqn (using {} levels)".format(mgLevels)
 
-
     _solverType = _solverType + "+Multigrid"
     _underworld.solvers.setSolverType( _solverType )
-
-
 
     return

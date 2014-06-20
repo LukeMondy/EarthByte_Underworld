@@ -1,12 +1,14 @@
 # Swarms package - configures swarms
 import underworld as uw
 ##############################################################################
-##  Adds Visualisation entries to the python dictionary
+# Adds Visualisation entries to the python dictionary
 ##############################################################################
 
 '''
   Adds Visualisation entries to the python dictionary
 '''
+
+
 def titleCreate(name="randomTitle", string="Random Plot"):
 
     globalDict = uw.dictionary.GetDictionary()
@@ -14,18 +16,19 @@ def titleCreate(name="randomTitle", string="Random Plot"):
     name = uw.utils.checkForNewComponentName(globalDict, name)
 
     title = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                           name = name,
-                                           Type = "lucTitle",
-                                           string = str(string)
-                                           )
+                                                   name = name,
+                                                   Type = "lucTitle",
+                                                   string = str(string)
+                                                   )
     return title
+
 
 def fieldVariableBorderCreate(name="", fieldVariable=""):
     """
     The fieldVariable can be an FeVariable or an OperatorFeVariable
     """
     globalDict = uw.dictionary.GetDictionary()
-    if fieldVariable=="":
+    if fieldVariable == "":
         uw.utils.sendError("Must provide an FeVariable or OperatorFeVariable name")
         return -1
 
@@ -33,17 +36,17 @@ def fieldVariableBorderCreate(name="", fieldVariable=""):
         # Test if we already have a fieldVariable border of the name we are going to use here.
         name = uw.utils.checkForNewComponentName(globalDict, name)
     else:
-        name = fieldVariable+"Border"
+        name = fieldVariable + "Border"
 
     title = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                           name = name,
-                                           Type = "lucFieldVariableBorder",
-                                           FieldVariable = fieldVariable,
-                                           )
+                                                   name = name,
+                                                   Type = "lucFieldVariableBorder",
+                                                   FieldVariable = fieldVariable,
+                                                   )
     return title
 
 
-def colourMapCreate(name="defaultColourMap",colours="Purple Blue Green Yellow Orange Red", dynamicRange=True, minimum=0.0, maximum=100.0):
+def colourMapCreate(name="defaultColourMap", colours="Purple Blue Green Yellow Orange Red", dynamicRange=True, minimum=0.0, maximum=100.0):
     """
     Set colour map for plot.
 
@@ -58,14 +61,15 @@ def colourMapCreate(name="defaultColourMap",colours="Purple Blue Green Yellow Or
     name = uw.utils.checkForNewComponentName(globalDict, name)
 
     cmap = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                          name         = name,
-                                          Type         = "lucColourMap",
-                                          colours      = colours,
-                                          dynamicRange = str(dynamicRange),
-                                          minimum = str(minimum),
-                                          maximum = str(maximum)
-                                          )
+                                                  name         = name,
+                                                  Type         = "lucColourMap",
+                                                  colours      = colours,
+                                                  dynamicRange = str(dynamicRange),
+                                                  minimum = str(minimum),
+                                                  maximum = str(maximum)
+                                                  )
     return cmap
+
 
 def colourBarCreate(name="defaultColourBar", colourMap=""):
     """
@@ -75,15 +79,15 @@ def colourBarCreate(name="defaultColourBar", colourMap=""):
     globalDict = uw.dictionary.GetDictionary()
     # Need to test if we already have a colour bar of the name we are going to use here.
     name = uw.utils.checkForNewComponentName(globalDict, name)
-    if colourMap=="":
+    if colourMap == "":
         uw.utils.sendError("Must provide a ColourMap name")
         return -1
 
     cmap = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                          name      = name,
-                                          Type      = "lucColourBar",
-                                          ColourMap = colourMap
-                                          )
+                                                  name      = name,
+                                                  Type      = "lucColourBar",
+                                                  ColourMap = colourMap
+                                                  )
     return cmap
 
 
@@ -95,28 +99,29 @@ def scalarFieldMapCreate(name="", colourMap="", fieldVariable="", resolution=128
     """
     globalDict = uw.dictionary.GetDictionary()
 
-    if fieldVariable=="":
+    if fieldVariable == "":
         uw.utils.sendError("Must provide an FeVariable or OperatorFeVariable name")
         return -1
 
-    if colourMap=="":
+    if colourMap == "":
         # just create a default map
-        colourMapDict = colourMapCreate(name=fieldVariable+"ColourMap",colours="Purple Blue Green Yellow Orange Red", dynamicRange="True")
+        colourMapDict = colourMapCreate(name=fieldVariable + "ColourMap", colours="Purple Blue Green Yellow Orange Red", dynamicRange="True")
         colourMap = colourMapDict["name"]
     if name != "":
         # Test if we already have a colour map of the name we are going to use here.
         name = uw.utils.checkForNewComponentName(globalDict, name)
     else:
-        name = fieldVariable+"ScalarFieldMap"
+        name = fieldVariable + "ScalarFieldMap"
 
     sfield = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                            name          = name,
-                                            Type          = "lucScalarField",
-                                            FieldVariable = fieldVariable,
-                                            ColourMap     = colourMap,
-                                            resolution    =str(resolution)
-                                            )
+                                                    name          = name,
+                                                    Type          = "lucScalarField",
+                                                    FieldVariable = fieldVariable,
+                                                    ColourMap     = colourMap,
+                                                    resolution    =str(resolution)
+                                                    )
     return sfield
+
 
 def scalarContoursCreate(name="", colour="black", fieldVariable="", interval=0.2, resolution=20, lineWidth=2, showValues="False"):
     """
@@ -126,7 +131,7 @@ def scalarContoursCreate(name="", colour="black", fieldVariable="", interval=0.2
     """
     globalDict = uw.dictionary.GetDictionary()
 
-    if fieldVariable=="":
+    if fieldVariable == "":
         uw.utils.sendError("Must provide an FeVariable or OperatorFeVariable name")
         return -1
 
@@ -134,19 +139,20 @@ def scalarContoursCreate(name="", colour="black", fieldVariable="", interval=0.2
         # Test if we already have a name we are going to use here.
         name = uw.utils.checkForNewComponentName(globalDict, name)
     else:
-        name = fieldVariable+"Contours"
+        name = fieldVariable + "Contours"
 
     sfield = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                            name             = name,
-                                            Type              = "lucScalarField",
-                                            FieldVariable = fieldVariable,
-                                            resolution      = str(resolution),
-                                            colour            = colour,
-                                            interval          =  str(interval),
-                                            lineWidth       = str(lineWidth),
-                                            showValues  = str(showValues)
-                                            )
+                                                    name             = name,
+                                                    Type              = "lucScalarField",
+                                                    FieldVariable = fieldVariable,
+                                                    resolution      = str(resolution),
+                                                    colour            = colour,
+                                                    interval          = str(interval),
+                                                    lineWidth       = str(lineWidth),
+                                                    showValues  = str(showValues)
+                                                    )
     return sfield
+
 
 def swarmViewerCreate(name="", colourMap="", pointSize=2.0, swarm="", variable="colour"):
     """
@@ -154,32 +160,33 @@ def swarmViewerCreate(name="", colourMap="", pointSize=2.0, swarm="", variable="
     """
     globalDict = uw.dictionary.GetDictionary()
 
-    if swarm=="":
+    if swarm == "":
         uw.utils.sendError("Must provide a Swarm name")
         return -1
 
-    if colourMap=="":
+    if colourMap == "":
         # look for a default colour map; create if doesn't exist
         if "defaultColourMap" in globalDict["components"]:
-            colourMap="defaultColourMap"
+            colourMap = "defaultColourMap"
         else:
-            colourMapDict = colourMapCreate(name="defaultColourMap",colours="Purple Blue Green Yellow Orange Red", dynamicRange="True")
+            colourMapDict = colourMapCreate(name="defaultColourMap", colours="Purple Blue Green Yellow Orange Red", dynamicRange="True")
             colourMap = colourMapDict["name"]
     if name != "":
         # Test if we already have the name we are going to use here.
         name = uw.utils.checkForNewComponentName(globalDict, name)
     else:
-        name = swarm+"Viewer"
+        name = swarm + "Viewer"
 
     sviewer = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                             name       = name,
-                                             Type       = "lucSwarmViewer",
-                                             Swarm      = swarm,
-                                             ColourVariable = swarm+"-"+variable,  # I think this guy gets created in code so is not in dictionary
-                                             ColourMap  = colourMap,
-                                             pointSize  = str(pointSize)
-                                             )
+                                                     name       = name,
+                                                     Type       = "lucSwarmViewer",
+                                                     Swarm      = swarm,
+                                                     ColourVariable = swarm + "-" + variable,  # I think this guy gets created in code so is not in dictionary
+                                                     ColourMap  = colourMap,
+                                                     pointSize  = str(pointSize)
+                                                     )
     return sviewer
+
 
 def cameraCreate(name="camera", coordZ=1.5, centreFieldVariable=""):
     """
@@ -188,7 +195,7 @@ def cameraCreate(name="camera", coordZ=1.5, centreFieldVariable=""):
     """
     globalDict = uw.dictionary.GetDictionary()
 
-    if centreFieldVariable=="":
+    if centreFieldVariable == "":
         uw.utils.sendError("Must provide an FeVariable or OperatorFeVariable name")
         return -1
 
@@ -196,14 +203,16 @@ def cameraCreate(name="camera", coordZ=1.5, centreFieldVariable=""):
     name = uw.utils.checkForNewComponentName(globalDict, name)
 
     sfield = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                            name          = name,
-                                            Type          = "lucCamera",
-                                            CentreFieldVariable = centreFieldVariable,
-                                            coordZ        = str(coordZ)
-                                            )
+                                                    name          = name,
+                                                    Type          = "lucCamera",
+                                                    CentreFieldVariable = centreFieldVariable,
+                                                    coordZ        = str(coordZ)
+                                                    )
     return sfield
 
 # camera lucColourBar lucScalarField lucTitle
+
+
 def viewPortCreate(name="", titleEntry="", colourBar="", scalarFieldMap="", fieldVariable="", camera="", border="", compositeEachObject="false", **extra):
     """
     Create a view port
@@ -211,44 +220,43 @@ def viewPortCreate(name="", titleEntry="", colourBar="", scalarFieldMap="", fiel
     """
     # still have to make this colourMap border stuff a little clearer
     globalDict = uw.dictionary.GetDictionary()
-    if fieldVariable=="" and scalarFieldMap=="":
-        uw.utils.sendError("Must provide either an FeVariable/OperatorFeVariable name for fieldVariable\n"+
+    if fieldVariable == "" and scalarFieldMap == "":
+        uw.utils.sendError("Must provide either an FeVariable/OperatorFeVariable name for fieldVariable\n" +
                            "or a scalarFieldMap map for scalarFieldMap")
         return -1
-    if scalarFieldMap=="": # Then fieldVariable is not blank
+    if scalarFieldMap == "":  # Then fieldVariable is not blank
         # create scalarFieldMap which also needs a colourMap
         # scalarFieldMapCreate can make its own defaultColourMap but let's create it and name it based on the fieldVariable
-        cmap = colourMapCreate( name = fieldVariable+"ColourMap")
+        cmap = colourMapCreate( name = fieldVariable + "ColourMap")
         sfield = scalarFieldMapCreate( fieldVariable = fieldVariable, colourMap = cmap["name"])
-        scalarFieldMap=sfield["name"]
+        scalarFieldMap = sfield["name"]
         # if we have made a new colourMap then any colourBar passed in doesn't make sense?
-        cbar = colourBarCreate( colourMap = cmap["name"], name = fieldVariable+"ColourBar" )
+        cbar = colourBarCreate( colourMap = cmap["name"], name = fieldVariable + "ColourBar" )
         colourBar = cbar["name"]
-        if titleEntry=="":
-            title = titleCreate(name=fieldVariable+"Title", string = fieldVariable)
+        if titleEntry == "":
+            title = titleCreate(name=fieldVariable + "Title", string = fieldVariable)
             titleEntry = title["name"]
-        if name=="":
-            name = fieldVariable+"VP"
-        if border=="":
+        if name == "":
+            name = fieldVariable + "VP"
+        if border == "":
             bord = borderCreate(name="border", fieldVariable=fieldVariable)
-            border=bord["name"]
-    if fieldVariable=="": # then scalarFieldMap is not blank
+            border = bord["name"]
+    if fieldVariable == "":  # then scalarFieldMap is not blank
         # if no colourBar then let's not worry about it?
-        if titleEntry=="":
-            title = titleCreate(name=scalarFieldMap+"Title", string = scalarFieldMap)
+        if titleEntry == "":
+            title = titleCreate(name=scalarFieldMap + "Title", string = scalarFieldMap)
             titleEntry = title["name"]
-        if name=="":
-            name = scalarFieldMap+"VP"
+        if name == "":
+            name = scalarFieldMap + "VP"
 
-    if camera=="":
+    if camera == "":
         # just create a camera using the fieldVariable?
-        cam=cameraCreate(name="camera", coordZ=1.5, centreFieldVariable=fieldVariable)
-        camera=cam["name"]
+        cam = cameraCreate(name="camera", coordZ=1.5, centreFieldVariable=fieldVariable)
+        camera = cam["name"]
 
-
-    drawingObjectList=[]
+    drawingObjectList = []
     drawingObjectList.append(titleEntry)
-    if colourBar!="":
+    if colourBar != "":
         drawingObjectList.append(colourBar)
     drawingObjectList.append(scalarFieldMap)
     drawingObjectList.append(border)
@@ -257,15 +265,14 @@ def viewPortCreate(name="", titleEntry="", colourBar="", scalarFieldMap="", fiel
         drawingObjectList.append(extra[key])
 
     vport = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                           name          = name,
-                                           Type          = "lucViewport",
-                                           Camera        = camera,
-                                           compositeEachObject = str(compositeEachObject),
-                                           DrawingObject = drawingObjectList
-                                           )
+                                                   name          = name,
+                                                   Type          = "lucViewport",
+                                                   Camera        = camera,
+                                                   compositeEachObject = str(compositeEachObject),
+                                                   DrawingObject = drawingObjectList
+                                                   )
 
     return vport
-
 
 
 def databaseCreate(name="database", singleFile="False",
@@ -279,14 +286,15 @@ def databaseCreate(name="database", singleFile="False",
     name = uw.utils.checkForNewComponentName(globalDict, name)
 
     dbObject = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                              name      = name,
-                                              Type      = "lucDatabase",
-                                              singleFile=singleFile,
-                                              writeEvery=writeEvery,
-                                              filename=filename,
-                                              DrawingObject = drawingObjectList
-                                              )
+                                                      name      = name,
+                                                      Type      = "lucDatabase",
+                                                      singleFile=singleFile,
+                                                      writeEvery=writeEvery,
+                                                      filename=filename,
+                                                      DrawingObject = drawingObjectList
+                                                      )
     return dbObject
+
 
 def windowCreate(name="window", viewPortList="", database="database"):
 
@@ -294,18 +302,19 @@ def windowCreate(name="window", viewPortList="", database="database"):
     # Need to test if we already have a database of the name we are going to use here.
     name = uw.utils.checkForNewComponentName(globalDict, name)
 
-    if viewPortList=="":
+    if viewPortList == "":
         uw.utils.sendError("Must provide viewPorts as list of strings")
         return -1
 
     window = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                            name     = name,
-                                            Type     = "lucWindow",
-                                            Viewport = viewPortList,
-                                            Database = database
-                                            )
+                                                    name     = name,
+                                                    Type     = "lucWindow",
+                                                    Viewport = viewPortList,
+                                                    Database = database
+                                                    )
 
     return window
+
 
 def borderCreate(name="border", fieldVariable=""):
 
@@ -313,14 +322,14 @@ def borderCreate(name="border", fieldVariable=""):
     # Need to test if we already have a database of the name we are going to use here.
     name = uw.utils.checkForNewComponentName(globalDict, name)
 
-    if name=="":
-        name = fieldVariable+"Border"
+    if name == "":
+        name = fieldVariable + "Border"
 
     border = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                            name     = name,
-                                            Type     = "lucFieldVariableBorder",
-                                            FieldVariable = fieldVariable
-                                            )
+                                                    name     = name,
+                                                    Type     = "lucFieldVariableBorder",
+                                                    FieldVariable = fieldVariable
+                                                    )
 
     return border
 
@@ -333,19 +342,19 @@ def fieldArrowsCreate(name="fieldArrows", fieldVariable="", arrowHeadSize=0.15, 
     # Test if we already have the name we are going to use here.
     name = uw.utils.checkForNewComponentName(globalDict, name)
 
-    if fieldVariable=="":
+    if fieldVariable == "":
         uw.utils.sendError("Must provide an FeVariable or OperatorFeVariable name")
         return -1
 
-    if name=="":
-        name = fieldVariable+"Arrows"
+    if name == "":
+        name = fieldVariable + "Arrows"
 
     arrows = uw.dictionary.UpdateDictWithComponent( globalDict,
-                                            name          = name,
-                                            Type          = "lucVectorArrows",
-                                            VectorVariable = fieldVariable,
-                                            Colour        = colour,
-                                            arrowHeadSize = str(arrowHeadSize),
-                                            lengthScale   = str(lengthScale)
-                                            )
+                                                    name          = name,
+                                                    Type          = "lucVectorArrows",
+                                                    VectorVariable = fieldVariable,
+                                                    Colour        = colour,
+                                                    arrowHeadSize = str(arrowHeadSize),
+                                                    lengthScale   = str(lengthScale)
+                                                    )
     return arrows

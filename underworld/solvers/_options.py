@@ -3,7 +3,6 @@ import os as _os
 
 
 def options( optionsFilename="", optionsString="" ):
-
     """
     Injects options into the PETSc options database. Note that this is called by the
     Stokes block ksp solver as it runs and is therefore not guaranteed to affect anything which PETSc has
@@ -27,7 +26,6 @@ def options( optionsFilename="", optionsString="" ):
         print "solvers.options(): You should first call a solver activation function "
         return
 
-
     if "Uzawa" in _solverType:
         print " !! Petsc Options cannot be set in code for the Uzawa solver"
         return
@@ -46,8 +44,7 @@ def options( optionsFilename="", optionsString="" ):
         print " *  Adding options string -> {}.".format(optionsString)
 
 
-
-## Here are some "hard coded" options files as strings:
+# Here are some "hard coded" options files as strings:
 
 
 def petsc_options_StokesBlockKSP_accelerating_mg():
@@ -59,6 +56,6 @@ def petsc_options_StokesBlockKSP_accelerating_mg():
 
     """
 
-    petsc_opt_filename =  _os.path.join(_os.path.dirname(__file__),"_options-scr-mg-accelerating.opt")
+    petsc_opt_filename = _os.path.join(_os.path.dirname(__file__), "_options-scr-mg-accelerating.opt")
 
     return (petsc_opt_filename)

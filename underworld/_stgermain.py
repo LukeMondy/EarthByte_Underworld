@@ -7,11 +7,13 @@ import collections as _collections
 from libUnderworld import *
 import utils
 
+
 def _elemGetKey(elem):
     if 'name' in elem.attrib:
         return elem.attrib['name']
     else:
         return elem.tag.split("}")[1]
+
 
 def _elementToDict(elem):
     # set key
@@ -23,11 +25,11 @@ def _elementToDict(elem):
             if child.tag.split('}')[1] in ['param', 'list', 'struct']:  # add this check to ensure we use only the valid guys
                 childkey = _elemGetKey(child)
                 valueGuy = _elementToDict(child)
-                if dicttag in ['struct','StGermainData']:
+                if dicttag in ['struct', 'StGermainData']:
                     if not childkey in value:
                         # if no entry with this key, add one
                         value[childkey] = valueGuy
-                elif dicttag == 'list' :
+                elif dicttag == 'list':
                     # if entry already exists,
                     try:
                         # assume it's a list, and add item to list
@@ -53,12 +55,13 @@ def _elementToDict(elem):
 
     return value
 
+
 def _convToNativeWherePossible(string):
     if string == None:
         return None
-    elif string.lower()=="true":
+    elif string.lower() == "true":
         return True
-    elif string.lower()=="false":
+    elif string.lower() == "false":
         return False
     else:
         try:
@@ -76,34 +79,34 @@ def _dictToUWElementTree(inputDict):
     root.attrib['xmlns'] = 'http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003'
 
     # now to add subElements
-    for k,v in inputDict.items():
-        _itemToElement(v,k,root)
+    for k, v in inputDict.items():
+        _itemToElement(v, k, root)
 
     return root
 
 
-def _itemToElement(inputItem,inputItemName,inputEl):
+def _itemToElement(inputItem, inputItemName, inputEl):
     if type(inputItem) == list:
         subEl = _ET.SubElement(inputEl, 'list')
         if inputItemName != '':
-            subEl.attrib['name']=inputItemName
+            subEl.attrib['name'] = inputItemName
         for item in inputItem:
-            _itemToElement(item,'',subEl)
-    elif type(inputItem) in [_collections.OrderedDict,dict]:
+            _itemToElement(item, '', subEl)
+    elif type(inputItem) in [_collections.OrderedDict, dict]:
         subEl = _ET.SubElement(inputEl, 'struct')
         if inputItemName != '':
-            subEl.attrib['name']=inputItemName
-        for k,v in inputItem.items():
-            _itemToElement(v,k,subEl)
-    elif type(inputItem) in [str,float,int,bool,unicode]:
+            subEl.attrib['name'] = inputItemName
+        for k, v in inputItem.items():
+            _itemToElement(v, k, subEl)
+    elif type(inputItem) in [str, float, int, bool, unicode]:
         subEl = _ET.SubElement(inputEl, 'param')
         if inputItemName != '':
-            subEl.attrib['name']=inputItemName
+            subEl.attrib['name'] = inputItemName
         subEl.text = str(inputItem)
     elif not inputItem:
         subEl = _ET.SubElement(inputEl, 'param')
         if inputItemName != '':
-            subEl.attrib['name']=inputItemName
+            subEl.attrib['name'] = inputItemName
         subEl.text = "\t"
     else:
         print "Error.. Unknown type encountered"
@@ -113,14 +116,14 @@ def _itemToElement(inputItem,inputItemName,inputEl):
 
 
 def _indent(elem, level=0):
-    i = "\n" + level*"  "
+    i = "\n" + level * "  "
     if len(elem):
         if not elem.text or not elem.text.strip():
             elem.text = i + "  "
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
         for elem in elem:
-            indent(elem, level+1)
+            indent(elem, level + 1)
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
     else:
@@ -164,12 +167,13 @@ def SetStgDictionaryFromPyDict( pyDict, stgDict ):
        """
     _AssertInitStateIs(True)
     root = _dictToUWElementTree(pyDict)
-    xmlString = _ET.tostring(root,encoding = 'utf-8', method = 'xml')
+    xmlString = _ET.tostring(root, encoding = 'utf-8', method = 'xml')
     ioHandler = StGermain.XML_IO_Handler_New()
     StGermain.IO_Handler_ReadAllFromBuffer( ioHandler, xmlString, stgDict, "" )
     StGermain.Stg_Class_Delete( ioHandler )
 
     return
+
 
 def LoadModules( pyUWDict ):
     """
@@ -184,8 +188,9 @@ def LoadModules( pyUWDict ):
     _AssertInitStateIs(True)
     stgRootDict = StGermain.Dictionary_New()
     SetStgDictionaryFromPyDict( pyUWDict, stgRootDict )
-    StGermain.ModulesManager_Load( StGermain.GetToolboxManagerInstance(), stgRootDict, "" );
+    StGermain.ModulesManager_Load( StGermain.GetToolboxManagerInstance(), stgRootDict, "" )
     StGermain.Stg_Class_Delete( stgRootDict )
+
 
 def StgInit( args=[] ):
     """
@@ -200,6 +205,7 @@ def StgInit( args=[] ):
     _AssertInitStateIs(False)
     setData( StGermain_Tools.StgInit( args ) )
     return
+
 
 def WriteFlattenedFile( uwdict, timestamp=None ):
     """
@@ -216,9 +222,10 @@ def WriteFlattenedFile( uwdict, timestamp=None ):
     if not isinstance(uwdict, dict):
         raise TypeError("object passed in must be of python type 'dict' or subclass")
     stgDict = StGermain.Dictionary_New()
-    SetStgDictionaryFromPyDict( uwdict,stgDict )
-    StGermain.stgGenerateFlattenedXML( stgDict, None, None );
+    SetStgDictionaryFromPyDict( uwdict, stgDict )
+    StGermain.stgGenerateFlattenedXML( stgDict, None, None )
     StGermain.Stg_Class_Delete(stgDict)
+
 
 def StgConstruct( pyUWDict, setAsRootDict=False ):
     """
@@ -240,9 +247,9 @@ def StgConstruct( pyUWDict, setAsRootDict=False ):
     stgRootDict = StGermain.Dictionary_New()
     SetStgDictionaryFromPyDict( pyUWDict, stgRootDict )
     # now lets de-alias
-    StGermain.DictionaryUtils_AliasDereferenceDictionary( stgRootDict );
+    StGermain.DictionaryUtils_AliasDereferenceDictionary( stgRootDict )
 
-    stgCompDict = StGermain.Dictionary_Entry_Value_AsDictionary( StGermain.Dictionary_Get( stgRootDict, "components" ) );
+    stgCompDict = StGermain.Dictionary_Entry_Value_AsDictionary( StGermain.Dictionary_Get( stgRootDict, "components" ) )
 
     cf = StGermain.Stg_ComponentFactory_New( stgRootDict, stgCompDict )
 
@@ -251,7 +258,7 @@ def StgConstruct( pyUWDict, setAsRootDict=False ):
 
     # lets go ahead and construct component
     if "components" in pyUWDict:
-        for compName,compDict in pyUWDict["components"].iteritems():
+        for compName, compDict in pyUWDict["components"].iteritems():
             compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
             StGermain.Stg_Component_AssignFromXML( compPointer, cf, None, False )
 
@@ -284,7 +291,7 @@ def StgBuild( pyUWDict ):
         raise TypeError("object passed in must be of python type 'dict' or subclass")
 
     if "components" in pyUWDict:
-        for compName,compDict in pyUWDict["components"].iteritems():
+        for compName, compDict in pyUWDict["components"].iteritems():
             compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
             StGermain.Stg_Component_Build( compPointer, None, False )
     if "plugins" in pyUWDict:
@@ -309,13 +316,14 @@ def StgInitialise( pyUWDict ):
         raise TypeError("object passed in must be of python type 'dict' or subclass")
 
     if "components" in pyUWDict:
-        for compName,compDict in pyUWDict["components"].iteritems():
+        for compName, compDict in pyUWDict["components"].iteritems():
             compPointer = GetLiveComponent( compName )
             StGermain.Stg_Component_Initialise( compPointer, None, False )
     if "plugins" in pyUWDict:
         for guy in pyUWDict["plugins"]:
             compPointer = GetLiveComponent( guy["Type"] )
             StGermain.Stg_Component_Initialise( compPointer, None, False )
+
 
 def StgDestroy( pyUWDict ):
     """
@@ -332,13 +340,14 @@ def StgDestroy( pyUWDict ):
         raise TypeError("object passed in must be of python type 'dict' or subclass")
 
     if "components" in pyUWDict:
-        for compName,compDict in pyUWDict["components"].iteritems():
+        for compName, compDict in pyUWDict["components"].iteritems():
             compPointer = GetLiveComponent( compName )
             StGermain.Stg_Component_Destroy( compPointer, None, False )
     if "plugins" in pyUWDict:
         for guy in pyUWDict["plugins"]:
             compPointer = GetLiveComponent( guy["Type"] )
             StGermain.Stg_Component_Destroy( compPointer, None, False )
+
 
 def StgFinalise():
     """
@@ -353,6 +362,7 @@ def StgFinalise():
         StGermain_Tools.StgFinalise( getData() )
         setData(None)
     return
+
 
 def GetLiveComponent(compName):
     """
@@ -392,16 +402,16 @@ def StgXMLFileAsPyDictionary( xmlFile, flatten=False ):
         else:
             # Use the StGermain FlattenXML executable
             build_path = utils.pathToBuild()
-            flattenXML = _os.path.join(build_path,"bin","FlattenXML")
+            flattenXML = _os.path.join(build_path, "bin", "FlattenXML")
             current_dir = _os.getcwd()
             tempdir = _tempfile.mkdtemp()
             _os.chdir(tempdir)
-            _subprocess.call([flattenXML,xmlFile])
-            xmlFile = _os.path.join(tempdir,"output.xml")
+            _subprocess.call([flattenXML, xmlFile])
+            xmlFile = _os.path.join(tempdir, "output.xml")
             _os.chdir(current_dir)
 
     if type(xmlFile) == str:
-        theFile = open(xmlFile,'r')
+        theFile = open(xmlFile, 'r')
     elif type(xmlFile) == file:
         theFile = xmlFile
     else:
@@ -414,11 +424,11 @@ def StgXMLFileAsPyDictionary( xmlFile, flatten=False ):
     if type(xmlFile) == str:
         theFile.close()
 
-
-    ## remove any temp files ...
-    ## HERE
+    # remove any temp files ...
+    # HERE
 
     return dict
+
 
 def WritePyDictToJSONFile( theDict, jsonFile ):
     """
@@ -432,7 +442,7 @@ def WritePyDictToJSONFile( theDict, jsonFile ):
     """
     import json
     if type(jsonFile) == str:
-        theFile = open(jsonFile,'w')
+        theFile = open(jsonFile, 'w')
     elif type(jsonFile) == file:
         theFile = jsonFile
     else:
@@ -442,6 +452,7 @@ def WritePyDictToJSONFile( theDict, jsonFile ):
     # close the file if we opened it
     if type(jsonFile) == str:
         theFile.close()
+
 
 def ReadJSONFileToPyDict( jsonFile ):
     """
@@ -456,7 +467,7 @@ def ReadJSONFileToPyDict( jsonFile ):
 
     import json
     if type(jsonFile) == str:
-        theFile = open(jsonFile,'r')
+        theFile = open(jsonFile, 'r')
     elif type(jsonFile) == file:
         theFile = jsonFile
     else:
@@ -468,17 +479,18 @@ def ReadJSONFileToPyDict( jsonFile ):
         theFile.close()
     return theDict
 
+
 def _AssertInitStateIs(isInit):
     if isInit:
-        assert     getData(), "StGermain has not been initialised.  You will need to call StgInit() before you can perform this operation."
+        assert getData(), "StGermain has not been initialised.  You will need to call StgInit() before you can perform this operation."
     else:
         assert not getData(), "StGermain has been initialised.  You will need to call StgFinalise() before you can perform this operation."
-
 
 
 def getData():
     global _data
     return _data
+
 
 def setData(data):
     global _data

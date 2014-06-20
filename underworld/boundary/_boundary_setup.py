@@ -1,11 +1,11 @@
 # Boundary package - activates and configures boundary conditions
 import underworld as _uw
 ##############################################################################
-## This code adds what is required to the python dictionary
-## to set up a Boundary Conditions for Underworld.
-## We eventually pass the python dictionary back to Underworld
-## and Underworld then uses this information to configure and set
-## itself up.
+# This code adds what is required to the python dictionary
+# to set up a Boundary Conditions for Underworld.
+# We eventually pass the python dictionary back to Underworld
+# and Underworld then uses this information to configure and set
+# itself up.
 ##############################################################################
 
 '''
@@ -13,6 +13,7 @@ This code adds what is required to the python dictionary for Boundary Conditions
 Ultimately the global Dictionary gets passed back to Underworld which then actually creates the simulation
 
 '''
+
 
 def emptyBoundaryConditionCreate(bcEntry=""):
     """
@@ -23,17 +24,18 @@ def emptyBoundaryConditionCreate(bcEntry=""):
     """
     globalDict = _uw.dictionary.GetDictionary()
 
-    if bcEntry=="":
+    if bcEntry == "":
         field = globalDict["info"]["velocityField"]
-        bcEntry = globalDict["info"][field+"BCs"]
+        bcEntry = globalDict["info"][field + "BCs"]
 
-    newList=[]
-    globalDict[bcEntry]=dict()
-    globalDict[bcEntry]["name"]=bcEntry
-    globalDict[bcEntry]["Type"]="CompositeVC"
-    globalDict[bcEntry]["vcList"]=[]
+    newList = []
+    globalDict[bcEntry] = dict()
+    globalDict[bcEntry]["name"] = bcEntry
+    globalDict[bcEntry]["Type"] = "CompositeVC"
+    globalDict[bcEntry]["vcList"] = []
 
     return
+
 
 def wallFreeSlipCreate(bcEntry="", wall="left"):
     """
@@ -44,9 +46,9 @@ def wallFreeSlipCreate(bcEntry="", wall="left"):
 
     # Is it a good idea to make sure we have things like this on the dictionary always?
     # it makes some things a lot easier though
-    if bcEntry=="":
+    if bcEntry == "":
         field = globalDict["info"]["velocityField"]
-        bcEntry = globalDict["info"][field+"BCs"]
+        bcEntry = globalDict["info"][field + "BCs"]
 
     if "dim" in globalDict.keys():
         dim = globalDict["dim"]
@@ -57,47 +59,46 @@ def wallFreeSlipCreate(bcEntry="", wall="left"):
 
     if bcEntry not in globalDict:
         # quiet for now
-        #print "No boundary condition entry found with that name"
-        #print "So creating one!"
+        # print "No boundary condition entry found with that name"
+        # print "So creating one!"
         newBCEntry = emptyBoundaryConditionCreate(bcEntry=bcEntry)
     if "vcList" not in globalDict[bcEntry]:
-        globalDict[bcEntry]["vcList"]=[]  # quietly create the necessary list
+        globalDict[bcEntry]["vcList"] = []  # quietly create the necessary list
 
     # structure here is dict->list->dict->list
-    vcListList = globalDict[bcEntry]["vcList"] # get list from BC dictionary (which is attached to main dictionary)
+    vcListList = globalDict[bcEntry]["vcList"]  # get list from BC dictionary (which is attached to main dictionary)
 
     wallVCdict = dict()
-    wallVCdict["type"]="WallVC"
-    wallVCdict["wall"]=wall
-    wallVCdict["variables"]=[]
+    wallVCdict["type"] = "WallVC"
+    wallVCdict["wall"] = wall
+    wallVCdict["variables"] = []
 
+    vx = dict()
+    vx["name"] = "vx"
+    vx["type"] = "double"
+    vx["value"] = 0.0
+    vy = dict()
+    vy["name"] = "vy"
+    vy["type"] = "double"
+    vy["value"] = 0.0
+    vz = dict()
+    vz["name"] = "vz"
+    vz["type"] = "double"
+    vz["value"] = 0.0
 
-    vx=dict()
-    vx["name"]="vx"
-    vx["type"]="double"
-    vx["value"]=0.0
-    vy=dict()
-    vy["name"]="vy"
-    vy["type"]="double"
-    vy["value"]=0.0
-    vz=dict()
-    vz["name"]="vz"
-    vz["type"]="double"
-    vz["value"]=0.0
-
-    if wall=="left":
+    if wall == "left":
         wallVCdict["variables"].append(vx)
-    if wall=="right":
+    if wall == "right":
         wallVCdict["variables"].append(vx)
-    if wall=="top":
+    if wall == "top":
         wallVCdict["variables"].append(vy)
-    if wall=="bottom":
+    if wall == "bottom":
         wallVCdict["variables"].append(vy)
 
     if dim == 3:
-        if wall=="front":
+        if wall == "front":
             wallVCdict["variables"].append(vz)
-        if wall=="back":
+        if wall == "back":
             wallVCdict["variables"].append(vz)
 
     vcListList.append(wallVCdict)
@@ -114,9 +115,9 @@ def wallNoSlipCreate(bcEntry="", wall="left"):
 
     # Is it a good idea to make sure we have things like this on the dictionary always?
     # it makes some things a lot easier though
-    if bcEntry=="":
+    if bcEntry == "":
         field = globalDict["info"]["velocityField"]
-        bcEntry = globalDict["info"][field+"BCs"]
+        bcEntry = globalDict["info"][field + "BCs"]
 
     if "dim" in globalDict.keys():
         dim = globalDict["dim"]
@@ -125,33 +126,32 @@ def wallNoSlipCreate(bcEntry="", wall="left"):
         _uw.utils.sendWarning("The value 'dim' not set in dictionary. So assuming dim=2")
 
     if bcEntry not in globalDict:
-        #print "No boundary condition entry found with that name"
-        #print "So creating one!"
+        # print "No boundary condition entry found with that name"
+        # print "So creating one!"
         newBCEntry = emptyBoundaryConditionCreate(bcEntry="velocityBCs")
     if "vcList" not in globalDict[bcEntry]:
-        globalDict[bcEntry]["vcList"]=[]  # quietly create the necessary list
+        globalDict[bcEntry]["vcList"] = []  # quietly create the necessary list
 
     # structure here is dict->list->dict->list
-    vcListList = globalDict[bcEntry]["vcList"] # get list from BC dictionary (which is attached to main dictionary)
+    vcListList = globalDict[bcEntry]["vcList"]  # get list from BC dictionary (which is attached to main dictionary)
 
     wallVCdict = dict()
-    wallVCdict["type"]="WallVC"
-    wallVCdict["wall"]=wall
-    wallVCdict["variables"]=[]
+    wallVCdict["type"] = "WallVC"
+    wallVCdict["wall"] = wall
+    wallVCdict["variables"] = []
 
-
-    vx=dict()
-    vx["name"]="vx"
-    vx["type"]="double"
-    vx["value"]=0.0
-    vy=dict()
-    vy["name"]="vy"
-    vy["type"]="double"
-    vy["value"]=0.0
-    vz=dict()
-    vz["name"]="vz"
-    vz["type"]="double"
-    vz["value"]=0.0
+    vx = dict()
+    vx["name"] = "vx"
+    vx["type"] = "double"
+    vx["value"] = 0.0
+    vy = dict()
+    vy["name"] = "vy"
+    vy["type"] = "double"
+    vy["value"] = 0.0
+    vz = dict()
+    vz["name"] = "vz"
+    vz["type"] = "double"
+    vz["value"] = 0.0
 
     wallVCdict["variables"].append(vx)
     wallVCdict["variables"].append(vy)
@@ -175,14 +175,14 @@ def wallSetFuncCreate(bcEntry="", wall="top", func="", **params):
                 and that the velocity FeVariable be named exactly 'VelocityField'
     """
 
-    if func=="":
+    if func == "":
         _uw.utils.sendWarning("No function provided. A function must be set")
 
     globalDict = _uw.dictionary.GetDictionary()
 
-    if bcEntry=="":
+    if bcEntry == "":
         field = globalDict["info"]["velocityField"]
-        bcEntry = globalDict["info"][field+"BCs"]
+        bcEntry = globalDict["info"][field + "BCs"]
 
     # Is it a good idea to make sure we have things like this on the dictionary always?
     # it makes some things a lot easier though
@@ -194,49 +194,49 @@ def wallSetFuncCreate(bcEntry="", wall="top", func="", **params):
         _uw.utils.sendWarning("The value 'dim' not set in dictionary. So assuming dim=2")
 
     if bcEntry not in globalDict:
-        #print "No boundary condition entry found with that name"
-        #print "So creating one!"
+        # print "No boundary condition entry found with that name"
+        # print "So creating one!"
         newBCEntry = emptyBoundaryConditionCreate(bcEntry=bcEntry)
     if "vcList" not in globalDict[bcEntry]:
-        globalDict[bcEntry]["vcList"]=[]  # quietly create the necessary list
+        globalDict[bcEntry]["vcList"] = []  # quietly create the necessary list
 
     # structure here is dict->list->dict->list
-    vcListList = globalDict[bcEntry]["vcList"] # get list from BC dictionary (which is attached to main dictionary)
+    vcListList = globalDict[bcEntry]["vcList"]  # get list from BC dictionary (which is attached to main dictionary)
 
     wallVCdict = dict()
-    wallVCdict["type"]="WallVC"
-    wallVCdict["wall"]=wall
-    wallVCdict["variables"]=[]
+    wallVCdict["type"] = "WallVC"
+    wallVCdict["wall"] = wall
+    wallVCdict["variables"] = []
 
     # no slip by default
-    vx=dict()
-    vx["name"]="vx"
-    vx["type"]="double"
-    vx["value"]=0.0
-    vy=dict()
-    vy["name"]="vy"
-    vy["type"]="double"
-    vy["value"]=0.0
-    vz=dict()
-    vz["name"]="vz"
-    vz["type"]="double"
-    vz["value"]=0.0
+    vx = dict()
+    vx["name"] = "vx"
+    vx["type"] = "double"
+    vx["value"] = 0.0
+    vy = dict()
+    vy["name"] = "vy"
+    vy["type"] = "double"
+    vy["value"] = 0.0
+    vz = dict()
+    vz["name"] = "vz"
+    vz["type"] = "double"
+    vz["value"] = 0.0
 
-    if wall=="left" or wall=="right":
-        vy["type"]="func"
-        vy["value"]=func
+    if wall == "left" or wall == "right":
+        vy["type"] = "func"
+        vy["value"] = func
         wallVCdict["variables"].append(vx)
         wallVCdict["variables"].append(vy)
-    if wall=="top" or wall=="bottom":
-        vx["type"]="func"
-        vx["value"]=func
+    if wall == "top" or wall == "bottom":
+        vx["type"] = "func"
+        vx["value"] = func
         wallVCdict["variables"].append(vx)
         wallVCdict["variables"].append(vy)
 
     if dim == 3:
-        if wall=="front" or wall=="back":
-            vz["type"]="func"
-            vz["value"]=func
+        if wall == "front" or wall == "back":
+            vz["type"] = "func"
+            vz["value"] = func
             wallVCdict["variables"].append(vy)
             wallVCdict["variables"].append(vx)
         # takes care of all cases
@@ -244,9 +244,8 @@ def wallSetFuncCreate(bcEntry="", wall="top", func="", **params):
 
     vcListList.append(wallVCdict)
 
-
     for key in params.keys():
-        _globalDict[key]=params[key]
+        _globalDict[key] = params[key]
 
     return globalDict[bcEntry]
 
@@ -258,37 +257,37 @@ def wallTemperatureCreate(bcEntry="", wall="bottom", value=0.0):
 
     globalDict = _uw.dictionary.GetDictionary()
 
-    if bcEntry=="":
+    if bcEntry == "":
         field = globalDict["info"]["temperatureField"]
-        bcEntry = globalDict["info"][field+"BCs"]
+        bcEntry = globalDict["info"][field + "BCs"]
 
     if bcEntry not in globalDict:
-        #print "No boundary condition entry found with that name"
-        #print "So creating one!"
+        # print "No boundary condition entry found with that name"
+        # print "So creating one!"
         # Maybe be quiet for now?
         newBCEntry = emptyBoundaryConditionCreate(bcEntry)
     if "vcList" not in globalDict[bcEntry]:
-        globalDict[bcEntry]["vcList"]=[]  # quietly create the necessary list
+        globalDict[bcEntry]["vcList"] = []  # quietly create the necessary list
 
     # structure here is dict->list->dict->list
-    vcListList = globalDict[bcEntry]["vcList"] # get list from BC dictionary (which is attached to main dictionary)
+    vcListList = globalDict[bcEntry]["vcList"]  # get list from BC dictionary (which is attached to main dictionary)
 
     wallVCdict = dict()
-    wallVCdict["type"]="WallVC"
-    wallVCdict["wall"]=wall
-    wallVCdict["variables"]=[]
+    wallVCdict["type"] = "WallVC"
+    wallVCdict["wall"] = wall
+    wallVCdict["variables"] = []
 
-
-    temp=dict()
-    temp["name"]="temperature"   # is the mesh variable name
-    temp["type"]="double"
-    temp["value"]=str(value)
+    temp = dict()
+    temp["name"] = "temperature"   # is the mesh variable name
+    temp["type"] = "double"
+    temp["value"] = str(value)
 
     wallVCdict["variables"].append(temp)
 
     vcListList.append(wallVCdict)
 
     return globalDict[bcEntry]
+
 
 def temperatureICSinusoidalCreate(
         icEntry="",
@@ -306,17 +305,17 @@ def temperatureICSinusoidalCreate(
 
     globalDict = _uw.dictionary.GetDictionary()
 
-    if icEntry=="":
+    if icEntry == "":
         field = globalDict["info"]["temperatureField"]
-        icEntry = globalDict["info"][field+"ICs"]
+        icEntry = globalDict["info"][field + "ICs"]
 
     if icEntry not in globalDict:
-        #print "No boundary condition entry found with that name"
-        #print "So creating one!"
+        # print "No boundary condition entry found with that name"
+        # print "So creating one!"
         # Maybe be quiet for now?
         newICEntry = emptyBoundaryConditionCreate(icEntry)
     if "vcList" not in globalDict[icEntry]:
-        globalDict[icEntry]["vcList"]=[]  # quietly create the necessary list
+        globalDict[icEntry]["vcList"] = []  # quietly create the necessary list
 
     globalDict["SinusoidalTempIC_TopLayerCoord"]      = str(TopLayerCoord)
     globalDict["SinusoidalTempIC_TopLayerBC"]           = str(TopLayerBC)
@@ -327,18 +326,17 @@ def temperatureICSinusoidalCreate(
     globalDict["SinusoidalTempIC_VerticalWaveNumber"]     = str(VerticalWaveNumber)
 
     # structure here is dict->list->dict->list
-    vcListList = globalDict[icEntry]["vcList"] # get list from BC dictionary (which is attached to main dictionary)
+    vcListList = globalDict[icEntry]["vcList"]  # get list from BC dictionary (which is attached to main dictionary)
 
     wallVCdict = dict()
-    wallVCdict["type"]="AllNodesVC"
-    wallVCdict["variables"]=[]
+    wallVCdict["type"] = "AllNodesVC"
+    wallVCdict["variables"] = []
 
-
-    temp=dict()
-    temp["name"]="temperatureMeshVariable"
-    temp["name"]="temperature"   # is the mesh variable name
-    temp["type"]="func"
-    temp["value"]="LinearWithSinusoidalPerturbation"
+    temp = dict()
+    temp["name"] = "temperatureMeshVariable"
+    temp["name"] = "temperature"   # is the mesh variable name
+    temp["type"] = "func"
+    temp["value"] = "LinearWithSinusoidalPerturbation"
 
     wallVCdict["variables"].append(temp)
 
