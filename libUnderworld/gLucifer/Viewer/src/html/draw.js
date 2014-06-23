@@ -8,7 +8,7 @@ var viewer;
 var params, messages, properties, objectlist;
 var server = false;
 var types = {'triangles' : "triangle", 'points' : "particle", 'lines' : "line", "border" : "line"};
-var debug = false;
+var debug_on = false;
 
 function initPage(src, fn) {
   var urlq = decodeURI(window.location.href);
@@ -18,7 +18,7 @@ function initPage(src, fn) {
     query = parts[1]; 
 
     //Print debugging output?
-    if (query.indexOf("debug") > 0) debug = true;
+    if (query.indexOf("debug") > 0) debug_on = true;
 
     if (!src && query.indexOf(".json") > 0) {
       //Passed a json(p) file on URL
@@ -238,8 +238,8 @@ function canvasMouseWheel(event, mouse) {
   return false; //Prevent default
 }
 
-function consoleWrite(str) {
-  if (!debug) return;
+function debug(str) {
+  if (!debug_on) return;
   var console = document.getElementById('console');
   console.innerHTML = "<div class='message'>" + str + "</div>" + console.innerHTML;
 }
@@ -315,7 +315,7 @@ function loadColourMaps() {
     palette.cache = [];
     for (var c=0; c<512; c++) {
       //var cstr = "rgba(" + pixels[c*4] + "," + pixels[c*4+1] + "," + pixels[c*4+2] + "," + pixels[c*4+3] + ")";
-      //consoleWrite(c + " == " + cstr);
+      //debug(c + " == " + cstr);
       //var colour = new Colour(cstr);
       palette.cache[c] = pixels[c*4] + (pixels[c*4+1] << 8) + (pixels[c*4+2] << 16) + (pixels[c*4+3] << 24);
     }
@@ -396,7 +396,7 @@ function demoData(num)
   var max = [1.0, 1.0, 1.0];
   var dims = [max[0] - min[0], max[1] - min[1], max[2] - min[2]];
   var modelsize = Math.sqrt(dims[0]*dims[0] + dims[1]*dims[1] + dims[2]*dims[2]);
-  consoleWrite("Generating demo particles...");
+  debug("Generating demo particles...");
   var data = 
     {
       "options" : {"pointScale" : 1, "rotate" : [0,0,0], "min" : min, "max" : max},
@@ -489,7 +489,7 @@ function demoData(num)
   }
 
 /*
-  consoleWrite("Generating demo triangles...");
+  debug("Generating demo triangles...");
   verts = data.objects[1].triangles.vertices.data;
   norms = data.objects[1].triangles.normals.data;
   vals = data.objects[1].triangles.values.data;
@@ -554,7 +554,7 @@ function demoData(num)
 */
 
   var time = (new Date() - start) / 1000.0;
-  consoleWrite(time + " seconds to generate random data");
+  debug(time + " seconds to generate random data");
   viewer.loadFile(data);
 }
 
@@ -809,7 +809,7 @@ Renderer.prototype.init = function() {
   }
   //Compile the shaders
   this.program = new WebGLProgram(this.gl, vs, fs);
-  if (this.program.errors) consoleWrite(this.program.errors);
+  if (this.program.errors) debug(this.program.errors);
   //Setup attribs/uniforms
   this.program.setup(this.attributes, this.uniforms);
 
@@ -826,7 +826,7 @@ function SortIdx(idx, key) {
 
 Renderer.prototype.loadElements = function() {
   if (this.border) return;
-  consoleWrite("Loading " + this.type + " elements...");
+  debug("Loading " + this.type + " elements...");
   var start = new Date();
   var distances = [];
   var indices = [];
@@ -842,7 +842,7 @@ Renderer.prototype.loadElements = function() {
           for (var e in vis.objects[id].points) {
             var dat = vis.objects[id].points[e];
             var count = dat.vertices.data.length;
-            //consoleWrite(name + " " + skip + " : " + count);
+            //debug(name + " " + skip + " : " + count);
             for (var i=0; i<count; i += 3)
               this.positions.push(skip ? null : [dat.vertices.data[i], dat.vertices.data[i+1], dat.vertices.data[i+2]]);
           }
@@ -872,7 +872,7 @@ Renderer.prototype.loadElements = function() {
           for (var e in vis.objects[id].lines) {
             var dat =  vis.objects[id].lines[e];
             var count = dat.indices.data.length;
-            //consoleWrite(name + " " + skip + " : " + count);
+            //debug(name + " " + skip + " : " + count);
             for (var i=0; i<count; i++)
               indices.push(dat.indices.data[i]);
           }
@@ -881,7 +881,7 @@ Renderer.prototype.loadElements = function() {
     }
 
     var time = (new Date() - start) / 1000.0;
-    consoleWrite(time + " seconds to update positions ");
+    debug(time + " seconds to update positions ");
     start = new Date();
   }
 
@@ -921,7 +921,7 @@ Renderer.prototype.loadElements = function() {
     }
 
     var time = (new Date() - start) / 1000.0;
-    consoleWrite(time + " seconds to update distances ");
+    debug(time + " seconds to update distances ");
 
     if (distances.length > 0) {
       //Sort
@@ -933,7 +933,7 @@ Renderer.prototype.loadElements = function() {
       //if (!this.swap) this.swap = [];
       //radix_sort(distances, this.swap, 2);
       time = (new Date() - start) / 1000.0;
-      consoleWrite(time + " seconds to sort");
+      debug(time + " seconds to sort");
 
       start = new Date();
       //Reload index buffer
@@ -953,7 +953,7 @@ Renderer.prototype.loadElements = function() {
         }
       }
       time = (new Date() - start) / 1000.0;
-      consoleWrite(time + " seconds to load index buffers");
+      debug(time + " seconds to load index buffers");
     }
   }
 
@@ -964,7 +964,7 @@ Renderer.prototype.loadElements = function() {
     //this.gl.bufferData(this.gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), this.gl.DYNAMIC_DRAW);
 
     time = (new Date() - start) / 1000.0;
-    consoleWrite(time + " seconds to update index buffer object");
+    debug(time + " seconds to update index buffer object");
   }
   //Update count to visible elements...
   this.elements = indices.length;
@@ -982,8 +982,8 @@ function VertexBuffer(elements, size) {
   this.ints = new Int32Array(this.array);
   this.bytes = new Uint8Array(this.array);
   this.offset = 0;
-  consoleWrite(elements + " - " + size);
-  consoleWrite("Created vertex buffer");
+  debug(elements + " - " + size);
+  debug("Created vertex buffer");
 }
 
 VertexBuffer.prototype.loadParticles = function(object) {
@@ -1099,7 +1099,7 @@ VertexBuffer.prototype.update = function(gl) {
   //gl.bufferSubData(gl.ARRAY_BUFFER, 0, buffer);
 
   time = (new Date() - start) / 1000.0;
-  consoleWrite(time + " seconds to update vertex buffer object");
+  debug(time + " seconds to update vertex buffer object");
 }
 
 Renderer.prototype.updateBuffers = function() {
@@ -1125,7 +1125,7 @@ Renderer.prototype.updateBuffers = function() {
   }
 
   if (this.elements == 0) return;
-  consoleWrite("Updating " + this.type + " data... (" + this.elements + " elements)");
+  debug("Updating " + this.type + " data... (" + this.elements + " elements)");
 
   //Load vertices and attributes into buffers
   var start = new Date();
@@ -1141,7 +1141,7 @@ Renderer.prototype.updateBuffers = function() {
     var subsample = 1;
     if ($("subsample").checked == true && newParticles > 1000000) {
       subsample = Math.round(newParticles/1000000 + 0.5);
-      consoleWrite("Subsampling at " + (100/subsample) + "% (" + subsample + ") to " + Math.floor(newParticles / subsample));
+      debug("Subsampling at " + (100/subsample) + "% (" + subsample + ") to " + Math.floor(newParticles / subsample));
     }*/
     //Random subsampling
     //if (subsample > 1 && Math.random() > 1.0/subsample) continue;
@@ -1164,7 +1164,7 @@ Renderer.prototype.updateBuffers = function() {
   }
 
   var time = (new Date() - start) / 1000.0;
-  consoleWrite(time + " seconds to load buffers... (elements: " + this.elements + " bytes: " + buffer.byteLength + ")");
+  debug(time + " seconds to load buffers... (elements: " + this.elements + " bytes: " + buffer.byteLength + ")");
 
   buffer.update(this.gl);
 }
@@ -1203,7 +1203,7 @@ Renderer.prototype.draw = function() {
     //(This is done here now so we can skip triangle shaders if not required, 
     //due to really slow rendering when doing triangles and points... still to be looked into)
     if (!this.init()) return;
-    consoleWrite("Creating " + this.type + " buffers...");
+    debug("Creating " + this.type + " buffers...");
     this.vertexBuffer = this.gl.createBuffer();
     this.indexBuffer = this.gl.createBuffer();
     //viewer.reload = true;
@@ -1319,7 +1319,7 @@ Renderer.prototype.draw = function() {
   this.gl.useProgram(null);
 
   var time = (new Date() - start) / 1000.0;
-  if (time > 0.01) consoleWrite(time + " seconds to draw " + desc);
+  if (time > 0.01) debug(time + " seconds to draw " + desc);
 }
 
 function minMaxDist()
@@ -1363,7 +1363,7 @@ function Viewer(canvas) {
     );
   } catch(e) {
     //No WebGL
-    consoleWrite(e);
+    debug(e);
     if (!this.webgl) $('canvas').style.display = 'none';
   }
 
@@ -1423,7 +1423,7 @@ Viewer.prototype.loadFile = function(source) {
     alert(e);
   }
   var time = (new Date() - start) / 1000.0;
-  consoleWrite(time + " seconds to parse data");
+  debug(time + " seconds to parse data");
 
   if (source.exported) {
     var old = this.toString();
@@ -1492,7 +1492,7 @@ Viewer.prototype.loadFile = function(source) {
           decodeBase64(id, type, idx, 'normals');
           decodeBase64(id, type, idx, 'sizes');
           decodeBase64(id, type, idx, 'indices', 'integer');
-          consoleWrite("Loaded " + vis.objects[id][type][idx].vertices.data.length/3 + " vertices from " + name);
+          debug("Loaded " + vis.objects[id][type][idx].vertices.data.length/3 + " vertices from " + name);
           this.vertexCount += vis.objects[id][type][idx].vertices.data.length/3;
 
           //Create indices for cross-sections
@@ -1560,7 +1560,7 @@ Viewer.prototype.loadFile = function(source) {
     div.appendChild(props);
   }
   var time = (new Date() - start) / 1000.0;
-  consoleWrite(time + " seconds to import data");
+  debug(time + " seconds to import data");
 
   //Default to interactive render if vertex count < 0.5 M
   $("interactive").checked = (this.vertexCount <= 500000);
@@ -1932,7 +1932,7 @@ Viewer.prototype.drawFrame = function(borderOnly) {
   // Apply scaling factors (including orientation switch if required)
   var scaling = [this.scale[0], this.scale[1], this.scale[2] * this.orientation];
   this.webgl.modelView.scale(scaling);
-  //consoleWrite(JSON.stringify(this.webgl.modelView));
+  //debug(JSON.stringify(this.webgl.modelView));
 
    // Set default polygon front faces
    if (this.orientation == 1.0)
@@ -2101,9 +2101,9 @@ Viewer.prototype.updateDims = function(options) {
 
   }
 
-  //consoleWrite("DIMS: " + min[0] + " to " + max[0] + "," + min[1] + " to " + max[1] + "," + min[2] + " to " + max[2]);
-  consoleWrite("New model size: " + this.modelsize + ", Focal point: " + this.focus[0] + "," + this.focus[1] + "," + this.focus[2]);
-  consoleWrite("Translate: " + this.translate[0] + "," + this.translate[1] + "," + this.translate[2]);
+  //debug("DIMS: " + min[0] + " to " + max[0] + "," + min[1] + " to " + max[1] + "," + min[2] + " to " + max[2]);
+  debug("New model size: " + this.modelsize + ", Focal point: " + this.focus[0] + "," + this.focus[1] + "," + this.focus[2]);
+  debug("Translate: " + this.translate[0] + "," + this.translate[1] + "," + this.translate[2]);
 }
 
 Viewer.prototype.setPointScale = function() {
