@@ -49,7 +49,6 @@
 	#include "LiveComponentRegister.h"
 	#include "Stg_ComponentFactory.h"
 	#include "DocumentationComponentFactory.h"
-	#include "OneOffComponentFactory.h"
 	#include "HierarchyTable.h"
 	#include "CallGraph.h"
 	#include "Init.h"
