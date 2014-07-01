@@ -4,7 +4,6 @@ from libUnderworld import StgDomain
 from libUnderworld import StgFEM
 import underworld._stgermain as _stgermain
 
-
 def FieldVariable_InterpolateValueAt( fieldVar, coord ):
     """
     Returns the interpolated result of a field variable.
@@ -21,8 +20,8 @@ def FieldVariable_InterpolateValueAt( fieldVar, coord ):
     """
     from libUnderworld import c_arrays
 
-    if type(fieldVar) == str:
-        fieldVar = GetLiveComponent(fieldVar)
+    if type(fieldVar)==str:
+        fieldVar = _stgermain.GetLiveComponent(fieldVar)
 
     result = c_arrays.DoubleArray(fieldVar.fieldComponentCount)
 
