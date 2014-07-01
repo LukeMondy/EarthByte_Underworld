@@ -15,4 +15,4 @@ LIBBASE  = libpetscext_helpers
 MANSEC   = 
 LOCDIR   = src/helpers/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

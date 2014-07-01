@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_vec
 MANSEC   = Vec
 LOCDIR   = src/vec/utils/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

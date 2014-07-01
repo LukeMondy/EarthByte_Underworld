@@ -1,3 +1,4 @@
+import os
 from config import Package
 
 class HDF5(Package):

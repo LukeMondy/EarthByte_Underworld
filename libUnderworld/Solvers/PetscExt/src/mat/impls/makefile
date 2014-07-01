@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_mat
 DIRS     = block symtrans schur restrictscatter
 LOCDIR   = src/mat/impls/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

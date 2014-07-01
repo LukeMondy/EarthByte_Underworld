@@ -1,13 +1,13 @@
 #include ${PETSC_DIR}/${PETSC_ARCH}/conf/petscrules
 
 chkpetscext_dir:
-        @mypwd=`pwd`; cd ${true_PETSCEXT_DIR} 2>&1 > /dev/null; true_PETSCEXT_DIR=`pwd`; cd $${mypwd} 2>&1 >/dev/null; \
-        newpwd=`echo $${mypwd} | sed "s+$${true_PETSCEXT_DIR}+DUMMY+g"`;\
+        @mypwd=`pwd`; cd ${true_PETSCEXT2_DIR} 2>&1 > /dev/null; true_PETSCEXT2_DIR=`pwd`; cd $${mypwd} 2>&1 >/dev/null; \
+        newpwd=`echo $${mypwd} | sed "s+$${true_PETSCEXT2_DIR}+DUMMY+g"`;\
         haspetscext=`echo $${mypwd} | sed "s+petscext-+DUMMY+g"`;\
         if [ $${mypwd} = $${newpwd} -a $${haspetscext} != $${mypwd} ]; then \
           echo "*********************Warning*************************" ; \
-          echo "Your true_PETSCEXT_DIR may not match the directory you are in";\
-          echo "true_PETSCEXT_DIR " $${true_PETSCEXT_DIR} "Current directory" $${mypwd};\
+          echo "Your true_PETSCEXT2_DIR may not match the directory you are in";\
+          echo "true_PETSCEXT2_DIR " $${true_PETSCEXT2_DIR} "Current directory" $${mypwd};\
           echo "******************************************************" ; \
         fi
 

@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_mat
 MANSEC   = Mat
 LOCDIR   = src/mat/impls/symtrans/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

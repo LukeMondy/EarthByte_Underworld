@@ -2,6 +2,6 @@ include ${PETSC_DIR}/conf/variables
 include ${PETSC_DIR}/conf/rules
 include ${PETSC_DIR}/conf/test
 
-include ${PETSCEXT_DIR}/conf/petscext_common_variables
-include ${PETSCEXT_DIR}/conf/petscext_common_rules
+include ${PETSCEXT2_DIR}/conf/petscext_common_variables
+include ${PETSCEXT2_DIR}/conf/petscext_common_rules
 

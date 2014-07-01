@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_pc
 MANSEC   = PC
 LOCDIR   = src/pc/impls/bschur/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

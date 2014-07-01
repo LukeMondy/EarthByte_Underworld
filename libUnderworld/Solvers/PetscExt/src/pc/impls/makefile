@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_pc
 DIRS     = block bschur
 LOCDIR   = src/pc/impls/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

@@ -4,7 +4,7 @@
 #
 #################################################################################
 
-include ${PETSCEXT_DIR}/conf/petscext_common_variables
+include ${PETSCEXT2_DIR}/conf/petscext_common_variables
 
 SRC		=	stokes-operator.c \
 			magma-operator.c \
@@ -34,7 +34,7 @@ all:
 	${PCC} ${CFLAGS} -c $*.c ${INC}
 
 check:
-	-@${PETSCEXT_DIR}/testing/ExecuteTests.pl
+	-@${PETSCEXT2_DIR}/testing/ExecuteTests.pl
 
 
 clean_test:
@@ -42,5 +42,5 @@ clean_test:
 	-@rm -f ${OBJ}
 	-@rm -f petsc.mtx petsc_rhs1.mtx
 	-@rm -f tmp-*
-	-@${PETSCEXT_DIR}/testing/ExecuteTests.pl clean
+	-@${PETSCEXT2_DIR}/testing/ExecuteTests.pl clean
 
