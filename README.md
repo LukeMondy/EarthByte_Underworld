@@ -14,6 +14,7 @@ Dependencies
 ------------
   * PETSc 
   * MPI
+  * hdf5 (optional, but recommended)
   * numpy
   * libpng
   * build tools (gcc etc)
