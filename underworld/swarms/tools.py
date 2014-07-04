@@ -1,6 +1,8 @@
 # various tools for swarms
 
 from libUnderworld import StGermain
+import underworld as _uw
+import numpy
 
 
 def Swarm_GetVariables( swarm ):
@@ -169,3 +171,101 @@ def SwarmVariable_SetValueAt( swarmVar, localParticleIndex, values ):
         valuePtr[ii] = values[ii]
 
     StGermain.Variable_SetValue( swarmVar.variable, localParticleIndex, valuePtr.cast() )
+
+
+def ArrayParticleLayoutCreate(  arrParticles, componentName = "manualLayout", dim=2):
+  """
+  This function sets up a manual particle layout using the points from an array. 
+  This works best if arrParticles is a numpy array / matrix of nParticles x dim dimensions.
+
+  The 'ManualParticleLayout' component python object is returned.
+
+"""
+  nParticles = len(arrParticles)
+  manualPoints = [dict() for x in range(nParticles)]
+
+
+  for m in range(0,nParticles):
+    point = arrParticles[m]
+    manualPoints[m]["x"] = str(point[0])
+    manualPoints[m]["y"] = str(point[1])
+    if dim == 3:
+      manualPoints[m]["z"] = str(point[2])
+    
+
+  newLayout = _uw.dictionary.UpdateDictWithComponent( name   = componentName,
+                                              Type   = "ManualParticleLayout",
+                                              manualParticlePositions = manualPoints
+                                              )
+  
+
+  return newLayout
+
+def TracerSwarmCreate( particleLayout, 
+                      componentName="tracerSwarm", 
+                      meshName=""
+                      ):
+    """
+    Create a swarm intended for use as tracers
+    """
+
+    tracerSwarm = _uw.swarms.setup.materialSwarmCreate(componentName=componentName,
+                                meshName = meshName,
+                                particleLayout=particleLayout)
+    _uw.swarms.setup.materialSwarmAdvectorCreate(componentName=componentName + "-Advector",
+                                        swarmName=componentName,
+                                        velocityFieldName = "VelocityField"
+                                        )
+
+   
+
+    return tracerSwarm
+
+def InterpolateSwarmVariable(swarm,fieldname,dim=2):
+
+    """
+      This function interpolates the given field over each point position in a swarm. 
+      It returns a dictionary, with a 'position' array and a 'field' array.
+      
+      Args:
+        
+        swarm:       a python swarm object
+                            
+
+        fieldname:   string -  the name of the field that will be interpolated
+                             
+
+        dim:         model dimension, defaults to 2
+
+
+    """
+
+    
+    tracerSwarm = _uw._stgermain.GetLiveComponent(swarm)
+    tracerVariables = Swarm_GetVariablesAsDict(tracerSwarm)
+    nParticles = tracerSwarm.particleLocalCount
+    
+    # Get positions of swarm particles
+
+    pos = numpy.zeros((nParticles,dim))
+
+    for j in range(0,nParticles):
+        pos[j][0]=SwarmVariable_GetValueAt(tracerVariables[swarm + "-PositionX"]["swarmVariable"],j)[0]
+        pos[j][1]=SwarmVariable_GetValueAt(tracerVariables[swarm + "-PositionY"]["swarmVariable"],j)[0]
+        if dim==3:
+            pos[j][2]=SwarmVariable_GetValueAt(tracerVariables[swarm + "-PositionZ"]["swarmVariable"],j)[0]
+    
+    # Interpolate field at each position
+
+    arrField = numpy.zeros((len(pos),dim))  
+    
+    for j in range(0,len(pos)):
+        fieldVal = _uw.fields.tools.FieldVariable_InterpolateValueAt( fieldname, tuple(pos[j]) )  
+        arrField[j][0] = list(fieldVal)[0][0]
+        arrField[j][1] = list(fieldVal)[0][1]
+        if dim==3:
+            arrField[j][2] = list(fieldVal)[0][2]
+    
+
+    return {'position' : pos, 'field' : arrField}
+
