@@ -249,7 +249,7 @@ PetscErrorCode MG_inner_solver_pcmg_setup( KSP_BSSCR * bsscrp_self, MGContext *m
     #endif
     PCSetFromOptions(pc_MG);
     
-    KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+    Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
     
     bsscrp_self->mg->mgData->ksp = ksp_inner;
 	
@@ -342,7 +342,7 @@ double setupMG( KSP_BSSCR * bsscrp_self, KSP ksp_inner, PC pc_MG, Mat K, MGConte
 /*     PCMGSetGalerkin(pc_MG); */
 /*     PCSetFromOptions(pc_MG); */
 
-/*     KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN); */
+/*     Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN); */
 
 /*     bsscrp_self->mg->mgData->ksp = ksp_inner; */
 /*     PETScMGSolver_UpdateOps(bsscrp_self->mg); */
@@ -367,7 +367,7 @@ double setupMG( KSP_BSSCR * bsscrp_self, KSP ksp_inner, PC pc_MG, Mat K, MGConte
 /* 	/\* Insert the shell PC. *\/ */
 /* 	PetscObjectReference( (PetscObject)pc_MG ); */
 /* 	KSPSetPC( ksp_inner, shellPC ); */
-/* 	KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN); */
+/* 	Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN); */
 /* 	/\* Setup the MG context. */
 /* 	   Default values, then values taken from the petsc options database *\/ */
 /* 	mgCtx.ksp = ksp_inner; */

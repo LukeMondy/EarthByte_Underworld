@@ -36,6 +36,81 @@ def emptyBoundaryConditionCreate(bcEntry=""):
 
     return
 
+def wallSetValue(bcEntry="", variable="vx", wall="top", value=0.0, field="velocityField"):
+    """
+    Set value for mesh variable  on Cartesian Mesh.
+    Args:
+         variable   : usually one of ( "vx", "vy", "vz", "temperature" )
+         wall       : usually one of ( "top", "bottom", "left", "right", "front", "back" )
+         field      : usually "velocityField" or "temperatureField".
+                      Choosing this will automatically set bcEntry. 
+         bcEntry    : setting this will override the entry determined by 'field'
+  
+    Run underworld.getInfo() to see active names.
+
+    """
+    if bcEntry=="":
+        field = globalDict["info"]["velocityField"]
+        bcEntry = globalDict["info"][field+"BCs"]
+
+    if bcEntry not in globalDict:
+        newBCEntry = emptyBoundaryConditionCreate(bcEntry=bcEntry)
+        # so we have a blank vcList to populate now
+        vcListWallTerm=dict()
+        vcListWallTerm["type"]="WallVC"
+        vcListWallTerm["wall"] = wall
+        vcListWallTerm["variables"]=[]
+        
+        vxTerm=dict()
+        vxTerm["name"]=variable
+        vxTerm["type"]="double"
+        vxTerm["value"]=value
+
+        vcListWallTerm["variables"].append(vxTerm)
+        
+        globalDict[bcEntry]["vcList"].append(vcListWallTerm)
+
+        return
+
+        
+    entryFound=False
+    # get wall term
+    # go through vcList
+    vcList= bcEntry["vcList"] 
+    for vcListWallTerm in vcList:
+        if wall==vcListWallTerm["wall"]:   # e.g. find the "left" wall
+            variablesList=vcListWallTerm["variables"]
+            for vxTerm in variablesList:  # going to call it vxTerm even if not "vx" because is easier.
+                if variable==vxTerm["name"]:
+                    vxTerm["type"]="double"
+                    vxTerm["value"]=value
+                    entryFound=True
+            if not entryFound:        # the "wall" term exists but doesn't have a "vx" entry say
+                vxTerm=dict{}
+                vxTerm["name"]=variable
+                vxTerm["type"]="double"
+                vxTerm["value"]=value
+                variablesList.append(vxTerm)
+                entryFound=True
+
+    # if entryFound is still False then we are working with a newly created BC entry.
+    # dict->list->dict->list
+    if not entryFound:   # we never found the wall entry
+        vcListWallTerm=dict()
+        vcListWallTerm["type"]="WallVC"
+        vcListWallTerm["wall"] = wall
+        vcListWallTerm["variables"]=[]
+
+        vxTerm=dict()
+        vxTerm["name"]=variable
+        vxTerm["type"]="double"
+        vxTerm["value"]=value
+
+        vcListWallTerm["variables"].append(vxTerm)
+        
+        globalDict[bcEntry]["vcList"].append(vcListWallTerm)
+
+    return
 
 def wallFreeSlipCreate(bcEntry="", wall="left"):
     """

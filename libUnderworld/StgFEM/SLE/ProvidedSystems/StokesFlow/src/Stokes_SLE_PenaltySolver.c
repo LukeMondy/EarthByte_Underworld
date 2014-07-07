@@ -303,7 +303,7 @@ void _Stokes_SLE_PenaltySolver_Solve( void* solver,void* stokesSLE ) {
 	
     /* Setup solver context and make sure that it uses a direct solver */
     KSPCreate( sle->comm, &ksp_v );
-    KSPSetOperators( ksp_v, kMatrix, kMatrix, DIFFERENT_NONZERO_PATTERN );
+    Stg_KSPSetOperators( ksp_v, kMatrix, kMatrix, DIFFERENT_NONZERO_PATTERN );
     KSPSetType( ksp_v, KSPPREONLY );
     KSPGetPC( ksp_v, &pc );
     PCSetType( pc, PCLU );

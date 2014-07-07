@@ -54,12 +54,17 @@
 #include "petscmat.h"
 #include "petscsnes.h"
 
-
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1, Mat J,Mat B, void *ctx);
+PetscErrorCode BlockMatMFFDComputeJacobian(SNES snes,Vec x, Mat jac,Mat B,void *dummy);
+#else
 PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1,Mat *J,Mat *B,MatStructure *flag,void *ctx);
+PetscErrorCode BlockMatMFFDComputeJacobian(SNES snes,Vec x,Mat *jac,Mat *B,MatStructure *flag,void *dummy);
+#endif
+
 PetscErrorCode SNESSetFromOptions_Block( SNES snes );
 
 PetscErrorCode MatCreateSNESBlockMFFD(SNES snes,Mat *J);
-PetscErrorCode BlockMatMFFDComputeJacobian(SNES snes,Vec x,Mat *jac,Mat *B,MatStructure *flag,void *dummy);
 
 
 #endif

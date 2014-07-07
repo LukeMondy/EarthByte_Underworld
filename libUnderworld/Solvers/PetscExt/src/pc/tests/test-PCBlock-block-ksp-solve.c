@@ -172,7 +172,7 @@ void test_block_solve( void )
 	
 	/* Solve A y = x */
 	KSPCreate( PETSC_COMM_WORLD, &ksp );
-	KSPSetOperators( ksp, Amat, Amat, SAME_NONZERO_PATTERN );
+	Stg_KSPSetOperators( ksp, Amat, Amat, SAME_NONZERO_PATTERN );
 	KSPSetType( ksp, "preonly" );
 	
 	KSPGetPC( ksp, &pc );

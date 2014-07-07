@@ -134,12 +134,12 @@ PetscErrorCode KSPSetup_CGR( KSP ksp )
 		Stg_SETERRQ( PETSC_ERR_USER, "KSPCGR: Need to set restart_its with KSPCGRSetRestart() \n" );
 	}
 	
-	/* If we have changed the operator via KSPSetOperators(), we need to reset the history */	
+	/* If we have changed the operator via Stg_KSPSetOperators(), we need to reset the history */	
 	KSPCGRResetSearchDirection( ksp );
 	
 	/* 
 	If we have already allocated vectors, leave function. 
-	This situation will occur if KSPSetOperators() is called repeatedly.
+	This situation will occur if Stg_KSPSetOperators() is called repeatedly.
 	*/
 	if(  cgr->S != PETSC_NULL && cgr->ST_iAS_i != PETSC_NULL ) {
 		PetscFunctionReturn(0);
@@ -301,11 +301,18 @@ PetscErrorCode CGR_iteration( KSP ksp )
 	Vec r;
 	Vec z,p,q;
 	PetscInt n_old_vectors;
-	MatStructure flag;
 	PetscReal norm, dp = 0.0;
 	
+// was getting annoying compile warnings with Stg_KSPGetOperators(a1,a2,a3,a4) -> KSPGetOperators(a1,a2,a3) macro conversion
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+	KSPGetOperators( ksp, &A, &Pmat );
+#else
+	MatStructure flag;
+    KSPGetOperators( ksp, &A, &Pmat, &flag );
+#endif
+
 	n_old_vectors = ctx->n_search_directions;
-	KSPGetOperators( ksp, &A, &Pmat, &flag );
+
 	KSPGetSolution( ksp, &x );
 	KSPGetRhs( ksp, &b );
 	
@@ -714,7 +721,7 @@ PetscErrorCode KSPCreate_CGR( KSP ksp )
 	
 	ierr = PetscMalloc( sizeof(struct _KSP_CGR), &_cgr );CHKERRQ(ierr);
 	ierr = PetscMemzero( _cgr, sizeof(struct _KSP_CGR) );CHKERRQ(ierr);
-	PetscLogObjectMemory( ksp, sizeof(struct _KSP_CGR) );
+	PetscLogObjectMemory( (PetscObject)ksp, sizeof(struct _KSP_CGR) );
 	
 //	PetscNew( struct _KSP_CGR,&_cgr );
 //	PetscLogObjectMemory( ksp, sizeof(struct _KSP_CGR) );

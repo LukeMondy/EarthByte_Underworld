@@ -56,7 +56,11 @@
   #include "private/snesimpl.h"
 #endif
 
-PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1,Mat *J,Mat *B,MatStructure *flag,void *ctx)
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1, Mat J,Mat B ,void *ctx)
+#else
+PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1, Mat *J,Mat *B, MatStructure *flag,void *ctx)
+#endif
 {
 	Vec            j1a,j2a,x2;
 	PetscErrorCode ierr;
@@ -72,16 +76,24 @@ PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1,Mat *J,Mat *B,M
 	Mat **BB, **BkJac;
 	Vec *sub_x1s, *sub_x2s, *sub_j2as;
 	const char *prefix;
-	
+	Mat matJ, matB;
+
 	PetscFunctionBegin;
 	SNESGetOptionsPrefix( snes, &prefix );
+
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+    matJ = J; matB = B;
+#else
+    matJ = *J; matB = *B;
+#endif
+
 	ierr = PetscOptionsGetReal(prefix,"-snes_test_err",&epsilon,0);CHKERRQ(ierr);
 	eval_fct = SNESComputeFunction;
 	
 	ierr = PetscObjectGetComm((PetscObject)x1,&comm);CHKERRQ(ierr);
-	ierr = MatAssembled(*B,&assembled);CHKERRQ(ierr);
+	ierr = MatAssembled(matB,&assembled);CHKERRQ(ierr);
 	if (assembled) {
-		ierr = MatZeroEntries(*B);CHKERRQ(ierr);
+		ierr = MatZeroEntries(matB);CHKERRQ(ierr);
 	}
 	if (!snes->nvwork) {
 		ierr = VecDuplicateVecs(x1,3,&snes->vwork);CHKERRQ(ierr);
@@ -104,8 +116,8 @@ PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1,Mat *J,Mat *B,M
 	
 	VecBlockGetSubVectors( x1, &sub_x1s );
 	VecBlockGetSubVectors( x2, &sub_x2s );
-	MatBlockGetSubMatrices( *B, &BB );
-	MatBlockGetSubMatrices( *J, &BkJac );
+	MatBlockGetSubMatrices( matB, &BB );
+	MatBlockGetSubMatrices( matJ, &BkJac );
 	
 	for( II=0; II<BN; II++ ) {
 		sub_x1 = sub_x1s[II];
@@ -161,7 +173,7 @@ PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1,Mat *J,Mat *B,M
 				ierr = VecGetArray(sub_j2a,&y);CHKERRQ(ierr);
 				for (j=s; j<e; j++) {
 					if (PetscAbsScalar(y[j-s]) > amax) {
-					//	ierr = MatSetValues(*B,1,&j,1,&i,y+j-start,INSERT_VALUES);CHKERRQ(ierr);
+					//	ierr = MatSetValues(matB,1,&j,1,&i,y+j-start,INSERT_VALUES);CHKERRQ(ierr);
 						
 						ierr = MatSetValues(BB[JJ][II],1,&j,1,&i,y+j-s,INSERT_VALUES);CHKERRQ(ierr);
 						
@@ -178,7 +190,7 @@ PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1,Mat *J,Mat *B,M
 	VecBlockRestoreSubVectors( x1 );
 	VecBlockRestoreSubVectors( x2 );
 	
-	MatGetSize( *B, &BM, &BN );
+	MatGetSize( matB, &BM, &BN );
 	for( II=0; II<BM; II++ ) {
 		for( JJ=0; JJ<BN; JJ++ ) {
 			if( BB[II][JJ] != PETSC_NULL ) {
@@ -194,16 +206,20 @@ PetscErrorCode SNESDefaultComputeJacobian_Block(SNES snes,Vec x1,Mat *J,Mat *B,M
 		}
 	}
 	
-	MatBlockRestoreSubMatrices( *B );
-	MatBlockRestoreSubMatrices( *J );
+	MatBlockRestoreSubMatrices( matB );
+	MatBlockRestoreSubMatrices( matJ );
 	
-	ierr  = MatAssemblyBegin(*B,MAT_FINAL_ASSEMBLY);CHKERRQ(ierr);
-	ierr  = MatAssemblyEnd(*B,MAT_FINAL_ASSEMBLY);CHKERRQ(ierr);
-	if (*B != *J) {
-		ierr  = MatAssemblyBegin(*J,MAT_FINAL_ASSEMBLY);CHKERRQ(ierr);
-		ierr  = MatAssemblyEnd(*J,MAT_FINAL_ASSEMBLY);CHKERRQ(ierr);
+	ierr  = MatAssemblyBegin(matB,MAT_FINAL_ASSEMBLY);CHKERRQ(ierr);
+	ierr  = MatAssemblyEnd(matB,MAT_FINAL_ASSEMBLY);CHKERRQ(ierr);
+	if (matB != matJ) {
+		ierr  = MatAssemblyBegin(matJ,MAT_FINAL_ASSEMBLY);CHKERRQ(ierr);
+		ierr  = MatAssemblyEnd(matJ,MAT_FINAL_ASSEMBLY);CHKERRQ(ierr);
 	}
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+    // ..
+#else
 	*flag =  DIFFERENT_NONZERO_PATTERN;
+#endif
 	
 	
 //	PetscViewerSetFormat( PETSC_VIEWER_STDOUT_WORLD, PETSC_VIEWER_ASCII_MATLAB_DENSE );
@@ -285,10 +301,20 @@ PetscErrorCode MatCreateSNESBlockMFFD(SNES snes,Mat *J)
 	PetscFunctionReturn(0);
 }
 
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+PetscErrorCode BlockMatMFFDComputeJacobian(SNES snes,Vec x, Mat jac,Mat B, void *dummy)
+#else
 PetscErrorCode BlockMatMFFDComputeJacobian(SNES snes,Vec x,Mat *jac,Mat *B,MatStructure *flag,void *dummy)
+#endif
 {
+
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+	MatAssemblyBegin(jac,MAT_FINAL_ASSEMBLY);
+	MatAssemblyEnd(jac,MAT_FINAL_ASSEMBLY);
+#else
 	MatAssemblyBegin(*jac,MAT_FINAL_ASSEMBLY);
 	MatAssemblyEnd(*jac,MAT_FINAL_ASSEMBLY);
+#endif
 	PetscFunctionReturn(0);
 }
 

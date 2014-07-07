@@ -71,7 +71,7 @@ PetscErrorCode BSSCR_KSPSetConvergenceMinIts(KSP ksp, PetscInt n, KSP_BSSCR * bs
       bsscr->min_it = n; /* set minimum its */
 
 #if(PETSC_VERSION_MAJOR == 3)
-      ierr = PetscNew(BSSCR_KSPConverged_Ctx,&ctx);CHKERRQ(ierr);
+      ierr = Stg_PetscNew(BSSCR_KSPConverged_Ctx,&ctx);CHKERRQ(ierr);
       ierr = KSPDefaultConvergedCreate(&ctx->ctx);CHKERRQ(ierr);
       ctx->bsscr=bsscr;
       ierr = KSPSetConvergenceTest(ksp,BSSCR_KSPConverged,ctx,BSSCR_KSPConverged_Destroy);CHKERRQ(ierr);
@@ -155,7 +155,7 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     PetscFunctionBegin;
     PetscPrintf( PETSC_COMM_WORLD, "**** BSSCR -- Block Stokes Schur Compliment Reduction Solver **** \n");
     /** Get the stokes Block matrix and its preconditioner matrix */
-    ierr = PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
+    ierr = Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
     /** In Petsc proper, KSP's ksp->data is usually set in KSPCreate_XXX function. 
         Here it is set in the _StokesBlockKSPInterface_Solve function instead so that we can ensure that the solver
         has everything it needs */
@@ -187,7 +187,7 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     sym = bsscr->DIsSym;
 
     KSPCreate(PETSC_COMM_WORLD, &A11_ksp);
-    KSPSetOperators(A11_ksp, K, K, DIFFERENT_NONZERO_PATTERN);
+    Stg_KSPSetOperators(A11_ksp, K, K, DIFFERENT_NONZERO_PATTERN);
 
     MatBlockGetSubMatrix( Amat, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
 
@@ -372,7 +372,7 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_BSSCR(KSP ksp)
     KSP_BSSCR  *bsscr;
     PetscErrorCode ierr;
     PetscFunctionBegin;
-    ierr = PetscNew(KSP_BSSCR,&bsscr);CHKERRQ(ierr);
+    ierr = Stg_PetscNew(KSP_BSSCR,&bsscr);CHKERRQ(ierr);
     ierr = PetscLogObjectMemory(ksp,sizeof(KSP_BSSCR));CHKERRQ(ierr);
     //ierr = PetscNewLog(ksp,KSP_BSSCR,&bsscr);CHKERRQ(ierr);
     ksp->data                              = (void*)bsscr;

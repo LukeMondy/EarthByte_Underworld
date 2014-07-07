@@ -326,12 +326,12 @@ void _Stokes_SLE_UzawaSolver_SolverSetup( void* solver, void* stokesSLE ) {
 	Stream_IndentBranch( StgFEM_Debug );
 
 	Journal_DPrintfL( self->debug, 1, "Setting up MatrixSolver for the velocity eqn.\n" );
-	KSPSetOperators( self->velSolver, sle->kStiffMat->matrix, sle->kStiffMat->matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( self->velSolver, sle->kStiffMat->matrix, sle->kStiffMat->matrix, DIFFERENT_NONZERO_PATTERN );
   	KSPSetFromOptions( self->velSolver );
 
 	if( self->pcSolver ) {
 		Journal_DPrintfL( self->debug, 1, "Setting up MatrixSolver for the Preconditioner.\n" );
-		KSPSetOperators( self->pcSolver, self->preconditioner->matrix, self->preconditioner->matrix, DIFFERENT_NONZERO_PATTERN );
+		Stg_KSPSetOperators( self->pcSolver, self->preconditioner->matrix, self->preconditioner->matrix, DIFFERENT_NONZERO_PATTERN );
     		KSPSetFromOptions( self->pcSolver );
 	}
 

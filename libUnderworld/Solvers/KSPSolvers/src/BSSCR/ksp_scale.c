@@ -35,7 +35,7 @@ PetscErrorCode KSPUnscale_BSSCR(KSP ksp)
     B             = ksp->vec_rhs;
     ApproxS       = bsscr->preconditioner->matrix;
     sym           = bsscr->DIsSym;
-    ierr=PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
+    ierr=Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
     if( BA->scaling_exists == PETSC_FALSE ){
 	PetscPrintf( PETSC_COMM_WORLD, "SCALING does not EXIST in %s\n", __func__);
     }else{
@@ -80,7 +80,7 @@ PetscErrorCode KSPScale_BSSCR(KSP ksp)
     B             = ksp->vec_rhs;
     ApproxS       = bsscr->preconditioner->matrix;
     sym           = bsscr->DIsSym;
-    ierr=PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
+    ierr=Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
 
     if( DEFAULT == bsscr->scaletype ){
 	if( BA->scaling_exists ){

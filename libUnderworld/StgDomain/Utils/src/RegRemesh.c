@@ -319,7 +319,7 @@ void RegRemesh_Solve( RegRemesh* self, Mat A, Vec b ) {
     VecDuplicate( b, &x );
 
     KSPCreate( MPI_COMM_WORLD, &ksp );
-    KSPSetOperators( ksp, A, A, DIFFERENT_NONZERO_PATTERN );
+    Stg_KSPSetOperators( ksp, A, A, DIFFERENT_NONZERO_PATTERN );
     KSPSolve( ksp, b, x );
     Stg_KSPDestroy(&ksp );
 

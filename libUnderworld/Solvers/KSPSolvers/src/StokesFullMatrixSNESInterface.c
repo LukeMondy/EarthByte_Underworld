@@ -873,7 +873,7 @@ PetscErrorCode SFMSNES_DumpMat(KSP ksp,PetscInt n,PetscReal rnorm, void *dummy)
       PetscFunctionBegin;
       
       sprintf(name,"%s","A");
-      ierr = PCGetOperators(ksp->pc,&A,PETSC_NULL,PETSC_NULL);CHKERRQ(ierr);
+      ierr = Stg_PCGetOperators(ksp->pc,&A,PETSC_NULL,PETSC_NULL);CHKERRQ(ierr);
       ierr = MatComputeExplicitOperator(A,&B);CHKERRQ(ierr);
       PetscObjectSetName((PetscObject)B,name);
 

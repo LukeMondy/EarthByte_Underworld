@@ -32,13 +32,33 @@
 #include "petsc.h"
 #include "petscversion.h"
 
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+   #define Stg_KSPGetOperators(a1,a2,a3,a4) KSPGetOperators(a1,a2,a3)
+   #define Stg_KSPSetOperators(a1,a2,a3,a4) KSPSetOperators(a1,a2,a3)
+   #define Stg_PCGetOperators(a1,a2,a3,a4) PCGetOperators(a1,a2,a3)
+   #define Stg_PCSetOperators(a1,a2,a3,a4) PCSetOperators(a1,a2,a3)
+   #define Stg_PetscNew(a1,a2) PetscNew(a2)
+#else
+   #define Stg_KSPGetOperators(a1,a2,a3,a4) KSPGetOperators(a1,a2,a3,a4)
+   #define Stg_KSPSetOperators(a1,a2,a3,a4) KSPSetOperators(a1,a2,a3,a4)
+   #define Stg_PCGetOperators(a1,a2,a3,a4) PCGetOperators(a1,a2,a3,a4)
+   #define Stg_PCSetOperators(a1,a2,a3,a4) PCSetOperators(a1,a2,a3,a4)
+   #define Stg_PetscNew(a1,a2) PetscNew(a1,a2)
+#endif
+
 #if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
    #define Stg_PCMGDefaultResidual NULL
    #define KSP_DIVERGED_NAN KSP_DIVERGED_NANORINF
    #define Stg_VecRegister(a1,a2,a3,a4) VecRegister(a1,a4)
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+   #define Stg_PetscObjectDepublish PetscObjectSAWsViewOff
+   #define PetscObjectGrantAccess PetscObjectSAWsGrantAccess
+   #define PetscObjectTakeAccess PetscObjectSAWsTakeAccess
+#else
    #define Stg_PetscObjectDepublish PetscObjectAMSViewOff
    #define PetscObjectTakeAccess PetscObjectAMSTakeAccess
    #define PetscObjectGrantAccess PetscObjectAMSGrantAccess
+#endif
    #define PetscGetTime PetscTime
    #define PetscObjectComposeFunctionDynamic( arg1, arg2, arg3, arg4 ) PetscObjectComposeFunction( arg1, arg2, arg4 )
    #define Stg_MatRegister(a1,a2,a3,a4) MatRegister(a1,a4)
@@ -114,7 +134,7 @@
    #define Stg_PetscObjectTypeCompare PetscTypeCompare
    #define Stg_PetscTypeCompare PetscTypeCompare
 #endif
-/* wrapper functions for compatibility between Petsc version 3.2 and lower versions */
+/* wrapper functions for compatibility between Petsc versions >= 3.2 and lower versions */
 PetscErrorCode Stg_MatDestroy(Mat *A);
 PetscErrorCode Stg_VecDestroy(Vec *A);
 PetscErrorCode Stg_KSPDestroy(KSP *A);

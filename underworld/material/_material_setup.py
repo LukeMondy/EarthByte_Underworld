@@ -17,6 +17,11 @@ Ultimately the global Dictionary gets passed back to Underworld which then actua
 ########################################################################################################################
 
 
+# maybe let shapeName be a list as well.
+# if so then make a union shape from the list of shapes.
+# use type(List) is list
+# type("jfah") is str
+# or can make a union first and just pass in this name
 def materialCreate(componentName="background", rheologyName="", shapeName="", density="1.0", alpha="0.0", referenceTemperature="0.0"):
     """
     Creates a new material
