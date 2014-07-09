@@ -86,7 +86,7 @@ def wallSetValue(bcEntry="", variable="vx", wall="top", value=0.0, field="veloci
                     vxTerm["value"]=value
                     entryFound=True
             if not entryFound:        # the "wall" term exists but doesn't have a "vx" entry say
-                vxTerm=dict{}
+                vxTerm=dict()
                 vxTerm["name"]=variable
                 vxTerm["type"]="double"
                 vxTerm["value"]=value

@@ -95,28 +95,3 @@ def sphereCreate( componentName="sphereShape",
                                                                     radius  = str(radius)
                                                                     )
     return newComponentShapeDict
-
-
-
-
-
-		<struct name="sideBlocksShape">
-			<param name="Type">Union</param>
-			<list name="shapes">
-				<param>shearBlockShape1</param>
-				<param>shearBlockShape2</param>
-				<param>shearBlockToothShape1</param>
-				<param>shearBlockToothShape2</param>
-				<param>shearBlockToothShape3</param>
-				<param>shearBlockToothShape4</param>
-				<param>shearBlockToothShape5</param>
-				<param>shearBlockToothShape6</param>
-			</list>
-		</struct>	
-
-def unionCreate():
-
-
-
-
-
