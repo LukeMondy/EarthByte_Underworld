@@ -41,7 +41,7 @@ _signal.signal(_signal.SIGINT, _signal_handler)
 
 # lets go right ahead and init now.  user can re-init if necessary.
 import _stgermain
-_stgermain.StgInit()
+Init()
 _rank = _stgermain.getData().rank
 _nprocs = _stgermain.getData().nProcs
 
