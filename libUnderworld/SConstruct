@@ -132,97 +132,95 @@ dir = Dir(env['build_dir']).abspath
 if not os.path.exists(dir):
    os.makedirs(dir)
 
-if os.environ['BUILDNOW'] == "DONOTBUILDANYTHING" :
+env.Install(env['build_dir'], 'config.log')
+env.Install(env['build_dir'], 'config.cfg')
+env.Install(os.path.join(env['build_dir'],'share/StGermain/scripts'), Glob('script/*.py*'))
+if env['prefix'] != env.GetLaunchDir():
+   env.Install(env['prefix'], 'config.log')
+   env.Install(env['prefix'], 'config.cfg')
+   env.Install(os.path.join(env['prefix'],'share/StGermain/scripts'), Glob('script/*.py*'))
 
-  env.Install(env['build_dir'], 'config.log')
-  env.Install(env['build_dir'], 'config.cfg')
-  env.Install(os.path.join(env['build_dir'],'share/StGermain/scripts'), Glob('script/*.py*'))
-  if env['prefix'] != env.GetLaunchDir():
-     env.Install(env['prefix'], 'config.log')
-     env.Install(env['prefix'], 'config.cfg')
-     env.Install(os.path.join(env['prefix'],'share/StGermain/scripts'), Glob('script/*.py*'))
-
-  if env['with_viewer']:
-     if not os.path.exists(dir+'/gLucifer/Viewer'):
-        os.makedirs(dir+'/gLucifer/Viewer')
-     Execute(Delete(File(env['build_dir']+'/gLucifer/Viewer/offscreen.cfg')))
-     Execute(Copy(File(env['build_dir']+'/gLucifer/Viewer/output.cfg'), File('output.cfg')))
-     Execute(Copy(File(env['build_dir']+'/gLucifer/Viewer/viewer.cfg'), File('viewer.cfg')))
-     Execute(Copy(File(env['build_dir']+'/gLucifer/Viewer/offscreen.cfg'), File('offscreen.cfg')))
+if env['with_viewer']:
+   if not os.path.exists(dir+'/gLucifer/Viewer'):
+      os.makedirs(dir+'/gLucifer/Viewer')
+   Execute(Delete(File(env['build_dir']+'/gLucifer/Viewer/offscreen.cfg')))
+   Execute(Copy(File(env['build_dir']+'/gLucifer/Viewer/output.cfg'), File('output.cfg')))
+   Execute(Copy(File(env['build_dir']+'/gLucifer/Viewer/viewer.cfg'), File('viewer.cfg')))
+   Execute(Copy(File(env['build_dir']+'/gLucifer/Viewer/offscreen.cfg'), File('offscreen.cfg')))
 
 Export('env')
-if os.environ['BUILDNOW'] == "StGermain" :
-  SConscript('StGermain/SConscript',
+
+SConscript('StGermain/SConscript',
            variant_dir=env['build_dir'] + '/StGermain',
-             duplicate=0)
+           duplicate=0)
 env.Prepend(LIBS=['pcu'])
 env.Prepend(LIBS=['StGermain'])
-if os.environ['BUILDNOW'] == "StgDomain" :
-  SConscript('StgDomain/SConscript',
-             variant_dir=env['build_dir'] + '/StgDomain',
-             duplicate=0)
+
+SConscript('StgDomain/SConscript',
+           variant_dir=env['build_dir'] + '/StgDomain',
+           duplicate=0)
 env.Prepend(LIBS=['StgDomain'])
-if os.environ['BUILDNOW'] == "StgFEM" :
-  SConscript('StgFEM/SConscript',
-             variant_dir=env['build_dir'] + '/StgFEM',
-             duplicate=0)
+
+SConscript('StgFEM/SConscript',
+           variant_dir=env['build_dir'] + '/StgFEM',
+           duplicate=0)
 env.Prepend(LIBS=['StgFEM'])
-if os.environ['BUILDNOW'] == "PICellerator" :
-  SConscript('PICellerator/SConscript',
-             variant_dir=env['build_dir'] + '/PICellerator',
-             duplicate=0)
+
+SConscript('PICellerator/SConscript',
+           variant_dir=env['build_dir'] + '/PICellerator',
+           duplicate=0)
 env.Prepend(LIBS=['PICellerator'])
-if os.environ['BUILDNOW'] == "Underworld" :
-  SConscript('Underworld/SConscript',
-             variant_dir=env['build_dir'] + '/Underworld',
-             duplicate=0)
+
+SConscript('Underworld/SConscript',
+           variant_dir=env['build_dir'] + '/Underworld',
+           duplicate=0)
 env.Prepend(LIBS=['Underworld'])
+
 if env['with_glucifer']:
-  if os.environ['BUILDNOW'] == "gLucifer" :
-      SConscript('gLucifer/SConscript',
-                 variant_dir=env['build_dir'] + '/gLucifer',
-                 duplicate=0)
-  env.Prepend(LIBS=['gLucifer'])
+    SConscript('gLucifer/SConscript',
+               variant_dir=env['build_dir'] + '/gLucifer',
+               duplicate=0)
+    env.Prepend(LIBS=['gLucifer'])
+
 if env['with_viewer']:
-  if os.environ['BUILDNOW'] == "gLucifer_Viewer" :
-      SConscript('gLucifer/Viewer/SConscript',
-                 variant_dir=env['build_dir'] + '/gLucifer/Viewer',
-                 duplicate=0)
+    SConscript('gLucifer/Viewer/SConscript',
+               variant_dir=env['build_dir'] + '/gLucifer/Viewer',
+               duplicate=0)
+
 if env['with_geothermal']:
-  if os.environ['BUILDNOW'] == "Geothermal" :
-      SConscript('Geothermal/SConscript',
-                 variant_dir=env['build_dir'] + '/Geothermal',
-                 duplicate=0)
-  env.Prepend(LIBS=['Geothermal'])
+    SConscript('Geothermal/SConscript',
+               variant_dir=env['build_dir'] + '/Geothermal',
+               duplicate=0)
+    env.Prepend(LIBS=['Geothermal'])
+
 if env['with_importers']:
-  if os.environ['BUILDNOW'] == "ImportersToolbox" :
-      SConscript('ImportersToolbox/SConscript',
-                 variant_dir=env['build_dir'] + '/ImportersToolbox',
-                 duplicate=0)
-  env.Prepend(LIBS=['ImportersToolbox'])
+    SConscript('ImportersToolbox/SConscript',
+               variant_dir=env['build_dir'] + '/ImportersToolbox',
+               duplicate=0)
+    env.Prepend(LIBS=['ImportersToolbox'])
+
 if env['with_solvers']:
-  if os.environ['BUILDNOW'] == "Solvers" :
-      SConscript('Solvers/SConscript',
-                 variant_dir=env['build_dir'] + '/Solvers',
-                 duplicate=0)
-  env.Prepend(LIBS=['Solvers'])
+    SConscript('Solvers/SConscript',
+               variant_dir=env['build_dir'] + '/Solvers',
+               duplicate=0)
+    env.Prepend(LIBS=['Solvers'])
+
 if env['with_spherical']:
-  if os.environ['BUILDNOW'] == "Spherical" :
-      SConscript('Spherical/SConscript',
-                 variant_dir=env['build_dir'] + '/Spherical',
-                 duplicate=0)
-  env.Prepend(LIBS=['Spherical'])
+    SConscript('Spherical/SConscript',
+               variant_dir=env['build_dir'] + '/Spherical',
+               duplicate=0)
+    env.Prepend(LIBS=['Spherical'])
+
 if env['with_viscoelastic']:
-  if os.environ['BUILDNOW'] == "Viscoelastic" :
-      SConscript('Viscoelastic/SConscript',
-                 variant_dir=env['build_dir'] + '/Viscoelastic',
-                 duplicate=0)
-  env.Prepend(LIBS=['Viscoelastic'])
-if os.environ['BUILDNOW'] == "libUnderworldPy" :
-  # lets finally build the wrappers
-  SConscript('libUnderworldPy/SConscript',
-             variant_dir=env['build_dir'] + '/libUnderworldPy',
-             duplicate=0)
+    SConscript('Viscoelastic/SConscript',
+               variant_dir=env['build_dir'] + '/Viscoelastic',
+               duplicate=0)
+    env.Prepend(LIBS=['Viscoelastic'])
+
+# lets finally build the wrappers
+SConscript('libUnderworldPy/SConscript',
+           variant_dir=env['build_dir'] + '/libUnderworldPy',
+           duplicate=0)
 env.Prepend(LIBS=['libUnderworldPy'])
 
 
