@@ -66,6 +66,9 @@ typedef struct {
 
 /* operations */
 PetscErrorCode MatBlockGetMatBlockStructure_Block( Mat A, MatBlockStructure *bstruct );
+PetscErrorCode MatBlockSetValue( Mat A, PetscInt idxm, PetscInt idxn, Mat mat, MatStructure str, InsertMode addv );
+PetscErrorCode MatSetSizes_Block( Mat A, PetscInt m, PetscInt n, PetscInt M, PetscInt N );
+
 
 
 

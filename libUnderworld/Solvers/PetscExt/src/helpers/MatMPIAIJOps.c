@@ -57,7 +57,8 @@
 #else
   #include "private/matimpl.h"
 #endif
-#include "src/mat/impls/aij/mpi/mpiaij.h"
+//#include "src/mat/impls/aij/mpi/mpiaij.h"
+#include "private/petscmat/mpiaij.h"
 
 
 PetscErrorCode PetscExtMatGetRowMax_MPIAIJ(Mat mat,Vec v,PetscInt idx[])

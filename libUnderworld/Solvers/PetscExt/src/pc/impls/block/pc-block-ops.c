@@ -477,9 +477,12 @@ PetscErrorCode PCSetUp_Block(PC pc)
 			KSPSetType(s->diag[i],KSPPREONLY);
 			PCGetOptionsPrefix(pc,&prefix);
 			KSPSetOptionsPrefix(s->diag[i],prefix);
-			asprintf( &sub_name, "pc_block_Q%d%d_", i+1,i+1 );
-			KSPAppendOptionsPrefix( s->diag[i], sub_name );
-			free( sub_name );
+			if( asprintf( &sub_name, "pc_block_Q%d%d_", i+1,i+1 ) > 0 ){
+              KSPAppendOptionsPrefix( s->diag[i], sub_name );
+              free( sub_name );
+            }else{
+              PetscPrintf( comm, "  Failed to create prefix for KSP");
+            }
 		}
 		
 		

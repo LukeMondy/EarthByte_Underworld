@@ -96,11 +96,18 @@ PetscErrorCode VecLoad_MatrixMarket( MPI_Comm comm, const char fname[], VecType 
 	
 	
 	/* read header */
-	fgets( header, 2000, fp );
-	PetscPrintf( comm, "  %s", header );
+    if( fgets( header, 2000, fp) != NULL ) {
+      PetscPrintf( comm, "  %s", header );
+    }
+    else{
+      PetscPrintf( comm, "  %s", "fgets header read fail" );
+    }
 	/* read vector size, row x 1 */
-	fscanf( fp, "%d %d", &m, &n );
-	PetscPrintf( comm, "  m=%d : n=%d \n", m,n );
+	if( fscanf( fp, "%d %d", &m, &n ) == 2 ){
+      PetscPrintf( comm, "  m=%d : n=%d \n", m,n );
+    }else{
+      PetscPrintf( comm, "  Failed to get sizes for m and n");
+    }
 	
 	
 	VecCreate( comm, x );
@@ -129,8 +136,8 @@ PetscErrorCode VecLoad_MatrixMarket( MPI_Comm comm, const char fname[], VecType 
 		PetscReal re,im;
 #endif
 		
-		fscanf( fp, "%lf", &tmp );
-		if( i >= s && i < e ) {
+		if( fscanf( fp, "%lf", &tmp ) == 1 ){
+          if( i >= s && i < e ) {
 			_x[add] = tmp;
 			
 #ifdef PETSC_USE_COMPLEX
@@ -141,9 +148,12 @@ PetscErrorCode VecLoad_MatrixMarket( MPI_Comm comm, const char fname[], VecType 
 #else
 			_x[add] = tmp;
 #endif 
-			
+            
 			add++;
-		}
+          }
+        }else{
+          PetscPrintf( comm, "  Failed to get value for _x[add]");
+        }
 		/*
 		if( i%ten_percent == 0 ) {
 			PetscPrintf( comm, "\tInserted %d of %d entries \n", i, m );
@@ -254,14 +264,19 @@ PetscErrorCode MatSEQAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 	}
 	
 	/* read header */
-	fgets( header, 2000, fp );
-	PetscPrintf( comm, "  %s", header );
+	if( fgets( header, 2000, fp ) != NULL ){
+      PetscPrintf( comm, "  %s", header );
+    }else{
+      PetscPrintf( comm, "  %s", "fgets header read fail" );
+    }
 	
 	/* read matrix size, row col row*col */
-	fscanf( fp, "%d %d %d", &m, &n, &nnz );
-	//mn = m * n;
-	PetscPrintf( comm, "  m=%d : n=%d : nnz=%d\n", m,n,nnz );
-	
+	if( fscanf( fp, "%d %d %d", &m, &n, &nnz ) == 3){
+      //mn = m * n;
+      PetscPrintf( comm, "  m=%d : n=%d : nnz=%d\n", m,n,nnz );
+	}else{
+      PetscPrintf( comm, "  Failed to get values for m, n and nnz");
+    }
 	
 	MatCreate( comm, A );
 	MatSetSizes( *A, PETSC_DECIDE,PETSC_DECIDE, m,n );
@@ -273,8 +288,11 @@ PetscErrorCode MatSEQAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 	for( i=0; i<m; i++ ) nz[i] = 0;
 	
 	for( k=0; k<nnz; k++ ) {
-		fscanf( fp, "%d %d %lf", &i, &j, &val );
+      if( fscanf( fp, "%d %d %lf", &i, &j, &val ) == 3){
 		nz[ i-1 ]++;
+      }else{
+        PetscPrintf( comm, "  Failed to get values for i, j and val");
+      }
 	}
 	fclose( fp );
 	
@@ -289,31 +307,41 @@ PetscErrorCode MatSEQAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 	}
 	
 	/* read header */
-	fgets( header, 2000, fp );
-	fscanf( fp, "%d %d %d", &m, &n, &nnz );
-	
-	//ten_percent = (PetscInt)( 10 * ((double)nnz / 100.0) );
-	for( k=0; k<nnz; k++ ) {
-		fscanf( fp, "%d %d %lf", &i, &j, &val );
-	//	printf("%d %d %14.13e \n", i,j,val );
+	if( fgets( header, 2000, fp ) != NULL ){
+      PetscPrintf( comm, "  %s", header );
+    }else{
+      PetscPrintf( comm, "  %s", "fgets header read fail" );
+    }
+
+	if( fscanf( fp, "%d %d %d", &m, &n, &nnz ) == 3){	
+      //ten_percent = (PetscInt)( 10 * ((double)nnz / 100.0) );
+      for( k=0; k<nnz; k++ ) {
+		if( fscanf( fp, "%d %d %lf", &i, &j, &val ) == 3){
+          //	printf("%d %d %14.13e \n", i,j,val );
 		
 #ifdef PETSC_USE_COMPLEX
-		re = val;
-		im = 0.0;
-		PetscRealPart(scalar)      = re;
-		PetscImaginaryPart(scalar) = im;
+          re = val;
+          im = 0.0;
+          PetscRealPart(scalar)      = re;
+          PetscImaginaryPart(scalar) = im;
 #else
-		scalar = val;
+          scalar = val;
 #endif 
 		
 		
-		ierr=MatSetValue( *A, i-1,j-1, scalar, INSERT_VALUES );CHKERRQ(ierr);
-		/*
-		if( k%ten_percent == 0 ) {
+          ierr=MatSetValue( *A, i-1,j-1, scalar, INSERT_VALUES );CHKERRQ(ierr);
+          /*
+            if ( k%ten_percent == 0 ) {
 			PetscPrintf( comm, "\tInserted %d of %d entries\n", k, nnz );
-		}
-		*/
-	}
+            }
+          */
+        }else{
+          PetscPrintf( comm, "  Failed to get values for i, j and val");
+        }//if( fscanf
+      }//for( k=0
+    }else{
+      PetscPrintf( comm, "  Failed to get values for m, n and nnz");
+    }
 	MatAssemblyBegin(*A,MAT_FINAL_ASSEMBLY);
 	MatAssemblyEnd(*A,MAT_FINAL_ASSEMBLY);
 	
@@ -360,14 +388,19 @@ PetscErrorCode MatMPIAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 	if (!fp) {	Stg_SETERRQ1( PETSC_ERR_SUP, "Cannot open file %s", fname );	}
 	
 	/* read header */
-	fgets( header, 2000, fp );
-	PetscPrintf( comm, "  %s", header );
+	if( fgets( header, 2000, fp ) != NULL ){
+      PetscPrintf( comm, "  %s", header );
+    }else{
+      PetscPrintf( comm, "  %s", "fgets header read fail" );
+    }
 	
 	/* read matrix size, row col row*col */
-	fscanf( fp, "%d %d %d", &M, &N, &nnz );
-	//mn = M * N;
-	PetscPrintf( comm, "  m=%d : n=%d : nnz=%d\n", M,N,nnz );
-	
+	if( fscanf( fp, "%d %d %d", &M, &N, &nnz ) == 3){
+      //mn = M * N;
+      PetscPrintf( comm, "  m=%d : n=%d : nnz=%d\n", M,N,nnz );
+	}else{
+      PetscPrintf( comm, "  Failed to get values for M, N and nnz");
+    }
 	
 	MatCreate( comm, A );
 	MatSetSizes( *A, PETSC_DECIDE,PETSC_DECIDE, M,N );
@@ -388,7 +421,7 @@ PetscErrorCode MatMPIAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 	}
 	
 	for( k=0; k<nnz; k++ ) {
-		fscanf( fp, "%d %d %lf", &i, &j, &val );
+      if( fscanf( fp, "%d %d %lf", &i, &j, &val ) == 3){
 		row_index = i-1;
 		col_index = j-1;
 		
@@ -400,7 +433,10 @@ PetscErrorCode MatMPIAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 				onz[ row_index - s ]++;    /* shift by -s to make global row index a local row index */
 			}
 		}
-	}
+      }else{
+        PetscPrintf( comm, "  Failed to get values for i, j and val");
+      }//if( fscanf
+	}//for( k=0
 	fclose( fp );
 	
 	MatMPIAIJSetPreallocation( *A, 0, dnz, 0,onz );
@@ -414,40 +450,48 @@ PetscErrorCode MatMPIAIJCreateFromMatrixMarket( MPI_Comm comm, const char fname[
 	}
 	
 	/* read header */
-	fgets( header, 2000, fp );
-	fscanf( fp, "%d %d %d", &M, &N, &nnz );
-	//ten_percent = (PetscInt)( 10 * ((double)nnz / 100.0) );
-	
-	for( k=0; k<nnz; k++ ) {
-		fscanf( fp, "%d %d %lf", &i, &j, &val );
-		row_index = i - 1;
-		col_index = j - 1;
+	if( fgets( header, 2000, fp ) != NULL ){
+      PetscPrintf( comm, "  %s", header );
+    }else{
+      PetscPrintf( comm, "  %s", "fgets header read fail" );
+    }
+	if( fscanf( fp, "%d %d %d", &M, &N, &nnz ) == 3){
+      //ten_percent = (PetscInt)( 10 * ((double)nnz / 100.0) );
+ 	
+      for( k=0; k<nnz; k++ ) {
+		if( fscanf( fp, "%d %d %lf", &i, &j, &val ) == 3){
+          row_index = i - 1;
+          col_index = j - 1;
 		
 #ifdef PETSC_USE_COMPLEX
-		re = val;
-		im = 0.0;
-		PetscRealPart(scalar)      = re;
-		PetscImaginaryPart(scalar) = im;
+          re = val;
+          im = 0.0;
+          PetscRealPart(scalar)      = re;
+          PetscImaginaryPart(scalar) = im;
 		
-		if( row_index >= s && row_index < e ) {
+          if( row_index >= s && row_index < e ) {
 			ierr=MatSetValue( *A, row_index, col_index, scalar, INSERT_VALUES );CHKERRQ(ierr);
-		}
+          }
 #else
-		scalar = val;
+          scalar = val;
 		
-		if( row_index >= s && row_index < e ) {
+          if( row_index >= s && row_index < e ) {
 			ierr=MatSetValue( *A, row_index, col_index, scalar, INSERT_VALUES );CHKERRQ(ierr);
-		}
+          }
 #endif 
 		
 		
 		
-		/*
-		if( k%ten_percent == 0 ) {
+          /*
+            if( k%ten_percent == 0 ) {
 			PetscPrintf( comm, "\tInserted %d of %d entries\n", k, nnz );
-		}
-		*/
-	}
+            }
+          */
+        }//if( fscanf
+      }//for( k=0
+    }else{
+      PetscPrintf( comm, "  Failed to get values for M, N and nnz");
+    }//if( fscanf
 	MatAssemblyBegin(*A,MAT_FINAL_ASSEMBLY);
 	MatAssemblyEnd(*A,MAT_FINAL_ASSEMBLY);
 	
@@ -505,14 +549,19 @@ PetscErrorCode MatSeqAIJCreateBinaryFromMatrixMarket( const char fname[], const 
 	}
 	
 	/* read header */
-	fgets( header, 2000, fp );
-	PetscPrintf( PETSC_COMM_SELF, "  %s", header );
+	if( fgets( header, 2000, fp ) != NULL ){
+      PetscPrintf( PETSC_COMM_SELF, "  %s", header );
+    }else{
+      PetscPrintf( PETSC_COMM_SELF, "  %s", "fgets header read fail" );
+    }
 	
 	/* read matrix size, row col row*col */
-	fscanf( fp, "%d %d %d", &m, &n, &nnz );
-	//mn = m * n;
-	PetscPrintf( PETSC_COMM_SELF, "  m=%d : n=%d : nnz=%d\n", m,n,nnz );
-	
+	if( fscanf( fp, "%d %d %d", &m, &n, &nnz ) == 3){
+      //mn = m * n;
+      PetscPrintf( PETSC_COMM_SELF, "  m=%d : n=%d : nnz=%d\n", m,n,nnz );
+	}else{
+      PetscPrintf( PETSC_COMM_SELF, "  Failed to get values for m, n and nnz");
+    }
 	
 	MatCreate( PETSC_COMM_SELF, &seq_A );
 	MatSetSizes( seq_A, PETSC_DECIDE,PETSC_DECIDE, m,n );
@@ -524,8 +573,11 @@ PetscErrorCode MatSeqAIJCreateBinaryFromMatrixMarket( const char fname[], const 
 	for( i=0; i<m; i++ ) nz[i] = 0;
 	
 	for( k=0; k<nnz; k++ ) {
-		fscanf( fp, "%d %d %lf", &i, &j, &val );
+      if( fscanf( fp, "%d %d %lf", &i, &j, &val ) == 3){
 		nz[ i-1 ]++;
+      }else{
+        PetscPrintf( PETSC_COMM_SELF, "  Failed to get values for i, j and val");
+      }
 	}
 	fclose( fp );
 	
@@ -540,31 +592,38 @@ PetscErrorCode MatSeqAIJCreateBinaryFromMatrixMarket( const char fname[], const 
 	}
 	
 	/* read header */
-	fgets( header, 2000, fp );
-	fscanf( fp, "%d %d %d", &m, &n, &nnz );
-	
+	//fgets( header, 2000, fp );
+
+	if( fscanf( fp, "%d %d %d", &m, &n, &nnz ) == 3){
+
 	//ten_percent = (PetscInt)( 10 * ((double)nnz / 100.0) );
-	for( k=0; k<nnz; k++ ) {
-		fscanf( fp, "%d %d %lf", &i, &j, &val );
-	//	printf("%d %d %14.13e \n", i,j,val );
+      for( k=0; k<nnz; k++ ) {
+		if( fscanf( fp, "%d %d %lf", &i, &j, &val ) == 3){
+          //	printf("%d %d %14.13e \n", i,j,val );
 		
 #ifdef PETSC_USE_COMPLEX
-		re = val;
-		im = 0.0;
-		PetscRealPart(scalar)      = re;
-		PetscImaginaryPart(scalar) = im;
+          re = val;
+          im = 0.0;
+          PetscRealPart(scalar)      = re;
+          PetscImaginaryPart(scalar) = im;
 #else
-		scalar = val;
+          scalar = val;
 #endif 
 		
 		
-		ierr=MatSetValue( seq_A, i-1,j-1, scalar, INSERT_VALUES );CHKERRQ(ierr);
-		/*
-		if( k%ten_percent == 0 ) {
+          ierr=MatSetValue( seq_A, i-1,j-1, scalar, INSERT_VALUES );CHKERRQ(ierr);
+          /*
+            if( k%ten_percent == 0 ) {
 			PetscPrintf( PETSC_COMM_SELF, "\tInserted %d of %d entries\n", k, nnz );
-		}
-		*/
-	}
+            }
+          */
+        }else{
+          PetscPrintf( PETSC_COMM_SELF, "  Failed to get values for i, j and val");
+        }//if( fscanf
+      }//for( k=0
+    }else{
+      PetscPrintf( PETSC_COMM_SELF, "  Failed to get values for m, n and nnz");
+    }
 	MatAssemblyBegin(seq_A,MAT_FINAL_ASSEMBLY);
 	MatAssemblyEnd(seq_A,MAT_FINAL_ASSEMBLY);
 	
@@ -624,23 +683,26 @@ PetscErrorCode __MatLoadMatrixMarket( MPI_Comm comm, const char fname[], const M
 	MPI_Bcast ( &z_tm_sec, 1, MPI_INT, 0, comm );
 
 	/* Format; tmp-A-Stg_MatLoadMM--YYYY.MM.DD-HH.MM.SS.mtx */	
-	asprintf( &fname_out, "tmp-A-Stg_MatLoadMM--%.4d.%.2d.%.2d-%.2d.%.2d.%.2d.mtx",
+	if( asprintf( &fname_out, "tmp-A-Stg_MatLoadMM--%.4d.%.2d.%.2d-%.2d.%.2d.%.2d.mtx",
 			z_adjustedYear, z_adjustedMonth, z_tm_mday,
-			z_tm_hour, z_tm_min, z_tm_sec );
-	
-	MPI_Comm_rank( comm, &rank );
-	if(rank==0) {
+                  z_tm_hour, z_tm_min, z_tm_sec ) > 0 ){
+      
+      MPI_Comm_rank( comm, &rank );
+      if(rank==0) {
 		MatSeqAIJCreateBinaryFromMatrixMarket( fname, fname_out );
-	}
-	/* make sure proc zero has finished writing before proceeding */
-	MPI_Barrier(comm);
+      }
+
+      /* make sure proc zero has finished writing before proceeding */
+      MPI_Barrier(comm);
 	
-	PetscViewerBinaryOpen(comm,fname_out,FILE_MODE_READ,&viewer);
-	Stg_MatLoad(viewer, type, A);
+      PetscViewerBinaryOpen(comm,fname_out,FILE_MODE_READ,&viewer);
+      Stg_MatLoad(viewer, type, A);
 	
-	Stg_PetscViewerDestroy(&viewer);
-	free(fname_out);
-	
+      Stg_PetscViewerDestroy(&viewer);
+      free(fname_out);
+	}else{
+      PetscPrintf( comm, "  Failed to create viewer for Matrix Market");
+    }
 	
 	PetscFunctionReturn(0);
 }
@@ -898,27 +960,29 @@ PetscErrorCode __MatViewMatrixMarket( Mat A, PetscViewer mm_viewer )
 	MPI_Bcast ( &z_tm_sec, 1, MPI_INT, 0, comm );
 	
 	/* Format; tmp-A-MatViewMM--YYYY.MM.DD-HH.MM.SS.mtx */
-	asprintf( &fname_out, "tmp-A-MatViewMM--%.4d.%.2d.%.2d-%.2d.%.2d.%.2d.mtx",
+	if( asprintf( &fname_out, "tmp-A-MatViewMM--%.4d.%.2d.%.2d-%.2d.%.2d.%.2d.mtx",
 			z_adjustedYear, z_adjustedMonth, z_tm_mday,
-			z_tm_hour, z_tm_min, z_tm_sec );
+                  z_tm_hour, z_tm_min, z_tm_sec ) > 0 ){
 
 	
-	PetscViewerBinaryOpen(comm,fname_out,FILE_MODE_WRITE,&binary_viewer);
-	MatView(A,binary_viewer);
-	Stg_PetscViewerDestroy(&binary_viewer);
-	/* make sure all procs have finished writing before proceeding */
-	MPI_Barrier(comm);
+      PetscViewerBinaryOpen(comm,fname_out,FILE_MODE_WRITE,&binary_viewer);
+      MatView(A,binary_viewer);
+      Stg_PetscViewerDestroy(&binary_viewer);
+      /* make sure all procs have finished writing before proceeding */
+      MPI_Barrier(comm);
 	
-	PetscViewerBinaryOpen(PETSC_COMM_SELF,fname_out,FILE_MODE_READ,&binary_viewer);
-	Stg_MatLoad(binary_viewer,MATSEQAIJ,&seq_A);
-	if( rank == 0 ) {
+      PetscViewerBinaryOpen(PETSC_COMM_SELF,fname_out,FILE_MODE_READ,&binary_viewer);
+      Stg_MatLoad(binary_viewer,MATSEQAIJ,&seq_A);
+      if( rank == 0 ) {
 		MatViewMatrixMarket_SEQAIJ( seq_A, mm_viewer );
-	}
-	Stg_MatDestroy(&seq_A);
-	Stg_PetscViewerDestroy(&binary_viewer);
+      }
+      Stg_MatDestroy(&seq_A);
+      Stg_PetscViewerDestroy(&binary_viewer);
 	
-	free(fname_out);
-	
+      free(fname_out);
+	}else{
+       PetscPrintf( comm, "  Failed to create viewer for Matrix Market");
+    }
 	PetscFunctionReturn(0);
 }
 

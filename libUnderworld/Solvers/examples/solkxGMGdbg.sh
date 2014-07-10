@@ -37,13 +37,14 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
+export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | MG LEVELS |" | tee var.txt
-for VC in 6 9
+for VC in 3
 do
-for SC in 0 1
+for SC in 0
 do
-for LEVELS in 3 5
+for LEVELS in 3
 do
 for UW in gkgdiag
 do
@@ -51,15 +52,15 @@ for SCR in fgmres
 do
 for A11 in fgmres
 do
-for SCRTOL in 1e-10
+for SCRTOL in 1e-4
 do
-for A11TOL in 1e-9
+for A11TOL in 1e-5
 do
 echo "|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----+----|" | tee -a var.txt
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
-for PEN in 0.0 1.0 100.0 10000.0
+for PEN in 1.0
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 PEN=`echo "0.25*$PEN" | bc -l`
@@ -80,7 +81,8 @@ MG=gmg
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
-	MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-accelerating.opt "
+	    #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-accelerating.opt "
+        MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml "
     fi
     if [ "$MG" = "boomeramg" ]                                            
         then                                                                                                                                                                                          
@@ -106,7 +108,7 @@ MGOP=" "
     fi
 
 ID=$SCR$A11
-RES=32
+RES=128
 RESX=$RES
 RESY=$RES
 PP=40
@@ -161,8 +163,8 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolKx.xml \
   		--components.stokesEqn.isNonLinear=False \
   		--saveDataEvery=1 --checkpointEvery=1 --checkpointWritePath="./$OUT/Checkpoints" --checkpointAppendStep=1 \
                 --components.FieldTest.normaliseByAnalyticSolution=False \
-                --solKx_n=1.0   --wavenumberX=1.0 \
-                --solKx_m=1.0   --wavenumberY=1.0 \
+                --solKx_n=2.0   --wavenumberX=2.0 \
+                --solKx_m=2.0   --wavenumberY=2.0 \
                 --solKx_sigma=1.0 \
                 --solKx_twiceB=$VV \
                 -Xscr_ksp_set_min_it_converge 137 \
@@ -198,8 +200,11 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolKx.xml \
                 -backsolveA11_ksp_type fgmres -backsolveA11_ksp_monitor \
                 -backsolveA11_ksp_rtol 1.0e-6 \
   		--elementResI=$RES --elementResJ=$RES \
-  		--maxTimeSteps=0 -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_kx_" \
-    > "./$OUT/output.txt" 2>&1
+  		--maxTimeSteps=0 -Xdump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_kx_" \
+   --components.stokesblockkspinterface.OptionsString="-A11_ksp_type fgmres -A11_ksp_rtol 1e-3 -A11_ksp_monitor -backsolveA11_ksp_type fgmres -log_summary" \
+
+
+#    > "./$OUT/output.txt" 2>&1
 
 ./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt
 

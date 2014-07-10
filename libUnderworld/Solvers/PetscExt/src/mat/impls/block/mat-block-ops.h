@@ -61,7 +61,7 @@ PetscErrorCode MatView_Block( Mat A, PetscViewer viewer );
 PetscErrorCode MatMatMult_Block( Mat A, Mat B, MatReuse scall, PetscReal max_fill, Mat *_C );
 PetscErrorCode MatZeroEntries_Block( Mat A );
 PetscErrorCode MatDuplicate_Block( Mat A, MatDuplicateOption op, Mat *B );
-PetscErrorCode  MatConvert_Block(Mat mat, const MatType newtype,MatReuse reuse,Mat *M);
+PetscErrorCode MatConvert_Block(Mat mat, const MatType newtype,MatReuse reuse,Mat *M);
 
 
 #endif

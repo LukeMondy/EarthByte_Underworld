@@ -57,6 +57,8 @@ struct _Mat_SymTrans {
 	Mat A;
 };
 
+PetscErrorCode MatCreateSymTrans( MPI_Comm comm, Mat A, Mat *symAt );
+
 #endif
 
 

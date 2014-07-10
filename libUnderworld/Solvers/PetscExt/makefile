@@ -9,7 +9,12 @@ DIRS	 = src include
 CFLAGS	 = 
 FFLAGS	 = 
 
+ifneq ("$(wildcard $(PETSC_DIR)/$(PETSC_ARCH))","")
 INSTALL_DIR=${PETSC_DIR}/${PETSC_ARCH}
+else
+INSTALL_DIR=${PETSC_DIR}
+endif
+
 
 version:
 	version_release=`grep '^#define PETSC_VERSION_RELEASE ' include/petscversion.h |tr -s ' ' | cut -d ' ' -f 3`; \

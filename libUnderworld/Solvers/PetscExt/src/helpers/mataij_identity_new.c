@@ -72,10 +72,15 @@ Mat MATAIJIdentityNew( MPI_Comm comm, PetscInt M )
 	MPI_Comm_size( comm, &size );
 	
 	MatCreate( comm, &A );
-	
-	asprintf( &name, "I_%dx%d", M,M );
-	MatSetOptionsPrefix( A, name );
-	
+
+    if(asprintf( &name, "I_%dx%d", M,M ) >0){
+      MatSetOptionsPrefix( A, name );
+    }
+    else{
+      MatSetOptionsPrefix( A, "I_idnew" );
+    }
+
+
 	MatSetSizes( A, PETSC_DECIDE,PETSC_DECIDE, M,M );
 	MatSetType( A, MATAIJ );
 	

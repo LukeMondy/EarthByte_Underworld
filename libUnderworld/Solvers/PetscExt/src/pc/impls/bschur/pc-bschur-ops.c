@@ -430,35 +430,41 @@ PetscErrorCode PCSetFromOptions_BSchur(PC pc)
 	ierr = PetscOptionsBegin(PETSC_COMM_WORLD, PETSC_NULL, "PC BSchur Options", "PC");CHKERRQ(ierr);
 	
 	/* type */
-	asprintf( &option_name, "-%sbschur_type", pc_prefix );
-	PetscOptionsEnum(option_name,"Specifies the block structure of the schur preconditioner","PCBSchurSetType",
-			PCBSchurTypes, (PetscEnum)s->application_type,
-			(PetscEnum*)&type, &flg );
-	if (flg) {
+	if( asprintf( &option_name, "-%sbschur_type", pc_prefix ) > 0 ){
+      PetscOptionsEnum(option_name,"Specifies the block structure of the schur preconditioner","PCBSchurSetType",
+                       PCBSchurTypes, (PetscEnum)s->application_type,
+                       (PetscEnum*)&type, &flg );
+      if (flg) {
 		PCBSchurSetType( pc, type );
-	}
-	free(option_name);
-	
+      }
+      free(option_name);
+	}else{
+      PetscPrintf( PETSC_COMM_SELF, "  Failed to create prefix for BSchur PC");
+    }
 	
 	/* explicit */
-	asprintf( &option_name, "-%sbschur_explicit", pc_prefix );
-	PetscOptionsTruth(option_name,"Specifies that we will form an explicit schur complement using a diagonal approximation","PCBSchurSetExplicit",
-			PETSC_FALSE, &flg, &set );
-	if (flg) {
+	if( asprintf( &option_name, "-%sbschur_explicit", pc_prefix ) > 0 ){
+      PetscOptionsTruth(option_name,"Specifies that we will form an explicit schur complement using a diagonal approximation","PCBSchurSetExplicit",
+                        PETSC_FALSE, &flg, &set );
+      if (flg) {
 		s->explicit_operator = PETSC_TRUE;
-	}
-	free(option_name);
-	
+      }
+      free(option_name);
+	}else{
+      PetscPrintf( PETSC_COMM_SELF, "  Failed to create option_name for explicit");
+    }
 	
 	/* use true rhs */
-	asprintf( &option_name, "-%sbschur_use_factored_rhs", pc_prefix );
-	PetscOptionsTruth(option_name,"Specifies that the rhs used will be consistent with that obtained from doing block factorisation","PCBSchurSetUseFactoredRhs",
-			PETSC_FALSE, &flg, &set );
-	if (flg) {
+	if( asprintf( &option_name, "-%sbschur_use_factored_rhs", pc_prefix ) > 0 ){
+      PetscOptionsTruth(option_name,"Specifies that the rhs used will be consistent with that obtained from doing block factorisation","PCBSchurSetUseFactoredRhs",
+                        PETSC_FALSE, &flg, &set );
+      if (flg) {
 		s->block_factorisation = PETSC_TRUE;
-	}
-	free(option_name);
-	
+      }
+      free(option_name);
+	}else{
+      PetscPrintf( PETSC_COMM_SELF, "  Failed to create option_name for bschur_use_factored_rhs");
+    }
 	
 	
 	ierr = PetscOptionsEnd();CHKERRQ(ierr);

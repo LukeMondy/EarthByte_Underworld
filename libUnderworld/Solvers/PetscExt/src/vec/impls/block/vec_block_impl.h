@@ -65,6 +65,10 @@ typedef struct {
 
 
 /* operations */
+PetscErrorCode VecBlockRestoreSubVectors_Block( Vec X );
+PetscErrorCode PETSCMAT_DLLEXPORT VecBlockRestoreSubVectors( Vec x );
+PetscErrorCode VecBlockSetValue( Vec x, PetscInt idxm, Vec vec, InsertMode addv );
+
 PetscErrorCode VecCopy_Block( Vec x, Vec y );
 PetscErrorCode VecDuplicate_Block( Vec x, Vec *y );
 
