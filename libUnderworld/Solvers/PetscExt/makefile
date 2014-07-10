@@ -9,7 +9,12 @@ DIRS	 = src include
 CFLAGS	 = 
 FFLAGS	 = 
 
+ifneq ("$(wildcard $(PETSC_DIR)/$(PETSC_ARCH))","")
 INSTALL_DIR=${PETSC_DIR}/${PETSC_ARCH}
+else
+INSTALL_DIR=${PETSC_DIR}
+endif
+
 
 version:
 	version_release=`grep '^#define PETSC_VERSION_RELEASE ' include/petscversion.h |tr -s ' ' | cut -d ' ' -f 3`; \
@@ -20,7 +25,7 @@ version:
 
 #include ${PETSC_DIR}/conf/base
 #include ${PETSC_DIR}/conf/test
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common
 #include ${PETSC_DIR}/conf/rules
 
 #
@@ -61,11 +66,11 @@ info:
 	-@echo On `date` on `hostname`
 	-@echo Machine characteristics: `uname -a`
 	-@echo "-----------------------------------------"
-	-@echo "Using PETScExt directory ${PETSCEXT_DIR}"
+	-@echo "Using PETScExt directory ${PETSCEXT2_DIR}"
 	-@echo "Using PETSc directory: ${PETSC_DIR}"
 	-@echo "Using PETSc arch: ${PETSC_ARCH}"
 	-@echo "-----------------------------------------"
-	-@grep "define PETSCEXT_VERSION" ${PETSCEXT_DIR}/include/petscextversion.h | ${SED} "s/........//"
+	-@grep "define PETSCEXT_VERSION" ${PETSCEXT2_DIR}/include/petscextversion.h | ${SED} "s/........//"
 	-@echo "-----------------------------------------"
 	-@echo "Using configure Options: ${CONFIGURE_OPTIONS}"
 	-@echo "Using configuration flags:"
@@ -130,7 +135,7 @@ info_h:
 build:
 	-@echo "BEGINNING TO COMPILE PETScExt LIBRARIES IN ALL DIRECTORIES"
 	-@echo "========================================="
-	-@${OMAKE}  PETSC_ARCH=${PETSC_ARCH} PETSCEXT_DIR=${PETSCEXT_DIR} ACTION=libfast tree
+	-@${OMAKE}  PETSC_ARCH=${PETSC_ARCH} PETSCEXT2_DIR=${PETSCEXT2_DIR} ACTION=libfast tree
 	-@${RANLIB} ${PETSCEXT_LIB_DIR}/*.${AR_LIB_SUFFIX}
 	-@echo "Completed building libraries"
 	-@echo "========================================="
@@ -185,7 +190,7 @@ deletelibs:
 
 # Cleans up build
 allclean: deletelibs
-	-@${OMAKE} PETSC_ARCH=${PETSC_ARCH} PETSCEXT_DIR=${PETSCEXT_DIR} ACTION=clean tree
+	-@${OMAKE} PETSC_ARCH=${PETSC_ARCH} PETSCEXT2_DIR=${PETSCEXT2_DIR} ACTION=clean tree
 
 
 #
@@ -201,11 +206,11 @@ chk_petsc_dir:
 #
 
 #
-# Check if PETSCEXT_DIR variable specified is valid
+# Check if PETSCEXT2_DIR variable specified is valid
 #
 chk_petscext_dir:
-	@if [ ! -f ${PETSCEXT_DIR}/include/petscextversion.h ]; then \
-	  echo "Incorrect PETSCEXT_DIR specified: ${PETSCEXT_DIR}!"; \
+	@if [ ! -f ${PETSCEXT2_DIR}/include/petscextversion.h ]; then \
+	  echo "Incorrect PETSCEXT2_DIR specified: ${PETSCEXT2_DIR}!"; \
 	  echo "You need to use / to separate directories, not \\!"; \
 	  echo "Aborting build"; \
 	  false; fi
@@ -213,7 +218,7 @@ chk_petscext_dir:
 #
 
 install:
-	-@if [ "${PETSCEXT_INSTALL_DIR}" = "${PETSCEXT_DIR}" ]; then \
+	-@if [ "${PETSCEXT_INSTALL_DIR}" = "${PETSCEXT2_DIR}" ]; then \
 		echo "Install directory is current directory; nothing needs to be done";\
 	else \
 		echo Installing PETScExt at ${PETSCEXT_INSTALL_DIR};\
@@ -255,10 +260,10 @@ install:
 		if [ -d ${PETSC_ARCH}/lib ]; then \
 			cp -f ${PETSC_ARCH}/lib/* ${PETSCEXT_INSTALL_DIR}/${PETSC_ARCH}/lib;\
 			${RANLIB} ${PETSCEXT_INSTALL_DIR}/${PETSC_ARCH}/lib/*.a ;\
-                        ${OMAKE} PETSC_ARCH=${PETSC_ARCH} PETSCEXT_DIR=${PETSCEXT_INSTALL_DIR} shared_pext; \
+                        ${OMAKE} PETSC_ARCH=${PETSC_ARCH} PETSCEXT2_DIR=${PETSCEXT_INSTALL_DIR} shared_pext; \
 		fi;\
-		echo "sh/bash: PETSCEXT_DIR="${PETSCEXT_INSTALL_DIR}"; export PETSCEXT_DIR";\
-		echo "csh/tcsh: setenv PETSCEXT_DIR "${PETSCEXT_INSTALL_DIR} ;\
+		echo "sh/bash: PETSCEXT2_DIR="${PETSCEXT_INSTALL_DIR}"; export PETSCEXT2_DIR";\
+		echo "csh/tcsh: setenv PETSCEXT2_DIR "${PETSCEXT_INSTALL_DIR} ;\
 	fi;
 
 

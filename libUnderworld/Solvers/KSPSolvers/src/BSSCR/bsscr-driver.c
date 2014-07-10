@@ -177,7 +177,7 @@ PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stoke
 
     KSPCreate( PETSC_COMM_WORLD, &ksp_S );
     KSPSetOptionsPrefix( ksp_S, "scr_");
-    KSPSetOperators( ksp_S, S,S, SAME_NONZERO_PATTERN );
+    Stg_KSPSetOperators( ksp_S, S,S, SAME_NONZERO_PATTERN );
     KSPSetType( ksp_S, "cg" );
         
     /* Build preconditioner for S */
@@ -424,7 +424,7 @@ PetscErrorCode BSSCR_KSPPWConvergedCreate(void **ctx)
     KSPPWConvergedCtx         *cctx;
         
     PetscFunctionBegin;
-    ierr = PetscNew(KSPPWConvergedCtx,&cctx);CHKERRQ(ierr);
+    ierr = Stg_PetscNew(KSPPWConvergedCtx,&cctx);CHKERRQ(ierr);
     *ctx = cctx;
     PetscFunctionReturn(0);
 }

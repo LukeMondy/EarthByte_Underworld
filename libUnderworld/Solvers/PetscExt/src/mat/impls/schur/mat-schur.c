@@ -269,7 +269,7 @@ PetscErrorCode MatSchurSetSchurComplementType_Schur( Mat A, MatSchurComplementTy
 			Stg_SETERRQ( PETSC_ERR_ARG_NULL, "MatSchurSetSchurComplementType: You must specify A11 if build S_11" );
 		}
 		
-		KSPSetOperators( s->ksp, s->A11, s->A11, SAME_NONZERO_PATTERN );
+		Stg_KSPSetOperators( s->ksp, s->A11, s->A11, SAME_NONZERO_PATTERN );
 		MatGetVecs( s->A11, PETSC_NULL, &s->t1 );
 		VecDuplicate( s->t1, &s->t1a );
 		
@@ -285,7 +285,7 @@ PetscErrorCode MatSchurSetSchurComplementType_Schur( Mat A, MatSchurComplementTy
 			Stg_SETERRQ( PETSC_ERR_ARG_NULL, "MatSchurSetSchurComplementType: You must specify A22 if build S_22" );
 		}
 		
-		KSPSetOperators( s->ksp, s->A22, s->A22, SAME_NONZERO_PATTERN );
+		Stg_KSPSetOperators( s->ksp, s->A22, s->A22, SAME_NONZERO_PATTERN );
 		MatGetVecs( s->A22, PETSC_NULL, &s->t2 );
 		VecDuplicate( s->t2, &s->t2a );
 		
@@ -790,7 +790,9 @@ PetscErrorCode MatCreate_Schur( Mat A )
 	//A->factor           = MAT_FACTOR_NONE;
 	//A->mapping          = 0;
 	A->spptr            = 0;
+#if !( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
 	A->same_nonzero     = PETSC_FALSE;
+#endif
 	A->assembled        = PETSC_FALSE;
 	
 	/* allocate and set pointer for implememtation data */

@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_compat
 MANSEC   = 
 LOCDIR   = src/compat/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

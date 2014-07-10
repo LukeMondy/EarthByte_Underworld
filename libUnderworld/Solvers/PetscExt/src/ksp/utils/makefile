@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_ksp
 MANSEC   = KSP
 LOCDIR   = src/ksp/utils/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

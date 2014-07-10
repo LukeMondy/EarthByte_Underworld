@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_ksp
 DIRS     = cgr
 LOCDIR   = src/ksp/impls/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

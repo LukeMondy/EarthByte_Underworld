@@ -530,8 +530,8 @@ void PETScMGSolver_UpdateMatrices( PETScMGSolver* self ) {
 
 		ec = PCMGGetSmootherDown( pc, l_i, &levelKSP );
 		CheckPETScError( ec );
-		//ec = KSPSetOperators( levelKSP, level->A->petscMat, level->A->petscMat, DIFFERENT_NONZERO_PATTERN );
-		ec = KSPSetOperators( levelKSP, level->A, level->A, DIFFERENT_NONZERO_PATTERN );
+		//ec = Stg_KSPSetOperators( levelKSP, level->A->petscMat, level->A->petscMat, DIFFERENT_NONZERO_PATTERN );
+		ec = Stg_KSPSetOperators( levelKSP, level->A, level->A, DIFFERENT_NONZERO_PATTERN );
 		CheckPETScError( ec );
 		//ec = PCMGSetResidual( pc, l_i, PCMGDefaultResidual, level->A->petscMat );
 		ec = PCMGSetResidual( pc, l_i, Stg_PCMGDefaultResidual, level->A );
@@ -539,8 +539,8 @@ void PETScMGSolver_UpdateMatrices( PETScMGSolver* self ) {
 
 		if( l_i > 0 ) {
 			PCMGGetSmootherUp( pc, l_i, &levelKSP );
-			//ec = KSPSetOperators( levelKSP, level->A->petscMat, level->A->petscMat, DIFFERENT_NONZERO_PATTERN );
-			ec = KSPSetOperators( levelKSP, level->A, level->A, DIFFERENT_NONZERO_PATTERN );
+			//ec = Stg_KSPSetOperators( levelKSP, level->A->petscMat, level->A->petscMat, DIFFERENT_NONZERO_PATTERN );
+			ec = Stg_KSPSetOperators( levelKSP, level->A, level->A, DIFFERENT_NONZERO_PATTERN );
 			CheckPETScError( ec );
 		}
 	}

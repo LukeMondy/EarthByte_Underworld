@@ -457,7 +457,9 @@ PetscErrorCode MatCreate_RestrictScatter( Mat A )
 	//A->factor           = MAT_FACTOR_NONE;
 	//A->mapping          = 0;
 	A->spptr            = 0;
+#if !( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
 	A->same_nonzero     = PETSC_FALSE;
+#endif
 	A->assembled        = PETSC_FALSE;
 	
 	/* allocate and set pointer for implememtation data */

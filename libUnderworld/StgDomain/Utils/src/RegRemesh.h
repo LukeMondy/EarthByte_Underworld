@@ -42,10 +42,7 @@
 #define __StgDomain_Utils_RegRemesh_h__
 
 #include <mpi.h>
-#include <petsc.h>
-#include <petscvec.h>
-#include <petscmat.h>
-#include <petscksp.h>
+#include "PETScCompatibility.h"
 
 /* Textual name of this class. */
 extern const Type RegRemesh_Type;

@@ -185,10 +185,10 @@ void _AdvDiffMulticorrector_SolverSetup( void* solver, void* data ) {
 
    /* The following is disabled, as it appears the stiffness matrix Mat is destroyed during the 
       SystemLinearEquations_MatrixSetup call below.. this results in no ksp mat being set effectively.
-      Instead we call KSPSetOperators just before solve in _AdvDiffMulticorrector_CalculatePhiDot_Implicit */
+      Instead we call Stg_KSPSetOperators just before solve in _AdvDiffMulticorrector_CalculatePhiDot_Implicit */
    /* if ( self->matrixSolver && Stg_Class_IsInstance( sle->massMatrix, StiffnessMatrix_Type ) ) {
       StiffnessMatrix* massMatrix = Stg_CheckType( sle->massMatrix, StiffnessMatrix );
-      KSPSetOperators( self->matrixSolver, massMatrix->matrix, massMatrix->matrix, DIFFERENT_NONZERO_PATTERN );
+      Stg_KSPSetOperators( self->matrixSolver, massMatrix->matrix, massMatrix->matrix, DIFFERENT_NONZERO_PATTERN );
    } */ 
 }
 
@@ -352,7 +352,7 @@ void _AdvDiffMulticorrector_CalculatePhiDot_Explicit( AdvDiffMulticorrector* sel
 }
 
 void _AdvDiffMulticorrector_CalculatePhiDot_Implicit( AdvDiffMulticorrector* self, AdvectionDiffusionSLE* sle, Vec deltaPhiDot ) {
-   KSPSetOperators( self->matrixSolver, ((StiffnessMatrix*)sle->massMatrix)->matrix, ((StiffnessMatrix*)sle->massMatrix)->matrix, DIFFERENT_NONZERO_PATTERN );
+   Stg_KSPSetOperators( self->matrixSolver, ((StiffnessMatrix*)sle->massMatrix)->matrix, ((StiffnessMatrix*)sle->massMatrix)->matrix, DIFFERENT_NONZERO_PATTERN );
    KSPSolve( self->matrixSolver, sle->residual->vector, deltaPhiDot );
 }
 

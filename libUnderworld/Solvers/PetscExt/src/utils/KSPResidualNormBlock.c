@@ -55,11 +55,17 @@ PetscErrorCode KSPGetResidualNormBlock( KSP ksp, PetscInt *bs, PetscReal *rnorm[
 {
 	Mat Amat,Pmat;
 	Vec b,x,r;
+#if !( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
 	MatStructure flg;
-	
+#endif
 	PetscFunctionBegin;
 	
-	KSPGetOperators( ksp, &Amat, &Pmat, &flg );
+// was getting annoying compile warnings with Stg_KSPGetOperators(a1,a2,a3,a4) -> KSPGetOperators(a1,a2,a3) macro conversion
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+	KSPGetOperators( ksp, &Amat, &Pmat );
+#else
+    KSPGetOperators( ksp, &Amat, &Pmat, &flg );
+#endif
 	KSPGetRhs( ksp, &b );
 	KSPGetSolution( ksp, &x );
 	

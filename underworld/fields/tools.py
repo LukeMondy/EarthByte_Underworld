@@ -4,7 +4,6 @@ from libUnderworld import StgDomain
 from libUnderworld import StgFEM
 import underworld._stgermain as _stgermain
 
-
 def FieldVariable_InterpolateValueAt( fieldVar, coord ):
     """
     Returns the interpolated result of a field variable.
@@ -21,8 +20,8 @@ def FieldVariable_InterpolateValueAt( fieldVar, coord ):
     """
     from libUnderworld import c_arrays
 
-    if type(fieldVar) == str:
-        fieldVar = GetLiveComponent(fieldVar)
+    if type(fieldVar)==str:
+        fieldVar = _stgermain.GetLiveComponent(fieldVar)
 
     result = c_arrays.DoubleArray(fieldVar.fieldComponentCount)
 
@@ -118,3 +117,41 @@ def FeVariable_Integrate( feVar, gaussSwarm=None ):
         return
 
     return StgFEM.FeVariable_Integrate( feVar, gaussSwarm )
+
+
+def OverwriteLiveFieldValues ( functionInput, fieldName ):
+
+  """
+  This function takes the live field, calculates a new value
+  for each position using the function you pass to it and sets the field value
+  at each node in the field's associated mesh to this new value.
+
+  If you do not want to change the value at a particular position, your
+  function should pass a value of -1 for that position, which will be ignored
+  
+  Args:
+    functionInput: a function which you directly pass which takes a 
+                         tuple (x,y) or (x,y,z) and returns a value which can be converted to 
+                         double type
+
+    fieldLive:           an instance of the 'live' field python object.
+                         For example; fieldLive = uw.GetLiveComponent("TemperatureField")
+
+
+
+  """
+  fieldLive = _stgermain.GetLiveComponent(fieldName)
+  npMesh = fieldLive.feMesh
+  
+  # Jump through node indices and change the value at that node
+  
+  for j in range(0,len(npMesh[:])):
+	arrPos = npMesh[j]
+	t = functionInput(arrPos)
+
+	if t != -1:
+		fieldLive[j][0] = t 
+  return
+
+
+

@@ -326,7 +326,7 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	PetscOptionsInsertString(Solver->optionsString);
 
 	KSPCreate( PETSC_COMM_WORLD, &stokes_ksp );
-	KSPSetOperators( stokes_ksp, stokes_A, stokes_P, SAME_NONZERO_PATTERN );
+	Stg_KSPSetOperators( stokes_ksp, stokes_A, stokes_P, SAME_NONZERO_PATTERN );
 	KSPSetType( stokes_ksp, "bsscr" );/* i.e. making this the default solver : calls KSPCreate_XXX */
 
 	KSPGetPC( stokes_ksp, &stokes_pc );

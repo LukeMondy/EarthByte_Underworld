@@ -5,4 +5,4 @@ DIRS	= impls register utils
 LOCDIR	= src/snes/
 MANSEC	= SNES
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

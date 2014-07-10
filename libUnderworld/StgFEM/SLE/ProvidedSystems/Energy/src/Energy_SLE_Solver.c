@@ -203,7 +203,7 @@ void _Energy_SLE_Solver_SolverSetup( void* sleSolver, void* standardSLE ) {
 	Stream_IndentBranch( StgFEM_SLE_ProvidedSystems_Energy_Debug );
 	
 	Journal_DPrintf( self->debug, "Initialising the L.A. solver for the \"%s\" matrix.\n", stiffMat->name );
-	KSPSetOperators( self->matrixSolver, stiffMat->matrix, stiffMat->matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( self->matrixSolver, stiffMat->matrix, stiffMat->matrix, DIFFERENT_NONZERO_PATTERN );
    KSPSetFromOptions( self->matrixSolver );
 	Stream_UnIndentBranch( StgFEM_SLE_ProvidedSystems_Energy_Debug );
 	

@@ -215,7 +215,8 @@ def weightCalculatorCreate( componentName="weights",
 def materialSwarmCreate( componentName="materialSwarm",
                          meshName="",
                          particlesPerCell="particlesPerCell",
-                         pic=True):
+                         pic=True,
+                         particleLayout=None):
     """
     Create a material points Swarm
     """
@@ -227,22 +228,23 @@ def materialSwarmCreate( componentName="materialSwarm",
         print "       e.g. meshName=\"velocityMesh\""
         return -1
 
-    if pic:
-        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="spaceFillerParticleLayout",
-                                                                    Type="SpaceFillerParticleLayout",
-                                                                    averageInitialParticlesPerCell=particlesPerCell )
-    else:
-        particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="backgroundParticleLayout",
-                                                                    Type="BackgroundParticleLayout" )
+    if particleLayout == None:
+      if pic:
+          particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="spaceFillerParticleLayout",
+                                                                      Type="SpaceFillerParticleLayout",
+                                                                      averageInitialParticlesPerCell=particlesPerCell )
+      else:
+          particleLayout    = _uw.dictionary.UpdateDictWithComponent( name="backgroundParticleLayout",
+                                                                      Type="BackgroundParticleLayout" )
 
-    elementCellLayout = _uw.dictionary.UpdateDictWithComponent( name="elementCellLayout",
+    elementCellLayout = _uw.dictionary.UpdateDictWithComponent( name="elementCellLayout-"+ componentName,
                                                                 Type="ElementCellLayout",
                                                                 Mesh=meshName
                                                                 )
-    pMovementHandler  = _uw.dictionary.UpdateDictWithComponent( name="pMovementHandler",
+    pMovementHandler  = _uw.dictionary.UpdateDictWithComponent( name="pMovementHandler-"+ componentName,
                                                                 Type="ParticleMovementHandler"
                                                                 )
-    pShadowSync       = _uw.dictionary.UpdateDictWithComponent( name="pShadowSync",
+    pShadowSync       = _uw.dictionary.UpdateDictWithComponent( name="pShadowSync-"+ componentName,
                                                                 Type="ParticleShadowSync"
                                                                 )
 

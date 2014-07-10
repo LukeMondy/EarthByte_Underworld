@@ -230,7 +230,7 @@ void test_pc_block_apply_U( void )
 	
 	/* Q22 */
 	KSPCreate( PETSC_COMM_WORLD, &ksp_Q );
-	KSPSetOperators( ksp_Q, A22, A22, SAME_NONZERO_PATTERN );
+	Stg_KSPSetOperators( ksp_Q, A22, A22, SAME_NONZERO_PATTERN );
 	KSPSetType( ksp_Q, "preonly" );
 	KSPGetPC( ksp_Q, &Q22 );
 	PCSetType( Q22, "lu" );

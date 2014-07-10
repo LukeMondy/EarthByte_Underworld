@@ -11,4 +11,4 @@ LIBBASE  = libpetscext_snes
 MANSEC   = SNES
 LOCDIR   = src/snes/impls/picard/
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

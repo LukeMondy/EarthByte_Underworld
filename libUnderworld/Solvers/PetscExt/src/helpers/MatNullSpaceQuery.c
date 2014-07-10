@@ -67,6 +67,7 @@ PetscErrorCode PETSCMAT_DLLEXPORT MatNullSpaceQuery(Mat mat,PetscReal *cnst_null
   PetscInt       j,n,N,m;
   PetscErrorCode ierr;
   Vec            l,r;
+  Vec            vec;
   PetscViewer    viewer;
   MatNullSpace   sp;
 
@@ -80,7 +81,15 @@ PetscErrorCode PETSCMAT_DLLEXPORT MatNullSpaceQuery(Mat mat,PetscReal *cnst_null
   }
 
   n = sp->n;
-
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+  if (n) {
+    ierr = VecDuplicate(sp->vecs[0],&vec);CHKERRQ(ierr);
+  } else {
+    ierr = MatGetLocalSize(mat,&m,PETSC_NULL);CHKERRQ(ierr);
+    ierr = VecCreateMPI(((PetscObject)sp)->comm,m,PETSC_DETERMINE,&vec);CHKERRQ(ierr);
+  }
+  l = vec;
+#else
   if (!sp->vec) {
     if (n) {
       ierr = VecDuplicate(sp->vecs[0],&sp->vec);CHKERRQ(ierr);
@@ -89,7 +98,8 @@ PetscErrorCode PETSCMAT_DLLEXPORT MatNullSpaceQuery(Mat mat,PetscReal *cnst_null
       ierr = VecCreateMPI(((PetscObject)sp)->comm,m,PETSC_DETERMINE,&sp->vec);CHKERRQ(ierr);
     }
   }
-  l    = sp->vec;
+  l = sp->vec;
+#endif
 
   ierr = PetscViewerASCIIGetStdout(((PetscObject)sp)->comm,&viewer);CHKERRQ(ierr);
 

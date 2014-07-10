@@ -92,7 +92,7 @@ PetscErrorCode BSSCR_PCScGtKGBBtContainsConstantNullSpace( PC pc, PetscTruth *ha
 	Mat BBt,A;
 	
 	
-	KSPGetOperators( ctx->ksp_BBt, &BBt, PETSC_NULL, PETSC_NULL );
+	Stg_KSPGetOperators( ctx->ksp_BBt, &BBt, PETSC_NULL, PETSC_NULL );
 	A = BBt;
 	
 	MatGetVecs( A, &r, &l ); // l = A r
@@ -527,7 +527,7 @@ PetscErrorCode BSSCR_PCCreate_ScGtKG( PC pc )
 	PetscErrorCode  ierr;
 	
 	/* create memory for ctx */
-	ierr = PetscNew( _PC_SC_GtKG,&pc_data);CHKERRQ(ierr);
+	ierr = Stg_PetscNew( _PC_SC_GtKG,&pc_data);CHKERRQ(ierr);
 	
 	/* init ctx */
 	pc_data->F   = PETSC_NULL;
@@ -819,7 +819,7 @@ PetscErrorCode BSSCR_PCScGtKGUseStandardBBtOperator( PC pc )
 	/* Build the solver */
 	KSPCreate( ((PetscObject)pc)->comm, &ksp );
 	
-	KSPSetOperators( ksp, BBt, BBt, SAME_NONZERO_PATTERN );
+	Stg_KSPSetOperators( ksp, BBt, BBt, SAME_NONZERO_PATTERN );
 	
 	PCGetOptionsPrefix( pc,&prefix );
 	KSPSetOptionsPrefix( ksp, prefix );

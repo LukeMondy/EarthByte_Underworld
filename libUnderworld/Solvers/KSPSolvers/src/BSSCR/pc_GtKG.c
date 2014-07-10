@@ -211,7 +211,7 @@ PetscErrorCode BSSCR_PCSetUp_GtKG( PC pc )
 	Stg_VecDestroy(&diag );
 	
 	
-	KSPSetOperators( ctx->ksp, ctx->GtG, ctx->GtG, SAME_NONZERO_PATTERN );
+	Stg_KSPSetOperators( ctx->ksp, ctx->GtG, ctx->GtG, SAME_NONZERO_PATTERN );
 	
 	if (!pc->setupcalled) {	
 		wasSetup = PETSC_FALSE;
@@ -554,7 +554,7 @@ PetscErrorCode BSSCR_PCCreate_GtKG( PC pc )
 	PetscErrorCode  ierr;
 	
 	/* create memory for ctx */
-	ierr = PetscNew( _PC_GtKG,&pc_data);CHKERRQ(ierr);
+	ierr = Stg_PetscNew( _PC_GtKG,&pc_data);CHKERRQ(ierr);
 	
 	/* init ctx */
 	pc_data->K   = PETSC_NULL;

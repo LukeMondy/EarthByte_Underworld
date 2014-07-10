@@ -211,7 +211,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /*********    SET PREFIX FOR INNER/VELOCITY KSP    *************************************************************/
     KSPSetOptionsPrefix( ksp_inner, "A11_" );
     KSPSetFromOptions( ksp_inner );
-    KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+    Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
 
     useNormInfStoppingConditions = PETSC_FALSE;
     PetscOptionsGetTruth( PETSC_NULL ,"-A11_use_norm_inf_stopping_condition", &useNormInfStoppingConditions, &found );
@@ -254,7 +254,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /* Note that if scaling is activated then the approxS matrix has been scaled already */
     /* so no need to rebuild in the case of scaling as we have been doing */
     if(!approxS){ PetscPrintf( PETSC_COMM_WORLD,  "WARNING approxS is NULL\n"); }
-    KSPSetOperators( ksp_S, S, S, SAME_NONZERO_PATTERN );
+    Stg_KSPSetOperators( ksp_S, S, S, SAME_NONZERO_PATTERN );
     KSPSetType( ksp_S, "cg" );
     KSPGetPC( ksp_S, &pc_S );
     BSSCR_BSSCR_StokesCreatePCSchur2( K,G,D,C,approxS, pc_S, sym, bsscrp_self );
@@ -264,7 +264,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     if(flg){
 	Mat Smat, Pmat;                                                                                                 
 	MatStructure mstruct;  
-	PCGetOperators( pc_S, &Smat, &Pmat, &mstruct );
+	Stg_PCGetOperators( pc_S, &Smat, &Pmat, &mstruct );
         sprintf(str,"%s/",name); sprintf(matname,"Pmat%s",suffix);
         bsscr_dirwriteMat( Pmat, matname,str, "Writing Pmat matrix in al Solver");
     }
@@ -368,7 +368,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
             if(f3) { ierr=VecAXPY(f,penaltyNumber,f3); }/*  f <- f +a*f3 */
             ierr=MatAXPY(K,penaltyNumber,K2,DIFFERENT_NONZERO_PATTERN);CHKERRQ(ierr);/* Computes K = penaltyNumber*K2 + K */
             //K=Korig;
-            KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+            Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
             KisJustK=PETSC_TRUE;          
         }      
     }

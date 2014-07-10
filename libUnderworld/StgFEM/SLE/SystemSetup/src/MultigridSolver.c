@@ -236,7 +236,7 @@ void MultigridSolver_SetMatrix( void* matrixSolver, void* _matrix ) {
 	Mat			matrix	= (Mat)_matrix;
 
 	self->mgData->matrix = matrix;
-	KSPSetOperators( self->mgData->ksp, matrix, matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( self->mgData->ksp, matrix, matrix, DIFFERENT_NONZERO_PATTERN );
 }
 
 void MultigridSolver_SetMaxIterations( void* matrixSolver, unsigned nIterations ) {
@@ -922,7 +922,7 @@ void MultigridSolver_UpdateMatrices( MultigridSolver* self ) {
 			if( level->downSolver ) {
 				//MatrixSolver_SetMatrix( level->downSolver, mat );
 				level->downSolver->matrix = mat;
-				KSPSetOperators( level->downSolver->ksp, mat, mat, DIFFERENT_NONZERO_PATTERN );
+				Stg_KSPSetOperators( level->downSolver->ksp, mat, mat, DIFFERENT_NONZERO_PATTERN );
 			}
 			else {
 				if( l_i > 0 )
@@ -934,7 +934,7 @@ void MultigridSolver_UpdateMatrices( MultigridSolver* self ) {
 				if( level->upSolver ) {
 					//MatrixSolver_SetMatrix( level->upSolver, mat );
 					level->upSolver->matrix = mat;
-					KSPSetOperators( level->upSolver->ksp, mat, mat, DIFFERENT_NONZERO_PATTERN );
+					Stg_KSPSetOperators( level->upSolver->ksp, mat, mat, DIFFERENT_NONZERO_PATTERN );
 				}
 				else
 					level->upSolver = MultigridSolver_CreateSmoother( self, mat );
@@ -945,7 +945,7 @@ void MultigridSolver_UpdateMatrices( MultigridSolver* self ) {
 			if( level->downSolver ) {
 				//MatrixSolver_SetMatrix( level->downSolver, self->matrix );
 				level->downSolver->matrix = self->mgData->matrix;
-				KSPSetOperators( level->downSolver->ksp, self->mgData->matrix, self->mgData->matrix, DIFFERENT_NONZERO_PATTERN );
+				Stg_KSPSetOperators( level->downSolver->ksp, self->mgData->matrix, self->mgData->matrix, DIFFERENT_NONZERO_PATTERN );
 			}
 			else {
 				if( l_i > 0 )
@@ -957,7 +957,7 @@ void MultigridSolver_UpdateMatrices( MultigridSolver* self ) {
 				if( level->upSolver ) {
 					//MatrixSolver_SetMatrix( level->upSolver, self->matrix );
 					level->upSolver->matrix = self->mgData->matrix;
-					KSPSetOperators( level->upSolver->ksp, self->mgData->matrix, self->mgData->matrix, DIFFERENT_NONZERO_PATTERN );
+					Stg_KSPSetOperators( level->upSolver->ksp, self->mgData->matrix, self->mgData->matrix, DIFFERENT_NONZERO_PATTERN );
 				}
 				else
 					level->upSolver = MultigridSolver_CreateSmoother( self, self->mgData->matrix );
@@ -970,7 +970,7 @@ void MultigridSolver_UpdateMatrices( MultigridSolver* self ) {
 	MultigridSolver_UpdateSolvers( self );
 	//MatrixSolver_SetMatrix( self->outerSolver, self->matrix );
 	self->outerSolver->matrix = self->mgData->matrix;
-	KSPSetOperators( self->outerSolver->ksp, self->mgData->matrix, self->mgData->matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( self->outerSolver->ksp, self->mgData->matrix, self->mgData->matrix, DIFFERENT_NONZERO_PATTERN );
 }
 
 void MultigridSolver_UpdateOps( MultigridSolver* self ) {
@@ -1085,7 +1085,7 @@ MGSolver_PETScData* MultigridSolver_CreateOuterSolver( MultigridSolver* self, Ma
 	if( outerSolver->matrix != PETSC_NULL )
 		Stg_MatDestroy(&outerSolver->matrix );
 	outerSolver->matrix = matrix;
-	KSPSetOperators( outerSolver->ksp, matrix, matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( outerSolver->ksp, matrix, matrix, DIFFERENT_NONZERO_PATTERN );
 	KSPSetTolerances( outerSolver->ksp, PETSC_DEFAULT, PETSC_DEFAULT, PETSC_DEFAULT, (PetscInt)3 );
 	KSPSetInitialGuessNonzero( outerSolver->ksp, (PetscTruth)True );
 	KSPSetNormType( outerSolver->ksp, MultigridSolver_NormType_Preconditioned );
@@ -1116,7 +1116,7 @@ MGSolver_PETScData* MultigridSolver_CreateSmoother( MultigridSolver* self, Mat m
 	if( smoother->matrix != PETSC_NULL )
 		Stg_MatDestroy(&smoother->matrix );
 	smoother->matrix = matrix;
-	KSPSetOperators( smoother->ksp, matrix, matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( smoother->ksp, matrix, matrix, DIFFERENT_NONZERO_PATTERN );
 
 	return smoother;
 }
@@ -1167,7 +1167,7 @@ MGSolver_PETScData* MultigridSolver_CreateCoarseSolver( MultigridSolver* self, M
 	    Stg_MatDestroy(&courseSolver->matrix );}
 
 	courseSolver->matrix = matrix;
-	KSPSetOperators( courseSolver->ksp, matrix, matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( courseSolver->ksp, matrix, matrix, DIFFERENT_NONZERO_PATTERN );
 
 	return courseSolver;
 }

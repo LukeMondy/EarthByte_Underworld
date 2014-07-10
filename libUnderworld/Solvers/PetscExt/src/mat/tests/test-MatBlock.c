@@ -178,7 +178,7 @@ void test_solve( void )
 	
 	
 	KSPCreate( PETSC_COMM_WORLD, &ksp );
-	KSPSetOperators( ksp, A, A, SAME_NONZERO_PATTERN );
+	Stg_KSPSetOperators( ksp, A, A, SAME_NONZERO_PATTERN );
 	KSPSetType( ksp, "gmres" );
 	KSPGetPC( ksp, &pc );
 	PCSetType( pc, "none" );

@@ -128,7 +128,7 @@ int test_cgr( void )
 	
 	/* Create ctx for generalized cg solver */
 	ierr = KSPCreate(PETSC_COMM_WORLD,&ksp);CHKERRQ(ierr);
-	ierr = KSPSetOperators(ksp,A,A,SAME_NONZERO_PATTERN);CHKERRQ(ierr);
+	ierr = Stg_KSPSetOperators(ksp,A,A,SAME_NONZERO_PATTERN);CHKERRQ(ierr);
 	
 	KSPSetType( ksp, "cgr" );
 	KSPGetPC( ksp, &pc );
@@ -156,7 +156,7 @@ int test_cgr( void )
 	
 	/* Same rhs, should solve in 0 iterations */
 	printf("Same rhs \n");
-	ierr = KSPSetOperators(ksp,A,A,SAME_NONZERO_PATTERN);CHKERRQ(ierr);
+	ierr = Stg_KSPSetOperators(ksp,A,A,SAME_NONZERO_PATTERN);CHKERRQ(ierr);
 	KSPSolve( ksp, b, x );
 	MatMult( A, x, u );
 	VecAYPX( u, -1.0, b ); /* u <- -u + b */

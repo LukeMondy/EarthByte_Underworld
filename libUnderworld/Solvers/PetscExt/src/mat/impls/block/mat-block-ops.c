@@ -584,10 +584,12 @@ PetscErrorCode MatMatMult_Block( Mat A, Mat B, MatReuse scall, PetscReal max_fil
 				if( bC->m[i][j] == PETSC_NULL ) { /* no matrix exist in ij */
 				//	printf("C[%d][%d] = A[%d][%d] * B[%d][%d] \n", i,j, i,k, k,j );
 					MatMatMult( Aik, Bkj, MAT_INITIAL_MATRIX, max_fill, &tmp );
-					asprintf( &prefix, "matbk_%d%d", i,j ); 
-					MatSetOptionsPrefix( tmp, prefix );
-					free( prefix );
-					
+					if( asprintf( &prefix, "matbk_%d%d", i,j ) > 0 ){ 
+                      MatSetOptionsPrefix( tmp, prefix );
+                      free( prefix );
+					}else{
+                      PetscPrintf( comm, "  Failed to create prefix for matrix");
+                    }
 					bC->m[i][j] = tmp;
 				}
 				else {

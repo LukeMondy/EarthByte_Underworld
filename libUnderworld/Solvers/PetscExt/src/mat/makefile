@@ -5,4 +5,4 @@ DIRS	= utils impls register
 LOCDIR	= src/mat/
 MANSEC	= Mat
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

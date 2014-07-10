@@ -1,10 +1,19 @@
 include ${PETSC_DIR}/conf/variables
-include ${PETSC_DIR}/${PETSC_ARCH}/conf/petscvariables
+PVARFOUND = "0"
+ifneq ("$(wildcard $(PETSC_DIR)/$(PETSC_ARCH)/conf/petscvariables)","")
+     include ${PETSC_DIR}/${PETSC_ARCH}/conf/petscvariables
+     PVARFOUND = 1
+endif
+ifneq ("$(wildcard $(PETSC_DIR)/conf/petscvariables)","")
+     include ${PETSC_DIR}/conf/petscvariables
+     PVARFOUND = 1
+endif
 
-include ${PETSCEXT_DIR}/${PETSC_ARCH}/petscextconf
 
-PETSCEXT_LIB_DIR    = ${PETSCEXT_DIR}/${PETSC_ARCH}/lib
-PETSCEXT_INCLUDE    = -I${PETSCEXT_DIR} -I${PETSCEXT_DIR}/include ${PETSC_INCLUDE} -I${PETSC_DIR} -I${PETSC_DIR}/include -I${PETSC_DIR}/${PETSC_ARCH}/include
+include ${PETSCEXT2_DIR}/${PETSC_ARCH}/petscextconf
+
+PETSCEXT_LIB_DIR    = ${PETSCEXT2_DIR}/${PETSC_ARCH}/lib
+PETSCEXT_INCLUDE    = -I${PETSCEXT2_DIR} -I${PETSCEXT2_DIR}/include ${PETSC_INCLUDE} -I${PETSC_DIR} -I${PETSC_DIR}/include -I${PETSC_DIR}/${PETSC_ARCH}/include
 CC_INCLUDES         = ${PETSC_INCLUDE} ${PETSCEXT_INCLUDE}
 FC_INCLUDES         = ${PETSC_INCLUDE} ${PETSCEXT_INCLUDE}
 
@@ -44,5 +53,5 @@ SHLIBS	= libpetscext_helpers libpetscext_vec libpetscext_mat libpetscext_ksp lib
 # The following include files set customized site, optimization, and version
 # options.
 #
-include ${PETSCEXT_DIR}/${PETSC_ARCH}/conf/petscext_variables
+include ${PETSCEXT2_DIR}/${PETSC_ARCH}/conf/petscext_variables
 

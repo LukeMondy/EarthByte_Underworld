@@ -231,7 +231,9 @@ PetscErrorCode PCSetUp_PCBlockApply(PC pc)
 {
 	PC_Block       s = (PC_Block)pc->data;
 	Mat Amat, Pmat;
+#if !( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
 	MatStructure flg;
+#endif
 	PetscInt i;
 	
 	
@@ -262,8 +264,13 @@ PetscErrorCode PCSetUp_PCBlockApply(PC pc)
 		/* If type == UPPER, leave t[nr-1] null and fetch the rest */
 		for( i=0; i<s->nr-1; i++ ) {
 			if( s->t[i] == PETSC_NULL ) {
-				KSPGetOperators( s->diag[i], &Amat, &Pmat, &flg );
-				MatGetVecs( Amat, PETSC_NULL, &s->t[i] );  // {t} = [Amat] {x}
+// was getting annoying compile warnings with Stg_KSPGetOperators(a1,a2,a3,a4) -> KSPGetOperators(a1,a2,a3) macro conversion
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+              KSPGetOperators( s->diag[i], &Amat, &Pmat );
+#else
+              KSPGetOperators( s->diag[i], &Amat, &Pmat, &flg );
+#endif
+              MatGetVecs( Amat, PETSC_NULL, &s->t[i] );  // {t} = [Amat] {x}
 			}
 		}
 	}
@@ -271,8 +278,12 @@ PetscErrorCode PCSetUp_PCBlockApply(PC pc)
 		/* If type == LOWER, leave t[0] null and fetch the rest */
 		for( i=1; i<s->nr; i++ ) {
 			if( s->t[i] == PETSC_NULL ) {
-				KSPGetOperators( s->diag[i], &Amat, &Pmat, &flg );
-				MatGetVecs( Amat, PETSC_NULL, &s->t[i] );
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+              KSPGetOperators( s->diag[i], &Amat, &Pmat );
+#else
+              KSPGetOperators( s->diag[i], &Amat, &Pmat, &flg );
+#endif
+              MatGetVecs( Amat, PETSC_NULL, &s->t[i] );
 			}
 		}
 	}
@@ -289,7 +300,9 @@ PetscErrorCode PCSetUp_PCBlockApplyTranspose(PC pc)
 {
 	PC_Block       s = (PC_Block)pc->data;
 	Mat Amat, Pmat;
+#if !( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
 	MatStructure flg;
+#endif
 	PetscInt i;
 	
 	
@@ -321,7 +334,11 @@ PetscErrorCode PCSetUp_PCBlockApplyTranspose(PC pc)
 	if( s->application_type == PC_BLOCK_UPPER ) { /* need 1 <= i <= nr-1 */
 		for( i=1; i<s->nr; i++ ) {
 			if( s->t_trans[i] == PETSC_NULL ) {
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+				KSPGetOperators( s->diag[i], &Amat, &Pmat );
+#else
 				KSPGetOperators( s->diag[i], &Amat, &Pmat, &flg );
+#endif
 				MatGetVecs( Amat, PETSC_NULL, &s->t_trans[i] );	// {x} = [Amat]^T {t_trans}}
 			}
 		}
@@ -329,7 +346,11 @@ PetscErrorCode PCSetUp_PCBlockApplyTranspose(PC pc)
 	else if ( s->application_type == PC_BLOCK_LOWER ) {
 		for( i=0; i<s->nr-1; i++ ) {
 			if( s->t_trans[i] == PETSC_NULL ) {
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+				KSPGetOperators( s->diag[i], &Amat, &Pmat );
+#else
 				KSPGetOperators( s->diag[i], &Amat, &Pmat, &flg );
+#endif
 				MatGetVecs( Amat, PETSC_NULL, &s->t_trans[i] );
 			}
 		}
@@ -352,7 +373,9 @@ PetscErrorCode PCSetUp_Block(PC pc)
 {
 	PC_Block       s = (PC_Block)pc->data;
 	Mat Amat, Pmat;
+#if !( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
 	MatStructure flg;
+#endif
 	PetscTruth same;
 	PetscInt i,j;//, size;
 	MPI_Comm comm;
@@ -364,7 +387,12 @@ PetscErrorCode PCSetUp_Block(PC pc)
 	PetscFunctionBegin; 
 	
 	/* Now allocate space */
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+	PCGetOperators( pc, &Amat, &Pmat );
+#else
 	PCGetOperators( pc, &Amat, &Pmat, &flg );
+#endif
+
 	/* check Pmat is block */
 	Stg_PetscTypeCompare( (PetscObject)Pmat, "block", &same );
 	if( same != PETSC_TRUE ) {
@@ -449,15 +477,18 @@ PetscErrorCode PCSetUp_Block(PC pc)
 			KSPSetType(s->diag[i],KSPPREONLY);
 			PCGetOptionsPrefix(pc,&prefix);
 			KSPSetOptionsPrefix(s->diag[i],prefix);
-			asprintf( &sub_name, "pc_block_Q%d%d_", i+1,i+1 );
-			KSPAppendOptionsPrefix( s->diag[i], sub_name );
-			free( sub_name );
+			if( asprintf( &sub_name, "pc_block_Q%d%d_", i+1,i+1 ) > 0 ){
+              KSPAppendOptionsPrefix( s->diag[i], sub_name );
+              free( sub_name );
+            }else{
+              PetscPrintf( comm, "  Failed to create prefix for KSP");
+            }
 		}
 		
 		
 #if 0		
 		/* Find a vector */
-		PCGetOperators( pc, &Amat, &Pmat, &flg );
+		Stg_PCGetOperators( pc, &Amat, &Pmat, &flg );
 		MatGetVecs( Amat, PETSC_NULL, &s->block_vec );
 		VecBlockGetSubVectors( s->block_vec, &s->t );
 #endif
@@ -487,7 +518,7 @@ PetscErrorCode PCSetUp_Block(PC pc)
 	for( i=0; i<s->nr; i++ ) {
 		MatBlockGetSubMatrix( Pmat, i,i, &mat );
 		if( mat != PETSC_NULL ) {
-			KSPSetOperators( s->diag[i], mat, mat, pc->flag );
+			Stg_KSPSetOperators( s->diag[i], mat, mat, pc->flag );
 		}
 	}
 	
@@ -784,17 +815,24 @@ Activates the following options
 PetscErrorCode PCSetFromOptions_Block(PC pc)
 {
 	PC_Block       s = (PC_Block)pc->data;
-	PetscTruth     flg,same;
+	PetscTruth     flg;
+    PetscTruth     same;
 	PCBlockType    type;
 	Mat            Amat, Pmat;
+#if !( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
 	MatStructure   str;
+#endif
     PetscErrorCode ierr;
 	
 	
 	PetscFunctionBegin;
 	ierr = PetscOptionsBegin(PETSC_COMM_WORLD, PETSC_NULL, "PC Block Options", "PC");CHKERRQ(ierr);
-	
+// was getting annoying compile warnings with Stg_PCGetOperators(a1,a2,a3,a4) -> PCGetOperators(a1,a2,a3) macro conversion	
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+    PCGetOperators( pc, &Amat, &Pmat );
+#else
 	PCGetOperators( pc, &Amat, &Pmat, &str );
+#endif
 	/* check Pmat is block */
 	Stg_PetscTypeCompare( (PetscObject)Pmat, "block", &same );
 	if( same != PETSC_TRUE ) {

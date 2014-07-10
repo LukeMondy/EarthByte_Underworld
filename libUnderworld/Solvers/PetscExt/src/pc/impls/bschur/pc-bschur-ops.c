@@ -102,7 +102,7 @@ PetscErrorCode PCSetUp_BSchur(PC pc)
 	
 	
 	/* check its okay to do stuff with this pc */
-	PCGetOperators( pc, &A, &B, 0 );
+	Stg_PCGetOperators( pc, &A, &B, 0 );
 	
 	is_block = PETSC_FALSE;
 	Stg_PetscTypeCompare( (PetscObject)B, "block", &is_block );
@@ -224,12 +224,12 @@ PetscErrorCode PCSetUp_BSchur(PC pc)
 		
 		/* update operators for the block preconditioner */
 		if( s->application_type == PC_BSCHUR_UPPER ) {
-			KSPSetOperators( s->ksp_1, A11, A11, SAME_NONZERO_PATTERN );
-			KSPSetOperators( s->ksp_2, s->explicit_schur, s->explicit_schur, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( s->ksp_1, A11, A11, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( s->ksp_2, s->explicit_schur, s->explicit_schur, SAME_NONZERO_PATTERN );
 		}
 		else if ( s->application_type == PC_BSCHUR_LOWER ) {
-			KSPSetOperators( s->ksp_1, s->explicit_schur, s->explicit_schur, SAME_NONZERO_PATTERN );
-			KSPSetOperators( s->ksp_2, A22, A22, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( s->ksp_1, s->explicit_schur, s->explicit_schur, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( s->ksp_2, A22, A22, SAME_NONZERO_PATTERN );
 		}
 	}
 	else {
@@ -253,10 +253,10 @@ PetscErrorCode PCSetUp_BSchur(PC pc)
 		/* operator operators for A11/A22 */
 		MatSchurGetKSP( s->schur, &ksp );
 		if( s->application_type == PC_BSCHUR_UPPER ) {
-			KSPSetOperators( ksp, A11, A11, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( ksp, A11, A11, SAME_NONZERO_PATTERN );
 		}
 		else if ( s->application_type == PC_BSCHUR_LOWER ) {
-			KSPSetOperators( ksp, A22, A22, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( ksp, A22, A22, SAME_NONZERO_PATTERN );
 		}
 		MatAssemblyBegin(s->schur, MAT_FINAL_ASSEMBLY );
 		MatAssemblyEnd(s->schur, MAT_FINAL_ASSEMBLY );
@@ -264,12 +264,12 @@ PetscErrorCode PCSetUp_BSchur(PC pc)
 		
 		/* update the operators for the preconditioner */
 		if( s->application_type == PC_BSCHUR_UPPER ) {
-			KSPSetOperators( s->ksp_1, A11, A11, SAME_NONZERO_PATTERN );
-			KSPSetOperators( s->ksp_2, s->schur, s->schur, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( s->ksp_1, A11, A11, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( s->ksp_2, s->schur, s->schur, SAME_NONZERO_PATTERN );
 		}
 		else if ( s->application_type == PC_BSCHUR_LOWER ) {
-			KSPSetOperators( s->ksp_1, s->schur, s->schur, SAME_NONZERO_PATTERN );
-			KSPSetOperators( s->ksp_2, A22, A22, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( s->ksp_1, s->schur, s->schur, SAME_NONZERO_PATTERN );
+			Stg_KSPSetOperators( s->ksp_2, A22, A22, SAME_NONZERO_PATTERN );
 		}
 		
 	}
@@ -297,7 +297,7 @@ PetscErrorCode PCApply_BSchur_UPPER(PC pc,Vec x,Vec y)
 	
 	PetscFunctionBegin;
 	
-	PCGetOperators( pc, 0, &B, 0 );
+	Stg_PCGetOperators( pc, 0, &B, 0 );
 	MatBlockGetSubMatrix( B, 0,0, &A11 );
 	MatBlockGetSubMatrix( B, 0,1, &A12 );
 	MatBlockGetSubMatrix( B, 1,0, &A21 );
@@ -362,7 +362,7 @@ PetscErrorCode PCApply_BSchur_LOWER(PC pc,Vec x,Vec y)
 	
 	PetscFunctionBegin;
 	
-	PCGetOperators( pc, 0, &B, 0 );
+	Stg_PCGetOperators( pc, 0, &B, 0 );
 	MatBlockGetSubMatrix( B, 0,0, &A11 );
 	MatBlockGetSubMatrix( B, 0,1, &A12 );
 	MatBlockGetSubMatrix( B, 1,0, &A21 );
@@ -430,35 +430,41 @@ PetscErrorCode PCSetFromOptions_BSchur(PC pc)
 	ierr = PetscOptionsBegin(PETSC_COMM_WORLD, PETSC_NULL, "PC BSchur Options", "PC");CHKERRQ(ierr);
 	
 	/* type */
-	asprintf( &option_name, "-%sbschur_type", pc_prefix );
-	PetscOptionsEnum(option_name,"Specifies the block structure of the schur preconditioner","PCBSchurSetType",
-			PCBSchurTypes, (PetscEnum)s->application_type,
-			(PetscEnum*)&type, &flg );
-	if (flg) {
+	if( asprintf( &option_name, "-%sbschur_type", pc_prefix ) > 0 ){
+      PetscOptionsEnum(option_name,"Specifies the block structure of the schur preconditioner","PCBSchurSetType",
+                       PCBSchurTypes, (PetscEnum)s->application_type,
+                       (PetscEnum*)&type, &flg );
+      if (flg) {
 		PCBSchurSetType( pc, type );
-	}
-	free(option_name);
-	
+      }
+      free(option_name);
+	}else{
+      PetscPrintf( PETSC_COMM_SELF, "  Failed to create prefix for BSchur PC");
+    }
 	
 	/* explicit */
-	asprintf( &option_name, "-%sbschur_explicit", pc_prefix );
-	PetscOptionsTruth(option_name,"Specifies that we will form an explicit schur complement using a diagonal approximation","PCBSchurSetExplicit",
-			PETSC_FALSE, &flg, &set );
-	if (flg) {
+	if( asprintf( &option_name, "-%sbschur_explicit", pc_prefix ) > 0 ){
+      PetscOptionsTruth(option_name,"Specifies that we will form an explicit schur complement using a diagonal approximation","PCBSchurSetExplicit",
+                        PETSC_FALSE, &flg, &set );
+      if (flg) {
 		s->explicit_operator = PETSC_TRUE;
-	}
-	free(option_name);
-	
+      }
+      free(option_name);
+	}else{
+      PetscPrintf( PETSC_COMM_SELF, "  Failed to create option_name for explicit");
+    }
 	
 	/* use true rhs */
-	asprintf( &option_name, "-%sbschur_use_factored_rhs", pc_prefix );
-	PetscOptionsTruth(option_name,"Specifies that the rhs used will be consistent with that obtained from doing block factorisation","PCBSchurSetUseFactoredRhs",
-			PETSC_FALSE, &flg, &set );
-	if (flg) {
+	if( asprintf( &option_name, "-%sbschur_use_factored_rhs", pc_prefix ) > 0 ){
+      PetscOptionsTruth(option_name,"Specifies that the rhs used will be consistent with that obtained from doing block factorisation","PCBSchurSetUseFactoredRhs",
+                        PETSC_FALSE, &flg, &set );
+      if (flg) {
 		s->block_factorisation = PETSC_TRUE;
-	}
-	free(option_name);
-	
+      }
+      free(option_name);
+	}else{
+      PetscPrintf( PETSC_COMM_SELF, "  Failed to create option_name for bschur_use_factored_rhs");
+    }
 	
 	
 	ierr = PetscOptionsEnd();CHKERRQ(ierr);

@@ -5,4 +5,4 @@ DIRS	= impls register utils
 LOCDIR	= src/vec/
 MANSEC	= Vec
 
-include ${PETSCEXT_DIR}/conf/petscext_common
+include ${PETSCEXT2_DIR}/conf/petscext_common

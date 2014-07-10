@@ -114,8 +114,8 @@ PetscErrorCode BSSCR_StokesCreatePCSchur( Mat K, Mat G, PC pc_S )
 		BSSCR_StokesReadPCSchurMat( comm, &S );
 		if (!S) {	Stg_SETERRQ(1,"Must indicate location of file for SchurPC matrix with the stokes_Smat option");	}
 		
-		PCGetOperators( pc_S, &Amat, &Amat, &mstruct );
-		PCSetOperators( pc_S, Amat, S, SAME_NONZERO_PATTERN );
+		Stg_PCGetOperators( pc_S, &Amat, &Amat, &mstruct );
+		Stg_PCSetOperators( pc_S, Amat, S, SAME_NONZERO_PATTERN );
 		
 		MatView( S, PETSC_VIEWER_STDOUT_WORLD );
 	}
@@ -162,8 +162,8 @@ PetscErrorCode BSSCR_BSSCR_StokesCreatePCSchur2(
 		
 		if (!Smat) {	Stg_SETERRQ(1,"Smat cannot be NULL if -Q22_pc_type = uw");	}
 		
-		PCGetOperators( pc_S, &Amat, &Pmat, &mstruct );
-		PCSetOperators( pc_S, Amat, Smat, SAME_NONZERO_PATTERN );
+		Stg_PCGetOperators( pc_S, &Amat, &Pmat, &mstruct );
+		Stg_PCSetOperators( pc_S, Amat, Smat, SAME_NONZERO_PATTERN );
 	}
 	else if( strcmp(pc_type,"uwscale")==0 ) { /* diag */
 	    Mat Amat, Shat, Pmat;
@@ -175,8 +175,8 @@ PetscErrorCode BSSCR_BSSCR_StokesCreatePCSchur2(
 		
 		BSSCR_FormSchurApproximation1( K, G, D, C, &Shat, sym );
 		
-		PCGetOperators( pc_S, &Amat, &Pmat, &mstruct );
-		PCSetOperators( pc_S, Amat, Shat, SAME_NONZERO_PATTERN );
+		Stg_PCGetOperators( pc_S, &Amat, &Pmat, &mstruct );
+		Stg_PCSetOperators( pc_S, Amat, Shat, SAME_NONZERO_PATTERN );
 		
 		Stg_MatDestroy(&Shat);
 	}
@@ -190,8 +190,8 @@ PetscErrorCode BSSCR_BSSCR_StokesCreatePCSchur2(
 		
 		BSSCR_FormSchurApproximationDiag( K, G, D, C, &Shat, sym );
 		
-		PCGetOperators( pc_S, &Amat, &Pmat, &mstruct );
-		PCSetOperators( pc_S, Amat, Shat, SAME_NONZERO_PATTERN );
+		Stg_PCGetOperators( pc_S, &Amat, &Pmat, &mstruct );
+		Stg_PCSetOperators( pc_S, Amat, Shat, SAME_NONZERO_PATTERN );
 		
 		Stg_MatDestroy(&Shat);
 	}
@@ -221,7 +221,7 @@ PetscErrorCode BSSCR_BSSCR_StokesCreatePCSchur2(
 
 Recomended usage:
 
-KSPSetOperators( ksp_S, S, Shat, SAME_NONZERO_PATTERN );
+Stg_KSPSetOperators( ksp_S, S, Shat, SAME_NONZERO_PATTERN );
 
 KSPGetPC( ksp_S, &pc_S );
 PCSetType( pc_S, "jacobi" );

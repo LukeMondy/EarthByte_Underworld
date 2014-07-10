@@ -4,7 +4,7 @@
 #
 #################################################################################
 
-include ${PETSCEXT_DIR}/conf/petscext_common_variables
+include ${PETSCEXT2_DIR}/conf/petscext_common_variables
 
 SRC		=	test-PCBlock.c \
 			test-PCBlock-Apply.c \
@@ -38,11 +38,11 @@ all:
 	${PCC} ${CFLAGS} -c $*.c ${INC}
 
 check:
-	-@${PETSCEXT_DIR}/testing/ExecuteTests.pl
+	-@${PETSCEXT2_DIR}/testing/ExecuteTests.pl
 
 
 clean_test:
 	-@rm -f ${APP}
 	-@rm -f ${OBJ}
-	-@${PETSCEXT_DIR}/testing/ExecuteTests.pl clean
+	-@${PETSCEXT2_DIR}/testing/ExecuteTests.pl clean
 

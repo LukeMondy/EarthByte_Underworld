@@ -605,7 +605,7 @@ int picard_test( void )
 		PetscReal nn;
 		
 		KSPCreate( PETSC_COMM_SELF, &_k );
-		KSPSetOperators( _k, Amat,Pmat, DIFFERENT_NONZERO_PATTERN );
+		Stg_KSPSetOperators( _k, Amat,Pmat, DIFFERENT_NONZERO_PATTERN );
 		_flg = DIFFERENT_NONZERO_PATTERN;
 		SNESPicardComputeOperator( snes,x,&Amat,&Pmat,&_flg);
 		SNESPicardComputeRhs( snes,x,FF);
@@ -752,7 +752,7 @@ int hand_coded_picard( void )
 		
 		
 		
-		KSPSetOperators( ksp, Amat, Amat, DIFFERENT_NONZERO_PATTERN );
+		Stg_KSPSetOperators( ksp, Amat, Amat, DIFFERENT_NONZERO_PATTERN );
 		KSPSolve( ksp, rhs, x );
 		
 		// update F
@@ -819,7 +819,7 @@ int hand_coded_picard( void )
 	
 		
 		VecZeroEntries( xdelta );
-		KSPSetOperators( ksp, Amat, Amat, DIFFERENT_NONZERO_PATTERN );
+		Stg_KSPSetOperators( ksp, Amat, Amat, DIFFERENT_NONZERO_PATTERN );
 		KSPSolve( ksp, r, xdelta );
 		VecCopy( xm, x );
 		VecAXPY( x, 1.0, xdelta );

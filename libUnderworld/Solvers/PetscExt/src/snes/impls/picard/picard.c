@@ -50,8 +50,11 @@
 #include "picard-impl.h" /* contains context definition */
 #include "private/snes/snespicard.h"  /* contains prototypes for public functions */
 
-
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+PetscErrorCode _SNESPicard_FormJacobianNULL(SNES snes,Vec a, Mat A,Mat B, void *c) 
+#else
 PetscErrorCode _SNESPicard_FormJacobianNULL(SNES snes,Vec a,Mat *A,Mat *B,MatStructure *s,void *c) 
+#endif
 {
 	PetscFunctionReturn(0);
 }
@@ -315,10 +318,10 @@ PetscErrorCode SNESSolve_PicardExt(SNES snes)
            /* by destroying the ksp this function will set the SNESKSPEW_Pre/PostSolve functions for the new KSP */
            /* the ksp is attached to snes here at same time */
            SNESGetKSP(snes, NULL);
-           ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
+           ierr = Stg_KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
            ierr = KSPSolve(snes->ksp,ctx->rhs,X);CHKERRQ(ierr);
         #else
-           ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
+           ierr = Stg_KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
 		   ierr = SNES_KSPSolve(snes,snes->ksp,ctx->rhs,X);CHKERRQ(ierr); // this function deprecated in petsc 3.4.4
         #endif
 		ierr = KSPGetConvergedReason(snes->ksp,&kspreason);CHKERRQ(ierr);
@@ -463,12 +466,12 @@ PetscErrorCode SNESSolve_InexactPicard(SNES snes)
            /* by destroying the ksp this function will set the SNESKSPEW_Pre/PostSolve functions for the new KSP */
            /* the ksp is attached to snes here at same time */
            SNESGetKSP(snes, NULL);
-           ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
+           ierr = Stg_KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
            ierr = KSPSetTolerances(snes->ksp, eta_k,eta_k, PETSC_DEFAULT,PETSC_DEFAULT );
            ierr = KSPSolve(snes->ksp,ctx->rhs,X);CHKERRQ(ierr);
            ierr = KSPGetConvergedReason(snes->ksp,&kspreason);CHKERRQ(ierr);
         #else
-           ierr = KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
+           ierr = Stg_KSPSetOperators(snes->ksp,ctx->Amat,ctx->Pmat,flg);CHKERRQ(ierr);
            ierr = KSPSetTolerances(snes->ksp, eta_k,eta_k, PETSC_DEFAULT,PETSC_DEFAULT );
 		   ierr = SNES_KSPSolve(snes,snes->ksp,ctx->rhs,X);CHKERRQ(ierr); // this function deprecated in petsc 3.4.4
            ierr = KSPGetConvergedReason(snes->ksp,&kspreason);CHKERRQ(ierr);
@@ -713,8 +716,8 @@ PetscErrorCode SNESCreate_PicardExt(SNES snes)
 	snes->nwork                = 0;
 	
 	/* Create and set the Picard context */
-	ierr       = PetscNew( SNES_PICARD, &neP );CHKERRQ(ierr);
-	ierr       = PetscLogObjectMemory(snes,sizeof(SNES_PICARD));CHKERRQ(ierr);
+	ierr       = Stg_PetscNew( SNES_PICARD, &neP );CHKERRQ(ierr);
+	ierr       = PetscLogObjectMemory((PetscObject)snes,sizeof(SNES_PICARD));CHKERRQ(ierr);
 	snes->data = (void*)neP;
 	
 	/* Init params on SNES_PICARD */

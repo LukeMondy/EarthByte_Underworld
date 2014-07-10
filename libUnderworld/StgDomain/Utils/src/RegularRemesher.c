@@ -32,10 +32,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <petsc.h>
-#include <petscvec.h>
-#include <petscmat.h>
-#include <petscksp.h>
+#include "PETScCompatibility.h"
 #include <StGermain/StGermain.h>
 #include <StgDomain/Geometry/Geometry.h>
 #include <StgDomain/Shape/Shape.h>
@@ -444,7 +441,7 @@ void RegularRemesher_Remesh( void* _self ) {
       VecAssemblyEnd( b );
 
       KSPCreate( PETSC_COMM_SELF, &ksp );
-      KSPSetOperators( ksp, A, A, DIFFERENT_NONZERO_PATTERN );
+      Stg_KSPSetOperators( ksp, A, A, DIFFERENT_NONZERO_PATTERN );
       KSPSolve( ksp, b, x );
 
       VecGetArray( x, &delta );
@@ -522,7 +519,7 @@ void RegularRemesher_Remesh( void* _self ) {
       VecAssemblyEnd( b );
 
       KSPCreate( PETSC_COMM_SELF, &ksp );
-      KSPSetOperators( ksp, A, A, DIFFERENT_NONZERO_PATTERN );
+      Stg_KSPSetOperators( ksp, A, A, DIFFERENT_NONZERO_PATTERN );
       KSPSolve( ksp, b, x );
 
       VecGetArray( x, &soln );

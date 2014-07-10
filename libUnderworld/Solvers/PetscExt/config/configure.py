@@ -37,20 +37,20 @@ for l in range(1,len(sys.argv)):
 
 # Check if enviroment is ok
 print 'Checking environment...'
-if 'PETSCEXT_DIR' not in os.environ:
-  sys.exit('ERROR: PETSCEXT_DIR enviroment variable is not set')
-petscextdir = os.environ['PETSCEXT_DIR']
+if 'PETSCEXT2_DIR' not in os.environ:
+  sys.exit('ERROR: PETSCEXT2_DIR enviroment variable is not set')
+petscextdir = os.environ['PETSCEXT2_DIR']
 petscarch = os.environ['PETSC_ARCH']
 
-# Check PETSCEXT_DIR mathches current working directory
-cwd = os.getcwd()
-if not cwd == petscextdir:
-  error_mesg = os.sep.join( ['ERROR: PETSCEXT_DIR must match current working directory: Yours was', petscextdir,', should be: '])
+# Check PETSCEXT2_DIR mathches current working directory
+cwd = os.path.realpath(os.getcwd())
+if not cwd == os.path.realpath(petscextdir):
+  error_mesg = os.sep.join( ['ERROR: PETSCEXT2_DIR must match current working directory: Yours was', petscextdir,', should be: '])
   error_mesg = os.sep.join([error_mesg,cwd])
   sys.exit( error_mesg )
 
 if not os.path.exists(petscextdir) or not os.path.exists(os.sep.join([petscextdir,'conf'])):
-  sys.exit('ERROR: PETSCEXT_DIR enviroment variable is not valid as petscextdir/conf does not exist')
+  sys.exit('ERROR: PETSCEXT2_DIR enviroment variable is not valid as petscextdir/conf does not exist')
 os.chdir(petscextdir)
 if 'PETSC_DIR' not in os.environ:
   sys.exit('ERROR: PETSC_DIR enviroment variable is not set [2]')
@@ -108,7 +108,7 @@ if not os.path.exists(confdir):
 
 # Open log file
 #log.Open( 'configure-' + petscconf.ARCH + '.log' )
-# Write configure.log to PETSCEXT_DIR/PETSC_ARCH/conf/configure.log
+# Write configure.log to PETSCEXT2_DIR/PETSC_ARCH/conf/configure.log
 log.Open( confdir + '/configure.log' )
 log.Write('='*80)
 log.Write('Starting Configure Run at '+time.ctime(time.time()))
@@ -163,7 +163,7 @@ print
 
 
 # Open petscext_variable file
-# Write variables files to PETSCEXT_DIR/PETSC_ARCH/conf/petscext_variables
+# Write variables files to PETSCEXT2_DIR/PETSC_ARCH/conf/petscext_variables
 petscext_variables = open( confdir + '/petscext_variables', 'w' )
 petscext_variables.write('PETSCEXT_HELPERS_LIB_BASIC = -lpetscext\n')
 petscext_variables.write('PETSCEXT_VEC_LIB_BASIC = -lpetscext\n')
