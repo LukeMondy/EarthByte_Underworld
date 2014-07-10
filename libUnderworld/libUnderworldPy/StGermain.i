@@ -14,7 +14,6 @@ int    Variable_GetValueAtInt(Variable*   , unsigned int, unsigned int);
 float  Variable_GetValueAtFloat(Variable* , unsigned int, unsigned int);
 double Variable_GetValueAtDouble(Variable*, unsigned int, unsigned int);
 
-
 %include "libStGermain/main.h"
 %include "Base/Automation/types.h"
 %include "Base/Context/types.h"
@@ -27,7 +26,7 @@ double Variable_GetValueAtDouble(Variable*, unsigned int, unsigned int);
 %include "Base/Automation/Stg_Component.h"
 %include "Base/Automation/LiveComponentRegister.h"       
 %include "Base/Automation/Stg_ComponentFactory.h"       
-%include "Base/Automation/Stg_ComponentRegister.h"       
+%include "Base/Automation/Stg_ComponentRegister.h"
 %include "Base/Context/AnalyticFunction.h"
 %include "Base/Context/Variable.h"
 %include "Base/Context/AnalyticFunction_Register.h"
@@ -42,6 +41,8 @@ double Variable_GetValueAtDouble(Variable*, unsigned int, unsigned int);
 %include "Base/Extensibility/ExtensionManager_Register.h"      
 %include "Base/Extensibility/ModulesManager.h"
 %include "Base/Foundation/NamedObject_Register.h"       
+%include "Base/Container/HashTable.h"
+%include "Base/Automation/HierarchyTable.h"
 %include "Base/IO/IO_Handler.h"       
 %include "Base/IO/XML_IO_Handler.h"       
 %include "Base/IO/File.h"

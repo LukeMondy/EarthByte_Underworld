@@ -7383,9 +7383,6 @@ class FiniteElementContext(_object):
     __swig_setmethods__["variable_Register"] = _StgFEM.FiniteElementContext_variable_Register_set
     __swig_getmethods__["variable_Register"] = _StgFEM.FiniteElementContext_variable_Register_get
     if _newclass:variable_Register = _swig_property(_StgFEM.FiniteElementContext_variable_Register_get, _StgFEM.FiniteElementContext_variable_Register_set)
-    __swig_setmethods__["pointer_Register"] = _StgFEM.FiniteElementContext_pointer_Register_set
-    __swig_getmethods__["pointer_Register"] = _StgFEM.FiniteElementContext_pointer_Register_get
-    if _newclass:pointer_Register = _swig_property(_StgFEM.FiniteElementContext_pointer_Register_get, _StgFEM.FiniteElementContext_pointer_Register_set)
     __swig_setmethods__["entryPoint_Register"] = _StgFEM.FiniteElementContext_entryPoint_Register_set
     __swig_getmethods__["entryPoint_Register"] = _StgFEM.FiniteElementContext_entryPoint_Register_get
     if _newclass:entryPoint_Register = _swig_property(_StgFEM.FiniteElementContext_entryPoint_Register_get, _StgFEM.FiniteElementContext_entryPoint_Register_set)

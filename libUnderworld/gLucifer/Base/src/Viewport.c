@@ -79,7 +79,6 @@ void _lucViewport_Init(
    Bool                          timestep,
    int                           border,
    Name                          borderColourName,
-   Bool                          disabled,
    Pixel_Index                   margin,
    double                        nearClipPlane,
    double                        farClipPlane,
@@ -103,7 +102,6 @@ void _lucViewport_Init(
    self->scaleX                   = scaleX;
    self->scaleY                   = scaleY;
    self->scaleZ                   = scaleZ;
-   self->disabled = disabled || !self->context->vis;
 
    lucColour_FromString( &self->borderColour, borderColourName );
 
@@ -143,7 +141,6 @@ void _lucViewport_Print( void* viewport, Stream* stream )
 
    Journal_PrintString( stream, self->title );
    Journal_PrintBool( stream, self->timestep );
-   Journal_PrintBool( stream, self->disabled );
 
    Stream_UnIndent( stream );
 }
@@ -176,15 +173,9 @@ void _lucViewport_AssignFromXML( void* viewport, Stg_ComponentFactory* cf, void*
    lucDrawingObject**  drawingObjectList;
    lucCamera*          camera;
 
-   /* TODO Construct Parent */
-
-   self->context = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Context", AbstractContext, False, data );
-   if ( !self->context  )
-      self->context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, data  );
-
    camera =  Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Camera", lucCamera, True, data  ) ;
 
-   drawingObjectList = Stg_ComponentFactory_ConstructByList( cf, self->name, (Dictionary_Entry_Key)"DrawingObject", Stg_ComponentFactory_Unlimited, lucDrawingObject, True, &drawingObjectCount, data  );
+   drawingObjectList = Stg_ComponentFactory_ConstructByList( cf, self->name, (Dictionary_Entry_Key)"DrawingObject", Stg_ComponentFactory_Unlimited, lucDrawingObject, False, &drawingObjectCount, data  );
 
    _lucViewport_Init(
       self,
@@ -199,7 +190,6 @@ void _lucViewport_AssignFromXML( void* viewport, Stg_ComponentFactory* cf, void*
       Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"timestep", False  ),
       Stg_ComponentFactory_GetInt( cf, self->name, (Dictionary_Entry_Key)"border", 0),
       Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"borderColour", "#888888"  ),
-      Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"disable", False  ),
       Stg_ComponentFactory_GetInt( cf, self->name, (Dictionary_Entry_Key)"margin", 32),
       Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"nearClipPlane", 0 ),
       Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"farClipPlane", 0 ),
@@ -218,16 +208,15 @@ void _lucViewport_Destroy( void* viewport, void* data ) { }
 void lucViewport_Draw( void* viewport, lucDatabase* database )
 {
    lucViewport*          self = (lucViewport*) viewport ;
-   if (self->disabled) return;
 
    lucDrawingObject_Register_DrawAll( self->drawingObject_Register, database);
 }
 
-void lucViewport_CleanUp( void* viewport, void* context )
+void lucViewport_CleanUp( void* viewport )
 {
    lucViewport*          self = (lucViewport*) viewport ;
 
-   lucDrawingObject_Register_CleanUpAll( self->drawingObject_Register, context );
+   lucDrawingObject_Register_CleanUpAll( self->drawingObject_Register );
 }
 
 void lucViewport_Update( void* viewport )

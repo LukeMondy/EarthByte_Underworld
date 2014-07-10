@@ -18,7 +18,7 @@ def Init(args=[], prependCommandLineArgs=True):
         Nothing
     """
 
-    Finalise()
+    _resetAll()
 
     if type(args) == str:
         args = args.split()
@@ -29,6 +29,9 @@ def Init(args=[], prependCommandLineArgs=True):
         args = _sys.argv[0:1] + args
 
     _stgermain.StgInit( args )
+
+    # lets go right ahead and load modules up to gLucifer.
+    _stgermain.LoadModules( {"import":["StgDomain","StgFEM","PICellerator","Underworld","gLucifer"]} )
 
     uwdict = _stgermain.GetStgDictionaryAsPyDict(_stgermain.getData().dictionary)
 
@@ -112,17 +115,6 @@ def Step(context=None, steps=1):
             libUnderworld.StGermain.AbstractContext_Update(context)
 
         libUnderworld.StGermain.AbstractContext_Step(context, context.dt)
-
-
-def Finalise():
-    """
-      Finalise the underworld simulation and tools.  Clears the global dictionary.
-
-      Args:
-         None
-    """
-    _stgermain.StgFinalise()
-    _resetAll()
 
 
 def _resetAll():

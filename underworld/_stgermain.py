@@ -6,6 +6,85 @@ import xml.etree.cElementTree as _ET
 import collections as _collections
 from libUnderworld import *
 import utils
+import weakref
+import abc
+
+class StgStaleComponent(object):
+    def __getattr__(self, name):
+        raise AttributeError("""Error. This object is now stale and cannot be used. All existing objects of (sub)type 'StgCompoundComponent' become stale when Finalise() or Init() are called.""")
+
+class StgCompoundComponent(object):
+    """ 
+    This class ties multiple StGermain components together into a single python object.
+    The life cycle of the objects (construction/build/destruction) are handled automatically  
+    
+    """
+    __metaclass__ = abc.ABCMeta
+    
+    _livingInstances = []
+    def __init__(self, modulesList = None):
+        """ 
+        Initialisation function.  All components in provided dictionary are constructed, build & initialised here.
+        
+        Args:
+            modulesList (list)   : List of StGermain modules to load. Default = None
+        """
+        if modulesList:
+            if not isinstance(modulesList, list):
+                raise TypeError("object passed in must be of python type 'list' or subclass")
+            LoadModules( {"import":modulesList} )
+    
+        self._localNames = {}
+        self.componentDictionary = _collections.OrderedDict()
+        # ok... let child classes fill dictionary.
+        self._addToStgDict()
+        self.fullDictionary = {"components": self.componentDictionary}
+        self.componentPointerDictionary = StgConstruct(self.fullDictionary)
+        StgBuild(self.fullDictionary)
+        StgInitialise(self.fullDictionary)
+        self._isAlive = True
+        self._weakref = weakref.ref(self)
+        StgCompoundComponent._livingInstances.append(self._weakref)
+
+        # use the following dictionary to store user friendly names of stg components in child classes
+
+    def __del__(self):
+        """ 
+        Destructor method.  Calls destroy & delete phases.
+        
+        """
+        # check if we have the '_isAlive' attribute, incase one of the child classes died during __init__
+        if hasattr(self,"_isAlive") and self._isAlive:
+            StgDestroy(self.componentDictionary)
+            StgDelete(self.componentDictionary)
+            StgCompoundComponent._livingInstances.remove(self._weakref)
+            self._isAlive = False
+
+    @abc.abstractmethod
+    def _addToStgDict(self):
+        """ This function needs to be set by child class.
+            It allows each child class to enter values into the component dictionary, and then call the parent _addToStgDict method.
+            
+            Args:
+                None
+            Returns:
+                None
+        """
+
+    def _getUniqueName(self, prefix=None):
+        """ This function concatenates an random string of characters with a provided prefix. 
+
+            Args:
+            prefix (str,int,other) : Object to use as prefix. It is converted to a string first. Default is None.
+            numChars (int)         : Number of characters to use for the random string.  Default is 8.
+            
+        """
+        if not hasattr(self,"_uniqueNameValue"):
+            import string
+            import random
+            self._uniqueNameValue = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+        return str(prefix)+"_"+self._uniqueNameValue
+
 
 
 def _elemGetKey(elem):
@@ -13,7 +92,6 @@ def _elemGetKey(elem):
         return elem.attrib['name']
     else:
         return elem.tag.split("}")[1]
-
 
 def _elementToDict(elem):
     # set key
@@ -39,9 +117,7 @@ def _elementToDict(elem):
                         value[childkey] = []
                         value[childkey].append(valueGuy)
                 else:
-                    print "Error.. param cannot contain sub values"
-                    print childkey, valueguy
-                    _sys.exit(2)
+                    raise TypeError("Param cannot contain sub values. key={}, value={}".format(childkey,valueguy))
         # now, if elem is a list, ensure there's only one dict entry, and then simply return the list
         if dicttag == "list":
             if len(value) == 1:
@@ -109,10 +185,7 @@ def _itemToElement(inputItem, inputItemName, inputEl):
             subEl.attrib['name'] = inputItemName
         subEl.text = "\t"
     else:
-        print "Error.. Unknown type encountered"
-        print "key =", inputItemName
-        print "value =", inputItem
-        _sys.exit(2)
+        raise TypeError("Unknown type encountered. key={}, value={}".format(inputItemName,inputItem))
 
 
 def _indent(elem, level=0):
@@ -202,7 +275,8 @@ def StgInit( args=[] ):
        Returns:
        Nothing.
     """
-    _AssertInitStateIs(False)
+    if getData():
+        StgFinalise()
     setData( StGermain_Tools.StgInit( args ) )
     return
 
@@ -236,7 +310,7 @@ def StgConstruct( pyUWDict, setAsRootDict=False ):
          setAsRootDict (bool):  If true, retains generated stg_componentfactory and stg root dictionary. Default false.
 
        Returns:
-         Nothing.
+         pointerDict (dict): Dictionary mapping component names to stg pointer.
     """
     _AssertInitStateIs(True)
     if not isinstance(pyUWDict, dict):
@@ -256,10 +330,12 @@ def StgConstruct( pyUWDict, setAsRootDict=False ):
     # lets create instances of components
     StGermain.Stg_ComponentFactory_CreateComponents( cf )
 
+    pointerDict = {}
     # lets go ahead and construct component
     if "components" in pyUWDict:
         for compName, compDict in pyUWDict["components"].iteritems():
             compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
+            pointerDict[compName] = compPointer
             StGermain.Stg_Component_AssignFromXML( compPointer, cf, None, False )
 
     # don't like this, but not much choice at this point
@@ -274,8 +350,10 @@ def StgConstruct( pyUWDict, setAsRootDict=False ):
         StGermain.Stg_Class_Delete(cf)
         StGermain.Stg_Class_Delete(stgRootDict)
 
+    return pointerDict
 
-def StgBuild( pyUWDict ):
+
+def StgBuild( pyUWDict=None ):
     """
        Calls the build phase for all components & plugins found in provided dictionary.
 
@@ -348,6 +426,29 @@ def StgDestroy( pyUWDict ):
             compPointer = GetLiveComponent( guy["Type"] )
             StGermain.Stg_Component_Destroy( compPointer, None, False )
 
+def StgDelete( pyUWDict ):
+    """
+        Calls the Delete phase for all components & plugins found in provided dictionary.
+        
+        Args:
+        pyUWDict (dict): Underworld root type dictionary containing components and plugins.
+        
+        Returns:
+        Nothing.
+        """
+    _AssertInitStateIs(True)
+    if not isinstance(pyUWDict, dict):
+        raise TypeError("object passed in must be of python type 'dict' or subclass")
+    
+    if "components" in pyUWDict:
+        for compName, compDict in pyUWDict["components"].iteritems():
+            compPointer = GetLiveComponent( compName )
+            StGermain.Stg_Class_Delete( compPointer )
+    if "plugins" in pyUWDict:
+        for guy in pyUWDict["plugins"]:
+            compPointer = GetLiveComponent( guy["Type"] )
+            StGermain.Stg_Class_Delete( compPointer )
+
 
 def StgFinalise():
     """
@@ -359,6 +460,15 @@ def StgFinalise():
        Nothing
     """
     if getData():
+        # first delete any python based living components, as they will become invalide once finalise runs.
+        # we iterate backwards as this makes most sense (delete objects in opposite order of creation.
+        # note that the python objects themselves will remain (until they go out of scope), but the underlying
+        # stgermain data will be destroyed & deleted
+        while len(StgCompoundComponent._livingInstances) is not 0:
+            lastGuyPos = len(StgCompoundComponent._livingInstances) - 1
+            lastGuy = StgCompoundComponent._livingInstances[lastGuyPos]()
+            lastGuy.__del__()
+            lastGuy.__class__ = StgStaleComponent
         StGermain_Tools.StgFinalise( getData() )
         setData(None)
     return

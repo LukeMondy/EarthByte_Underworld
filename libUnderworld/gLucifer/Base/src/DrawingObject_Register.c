@@ -104,7 +104,7 @@ void lucDrawingObject_Register_DrawAll( void* drawingObject_Register, lucDatabas
    }
 }
 
-void lucDrawingObject_Register_CleanUpAll( void* drawingObject_Register, void* context )
+void lucDrawingObject_Register_CleanUpAll( void* drawingObject_Register )
 {
    lucDrawingObject_Register* self          = (lucDrawingObject_Register*) drawingObject_Register;
    DrawingObject_Index        object_I;
@@ -115,7 +115,7 @@ void lucDrawingObject_Register_CleanUpAll( void* drawingObject_Register, void* c
    {
       object = lucDrawingObject_Register_GetByIndex( self, object_I );
       if (object->needsToCleanUp )
-         object->_cleanUp( object, context );
+         object->_cleanUp( object );
    }
 }
 

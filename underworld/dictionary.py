@@ -64,6 +64,8 @@ def GetConformingDictionary(uwdict={}):
     Returns:
         dict (OrderedDict)      : New conforming dictionary
     """
+    if not uwdict:
+        uwdict = {}
     if not isinstance(uwdict, dict):
         raise TypeError("object passed in must be of python type 'dict' or subclass")
 

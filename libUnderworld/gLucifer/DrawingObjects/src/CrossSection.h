@@ -47,7 +47,6 @@ extern const Type lucCrossSection_Type;
       /* Virtual functions go here */           \
       /* Other info */                          \
       FieldVariable*       fieldVariable;       \
-      Name                 fieldVariableName;   \
       double               value;               \
       Index                defaultResolution;   \
       Index                resolutionA;         \

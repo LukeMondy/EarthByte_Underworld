@@ -213,8 +213,7 @@ void _lucCrossSection_AssignFromXML( void* drawingObject, Stg_ComponentFactory* 
       }
    }
 
-   self->fieldVariableName = Memory_Alloc_Array(char, 50, "fieldVariableName");
-   strcpy(self->fieldVariableName, "FieldVariable");
+   self->fieldVariable =  Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"FieldVariable", FieldVariable, True, data  );
 
    if (self->defaultResolution < 2) self->defaultResolution = 100;   /* Default sampling res */
    self->defaultResolution = Stg_ComponentFactory_GetUnsignedInt( cf, self->name, (Dictionary_Entry_Key)"resolution", self->defaultResolution);
@@ -241,8 +240,6 @@ void _lucCrossSection_Build( void* drawingObject, void* data )
    /* Append cullface setting to property string */
    lucDrawingObject_AppendProps(self, "cullface=%d\n", self->cullface);
 
-   /* HACK - Get pointer to FieldVariable in build phase just to let FieldVariables be created in plugins */
-   self->fieldVariable =  Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)self->fieldVariableName, FieldVariable, True, data  );
    Stg_Component_Build( self->fieldVariable, data, False );
 }
 
@@ -255,7 +252,6 @@ void _lucCrossSection_Execute( void* drawingObject, void* data ) {}
 void _lucCrossSection_Destroy( void* drawingObject, void* data )
 {
    lucCrossSection* self    = (lucCrossSection*)drawingObject;
-   Memory_Free(self->fieldVariableName);
 }
 
 void _lucCrossSection_Setup( void* drawingObject, lucDatabase* database, void* _context )
@@ -276,7 +272,7 @@ void _lucCrossSection_Draw( void* drawingObject, lucDatabase* database, void* _c
    lucCrossSection* self = (lucCrossSection*)drawingObject;
 
    /* Only draw on proc 0 */
-   if (database->context->rank > 0) return;
+   if (database->rank > 0) return;
 
    /* Create a plane, have 3 coords, get the 4th corner coord */
    double coord4[3];

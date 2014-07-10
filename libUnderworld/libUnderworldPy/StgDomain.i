@@ -22,12 +22,10 @@
 
 %include "Geometry/ComplexMath.h"
 %include "Geometry/ComplexVectorMath.h"
-%include "Geometry/Delaunay.h"
 %include "Geometry/Dimension.h"
 %include "Geometry/Edge.h"
 %include "Geometry/Hex.h"
 %include "Geometry/Line.h"
-%include "Geometry/ParallelDelaunay.h"
 %include "Geometry/Plane.h"
 %include "Geometry/QuadEdge.h"
 %include "Geometry/RMatrix.h"

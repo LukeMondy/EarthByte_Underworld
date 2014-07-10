@@ -183,18 +183,6 @@ void _lucSwarmViewer_AssignFromXML( void* drawingObject, Stg_ComponentFactory* c
 
    swarm = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Swarm", Swarm, True, data  ) ;
 
-   /* This drawing object will only work for swarms with Global Particle Layouts
-    *  HACK - Adding in check for Gauss particle Layout here because this can be global too */
-   if( swarm->particleLayout )
-      Journal_Firewall(
-         swarm->particleLayout->coordSystem == GlobalCoordSystem || Stg_Class_IsInstance( swarm->particleLayout, GaussParticleLayout_Type ),
-         Journal_MyStream( Error_Type, self ),
-         "In func %s, unable to visualise swarm %s because it uses a local coord system layout %s of type %s.\n",
-         __func__,
-         swarm->name,
-         swarm->particleLayout->name,
-         swarm->particleLayout->type );
-
    colourVariableName  = Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"ColourVariable", ""  );
    sizeVariableName  = Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"SizeVariable", ""  );
    opacityVariableName = Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"OpacityVariable", ""  );
@@ -331,7 +319,6 @@ float lucSwarmViewer_GetScalar(SwarmVariable* variable, Particle_Index lParticle
 void _lucSwarmViewer_Draw( void* drawingObject, lucDatabase* database, void* _context )
 {
    lucSwarmViewer*      self                = (lucSwarmViewer*)drawingObject;
-   DomainContext*           context             = (DomainContext*) _context;
    Swarm*                   swarm               = self->swarm;
    SwarmVariable*           maskVariable        = self->maskVariable;
    Particle_Index           particleLocalCount  = swarm->particleLocalCount;
@@ -349,13 +336,8 @@ void _lucSwarmViewer_Draw( void* drawingObject, lucDatabase* database, void* _co
 
    if (subSample == 0)
    {
-      /* Get resolution and particle count, calculate total particles */
-      int resi, resj, resk, particles;
-      resi = Dictionary_GetInt( context->CF->rootDict, (Dictionary_Entry_Key)"elementResI");
-      resj = Dictionary_GetInt( context->CF->rootDict, (Dictionary_Entry_Key)"elementResJ");
-      resk = Dictionary_GetInt( context->CF->rootDict, (Dictionary_Entry_Key)"elementResK");
-      particles = Dictionary_GetInt( context->CF->rootDict, (Dictionary_Entry_Key)"particlesPerCell");
-      particles *= (resi * resj * resk);
+      int particles;
+      MPI_Allreduce(&swarm->particleLocalCount, &particles, 1, MPI_UNSIGNED, MPI_SUM, MPI_COMM_WORLD);
       subSample = 1;
       if (particles > 2000000) 
       {
@@ -390,12 +372,12 @@ void _lucSwarmViewer_Draw( void* drawingObject, lucDatabase* database, void* _co
                coord[0] >= maxPosition[I_AXIS] || coord[1] >= maxPosition[J_AXIS] )
             continue;
 
-         if (context->dim == 3 && (coord[2] <= minPosition[K_AXIS] || coord[2] >= maxPosition[K_AXIS]))
+         if (swarm->dim == 3 && (coord[2] <= minPosition[K_AXIS] || coord[2] >= maxPosition[K_AXIS]))
             continue;
       }
 
       /* Export particle position */
-      float coordf[3] = {coord[0], coord[1], context->dim == 3 ? coord[2] : 0.0f};
+      float coordf[3] = {coord[0], coord[1], swarm->dim == 3 ? coord[2] : 0.0f};
       lucDatabase_AddVertices(database, 1, self->geomType, coordf);
 
       /* Sets the colour for the particle */

@@ -104,7 +104,7 @@ void* _lucContourCrossSection_DefaultNew( Name name )
    Stg_Component_DestroyFunction*                               _destroy = _lucContourCrossSection_Destroy;
    lucDrawingObject_SetupFunction*                                _setup = _lucContourCrossSection_Setup;
    lucDrawingObject_DrawFunction*                                  _draw = _lucContourCrossSection_Draw;
-   lucDrawingObject_CleanUpFunction*                            _cleanUp = _lucContourCrossSection_CleanUp;
+   lucDrawingObject_CleanUpFunction*                            _cleanUp = lucDrawingObject_CleanUp;
 
    /* Variables that are set to ZERO are variables that will be set either by the current _New function or another parent _New function further up the hierachy */
    AllocationType  nameAllocationType = NON_GLOBAL /* default value NON_GLOBAL */;
@@ -149,11 +149,6 @@ void _lucContourCrossSection_Setup( void* drawingObject, lucDatabase* database, 
    _lucCrossSection_Setup(drawingObject, database, _context);
 }
 
-void _lucContourCrossSection_CleanUp( void* drawingObject, void* context ) 
-{
-   lucDrawingObject_CleanUp(drawingObject, context);
-}
-
 void _lucContourCrossSection_Draw( void* drawingObject, lucDatabase* database, void* _context )
 {
    lucContourCrossSection* self = (lucContourCrossSection*)drawingObject;
@@ -180,7 +175,7 @@ void lucContourCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* 
    /* Sample the 2d cross-section */
    lucCrossSection_SampleField(self, False);
 
-   if (self->context->rank == 0)
+   if (database->rank == 0)
    {
       /* Draw isovalues at interval */
       if ( self->interval <= 0.0 ) return;

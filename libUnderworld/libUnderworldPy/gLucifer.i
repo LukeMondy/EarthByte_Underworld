@@ -19,6 +19,7 @@
 %}
 
 %include "Base/Base.h"
+%include "Base/Window.h"
 %include "Base/Camera.h"
 %include "Base/ColourMap.h"
 %include "Base/Database.h"
@@ -29,7 +30,6 @@
 %include "Base/sqlite3.h"
 %include "Base/types.h"
 %include "Base/Viewport.h"
-%include "Base/Window.h"
 %include "Base/X11Colours.h"
 %include "DrawingObjects/Axis.h"
 %include "DrawingObjects/Capture.h"

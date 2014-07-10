@@ -193,7 +193,7 @@ void lucDrawingObject_Draw( void* drawingObject, lucDatabase* database, void* co
 }
 
 /* Clean up after rendering */
-void lucDrawingObject_CleanUp( void* drawingObject, void* context ) 
+void lucDrawingObject_CleanUp( void* drawingObject ) 
 {
    lucDrawingObject*   self       = (lucDrawingObject*) drawingObject ;
 

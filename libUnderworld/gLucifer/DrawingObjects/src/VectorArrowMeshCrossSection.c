@@ -124,7 +124,6 @@ void _lucVectorArrowMeshCrossSection_AssignFromXML( void* drawingObject, Stg_Com
    /* Construct Parent */
    _lucMeshCrossSection_AssignFromXML( self, cf, data );
    self->gatherData = False;     /* Drawn in parallel */
-   strcpy(self->fieldVariableName, "VectorVariable");
 
    _lucVectorArrowMeshCrossSection_Init(
       self,

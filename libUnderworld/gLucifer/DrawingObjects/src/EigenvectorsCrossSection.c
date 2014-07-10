@@ -155,7 +155,6 @@ void _lucEigenvectorsCrossSection_AssignFromXML( void* drawingObject, Stg_Compon
    self->defaultResolution = 8;  /* Default sampling res */
    _lucCrossSection_AssignFromXML( self, cf, data );
    self->gatherData = False;     /* Drawn in parallel */
-   strcpy(self->fieldVariableName, "TensorField");
 
    _lucEigenvectorsCrossSection_Init(
       self,

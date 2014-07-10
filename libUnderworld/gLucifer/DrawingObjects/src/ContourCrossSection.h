@@ -96,7 +96,6 @@ void _lucContourCrossSection_Execute( void* drawingObject, void* data );
 void _lucContourCrossSection_Destroy( void* drawingObject, void* data ) ;
 
 void _lucContourCrossSection_Setup( void* drawingObject, lucDatabase* database, void* _context );
-void _lucContourCrossSection_CleanUp( void* drawingObject, void* context );
 void _lucContourCrossSection_Draw( void* drawingObject, lucDatabase* database, void* _context ) ;
 
 void lucContourCrossSection_DrawCrossSection(void* drawingObject, lucDatabase* database);

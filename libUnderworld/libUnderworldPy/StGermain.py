@@ -2799,6 +2799,298 @@ _NamedObject_Register_Copy = _StGermain._NamedObject_Register_Copy
 def NamedObject_Register_DeleteAll(*args):
   return _StGermain.NamedObject_Register_DeleteAll(*args)
 NamedObject_Register_DeleteAll = _StGermain.NamedObject_Register_DeleteAll
+class HashTable_Entry(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, HashTable_Entry, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, HashTable_Entry, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["next"] = _StGermain.HashTable_Entry_next_set
+    __swig_getmethods__["next"] = _StGermain.HashTable_Entry_next_get
+    if _newclass:next = _swig_property(_StGermain.HashTable_Entry_next_get, _StGermain.HashTable_Entry_next_set)
+    __swig_setmethods__["hash"] = _StGermain.HashTable_Entry_hash_set
+    __swig_getmethods__["hash"] = _StGermain.HashTable_Entry_hash_get
+    if _newclass:hash = _swig_property(_StGermain.HashTable_Entry_hash_get, _StGermain.HashTable_Entry_hash_set)
+    __swig_setmethods__["key"] = _StGermain.HashTable_Entry_key_set
+    __swig_getmethods__["key"] = _StGermain.HashTable_Entry_key_get
+    if _newclass:key = _swig_property(_StGermain.HashTable_Entry_key_get, _StGermain.HashTable_Entry_key_set)
+    __swig_setmethods__["keyLength"] = _StGermain.HashTable_Entry_keyLength_set
+    __swig_getmethods__["keyLength"] = _StGermain.HashTable_Entry_keyLength_get
+    if _newclass:keyLength = _swig_property(_StGermain.HashTable_Entry_keyLength_get, _StGermain.HashTable_Entry_keyLength_set)
+    __swig_setmethods__["data"] = _StGermain.HashTable_Entry_data_set
+    __swig_getmethods__["data"] = _StGermain.HashTable_Entry_data_get
+    if _newclass:data = _swig_property(_StGermain.HashTable_Entry_data_get, _StGermain.HashTable_Entry_data_set)
+    __swig_setmethods__["dataSize"] = _StGermain.HashTable_Entry_dataSize_set
+    __swig_getmethods__["dataSize"] = _StGermain.HashTable_Entry_dataSize_get
+    if _newclass:dataSize = _swig_property(_StGermain.HashTable_Entry_dataSize_get, _StGermain.HashTable_Entry_dataSize_set)
+    def __init__(self): 
+        this = _StGermain.new_HashTable_Entry()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StGermain.delete_HashTable_Entry
+    __del__ = lambda self : None;
+HashTable_Entry_swigregister = _StGermain.HashTable_Entry_swigregister
+HashTable_Entry_swigregister(HashTable_Entry)
+HashTable_Type = cvar.HashTable_Type
+
+class HashTable_Index(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, HashTable_Index, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, HashTable_Index, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["ht"] = _StGermain.HashTable_Index_ht_set
+    __swig_getmethods__["ht"] = _StGermain.HashTable_Index_ht_get
+    if _newclass:ht = _swig_property(_StGermain.HashTable_Index_ht_get, _StGermain.HashTable_Index_ht_set)
+    __swig_setmethods__["curr"] = _StGermain.HashTable_Index_curr_set
+    __swig_getmethods__["curr"] = _StGermain.HashTable_Index_curr_get
+    if _newclass:curr = _swig_property(_StGermain.HashTable_Index_curr_get, _StGermain.HashTable_Index_curr_set)
+    __swig_setmethods__["next"] = _StGermain.HashTable_Index_next_set
+    __swig_getmethods__["next"] = _StGermain.HashTable_Index_next_get
+    if _newclass:next = _swig_property(_StGermain.HashTable_Index_next_get, _StGermain.HashTable_Index_next_set)
+    __swig_setmethods__["index"] = _StGermain.HashTable_Index_index_set
+    __swig_getmethods__["index"] = _StGermain.HashTable_Index_index_get
+    if _newclass:index = _swig_property(_StGermain.HashTable_Index_index_get, _StGermain.HashTable_Index_index_set)
+    def __init__(self): 
+        this = _StGermain.new_HashTable_Index()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StGermain.delete_HashTable_Index
+    __del__ = lambda self : None;
+HashTable_Index_swigregister = _StGermain.HashTable_Index_swigregister
+HashTable_Index_swigregister(HashTable_Index)
+
+class HashTable(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, HashTable, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, HashTable, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StGermain.HashTable__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StGermain.HashTable__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StGermain.HashTable__sizeOfSelf_get, _StGermain.HashTable__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StGermain.HashTable__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StGermain.HashTable__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StGermain.HashTable__deleteSelf_get, _StGermain.HashTable__deleteSelf_set)
+    __swig_setmethods__["type"] = _StGermain.HashTable_type_set
+    __swig_getmethods__["type"] = _StGermain.HashTable_type_get
+    if _newclass:type = _swig_property(_StGermain.HashTable_type_get, _StGermain.HashTable_type_set)
+    __swig_setmethods__["nRefs"] = _StGermain.HashTable_nRefs_set
+    __swig_getmethods__["nRefs"] = _StGermain.HashTable_nRefs_get
+    if _newclass:nRefs = _swig_property(_StGermain.HashTable_nRefs_get, _StGermain.HashTable_nRefs_set)
+    __swig_setmethods__["_delete"] = _StGermain.HashTable__delete_set
+    __swig_getmethods__["_delete"] = _StGermain.HashTable__delete_get
+    if _newclass:_delete = _swig_property(_StGermain.HashTable__delete_get, _StGermain.HashTable__delete_set)
+    __swig_setmethods__["_print"] = _StGermain.HashTable__print_set
+    __swig_getmethods__["_print"] = _StGermain.HashTable__print_get
+    if _newclass:_print = _swig_property(_StGermain.HashTable__print_get, _StGermain.HashTable__print_set)
+    __swig_setmethods__["_copy"] = _StGermain.HashTable__copy_set
+    __swig_getmethods__["_copy"] = _StGermain.HashTable__copy_get
+    if _newclass:_copy = _swig_property(_StGermain.HashTable__copy_get, _StGermain.HashTable__copy_set)
+    __swig_setmethods__["hashFunction"] = _StGermain.HashTable_hashFunction_set
+    __swig_getmethods__["hashFunction"] = _StGermain.HashTable_hashFunction_get
+    if _newclass:hashFunction = _swig_property(_StGermain.HashTable_hashFunction_get, _StGermain.HashTable_hashFunction_set)
+    __swig_setmethods__["dataCopyFunction"] = _StGermain.HashTable_dataCopyFunction_set
+    __swig_getmethods__["dataCopyFunction"] = _StGermain.HashTable_dataCopyFunction_get
+    if _newclass:dataCopyFunction = _swig_property(_StGermain.HashTable_dataCopyFunction_get, _StGermain.HashTable_dataCopyFunction_set)
+    __swig_setmethods__["dataPrintFunction"] = _StGermain.HashTable_dataPrintFunction_set
+    __swig_getmethods__["dataPrintFunction"] = _StGermain.HashTable_dataPrintFunction_get
+    if _newclass:dataPrintFunction = _swig_property(_StGermain.HashTable_dataPrintFunction_get, _StGermain.HashTable_dataPrintFunction_set)
+    __swig_setmethods__["dataDeleteFunction"] = _StGermain.HashTable_dataDeleteFunction_set
+    __swig_getmethods__["dataDeleteFunction"] = _StGermain.HashTable_dataDeleteFunction_get
+    if _newclass:dataDeleteFunction = _swig_property(_StGermain.HashTable_dataDeleteFunction_get, _StGermain.HashTable_dataDeleteFunction_set)
+    __swig_setmethods__["entries"] = _StGermain.HashTable_entries_set
+    __swig_getmethods__["entries"] = _StGermain.HashTable_entries_get
+    if _newclass:entries = _swig_property(_StGermain.HashTable_entries_get, _StGermain.HashTable_entries_set)
+    __swig_setmethods__["iterator"] = _StGermain.HashTable_iterator_set
+    __swig_getmethods__["iterator"] = _StGermain.HashTable_iterator_get
+    if _newclass:iterator = _swig_property(_StGermain.HashTable_iterator_get, _StGermain.HashTable_iterator_set)
+    __swig_setmethods__["count"] = _StGermain.HashTable_count_set
+    __swig_getmethods__["count"] = _StGermain.HashTable_count_get
+    if _newclass:count = _swig_property(_StGermain.HashTable_count_get, _StGermain.HashTable_count_set)
+    __swig_setmethods__["max"] = _StGermain.HashTable_max_set
+    __swig_getmethods__["max"] = _StGermain.HashTable_max_get
+    if _newclass:max = _swig_property(_StGermain.HashTable_max_get, _StGermain.HashTable_max_set)
+    __swig_setmethods__["keyType"] = _StGermain.HashTable_keyType_set
+    __swig_getmethods__["keyType"] = _StGermain.HashTable_keyType_get
+    if _newclass:keyType = _swig_property(_StGermain.HashTable_keyType_get, _StGermain.HashTable_keyType_set)
+    def __init__(self): 
+        this = _StGermain.new_HashTable()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StGermain.delete_HashTable
+    __del__ = lambda self : None;
+HashTable_swigregister = _StGermain.HashTable_swigregister
+HashTable_swigregister(HashTable)
+
+
+def HashTable_New(*args):
+  return _StGermain.HashTable_New(*args)
+HashTable_New = _StGermain.HashTable_New
+
+def _HashTable_New(*args):
+  return _StGermain._HashTable_New(*args)
+_HashTable_New = _StGermain._HashTable_New
+
+def HashTable_Init(*args):
+  return _StGermain.HashTable_Init(*args)
+HashTable_Init = _StGermain.HashTable_Init
+
+def _HashTable_Init(*args):
+  return _StGermain._HashTable_Init(*args)
+_HashTable_Init = _StGermain._HashTable_Init
+
+def _HashTable_DeleteFunc(*args):
+  return _StGermain._HashTable_DeleteFunc(*args)
+_HashTable_DeleteFunc = _StGermain._HashTable_DeleteFunc
+
+def _HashTable_PrintFunc(*args):
+  return _StGermain._HashTable_PrintFunc(*args)
+_HashTable_PrintFunc = _StGermain._HashTable_PrintFunc
+
+def _HashTable_CopyFunc(*args):
+  return _StGermain._HashTable_CopyFunc(*args)
+_HashTable_CopyFunc = _StGermain._HashTable_CopyFunc
+
+def HashTable_InsertEntry(*args):
+  return _StGermain.HashTable_InsertEntry(*args)
+HashTable_InsertEntry = _StGermain.HashTable_InsertEntry
+
+def HashTable_InsertEntryCopyData(*args):
+  return _StGermain.HashTable_InsertEntryCopyData(*args)
+HashTable_InsertEntryCopyData = _StGermain.HashTable_InsertEntryCopyData
+
+def HashTable_FindEntryFunction(*args):
+  return _StGermain.HashTable_FindEntryFunction(*args)
+HashTable_FindEntryFunction = _StGermain.HashTable_FindEntryFunction
+
+def HashTable_DeleteEntry(*args):
+  return _StGermain.HashTable_DeleteEntry(*args)
+HashTable_DeleteEntry = _StGermain.HashTable_DeleteEntry
+
+def HashTable_ReplaceEntry(*args):
+  return _StGermain.HashTable_ReplaceEntry(*args)
+HashTable_ReplaceEntry = _StGermain.HashTable_ReplaceEntry
+
+def HashTable_ParseTable(*args):
+  return _StGermain.HashTable_ParseTable(*args)
+HashTable_ParseTable = _StGermain.HashTable_ParseTable
+
+def hashStringFunction(*args):
+  return _StGermain.hashStringFunction(*args)
+hashStringFunction = _StGermain.hashStringFunction
+
+def hashPtrFunction(*args):
+  return _StGermain.hashPtrFunction(*args)
+hashPtrFunction = _StGermain.hashPtrFunction
+
+def expandArray(*args):
+  return _StGermain.expandArray(*args)
+expandArray = _StGermain.expandArray
+
+def HashTable_Next(*args):
+  return _StGermain.HashTable_Next(*args)
+HashTable_Next = _StGermain.HashTable_Next
+
+def HashTable_First(*args):
+  return _StGermain.HashTable_First(*args)
+HashTable_First = _StGermain.HashTable_First
+class HierarchyTable(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, HierarchyTable, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, HierarchyTable, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StGermain.HierarchyTable__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StGermain.HierarchyTable__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StGermain.HierarchyTable__sizeOfSelf_get, _StGermain.HierarchyTable__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StGermain.HierarchyTable__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StGermain.HierarchyTable__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StGermain.HierarchyTable__deleteSelf_get, _StGermain.HierarchyTable__deleteSelf_set)
+    __swig_setmethods__["type"] = _StGermain.HierarchyTable_type_set
+    __swig_getmethods__["type"] = _StGermain.HierarchyTable_type_get
+    if _newclass:type = _swig_property(_StGermain.HierarchyTable_type_get, _StGermain.HierarchyTable_type_set)
+    __swig_setmethods__["nRefs"] = _StGermain.HierarchyTable_nRefs_set
+    __swig_getmethods__["nRefs"] = _StGermain.HierarchyTable_nRefs_get
+    if _newclass:nRefs = _swig_property(_StGermain.HierarchyTable_nRefs_get, _StGermain.HierarchyTable_nRefs_set)
+    __swig_setmethods__["_delete"] = _StGermain.HierarchyTable__delete_set
+    __swig_getmethods__["_delete"] = _StGermain.HierarchyTable__delete_get
+    if _newclass:_delete = _swig_property(_StGermain.HierarchyTable__delete_get, _StGermain.HierarchyTable__delete_set)
+    __swig_setmethods__["_print"] = _StGermain.HierarchyTable__print_set
+    __swig_getmethods__["_print"] = _StGermain.HierarchyTable__print_get
+    if _newclass:_print = _swig_property(_StGermain.HierarchyTable__print_get, _StGermain.HierarchyTable__print_set)
+    __swig_setmethods__["_copy"] = _StGermain.HierarchyTable__copy_set
+    __swig_getmethods__["_copy"] = _StGermain.HierarchyTable__copy_get
+    if _newclass:_copy = _swig_property(_StGermain.HierarchyTable__copy_get, _StGermain.HierarchyTable__copy_set)
+    __swig_setmethods__["hashFunction"] = _StGermain.HierarchyTable_hashFunction_set
+    __swig_getmethods__["hashFunction"] = _StGermain.HierarchyTable_hashFunction_get
+    if _newclass:hashFunction = _swig_property(_StGermain.HierarchyTable_hashFunction_get, _StGermain.HierarchyTable_hashFunction_set)
+    __swig_setmethods__["dataCopyFunction"] = _StGermain.HierarchyTable_dataCopyFunction_set
+    __swig_getmethods__["dataCopyFunction"] = _StGermain.HierarchyTable_dataCopyFunction_get
+    if _newclass:dataCopyFunction = _swig_property(_StGermain.HierarchyTable_dataCopyFunction_get, _StGermain.HierarchyTable_dataCopyFunction_set)
+    __swig_setmethods__["dataPrintFunction"] = _StGermain.HierarchyTable_dataPrintFunction_set
+    __swig_getmethods__["dataPrintFunction"] = _StGermain.HierarchyTable_dataPrintFunction_get
+    if _newclass:dataPrintFunction = _swig_property(_StGermain.HierarchyTable_dataPrintFunction_get, _StGermain.HierarchyTable_dataPrintFunction_set)
+    __swig_setmethods__["dataDeleteFunction"] = _StGermain.HierarchyTable_dataDeleteFunction_set
+    __swig_getmethods__["dataDeleteFunction"] = _StGermain.HierarchyTable_dataDeleteFunction_get
+    if _newclass:dataDeleteFunction = _swig_property(_StGermain.HierarchyTable_dataDeleteFunction_get, _StGermain.HierarchyTable_dataDeleteFunction_set)
+    __swig_setmethods__["entries"] = _StGermain.HierarchyTable_entries_set
+    __swig_getmethods__["entries"] = _StGermain.HierarchyTable_entries_get
+    if _newclass:entries = _swig_property(_StGermain.HierarchyTable_entries_get, _StGermain.HierarchyTable_entries_set)
+    __swig_setmethods__["iterator"] = _StGermain.HierarchyTable_iterator_set
+    __swig_getmethods__["iterator"] = _StGermain.HierarchyTable_iterator_get
+    if _newclass:iterator = _swig_property(_StGermain.HierarchyTable_iterator_get, _StGermain.HierarchyTable_iterator_set)
+    __swig_setmethods__["count"] = _StGermain.HierarchyTable_count_set
+    __swig_getmethods__["count"] = _StGermain.HierarchyTable_count_get
+    if _newclass:count = _swig_property(_StGermain.HierarchyTable_count_get, _StGermain.HierarchyTable_count_set)
+    __swig_setmethods__["max"] = _StGermain.HierarchyTable_max_set
+    __swig_getmethods__["max"] = _StGermain.HierarchyTable_max_get
+    if _newclass:max = _swig_property(_StGermain.HierarchyTable_max_get, _StGermain.HierarchyTable_max_set)
+    __swig_setmethods__["keyType"] = _StGermain.HierarchyTable_keyType_set
+    __swig_getmethods__["keyType"] = _StGermain.HierarchyTable_keyType_get
+    if _newclass:keyType = _swig_property(_StGermain.HierarchyTable_keyType_get, _StGermain.HierarchyTable_keyType_set)
+    def __init__(self): 
+        this = _StGermain.new_HierarchyTable()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StGermain.delete_HierarchyTable
+    __del__ = lambda self : None;
+HierarchyTable_swigregister = _StGermain.HierarchyTable_swigregister
+HierarchyTable_swigregister(HierarchyTable)
+HierarchyTable_Type = cvar.HierarchyTable_Type
+
+
+def HierarchyTable_New():
+  return _StGermain.HierarchyTable_New()
+HierarchyTable_New = _StGermain.HierarchyTable_New
+
+def HierarchyTable_RegisterParent(*args):
+  return _StGermain.HierarchyTable_RegisterParent(*args)
+HierarchyTable_RegisterParent = _StGermain.HierarchyTable_RegisterParent
+
+def HierarchyTable_IsChild(*args):
+  return _StGermain.HierarchyTable_IsChild(*args)
+HierarchyTable_IsChild = _StGermain.HierarchyTable_IsChild
+
+def Stg_Class_CheckType(*args):
+  return _StGermain.Stg_Class_CheckType(*args)
+Stg_Class_CheckType = _StGermain.Stg_Class_CheckType
+
+def Stg_Class_CompareType(*args):
+  return _StGermain.Stg_Class_CompareType(*args)
+Stg_Class_CompareType = _StGermain.Stg_Class_CompareType
+
+def HierarchyTable_PrintParents(*args):
+  return _StGermain.HierarchyTable_PrintParents(*args)
+HierarchyTable_PrintParents = _StGermain.HierarchyTable_PrintParents
+
+def HierarchyTable_PrintChildren(*args):
+  return _StGermain.HierarchyTable_PrintChildren(*args)
+HierarchyTable_PrintChildren = _StGermain.HierarchyTable_PrintChildren
+
+def HierarchyTable_GetTypePtrFromName(*args):
+  return _StGermain.HierarchyTable_GetTypePtrFromName(*args)
+HierarchyTable_GetTypePtrFromName = _StGermain.HierarchyTable_GetTypePtrFromName
 class _IO_Handler(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, _IO_Handler, name, value)
@@ -4462,9 +4754,6 @@ class AbstractContext(_object):
     __swig_setmethods__["variable_Register"] = _StGermain.AbstractContext_variable_Register_set
     __swig_getmethods__["variable_Register"] = _StGermain.AbstractContext_variable_Register_get
     if _newclass:variable_Register = _swig_property(_StGermain.AbstractContext_variable_Register_get, _StGermain.AbstractContext_variable_Register_set)
-    __swig_setmethods__["pointer_Register"] = _StGermain.AbstractContext_pointer_Register_set
-    __swig_getmethods__["pointer_Register"] = _StGermain.AbstractContext_pointer_Register_get
-    if _newclass:pointer_Register = _swig_property(_StGermain.AbstractContext_pointer_Register_get, _StGermain.AbstractContext_pointer_Register_set)
     __swig_setmethods__["entryPoint_Register"] = _StGermain.AbstractContext_entryPoint_Register_set
     __swig_getmethods__["entryPoint_Register"] = _StGermain.AbstractContext_entryPoint_Register_get
     if _newclass:entryPoint_Register = _swig_property(_StGermain.AbstractContext_entryPoint_Register_get, _StGermain.AbstractContext_entryPoint_Register_set)

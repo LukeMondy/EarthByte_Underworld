@@ -74,6 +74,192 @@ import StgDomain
 import StgFEM
 import PICellerator
 import Underworld
+class lucWindow(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lucWindow, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, lucWindow, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucWindow__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucWindow__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucWindow__sizeOfSelf_get, _gLucifer.lucWindow__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucWindow__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucWindow__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucWindow__deleteSelf_get, _gLucifer.lucWindow__deleteSelf_set)
+    __swig_setmethods__["type"] = _gLucifer.lucWindow_type_set
+    __swig_getmethods__["type"] = _gLucifer.lucWindow_type_get
+    if _newclass:type = _swig_property(_gLucifer.lucWindow_type_get, _gLucifer.lucWindow_type_set)
+    __swig_setmethods__["nRefs"] = _gLucifer.lucWindow_nRefs_set
+    __swig_getmethods__["nRefs"] = _gLucifer.lucWindow_nRefs_get
+    if _newclass:nRefs = _swig_property(_gLucifer.lucWindow_nRefs_get, _gLucifer.lucWindow_nRefs_set)
+    __swig_setmethods__["_delete"] = _gLucifer.lucWindow__delete_set
+    __swig_getmethods__["_delete"] = _gLucifer.lucWindow__delete_get
+    if _newclass:_delete = _swig_property(_gLucifer.lucWindow__delete_get, _gLucifer.lucWindow__delete_set)
+    __swig_setmethods__["_print"] = _gLucifer.lucWindow__print_set
+    __swig_getmethods__["_print"] = _gLucifer.lucWindow__print_get
+    if _newclass:_print = _swig_property(_gLucifer.lucWindow__print_get, _gLucifer.lucWindow__print_set)
+    __swig_setmethods__["_copy"] = _gLucifer.lucWindow__copy_set
+    __swig_getmethods__["_copy"] = _gLucifer.lucWindow__copy_get
+    if _newclass:_copy = _swig_property(_gLucifer.lucWindow__copy_get, _gLucifer.lucWindow__copy_set)
+    __swig_setmethods__["name"] = _gLucifer.lucWindow_name_set
+    __swig_getmethods__["name"] = _gLucifer.lucWindow_name_get
+    if _newclass:name = _swig_property(_gLucifer.lucWindow_name_get, _gLucifer.lucWindow_name_set)
+    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucWindow_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucWindow_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucWindow_nameAllocationType_get, _gLucifer.lucWindow_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucWindow__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucWindow__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucWindow__defaultConstructor_get, _gLucifer.lucWindow__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _gLucifer.lucWindow__construct_set
+    __swig_getmethods__["_construct"] = _gLucifer.lucWindow__construct_get
+    if _newclass:_construct = _swig_property(_gLucifer.lucWindow__construct_get, _gLucifer.lucWindow__construct_set)
+    __swig_setmethods__["_build"] = _gLucifer.lucWindow__build_set
+    __swig_getmethods__["_build"] = _gLucifer.lucWindow__build_get
+    if _newclass:_build = _swig_property(_gLucifer.lucWindow__build_get, _gLucifer.lucWindow__build_set)
+    __swig_setmethods__["_initialise"] = _gLucifer.lucWindow__initialise_set
+    __swig_getmethods__["_initialise"] = _gLucifer.lucWindow__initialise_get
+    if _newclass:_initialise = _swig_property(_gLucifer.lucWindow__initialise_get, _gLucifer.lucWindow__initialise_set)
+    __swig_setmethods__["_execute"] = _gLucifer.lucWindow__execute_set
+    __swig_getmethods__["_execute"] = _gLucifer.lucWindow__execute_get
+    if _newclass:_execute = _swig_property(_gLucifer.lucWindow__execute_get, _gLucifer.lucWindow__execute_set)
+    __swig_setmethods__["_destroy"] = _gLucifer.lucWindow__destroy_set
+    __swig_getmethods__["_destroy"] = _gLucifer.lucWindow__destroy_get
+    if _newclass:_destroy = _swig_property(_gLucifer.lucWindow__destroy_get, _gLucifer.lucWindow__destroy_set)
+    __swig_setmethods__["isConstructed"] = _gLucifer.lucWindow_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _gLucifer.lucWindow_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_gLucifer.lucWindow_isConstructed_get, _gLucifer.lucWindow_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _gLucifer.lucWindow_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _gLucifer.lucWindow_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_gLucifer.lucWindow_isBuilt_get, _gLucifer.lucWindow_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _gLucifer.lucWindow_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _gLucifer.lucWindow_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_gLucifer.lucWindow_isInitialised_get, _gLucifer.lucWindow_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _gLucifer.lucWindow_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _gLucifer.lucWindow_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_gLucifer.lucWindow_hasExecuted_get, _gLucifer.lucWindow_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _gLucifer.lucWindow_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _gLucifer.lucWindow_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_gLucifer.lucWindow_isDestroyed_get, _gLucifer.lucWindow_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _gLucifer.lucWindow_constructType_set
+    __swig_getmethods__["constructType"] = _gLucifer.lucWindow_constructType_get
+    if _newclass:constructType = _swig_property(_gLucifer.lucWindow_constructType_get, _gLucifer.lucWindow_constructType_set)
+    __swig_setmethods__["buildType"] = _gLucifer.lucWindow_buildType_set
+    __swig_getmethods__["buildType"] = _gLucifer.lucWindow_buildType_get
+    if _newclass:buildType = _swig_property(_gLucifer.lucWindow_buildType_get, _gLucifer.lucWindow_buildType_set)
+    __swig_setmethods__["initialiseType"] = _gLucifer.lucWindow_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _gLucifer.lucWindow_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_gLucifer.lucWindow_initialiseType_get, _gLucifer.lucWindow_initialiseType_set)
+    __swig_setmethods__["executeType"] = _gLucifer.lucWindow_executeType_set
+    __swig_getmethods__["executeType"] = _gLucifer.lucWindow_executeType_get
+    if _newclass:executeType = _swig_property(_gLucifer.lucWindow_executeType_get, _gLucifer.lucWindow_executeType_set)
+    __swig_setmethods__["destroyType"] = _gLucifer.lucWindow_destroyType_set
+    __swig_getmethods__["destroyType"] = _gLucifer.lucWindow_destroyType_get
+    if _newclass:destroyType = _swig_property(_gLucifer.lucWindow_destroyType_get, _gLucifer.lucWindow_destroyType_set)
+    __swig_setmethods__["_displayWindow"] = _gLucifer.lucWindow__displayWindow_set
+    __swig_getmethods__["_displayWindow"] = _gLucifer.lucWindow__displayWindow_get
+    if _newclass:_displayWindow = _swig_property(_gLucifer.lucWindow__displayWindow_get, _gLucifer.lucWindow__displayWindow_set)
+    __swig_setmethods__["viewportList"] = _gLucifer.lucWindow_viewportList_set
+    __swig_getmethods__["viewportList"] = _gLucifer.lucWindow_viewportList_get
+    if _newclass:viewportList = _swig_property(_gLucifer.lucWindow_viewportList_get, _gLucifer.lucWindow_viewportList_set)
+    __swig_setmethods__["viewportCount"] = _gLucifer.lucWindow_viewportCount_set
+    __swig_getmethods__["viewportCount"] = _gLucifer.lucWindow_viewportCount_get
+    if _newclass:viewportCount = _swig_property(_gLucifer.lucWindow_viewportCount_get, _gLucifer.lucWindow_viewportCount_set)
+    __swig_setmethods__["viewportLayout"] = _gLucifer.lucWindow_viewportLayout_set
+    __swig_getmethods__["viewportLayout"] = _gLucifer.lucWindow_viewportLayout_get
+    if _newclass:viewportLayout = _swig_property(_gLucifer.lucWindow_viewportLayout_get, _gLucifer.lucWindow_viewportLayout_set)
+    __swig_setmethods__["width"] = _gLucifer.lucWindow_width_set
+    __swig_getmethods__["width"] = _gLucifer.lucWindow_width_get
+    if _newclass:width = _swig_property(_gLucifer.lucWindow_width_get, _gLucifer.lucWindow_width_set)
+    __swig_setmethods__["height"] = _gLucifer.lucWindow_height_set
+    __swig_getmethods__["height"] = _gLucifer.lucWindow_height_get
+    if _newclass:height = _swig_property(_gLucifer.lucWindow_height_get, _gLucifer.lucWindow_height_set)
+    __swig_setmethods__["backgroundColour"] = _gLucifer.lucWindow_backgroundColour_set
+    __swig_getmethods__["backgroundColour"] = _gLucifer.lucWindow_backgroundColour_get
+    if _newclass:backgroundColour = _swig_property(_gLucifer.lucWindow_backgroundColour_get, _gLucifer.lucWindow_backgroundColour_set)
+    __swig_setmethods__["context"] = _gLucifer.lucWindow_context_set
+    __swig_getmethods__["context"] = _gLucifer.lucWindow_context_get
+    if _newclass:context = _swig_property(_gLucifer.lucWindow_context_get, _gLucifer.lucWindow_context_set)
+    __swig_setmethods__["isMaster"] = _gLucifer.lucWindow_isMaster_set
+    __swig_getmethods__["isMaster"] = _gLucifer.lucWindow_isMaster_get
+    if _newclass:isMaster = _swig_property(_gLucifer.lucWindow_isMaster_get, _gLucifer.lucWindow_isMaster_set)
+    __swig_setmethods__["title"] = _gLucifer.lucWindow_title_set
+    __swig_getmethods__["title"] = _gLucifer.lucWindow_title_get
+    if _newclass:title = _swig_property(_gLucifer.lucWindow_title_get, _gLucifer.lucWindow_title_set)
+    __swig_setmethods__["antialias"] = _gLucifer.lucWindow_antialias_set
+    __swig_getmethods__["antialias"] = _gLucifer.lucWindow_antialias_get
+    if _newclass:antialias = _swig_property(_gLucifer.lucWindow_antialias_get, _gLucifer.lucWindow_antialias_set)
+    __swig_setmethods__["database"] = _gLucifer.lucWindow_database_set
+    __swig_getmethods__["database"] = _gLucifer.lucWindow_database_get
+    if _newclass:database = _swig_property(_gLucifer.lucWindow_database_get, _gLucifer.lucWindow_database_set)
+    __swig_setmethods__["useModelBounds"] = _gLucifer.lucWindow_useModelBounds_set
+    __swig_getmethods__["useModelBounds"] = _gLucifer.lucWindow_useModelBounds_get
+    if _newclass:useModelBounds = _swig_property(_gLucifer.lucWindow_useModelBounds_get, _gLucifer.lucWindow_useModelBounds_set)
+    __swig_setmethods__["disabled"] = _gLucifer.lucWindow_disabled_set
+    __swig_getmethods__["disabled"] = _gLucifer.lucWindow_disabled_get
+    if _newclass:disabled = _swig_property(_gLucifer.lucWindow_disabled_get, _gLucifer.lucWindow_disabled_set)
+    def __init__(self): 
+        this = _gLucifer.new_lucWindow()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _gLucifer.delete_lucWindow
+    __del__ = lambda self : None;
+lucWindow_swigregister = _gLucifer.lucWindow_swigregister
+lucWindow_swigregister(lucWindow)
+cvar = _gLucifer.cvar
+lucWindow_Type = cvar.lucWindow_Type
+
+
+def _lucWindow_New(*args):
+  return _gLucifer._lucWindow_New(*args)
+_lucWindow_New = _gLucifer._lucWindow_New
+
+def _lucWindow_Delete(*args):
+  return _gLucifer._lucWindow_Delete(*args)
+_lucWindow_Delete = _gLucifer._lucWindow_Delete
+
+def _lucWindow_Print(*args):
+  return _gLucifer._lucWindow_Print(*args)
+_lucWindow_Print = _gLucifer._lucWindow_Print
+
+def _lucWindow_Copy(*args):
+  return _gLucifer._lucWindow_Copy(*args)
+_lucWindow_Copy = _gLucifer._lucWindow_Copy
+
+def _lucWindow_DefaultNew(*args):
+  return _gLucifer._lucWindow_DefaultNew(*args)
+_lucWindow_DefaultNew = _gLucifer._lucWindow_DefaultNew
+
+def _lucWindow_AssignFromXML(*args):
+  return _gLucifer._lucWindow_AssignFromXML(*args)
+_lucWindow_AssignFromXML = _gLucifer._lucWindow_AssignFromXML
+
+def _lucWindow_Build(*args):
+  return _gLucifer._lucWindow_Build(*args)
+_lucWindow_Build = _gLucifer._lucWindow_Build
+
+def _lucWindow_Initialise(*args):
+  return _gLucifer._lucWindow_Initialise(*args)
+_lucWindow_Initialise = _gLucifer._lucWindow_Initialise
+
+def _lucWindow_Execute(*args):
+  return _gLucifer._lucWindow_Execute(*args)
+_lucWindow_Execute = _gLucifer._lucWindow_Execute
+
+def _lucWindow_Destroy(*args):
+  return _gLucifer._lucWindow_Destroy(*args)
+_lucWindow_Destroy = _gLucifer._lucWindow_Destroy
+
+def lucWindow_Display(*args):
+  return _gLucifer.lucWindow_Display(*args)
+lucWindow_Display = _gLucifer.lucWindow_Display
+
+def lucWindow_CleanUp(*args):
+  return _gLucifer.lucWindow_CleanUp(*args)
+lucWindow_CleanUp = _gLucifer.lucWindow_CleanUp
+
+def lucWindow_ConstructViewportList(*args):
+  return _gLucifer.lucWindow_ConstructViewportList(*args)
+lucWindow_ConstructViewportList = _gLucifer.lucWindow_ConstructViewportList
 class lucCamera(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, lucCamera, name, value)
@@ -188,6 +374,9 @@ class lucCamera(_object):
     __swig_setmethods__["autoZoomTimestep"] = _gLucifer.lucCamera_autoZoomTimestep_set
     __swig_getmethods__["autoZoomTimestep"] = _gLucifer.lucCamera_autoZoomTimestep_get
     if _newclass:autoZoomTimestep = _swig_property(_gLucifer.lucCamera_autoZoomTimestep_get, _gLucifer.lucCamera_autoZoomTimestep_set)
+    __swig_setmethods__["useBoundingBox"] = _gLucifer.lucCamera_useBoundingBox_set
+    __swig_getmethods__["useBoundingBox"] = _gLucifer.lucCamera_useBoundingBox_get
+    if _newclass:useBoundingBox = _swig_property(_gLucifer.lucCamera_useBoundingBox_get, _gLucifer.lucCamera_useBoundingBox_set)
     __swig_setmethods__["modelSize"] = _gLucifer.lucCamera_modelSize_set
     __swig_getmethods__["modelSize"] = _gLucifer.lucCamera_modelSize_get
     if _newclass:modelSize = _swig_property(_gLucifer.lucCamera_modelSize_get, _gLucifer.lucCamera_modelSize_set)
@@ -202,7 +391,6 @@ class lucCamera(_object):
     __del__ = lambda self : None;
 lucCamera_swigregister = _gLucifer.lucCamera_swigregister
 lucCamera_swigregister(lucCamera)
-cvar = _gLucifer.cvar
 lucCamera_Type = cvar.lucCamera_Type
 
 
@@ -753,6 +941,21 @@ class lucDatabase(_object):
     __swig_setmethods__["blocking"] = _gLucifer.lucDatabase_blocking_set
     __swig_getmethods__["blocking"] = _gLucifer.lucDatabase_blocking_get
     if _newclass:blocking = _swig_property(_gLucifer.lucDatabase_blocking_get, _gLucifer.lucDatabase_blocking_set)
+    __swig_setmethods__["rank"] = _gLucifer.lucDatabase_rank_set
+    __swig_getmethods__["rank"] = _gLucifer.lucDatabase_rank_get
+    if _newclass:rank = _swig_property(_gLucifer.lucDatabase_rank_get, _gLucifer.lucDatabase_rank_set)
+    __swig_setmethods__["nproc"] = _gLucifer.lucDatabase_nproc_set
+    __swig_getmethods__["nproc"] = _gLucifer.lucDatabase_nproc_get
+    if _newclass:nproc = _swig_property(_gLucifer.lucDatabase_nproc_get, _gLucifer.lucDatabase_nproc_set)
+    __swig_setmethods__["communicator"] = _gLucifer.lucDatabase_communicator_set
+    __swig_getmethods__["communicator"] = _gLucifer.lucDatabase_communicator_get
+    if _newclass:communicator = _swig_property(_gLucifer.lucDatabase_communicator_get, _gLucifer.lucDatabase_communicator_set)
+    __swig_setmethods__["timeStep"] = _gLucifer.lucDatabase_timeStep_set
+    __swig_getmethods__["timeStep"] = _gLucifer.lucDatabase_timeStep_get
+    if _newclass:timeStep = _swig_property(_gLucifer.lucDatabase_timeStep_get, _gLucifer.lucDatabase_timeStep_set)
+    __swig_setmethods__["dbPath"] = _gLucifer.lucDatabase_dbPath_set
+    __swig_getmethods__["dbPath"] = _gLucifer.lucDatabase_dbPath_get
+    if _newclass:dbPath = _swig_property(_gLucifer.lucDatabase_dbPath_get, _gLucifer.lucDatabase_dbPath_set)
     def __init__(self): 
         this = _gLucifer.new_lucDatabase()
         try: self.this.append(this)
@@ -943,6 +1146,10 @@ lucDatabase_WriteGeometry = _gLucifer.lucDatabase_WriteGeometry
 def lucDatabase_BackupDb(*args):
   return _gLucifer.lucDatabase_BackupDb(*args)
 lucDatabase_BackupDb = _gLucifer.lucDatabase_BackupDb
+
+def lucDatabase_DeleteWindows(*args):
+  return _gLucifer.lucDatabase_DeleteWindows(*args)
+lucDatabase_DeleteWindows = _gLucifer.lucDatabase_DeleteWindows
 class lucDrawingObject_Register(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, lucDrawingObject_Register, name, value)
@@ -1110,9 +1317,6 @@ class lucViewport(_object):
     __swig_setmethods__["scaleZ"] = _gLucifer.lucViewport_scaleZ_set
     __swig_getmethods__["scaleZ"] = _gLucifer.lucViewport_scaleZ_get
     if _newclass:scaleZ = _swig_property(_gLucifer.lucViewport_scaleZ_get, _gLucifer.lucViewport_scaleZ_set)
-    __swig_setmethods__["disabled"] = _gLucifer.lucViewport_disabled_set
-    __swig_getmethods__["disabled"] = _gLucifer.lucViewport_disabled_get
-    if _newclass:disabled = _swig_property(_gLucifer.lucViewport_disabled_get, _gLucifer.lucViewport_disabled_set)
     __swig_setmethods__["title"] = _gLucifer.lucViewport_title_set
     __swig_getmethods__["title"] = _gLucifer.lucViewport_title_get
     if _newclass:title = _swig_property(_gLucifer.lucViewport_title_get, _gLucifer.lucViewport_title_set)
@@ -1914,9 +2118,6 @@ class lucContour(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucContour_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucContour_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucContour_fieldVariable_get, _gLucifer.lucContour_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucContour_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucContour_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucContour_fieldVariableName_get, _gLucifer.lucContour_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucContour_value_set
     __swig_getmethods__["value"] = _gLucifer.lucContour_value_get
     if _newclass:value = _swig_property(_gLucifer.lucContour_value_get, _gLucifer.lucContour_value_set)
@@ -2167,9 +2368,6 @@ class lucEigenvectorsCrossSection(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucEigenvectorsCrossSection_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucEigenvectorsCrossSection_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucEigenvectorsCrossSection_fieldVariable_get, _gLucifer.lucEigenvectorsCrossSection_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucEigenvectorsCrossSection_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucEigenvectorsCrossSection_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucEigenvectorsCrossSection_fieldVariableName_get, _gLucifer.lucEigenvectorsCrossSection_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucEigenvectorsCrossSection_value_set
     __swig_getmethods__["value"] = _gLucifer.lucEigenvectorsCrossSection_value_get
     if _newclass:value = _swig_property(_gLucifer.lucEigenvectorsCrossSection_value_get, _gLucifer.lucEigenvectorsCrossSection_value_set)
@@ -2443,9 +2641,6 @@ class lucFeVariableSurface(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucFeVariableSurface_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucFeVariableSurface_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucFeVariableSurface_fieldVariable_get, _gLucifer.lucFeVariableSurface_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucFeVariableSurface_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucFeVariableSurface_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucFeVariableSurface_fieldVariableName_get, _gLucifer.lucFeVariableSurface_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucFeVariableSurface_value_set
     __swig_getmethods__["value"] = _gLucifer.lucFeVariableSurface_value_get
     if _newclass:value = _swig_property(_gLucifer.lucFeVariableSurface_value_get, _gLucifer.lucFeVariableSurface_value_set)
@@ -3640,9 +3835,6 @@ class lucIsosurfaceCrossSection(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucIsosurfaceCrossSection_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucIsosurfaceCrossSection_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucIsosurfaceCrossSection_fieldVariable_get, _gLucifer.lucIsosurfaceCrossSection_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucIsosurfaceCrossSection_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucIsosurfaceCrossSection_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucIsosurfaceCrossSection_fieldVariableName_get, _gLucifer.lucIsosurfaceCrossSection_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucIsosurfaceCrossSection_value_set
     __swig_getmethods__["value"] = _gLucifer.lucIsosurfaceCrossSection_value_get
     if _newclass:value = _swig_property(_gLucifer.lucIsosurfaceCrossSection_value_get, _gLucifer.lucIsosurfaceCrossSection_value_set)
@@ -4442,9 +4634,6 @@ class lucScalarFieldCrossSection(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucScalarFieldCrossSection_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucScalarFieldCrossSection_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucScalarFieldCrossSection_fieldVariable_get, _gLucifer.lucScalarFieldCrossSection_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucScalarFieldCrossSection_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucScalarFieldCrossSection_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucScalarFieldCrossSection_fieldVariableName_get, _gLucifer.lucScalarFieldCrossSection_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucScalarFieldCrossSection_value_set
     __swig_getmethods__["value"] = _gLucifer.lucScalarFieldCrossSection_value_get
     if _newclass:value = _swig_property(_gLucifer.lucScalarFieldCrossSection_value_get, _gLucifer.lucScalarFieldCrossSection_value_set)
@@ -4694,9 +4883,6 @@ class lucScalarFieldOnMeshCrossSection(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariable_get, _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariableName_get, _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucScalarFieldOnMeshCrossSection_value_set
     __swig_getmethods__["value"] = _gLucifer.lucScalarFieldOnMeshCrossSection_value_get
     if _newclass:value = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_value_get, _gLucifer.lucScalarFieldOnMeshCrossSection_value_set)
@@ -5837,9 +6023,6 @@ class lucVectorArrowCrossSection(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucVectorArrowCrossSection_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucVectorArrowCrossSection_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucVectorArrowCrossSection_fieldVariable_get, _gLucifer.lucVectorArrowCrossSection_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucVectorArrowCrossSection_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucVectorArrowCrossSection_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucVectorArrowCrossSection_fieldVariableName_get, _gLucifer.lucVectorArrowCrossSection_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucVectorArrowCrossSection_value_set
     __swig_getmethods__["value"] = _gLucifer.lucVectorArrowCrossSection_value_get
     if _newclass:value = _swig_property(_gLucifer.lucVectorArrowCrossSection_value_get, _gLucifer.lucVectorArrowCrossSection_value_set)
@@ -6104,9 +6287,6 @@ class lucVectorArrowMeshCrossSection(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucVectorArrowMeshCrossSection_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucVectorArrowMeshCrossSection_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucVectorArrowMeshCrossSection_fieldVariable_get, _gLucifer.lucVectorArrowMeshCrossSection_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucVectorArrowMeshCrossSection_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucVectorArrowMeshCrossSection_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucVectorArrowMeshCrossSection_fieldVariableName_get, _gLucifer.lucVectorArrowMeshCrossSection_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucVectorArrowMeshCrossSection_value_set
     __swig_getmethods__["value"] = _gLucifer.lucVectorArrowMeshCrossSection_value_get
     if _newclass:value = _swig_property(_gLucifer.lucVectorArrowMeshCrossSection_value_get, _gLucifer.lucVectorArrowMeshCrossSection_value_set)
@@ -6377,9 +6557,6 @@ class lucVectorArrows(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucVectorArrows_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucVectorArrows_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucVectorArrows_fieldVariable_get, _gLucifer.lucVectorArrows_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucVectorArrows_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucVectorArrows_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucVectorArrows_fieldVariableName_get, _gLucifer.lucVectorArrows_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucVectorArrows_value_set
     __swig_getmethods__["value"] = _gLucifer.lucVectorArrows_value_get
     if _newclass:value = _swig_property(_gLucifer.lucVectorArrows_value_get, _gLucifer.lucVectorArrows_value_set)
@@ -6627,9 +6804,6 @@ class lucVectorArrowsOnMesh(_object):
     __swig_setmethods__["fieldVariable"] = _gLucifer.lucVectorArrowsOnMesh_fieldVariable_set
     __swig_getmethods__["fieldVariable"] = _gLucifer.lucVectorArrowsOnMesh_fieldVariable_get
     if _newclass:fieldVariable = _swig_property(_gLucifer.lucVectorArrowsOnMesh_fieldVariable_get, _gLucifer.lucVectorArrowsOnMesh_fieldVariable_set)
-    __swig_setmethods__["fieldVariableName"] = _gLucifer.lucVectorArrowsOnMesh_fieldVariableName_set
-    __swig_getmethods__["fieldVariableName"] = _gLucifer.lucVectorArrowsOnMesh_fieldVariableName_get
-    if _newclass:fieldVariableName = _swig_property(_gLucifer.lucVectorArrowsOnMesh_fieldVariableName_get, _gLucifer.lucVectorArrowsOnMesh_fieldVariableName_set)
     __swig_setmethods__["value"] = _gLucifer.lucVectorArrowsOnMesh_value_set
     __swig_getmethods__["value"] = _gLucifer.lucVectorArrowsOnMesh_value_get
     if _newclass:value = _swig_property(_gLucifer.lucVectorArrowsOnMesh_value_get, _gLucifer.lucVectorArrowsOnMesh_value_set)

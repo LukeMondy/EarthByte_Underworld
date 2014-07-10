@@ -127,7 +127,6 @@ void _lucVectorArrowCrossSection_AssignFromXML( void* drawingObject, Stg_Compone
    self->defaultResolution = 8;  /* Default sampling res */
    _lucCrossSection_AssignFromXML( self, cf, data );
    self->gatherData = False;     /* Drawn in parallel */
-   strcpy(self->fieldVariableName, "VectorVariable");
 
    _lucVectorArrowCrossSection_Init(
       self,

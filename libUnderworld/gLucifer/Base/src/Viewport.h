@@ -53,7 +53,6 @@ extern const Type lucViewport_Type;
       double                        scaleX;                    \
       double                        scaleY;                    \
       double                        scaleZ;                    \
-      Bool                          disabled;                  \
       char*                         title;                     \
       Bool                          axis;                      \
       double                        axisLength;                \
@@ -95,6 +94,6 @@ void _lucViewport_Destroy( void* viewport, void* data );
 void lucViewport_Update( void* viewport);
 void lucViewport_Setup( void* viewport, lucDatabase* database) ;
 void lucViewport_Draw( void* viewport, lucDatabase* database) ;
-void lucViewport_CleanUp( void* viewport, void* context ) ;
+void lucViewport_CleanUp( void* viewport ) ;
 #endif
 

@@ -2935,183 +2935,188 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_ExtensionManager swig_types[22]
 #define SWIGTYPE_p_ExtensionManager_Register swig_types[23]
 #define SWIGTYPE_p_File swig_types[24]
-#define SWIGTYPE_p_HierarchyTable swig_types[25]
-#define SWIGTYPE_p_Hook swig_types[26]
-#define SWIGTYPE_p_IndentFormatter swig_types[27]
-#define SWIGTYPE_p_IndexSet swig_types[28]
-#define SWIGTYPE_p_Journal swig_types[29]
-#define SWIGTYPE_p_JournalTypedStream swig_types[30]
-#define SWIGTYPE_p_LineFormatter swig_types[31]
-#define SWIGTYPE_p_ListEncoding swig_types[32]
-#define SWIGTYPE_p_LiveComponentRegister swig_types[33]
-#define SWIGTYPE_p_MPIFile swig_types[34]
-#define SWIGTYPE_p_MPIStream swig_types[35]
-#define SWIGTYPE_p_MPI_Comm swig_types[36]
-#define SWIGTYPE_p_Memory swig_types[37]
-#define SWIGTYPE_p_MemoryField swig_types[38]
-#define SWIGTYPE_p_MemoryPointer swig_types[39]
-#define SWIGTYPE_p_MemoryPointerStatus_t swig_types[40]
-#define SWIGTYPE_p_MemoryReport swig_types[41]
-#define SWIGTYPE_p_Module swig_types[42]
-#define SWIGTYPE_p_ModulesManager swig_types[43]
-#define SWIGTYPE_p_NameSpaceInfo swig_types[44]
-#define SWIGTYPE_p_NamedObject_Register swig_types[45]
-#define SWIGTYPE_p_NewClass swig_types[46]
-#define SWIGTYPE_p_NewObject swig_types[47]
-#define SWIGTYPE_p_OneOffComponentFactory swig_types[48]
-#define SWIGTYPE_p_Plugin swig_types[49]
-#define SWIGTYPE_p_PluginsManager swig_types[50]
-#define SWIGTYPE_p_Progress swig_types[51]
-#define SWIGTYPE_p_PtrMap swig_types[52]
-#define SWIGTYPE_p_RankFormatter swig_types[53]
-#define SWIGTYPE_p_ReplacementOption swig_types[54]
-#define SWIGTYPE_p_Scaling swig_types[55]
-#define SWIGTYPE_p_SimpleExtensionInfo swig_types[56]
-#define SWIGTYPE_p_Stg_CallGraph swig_types[57]
-#define SWIGTYPE_p_Stg_Component swig_types[58]
-#define SWIGTYPE_p_Stg_ComponentFactory swig_types[59]
-#define SWIGTYPE_p_Stg_ComponentRegister swig_types[60]
-#define SWIGTYPE_p_Stg_ComponentRegisterElement swig_types[61]
-#define SWIGTYPE_p_Stg_ObjectAdaptor_CopyPointerFunction swig_types[62]
-#define SWIGTYPE_p_Stg_ObjectAdaptor_DeletePointerFunction swig_types[63]
-#define SWIGTYPE_p_Stg_ObjectAdaptor_PrintPointerFunction swig_types[64]
-#define SWIGTYPE_p_Stream swig_types[65]
-#define SWIGTYPE_p_StreamFormatter swig_types[66]
-#define SWIGTYPE_p_StreamFormatter_Buffer swig_types[67]
-#define SWIGTYPE_p_TestSuite swig_types[68]
-#define SWIGTYPE_p_Toolbox swig_types[69]
-#define SWIGTYPE_p_ToolboxesManager swig_types[70]
-#define SWIGTYPE_p_UIntMap swig_types[71]
-#define SWIGTYPE_p_UnitDefinition_Type swig_types[72]
-#define SWIGTYPE_p_VariableCondition_ValueType swig_types[73]
-#define SWIGTYPE_p_VariableCondition_Value_Array swig_types[74]
-#define SWIGTYPE_p_VariableCondition_Value_AsType swig_types[75]
-#define SWIGTYPE_p_VariableDumpStream swig_types[76]
-#define SWIGTYPE_p_Variable_DataType swig_types[77]
-#define SWIGTYPE_p__AnalyticFunction swig_types[78]
-#define SWIGTYPE_p__AnalyticFunction_Register swig_types[79]
-#define SWIGTYPE_p__CompositeVC swig_types[80]
-#define SWIGTYPE_p__ConditionFunction swig_types[81]
-#define SWIGTYPE_p__ConditionFunction_Register swig_types[82]
-#define SWIGTYPE_p__Dictionary swig_types[83]
-#define SWIGTYPE_p__Dictionary_Entry swig_types[84]
-#define SWIGTYPE_p__Dictionary_Entry_Value swig_types[85]
-#define SWIGTYPE_p__Dictionary_Entry_Value_List swig_types[86]
-#define SWIGTYPE_p__Dictionary_Entry_Value_Validator swig_types[87]
-#define SWIGTYPE_p__Encoding swig_types[88]
-#define SWIGTYPE_p__IO_Handler swig_types[89]
-#define SWIGTYPE_p__SetVC swig_types[90]
-#define SWIGTYPE_p__SetVC_Entry swig_types[91]
-#define SWIGTYPE_p__Stg_Class swig_types[92]
-#define SWIGTYPE_p__Stg_Object swig_types[93]
-#define SWIGTYPE_p__Stg_ObjectAdaptor swig_types[94]
-#define SWIGTYPE_p__Stg_ObjectList swig_types[95]
-#define SWIGTYPE_p__Stg_PrimitiveObject swig_types[96]
-#define SWIGTYPE_p__Variable swig_types[97]
-#define SWIGTYPE_p__VariableAllVC swig_types[98]
-#define SWIGTYPE_p__VariableAllVC_Entry swig_types[99]
-#define SWIGTYPE_p__VariableCondition swig_types[100]
-#define SWIGTYPE_p__VariableCondition_Register swig_types[101]
-#define SWIGTYPE_p__VariableCondition_Register_Entry swig_types[102]
-#define SWIGTYPE_p__VariableCondition_Tuple swig_types[103]
-#define SWIGTYPE_p__VariableCondition_Value swig_types[104]
-#define SWIGTYPE_p__Variable_Register swig_types[105]
-#define SWIGTYPE_p__XML_IO_Handler swig_types[106]
-#define SWIGTYPE_p_char swig_types[107]
-#define SWIGTYPE_p_double swig_types[108]
-#define SWIGTYPE_p_f___p_void swig_types[109]
-#define SWIGTYPE_p_f___void swig_types[110]
-#define SWIGTYPE_p_f_p_AbstractContext_p_Variable_Register_p_ConditionFunction_Register_p_Dictionary_p_void__p__VariableCondition swig_types[111]
-#define SWIGTYPE_p_f_p_char__p_void swig_types[112]
-#define SWIGTYPE_p_f_p_char_p_struct__Stg_ObjectList__p_Module swig_types[113]
-#define SWIGTYPE_p_f_p_q_const__char__Bool swig_types[114]
-#define SWIGTYPE_p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value swig_types[115]
-#define SWIGTYPE_p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component swig_types[116]
-#define SWIGTYPE_p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component swig_types[117]
-#define SWIGTYPE_p_f_p_void_Name_Name_unsigned_int_Type_Bool_p_unsigned_int_p_void__p_p_Stg_Component swig_types[118]
-#define SWIGTYPE_p_f_p_void_Name_Type_Bool_p_void__p_Stg_Component swig_types[119]
-#define SWIGTYPE_p_f_p_void_VariableCondition_ValueIndex___VariableCondition_Value swig_types[120]
-#define SWIGTYPE_p_f_p_void__Bool swig_types[121]
-#define SWIGTYPE_p_f_p_void__double swig_types[122]
-#define SWIGTYPE_p_f_p_void__p_IndexSet swig_types[123]
-#define SWIGTYPE_p_f_p_void__p_void swig_types[124]
-#define SWIGTYPE_p_f_p_void__unsigned_int swig_types[125]
-#define SWIGTYPE_p_f_p_void__void swig_types[126]
-#define SWIGTYPE_p_f_p_void_double__void swig_types[127]
-#define SWIGTYPE_p_f_p_void_enum_Bool__void swig_types[128]
-#define SWIGTYPE_p_f_p_void_enum_ListEncoding__void swig_types[129]
-#define SWIGTYPE_p_f_p_void_enum_ReplacementOption_p_void__unsigned_int swig_types[130]
-#define SWIGTYPE_p_f_p_void_int_int__void swig_types[131]
-#define SWIGTYPE_p_f_p_void_p_char__p_char swig_types[132]
-#define SWIGTYPE_p_f_p_void_p_char_enum_ReplacementOption__unsigned_int swig_types[133]
-#define SWIGTYPE_p_f_p_void_p_char_enum_ReplacementOption_p_void__unsigned_int swig_types[134]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_p_q_const__char__p_char swig_types[135]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__double__double swig_types[136]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__enum_Bool__Bool swig_types[137]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__int__int swig_types[138]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__unsigned_int__unsigned_int swig_types[139]
-#define SWIGTYPE_p_f_p_void_p_char_p_q_const__char__p_char swig_types[140]
-#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value__Bool swig_types[141]
-#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value__void swig_types[142]
-#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool swig_types[143]
-#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value_p_char_p_char__void swig_types[144]
-#define SWIGTYPE_p_f_p_void_p_char_p_void__unsigned_int swig_types[145]
-#define SWIGTYPE_p_f_p_void_p_char_q_const__double__double swig_types[146]
-#define SWIGTYPE_p_f_p_void_p_char_q_const__enum_Bool__Bool swig_types[147]
-#define SWIGTYPE_p_f_p_void_p_char_q_const__int__int swig_types[148]
-#define SWIGTYPE_p_f_p_void_p_char_q_const__unsigned_int__unsigned_int swig_types[149]
-#define SWIGTYPE_p_f_p_void_p_double_p_double__void swig_types[150]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool swig_types[151]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool swig_types[152]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool swig_types[153]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool swig_types[154]
-#define SWIGTYPE_p_f_p_void_p_struct_Module__Bool swig_types[155]
-#define SWIGTYPE_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void swig_types[156]
-#define SWIGTYPE_p_f_p_void_p_struct_Stream__void swig_types[157]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int__p_char swig_types[158]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int_p_char__Bool swig_types[159]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_p_struct__Dictionary_p_struct__Stg_ObjectList__void swig_types[160]
-#define SWIGTYPE_p_f_p_void_p_void__double swig_types[161]
-#define SWIGTYPE_p_f_p_void_p_void__p__Dictionary_Entry_Value swig_types[162]
-#define SWIGTYPE_p_f_p_void_p_void__unsigned_int swig_types[163]
-#define SWIGTYPE_p_f_p_void_p_void__void swig_types[164]
-#define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[165]
-#define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[166]
-#define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[167]
-#define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[168]
-#define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[169]
-#define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[170]
-#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__Bool swig_types[171]
-#define SWIGTYPE_p_f_p_void_unsigned_int__unsigned_int swig_types[172]
-#define SWIGTYPE_p_f_p_void_unsigned_int_enum_ReplacementOption__void swig_types[173]
-#define SWIGTYPE_p_f_p_void_unsigned_int_p_void__void swig_types[174]
-#define SWIGTYPE_p_f_p_void_unsigned_int_unsigned_int__unsigned_int swig_types[175]
-#define SWIGTYPE_p_f_unsigned_int_unsigned_int_p_void_p_void_p_void__void swig_types[176]
-#define SWIGTYPE_p_f_void__p_File swig_types[177]
-#define SWIGTYPE_p_int swig_types[178]
-#define SWIGTYPE_p_p_EntryPoint swig_types[179]
-#define SWIGTYPE_p_p_Stg_Component swig_types[180]
-#define SWIGTYPE_p_p__AnalyticFunction swig_types[181]
-#define SWIGTYPE_p_p__ConditionFunction swig_types[182]
-#define SWIGTYPE_p_p__Dictionary_Entry swig_types[183]
-#define SWIGTYPE_p_p__Stg_Object swig_types[184]
-#define SWIGTYPE_p_p__Variable swig_types[185]
-#define SWIGTYPE_p_p__VariableCondition_Tuple swig_types[186]
-#define SWIGTYPE_p_p_char swig_types[187]
-#define SWIGTYPE_p_p_p_char swig_types[188]
-#define SWIGTYPE_p_p_void swig_types[189]
-#define SWIGTYPE_p_p_xmlChar swig_types[190]
-#define SWIGTYPE_p_stgComponent swig_types[191]
-#define SWIGTYPE_p_unsigned_char swig_types[192]
-#define SWIGTYPE_p_unsigned_int swig_types[193]
-#define SWIGTYPE_p_unsigned_long swig_types[194]
-#define SWIGTYPE_p_void swig_types[195]
-#define SWIGTYPE_p_xmlChar swig_types[196]
-#define SWIGTYPE_p_xmlDocPtr swig_types[197]
-#define SWIGTYPE_p_xmlNodePtr swig_types[198]
-#define SWIGTYPE_p_xmlNsPtr swig_types[199]
-static swig_type_info *swig_types[201];
-static swig_module_info swig_module = {swig_types, 200, 0, 0, 0, 0};
+#define SWIGTYPE_p_HashTable swig_types[25]
+#define SWIGTYPE_p_HashTable_Entry swig_types[26]
+#define SWIGTYPE_p_HashTable_Index swig_types[27]
+#define SWIGTYPE_p_HierarchyTable swig_types[28]
+#define SWIGTYPE_p_Hook swig_types[29]
+#define SWIGTYPE_p_IndentFormatter swig_types[30]
+#define SWIGTYPE_p_IndexSet swig_types[31]
+#define SWIGTYPE_p_Journal swig_types[32]
+#define SWIGTYPE_p_JournalTypedStream swig_types[33]
+#define SWIGTYPE_p_KeyType swig_types[34]
+#define SWIGTYPE_p_LineFormatter swig_types[35]
+#define SWIGTYPE_p_ListEncoding swig_types[36]
+#define SWIGTYPE_p_LiveComponentRegister swig_types[37]
+#define SWIGTYPE_p_MPIFile swig_types[38]
+#define SWIGTYPE_p_MPIStream swig_types[39]
+#define SWIGTYPE_p_MPI_Comm swig_types[40]
+#define SWIGTYPE_p_Memory swig_types[41]
+#define SWIGTYPE_p_MemoryField swig_types[42]
+#define SWIGTYPE_p_MemoryPointer swig_types[43]
+#define SWIGTYPE_p_MemoryPointerStatus_t swig_types[44]
+#define SWIGTYPE_p_MemoryReport swig_types[45]
+#define SWIGTYPE_p_Module swig_types[46]
+#define SWIGTYPE_p_ModulesManager swig_types[47]
+#define SWIGTYPE_p_NameSpaceInfo swig_types[48]
+#define SWIGTYPE_p_NamedObject_Register swig_types[49]
+#define SWIGTYPE_p_NewClass swig_types[50]
+#define SWIGTYPE_p_NewObject swig_types[51]
+#define SWIGTYPE_p_Plugin swig_types[52]
+#define SWIGTYPE_p_PluginsManager swig_types[53]
+#define SWIGTYPE_p_Progress swig_types[54]
+#define SWIGTYPE_p_PtrMap swig_types[55]
+#define SWIGTYPE_p_RankFormatter swig_types[56]
+#define SWIGTYPE_p_ReplacementOption swig_types[57]
+#define SWIGTYPE_p_Scaling swig_types[58]
+#define SWIGTYPE_p_SimpleExtensionInfo swig_types[59]
+#define SWIGTYPE_p_Stg_CallGraph swig_types[60]
+#define SWIGTYPE_p_Stg_Component swig_types[61]
+#define SWIGTYPE_p_Stg_ComponentFactory swig_types[62]
+#define SWIGTYPE_p_Stg_ComponentRegister swig_types[63]
+#define SWIGTYPE_p_Stg_ComponentRegisterElement swig_types[64]
+#define SWIGTYPE_p_Stg_ObjectAdaptor_CopyPointerFunction swig_types[65]
+#define SWIGTYPE_p_Stg_ObjectAdaptor_DeletePointerFunction swig_types[66]
+#define SWIGTYPE_p_Stg_ObjectAdaptor_PrintPointerFunction swig_types[67]
+#define SWIGTYPE_p_Stream swig_types[68]
+#define SWIGTYPE_p_StreamFormatter swig_types[69]
+#define SWIGTYPE_p_StreamFormatter_Buffer swig_types[70]
+#define SWIGTYPE_p_TestSuite swig_types[71]
+#define SWIGTYPE_p_Toolbox swig_types[72]
+#define SWIGTYPE_p_ToolboxesManager swig_types[73]
+#define SWIGTYPE_p_UIntMap swig_types[74]
+#define SWIGTYPE_p_UnitDefinition_Type swig_types[75]
+#define SWIGTYPE_p_VariableCondition_ValueType swig_types[76]
+#define SWIGTYPE_p_VariableCondition_Value_Array swig_types[77]
+#define SWIGTYPE_p_VariableCondition_Value_AsType swig_types[78]
+#define SWIGTYPE_p_VariableDumpStream swig_types[79]
+#define SWIGTYPE_p_Variable_DataType swig_types[80]
+#define SWIGTYPE_p__AnalyticFunction swig_types[81]
+#define SWIGTYPE_p__AnalyticFunction_Register swig_types[82]
+#define SWIGTYPE_p__CompositeVC swig_types[83]
+#define SWIGTYPE_p__ConditionFunction swig_types[84]
+#define SWIGTYPE_p__ConditionFunction_Register swig_types[85]
+#define SWIGTYPE_p__Dictionary swig_types[86]
+#define SWIGTYPE_p__Dictionary_Entry swig_types[87]
+#define SWIGTYPE_p__Dictionary_Entry_Value swig_types[88]
+#define SWIGTYPE_p__Dictionary_Entry_Value_List swig_types[89]
+#define SWIGTYPE_p__Dictionary_Entry_Value_Validator swig_types[90]
+#define SWIGTYPE_p__Encoding swig_types[91]
+#define SWIGTYPE_p__IO_Handler swig_types[92]
+#define SWIGTYPE_p__SetVC swig_types[93]
+#define SWIGTYPE_p__SetVC_Entry swig_types[94]
+#define SWIGTYPE_p__Stg_Class swig_types[95]
+#define SWIGTYPE_p__Stg_Object swig_types[96]
+#define SWIGTYPE_p__Stg_ObjectAdaptor swig_types[97]
+#define SWIGTYPE_p__Stg_ObjectList swig_types[98]
+#define SWIGTYPE_p__Stg_PrimitiveObject swig_types[99]
+#define SWIGTYPE_p__Variable swig_types[100]
+#define SWIGTYPE_p__VariableAllVC swig_types[101]
+#define SWIGTYPE_p__VariableAllVC_Entry swig_types[102]
+#define SWIGTYPE_p__VariableCondition swig_types[103]
+#define SWIGTYPE_p__VariableCondition_Register swig_types[104]
+#define SWIGTYPE_p__VariableCondition_Register_Entry swig_types[105]
+#define SWIGTYPE_p__VariableCondition_Tuple swig_types[106]
+#define SWIGTYPE_p__VariableCondition_Value swig_types[107]
+#define SWIGTYPE_p__Variable_Register swig_types[108]
+#define SWIGTYPE_p__XML_IO_Handler swig_types[109]
+#define SWIGTYPE_p_char swig_types[110]
+#define SWIGTYPE_p_double swig_types[111]
+#define SWIGTYPE_p_f___p_void swig_types[112]
+#define SWIGTYPE_p_f___void swig_types[113]
+#define SWIGTYPE_p_f_p_AbstractContext_p_Variable_Register_p_ConditionFunction_Register_p_Dictionary_p_void__p__VariableCondition swig_types[114]
+#define SWIGTYPE_p_f_p_char__p_void swig_types[115]
+#define SWIGTYPE_p_f_p_char_p_struct__Stg_ObjectList__p_Module swig_types[116]
+#define SWIGTYPE_p_f_p_q_const__char__Bool swig_types[117]
+#define SWIGTYPE_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int swig_types[118]
+#define SWIGTYPE_p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value swig_types[119]
+#define SWIGTYPE_p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component swig_types[120]
+#define SWIGTYPE_p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component swig_types[121]
+#define SWIGTYPE_p_f_p_void_Name_Name_unsigned_int_Type_Bool_p_unsigned_int_p_void__p_p_Stg_Component swig_types[122]
+#define SWIGTYPE_p_f_p_void_Name_Type_Bool_p_void__p_Stg_Component swig_types[123]
+#define SWIGTYPE_p_f_p_void_VariableCondition_ValueIndex___VariableCondition_Value swig_types[124]
+#define SWIGTYPE_p_f_p_void__Bool swig_types[125]
+#define SWIGTYPE_p_f_p_void__double swig_types[126]
+#define SWIGTYPE_p_f_p_void__p_IndexSet swig_types[127]
+#define SWIGTYPE_p_f_p_void__p_void swig_types[128]
+#define SWIGTYPE_p_f_p_void__unsigned_int swig_types[129]
+#define SWIGTYPE_p_f_p_void__void swig_types[130]
+#define SWIGTYPE_p_f_p_void_double__void swig_types[131]
+#define SWIGTYPE_p_f_p_void_enum_Bool__void swig_types[132]
+#define SWIGTYPE_p_f_p_void_enum_ListEncoding__void swig_types[133]
+#define SWIGTYPE_p_f_p_void_enum_ReplacementOption_p_void__unsigned_int swig_types[134]
+#define SWIGTYPE_p_f_p_void_int_int__void swig_types[135]
+#define SWIGTYPE_p_f_p_void_p_char__p_char swig_types[136]
+#define SWIGTYPE_p_f_p_void_p_char_enum_ReplacementOption__unsigned_int swig_types[137]
+#define SWIGTYPE_p_f_p_void_p_char_enum_ReplacementOption_p_void__unsigned_int swig_types[138]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_p_q_const__char__p_char swig_types[139]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__double__double swig_types[140]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__enum_Bool__Bool swig_types[141]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__int__int swig_types[142]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__unsigned_int__unsigned_int swig_types[143]
+#define SWIGTYPE_p_f_p_void_p_char_p_q_const__char__p_char swig_types[144]
+#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value__Bool swig_types[145]
+#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value__void swig_types[146]
+#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool swig_types[147]
+#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value_p_char_p_char__void swig_types[148]
+#define SWIGTYPE_p_f_p_void_p_char_p_void__unsigned_int swig_types[149]
+#define SWIGTYPE_p_f_p_void_p_char_q_const__double__double swig_types[150]
+#define SWIGTYPE_p_f_p_void_p_char_q_const__enum_Bool__Bool swig_types[151]
+#define SWIGTYPE_p_f_p_void_p_char_q_const__int__int swig_types[152]
+#define SWIGTYPE_p_f_p_void_p_char_q_const__unsigned_int__unsigned_int swig_types[153]
+#define SWIGTYPE_p_f_p_void_p_double_p_double__void swig_types[154]
+#define SWIGTYPE_p_f_p_void_p_q_const__char_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool swig_types[155]
+#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool swig_types[156]
+#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool swig_types[157]
+#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool swig_types[158]
+#define SWIGTYPE_p_f_p_void_p_struct_Module__Bool swig_types[159]
+#define SWIGTYPE_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void swig_types[160]
+#define SWIGTYPE_p_f_p_void_p_struct_Stream__void swig_types[161]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int__p_char swig_types[162]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int_p_char__Bool swig_types[163]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_p_struct__Dictionary_p_struct__Stg_ObjectList__void swig_types[164]
+#define SWIGTYPE_p_f_p_void_p_void__double swig_types[165]
+#define SWIGTYPE_p_f_p_void_p_void__p__Dictionary_Entry_Value swig_types[166]
+#define SWIGTYPE_p_f_p_void_p_void__unsigned_int swig_types[167]
+#define SWIGTYPE_p_f_p_void_p_void__void swig_types[168]
+#define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[169]
+#define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[170]
+#define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[171]
+#define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[172]
+#define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[173]
+#define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[174]
+#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__Bool swig_types[175]
+#define SWIGTYPE_p_f_p_void_unsigned_int__unsigned_int swig_types[176]
+#define SWIGTYPE_p_f_p_void_unsigned_int_enum_ReplacementOption__void swig_types[177]
+#define SWIGTYPE_p_f_p_void_unsigned_int_p_void__void swig_types[178]
+#define SWIGTYPE_p_f_p_void_unsigned_int_unsigned_int__unsigned_int swig_types[179]
+#define SWIGTYPE_p_f_unsigned_int_unsigned_int_p_void_p_void_p_void__void swig_types[180]
+#define SWIGTYPE_p_f_void__p_File swig_types[181]
+#define SWIGTYPE_p_int swig_types[182]
+#define SWIGTYPE_p_p_EntryPoint swig_types[183]
+#define SWIGTYPE_p_p_HashTable_Entry swig_types[184]
+#define SWIGTYPE_p_p_Stg_Component swig_types[185]
+#define SWIGTYPE_p_p__AnalyticFunction swig_types[186]
+#define SWIGTYPE_p_p__ConditionFunction swig_types[187]
+#define SWIGTYPE_p_p__Dictionary_Entry swig_types[188]
+#define SWIGTYPE_p_p__Stg_Object swig_types[189]
+#define SWIGTYPE_p_p__Variable swig_types[190]
+#define SWIGTYPE_p_p__VariableCondition_Tuple swig_types[191]
+#define SWIGTYPE_p_p_char swig_types[192]
+#define SWIGTYPE_p_p_p_char swig_types[193]
+#define SWIGTYPE_p_p_void swig_types[194]
+#define SWIGTYPE_p_p_xmlChar swig_types[195]
+#define SWIGTYPE_p_stgComponent swig_types[196]
+#define SWIGTYPE_p_unsigned_char swig_types[197]
+#define SWIGTYPE_p_unsigned_int swig_types[198]
+#define SWIGTYPE_p_unsigned_long swig_types[199]
+#define SWIGTYPE_p_void swig_types[200]
+#define SWIGTYPE_p_xmlChar swig_types[201]
+#define SWIGTYPE_p_xmlDocPtr swig_types[202]
+#define SWIGTYPE_p_xmlNodePtr swig_types[203]
+#define SWIGTYPE_p_xmlNsPtr swig_types[204]
+static swig_type_info *swig_types[206];
+static swig_module_info swig_module = {swig_types, 205, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3602,6 +3607,23 @@ SWIGINTERNINLINE PyObject *
 SWIG_From_char  (char c) 
 { 
   return SWIG_FromCharPtrAndSize(&c,1);
+}
+
+
+SWIGINTERNINLINE int
+SWIG_AsVal_size_t (PyObject * obj, size_t *val)
+{
+  unsigned long v;
+  int res = SWIG_AsVal_unsigned_SS_long (obj, val ? &v : 0);
+  if (SWIG_IsOK(res) && val) *val = (size_t)(v);
+  return res;
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_size_t  (size_t value)
+{    
+  return SWIG_From_unsigned_SS_long  ((unsigned long)(value));
 }
 
 #ifdef __cplusplus
@@ -34981,6 +35003,3364 @@ fail:
 }
 
 
+SWIGINTERN int Swig_var_HashTable_Type_set(PyObject *_val SWIGUNUSED) {
+  SWIG_Error(SWIG_AttributeError,"Variable HashTable_Type is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_HashTable_Type_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_FromCharPtr(HashTable_Type);
+  return pyobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_next_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  struct HashTable_Entry *arg2 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Entry_next_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_next_set" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_HashTable_Entry, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_Entry_next_set" "', argument " "2"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg2 = (struct HashTable_Entry *)(argp2);
+  if (arg1) (arg1)->next = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_next_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Entry *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Entry_next_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_next_get" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  result = (struct HashTable_Entry *) ((arg1)->next);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_hash_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Entry_hash_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_hash_set" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable_Entry_hash_set" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  if (arg1) (arg1)->hash = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_hash_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Entry_hash_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_hash_get" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  result = (unsigned int) ((arg1)->hash);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_key_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *arg2 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Entry_key_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_key_set" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, SWIG_POINTER_DISOWN);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_Entry_key_set" "', argument " "2"" of type '" "void const *""'"); 
+  }
+  if (arg1) (arg1)->key = (void const *)arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_key_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  void *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Entry_key_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_key_get" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  result = (void *) ((arg1)->key);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_keyLength_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  size_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Entry_keyLength_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_keyLength_set" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  ecode2 = SWIG_AsVal_size_t(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable_Entry_keyLength_set" "', argument " "2"" of type '" "size_t""'");
+  } 
+  arg2 = (size_t)(val2);
+  if (arg1) (arg1)->keyLength = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_keyLength_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  size_t result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Entry_keyLength_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_keyLength_get" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  result =  ((arg1)->keyLength);
+  resultobj = SWIG_From_size_t((size_t)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_data_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *arg2 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Entry_data_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_data_set" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, SWIG_POINTER_DISOWN);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_Entry_data_set" "', argument " "2"" of type '" "void *""'"); 
+  }
+  if (arg1) (arg1)->data = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_data_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  void *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Entry_data_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_data_get" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  result = (void *) ((arg1)->data);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_dataSize_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  size_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Entry_dataSize_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_dataSize_set" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  ecode2 = SWIG_AsVal_size_t(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable_Entry_dataSize_set" "', argument " "2"" of type '" "size_t""'");
+  } 
+  arg2 = (size_t)(val2);
+  if (arg1) (arg1)->dataSize = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Entry_dataSize_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  size_t result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Entry_dataSize_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Entry_dataSize_get" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  result =  ((arg1)->dataSize);
+  resultobj = SWIG_From_size_t((size_t)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_HashTable_Entry(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_HashTable_Entry")) SWIG_fail;
+  result = (struct HashTable_Entry *)calloc(1, sizeof(struct HashTable_Entry));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Entry, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_HashTable_Entry(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Entry *arg1 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_HashTable_Entry",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Entry, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_HashTable_Entry" "', argument " "1"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg1 = (struct HashTable_Entry *)(argp1);
+  free((char *) arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *HashTable_Entry_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_HashTable_Entry, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_HashTable_Index_ht_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  struct HashTable *arg2 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Index_ht_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Index_ht_set" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_HashTable, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_Index_ht_set" "', argument " "2"" of type '" "struct HashTable *""'"); 
+  }
+  arg2 = (struct HashTable *)(argp2);
+  if (arg1) (arg1)->ht = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Index_ht_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Index_ht_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Index_ht_get" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  result = (struct HashTable *) ((arg1)->ht);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Index_curr_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  struct HashTable_Entry *arg2 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Index_curr_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Index_curr_set" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_HashTable_Entry, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_Index_curr_set" "', argument " "2"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg2 = (struct HashTable_Entry *)(argp2);
+  if (arg1) (arg1)->curr = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Index_curr_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Entry *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Index_curr_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Index_curr_get" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  result = (struct HashTable_Entry *) ((arg1)->curr);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Index_next_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  struct HashTable_Entry *arg2 = (struct HashTable_Entry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Index_next_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Index_next_set" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_HashTable_Entry, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_Index_next_set" "', argument " "2"" of type '" "struct HashTable_Entry *""'"); 
+  }
+  arg2 = (struct HashTable_Entry *)(argp2);
+  if (arg1) (arg1)->next = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Index_next_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Entry *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Index_next_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Index_next_get" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  result = (struct HashTable_Entry *) ((arg1)->next);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Entry, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Index_index_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_Index_index_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Index_index_set" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable_Index_index_set" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  if (arg1) (arg1)->index = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Index_index_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Index_index_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Index_index_get" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  result = (unsigned int) ((arg1)->index);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_HashTable_Index(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_HashTable_Index")) SWIG_fail;
+  result = (struct HashTable_Index *)calloc(1, sizeof(struct HashTable_Index));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Index, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_HashTable_Index(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_HashTable_Index",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_HashTable_Index" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  free((char *) arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *HashTable_Index_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_HashTable_Index, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_HashTable__sizeOfSelf_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  SizeT arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable__sizeOfSelf_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__sizeOfSelf_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable__sizeOfSelf_set" "', argument " "2"" of type '" "SizeT""'");
+  } 
+  arg2 = (SizeT)(val2);
+  if (arg1) (arg1)->_sizeOfSelf = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__sizeOfSelf_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  SizeT result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable__sizeOfSelf_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__sizeOfSelf_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (SizeT) ((arg1)->_sizeOfSelf);
+  resultobj = SWIG_From_unsigned_SS_long((unsigned long)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__deleteSelf_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  Bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable__deleteSelf_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__deleteSelf_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable__deleteSelf_set" "', argument " "2"" of type '" "Bool""'");
+  } 
+  arg2 = (Bool)(val2);
+  if (arg1) (arg1)->_deleteSelf = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__deleteSelf_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable__deleteSelf_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__deleteSelf_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (Bool) ((arg1)->_deleteSelf);
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_type_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  Type arg2 = (Type) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_type_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_type_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_type_set" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  if (arg1->type) free((char*)arg1->type);
+  if (arg2) {
+    size_t size = strlen((const char *)(arg2)) + 1;
+    arg1->type = (Type)(char *)memcpy((char *)malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
+  } else {
+    arg1->type = 0;
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_type_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Type result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_type_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_type_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (Type) ((arg1)->type);
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_nRefs_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_nRefs_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_nRefs_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable_nRefs_set" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  if (arg1) (arg1)->nRefs = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_nRefs_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_nRefs_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_nRefs_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (unsigned int) ((arg1)->nRefs);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__delete_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  Stg_Class_DeleteFunction *arg2 = (Stg_Class_DeleteFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable__delete_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__delete_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable__delete_set" "', argument " "2"" of type '" "Stg_Class_DeleteFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->_delete = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__delete_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Stg_Class_DeleteFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable__delete_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__delete_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (Stg_Class_DeleteFunction *) ((arg1)->_delete);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void__void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__print_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  Stg_Class_PrintFunction *arg2 = (Stg_Class_PrintFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable__print_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__print_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable__print_set" "', argument " "2"" of type '" "Stg_Class_PrintFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->_print = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__print_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Stg_Class_PrintFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable__print_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__print_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (Stg_Class_PrintFunction *) ((arg1)->_print);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__copy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  Stg_Class_CopyFunction *arg2 = (Stg_Class_CopyFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable__copy_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__copy_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable__copy_set" "', argument " "2"" of type '" "Stg_Class_CopyFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->_copy = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable__copy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Stg_Class_CopyFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable__copy_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable__copy_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (Stg_Class_CopyFunction *) ((arg1)->_copy);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_hashFunction_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  HashTable_keyHashFunction *arg2 = (HashTable_keyHashFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_hashFunction_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_hashFunction_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_hashFunction_set" "', argument " "2"" of type '" "HashTable_keyHashFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->hashFunction = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_hashFunction_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  HashTable_keyHashFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_hashFunction_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_hashFunction_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (HashTable_keyHashFunction *) ((arg1)->hashFunction);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_dataCopyFunction_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  HashTable_dataCopyFunction *arg2 = (HashTable_dataCopyFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_dataCopyFunction_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_dataCopyFunction_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_dataCopyFunction_set" "', argument " "2"" of type '" "HashTable_dataCopyFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->dataCopyFunction = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_dataCopyFunction_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  HashTable_dataCopyFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_dataCopyFunction_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_dataCopyFunction_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (HashTable_dataCopyFunction *) ((arg1)->dataCopyFunction);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_dataPrintFunction_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  HashTable_dataPrintFunction *arg2 = (HashTable_dataPrintFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_dataPrintFunction_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_dataPrintFunction_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_dataPrintFunction_set" "', argument " "2"" of type '" "HashTable_dataPrintFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->dataPrintFunction = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_dataPrintFunction_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  HashTable_dataPrintFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_dataPrintFunction_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_dataPrintFunction_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (HashTable_dataPrintFunction *) ((arg1)->dataPrintFunction);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void__void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_dataDeleteFunction_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  HashTable_dataDeleteFunction *arg2 = (HashTable_dataDeleteFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_dataDeleteFunction_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_dataDeleteFunction_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_dataDeleteFunction_set" "', argument " "2"" of type '" "HashTable_dataDeleteFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->dataDeleteFunction = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_dataDeleteFunction_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  HashTable_dataDeleteFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_dataDeleteFunction_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_dataDeleteFunction_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (HashTable_dataDeleteFunction *) ((arg1)->dataDeleteFunction);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void__void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_entries_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  struct HashTable_Entry **arg2 = (struct HashTable_Entry **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_entries_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_entries_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_entries_set" "', argument " "2"" of type '" "struct HashTable_Entry **""'"); 
+  }
+  arg2 = (struct HashTable_Entry **)(argp2);
+  if (arg1) (arg1)->entries = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_entries_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Entry **result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_entries_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_entries_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (struct HashTable_Entry **) ((arg1)->entries);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_HashTable_Entry, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_iterator_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  struct HashTable_Index *arg2 = (struct HashTable_Index *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_iterator_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_iterator_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_iterator_set" "', argument " "2"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg2 = (struct HashTable_Index *)(argp2);
+  if (arg1) (arg1)->iterator = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_iterator_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Index *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_iterator_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_iterator_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (struct HashTable_Index *)& ((arg1)->iterator);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_count_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_count_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_count_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable_count_set" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  if (arg1) (arg1)->count = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_count_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_count_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_count_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (unsigned int) ((arg1)->count);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_max_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_max_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_max_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable_max_set" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  if (arg1) (arg1)->max = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_max_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_max_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_max_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (unsigned int) ((arg1)->max);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_keyType_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  KeyType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HashTable_keyType_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_keyType_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_KeyType,  0 );
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_keyType_set" "', argument " "2"" of type '" "KeyType""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "HashTable_keyType_set" "', argument " "2"" of type '" "KeyType""'");
+    } else {
+      arg2 = *((KeyType *)(argp2));
+    }
+  }
+  if (arg1) (arg1)->keyType = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_keyType_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  KeyType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_keyType_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_keyType_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result =  ((arg1)->keyType);
+  resultobj = SWIG_NewPointerObj((KeyType *)memcpy((KeyType *)malloc(sizeof(KeyType)),&result,sizeof(KeyType)), SWIGTYPE_p_KeyType, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_HashTable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_HashTable")) SWIG_fail;
+  result = (struct HashTable *)calloc(1, sizeof(struct HashTable));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_HashTable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_HashTable",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_HashTable" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  free((char *) arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *HashTable_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_HashTable, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_HashTable_New(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable_dataCopyFunction *arg1 = (HashTable_dataCopyFunction *) 0 ;
+  HashTable_dataPrintFunction *arg2 = (HashTable_dataPrintFunction *) 0 ;
+  HashTable_dataDeleteFunction *arg3 = (HashTable_dataDeleteFunction *) 0 ;
+  KeyType arg4 ;
+  void *argp4 ;
+  int res4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  HashTable *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:HashTable_New",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  {
+    int res = SWIG_ConvertFunctionPtr(obj0, (void**)(&arg1), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_New" "', argument " "1"" of type '" "HashTable_dataCopyFunction *""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_New" "', argument " "2"" of type '" "HashTable_dataPrintFunction *""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(obj2, (void**)(&arg3), SWIGTYPE_p_f_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_New" "', argument " "3"" of type '" "HashTable_dataDeleteFunction *""'"); 
+    }
+  }
+  {
+    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_KeyType,  0 );
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "HashTable_New" "', argument " "4"" of type '" "KeyType""'"); 
+    }  
+    if (!argp4) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "HashTable_New" "', argument " "4"" of type '" "KeyType""'");
+    } else {
+      arg4 = *((KeyType *)(argp4));
+    }
+  }
+  result = (HashTable *)HashTable_New(arg1,arg2,arg3,arg4);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap__HashTable_New(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SizeT arg1 ;
+  Type arg2 = (Type) 0 ;
+  Stg_Class_DeleteFunction *arg3 = (Stg_Class_DeleteFunction *) 0 ;
+  Stg_Class_PrintFunction *arg4 = (Stg_Class_PrintFunction *) 0 ;
+  Stg_Class_CopyFunction *arg5 = (Stg_Class_CopyFunction *) 0 ;
+  unsigned long val1 ;
+  int ecode1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  HashTable *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:_HashTable_New",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  ecode1 = SWIG_AsVal_unsigned_SS_long(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "_HashTable_New" "', argument " "1"" of type '" "SizeT""'");
+  } 
+  arg1 = (SizeT)(val1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_HashTable_New" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj2, (void**)(&arg3), SWIGTYPE_p_f_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_HashTable_New" "', argument " "3"" of type '" "Stg_Class_DeleteFunction *""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(obj3, (void**)(&arg4), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_HashTable_New" "', argument " "4"" of type '" "Stg_Class_PrintFunction *""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(obj4, (void**)(&arg5), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_HashTable_New" "', argument " "5"" of type '" "Stg_Class_CopyFunction *""'"); 
+    }
+  }
+  result = (HashTable *)_HashTable_New(arg1,arg2,arg3,arg4,arg5);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable, 0 |  0 );
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Init",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Init" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  HashTable_Init(arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap__HashTable_Init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:_HashTable_Init",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_HashTable_Init" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  _HashTable_Init(arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap__HashTable_DeleteFunc(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  int res1 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:_HashTable_DeleteFunc",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_HashTable_DeleteFunc" "', argument " "1"" of type '" "void *""'"); 
+  }
+  _HashTable_DeleteFunc(arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap__HashTable_PrintFunc(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  Stream *arg2 = (Stream *) 0 ;
+  int res1 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:_HashTable_PrintFunc",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_HashTable_PrintFunc" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Stream, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_HashTable_PrintFunc" "', argument " "2"" of type '" "Stream *""'"); 
+  }
+  arg2 = (Stream *)(argp2);
+  _HashTable_PrintFunc(arg1,arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap__HashTable_CopyFunc(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  void *arg2 = (void *) 0 ;
+  Bool arg3 ;
+  Name arg4 = (Name) 0 ;
+  PtrMap *arg5 = (PtrMap *) 0 ;
+  int res1 ;
+  int res2 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  void *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:_HashTable_CopyFunc",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_HashTable_CopyFunc" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_HashTable_CopyFunc" "', argument " "2"" of type '" "void *""'"); 
+  }
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "_HashTable_CopyFunc" "', argument " "3"" of type '" "Bool""'");
+  } 
+  arg3 = (Bool)(val3);
+  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "_HashTable_CopyFunc" "', argument " "4"" of type '" "Name""'");
+  }
+  arg4 = (Name)(buf4);
+  res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_PtrMap, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "_HashTable_CopyFunc" "', argument " "5"" of type '" "PtrMap *""'"); 
+  }
+  arg5 = (PtrMap *)(argp5);
+  result = (void *)_HashTable_CopyFunc(arg1,arg2,arg3,arg4,arg5);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
+  return resultobj;
+fail:
+  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_InsertEntry(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  void *arg2 = (void *) 0 ;
+  unsigned int arg3 ;
+  void *arg4 = (void *) 0 ;
+  SizeT arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  unsigned long val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:HashTable_InsertEntry",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_InsertEntry" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_InsertEntry" "', argument " "2"" of type '" "void const *""'"); 
+  }
+  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "HashTable_InsertEntry" "', argument " "3"" of type '" "unsigned int""'");
+  } 
+  arg3 = (unsigned int)(val3);
+  res4 = SWIG_ConvertPtr(obj3,SWIG_as_voidptrptr(&arg4), 0, 0);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "HashTable_InsertEntry" "', argument " "4"" of type '" "void *""'"); 
+  }
+  ecode5 = SWIG_AsVal_unsigned_SS_long(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "HashTable_InsertEntry" "', argument " "5"" of type '" "SizeT""'");
+  } 
+  arg5 = (SizeT)(val5);
+  result = (int)HashTable_InsertEntry(arg1,(void const *)arg2,arg3,arg4,arg5);
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_InsertEntryCopyData(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  void *arg2 = (void *) 0 ;
+  unsigned int arg3 ;
+  void *arg4 = (void *) 0 ;
+  SizeT arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  unsigned long val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:HashTable_InsertEntryCopyData",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_InsertEntryCopyData" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_InsertEntryCopyData" "', argument " "2"" of type '" "void const *""'"); 
+  }
+  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "HashTable_InsertEntryCopyData" "', argument " "3"" of type '" "unsigned int""'");
+  } 
+  arg3 = (unsigned int)(val3);
+  res4 = SWIG_ConvertPtr(obj3,SWIG_as_voidptrptr(&arg4), 0, 0);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "HashTable_InsertEntryCopyData" "', argument " "4"" of type '" "void *""'"); 
+  }
+  ecode5 = SWIG_AsVal_unsigned_SS_long(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "HashTable_InsertEntryCopyData" "', argument " "5"" of type '" "SizeT""'");
+  } 
+  arg5 = (SizeT)(val5);
+  result = (int)HashTable_InsertEntryCopyData(arg1,(void const *)arg2,arg3,arg4,arg5);
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_FindEntryFunction(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  void *arg2 = (void *) 0 ;
+  unsigned int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  void *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:HashTable_FindEntryFunction",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_FindEntryFunction" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_FindEntryFunction" "', argument " "2"" of type '" "void const *""'"); 
+  }
+  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "HashTable_FindEntryFunction" "', argument " "3"" of type '" "unsigned int""'");
+  } 
+  arg3 = (unsigned int)(val3);
+  result = (void *)HashTable_FindEntryFunction(arg1,(void const *)arg2,arg3);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_DeleteEntry(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  void *arg2 = (void *) 0 ;
+  unsigned int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:HashTable_DeleteEntry",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_DeleteEntry" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_DeleteEntry" "', argument " "2"" of type '" "void const *""'"); 
+  }
+  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "HashTable_DeleteEntry" "', argument " "3"" of type '" "unsigned int""'");
+  } 
+  arg3 = (unsigned int)(val3);
+  result = (int)HashTable_DeleteEntry(arg1,(void const *)arg2,arg3);
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_ReplaceEntry(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  void *arg2 = (void *) 0 ;
+  unsigned int arg3 ;
+  void *arg4 = (void *) 0 ;
+  SizeT arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  unsigned long val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:HashTable_ReplaceEntry",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_ReplaceEntry" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_ReplaceEntry" "', argument " "2"" of type '" "void const *""'"); 
+  }
+  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "HashTable_ReplaceEntry" "', argument " "3"" of type '" "unsigned int""'");
+  } 
+  arg3 = (unsigned int)(val3);
+  res4 = SWIG_ConvertPtr(obj3,SWIG_as_voidptrptr(&arg4), 0, 0);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "HashTable_ReplaceEntry" "', argument " "4"" of type '" "void *""'"); 
+  }
+  ecode5 = SWIG_AsVal_unsigned_SS_long(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "HashTable_ReplaceEntry" "', argument " "5"" of type '" "SizeT""'");
+  } 
+  arg5 = (SizeT)(val5);
+  result = (int)HashTable_ReplaceEntry(arg1,(void const *)arg2,arg3,arg4,arg5);
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_ParseTable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  HashTable_parseFunction *arg2 = (HashTable_parseFunction *) 0 ;
+  void *arg3 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res3 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:HashTable_ParseTable",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_ParseTable" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_ParseTable" "', argument " "2"" of type '" "HashTable_parseFunction *""'"); 
+    }
+  }
+  res3 = SWIG_ConvertPtr(obj2,SWIG_as_voidptrptr(&arg3), 0, 0);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "HashTable_ParseTable" "', argument " "3"" of type '" "void *""'"); 
+  }
+  HashTable_ParseTable(arg1,arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_hashStringFunction(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  unsigned int arg2 ;
+  int res1 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:hashStringFunction",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "hashStringFunction" "', argument " "1"" of type '" "void const *""'"); 
+  }
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "hashStringFunction" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  result = (unsigned int)hashStringFunction((void const *)arg1,arg2);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_hashPtrFunction(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  unsigned int arg2 ;
+  int res1 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:hashPtrFunction",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "hashPtrFunction" "', argument " "1"" of type '" "void const *""'"); 
+  }
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "hashPtrFunction" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  result = (unsigned int)hashPtrFunction((void const *)arg1,arg2);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_expandArray(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HashTable *arg1 = (HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:expandArray",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "expandArray" "', argument " "1"" of type '" "HashTable *""'"); 
+  }
+  arg1 = (HashTable *)(argp1);
+  expandArray(arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_Next(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable_Index *arg1 = (struct HashTable_Index *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Index *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_Next",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_Next" "', argument " "1"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg1 = (struct HashTable_Index *)(argp1);
+  result = (struct HashTable_Index *)HashTable_Next(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HashTable_First(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HashTable *arg1 = (struct HashTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Index *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HashTable_First",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HashTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_First" "', argument " "1"" of type '" "struct HashTable *""'"); 
+  }
+  arg1 = (struct HashTable *)(argp1);
+  result = (struct HashTable_Index *)HashTable_First(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN int Swig_var_HierarchyTable_Type_set(PyObject *_val SWIGUNUSED) {
+  SWIG_Error(SWIG_AttributeError,"Variable HierarchyTable_Type is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_HierarchyTable_Type_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_FromCharPtr(HierarchyTable_Type);
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_stgHierarchyTable_set(PyObject *_val) {
+  {
+    void *argp = 0;
+    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p_HierarchyTable,  0 );  
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""stgHierarchyTable""' of type '""HierarchyTable *""'");
+    }
+    stgHierarchyTable = (HierarchyTable *)(argp);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_stgHierarchyTable_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(stgHierarchyTable), SWIGTYPE_p_HierarchyTable,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__sizeOfSelf_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  SizeT arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable__sizeOfSelf_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__sizeOfSelf_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HierarchyTable__sizeOfSelf_set" "', argument " "2"" of type '" "SizeT""'");
+  } 
+  arg2 = (SizeT)(val2);
+  if (arg1) (arg1)->_sizeOfSelf = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__sizeOfSelf_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  SizeT result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable__sizeOfSelf_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__sizeOfSelf_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (SizeT) ((arg1)->_sizeOfSelf);
+  resultobj = SWIG_From_unsigned_SS_long((unsigned long)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__deleteSelf_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  Bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable__deleteSelf_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__deleteSelf_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HierarchyTable__deleteSelf_set" "', argument " "2"" of type '" "Bool""'");
+  } 
+  arg2 = (Bool)(val2);
+  if (arg1) (arg1)->_deleteSelf = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__deleteSelf_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable__deleteSelf_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__deleteSelf_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (Bool) ((arg1)->_deleteSelf);
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_type_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  Type arg2 = (Type) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_type_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_type_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_type_set" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  if (arg1->type) free((char*)arg1->type);
+  if (arg2) {
+    size_t size = strlen((const char *)(arg2)) + 1;
+    arg1->type = (Type)(char *)memcpy((char *)malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
+  } else {
+    arg1->type = 0;
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_type_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Type result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_type_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_type_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (Type) ((arg1)->type);
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_nRefs_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_nRefs_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_nRefs_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HierarchyTable_nRefs_set" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  if (arg1) (arg1)->nRefs = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_nRefs_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_nRefs_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_nRefs_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (unsigned int) ((arg1)->nRefs);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__delete_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  Stg_Class_DeleteFunction *arg2 = (Stg_Class_DeleteFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable__delete_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__delete_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HierarchyTable__delete_set" "', argument " "2"" of type '" "Stg_Class_DeleteFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->_delete = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__delete_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Stg_Class_DeleteFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable__delete_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__delete_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (Stg_Class_DeleteFunction *) ((arg1)->_delete);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void__void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__print_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  Stg_Class_PrintFunction *arg2 = (Stg_Class_PrintFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable__print_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__print_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HierarchyTable__print_set" "', argument " "2"" of type '" "Stg_Class_PrintFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->_print = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__print_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Stg_Class_PrintFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable__print_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__print_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (Stg_Class_PrintFunction *) ((arg1)->_print);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__copy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  Stg_Class_CopyFunction *arg2 = (Stg_Class_CopyFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable__copy_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__copy_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HierarchyTable__copy_set" "', argument " "2"" of type '" "Stg_Class_CopyFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->_copy = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable__copy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Stg_Class_CopyFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable__copy_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable__copy_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (Stg_Class_CopyFunction *) ((arg1)->_copy);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_hashFunction_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  HashTable_keyHashFunction *arg2 = (HashTable_keyHashFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_hashFunction_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_hashFunction_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HierarchyTable_hashFunction_set" "', argument " "2"" of type '" "HashTable_keyHashFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->hashFunction = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_hashFunction_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  HashTable_keyHashFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_hashFunction_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_hashFunction_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (HashTable_keyHashFunction *) ((arg1)->hashFunction);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_dataCopyFunction_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  HashTable_dataCopyFunction *arg2 = (HashTable_dataCopyFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_dataCopyFunction_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_dataCopyFunction_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HierarchyTable_dataCopyFunction_set" "', argument " "2"" of type '" "HashTable_dataCopyFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->dataCopyFunction = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_dataCopyFunction_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  HashTable_dataCopyFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_dataCopyFunction_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_dataCopyFunction_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (HashTable_dataCopyFunction *) ((arg1)->dataCopyFunction);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_dataPrintFunction_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  HashTable_dataPrintFunction *arg2 = (HashTable_dataPrintFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_dataPrintFunction_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_dataPrintFunction_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HierarchyTable_dataPrintFunction_set" "', argument " "2"" of type '" "HashTable_dataPrintFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->dataPrintFunction = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_dataPrintFunction_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  HashTable_dataPrintFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_dataPrintFunction_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_dataPrintFunction_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (HashTable_dataPrintFunction *) ((arg1)->dataPrintFunction);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void__void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_dataDeleteFunction_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  HashTable_dataDeleteFunction *arg2 = (HashTable_dataDeleteFunction *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_dataDeleteFunction_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_dataDeleteFunction_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HierarchyTable_dataDeleteFunction_set" "', argument " "2"" of type '" "HashTable_dataDeleteFunction *""'"); 
+    }
+  }
+  if (arg1) (arg1)->dataDeleteFunction = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_dataDeleteFunction_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  HashTable_dataDeleteFunction *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_dataDeleteFunction_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_dataDeleteFunction_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (HashTable_dataDeleteFunction *) ((arg1)->dataDeleteFunction);
+  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void__void);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_entries_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  struct HashTable_Entry **arg2 = (struct HashTable_Entry **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_entries_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_entries_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_HashTable_Entry, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_entries_set" "', argument " "2"" of type '" "struct HashTable_Entry **""'"); 
+  }
+  arg2 = (struct HashTable_Entry **)(argp2);
+  if (arg1) (arg1)->entries = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_entries_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Entry **result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_entries_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_entries_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (struct HashTable_Entry **) ((arg1)->entries);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_HashTable_Entry, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_iterator_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  struct HashTable_Index *arg2 = (struct HashTable_Index *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_iterator_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_iterator_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_iterator_set" "', argument " "2"" of type '" "struct HashTable_Index *""'"); 
+  }
+  arg2 = (struct HashTable_Index *)(argp2);
+  if (arg1) (arg1)->iterator = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_iterator_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  struct HashTable_Index *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_iterator_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_iterator_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (struct HashTable_Index *)& ((arg1)->iterator);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Index, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_count_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_count_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_count_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HierarchyTable_count_set" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  if (arg1) (arg1)->count = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_count_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_count_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_count_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (unsigned int) ((arg1)->count);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_max_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_max_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_max_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HierarchyTable_max_set" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = (unsigned int)(val2);
+  if (arg1) (arg1)->max = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_max_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  unsigned int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_max_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_max_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result = (unsigned int) ((arg1)->max);
+  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_keyType_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  KeyType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_keyType_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_keyType_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_KeyType,  0 );
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_keyType_set" "', argument " "2"" of type '" "KeyType""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "HierarchyTable_keyType_set" "', argument " "2"" of type '" "KeyType""'");
+    } else {
+      arg2 = *((KeyType *)(argp2));
+    }
+  }
+  if (arg1) (arg1)->keyType = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_keyType_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  KeyType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:HierarchyTable_keyType_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_keyType_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  result =  ((arg1)->keyType);
+  resultobj = SWIG_NewPointerObj((KeyType *)memcpy((KeyType *)malloc(sizeof(KeyType)),&result,sizeof(KeyType)), SWIGTYPE_p_KeyType, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_HierarchyTable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_HierarchyTable")) SWIG_fail;
+  result = (struct HierarchyTable *)calloc(1, sizeof(struct HierarchyTable));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HierarchyTable, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_HierarchyTable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct HierarchyTable *arg1 = (struct HierarchyTable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_HierarchyTable",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_HierarchyTable, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_HierarchyTable" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
+  }
+  arg1 = (struct HierarchyTable *)(argp1);
+  free((char *) arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *HierarchyTable_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_HierarchyTable, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_New(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  HierarchyTable *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":HierarchyTable_New")) SWIG_fail;
+  result = (HierarchyTable *)HierarchyTable_New();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HierarchyTable, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_RegisterParent(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  Type arg2 = (Type) 0 ;
+  Type arg3 = (Type) 0 ;
+  int res1 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:HierarchyTable_RegisterParent",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_RegisterParent" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_RegisterParent" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "HierarchyTable_RegisterParent" "', argument " "3"" of type '" "Type""'");
+  }
+  arg3 = (Type)(buf3);
+  result = (int)HierarchyTable_RegisterParent(arg1,arg2,arg3);
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_IsChild(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  Type arg2 = (Type) 0 ;
+  Type arg3 = (Type) 0 ;
+  int res1 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  Bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:HierarchyTable_IsChild",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_IsChild" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_IsChild" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "HierarchyTable_IsChild" "', argument " "3"" of type '" "Type""'");
+  }
+  arg3 = (Type)(buf3);
+  result = (Bool)HierarchyTable_IsChild(arg1,arg2,arg3);
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  if (alloc3 == SWIG_NEWOBJ) free((char*)buf3);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Stg_Class_CheckType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  Type arg2 = (Type) 0 ;
+  int res1 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Stg_Class *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Stg_Class_CheckType",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Stg_Class_CheckType" "', argument " "1"" of type '" "void const *""'"); 
+  }
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Stg_Class_CheckType" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  result = (Stg_Class *)Stg_Class_CheckType((void const *)arg1,arg2);
+  {
+    if (result==0)
+    return NULL; 
+    
+    PyObject *obj=NULL;
+    
+    Stg_Class* component = (Stg_Class*) result;
+    char* typename = (char*)malloc(sizeof(char) * (strlen(component->type)+3));
+    sprintf(typename, "%s *", component->type);
+    swig_type_info *swigTypeInfo = SWIG_Python_TypeQuery(typename);
+    if(swigTypeInfo)
+    obj = SWIG_NewPointerObj((void*)result, swigTypeInfo, 0);
+    else
+    obj = SWIG_NewPointerObj((void*)result, SWIGTYPE_p__Stg_Class, 0);
+    free(typename);
+    
+    resultobj = obj;
+  }
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Stg_Class_CompareType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  Type arg2 = (Type) 0 ;
+  int res1 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Stg_Class_CompareType",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Stg_Class_CompareType" "', argument " "1"" of type '" "void const *""'"); 
+  }
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Stg_Class_CompareType" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  result = (Bool)Stg_Class_CompareType((void const *)arg1,arg2);
+  resultobj = SWIG_From_int((int)(result));
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_PrintParents(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  Type arg2 = (Type) 0 ;
+  Stream *arg3 = (Stream *) 0 ;
+  int res1 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:HierarchyTable_PrintParents",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_PrintParents" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_PrintParents" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Stream, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "HierarchyTable_PrintParents" "', argument " "3"" of type '" "Stream *""'"); 
+  }
+  arg3 = (Stream *)(argp3);
+  HierarchyTable_PrintParents(arg1,arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_PrintChildren(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  Type arg2 = (Type) 0 ;
+  Stream *arg3 = (Stream *) 0 ;
+  int res1 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:HierarchyTable_PrintChildren",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_PrintChildren" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_PrintChildren" "', argument " "2"" of type '" "Type""'");
+  }
+  arg2 = (Type)(buf2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Stream, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "HierarchyTable_PrintChildren" "', argument " "3"" of type '" "Stream *""'"); 
+  }
+  arg3 = (Stream *)(argp3);
+  HierarchyTable_PrintChildren(arg1,arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_HierarchyTable_GetTypePtrFromName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  Name arg2 = (Name) 0 ;
+  int res1 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Type result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:HierarchyTable_GetTypePtrFromName",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_GetTypePtrFromName" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_GetTypePtrFromName" "', argument " "2"" of type '" "Name""'");
+  }
+  arg2 = (Name)(buf2);
+  result = (Type)HierarchyTable_GetTypePtrFromName(arg1,arg2);
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
+  return NULL;
+}
+
+
 SWIGINTERN int Swig_var_IO_Handler_Type_set(PyObject *_val SWIGUNUSED) {
   SWIG_Error(SWIG_AttributeError,"Variable IO_Handler_Type is read-only.");
   return 1;
@@ -55742,58 +59122,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_AbstractContext_pointer_Register_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct AbstractContext *arg1 = (struct AbstractContext *) 0 ;
-  Pointer_Register *arg2 = (Pointer_Register *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:AbstractContext_pointer_Register_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_AbstractContext, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AbstractContext_pointer_Register_set" "', argument " "1"" of type '" "struct AbstractContext *""'"); 
-  }
-  arg1 = (struct AbstractContext *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p__Stg_ObjectList, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AbstractContext_pointer_Register_set" "', argument " "2"" of type '" "Pointer_Register *""'"); 
-  }
-  arg2 = (Pointer_Register *)(argp2);
-  if (arg1) (arg1)->pointer_Register = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_AbstractContext_pointer_Register_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct AbstractContext *arg1 = (struct AbstractContext *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Pointer_Register *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:AbstractContext_pointer_Register_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_AbstractContext, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AbstractContext_pointer_Register_get" "', argument " "1"" of type '" "struct AbstractContext *""'"); 
-  }
-  arg1 = (struct AbstractContext *)(argp1);
-  result = (Pointer_Register *) ((arg1)->pointer_Register);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__Stg_ObjectList, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_AbstractContext_entryPoint_Register_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct AbstractContext *arg1 = (struct AbstractContext *) 0 ;
@@ -64722,6 +68050,128 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"_NamedObject_Register_Print", _wrap__NamedObject_Register_Print, METH_VARARGS, NULL},
 	 { (char *)"_NamedObject_Register_Copy", _wrap__NamedObject_Register_Copy, METH_VARARGS, NULL},
 	 { (char *)"NamedObject_Register_DeleteAll", _wrap_NamedObject_Register_DeleteAll, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_next_set", _wrap_HashTable_Entry_next_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_next_get", _wrap_HashTable_Entry_next_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_hash_set", _wrap_HashTable_Entry_hash_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_hash_get", _wrap_HashTable_Entry_hash_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_key_set", _wrap_HashTable_Entry_key_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_key_get", _wrap_HashTable_Entry_key_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_keyLength_set", _wrap_HashTable_Entry_keyLength_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_keyLength_get", _wrap_HashTable_Entry_keyLength_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_data_set", _wrap_HashTable_Entry_data_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_data_get", _wrap_HashTable_Entry_data_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_dataSize_set", _wrap_HashTable_Entry_dataSize_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_dataSize_get", _wrap_HashTable_Entry_dataSize_get, METH_VARARGS, NULL},
+	 { (char *)"new_HashTable_Entry", _wrap_new_HashTable_Entry, METH_VARARGS, NULL},
+	 { (char *)"delete_HashTable_Entry", _wrap_delete_HashTable_Entry, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Entry_swigregister", HashTable_Entry_swigregister, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_ht_set", _wrap_HashTable_Index_ht_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_ht_get", _wrap_HashTable_Index_ht_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_curr_set", _wrap_HashTable_Index_curr_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_curr_get", _wrap_HashTable_Index_curr_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_next_set", _wrap_HashTable_Index_next_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_next_get", _wrap_HashTable_Index_next_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_index_set", _wrap_HashTable_Index_index_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_index_get", _wrap_HashTable_Index_index_get, METH_VARARGS, NULL},
+	 { (char *)"new_HashTable_Index", _wrap_new_HashTable_Index, METH_VARARGS, NULL},
+	 { (char *)"delete_HashTable_Index", _wrap_delete_HashTable_Index, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Index_swigregister", HashTable_Index_swigregister, METH_VARARGS, NULL},
+	 { (char *)"HashTable__sizeOfSelf_set", _wrap_HashTable__sizeOfSelf_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable__sizeOfSelf_get", _wrap_HashTable__sizeOfSelf_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable__deleteSelf_set", _wrap_HashTable__deleteSelf_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable__deleteSelf_get", _wrap_HashTable__deleteSelf_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_type_set", _wrap_HashTable_type_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_type_get", _wrap_HashTable_type_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_nRefs_set", _wrap_HashTable_nRefs_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_nRefs_get", _wrap_HashTable_nRefs_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable__delete_set", _wrap_HashTable__delete_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable__delete_get", _wrap_HashTable__delete_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable__print_set", _wrap_HashTable__print_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable__print_get", _wrap_HashTable__print_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable__copy_set", _wrap_HashTable__copy_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable__copy_get", _wrap_HashTable__copy_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_hashFunction_set", _wrap_HashTable_hashFunction_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_hashFunction_get", _wrap_HashTable_hashFunction_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_dataCopyFunction_set", _wrap_HashTable_dataCopyFunction_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_dataCopyFunction_get", _wrap_HashTable_dataCopyFunction_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_dataPrintFunction_set", _wrap_HashTable_dataPrintFunction_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_dataPrintFunction_get", _wrap_HashTable_dataPrintFunction_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_dataDeleteFunction_set", _wrap_HashTable_dataDeleteFunction_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_dataDeleteFunction_get", _wrap_HashTable_dataDeleteFunction_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_entries_set", _wrap_HashTable_entries_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_entries_get", _wrap_HashTable_entries_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_iterator_set", _wrap_HashTable_iterator_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_iterator_get", _wrap_HashTable_iterator_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_count_set", _wrap_HashTable_count_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_count_get", _wrap_HashTable_count_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_max_set", _wrap_HashTable_max_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_max_get", _wrap_HashTable_max_get, METH_VARARGS, NULL},
+	 { (char *)"HashTable_keyType_set", _wrap_HashTable_keyType_set, METH_VARARGS, NULL},
+	 { (char *)"HashTable_keyType_get", _wrap_HashTable_keyType_get, METH_VARARGS, NULL},
+	 { (char *)"new_HashTable", _wrap_new_HashTable, METH_VARARGS, NULL},
+	 { (char *)"delete_HashTable", _wrap_delete_HashTable, METH_VARARGS, NULL},
+	 { (char *)"HashTable_swigregister", HashTable_swigregister, METH_VARARGS, NULL},
+	 { (char *)"HashTable_New", _wrap_HashTable_New, METH_VARARGS, NULL},
+	 { (char *)"_HashTable_New", _wrap__HashTable_New, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Init", _wrap_HashTable_Init, METH_VARARGS, NULL},
+	 { (char *)"_HashTable_Init", _wrap__HashTable_Init, METH_VARARGS, NULL},
+	 { (char *)"_HashTable_DeleteFunc", _wrap__HashTable_DeleteFunc, METH_VARARGS, NULL},
+	 { (char *)"_HashTable_PrintFunc", _wrap__HashTable_PrintFunc, METH_VARARGS, NULL},
+	 { (char *)"_HashTable_CopyFunc", _wrap__HashTable_CopyFunc, METH_VARARGS, NULL},
+	 { (char *)"HashTable_InsertEntry", _wrap_HashTable_InsertEntry, METH_VARARGS, NULL},
+	 { (char *)"HashTable_InsertEntryCopyData", _wrap_HashTable_InsertEntryCopyData, METH_VARARGS, NULL},
+	 { (char *)"HashTable_FindEntryFunction", _wrap_HashTable_FindEntryFunction, METH_VARARGS, NULL},
+	 { (char *)"HashTable_DeleteEntry", _wrap_HashTable_DeleteEntry, METH_VARARGS, NULL},
+	 { (char *)"HashTable_ReplaceEntry", _wrap_HashTable_ReplaceEntry, METH_VARARGS, NULL},
+	 { (char *)"HashTable_ParseTable", _wrap_HashTable_ParseTable, METH_VARARGS, NULL},
+	 { (char *)"hashStringFunction", _wrap_hashStringFunction, METH_VARARGS, NULL},
+	 { (char *)"hashPtrFunction", _wrap_hashPtrFunction, METH_VARARGS, NULL},
+	 { (char *)"expandArray", _wrap_expandArray, METH_VARARGS, NULL},
+	 { (char *)"HashTable_Next", _wrap_HashTable_Next, METH_VARARGS, NULL},
+	 { (char *)"HashTable_First", _wrap_HashTable_First, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__sizeOfSelf_set", _wrap_HierarchyTable__sizeOfSelf_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__sizeOfSelf_get", _wrap_HierarchyTable__sizeOfSelf_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__deleteSelf_set", _wrap_HierarchyTable__deleteSelf_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__deleteSelf_get", _wrap_HierarchyTable__deleteSelf_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_type_set", _wrap_HierarchyTable_type_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_type_get", _wrap_HierarchyTable_type_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_nRefs_set", _wrap_HierarchyTable_nRefs_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_nRefs_get", _wrap_HierarchyTable_nRefs_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__delete_set", _wrap_HierarchyTable__delete_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__delete_get", _wrap_HierarchyTable__delete_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__print_set", _wrap_HierarchyTable__print_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__print_get", _wrap_HierarchyTable__print_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__copy_set", _wrap_HierarchyTable__copy_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable__copy_get", _wrap_HierarchyTable__copy_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_hashFunction_set", _wrap_HierarchyTable_hashFunction_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_hashFunction_get", _wrap_HierarchyTable_hashFunction_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_dataCopyFunction_set", _wrap_HierarchyTable_dataCopyFunction_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_dataCopyFunction_get", _wrap_HierarchyTable_dataCopyFunction_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_dataPrintFunction_set", _wrap_HierarchyTable_dataPrintFunction_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_dataPrintFunction_get", _wrap_HierarchyTable_dataPrintFunction_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_dataDeleteFunction_set", _wrap_HierarchyTable_dataDeleteFunction_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_dataDeleteFunction_get", _wrap_HierarchyTable_dataDeleteFunction_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_entries_set", _wrap_HierarchyTable_entries_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_entries_get", _wrap_HierarchyTable_entries_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_iterator_set", _wrap_HierarchyTable_iterator_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_iterator_get", _wrap_HierarchyTable_iterator_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_count_set", _wrap_HierarchyTable_count_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_count_get", _wrap_HierarchyTable_count_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_max_set", _wrap_HierarchyTable_max_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_max_get", _wrap_HierarchyTable_max_get, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_keyType_set", _wrap_HierarchyTable_keyType_set, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_keyType_get", _wrap_HierarchyTable_keyType_get, METH_VARARGS, NULL},
+	 { (char *)"new_HierarchyTable", _wrap_new_HierarchyTable, METH_VARARGS, NULL},
+	 { (char *)"delete_HierarchyTable", _wrap_delete_HierarchyTable, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_swigregister", HierarchyTable_swigregister, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_New", _wrap_HierarchyTable_New, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_RegisterParent", _wrap_HierarchyTable_RegisterParent, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_IsChild", _wrap_HierarchyTable_IsChild, METH_VARARGS, NULL},
+	 { (char *)"Stg_Class_CheckType", _wrap_Stg_Class_CheckType, METH_VARARGS, NULL},
+	 { (char *)"Stg_Class_CompareType", _wrap_Stg_Class_CompareType, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_PrintParents", _wrap_HierarchyTable_PrintParents, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_PrintChildren", _wrap_HierarchyTable_PrintChildren, METH_VARARGS, NULL},
+	 { (char *)"HierarchyTable_GetTypePtrFromName", _wrap_HierarchyTable_GetTypePtrFromName, METH_VARARGS, NULL},
 	 { (char *)"_IO_Handler__sizeOfSelf_set", _wrap__IO_Handler__sizeOfSelf_set, METH_VARARGS, NULL},
 	 { (char *)"_IO_Handler__sizeOfSelf_get", _wrap__IO_Handler__sizeOfSelf_get, METH_VARARGS, NULL},
 	 { (char *)"_IO_Handler__deleteSelf_set", _wrap__IO_Handler__deleteSelf_set, METH_VARARGS, NULL},
@@ -65400,8 +68850,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"AbstractContext_dataSaveClassK_get", _wrap_AbstractContext_dataSaveClassK_get, METH_VARARGS, NULL},
 	 { (char *)"AbstractContext_variable_Register_set", _wrap_AbstractContext_variable_Register_set, METH_VARARGS, NULL},
 	 { (char *)"AbstractContext_variable_Register_get", _wrap_AbstractContext_variable_Register_get, METH_VARARGS, NULL},
-	 { (char *)"AbstractContext_pointer_Register_set", _wrap_AbstractContext_pointer_Register_set, METH_VARARGS, NULL},
-	 { (char *)"AbstractContext_pointer_Register_get", _wrap_AbstractContext_pointer_Register_get, METH_VARARGS, NULL},
 	 { (char *)"AbstractContext_entryPoint_Register_set", _wrap_AbstractContext_entryPoint_Register_set, METH_VARARGS, NULL},
 	 { (char *)"AbstractContext_entryPoint_Register_get", _wrap_AbstractContext_entryPoint_Register_get, METH_VARARGS, NULL},
 	 { (char *)"AbstractContext_extensionMgr_set", _wrap_AbstractContext_extensionMgr_set, METH_VARARGS, NULL},
@@ -65707,12 +69155,16 @@ static swig_type_info _swigt__p_ExtensionInfo = {"_p_ExtensionInfo", "struct Ext
 static swig_type_info _swigt__p_ExtensionManager = {"_p_ExtensionManager", "struct ExtensionManager *|ExtensionManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ExtensionManager_Register = {"_p_ExtensionManager_Register", "struct ExtensionManager_Register *|ExtensionManager_Register *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_File = {"_p_File", "struct File *|File *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_HashTable = {"_p_HashTable", "struct HashTable *|HashTable *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_HashTable_Entry = {"_p_HashTable_Entry", "struct HashTable_Entry *|HashTable_Entry *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_HashTable_Index = {"_p_HashTable_Index", "struct HashTable_Index *|HashTable_Index *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_HierarchyTable = {"_p_HierarchyTable", "struct HierarchyTable *|HierarchyTable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Hook = {"_p_Hook", "struct Hook *|Hook *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IndentFormatter = {"_p_IndentFormatter", "struct IndentFormatter *|IndentFormatter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IndexSet = {"_p_IndexSet", "IndexSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Journal = {"_p_Journal", "struct Journal *|Journal *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_JournalTypedStream = {"_p_JournalTypedStream", "struct JournalTypedStream *|JournalTypedStream *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_KeyType = {"_p_KeyType", "KeyType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_LineFormatter = {"_p_LineFormatter", "struct LineFormatter *|LineFormatter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ListEncoding = {"_p_ListEncoding", "enum ListEncoding *|ListEncoding *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_LiveComponentRegister = {"_p_LiveComponentRegister", "struct LiveComponentRegister *|LiveComponentRegister *", 0, 0, (void*)0, 0};
@@ -65730,7 +69182,6 @@ static swig_type_info _swigt__p_NameSpaceInfo = {"_p_NameSpaceInfo", "struct Nam
 static swig_type_info _swigt__p_NamedObject_Register = {"_p_NamedObject_Register", "struct NamedObject_Register *|NamedObject_Register *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_NewClass = {"_p_NewClass", "struct NewClass *|NewClass *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_NewObject = {"_p_NewObject", "struct NewObject *|NewObject *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_OneOffComponentFactory = {"_p_OneOffComponentFactory", "struct OneOffComponentFactory *|OneOffComponentFactory *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Plugin = {"_p_Plugin", "struct Plugin *|Plugin *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PluginsManager = {"_p_PluginsManager", "struct PluginsManager *|PluginsManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Progress = {"_p_Progress", "struct Progress *|Progress *", 0, 0, (void*)0, 0};
@@ -65797,6 +69248,7 @@ static swig_type_info _swigt__p_f_p_AbstractContext_p_Variable_Register_p_Condit
 static swig_type_info _swigt__p_f_p_char__p_void = {"_p_f_p_char__p_void", "void *(*)(char *)|Stg_Component_DefaultConstructorFunction *|Stg_Component_Constructor *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_char_p_struct__Stg_ObjectList__p_Module = {"_p_f_p_char_p_struct__Stg_ObjectList__p_Module", "struct Module *(*)(char *,struct _Stg_ObjectList *)|ModulesManager_ModuleFactoryFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_q_const__char__Bool = {"_p_f_p_q_const__char__Bool", "enum Bool (*)(char const *)|IsSuperFunc *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int = {"_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int", "unsigned int (*)(void const *,unsigned int const)|HashTable_keyHashFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value = {"_p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value", "struct _Dictionary_Entry_Value *(*)(void *,Dictionary_Entry_Key)|Dictionary_GetFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component = {"_p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component", "Stg_ComponentFactory_ConstructByKeyFunc *|struct Stg_Component *(*)(void *,Name,Dictionary_Entry_Key,Type,Bool,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component = {"_p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component", "struct Stg_Component *(*)(void *,Name,Name,Dictionary_Entry_Key,Type,Bool,void *)|Stg_ComponentFactory_ConstructByNameWithKeyFallbackFunc *", 0, 0, (void*)0, 0};
@@ -65808,7 +69260,7 @@ static swig_type_info _swigt__p_f_p_void__double = {"_p_f_p_void__double", "Entr
 static swig_type_info _swigt__p_f_p_void__p_IndexSet = {"_p_f_p_void__p_IndexSet", "IndexSet *(*)(void *)|VariableCondition_GetSetFunc *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__p_void = {"_p_f_p_void__p_void", "EntryPoint_GetRunFunction *|void *(*)(void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__unsigned_int = {"_p_f_p_void__unsigned_int", "Variable_ArraySizeFunc *|unsigned int (*)(void *)|VariableCondition_GetValueCountFunc *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "EntryPoint_0_CallCast *|EntryPoint_Class_0_CallCast *|EntryPoint_VoidPtr_Cast *|Stg_Class_DeleteFunction *|IO_Handler_DeleteFunction *|IO_Handler_PrintFunction *|Stg_ObjectList_AllocMoreMemoryFunction *|Stg_ObjectList_DeleteAllObjectsFunction *|EntryPoint_Class_0_Cast *|void (*)(void *)|ConstructFunc *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "EntryPoint_0_CallCast *|EntryPoint_Class_0_CallCast *|EntryPoint_VoidPtr_Cast *|Stg_Class_DeleteFunction *|HashTable_dataDeleteFunction *|IO_Handler_DeleteFunction *|IO_Handler_PrintFunction *|Stg_ObjectList_AllocMoreMemoryFunction *|Stg_ObjectList_DeleteAllObjectsFunction *|EntryPoint_Class_0_Cast *|void (*)(void *)|ConstructFunc *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_double__void = {"_p_f_p_void_double__void", "void (*)(void *,double)|AbstractContext_SetDt *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_enum_Bool__void = {"_p_f_p_void_enum_Bool__void", "XML_IO_Handler_SetWriteExplicitTypesFunction *|void (*)(void *,enum Bool)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_enum_ListEncoding__void = {"_p_f_p_void_enum_ListEncoding__void", "XML_IO_Handler_SetListEncodingFunction *|void (*)(void *,enum ListEncoding)", 0, 0, (void*)0, 0};
@@ -65846,8 +69298,8 @@ static swig_type_info _swigt__p_f_p_void_p_struct__Dictionary_p_struct__Dictiona
 static swig_type_info _swigt__p_f_p_void_p_void__double = {"_p_f_p_void_p_void__double", "EntryPoint_Minimum_VoidPtr_CallCast *|EntryPoint_Maximum_VoidPtr_CallCast *|EntryPoint_Class_Minimum_VoidPtr_Cast *|EntryPoint_Class_Maximum_VoidPtr_Cast *|double (*)(void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void__p__Dictionary_Entry_Value = {"_p_f_p_void_p_void__p__Dictionary_Entry_Value", "ModulesManager_GetModulesListFunction *|struct _Dictionary_Entry_Value *(*)(void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void__unsigned_int = {"_p_f_p_void_p_void__unsigned_int", "Stg_ObjectList_AppendFunction *|Stg_ObjectList_PrependFunction *|unsigned int (*)(void *,void *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_void__void = {"_p_f_p_void_p_void__void", "VariableCondition_ApplyFunc *|VariableCondition_ReadDictionaryFunc *|EntryPoint_VoidPtr_CallCast *|EntryPoint_Class_VoidPtr_CallCast *|EntryPoint_2VoidPtr_Cast *|EntryPoint_Class_VoidPtr_Cast *|Stg_Component_BuildFunction *|Stg_Component_InitialiseFunction *|Stg_Component_ExecuteFunction *|Stg_Component_DestroyFunction *|void (*)(void *,void *)|VariableCondition_BuildSelfFunc *|ConditionFunction_InitFunc *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void = {"_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void", "Stg_Class_CopyFunction *|void *(*)(void *,void *,enum Bool,char *,struct PtrMap *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_p_void__void = {"_p_f_p_void_p_void__void", "ConditionFunction_InitFunc *|VariableCondition_BuildSelfFunc *|void (*)(void *,void *)|EntryPoint_2VoidPtr_Cast *|EntryPoint_Class_VoidPtr_Cast *|Stg_Component_BuildFunction *|Stg_Component_InitialiseFunction *|Stg_Component_ExecuteFunction *|Stg_Component_DestroyFunction *|HashTable_dataPrintFunction *|HashTable_parseFunction *|EntryPoint_VoidPtr_CallCast *|EntryPoint_Class_VoidPtr_CallCast *|VariableCondition_ApplyFunc *|VariableCondition_ReadDictionaryFunc *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void = {"_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void", "Stg_Class_CopyFunction *|HashTable_dataCopyFunction *|void *(*)(void *,void *,enum Bool,char *,struct PtrMap *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_p_void__double = {"_p_f_p_void_p_void_p_void__double", "EntryPoint_Class_Minimum_VoidPtr_CallCast *|EntryPoint_Class_Maximum_VoidPtr_CallCast *|double (*)(void *,void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_p_void__void = {"_p_f_p_void_p_void_p_void__void", "EntryPoint_2VoidPtr_CallCast *|EntryPoint_3VoidPtr_Cast *|void (*)(void *,void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_p_void_p_void__void = {"_p_f_p_void_p_void_p_void_p_void__void", "EntryPoint_3VoidPtr_CallCast *|void (*)(void *,void *,void *,void *)", 0, 0, (void*)0, 0};
@@ -65862,6 +69314,7 @@ static swig_type_info _swigt__p_f_unsigned_int_unsigned_int_p_void_p_void_p_void
 static swig_type_info _swigt__p_f_void__p_File = {"_p_f_void__p_File", "struct File *(*)(void)|File_Constructor *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "int *|PhysicalQuantity *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_EntryPoint = {"_p_p_EntryPoint", "struct EntryPoint **|EntryPoint **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_HashTable_Entry = {"_p_p_HashTable_Entry", "struct HashTable_Entry **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_Stg_Component = {"_p_p_Stg_Component", "struct Stg_Component **|Stg_Component **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p__AnalyticFunction = {"_p_p__AnalyticFunction", "struct _AnalyticFunction **|AnalyticFunction **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p__ConditionFunction = {"_p_p__ConditionFunction", "struct _ConditionFunction **|ConditionFunction **", 0, 0, (void*)0, 0};
@@ -65909,12 +69362,16 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_ExtensionManager,
   &_swigt__p_ExtensionManager_Register,
   &_swigt__p_File,
+  &_swigt__p_HashTable,
+  &_swigt__p_HashTable_Entry,
+  &_swigt__p_HashTable_Index,
   &_swigt__p_HierarchyTable,
   &_swigt__p_Hook,
   &_swigt__p_IndentFormatter,
   &_swigt__p_IndexSet,
   &_swigt__p_Journal,
   &_swigt__p_JournalTypedStream,
+  &_swigt__p_KeyType,
   &_swigt__p_LineFormatter,
   &_swigt__p_ListEncoding,
   &_swigt__p_LiveComponentRegister,
@@ -65932,7 +69389,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_NamedObject_Register,
   &_swigt__p_NewClass,
   &_swigt__p_NewObject,
-  &_swigt__p_OneOffComponentFactory,
   &_swigt__p_Plugin,
   &_swigt__p_PluginsManager,
   &_swigt__p_Progress,
@@ -65999,6 +69455,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_p_char__p_void,
   &_swigt__p_f_p_char_p_struct__Stg_ObjectList__p_Module,
   &_swigt__p_f_p_q_const__char__Bool,
+  &_swigt__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int,
   &_swigt__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value,
   &_swigt__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component,
   &_swigt__p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component,
@@ -66064,6 +69521,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_void__p_File,
   &_swigt__p_int,
   &_swigt__p_p_EntryPoint,
+  &_swigt__p_p_HashTable_Entry,
   &_swigt__p_p_Stg_Component,
   &_swigt__p_p__AnalyticFunction,
   &_swigt__p_p__ConditionFunction,
@@ -66111,12 +69569,16 @@ static swig_cast_info _swigc__p_ExtensionInfo[] = {  {&_swigt__p_ExtensionInfo, 
 static swig_cast_info _swigc__p_ExtensionManager[] = {  {&_swigt__p_ExtensionManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ExtensionManager_Register[] = {  {&_swigt__p_ExtensionManager_Register, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_File[] = {  {&_swigt__p_File, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_HashTable[] = {  {&_swigt__p_HashTable, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_HashTable_Entry[] = {  {&_swigt__p_HashTable_Entry, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_HashTable_Index[] = {  {&_swigt__p_HashTable_Index, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_HierarchyTable[] = {  {&_swigt__p_HierarchyTable, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Hook[] = {  {&_swigt__p_Hook, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IndentFormatter[] = {  {&_swigt__p_IndentFormatter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IndexSet[] = {  {&_swigt__p_IndexSet, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Journal[] = {  {&_swigt__p_Journal, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_JournalTypedStream[] = {  {&_swigt__p_JournalTypedStream, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_KeyType[] = {  {&_swigt__p_KeyType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_LineFormatter[] = {  {&_swigt__p_LineFormatter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ListEncoding[] = {  {&_swigt__p_ListEncoding, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_LiveComponentRegister[] = {  {&_swigt__p_LiveComponentRegister, 0, 0, 0},{0, 0, 0, 0}};
@@ -66134,7 +69596,6 @@ static swig_cast_info _swigc__p_NameSpaceInfo[] = {  {&_swigt__p_NameSpaceInfo, 
 static swig_cast_info _swigc__p_NamedObject_Register[] = {  {&_swigt__p_NamedObject_Register, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_NewClass[] = {  {&_swigt__p_NewClass, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_NewObject[] = {  {&_swigt__p_NewObject, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_OneOffComponentFactory[] = {  {&_swigt__p_OneOffComponentFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Plugin[] = {  {&_swigt__p_Plugin, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PluginsManager[] = {  {&_swigt__p_PluginsManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Progress[] = {  {&_swigt__p_Progress, 0, 0, 0},{0, 0, 0, 0}};
@@ -66201,6 +69662,7 @@ static swig_cast_info _swigc__p_f_p_AbstractContext_p_Variable_Register_p_Condit
 static swig_cast_info _swigc__p_f_p_char__p_void[] = {  {&_swigt__p_f_p_char__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_char_p_struct__Stg_ObjectList__p_Module[] = {  {&_swigt__p_f_p_char_p_struct__Stg_ObjectList__p_Module, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_q_const__char__Bool[] = {  {&_swigt__p_f_p_q_const__char__Bool, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int[] = {  {&_swigt__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value[] = {  {&_swigt__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component[] = {  {&_swigt__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component[] = {  {&_swigt__p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component, 0, 0, 0},{0, 0, 0, 0}};
@@ -66266,6 +69728,7 @@ static swig_cast_info _swigc__p_f_unsigned_int_unsigned_int_p_void_p_void_p_void
 static swig_cast_info _swigc__p_f_void__p_File[] = {  {&_swigt__p_f_void__p_File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_EntryPoint[] = {  {&_swigt__p_p_EntryPoint, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_HashTable_Entry[] = {  {&_swigt__p_p_HashTable_Entry, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_Stg_Component[] = {  {&_swigt__p_p_Stg_Component, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p__AnalyticFunction[] = {  {&_swigt__p_p__AnalyticFunction, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p__ConditionFunction[] = {  {&_swigt__p_p__ConditionFunction, 0, 0, 0},{0, 0, 0, 0}};
@@ -66313,12 +69776,16 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_ExtensionManager,
   _swigc__p_ExtensionManager_Register,
   _swigc__p_File,
+  _swigc__p_HashTable,
+  _swigc__p_HashTable_Entry,
+  _swigc__p_HashTable_Index,
   _swigc__p_HierarchyTable,
   _swigc__p_Hook,
   _swigc__p_IndentFormatter,
   _swigc__p_IndexSet,
   _swigc__p_Journal,
   _swigc__p_JournalTypedStream,
+  _swigc__p_KeyType,
   _swigc__p_LineFormatter,
   _swigc__p_ListEncoding,
   _swigc__p_LiveComponentRegister,
@@ -66336,7 +69803,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_NamedObject_Register,
   _swigc__p_NewClass,
   _swigc__p_NewObject,
-  _swigc__p_OneOffComponentFactory,
   _swigc__p_Plugin,
   _swigc__p_PluginsManager,
   _swigc__p_Progress,
@@ -66403,6 +69869,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_p_char__p_void,
   _swigc__p_f_p_char_p_struct__Stg_ObjectList__p_Module,
   _swigc__p_f_p_q_const__char__Bool,
+  _swigc__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int,
   _swigc__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value,
   _swigc__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component,
   _swigc__p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component,
@@ -66468,6 +69935,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_void__p_File,
   _swigc__p_int,
   _swigc__p_p_EntryPoint,
+  _swigc__p_p_HashTable_Entry,
   _swigc__p_p_Stg_Component,
   _swigc__p_p__AnalyticFunction,
   _swigc__p_p__ConditionFunction,
@@ -67248,6 +70716,9 @@ SWIG_init(void) {
   SWIG_addvarlink(SWIG_globals(),(char*)"ModulesManager_Type",Swig_var_ModulesManager_Type_get, Swig_var_ModulesManager_Type_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"moduleDirectories",Swig_var_moduleDirectories_get, Swig_var_moduleDirectories_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"NamedObject_Register_Type",Swig_var_NamedObject_Register_Type_get, Swig_var_NamedObject_Register_Type_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"HashTable_Type",Swig_var_HashTable_Type_get, Swig_var_HashTable_Type_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"HierarchyTable_Type",Swig_var_HierarchyTable_Type_get, Swig_var_HierarchyTable_Type_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"stgHierarchyTable",Swig_var_stgHierarchyTable_get, Swig_var_stgHierarchyTable_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"IO_Handler_Type",Swig_var_IO_Handler_Type_get, Swig_var_IO_Handler_Type_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"IO_Handler_DefaultMergeType",Swig_var_IO_Handler_DefaultMergeType_get, Swig_var_IO_Handler_DefaultMergeType_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"IO_Handler_DefaultChildrenMergeType",Swig_var_IO_Handler_DefaultChildrenMergeType_get, Swig_var_IO_Handler_DefaultChildrenMergeType_set);

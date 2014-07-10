@@ -101,7 +101,7 @@ void _lucWindow_Destroy( void* window, void* data ) ;
 void lucWindow_Display( void* window );
 
 /* +++ Public Functions +++ */
-void lucWindow_CleanUp( void* window, void* context ) ;
+void lucWindow_CleanUp( void* window ) ;
 
 lucViewport** lucWindow_ConstructViewportList(
    lucWindow* self,

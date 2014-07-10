@@ -85,7 +85,7 @@ lucDrawingObject_Register*	lucDrawingObject_Register_New( void );
 /* +++ Public Functions +++ */
 void lucDrawingObject_Register_SetupAll( void* drawingObject_Register, lucDatabase* database) ;
 void lucDrawingObject_Register_DrawAll( void* drawingObject_Register, lucDatabase* database) ;
-void lucDrawingObject_Register_CleanUpAll( void* drawingObject_Register, void* context ) ;
+void lucDrawingObject_Register_CleanUpAll( void* drawingObject_Register ) ;
 
 
 #endif

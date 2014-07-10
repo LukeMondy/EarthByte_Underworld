@@ -95,8 +95,6 @@
 	typedef struct QuadEdge			QuadEdge;
 	typedef struct QuadEdgePool		QuadEdgePool;
 	typedef struct VoronoiVertexPool		VoronoiVertexPool;
-	typedef struct Delaunay			Delaunay;
-	typedef struct ParallelDelaunay	ParallelDelaunay;
 
 	
 #endif /* __StgDomain_Geometry_types_h__ */

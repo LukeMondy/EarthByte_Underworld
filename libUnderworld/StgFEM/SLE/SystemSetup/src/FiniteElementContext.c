@@ -260,8 +260,6 @@ void _FiniteElementContext_AssignFromXML( void* context, Stg_ComponentFactory* c
 
    _DomainContext_AssignFromXML( context, cf, data );
 
-   self->dictionary = cf->rootDict;
-
    self->dt = 0.0f;
    self->prevTimestepDt = 0.0;
    self->limitTimeStepIncreaseRate = Dictionary_GetBool_WithDefault(

@@ -14646,9 +14646,6 @@ class UnderworldContext(_object):
     __swig_setmethods__["variable_Register"] = _Underworld.UnderworldContext_variable_Register_set
     __swig_getmethods__["variable_Register"] = _Underworld.UnderworldContext_variable_Register_get
     if _newclass:variable_Register = _swig_property(_Underworld.UnderworldContext_variable_Register_get, _Underworld.UnderworldContext_variable_Register_set)
-    __swig_setmethods__["pointer_Register"] = _Underworld.UnderworldContext_pointer_Register_set
-    __swig_getmethods__["pointer_Register"] = _Underworld.UnderworldContext_pointer_Register_get
-    if _newclass:pointer_Register = _swig_property(_Underworld.UnderworldContext_pointer_Register_get, _Underworld.UnderworldContext_pointer_Register_set)
     __swig_setmethods__["entryPoint_Register"] = _Underworld.UnderworldContext_entryPoint_Register_set
     __swig_getmethods__["entryPoint_Register"] = _Underworld.UnderworldContext_entryPoint_Register_get
     if _newclass:entryPoint_Register = _swig_property(_Underworld.UnderworldContext_entryPoint_Register_get, _Underworld.UnderworldContext_entryPoint_Register_set)

@@ -133,7 +133,7 @@ def generate(env, options=[]):
         env.Append(SHLINKFLAGS=['-dynamiclib', '-flat_namespace',
                                 '-single_module', '-undefined', 'suppress',
                                 '-install_name', '${_abspath(TARGET)}'])
-        env['_abspath']=lambda x: File(x).abspath
+        env['_abspath']=lambda x: "'" + File(x).abspath.replace("'", "'\\''") + "'"
     env.AppendUnique(save_vars=['_RPATH', 'SHLINKFLAGS'])
 
     env.AddMethod(UsePackage)

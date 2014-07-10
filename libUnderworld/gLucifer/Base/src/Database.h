@@ -92,6 +92,11 @@ extern const Type lucDatabase_Type;
       char*             timeUnits;              \
       Bool              disabled;               \
       Bool              blocking;               \
+      int               rank;                   \
+      int               nproc;                  \
+      MPI_Comm          communicator;           \
+      int               timeStep;               \
+      char*             dbPath;
 
 struct lucDatabase
 {
@@ -175,6 +180,9 @@ void lucDatabase_DeleteGeometry(lucDatabase* self, int start_timestep, int end_t
 int lucDatabase_WriteGeometry(lucDatabase* self, int index, lucGeometryType type, lucGeometryDataType data_type, int object_id, lucGeometryData* block);
 
 void lucDatabase_BackupDb(sqlite3 *fromDb, sqlite3* toDb);
+
+void lucDatabase_DeleteWindows(lucDatabase* self);
+
 
 #endif
 

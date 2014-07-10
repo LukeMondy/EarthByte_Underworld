@@ -87,7 +87,9 @@ void _lucWindow_Init(
    self->height = height;
    self->antialias = antialias;
    self->useModelBounds = useModelBounds;
-   self->disabled = disabled || !self->context->vis;
+   self->disabled = disabled;
+   if(self->context)
+      self->disabled = !self->context->vis;
    self->database = database;
 
    if (!self->database)
@@ -103,7 +105,7 @@ void _lucWindow_Init(
 
    lucColour_FromString( &self->backgroundColour, backgroundColourName );
 
-   if (!disabled)
+   if (!disabled && context)
    {
       /* Get all windows to update first. */
       //EP_PrependClassHook( Context_GetEntryPoint( context, AbstractContext_EP_DumpClass ), lucWindow_Update, self );
@@ -115,7 +117,13 @@ void _lucWindow_Init(
    strcpy(self->title, " gLucifer output: ");
    strcat(self->title, self->name);
    
-   self->isMaster = (self->context->rank == MASTER);
+   int rank;
+   MPI_Comm_rank( MPI_COMM_WORLD, &rank );
+   if (rank == 0 )
+      self->isMaster = True;
+   else
+      self->isMaster = False;
+
 }
 
 void _lucWindow_Delete( void* window )
@@ -199,7 +207,7 @@ void _lucWindow_AssignFromXML( void* window, Stg_ComponentFactory* cf, void* dat
     * onto the AbstractContext_EP_DumpClass entry point. */
    context = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Context", AbstractContext, False, data );
    if (!context)
-      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, data  );
+      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, False, data  );
 
    _lucWindow_Init(
       self,
@@ -219,9 +227,7 @@ void _lucWindow_AssignFromXML( void* window, Stg_ComponentFactory* cf, void* dat
 void _lucWindow_Build( void* window, void* data )
 {
    lucWindow* self = (lucWindow*)window;
-   if (!self->database->isBuilt)
-      _lucDatabase_Build(self->database, self->context);
-   self->database->isBuilt = True;
+   Stg_Component_Build(self->database, data, False);
 }
 
 void _lucWindow_Initialise( void* window, void* data )
@@ -249,7 +255,7 @@ void _lucWindow_Execute( void* window, void* data )
    lucWindow_Display(window);
 
    /* Clean up drawing objects */
-   lucWindow_CleanUp( window, data );
+   lucWindow_CleanUp( window );
 }
 
 void _lucWindow_Destroy( void* window, void* data )
@@ -289,7 +295,7 @@ void lucWindow_Display( void* window )
    }
 }
 
-void lucWindow_CleanUp( void* window, void* context )
+void lucWindow_CleanUp( void* window )
 {
    lucWindow*     self      = (lucWindow*) window;
    Viewport_Index viewport_I;
@@ -300,7 +306,7 @@ void lucWindow_CleanUp( void* window, void* context )
    {
       viewport = self->viewportList[ viewport_I ];
 
-      lucViewport_CleanUp( viewport, context );
+      lucViewport_CleanUp( viewport );
    }
 }
 
