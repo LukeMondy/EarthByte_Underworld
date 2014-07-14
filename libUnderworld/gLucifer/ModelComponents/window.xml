@@ -10,6 +10,7 @@
 	<struct name="components" mergeType="merge">
 		<struct name="database">
 			<param name="Type">lucDatabase</param>
+			<param name="Context">context</param>
 		</struct>
 		<struct name="window">
 			<param name="Type">lucWindow</param>
