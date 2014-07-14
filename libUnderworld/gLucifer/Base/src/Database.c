@@ -413,6 +413,7 @@ void lucDatabase_DeleteWindows(lucDatabase* self)
    lucDatabase_IssueSQL(self->db, "delete from window_viewport;");
    lucDatabase_IssueSQL(self->db, "delete from viewport;");
    lucDatabase_IssueSQL(self->db, "delete from object;");
+   lucDatabase_IssueSQL(self->db, "delete from object_colourmap;");
    lucDatabase_IssueSQL(self->db, "delete from viewport_object;");
 }
 

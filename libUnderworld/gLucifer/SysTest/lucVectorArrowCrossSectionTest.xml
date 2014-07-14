@@ -6,7 +6,7 @@
 
       <struct name="velocityArrowsX">
          <param name="Type">lucVectorArrowCrossSection</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="colour">red</param>
          <param name="arrowHeadSize">0.2</param>   
          <param name="lengthScale">0.3</param>   
@@ -16,7 +16,7 @@
 
       <struct name="velocityArrowsX2">
          <param name="Type">lucVectorArrowCrossSection</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="colour">red</param>
          <param name="arrowHeadSize">0.2</param>   
          <param name="lengthScale">0.3</param>   
@@ -26,7 +26,7 @@
 
       <struct name="velocityArrowsY">
          <param name="Type">lucVectorArrowCrossSection</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="colour">green</param>
          <param name="arrowHeadSize">0.2</param>   
          <param name="lengthScale">0.3</param>   
@@ -36,7 +36,7 @@
 
       <struct name="velocityArrowsY2">
          <param name="Type">lucVectorArrowCrossSection</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="colour">green</param>
          <param name="arrowHeadSize">0.2</param>   
          <param name="lengthScale">0.3</param>   
@@ -46,7 +46,7 @@
 
       <struct name="velocityArrowsZ">
          <param name="Type">lucVectorArrowCrossSection</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="colour">blue</param>
          <param name="arrowHeadSize">0.2</param>   
          <param name="lengthScale">0.3</param>   
@@ -56,7 +56,7 @@
 
       <struct name="velocityArrowsZ2">
          <param name="Type">lucVectorArrowCrossSection</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="colour">blue</param>
          <param name="arrowHeadSize">0.2</param>   
          <param name="lengthScale">0.3</param>   

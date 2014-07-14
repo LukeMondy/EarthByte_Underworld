@@ -1,12 +1,9 @@
-#!/usr/bin/env python
 
 # coding: utf-8
 
 # In[1]:
 
 ## Rayleigh Taylor benchmark with No XML at all!                                                                              
-
-from pprint import pprint
 
 import underworld as uw
 
@@ -16,28 +13,21 @@ import underworld.fields   as fields
 import underworld.swarms   as swarms
 import underworld.material as material
 import underworld.visualisation as visual
-# import underworld.fields._fields as fields
-
-# import underworld.swarms._swarms as swarms
-# import underworld.matrix._matrix as matrix
 import underworld.shapes as shape
 import underworld.rheology as rheo
 import underworld.boundary as bc
 import underworld.equations as eq
 import underworld.physics as phys
 
-uw.Init()
-
-gdict=uw.GetCurrentPythonDictionary()
-
-uw.PrettyDictionaryPrint(gdict)
-
 
 # In[2]:
 
-# These defaults should be split up either by problem or by module (fields etc)
+gdict=uw.dictionary.GetDictionary()
+uw.dictionary.initDefaultParameters()
 
-uw.initDefaultParameters()
+
+# In[3]:
+
 # For Rayleigh-Taylor
 minX=0.0
 maxX=0.9142
@@ -51,7 +41,7 @@ particlesPerCell=35
 
 dim = 2
 
-uw.setParameters(gravity = 1.0,
+uw.dictionary.setParameters(gravity = 1.0,
                  outputPath="raytay",
                  #restartTimestep  = 59,
                  maxTimeSteps     = steps
@@ -118,54 +108,57 @@ bc.setup.wallNoSlipCreate( wall="bottom")
 
 # Let particles leave box just in case                                                                                          
 uw.dictionary.UpdateDictWithComponent( gdict, name="escapedRoutine", Type="EscapedRoutine")
+fields.setup.operatorFeVariableCreate(feVariableName="VelocityField", operator="Magnitude")
+uw.Construct()
 
-#pd(gdict)                                                                                                                      
-#help(swarm._integrationSwarmCreate)     
 
-
-# In[9]:
-
-uw.importToolBox('gLucifer')
+# In[5]:
 
 # Create a field to visualise.
-fields.setup.operatorFeVariableCreate(feVariableName="VelocityField", operator="Magnitude")
 
-visual.setup.cameraCreate(centreFieldVariable="VelocityField", name="camera")
-#create some arrows for visualisation
-visual.setup.fieldArrowsCreate(name="velocityArrows", fieldVariable="VelocityField")
-#vis.viewPortCreate(fieldVariable="VelocityField", camera="camera")
-visual.setup.viewPortCreate(fieldVariable="PressureField", camera="camera")
-visual.setup.databaseCreate()
+import glucifer.pylab as plt
+
+
+#visual.setup.cameraCreate(centreFieldVariable="VelocityField", name="camera")
+# create some arrows for visualisation
+#visual.setup.fieldArrowsCreate(name="velocityArrows", fieldVariable="VelocityField")
+#visual.setup.viewPortCreate(fieldVariable="PressureField", camera="camera")
+#visual.setup.databaseCreate()
 
 # todo: get swarm etc from outputs from above
-visual.setup.swarmViewerCreate(name="particleDots", pointSize=2.5, swarm="materialSwarm", variable="Density")
-visual.setup.viewPortCreate(name="particleDotsVP",scalarFieldMap="particleDots", border="border", camera="camera")
-visual.setup.viewPortCreate(fieldVariable="magnitudeVelocityField", camera="camera", arrows="velocityArrows")
+#visual.setup.swarmViewerCreate(name="particleDots", pointSize=2.5, swarm="materialSwarm", variable="Density")
+#visual.setup.viewPortCreate(name="particleDotsVP",scalarFieldMap="particleDots", border="border", camera="camera")
+#visual.setup.viewPortCreate(fieldVariable="magnitudeVelocityField", camera="camera", arrows="velocityArrows")
 
 
-visual.setup.windowCreate(viewPortList=["PressureFieldVP magnitudeVelocityFieldVP particleDotsVP"])
+#visual.setup.windowCreate(viewPortList=["PressureFieldVP magnitudeVelocityFieldVP particleDotsVP"])
 
 
-# In[10]:
 
-uw.Construct()
-uw.Step(steps=steps)
-uw.Finalise()
+# In[6]:
 
-# Woo!!
+# In[7]:
+
+fig = plt.figure(num="need3g2y")
+fig.Points(swarm="materialSwarm", colourVariable="materialSwarm-MaterialIndex", pointSize=3.)
+
+
+# In[8]:
+
+fig.show()
 
 
 # In[9]:
 
-uw.getInfo()
+fig.saveDB("somenewDB.gldb")
 
 
-# In[10]:
-
-uw.PrettyDictionaryPrint(gdict)
+# In[9]:
 
 
-# In[ ]:
+
+
+# In[9]:
 
 
 

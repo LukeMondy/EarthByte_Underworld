@@ -93,7 +93,7 @@ class Surface(Drawing):
 
 
 class Points(Drawing):
-    def __init__(self, swarm, colourVariable=None, sizeVariable=None, opacityVariable=None, **kwargs):
+    def __init__(self, swarm, colourVariable=None, sizeVariable=None, opacityVariable=None, pointSize=1.0, **kwargs):
         if not isinstance(swarm,(str)):
             raise TypeError("'swarm' object passed in must be of python type 'str'")
         ptr = _stgermain.GetLiveComponent(swarm)
@@ -132,10 +132,13 @@ class Points(Drawing):
                or  _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StgDomain.SwarmVariable_Type ) :
                 raise ValueError("opacityVariable with name '"+opacityVariable+"' has type '"+ptr.type+"',\n which does not appear to be a child of '"+_stgermain.StGermain.Variable_Type+"' or '"+_stgermain.StgDomain.SwarmVariable_Type+"' types, as required.")
 
+        if not isinstance(pointSize,(float,int)):
+            raise TypeError("'pointSize' object passed in must be of python type 'float'")
         self._swarm = swarm
         self._colourVariable = colourVariable
         self._sizeVariable = sizeVariable
         self._opacityVariable = opacityVariable
+        self._pointSize = pointSize
 
         # build parent
         super(Points,self).__init__(**kwargs)
@@ -160,6 +163,12 @@ class Points(Drawing):
         """    opacityVariable (str): name of live underworld swarm variable which will determine the point opacity.
         """
         return self._opacityVariable
+
+    @property
+    def pointSize(self):
+        """    pointSize (float): size of points
+        """
+        return self._pointSize
     
     def _addToStgDict(self):
         # lets build up component dictionary
@@ -173,6 +182,7 @@ class Points(Drawing):
         drdict[ "ColourVariable"] = self.colourVariable
         drdict[   "SizeVariable"] = self.sizeVariable
         drdict["opacityVariable"] = self.opacityVariable
+        drdict[      "pointSize"] = self.pointSize
     
 
     def __del__(self):

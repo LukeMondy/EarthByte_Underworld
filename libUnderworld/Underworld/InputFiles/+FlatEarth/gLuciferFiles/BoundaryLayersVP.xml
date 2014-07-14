@@ -64,7 +64,7 @@
       </struct>
       <struct name="velocityArrowsBottomBL" mergeType="replace">
          <param name="Type">lucVectorArrowCrossSection</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="crossSection">y=0.05</param>
          <param name="Colour">black</param>
          <param name="resolutionX">16</param>
@@ -75,7 +75,7 @@
       </struct>
       <struct name="velocityArrowsTopBL" mergeType="replace">
          <param name="Type">lucVectorArrowCrossSection</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="crossSection">y=0.95</param>
          <param name="Colour">black</param>
          <param name="resolutionX">16</param>

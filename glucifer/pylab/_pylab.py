@@ -169,6 +169,7 @@ class Figure(_stgermain.StgCompoundComponent):
                filename (str):  Filename to save file to.  May include an absolute or relative path.
         """
         self._generateDB()
+        self._generateImage()
         generatedDB=self._findGeneratedDB()
         absfilename = os.path.abspath(filename)
 
@@ -180,9 +181,15 @@ class Figure(_stgermain.StgCompoundComponent):
         vp  = self.componentPointerDictionary[self._localNames[ "vp"]]
         db  = self.componentPointerDictionary[self._localNames[ "db"]]
         win = self.componentPointerDictionary[self._localNames["win"]]
+        
+        # remove any existing
+        for ii in range(vp.drawingObject_Register.objects.count,0,-1):
+            _stgermain.StGermain._Stg_ObjectList_RemoveByIndex(vp.drawingObject_Register.objects,ii-1, _stgermain.StGermain.KEEP)
         # first add drawing objects to viewport
         for object in self.drawingObjects:
-            _stgermain.StGermain.Stg_ObjectList_Append(vp.drawingObject_Register.objects,object._getStgPtr())
+            objectPtr = object._getStgPtr()
+            objectPtr.id = 0
+            _stgermain.StGermain.Stg_ObjectList_Append(vp.drawingObject_Register.objects,objectPtr)
         # go ahead and fill db
         _stgermain.gLucifer.lucDatabase_DeleteWindows(db)
         _stgermain.gLucifer.lucDatabase_OutputWindow(db, win)

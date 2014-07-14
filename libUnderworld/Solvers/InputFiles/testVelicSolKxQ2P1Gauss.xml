@@ -16,7 +16,7 @@ is the y-axis in the code
 	<list name="plugins" mergeType="merge">
 		<struct>
 			<param name="Type">StgFEM_StandardConditionFunctions</param>
-			<param name="Contest">context</param>
+			<param name="Context">context</param>
 		</struct>
 		<struct>
     		<param name="Type">Underworld_Ra_Scaling</param>

@@ -33,7 +33,7 @@
 		</struct>
 		<struct name="aDispArrows" mergeType="replace">
 			<param name="Type">lucVectorArrows</param>
-			<param name="VectorVariable">ArtDisplacementField</param>
+			<param name="FieldVariable">ArtDisplacementField</param>
 			<param name="Colour">black</param>
 			<param name="arrowHeadSize">0.15</param>	
 			<param name="lengthScale">0.15</param>	

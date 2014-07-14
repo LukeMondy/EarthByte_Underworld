@@ -6,7 +6,7 @@
 
       <struct name="velocityArrows" mergeType="replace">
          <param name="Type">lucVectorArrows</param>
-         <param name="VectorVariable">VelocityField</param>
+         <param name="FieldVariable">VelocityField</param>
          <param name="colour">Bisque</param>
          <param name="arrowHeadSize">0.2</param>   
          <param name="lengthScale">0.3</param>   
