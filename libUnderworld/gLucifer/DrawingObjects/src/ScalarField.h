@@ -37,6 +37,8 @@
 #ifndef __lucScalarField_h__
 #define __lucScalarField_h__
 
+#include "ScalarFieldCrossSection.h"
+
 /** Textual name of this class - This is a global pointer which is used for times when you need to refer to class and not a particular instance of a class */
 extern const Type lucScalarField_Type;
 
@@ -75,7 +77,6 @@ void* _lucScalarField_DefaultNew( Name name ) ;
 void _lucScalarField_AssignFromXML( void* drawingObject, Stg_ComponentFactory* cf, void* data );
 
 void _lucScalarField_Draw( void* drawingObject, lucDatabase* database, void* _context );
-void lucScalarField_DrawWithMesh( lucScalarField* self );
 
 #endif
 

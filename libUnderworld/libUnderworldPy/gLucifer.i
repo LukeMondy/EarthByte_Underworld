@@ -31,6 +31,7 @@
 %include "Base/types.h"
 %include "Base/Viewport.h"
 %include "Base/X11Colours.h"
+%include "DrawingObjects/SwarmViewer.h"
 %include "DrawingObjects/Axis.h"
 %include "DrawingObjects/Capture.h"
 %include "DrawingObjects/ColourBar.h"
@@ -38,7 +39,7 @@
 %include "DrawingObjects/ContourCrossSection.h"
 %include "DrawingObjects/CrossSection.h"
 %include "DrawingObjects/DrawingObjects.h"
-# %include "DrawingObjects/Eigenvectors.h"             this one breaks something
+%include "DrawingObjects/Eigenvectors.h"
 %include "DrawingObjects/EigenvectorsCrossSection.h"
 %include "DrawingObjects/FeVariableSurface.h"
 %include "DrawingObjects/FieldSampler.h"
@@ -51,14 +52,13 @@
 %include "DrawingObjects/MeshCrossSection.h"
 %include "DrawingObjects/MeshViewer.h"
 %include "DrawingObjects/Plot.h"
-# %include "DrawingObjects/ScalarField.h"              this one breaks something
+%include "DrawingObjects/ScalarField.h"
 %include "DrawingObjects/ScalarFieldCrossSection.h"
-# %include "DrawingObjects/ScalarFieldOnMesh.h"        this one breaks something
+%include "DrawingObjects/ScalarFieldOnMesh.h"
 %include "DrawingObjects/ScalarFieldOnMeshCrossSection.h"
-# %include "DrawingObjects/SwarmRGBColourViewer.h"     this one breaks something
-# %include "DrawingObjects/SwarmShapes.h"              this one breaks something
-# %include "DrawingObjects/SwarmVectors.h"             this one breaks something
-%include "DrawingObjects/SwarmViewer.h"
+%include "DrawingObjects/SwarmRGBColourViewer.h"
+%include "DrawingObjects/SwarmShapes.h"
+%include "DrawingObjects/SwarmVectors.h"        
 %include "DrawingObjects/TextureMap.h"
 %include "DrawingObjects/TimeStep.h"
 %include "DrawingObjects/Title.h"

@@ -1406,6 +1406,297 @@ lucViewport_Draw = _gLucifer.lucViewport_Draw
 def lucViewport_CleanUp(*args):
   return _gLucifer.lucViewport_CleanUp(*args)
 lucViewport_CleanUp = _gLucifer.lucViewport_CleanUp
+class lucSwarmViewer(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lucSwarmViewer, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, lucSwarmViewer, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmViewer__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmViewer__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucSwarmViewer__sizeOfSelf_get, _gLucifer.lucSwarmViewer__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucSwarmViewer__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucSwarmViewer__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucSwarmViewer__deleteSelf_get, _gLucifer.lucSwarmViewer__deleteSelf_set)
+    __swig_setmethods__["type"] = _gLucifer.lucSwarmViewer_type_set
+    __swig_getmethods__["type"] = _gLucifer.lucSwarmViewer_type_get
+    if _newclass:type = _swig_property(_gLucifer.lucSwarmViewer_type_get, _gLucifer.lucSwarmViewer_type_set)
+    __swig_setmethods__["nRefs"] = _gLucifer.lucSwarmViewer_nRefs_set
+    __swig_getmethods__["nRefs"] = _gLucifer.lucSwarmViewer_nRefs_get
+    if _newclass:nRefs = _swig_property(_gLucifer.lucSwarmViewer_nRefs_get, _gLucifer.lucSwarmViewer_nRefs_set)
+    __swig_setmethods__["_delete"] = _gLucifer.lucSwarmViewer__delete_set
+    __swig_getmethods__["_delete"] = _gLucifer.lucSwarmViewer__delete_get
+    if _newclass:_delete = _swig_property(_gLucifer.lucSwarmViewer__delete_get, _gLucifer.lucSwarmViewer__delete_set)
+    __swig_setmethods__["_print"] = _gLucifer.lucSwarmViewer__print_set
+    __swig_getmethods__["_print"] = _gLucifer.lucSwarmViewer__print_get
+    if _newclass:_print = _swig_property(_gLucifer.lucSwarmViewer__print_get, _gLucifer.lucSwarmViewer__print_set)
+    __swig_setmethods__["_copy"] = _gLucifer.lucSwarmViewer__copy_set
+    __swig_getmethods__["_copy"] = _gLucifer.lucSwarmViewer__copy_get
+    if _newclass:_copy = _swig_property(_gLucifer.lucSwarmViewer__copy_get, _gLucifer.lucSwarmViewer__copy_set)
+    __swig_setmethods__["name"] = _gLucifer.lucSwarmViewer_name_set
+    __swig_getmethods__["name"] = _gLucifer.lucSwarmViewer_name_get
+    if _newclass:name = _swig_property(_gLucifer.lucSwarmViewer_name_get, _gLucifer.lucSwarmViewer_name_set)
+    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucSwarmViewer_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucSwarmViewer_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucSwarmViewer_nameAllocationType_get, _gLucifer.lucSwarmViewer_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucSwarmViewer__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucSwarmViewer__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucSwarmViewer__defaultConstructor_get, _gLucifer.lucSwarmViewer__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _gLucifer.lucSwarmViewer__construct_set
+    __swig_getmethods__["_construct"] = _gLucifer.lucSwarmViewer__construct_get
+    if _newclass:_construct = _swig_property(_gLucifer.lucSwarmViewer__construct_get, _gLucifer.lucSwarmViewer__construct_set)
+    __swig_setmethods__["_build"] = _gLucifer.lucSwarmViewer__build_set
+    __swig_getmethods__["_build"] = _gLucifer.lucSwarmViewer__build_get
+    if _newclass:_build = _swig_property(_gLucifer.lucSwarmViewer__build_get, _gLucifer.lucSwarmViewer__build_set)
+    __swig_setmethods__["_initialise"] = _gLucifer.lucSwarmViewer__initialise_set
+    __swig_getmethods__["_initialise"] = _gLucifer.lucSwarmViewer__initialise_get
+    if _newclass:_initialise = _swig_property(_gLucifer.lucSwarmViewer__initialise_get, _gLucifer.lucSwarmViewer__initialise_set)
+    __swig_setmethods__["_execute"] = _gLucifer.lucSwarmViewer__execute_set
+    __swig_getmethods__["_execute"] = _gLucifer.lucSwarmViewer__execute_get
+    if _newclass:_execute = _swig_property(_gLucifer.lucSwarmViewer__execute_get, _gLucifer.lucSwarmViewer__execute_set)
+    __swig_setmethods__["_destroy"] = _gLucifer.lucSwarmViewer__destroy_set
+    __swig_getmethods__["_destroy"] = _gLucifer.lucSwarmViewer__destroy_get
+    if _newclass:_destroy = _swig_property(_gLucifer.lucSwarmViewer__destroy_get, _gLucifer.lucSwarmViewer__destroy_set)
+    __swig_setmethods__["isConstructed"] = _gLucifer.lucSwarmViewer_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _gLucifer.lucSwarmViewer_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_gLucifer.lucSwarmViewer_isConstructed_get, _gLucifer.lucSwarmViewer_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _gLucifer.lucSwarmViewer_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _gLucifer.lucSwarmViewer_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_gLucifer.lucSwarmViewer_isBuilt_get, _gLucifer.lucSwarmViewer_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _gLucifer.lucSwarmViewer_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _gLucifer.lucSwarmViewer_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_gLucifer.lucSwarmViewer_isInitialised_get, _gLucifer.lucSwarmViewer_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _gLucifer.lucSwarmViewer_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _gLucifer.lucSwarmViewer_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_gLucifer.lucSwarmViewer_hasExecuted_get, _gLucifer.lucSwarmViewer_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _gLucifer.lucSwarmViewer_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _gLucifer.lucSwarmViewer_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_gLucifer.lucSwarmViewer_isDestroyed_get, _gLucifer.lucSwarmViewer_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _gLucifer.lucSwarmViewer_constructType_set
+    __swig_getmethods__["constructType"] = _gLucifer.lucSwarmViewer_constructType_get
+    if _newclass:constructType = _swig_property(_gLucifer.lucSwarmViewer_constructType_get, _gLucifer.lucSwarmViewer_constructType_set)
+    __swig_setmethods__["buildType"] = _gLucifer.lucSwarmViewer_buildType_set
+    __swig_getmethods__["buildType"] = _gLucifer.lucSwarmViewer_buildType_get
+    if _newclass:buildType = _swig_property(_gLucifer.lucSwarmViewer_buildType_get, _gLucifer.lucSwarmViewer_buildType_set)
+    __swig_setmethods__["initialiseType"] = _gLucifer.lucSwarmViewer_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _gLucifer.lucSwarmViewer_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_gLucifer.lucSwarmViewer_initialiseType_get, _gLucifer.lucSwarmViewer_initialiseType_set)
+    __swig_setmethods__["executeType"] = _gLucifer.lucSwarmViewer_executeType_set
+    __swig_getmethods__["executeType"] = _gLucifer.lucSwarmViewer_executeType_get
+    if _newclass:executeType = _swig_property(_gLucifer.lucSwarmViewer_executeType_get, _gLucifer.lucSwarmViewer_executeType_set)
+    __swig_setmethods__["destroyType"] = _gLucifer.lucSwarmViewer_destroyType_set
+    __swig_getmethods__["destroyType"] = _gLucifer.lucSwarmViewer_destroyType_get
+    if _newclass:destroyType = _swig_property(_gLucifer.lucSwarmViewer_destroyType_get, _gLucifer.lucSwarmViewer_destroyType_set)
+    __swig_setmethods__["context"] = _gLucifer.lucSwarmViewer_context_set
+    __swig_getmethods__["context"] = _gLucifer.lucSwarmViewer_context_get
+    if _newclass:context = _swig_property(_gLucifer.lucSwarmViewer_context_get, _gLucifer.lucSwarmViewer_context_set)
+    __swig_setmethods__["_setup"] = _gLucifer.lucSwarmViewer__setup_set
+    __swig_getmethods__["_setup"] = _gLucifer.lucSwarmViewer__setup_get
+    if _newclass:_setup = _swig_property(_gLucifer.lucSwarmViewer__setup_get, _gLucifer.lucSwarmViewer__setup_set)
+    __swig_setmethods__["_draw"] = _gLucifer.lucSwarmViewer__draw_set
+    __swig_getmethods__["_draw"] = _gLucifer.lucSwarmViewer__draw_get
+    if _newclass:_draw = _swig_property(_gLucifer.lucSwarmViewer__draw_get, _gLucifer.lucSwarmViewer__draw_set)
+    __swig_setmethods__["_cleanUp"] = _gLucifer.lucSwarmViewer__cleanUp_set
+    __swig_getmethods__["_cleanUp"] = _gLucifer.lucSwarmViewer__cleanUp_get
+    if _newclass:_cleanUp = _swig_property(_gLucifer.lucSwarmViewer__cleanUp_get, _gLucifer.lucSwarmViewer__cleanUp_set)
+    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucSwarmViewer_needsToCleanUp_set
+    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucSwarmViewer_needsToCleanUp_get
+    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucSwarmViewer_needsToCleanUp_get, _gLucifer.lucSwarmViewer_needsToCleanUp_set)
+    __swig_setmethods__["needsToDraw"] = _gLucifer.lucSwarmViewer_needsToDraw_set
+    __swig_getmethods__["needsToDraw"] = _gLucifer.lucSwarmViewer_needsToDraw_get
+    if _newclass:needsToDraw = _swig_property(_gLucifer.lucSwarmViewer_needsToDraw_get, _gLucifer.lucSwarmViewer_needsToDraw_set)
+    __swig_setmethods__["depthSort"] = _gLucifer.lucSwarmViewer_depthSort_set
+    __swig_getmethods__["depthSort"] = _gLucifer.lucSwarmViewer_depthSort_get
+    if _newclass:depthSort = _swig_property(_gLucifer.lucSwarmViewer_depthSort_get, _gLucifer.lucSwarmViewer_depthSort_set)
+    __swig_setmethods__["position"] = _gLucifer.lucSwarmViewer_position_set
+    __swig_getmethods__["position"] = _gLucifer.lucSwarmViewer_position_get
+    if _newclass:position = _swig_property(_gLucifer.lucSwarmViewer_position_get, _gLucifer.lucSwarmViewer_position_set)
+    __swig_setmethods__["lit"] = _gLucifer.lucSwarmViewer_lit_set
+    __swig_getmethods__["lit"] = _gLucifer.lucSwarmViewer_lit_get
+    if _newclass:lit = _swig_property(_gLucifer.lucSwarmViewer_lit_get, _gLucifer.lucSwarmViewer_lit_set)
+    __swig_setmethods__["disabled"] = _gLucifer.lucSwarmViewer_disabled_set
+    __swig_getmethods__["disabled"] = _gLucifer.lucSwarmViewer_disabled_get
+    if _newclass:disabled = _swig_property(_gLucifer.lucSwarmViewer_disabled_get, _gLucifer.lucSwarmViewer_disabled_set)
+    __swig_setmethods__["colourMap"] = _gLucifer.lucSwarmViewer_colourMap_set
+    __swig_getmethods__["colourMap"] = _gLucifer.lucSwarmViewer_colourMap_get
+    if _newclass:colourMap = _swig_property(_gLucifer.lucSwarmViewer_colourMap_get, _gLucifer.lucSwarmViewer_colourMap_set)
+    __swig_setmethods__["colour"] = _gLucifer.lucSwarmViewer_colour_set
+    __swig_getmethods__["colour"] = _gLucifer.lucSwarmViewer_colour_get
+    if _newclass:colour = _swig_property(_gLucifer.lucSwarmViewer_colour_get, _gLucifer.lucSwarmViewer_colour_set)
+    __swig_setmethods__["opacity"] = _gLucifer.lucSwarmViewer_opacity_set
+    __swig_getmethods__["opacity"] = _gLucifer.lucSwarmViewer_opacity_get
+    if _newclass:opacity = _swig_property(_gLucifer.lucSwarmViewer_opacity_get, _gLucifer.lucSwarmViewer_opacity_set)
+    __swig_setmethods__["wireframe"] = _gLucifer.lucSwarmViewer_wireframe_set
+    __swig_getmethods__["wireframe"] = _gLucifer.lucSwarmViewer_wireframe_get
+    if _newclass:wireframe = _swig_property(_gLucifer.lucSwarmViewer_wireframe_get, _gLucifer.lucSwarmViewer_wireframe_set)
+    __swig_setmethods__["lineWidth"] = _gLucifer.lucSwarmViewer_lineWidth_set
+    __swig_getmethods__["lineWidth"] = _gLucifer.lucSwarmViewer_lineWidth_get
+    if _newclass:lineWidth = _swig_property(_gLucifer.lucSwarmViewer_lineWidth_get, _gLucifer.lucSwarmViewer_lineWidth_set)
+    __swig_setmethods__["id"] = _gLucifer.lucSwarmViewer_id_set
+    __swig_getmethods__["id"] = _gLucifer.lucSwarmViewer_id_get
+    if _newclass:id = _swig_property(_gLucifer.lucSwarmViewer_id_get, _gLucifer.lucSwarmViewer_id_set)
+    __swig_setmethods__["properties"] = _gLucifer.lucSwarmViewer_properties_set
+    __swig_getmethods__["properties"] = _gLucifer.lucSwarmViewer_properties_get
+    if _newclass:properties = _swig_property(_gLucifer.lucSwarmViewer_properties_get, _gLucifer.lucSwarmViewer_properties_set)
+    __swig_setmethods__["_plotParticle"] = _gLucifer.lucSwarmViewer__plotParticle_set
+    __swig_getmethods__["_plotParticle"] = _gLucifer.lucSwarmViewer__plotParticle_get
+    if _newclass:_plotParticle = _swig_property(_gLucifer.lucSwarmViewer__plotParticle_get, _gLucifer.lucSwarmViewer__plotParticle_set)
+    __swig_setmethods__["_setParticleColour"] = _gLucifer.lucSwarmViewer__setParticleColour_set
+    __swig_getmethods__["_setParticleColour"] = _gLucifer.lucSwarmViewer__setParticleColour_get
+    if _newclass:_setParticleColour = _swig_property(_gLucifer.lucSwarmViewer__setParticleColour_get, _gLucifer.lucSwarmViewer__setParticleColour_set)
+    __swig_setmethods__["colourVariableName"] = _gLucifer.lucSwarmViewer_colourVariableName_set
+    __swig_getmethods__["colourVariableName"] = _gLucifer.lucSwarmViewer_colourVariableName_get
+    if _newclass:colourVariableName = _swig_property(_gLucifer.lucSwarmViewer_colourVariableName_get, _gLucifer.lucSwarmViewer_colourVariableName_set)
+    __swig_setmethods__["colourVariable"] = _gLucifer.lucSwarmViewer_colourVariable_set
+    __swig_getmethods__["colourVariable"] = _gLucifer.lucSwarmViewer_colourVariable_get
+    if _newclass:colourVariable = _swig_property(_gLucifer.lucSwarmViewer_colourVariable_get, _gLucifer.lucSwarmViewer_colourVariable_set)
+    __swig_setmethods__["sizeVariableName"] = _gLucifer.lucSwarmViewer_sizeVariableName_set
+    __swig_getmethods__["sizeVariableName"] = _gLucifer.lucSwarmViewer_sizeVariableName_get
+    if _newclass:sizeVariableName = _swig_property(_gLucifer.lucSwarmViewer_sizeVariableName_get, _gLucifer.lucSwarmViewer_sizeVariableName_set)
+    __swig_setmethods__["sizeVariable"] = _gLucifer.lucSwarmViewer_sizeVariable_set
+    __swig_getmethods__["sizeVariable"] = _gLucifer.lucSwarmViewer_sizeVariable_get
+    if _newclass:sizeVariable = _swig_property(_gLucifer.lucSwarmViewer_sizeVariable_get, _gLucifer.lucSwarmViewer_sizeVariable_set)
+    __swig_setmethods__["swarm"] = _gLucifer.lucSwarmViewer_swarm_set
+    __swig_getmethods__["swarm"] = _gLucifer.lucSwarmViewer_swarm_get
+    if _newclass:swarm = _swig_property(_gLucifer.lucSwarmViewer_swarm_get, _gLucifer.lucSwarmViewer_swarm_set)
+    __swig_setmethods__["opacityColourMap"] = _gLucifer.lucSwarmViewer_opacityColourMap_set
+    __swig_getmethods__["opacityColourMap"] = _gLucifer.lucSwarmViewer_opacityColourMap_get
+    if _newclass:opacityColourMap = _swig_property(_gLucifer.lucSwarmViewer_opacityColourMap_get, _gLucifer.lucSwarmViewer_opacityColourMap_set)
+    __swig_setmethods__["opacityVariableName"] = _gLucifer.lucSwarmViewer_opacityVariableName_set
+    __swig_getmethods__["opacityVariableName"] = _gLucifer.lucSwarmViewer_opacityVariableName_get
+    if _newclass:opacityVariableName = _swig_property(_gLucifer.lucSwarmViewer_opacityVariableName_get, _gLucifer.lucSwarmViewer_opacityVariableName_set)
+    __swig_setmethods__["opacityVariable"] = _gLucifer.lucSwarmViewer_opacityVariable_set
+    __swig_getmethods__["opacityVariable"] = _gLucifer.lucSwarmViewer_opacityVariable_get
+    if _newclass:opacityVariable = _swig_property(_gLucifer.lucSwarmViewer_opacityVariable_get, _gLucifer.lucSwarmViewer_opacityVariable_set)
+    __swig_setmethods__["maskVariableName"] = _gLucifer.lucSwarmViewer_maskVariableName_set
+    __swig_getmethods__["maskVariableName"] = _gLucifer.lucSwarmViewer_maskVariableName_get
+    if _newclass:maskVariableName = _swig_property(_gLucifer.lucSwarmViewer_maskVariableName_get, _gLucifer.lucSwarmViewer_maskVariableName_set)
+    __swig_setmethods__["maskVariable"] = _gLucifer.lucSwarmViewer_maskVariable_set
+    __swig_getmethods__["maskVariable"] = _gLucifer.lucSwarmViewer_maskVariable_get
+    if _newclass:maskVariable = _swig_property(_gLucifer.lucSwarmViewer_maskVariable_get, _gLucifer.lucSwarmViewer_maskVariable_set)
+    __swig_setmethods__["mask"] = _gLucifer.lucSwarmViewer_mask_set
+    __swig_getmethods__["mask"] = _gLucifer.lucSwarmViewer_mask_get
+    if _newclass:mask = _swig_property(_gLucifer.lucSwarmViewer_mask_get, _gLucifer.lucSwarmViewer_mask_set)
+    __swig_setmethods__["drawParticleNumber"] = _gLucifer.lucSwarmViewer_drawParticleNumber_set
+    __swig_getmethods__["drawParticleNumber"] = _gLucifer.lucSwarmViewer_drawParticleNumber_get
+    if _newclass:drawParticleNumber = _swig_property(_gLucifer.lucSwarmViewer_drawParticleNumber_get, _gLucifer.lucSwarmViewer_drawParticleNumber_set)
+    __swig_setmethods__["sameParticleColour"] = _gLucifer.lucSwarmViewer_sameParticleColour_set
+    __swig_getmethods__["sameParticleColour"] = _gLucifer.lucSwarmViewer_sameParticleColour_get
+    if _newclass:sameParticleColour = _swig_property(_gLucifer.lucSwarmViewer_sameParticleColour_get, _gLucifer.lucSwarmViewer_sameParticleColour_set)
+    __swig_setmethods__["subSample"] = _gLucifer.lucSwarmViewer_subSample_set
+    __swig_getmethods__["subSample"] = _gLucifer.lucSwarmViewer_subSample_get
+    if _newclass:subSample = _swig_property(_gLucifer.lucSwarmViewer_subSample_get, _gLucifer.lucSwarmViewer_subSample_set)
+    __swig_setmethods__["positionRange"] = _gLucifer.lucSwarmViewer_positionRange_set
+    __swig_getmethods__["positionRange"] = _gLucifer.lucSwarmViewer_positionRange_get
+    if _newclass:positionRange = _swig_property(_gLucifer.lucSwarmViewer_positionRange_get, _gLucifer.lucSwarmViewer_positionRange_set)
+    __swig_setmethods__["minPosition"] = _gLucifer.lucSwarmViewer_minPosition_set
+    __swig_getmethods__["minPosition"] = _gLucifer.lucSwarmViewer_minPosition_get
+    if _newclass:minPosition = _swig_property(_gLucifer.lucSwarmViewer_minPosition_get, _gLucifer.lucSwarmViewer_minPosition_set)
+    __swig_setmethods__["maxPosition"] = _gLucifer.lucSwarmViewer_maxPosition_set
+    __swig_getmethods__["maxPosition"] = _gLucifer.lucSwarmViewer_maxPosition_get
+    if _newclass:maxPosition = _swig_property(_gLucifer.lucSwarmViewer_maxPosition_get, _gLucifer.lucSwarmViewer_maxPosition_set)
+    __swig_setmethods__["geomType"] = _gLucifer.lucSwarmViewer_geomType_set
+    __swig_getmethods__["geomType"] = _gLucifer.lucSwarmViewer_geomType_get
+    if _newclass:geomType = _swig_property(_gLucifer.lucSwarmViewer_geomType_get, _gLucifer.lucSwarmViewer_geomType_set)
+    __swig_setmethods__["scaling"] = _gLucifer.lucSwarmViewer_scaling_set
+    __swig_getmethods__["scaling"] = _gLucifer.lucSwarmViewer_scaling_get
+    if _newclass:scaling = _swig_property(_gLucifer.lucSwarmViewer_scaling_get, _gLucifer.lucSwarmViewer_scaling_set)
+    __swig_setmethods__["pointSize"] = _gLucifer.lucSwarmViewer_pointSize_set
+    __swig_getmethods__["pointSize"] = _gLucifer.lucSwarmViewer_pointSize_get
+    if _newclass:pointSize = _swig_property(_gLucifer.lucSwarmViewer_pointSize_get, _gLucifer.lucSwarmViewer_pointSize_set)
+    __swig_setmethods__["pointSmoothing"] = _gLucifer.lucSwarmViewer_pointSmoothing_set
+    __swig_getmethods__["pointSmoothing"] = _gLucifer.lucSwarmViewer_pointSmoothing_get
+    if _newclass:pointSmoothing = _swig_property(_gLucifer.lucSwarmViewer_pointSmoothing_get, _gLucifer.lucSwarmViewer_pointSmoothing_set)
+    def __init__(self): 
+        this = _gLucifer.new_lucSwarmViewer()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _gLucifer.delete_lucSwarmViewer
+    __del__ = lambda self : None;
+lucSwarmViewer_swigregister = _gLucifer.lucSwarmViewer_swigregister
+lucSwarmViewer_swigregister(lucSwarmViewer)
+lucSwarmViewer_Type = cvar.lucSwarmViewer_Type
+
+
+def _lucSwarmViewer_New(*args):
+  return _gLucifer._lucSwarmViewer_New(*args)
+_lucSwarmViewer_New = _gLucifer._lucSwarmViewer_New
+
+def _lucSwarmViewer_Delete(*args):
+  return _gLucifer._lucSwarmViewer_Delete(*args)
+_lucSwarmViewer_Delete = _gLucifer._lucSwarmViewer_Delete
+
+def _lucSwarmViewer_Print(*args):
+  return _gLucifer._lucSwarmViewer_Print(*args)
+_lucSwarmViewer_Print = _gLucifer._lucSwarmViewer_Print
+
+def _lucSwarmViewer_Copy(*args):
+  return _gLucifer._lucSwarmViewer_Copy(*args)
+_lucSwarmViewer_Copy = _gLucifer._lucSwarmViewer_Copy
+
+def _lucSwarmViewer_DefaultNew(*args):
+  return _gLucifer._lucSwarmViewer_DefaultNew(*args)
+_lucSwarmViewer_DefaultNew = _gLucifer._lucSwarmViewer_DefaultNew
+
+def _lucSwarmViewer_AssignFromXML(*args):
+  return _gLucifer._lucSwarmViewer_AssignFromXML(*args)
+_lucSwarmViewer_AssignFromXML = _gLucifer._lucSwarmViewer_AssignFromXML
+
+def _lucSwarmViewer_Build(*args):
+  return _gLucifer._lucSwarmViewer_Build(*args)
+_lucSwarmViewer_Build = _gLucifer._lucSwarmViewer_Build
+
+def _lucSwarmViewer_Initialise(*args):
+  return _gLucifer._lucSwarmViewer_Initialise(*args)
+_lucSwarmViewer_Initialise = _gLucifer._lucSwarmViewer_Initialise
+
+def _lucSwarmViewer_Execute(*args):
+  return _gLucifer._lucSwarmViewer_Execute(*args)
+_lucSwarmViewer_Execute = _gLucifer._lucSwarmViewer_Execute
+
+def _lucSwarmViewer_Destroy(*args):
+  return _gLucifer._lucSwarmViewer_Destroy(*args)
+_lucSwarmViewer_Destroy = _gLucifer._lucSwarmViewer_Destroy
+
+def lucSwarmViewer_InitialiseVariable(*args):
+  return _gLucifer.lucSwarmViewer_InitialiseVariable(*args)
+lucSwarmViewer_InitialiseVariable = _gLucifer.lucSwarmViewer_InitialiseVariable
+
+def lucSwarmViewer_GetScalar(*args):
+  return _gLucifer.lucSwarmViewer_GetScalar(*args)
+lucSwarmViewer_GetScalar = _gLucifer.lucSwarmViewer_GetScalar
+
+def _lucSwarmViewer_Setup(*args):
+  return _gLucifer._lucSwarmViewer_Setup(*args)
+_lucSwarmViewer_Setup = _gLucifer._lucSwarmViewer_Setup
+
+def _lucSwarmViewer_Draw(*args):
+  return _gLucifer._lucSwarmViewer_Draw(*args)
+_lucSwarmViewer_Draw = _gLucifer._lucSwarmViewer_Draw
+
+def lucSwarmViewBase_DrawParticleNumbers(*args):
+  return _gLucifer.lucSwarmViewBase_DrawParticleNumbers(*args)
+lucSwarmViewBase_DrawParticleNumbers = _gLucifer.lucSwarmViewBase_DrawParticleNumbers
+
+def lucSwarmViewer_UpdateVariables(*args):
+  return _gLucifer.lucSwarmViewer_UpdateVariables(*args)
+lucSwarmViewer_UpdateVariables = _gLucifer.lucSwarmViewer_UpdateVariables
+
+def lucSwarmViewer_FindParticleLocalIndex(*args):
+  return _gLucifer.lucSwarmViewer_FindParticleLocalIndex(*args)
+lucSwarmViewer_FindParticleLocalIndex = _gLucifer.lucSwarmViewer_FindParticleLocalIndex
+
+def lucSwarmViewer_SetColourComponent(*args):
+  return _gLucifer.lucSwarmViewer_SetColourComponent(*args)
+lucSwarmViewer_SetColourComponent = _gLucifer.lucSwarmViewer_SetColourComponent
+
+def _lucSwarmViewer_SetParticleColour(*args):
+  return _gLucifer._lucSwarmViewer_SetParticleColour(*args)
+_lucSwarmViewer_SetParticleColour = _gLucifer._lucSwarmViewer_SetParticleColour
+
+def _lucSwarmViewer_PlotParticle(*args):
+  return _gLucifer._lucSwarmViewer_PlotParticle(*args)
+_lucSwarmViewer_PlotParticle = _gLucifer._lucSwarmViewer_PlotParticle
 class lucAxis(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, lucAxis, name, value)
@@ -2233,279 +2524,262 @@ _lucContour_AssignFromXML = _gLucifer._lucContour_AssignFromXML
 def _lucContour_Draw(*args):
   return _gLucifer._lucContour_Draw(*args)
 _lucContour_Draw = _gLucifer._lucContour_Draw
-class lucEigenvectorsCrossSection(_object):
+class lucEigenvectors(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, lucEigenvectorsCrossSection, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lucEigenvectors, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, lucEigenvectorsCrossSection, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, lucEigenvectors, name)
     __repr__ = _swig_repr
-    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucEigenvectorsCrossSection__sizeOfSelf_set
-    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucEigenvectorsCrossSection__sizeOfSelf_get
-    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucEigenvectorsCrossSection__sizeOfSelf_get, _gLucifer.lucEigenvectorsCrossSection__sizeOfSelf_set)
-    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucEigenvectorsCrossSection__deleteSelf_set
-    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucEigenvectorsCrossSection__deleteSelf_get
-    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucEigenvectorsCrossSection__deleteSelf_get, _gLucifer.lucEigenvectorsCrossSection__deleteSelf_set)
-    __swig_setmethods__["type"] = _gLucifer.lucEigenvectorsCrossSection_type_set
-    __swig_getmethods__["type"] = _gLucifer.lucEigenvectorsCrossSection_type_get
-    if _newclass:type = _swig_property(_gLucifer.lucEigenvectorsCrossSection_type_get, _gLucifer.lucEigenvectorsCrossSection_type_set)
-    __swig_setmethods__["nRefs"] = _gLucifer.lucEigenvectorsCrossSection_nRefs_set
-    __swig_getmethods__["nRefs"] = _gLucifer.lucEigenvectorsCrossSection_nRefs_get
-    if _newclass:nRefs = _swig_property(_gLucifer.lucEigenvectorsCrossSection_nRefs_get, _gLucifer.lucEigenvectorsCrossSection_nRefs_set)
-    __swig_setmethods__["_delete"] = _gLucifer.lucEigenvectorsCrossSection__delete_set
-    __swig_getmethods__["_delete"] = _gLucifer.lucEigenvectorsCrossSection__delete_get
-    if _newclass:_delete = _swig_property(_gLucifer.lucEigenvectorsCrossSection__delete_get, _gLucifer.lucEigenvectorsCrossSection__delete_set)
-    __swig_setmethods__["_print"] = _gLucifer.lucEigenvectorsCrossSection__print_set
-    __swig_getmethods__["_print"] = _gLucifer.lucEigenvectorsCrossSection__print_get
-    if _newclass:_print = _swig_property(_gLucifer.lucEigenvectorsCrossSection__print_get, _gLucifer.lucEigenvectorsCrossSection__print_set)
-    __swig_setmethods__["_copy"] = _gLucifer.lucEigenvectorsCrossSection__copy_set
-    __swig_getmethods__["_copy"] = _gLucifer.lucEigenvectorsCrossSection__copy_get
-    if _newclass:_copy = _swig_property(_gLucifer.lucEigenvectorsCrossSection__copy_get, _gLucifer.lucEigenvectorsCrossSection__copy_set)
-    __swig_setmethods__["name"] = _gLucifer.lucEigenvectorsCrossSection_name_set
-    __swig_getmethods__["name"] = _gLucifer.lucEigenvectorsCrossSection_name_get
-    if _newclass:name = _swig_property(_gLucifer.lucEigenvectorsCrossSection_name_get, _gLucifer.lucEigenvectorsCrossSection_name_set)
-    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucEigenvectorsCrossSection_nameAllocationType_set
-    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucEigenvectorsCrossSection_nameAllocationType_get
-    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucEigenvectorsCrossSection_nameAllocationType_get, _gLucifer.lucEigenvectorsCrossSection_nameAllocationType_set)
-    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucEigenvectorsCrossSection__defaultConstructor_set
-    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucEigenvectorsCrossSection__defaultConstructor_get
-    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucEigenvectorsCrossSection__defaultConstructor_get, _gLucifer.lucEigenvectorsCrossSection__defaultConstructor_set)
-    __swig_setmethods__["_construct"] = _gLucifer.lucEigenvectorsCrossSection__construct_set
-    __swig_getmethods__["_construct"] = _gLucifer.lucEigenvectorsCrossSection__construct_get
-    if _newclass:_construct = _swig_property(_gLucifer.lucEigenvectorsCrossSection__construct_get, _gLucifer.lucEigenvectorsCrossSection__construct_set)
-    __swig_setmethods__["_build"] = _gLucifer.lucEigenvectorsCrossSection__build_set
-    __swig_getmethods__["_build"] = _gLucifer.lucEigenvectorsCrossSection__build_get
-    if _newclass:_build = _swig_property(_gLucifer.lucEigenvectorsCrossSection__build_get, _gLucifer.lucEigenvectorsCrossSection__build_set)
-    __swig_setmethods__["_initialise"] = _gLucifer.lucEigenvectorsCrossSection__initialise_set
-    __swig_getmethods__["_initialise"] = _gLucifer.lucEigenvectorsCrossSection__initialise_get
-    if _newclass:_initialise = _swig_property(_gLucifer.lucEigenvectorsCrossSection__initialise_get, _gLucifer.lucEigenvectorsCrossSection__initialise_set)
-    __swig_setmethods__["_execute"] = _gLucifer.lucEigenvectorsCrossSection__execute_set
-    __swig_getmethods__["_execute"] = _gLucifer.lucEigenvectorsCrossSection__execute_get
-    if _newclass:_execute = _swig_property(_gLucifer.lucEigenvectorsCrossSection__execute_get, _gLucifer.lucEigenvectorsCrossSection__execute_set)
-    __swig_setmethods__["_destroy"] = _gLucifer.lucEigenvectorsCrossSection__destroy_set
-    __swig_getmethods__["_destroy"] = _gLucifer.lucEigenvectorsCrossSection__destroy_get
-    if _newclass:_destroy = _swig_property(_gLucifer.lucEigenvectorsCrossSection__destroy_get, _gLucifer.lucEigenvectorsCrossSection__destroy_set)
-    __swig_setmethods__["isConstructed"] = _gLucifer.lucEigenvectorsCrossSection_isConstructed_set
-    __swig_getmethods__["isConstructed"] = _gLucifer.lucEigenvectorsCrossSection_isConstructed_get
-    if _newclass:isConstructed = _swig_property(_gLucifer.lucEigenvectorsCrossSection_isConstructed_get, _gLucifer.lucEigenvectorsCrossSection_isConstructed_set)
-    __swig_setmethods__["isBuilt"] = _gLucifer.lucEigenvectorsCrossSection_isBuilt_set
-    __swig_getmethods__["isBuilt"] = _gLucifer.lucEigenvectorsCrossSection_isBuilt_get
-    if _newclass:isBuilt = _swig_property(_gLucifer.lucEigenvectorsCrossSection_isBuilt_get, _gLucifer.lucEigenvectorsCrossSection_isBuilt_set)
-    __swig_setmethods__["isInitialised"] = _gLucifer.lucEigenvectorsCrossSection_isInitialised_set
-    __swig_getmethods__["isInitialised"] = _gLucifer.lucEigenvectorsCrossSection_isInitialised_get
-    if _newclass:isInitialised = _swig_property(_gLucifer.lucEigenvectorsCrossSection_isInitialised_get, _gLucifer.lucEigenvectorsCrossSection_isInitialised_set)
-    __swig_setmethods__["hasExecuted"] = _gLucifer.lucEigenvectorsCrossSection_hasExecuted_set
-    __swig_getmethods__["hasExecuted"] = _gLucifer.lucEigenvectorsCrossSection_hasExecuted_get
-    if _newclass:hasExecuted = _swig_property(_gLucifer.lucEigenvectorsCrossSection_hasExecuted_get, _gLucifer.lucEigenvectorsCrossSection_hasExecuted_set)
-    __swig_setmethods__["isDestroyed"] = _gLucifer.lucEigenvectorsCrossSection_isDestroyed_set
-    __swig_getmethods__["isDestroyed"] = _gLucifer.lucEigenvectorsCrossSection_isDestroyed_get
-    if _newclass:isDestroyed = _swig_property(_gLucifer.lucEigenvectorsCrossSection_isDestroyed_get, _gLucifer.lucEigenvectorsCrossSection_isDestroyed_set)
-    __swig_setmethods__["constructType"] = _gLucifer.lucEigenvectorsCrossSection_constructType_set
-    __swig_getmethods__["constructType"] = _gLucifer.lucEigenvectorsCrossSection_constructType_get
-    if _newclass:constructType = _swig_property(_gLucifer.lucEigenvectorsCrossSection_constructType_get, _gLucifer.lucEigenvectorsCrossSection_constructType_set)
-    __swig_setmethods__["buildType"] = _gLucifer.lucEigenvectorsCrossSection_buildType_set
-    __swig_getmethods__["buildType"] = _gLucifer.lucEigenvectorsCrossSection_buildType_get
-    if _newclass:buildType = _swig_property(_gLucifer.lucEigenvectorsCrossSection_buildType_get, _gLucifer.lucEigenvectorsCrossSection_buildType_set)
-    __swig_setmethods__["initialiseType"] = _gLucifer.lucEigenvectorsCrossSection_initialiseType_set
-    __swig_getmethods__["initialiseType"] = _gLucifer.lucEigenvectorsCrossSection_initialiseType_get
-    if _newclass:initialiseType = _swig_property(_gLucifer.lucEigenvectorsCrossSection_initialiseType_get, _gLucifer.lucEigenvectorsCrossSection_initialiseType_set)
-    __swig_setmethods__["executeType"] = _gLucifer.lucEigenvectorsCrossSection_executeType_set
-    __swig_getmethods__["executeType"] = _gLucifer.lucEigenvectorsCrossSection_executeType_get
-    if _newclass:executeType = _swig_property(_gLucifer.lucEigenvectorsCrossSection_executeType_get, _gLucifer.lucEigenvectorsCrossSection_executeType_set)
-    __swig_setmethods__["destroyType"] = _gLucifer.lucEigenvectorsCrossSection_destroyType_set
-    __swig_getmethods__["destroyType"] = _gLucifer.lucEigenvectorsCrossSection_destroyType_get
-    if _newclass:destroyType = _swig_property(_gLucifer.lucEigenvectorsCrossSection_destroyType_get, _gLucifer.lucEigenvectorsCrossSection_destroyType_set)
-    __swig_setmethods__["context"] = _gLucifer.lucEigenvectorsCrossSection_context_set
-    __swig_getmethods__["context"] = _gLucifer.lucEigenvectorsCrossSection_context_get
-    if _newclass:context = _swig_property(_gLucifer.lucEigenvectorsCrossSection_context_get, _gLucifer.lucEigenvectorsCrossSection_context_set)
-    __swig_setmethods__["_setup"] = _gLucifer.lucEigenvectorsCrossSection__setup_set
-    __swig_getmethods__["_setup"] = _gLucifer.lucEigenvectorsCrossSection__setup_get
-    if _newclass:_setup = _swig_property(_gLucifer.lucEigenvectorsCrossSection__setup_get, _gLucifer.lucEigenvectorsCrossSection__setup_set)
-    __swig_setmethods__["_draw"] = _gLucifer.lucEigenvectorsCrossSection__draw_set
-    __swig_getmethods__["_draw"] = _gLucifer.lucEigenvectorsCrossSection__draw_get
-    if _newclass:_draw = _swig_property(_gLucifer.lucEigenvectorsCrossSection__draw_get, _gLucifer.lucEigenvectorsCrossSection__draw_set)
-    __swig_setmethods__["_cleanUp"] = _gLucifer.lucEigenvectorsCrossSection__cleanUp_set
-    __swig_getmethods__["_cleanUp"] = _gLucifer.lucEigenvectorsCrossSection__cleanUp_get
-    if _newclass:_cleanUp = _swig_property(_gLucifer.lucEigenvectorsCrossSection__cleanUp_get, _gLucifer.lucEigenvectorsCrossSection__cleanUp_set)
-    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucEigenvectorsCrossSection_needsToCleanUp_set
-    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucEigenvectorsCrossSection_needsToCleanUp_get
-    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucEigenvectorsCrossSection_needsToCleanUp_get, _gLucifer.lucEigenvectorsCrossSection_needsToCleanUp_set)
-    __swig_setmethods__["needsToDraw"] = _gLucifer.lucEigenvectorsCrossSection_needsToDraw_set
-    __swig_getmethods__["needsToDraw"] = _gLucifer.lucEigenvectorsCrossSection_needsToDraw_get
-    if _newclass:needsToDraw = _swig_property(_gLucifer.lucEigenvectorsCrossSection_needsToDraw_get, _gLucifer.lucEigenvectorsCrossSection_needsToDraw_set)
-    __swig_setmethods__["depthSort"] = _gLucifer.lucEigenvectorsCrossSection_depthSort_set
-    __swig_getmethods__["depthSort"] = _gLucifer.lucEigenvectorsCrossSection_depthSort_get
-    if _newclass:depthSort = _swig_property(_gLucifer.lucEigenvectorsCrossSection_depthSort_get, _gLucifer.lucEigenvectorsCrossSection_depthSort_set)
-    __swig_setmethods__["position"] = _gLucifer.lucEigenvectorsCrossSection_position_set
-    __swig_getmethods__["position"] = _gLucifer.lucEigenvectorsCrossSection_position_get
-    if _newclass:position = _swig_property(_gLucifer.lucEigenvectorsCrossSection_position_get, _gLucifer.lucEigenvectorsCrossSection_position_set)
-    __swig_setmethods__["lit"] = _gLucifer.lucEigenvectorsCrossSection_lit_set
-    __swig_getmethods__["lit"] = _gLucifer.lucEigenvectorsCrossSection_lit_get
-    if _newclass:lit = _swig_property(_gLucifer.lucEigenvectorsCrossSection_lit_get, _gLucifer.lucEigenvectorsCrossSection_lit_set)
-    __swig_setmethods__["disabled"] = _gLucifer.lucEigenvectorsCrossSection_disabled_set
-    __swig_getmethods__["disabled"] = _gLucifer.lucEigenvectorsCrossSection_disabled_get
-    if _newclass:disabled = _swig_property(_gLucifer.lucEigenvectorsCrossSection_disabled_get, _gLucifer.lucEigenvectorsCrossSection_disabled_set)
-    __swig_setmethods__["colourMap"] = _gLucifer.lucEigenvectorsCrossSection_colourMap_set
-    __swig_getmethods__["colourMap"] = _gLucifer.lucEigenvectorsCrossSection_colourMap_get
-    if _newclass:colourMap = _swig_property(_gLucifer.lucEigenvectorsCrossSection_colourMap_get, _gLucifer.lucEigenvectorsCrossSection_colourMap_set)
-    __swig_setmethods__["colour"] = _gLucifer.lucEigenvectorsCrossSection_colour_set
-    __swig_getmethods__["colour"] = _gLucifer.lucEigenvectorsCrossSection_colour_get
-    if _newclass:colour = _swig_property(_gLucifer.lucEigenvectorsCrossSection_colour_get, _gLucifer.lucEigenvectorsCrossSection_colour_set)
-    __swig_setmethods__["opacity"] = _gLucifer.lucEigenvectorsCrossSection_opacity_set
-    __swig_getmethods__["opacity"] = _gLucifer.lucEigenvectorsCrossSection_opacity_get
-    if _newclass:opacity = _swig_property(_gLucifer.lucEigenvectorsCrossSection_opacity_get, _gLucifer.lucEigenvectorsCrossSection_opacity_set)
-    __swig_setmethods__["wireframe"] = _gLucifer.lucEigenvectorsCrossSection_wireframe_set
-    __swig_getmethods__["wireframe"] = _gLucifer.lucEigenvectorsCrossSection_wireframe_get
-    if _newclass:wireframe = _swig_property(_gLucifer.lucEigenvectorsCrossSection_wireframe_get, _gLucifer.lucEigenvectorsCrossSection_wireframe_set)
-    __swig_setmethods__["lineWidth"] = _gLucifer.lucEigenvectorsCrossSection_lineWidth_set
-    __swig_getmethods__["lineWidth"] = _gLucifer.lucEigenvectorsCrossSection_lineWidth_get
-    if _newclass:lineWidth = _swig_property(_gLucifer.lucEigenvectorsCrossSection_lineWidth_get, _gLucifer.lucEigenvectorsCrossSection_lineWidth_set)
-    __swig_setmethods__["id"] = _gLucifer.lucEigenvectorsCrossSection_id_set
-    __swig_getmethods__["id"] = _gLucifer.lucEigenvectorsCrossSection_id_get
-    if _newclass:id = _swig_property(_gLucifer.lucEigenvectorsCrossSection_id_get, _gLucifer.lucEigenvectorsCrossSection_id_set)
-    __swig_setmethods__["properties"] = _gLucifer.lucEigenvectorsCrossSection_properties_set
-    __swig_getmethods__["properties"] = _gLucifer.lucEigenvectorsCrossSection_properties_get
-    if _newclass:properties = _swig_property(_gLucifer.lucEigenvectorsCrossSection_properties_get, _gLucifer.lucEigenvectorsCrossSection_properties_set)
-    __swig_setmethods__["fieldVariable"] = _gLucifer.lucEigenvectorsCrossSection_fieldVariable_set
-    __swig_getmethods__["fieldVariable"] = _gLucifer.lucEigenvectorsCrossSection_fieldVariable_get
-    if _newclass:fieldVariable = _swig_property(_gLucifer.lucEigenvectorsCrossSection_fieldVariable_get, _gLucifer.lucEigenvectorsCrossSection_fieldVariable_set)
-    __swig_setmethods__["value"] = _gLucifer.lucEigenvectorsCrossSection_value_set
-    __swig_getmethods__["value"] = _gLucifer.lucEigenvectorsCrossSection_value_get
-    if _newclass:value = _swig_property(_gLucifer.lucEigenvectorsCrossSection_value_get, _gLucifer.lucEigenvectorsCrossSection_value_set)
-    __swig_setmethods__["defaultResolution"] = _gLucifer.lucEigenvectorsCrossSection_defaultResolution_set
-    __swig_getmethods__["defaultResolution"] = _gLucifer.lucEigenvectorsCrossSection_defaultResolution_get
-    if _newclass:defaultResolution = _swig_property(_gLucifer.lucEigenvectorsCrossSection_defaultResolution_get, _gLucifer.lucEigenvectorsCrossSection_defaultResolution_set)
-    __swig_setmethods__["resolutionA"] = _gLucifer.lucEigenvectorsCrossSection_resolutionA_set
-    __swig_getmethods__["resolutionA"] = _gLucifer.lucEigenvectorsCrossSection_resolutionA_get
-    if _newclass:resolutionA = _swig_property(_gLucifer.lucEigenvectorsCrossSection_resolutionA_get, _gLucifer.lucEigenvectorsCrossSection_resolutionA_set)
-    __swig_setmethods__["resolutionB"] = _gLucifer.lucEigenvectorsCrossSection_resolutionB_set
-    __swig_getmethods__["resolutionB"] = _gLucifer.lucEigenvectorsCrossSection_resolutionB_get
-    if _newclass:resolutionB = _swig_property(_gLucifer.lucEigenvectorsCrossSection_resolutionB_get, _gLucifer.lucEigenvectorsCrossSection_resolutionB_set)
-    __swig_setmethods__["normal"] = _gLucifer.lucEigenvectorsCrossSection_normal_set
-    __swig_getmethods__["normal"] = _gLucifer.lucEigenvectorsCrossSection_normal_get
-    if _newclass:normal = _swig_property(_gLucifer.lucEigenvectorsCrossSection_normal_get, _gLucifer.lucEigenvectorsCrossSection_normal_set)
-    __swig_setmethods__["coord1"] = _gLucifer.lucEigenvectorsCrossSection_coord1_set
-    __swig_getmethods__["coord1"] = _gLucifer.lucEigenvectorsCrossSection_coord1_get
-    if _newclass:coord1 = _swig_property(_gLucifer.lucEigenvectorsCrossSection_coord1_get, _gLucifer.lucEigenvectorsCrossSection_coord1_set)
-    __swig_setmethods__["coord2"] = _gLucifer.lucEigenvectorsCrossSection_coord2_set
-    __swig_getmethods__["coord2"] = _gLucifer.lucEigenvectorsCrossSection_coord2_get
-    if _newclass:coord2 = _swig_property(_gLucifer.lucEigenvectorsCrossSection_coord2_get, _gLucifer.lucEigenvectorsCrossSection_coord2_set)
-    __swig_setmethods__["coord3"] = _gLucifer.lucEigenvectorsCrossSection_coord3_set
-    __swig_getmethods__["coord3"] = _gLucifer.lucEigenvectorsCrossSection_coord3_get
-    if _newclass:coord3 = _swig_property(_gLucifer.lucEigenvectorsCrossSection_coord3_get, _gLucifer.lucEigenvectorsCrossSection_coord3_set)
-    __swig_setmethods__["axis"] = _gLucifer.lucEigenvectorsCrossSection_axis_set
-    __swig_getmethods__["axis"] = _gLucifer.lucEigenvectorsCrossSection_axis_get
-    if _newclass:axis = _swig_property(_gLucifer.lucEigenvectorsCrossSection_axis_get, _gLucifer.lucEigenvectorsCrossSection_axis_set)
-    __swig_setmethods__["axis1"] = _gLucifer.lucEigenvectorsCrossSection_axis1_set
-    __swig_getmethods__["axis1"] = _gLucifer.lucEigenvectorsCrossSection_axis1_get
-    if _newclass:axis1 = _swig_property(_gLucifer.lucEigenvectorsCrossSection_axis1_get, _gLucifer.lucEigenvectorsCrossSection_axis1_set)
-    __swig_setmethods__["axis2"] = _gLucifer.lucEigenvectorsCrossSection_axis2_set
-    __swig_getmethods__["axis2"] = _gLucifer.lucEigenvectorsCrossSection_axis2_get
-    if _newclass:axis2 = _swig_property(_gLucifer.lucEigenvectorsCrossSection_axis2_get, _gLucifer.lucEigenvectorsCrossSection_axis2_set)
-    __swig_setmethods__["interpolate"] = _gLucifer.lucEigenvectorsCrossSection_interpolate_set
-    __swig_getmethods__["interpolate"] = _gLucifer.lucEigenvectorsCrossSection_interpolate_get
-    if _newclass:interpolate = _swig_property(_gLucifer.lucEigenvectorsCrossSection_interpolate_get, _gLucifer.lucEigenvectorsCrossSection_interpolate_set)
-    __swig_setmethods__["axisAligned"] = _gLucifer.lucEigenvectorsCrossSection_axisAligned_set
-    __swig_getmethods__["axisAligned"] = _gLucifer.lucEigenvectorsCrossSection_axisAligned_get
-    if _newclass:axisAligned = _swig_property(_gLucifer.lucEigenvectorsCrossSection_axisAligned_get, _gLucifer.lucEigenvectorsCrossSection_axisAligned_set)
-    __swig_setmethods__["gatherData"] = _gLucifer.lucEigenvectorsCrossSection_gatherData_set
-    __swig_getmethods__["gatherData"] = _gLucifer.lucEigenvectorsCrossSection_gatherData_get
-    if _newclass:gatherData = _swig_property(_gLucifer.lucEigenvectorsCrossSection_gatherData_get, _gLucifer.lucEigenvectorsCrossSection_gatherData_set)
-    __swig_setmethods__["offsetEdges"] = _gLucifer.lucEigenvectorsCrossSection_offsetEdges_set
-    __swig_getmethods__["offsetEdges"] = _gLucifer.lucEigenvectorsCrossSection_offsetEdges_get
-    if _newclass:offsetEdges = _swig_property(_gLucifer.lucEigenvectorsCrossSection_offsetEdges_get, _gLucifer.lucEigenvectorsCrossSection_offsetEdges_set)
-    __swig_setmethods__["cullface"] = _gLucifer.lucEigenvectorsCrossSection_cullface_set
-    __swig_getmethods__["cullface"] = _gLucifer.lucEigenvectorsCrossSection_cullface_get
-    if _newclass:cullface = _swig_property(_gLucifer.lucEigenvectorsCrossSection_cullface_get, _gLucifer.lucEigenvectorsCrossSection_cullface_set)
-    __swig_setmethods__["vertices"] = _gLucifer.lucEigenvectorsCrossSection_vertices_set
-    __swig_getmethods__["vertices"] = _gLucifer.lucEigenvectorsCrossSection_vertices_get
-    if _newclass:vertices = _swig_property(_gLucifer.lucEigenvectorsCrossSection_vertices_get, _gLucifer.lucEigenvectorsCrossSection_vertices_set)
-    __swig_setmethods__["values"] = _gLucifer.lucEigenvectorsCrossSection_values_set
-    __swig_getmethods__["values"] = _gLucifer.lucEigenvectorsCrossSection_values_get
-    if _newclass:values = _swig_property(_gLucifer.lucEigenvectorsCrossSection_values_get, _gLucifer.lucEigenvectorsCrossSection_values_set)
-    __swig_setmethods__["min"] = _gLucifer.lucEigenvectorsCrossSection_min_set
-    __swig_getmethods__["min"] = _gLucifer.lucEigenvectorsCrossSection_min_get
-    if _newclass:min = _swig_property(_gLucifer.lucEigenvectorsCrossSection_min_get, _gLucifer.lucEigenvectorsCrossSection_min_set)
-    __swig_setmethods__["max"] = _gLucifer.lucEigenvectorsCrossSection_max_set
-    __swig_getmethods__["max"] = _gLucifer.lucEigenvectorsCrossSection_max_get
-    if _newclass:max = _swig_property(_gLucifer.lucEigenvectorsCrossSection_max_get, _gLucifer.lucEigenvectorsCrossSection_max_set)
-    __swig_setmethods__["colours"] = _gLucifer.lucEigenvectorsCrossSection_colours_set
-    __swig_getmethods__["colours"] = _gLucifer.lucEigenvectorsCrossSection_colours_get
-    if _newclass:colours = _swig_property(_gLucifer.lucEigenvectorsCrossSection_colours_get, _gLucifer.lucEigenvectorsCrossSection_colours_set)
-    __swig_setmethods__["scaling"] = _gLucifer.lucEigenvectorsCrossSection_scaling_set
-    __swig_getmethods__["scaling"] = _gLucifer.lucEigenvectorsCrossSection_scaling_get
-    if _newclass:scaling = _swig_property(_gLucifer.lucEigenvectorsCrossSection_scaling_get, _gLucifer.lucEigenvectorsCrossSection_scaling_set)
-    __swig_setmethods__["arrowHead"] = _gLucifer.lucEigenvectorsCrossSection_arrowHead_set
-    __swig_getmethods__["arrowHead"] = _gLucifer.lucEigenvectorsCrossSection_arrowHead_get
-    if _newclass:arrowHead = _swig_property(_gLucifer.lucEigenvectorsCrossSection_arrowHead_get, _gLucifer.lucEigenvectorsCrossSection_arrowHead_set)
-    __swig_setmethods__["glyphs"] = _gLucifer.lucEigenvectorsCrossSection_glyphs_set
-    __swig_getmethods__["glyphs"] = _gLucifer.lucEigenvectorsCrossSection_glyphs_get
-    if _newclass:glyphs = _swig_property(_gLucifer.lucEigenvectorsCrossSection_glyphs_get, _gLucifer.lucEigenvectorsCrossSection_glyphs_set)
-    __swig_setmethods__["colourForNegative"] = _gLucifer.lucEigenvectorsCrossSection_colourForNegative_set
-    __swig_getmethods__["colourForNegative"] = _gLucifer.lucEigenvectorsCrossSection_colourForNegative_get
-    if _newclass:colourForNegative = _swig_property(_gLucifer.lucEigenvectorsCrossSection_colourForNegative_get, _gLucifer.lucEigenvectorsCrossSection_colourForNegative_set)
-    __swig_setmethods__["useEigenValue"] = _gLucifer.lucEigenvectorsCrossSection_useEigenValue_set
-    __swig_getmethods__["useEigenValue"] = _gLucifer.lucEigenvectorsCrossSection_useEigenValue_get
-    if _newclass:useEigenValue = _swig_property(_gLucifer.lucEigenvectorsCrossSection_useEigenValue_get, _gLucifer.lucEigenvectorsCrossSection_useEigenValue_set)
-    __swig_setmethods__["plotEigenVector"] = _gLucifer.lucEigenvectorsCrossSection_plotEigenVector_set
-    __swig_getmethods__["plotEigenVector"] = _gLucifer.lucEigenvectorsCrossSection_plotEigenVector_get
-    if _newclass:plotEigenVector = _swig_property(_gLucifer.lucEigenvectorsCrossSection_plotEigenVector_get, _gLucifer.lucEigenvectorsCrossSection_plotEigenVector_set)
-    __swig_setmethods__["plotEigenValue"] = _gLucifer.lucEigenvectorsCrossSection_plotEigenValue_set
-    __swig_getmethods__["plotEigenValue"] = _gLucifer.lucEigenvectorsCrossSection_plotEigenValue_get
-    if _newclass:plotEigenValue = _swig_property(_gLucifer.lucEigenvectorsCrossSection_plotEigenValue_get, _gLucifer.lucEigenvectorsCrossSection_plotEigenValue_set)
+    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucEigenvectors__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucEigenvectors__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucEigenvectors__sizeOfSelf_get, _gLucifer.lucEigenvectors__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucEigenvectors__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucEigenvectors__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucEigenvectors__deleteSelf_get, _gLucifer.lucEigenvectors__deleteSelf_set)
+    __swig_setmethods__["type"] = _gLucifer.lucEigenvectors_type_set
+    __swig_getmethods__["type"] = _gLucifer.lucEigenvectors_type_get
+    if _newclass:type = _swig_property(_gLucifer.lucEigenvectors_type_get, _gLucifer.lucEigenvectors_type_set)
+    __swig_setmethods__["nRefs"] = _gLucifer.lucEigenvectors_nRefs_set
+    __swig_getmethods__["nRefs"] = _gLucifer.lucEigenvectors_nRefs_get
+    if _newclass:nRefs = _swig_property(_gLucifer.lucEigenvectors_nRefs_get, _gLucifer.lucEigenvectors_nRefs_set)
+    __swig_setmethods__["_delete"] = _gLucifer.lucEigenvectors__delete_set
+    __swig_getmethods__["_delete"] = _gLucifer.lucEigenvectors__delete_get
+    if _newclass:_delete = _swig_property(_gLucifer.lucEigenvectors__delete_get, _gLucifer.lucEigenvectors__delete_set)
+    __swig_setmethods__["_print"] = _gLucifer.lucEigenvectors__print_set
+    __swig_getmethods__["_print"] = _gLucifer.lucEigenvectors__print_get
+    if _newclass:_print = _swig_property(_gLucifer.lucEigenvectors__print_get, _gLucifer.lucEigenvectors__print_set)
+    __swig_setmethods__["_copy"] = _gLucifer.lucEigenvectors__copy_set
+    __swig_getmethods__["_copy"] = _gLucifer.lucEigenvectors__copy_get
+    if _newclass:_copy = _swig_property(_gLucifer.lucEigenvectors__copy_get, _gLucifer.lucEigenvectors__copy_set)
+    __swig_setmethods__["name"] = _gLucifer.lucEigenvectors_name_set
+    __swig_getmethods__["name"] = _gLucifer.lucEigenvectors_name_get
+    if _newclass:name = _swig_property(_gLucifer.lucEigenvectors_name_get, _gLucifer.lucEigenvectors_name_set)
+    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucEigenvectors_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucEigenvectors_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucEigenvectors_nameAllocationType_get, _gLucifer.lucEigenvectors_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucEigenvectors__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucEigenvectors__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucEigenvectors__defaultConstructor_get, _gLucifer.lucEigenvectors__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _gLucifer.lucEigenvectors__construct_set
+    __swig_getmethods__["_construct"] = _gLucifer.lucEigenvectors__construct_get
+    if _newclass:_construct = _swig_property(_gLucifer.lucEigenvectors__construct_get, _gLucifer.lucEigenvectors__construct_set)
+    __swig_setmethods__["_build"] = _gLucifer.lucEigenvectors__build_set
+    __swig_getmethods__["_build"] = _gLucifer.lucEigenvectors__build_get
+    if _newclass:_build = _swig_property(_gLucifer.lucEigenvectors__build_get, _gLucifer.lucEigenvectors__build_set)
+    __swig_setmethods__["_initialise"] = _gLucifer.lucEigenvectors__initialise_set
+    __swig_getmethods__["_initialise"] = _gLucifer.lucEigenvectors__initialise_get
+    if _newclass:_initialise = _swig_property(_gLucifer.lucEigenvectors__initialise_get, _gLucifer.lucEigenvectors__initialise_set)
+    __swig_setmethods__["_execute"] = _gLucifer.lucEigenvectors__execute_set
+    __swig_getmethods__["_execute"] = _gLucifer.lucEigenvectors__execute_get
+    if _newclass:_execute = _swig_property(_gLucifer.lucEigenvectors__execute_get, _gLucifer.lucEigenvectors__execute_set)
+    __swig_setmethods__["_destroy"] = _gLucifer.lucEigenvectors__destroy_set
+    __swig_getmethods__["_destroy"] = _gLucifer.lucEigenvectors__destroy_get
+    if _newclass:_destroy = _swig_property(_gLucifer.lucEigenvectors__destroy_get, _gLucifer.lucEigenvectors__destroy_set)
+    __swig_setmethods__["isConstructed"] = _gLucifer.lucEigenvectors_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _gLucifer.lucEigenvectors_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_gLucifer.lucEigenvectors_isConstructed_get, _gLucifer.lucEigenvectors_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _gLucifer.lucEigenvectors_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _gLucifer.lucEigenvectors_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_gLucifer.lucEigenvectors_isBuilt_get, _gLucifer.lucEigenvectors_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _gLucifer.lucEigenvectors_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _gLucifer.lucEigenvectors_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_gLucifer.lucEigenvectors_isInitialised_get, _gLucifer.lucEigenvectors_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _gLucifer.lucEigenvectors_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _gLucifer.lucEigenvectors_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_gLucifer.lucEigenvectors_hasExecuted_get, _gLucifer.lucEigenvectors_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _gLucifer.lucEigenvectors_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _gLucifer.lucEigenvectors_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_gLucifer.lucEigenvectors_isDestroyed_get, _gLucifer.lucEigenvectors_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _gLucifer.lucEigenvectors_constructType_set
+    __swig_getmethods__["constructType"] = _gLucifer.lucEigenvectors_constructType_get
+    if _newclass:constructType = _swig_property(_gLucifer.lucEigenvectors_constructType_get, _gLucifer.lucEigenvectors_constructType_set)
+    __swig_setmethods__["buildType"] = _gLucifer.lucEigenvectors_buildType_set
+    __swig_getmethods__["buildType"] = _gLucifer.lucEigenvectors_buildType_get
+    if _newclass:buildType = _swig_property(_gLucifer.lucEigenvectors_buildType_get, _gLucifer.lucEigenvectors_buildType_set)
+    __swig_setmethods__["initialiseType"] = _gLucifer.lucEigenvectors_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _gLucifer.lucEigenvectors_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_gLucifer.lucEigenvectors_initialiseType_get, _gLucifer.lucEigenvectors_initialiseType_set)
+    __swig_setmethods__["executeType"] = _gLucifer.lucEigenvectors_executeType_set
+    __swig_getmethods__["executeType"] = _gLucifer.lucEigenvectors_executeType_get
+    if _newclass:executeType = _swig_property(_gLucifer.lucEigenvectors_executeType_get, _gLucifer.lucEigenvectors_executeType_set)
+    __swig_setmethods__["destroyType"] = _gLucifer.lucEigenvectors_destroyType_set
+    __swig_getmethods__["destroyType"] = _gLucifer.lucEigenvectors_destroyType_get
+    if _newclass:destroyType = _swig_property(_gLucifer.lucEigenvectors_destroyType_get, _gLucifer.lucEigenvectors_destroyType_set)
+    __swig_setmethods__["context"] = _gLucifer.lucEigenvectors_context_set
+    __swig_getmethods__["context"] = _gLucifer.lucEigenvectors_context_get
+    if _newclass:context = _swig_property(_gLucifer.lucEigenvectors_context_get, _gLucifer.lucEigenvectors_context_set)
+    __swig_setmethods__["_setup"] = _gLucifer.lucEigenvectors__setup_set
+    __swig_getmethods__["_setup"] = _gLucifer.lucEigenvectors__setup_get
+    if _newclass:_setup = _swig_property(_gLucifer.lucEigenvectors__setup_get, _gLucifer.lucEigenvectors__setup_set)
+    __swig_setmethods__["_draw"] = _gLucifer.lucEigenvectors__draw_set
+    __swig_getmethods__["_draw"] = _gLucifer.lucEigenvectors__draw_get
+    if _newclass:_draw = _swig_property(_gLucifer.lucEigenvectors__draw_get, _gLucifer.lucEigenvectors__draw_set)
+    __swig_setmethods__["_cleanUp"] = _gLucifer.lucEigenvectors__cleanUp_set
+    __swig_getmethods__["_cleanUp"] = _gLucifer.lucEigenvectors__cleanUp_get
+    if _newclass:_cleanUp = _swig_property(_gLucifer.lucEigenvectors__cleanUp_get, _gLucifer.lucEigenvectors__cleanUp_set)
+    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucEigenvectors_needsToCleanUp_set
+    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucEigenvectors_needsToCleanUp_get
+    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucEigenvectors_needsToCleanUp_get, _gLucifer.lucEigenvectors_needsToCleanUp_set)
+    __swig_setmethods__["needsToDraw"] = _gLucifer.lucEigenvectors_needsToDraw_set
+    __swig_getmethods__["needsToDraw"] = _gLucifer.lucEigenvectors_needsToDraw_get
+    if _newclass:needsToDraw = _swig_property(_gLucifer.lucEigenvectors_needsToDraw_get, _gLucifer.lucEigenvectors_needsToDraw_set)
+    __swig_setmethods__["depthSort"] = _gLucifer.lucEigenvectors_depthSort_set
+    __swig_getmethods__["depthSort"] = _gLucifer.lucEigenvectors_depthSort_get
+    if _newclass:depthSort = _swig_property(_gLucifer.lucEigenvectors_depthSort_get, _gLucifer.lucEigenvectors_depthSort_set)
+    __swig_setmethods__["position"] = _gLucifer.lucEigenvectors_position_set
+    __swig_getmethods__["position"] = _gLucifer.lucEigenvectors_position_get
+    if _newclass:position = _swig_property(_gLucifer.lucEigenvectors_position_get, _gLucifer.lucEigenvectors_position_set)
+    __swig_setmethods__["lit"] = _gLucifer.lucEigenvectors_lit_set
+    __swig_getmethods__["lit"] = _gLucifer.lucEigenvectors_lit_get
+    if _newclass:lit = _swig_property(_gLucifer.lucEigenvectors_lit_get, _gLucifer.lucEigenvectors_lit_set)
+    __swig_setmethods__["disabled"] = _gLucifer.lucEigenvectors_disabled_set
+    __swig_getmethods__["disabled"] = _gLucifer.lucEigenvectors_disabled_get
+    if _newclass:disabled = _swig_property(_gLucifer.lucEigenvectors_disabled_get, _gLucifer.lucEigenvectors_disabled_set)
+    __swig_setmethods__["colourMap"] = _gLucifer.lucEigenvectors_colourMap_set
+    __swig_getmethods__["colourMap"] = _gLucifer.lucEigenvectors_colourMap_get
+    if _newclass:colourMap = _swig_property(_gLucifer.lucEigenvectors_colourMap_get, _gLucifer.lucEigenvectors_colourMap_set)
+    __swig_setmethods__["colour"] = _gLucifer.lucEigenvectors_colour_set
+    __swig_getmethods__["colour"] = _gLucifer.lucEigenvectors_colour_get
+    if _newclass:colour = _swig_property(_gLucifer.lucEigenvectors_colour_get, _gLucifer.lucEigenvectors_colour_set)
+    __swig_setmethods__["opacity"] = _gLucifer.lucEigenvectors_opacity_set
+    __swig_getmethods__["opacity"] = _gLucifer.lucEigenvectors_opacity_get
+    if _newclass:opacity = _swig_property(_gLucifer.lucEigenvectors_opacity_get, _gLucifer.lucEigenvectors_opacity_set)
+    __swig_setmethods__["wireframe"] = _gLucifer.lucEigenvectors_wireframe_set
+    __swig_getmethods__["wireframe"] = _gLucifer.lucEigenvectors_wireframe_get
+    if _newclass:wireframe = _swig_property(_gLucifer.lucEigenvectors_wireframe_get, _gLucifer.lucEigenvectors_wireframe_set)
+    __swig_setmethods__["lineWidth"] = _gLucifer.lucEigenvectors_lineWidth_set
+    __swig_getmethods__["lineWidth"] = _gLucifer.lucEigenvectors_lineWidth_get
+    if _newclass:lineWidth = _swig_property(_gLucifer.lucEigenvectors_lineWidth_get, _gLucifer.lucEigenvectors_lineWidth_set)
+    __swig_setmethods__["id"] = _gLucifer.lucEigenvectors_id_set
+    __swig_getmethods__["id"] = _gLucifer.lucEigenvectors_id_get
+    if _newclass:id = _swig_property(_gLucifer.lucEigenvectors_id_get, _gLucifer.lucEigenvectors_id_set)
+    __swig_setmethods__["properties"] = _gLucifer.lucEigenvectors_properties_set
+    __swig_getmethods__["properties"] = _gLucifer.lucEigenvectors_properties_get
+    if _newclass:properties = _swig_property(_gLucifer.lucEigenvectors_properties_get, _gLucifer.lucEigenvectors_properties_set)
+    __swig_setmethods__["fieldVariable"] = _gLucifer.lucEigenvectors_fieldVariable_set
+    __swig_getmethods__["fieldVariable"] = _gLucifer.lucEigenvectors_fieldVariable_get
+    if _newclass:fieldVariable = _swig_property(_gLucifer.lucEigenvectors_fieldVariable_get, _gLucifer.lucEigenvectors_fieldVariable_set)
+    __swig_setmethods__["value"] = _gLucifer.lucEigenvectors_value_set
+    __swig_getmethods__["value"] = _gLucifer.lucEigenvectors_value_get
+    if _newclass:value = _swig_property(_gLucifer.lucEigenvectors_value_get, _gLucifer.lucEigenvectors_value_set)
+    __swig_setmethods__["defaultResolution"] = _gLucifer.lucEigenvectors_defaultResolution_set
+    __swig_getmethods__["defaultResolution"] = _gLucifer.lucEigenvectors_defaultResolution_get
+    if _newclass:defaultResolution = _swig_property(_gLucifer.lucEigenvectors_defaultResolution_get, _gLucifer.lucEigenvectors_defaultResolution_set)
+    __swig_setmethods__["resolutionA"] = _gLucifer.lucEigenvectors_resolutionA_set
+    __swig_getmethods__["resolutionA"] = _gLucifer.lucEigenvectors_resolutionA_get
+    if _newclass:resolutionA = _swig_property(_gLucifer.lucEigenvectors_resolutionA_get, _gLucifer.lucEigenvectors_resolutionA_set)
+    __swig_setmethods__["resolutionB"] = _gLucifer.lucEigenvectors_resolutionB_set
+    __swig_getmethods__["resolutionB"] = _gLucifer.lucEigenvectors_resolutionB_get
+    if _newclass:resolutionB = _swig_property(_gLucifer.lucEigenvectors_resolutionB_get, _gLucifer.lucEigenvectors_resolutionB_set)
+    __swig_setmethods__["normal"] = _gLucifer.lucEigenvectors_normal_set
+    __swig_getmethods__["normal"] = _gLucifer.lucEigenvectors_normal_get
+    if _newclass:normal = _swig_property(_gLucifer.lucEigenvectors_normal_get, _gLucifer.lucEigenvectors_normal_set)
+    __swig_setmethods__["coord1"] = _gLucifer.lucEigenvectors_coord1_set
+    __swig_getmethods__["coord1"] = _gLucifer.lucEigenvectors_coord1_get
+    if _newclass:coord1 = _swig_property(_gLucifer.lucEigenvectors_coord1_get, _gLucifer.lucEigenvectors_coord1_set)
+    __swig_setmethods__["coord2"] = _gLucifer.lucEigenvectors_coord2_set
+    __swig_getmethods__["coord2"] = _gLucifer.lucEigenvectors_coord2_get
+    if _newclass:coord2 = _swig_property(_gLucifer.lucEigenvectors_coord2_get, _gLucifer.lucEigenvectors_coord2_set)
+    __swig_setmethods__["coord3"] = _gLucifer.lucEigenvectors_coord3_set
+    __swig_getmethods__["coord3"] = _gLucifer.lucEigenvectors_coord3_get
+    if _newclass:coord3 = _swig_property(_gLucifer.lucEigenvectors_coord3_get, _gLucifer.lucEigenvectors_coord3_set)
+    __swig_setmethods__["axis"] = _gLucifer.lucEigenvectors_axis_set
+    __swig_getmethods__["axis"] = _gLucifer.lucEigenvectors_axis_get
+    if _newclass:axis = _swig_property(_gLucifer.lucEigenvectors_axis_get, _gLucifer.lucEigenvectors_axis_set)
+    __swig_setmethods__["axis1"] = _gLucifer.lucEigenvectors_axis1_set
+    __swig_getmethods__["axis1"] = _gLucifer.lucEigenvectors_axis1_get
+    if _newclass:axis1 = _swig_property(_gLucifer.lucEigenvectors_axis1_get, _gLucifer.lucEigenvectors_axis1_set)
+    __swig_setmethods__["axis2"] = _gLucifer.lucEigenvectors_axis2_set
+    __swig_getmethods__["axis2"] = _gLucifer.lucEigenvectors_axis2_get
+    if _newclass:axis2 = _swig_property(_gLucifer.lucEigenvectors_axis2_get, _gLucifer.lucEigenvectors_axis2_set)
+    __swig_setmethods__["interpolate"] = _gLucifer.lucEigenvectors_interpolate_set
+    __swig_getmethods__["interpolate"] = _gLucifer.lucEigenvectors_interpolate_get
+    if _newclass:interpolate = _swig_property(_gLucifer.lucEigenvectors_interpolate_get, _gLucifer.lucEigenvectors_interpolate_set)
+    __swig_setmethods__["axisAligned"] = _gLucifer.lucEigenvectors_axisAligned_set
+    __swig_getmethods__["axisAligned"] = _gLucifer.lucEigenvectors_axisAligned_get
+    if _newclass:axisAligned = _swig_property(_gLucifer.lucEigenvectors_axisAligned_get, _gLucifer.lucEigenvectors_axisAligned_set)
+    __swig_setmethods__["gatherData"] = _gLucifer.lucEigenvectors_gatherData_set
+    __swig_getmethods__["gatherData"] = _gLucifer.lucEigenvectors_gatherData_get
+    if _newclass:gatherData = _swig_property(_gLucifer.lucEigenvectors_gatherData_get, _gLucifer.lucEigenvectors_gatherData_set)
+    __swig_setmethods__["offsetEdges"] = _gLucifer.lucEigenvectors_offsetEdges_set
+    __swig_getmethods__["offsetEdges"] = _gLucifer.lucEigenvectors_offsetEdges_get
+    if _newclass:offsetEdges = _swig_property(_gLucifer.lucEigenvectors_offsetEdges_get, _gLucifer.lucEigenvectors_offsetEdges_set)
+    __swig_setmethods__["cullface"] = _gLucifer.lucEigenvectors_cullface_set
+    __swig_getmethods__["cullface"] = _gLucifer.lucEigenvectors_cullface_get
+    if _newclass:cullface = _swig_property(_gLucifer.lucEigenvectors_cullface_get, _gLucifer.lucEigenvectors_cullface_set)
+    __swig_setmethods__["vertices"] = _gLucifer.lucEigenvectors_vertices_set
+    __swig_getmethods__["vertices"] = _gLucifer.lucEigenvectors_vertices_get
+    if _newclass:vertices = _swig_property(_gLucifer.lucEigenvectors_vertices_get, _gLucifer.lucEigenvectors_vertices_set)
+    __swig_setmethods__["values"] = _gLucifer.lucEigenvectors_values_set
+    __swig_getmethods__["values"] = _gLucifer.lucEigenvectors_values_get
+    if _newclass:values = _swig_property(_gLucifer.lucEigenvectors_values_get, _gLucifer.lucEigenvectors_values_set)
+    __swig_setmethods__["min"] = _gLucifer.lucEigenvectors_min_set
+    __swig_getmethods__["min"] = _gLucifer.lucEigenvectors_min_get
+    if _newclass:min = _swig_property(_gLucifer.lucEigenvectors_min_get, _gLucifer.lucEigenvectors_min_set)
+    __swig_setmethods__["max"] = _gLucifer.lucEigenvectors_max_set
+    __swig_getmethods__["max"] = _gLucifer.lucEigenvectors_max_get
+    if _newclass:max = _swig_property(_gLucifer.lucEigenvectors_max_get, _gLucifer.lucEigenvectors_max_set)
+    __swig_setmethods__["colours"] = _gLucifer.lucEigenvectors_colours_set
+    __swig_getmethods__["colours"] = _gLucifer.lucEigenvectors_colours_get
+    if _newclass:colours = _swig_property(_gLucifer.lucEigenvectors_colours_get, _gLucifer.lucEigenvectors_colours_set)
+    __swig_setmethods__["scaling"] = _gLucifer.lucEigenvectors_scaling_set
+    __swig_getmethods__["scaling"] = _gLucifer.lucEigenvectors_scaling_get
+    if _newclass:scaling = _swig_property(_gLucifer.lucEigenvectors_scaling_get, _gLucifer.lucEigenvectors_scaling_set)
+    __swig_setmethods__["arrowHead"] = _gLucifer.lucEigenvectors_arrowHead_set
+    __swig_getmethods__["arrowHead"] = _gLucifer.lucEigenvectors_arrowHead_get
+    if _newclass:arrowHead = _swig_property(_gLucifer.lucEigenvectors_arrowHead_get, _gLucifer.lucEigenvectors_arrowHead_set)
+    __swig_setmethods__["glyphs"] = _gLucifer.lucEigenvectors_glyphs_set
+    __swig_getmethods__["glyphs"] = _gLucifer.lucEigenvectors_glyphs_get
+    if _newclass:glyphs = _swig_property(_gLucifer.lucEigenvectors_glyphs_get, _gLucifer.lucEigenvectors_glyphs_set)
+    __swig_setmethods__["colourForNegative"] = _gLucifer.lucEigenvectors_colourForNegative_set
+    __swig_getmethods__["colourForNegative"] = _gLucifer.lucEigenvectors_colourForNegative_get
+    if _newclass:colourForNegative = _swig_property(_gLucifer.lucEigenvectors_colourForNegative_get, _gLucifer.lucEigenvectors_colourForNegative_set)
+    __swig_setmethods__["useEigenValue"] = _gLucifer.lucEigenvectors_useEigenValue_set
+    __swig_getmethods__["useEigenValue"] = _gLucifer.lucEigenvectors_useEigenValue_get
+    if _newclass:useEigenValue = _swig_property(_gLucifer.lucEigenvectors_useEigenValue_get, _gLucifer.lucEigenvectors_useEigenValue_set)
+    __swig_setmethods__["plotEigenVector"] = _gLucifer.lucEigenvectors_plotEigenVector_set
+    __swig_getmethods__["plotEigenVector"] = _gLucifer.lucEigenvectors_plotEigenVector_get
+    if _newclass:plotEigenVector = _swig_property(_gLucifer.lucEigenvectors_plotEigenVector_get, _gLucifer.lucEigenvectors_plotEigenVector_set)
+    __swig_setmethods__["plotEigenValue"] = _gLucifer.lucEigenvectors_plotEigenValue_set
+    __swig_getmethods__["plotEigenValue"] = _gLucifer.lucEigenvectors_plotEigenValue_get
+    if _newclass:plotEigenValue = _swig_property(_gLucifer.lucEigenvectors_plotEigenValue_get, _gLucifer.lucEigenvectors_plotEigenValue_set)
+    __swig_setmethods__["resolution"] = _gLucifer.lucEigenvectors_resolution_set
+    __swig_getmethods__["resolution"] = _gLucifer.lucEigenvectors_resolution_get
+    if _newclass:resolution = _swig_property(_gLucifer.lucEigenvectors_resolution_get, _gLucifer.lucEigenvectors_resolution_set)
     def __init__(self): 
-        this = _gLucifer.new_lucEigenvectorsCrossSection()
+        this = _gLucifer.new_lucEigenvectors()
         try: self.this.append(this)
         except: self.this = this
-    __swig_destroy__ = _gLucifer.delete_lucEigenvectorsCrossSection
+    __swig_destroy__ = _gLucifer.delete_lucEigenvectors
     __del__ = lambda self : None;
-lucEigenvectorsCrossSection_swigregister = _gLucifer.lucEigenvectorsCrossSection_swigregister
-lucEigenvectorsCrossSection_swigregister(lucEigenvectorsCrossSection)
-lucEigenvectorsCrossSection_Type = cvar.lucEigenvectorsCrossSection_Type
+lucEigenvectors_swigregister = _gLucifer.lucEigenvectors_swigregister
+lucEigenvectors_swigregister(lucEigenvectors)
+lucEigenvectors_Type = cvar.lucEigenvectors_Type
 
 
-def _lucEigenvectorsCrossSection_New(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_New(*args)
-_lucEigenvectorsCrossSection_New = _gLucifer._lucEigenvectorsCrossSection_New
+def _lucEigenvectors_New(*args):
+  return _gLucifer._lucEigenvectors_New(*args)
+_lucEigenvectors_New = _gLucifer._lucEigenvectors_New
 
-def _lucEigenvectorsCrossSection_Delete(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_Delete(*args)
-_lucEigenvectorsCrossSection_Delete = _gLucifer._lucEigenvectorsCrossSection_Delete
+def _lucEigenvectors_Delete(*args):
+  return _gLucifer._lucEigenvectors_Delete(*args)
+_lucEigenvectors_Delete = _gLucifer._lucEigenvectors_Delete
 
-def _lucEigenvectorsCrossSection_Print(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_Print(*args)
-_lucEigenvectorsCrossSection_Print = _gLucifer._lucEigenvectorsCrossSection_Print
+def _lucEigenvectors_Print(*args):
+  return _gLucifer._lucEigenvectors_Print(*args)
+_lucEigenvectors_Print = _gLucifer._lucEigenvectors_Print
 
-def _lucEigenvectorsCrossSection_DefaultNew(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_DefaultNew(*args)
-_lucEigenvectorsCrossSection_DefaultNew = _gLucifer._lucEigenvectorsCrossSection_DefaultNew
+def _lucEigenvectors_DefaultNew(*args):
+  return _gLucifer._lucEigenvectors_DefaultNew(*args)
+_lucEigenvectors_DefaultNew = _gLucifer._lucEigenvectors_DefaultNew
 
-def _lucEigenvectorsCrossSection_AssignFromXML(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_AssignFromXML(*args)
-_lucEigenvectorsCrossSection_AssignFromXML = _gLucifer._lucEigenvectorsCrossSection_AssignFromXML
+def _lucEigenvectors_AssignFromXML(*args):
+  return _gLucifer._lucEigenvectors_AssignFromXML(*args)
+_lucEigenvectors_AssignFromXML = _gLucifer._lucEigenvectors_AssignFromXML
 
-def _lucEigenvectorsCrossSection_Build(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_Build(*args)
-_lucEigenvectorsCrossSection_Build = _gLucifer._lucEigenvectorsCrossSection_Build
-
-def _lucEigenvectorsCrossSection_Initialise(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_Initialise(*args)
-_lucEigenvectorsCrossSection_Initialise = _gLucifer._lucEigenvectorsCrossSection_Initialise
-
-def _lucEigenvectorsCrossSection_Execute(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_Execute(*args)
-_lucEigenvectorsCrossSection_Execute = _gLucifer._lucEigenvectorsCrossSection_Execute
-
-def _lucEigenvectorsCrossSection_Destroy(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_Destroy(*args)
-_lucEigenvectorsCrossSection_Destroy = _gLucifer._lucEigenvectorsCrossSection_Destroy
-
-def _lucEigenvectorsCrossSection_Draw(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_Draw(*args)
-_lucEigenvectorsCrossSection_Draw = _gLucifer._lucEigenvectorsCrossSection_Draw
-
-def _lucEigenvectorsCrossSection_DrawCrossSection(*args):
-  return _gLucifer._lucEigenvectorsCrossSection_DrawCrossSection(*args)
-_lucEigenvectorsCrossSection_DrawCrossSection = _gLucifer._lucEigenvectorsCrossSection_DrawCrossSection
+def _lucEigenvectors_Draw(*args):
+  return _gLucifer._lucEigenvectors_Draw(*args)
+_lucEigenvectors_Draw = _gLucifer._lucEigenvectors_Draw
 class lucFeVariableSurface(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, lucFeVariableSurface, name, value)
@@ -4499,807 +4773,1361 @@ lucPlot_ReadDataFile = _gLucifer.lucPlot_ReadDataFile
 def _lucPlot_Draw(*args):
   return _gLucifer._lucPlot_Draw(*args)
 _lucPlot_Draw = _gLucifer._lucPlot_Draw
-class lucScalarFieldCrossSection(_object):
+class lucScalarField(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, lucScalarFieldCrossSection, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lucScalarField, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, lucScalarFieldCrossSection, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, lucScalarField, name)
     __repr__ = _swig_repr
-    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucScalarFieldCrossSection__sizeOfSelf_set
-    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucScalarFieldCrossSection__sizeOfSelf_get
-    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucScalarFieldCrossSection__sizeOfSelf_get, _gLucifer.lucScalarFieldCrossSection__sizeOfSelf_set)
-    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucScalarFieldCrossSection__deleteSelf_set
-    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucScalarFieldCrossSection__deleteSelf_get
-    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucScalarFieldCrossSection__deleteSelf_get, _gLucifer.lucScalarFieldCrossSection__deleteSelf_set)
-    __swig_setmethods__["type"] = _gLucifer.lucScalarFieldCrossSection_type_set
-    __swig_getmethods__["type"] = _gLucifer.lucScalarFieldCrossSection_type_get
-    if _newclass:type = _swig_property(_gLucifer.lucScalarFieldCrossSection_type_get, _gLucifer.lucScalarFieldCrossSection_type_set)
-    __swig_setmethods__["nRefs"] = _gLucifer.lucScalarFieldCrossSection_nRefs_set
-    __swig_getmethods__["nRefs"] = _gLucifer.lucScalarFieldCrossSection_nRefs_get
-    if _newclass:nRefs = _swig_property(_gLucifer.lucScalarFieldCrossSection_nRefs_get, _gLucifer.lucScalarFieldCrossSection_nRefs_set)
-    __swig_setmethods__["_delete"] = _gLucifer.lucScalarFieldCrossSection__delete_set
-    __swig_getmethods__["_delete"] = _gLucifer.lucScalarFieldCrossSection__delete_get
-    if _newclass:_delete = _swig_property(_gLucifer.lucScalarFieldCrossSection__delete_get, _gLucifer.lucScalarFieldCrossSection__delete_set)
-    __swig_setmethods__["_print"] = _gLucifer.lucScalarFieldCrossSection__print_set
-    __swig_getmethods__["_print"] = _gLucifer.lucScalarFieldCrossSection__print_get
-    if _newclass:_print = _swig_property(_gLucifer.lucScalarFieldCrossSection__print_get, _gLucifer.lucScalarFieldCrossSection__print_set)
-    __swig_setmethods__["_copy"] = _gLucifer.lucScalarFieldCrossSection__copy_set
-    __swig_getmethods__["_copy"] = _gLucifer.lucScalarFieldCrossSection__copy_get
-    if _newclass:_copy = _swig_property(_gLucifer.lucScalarFieldCrossSection__copy_get, _gLucifer.lucScalarFieldCrossSection__copy_set)
-    __swig_setmethods__["name"] = _gLucifer.lucScalarFieldCrossSection_name_set
-    __swig_getmethods__["name"] = _gLucifer.lucScalarFieldCrossSection_name_get
-    if _newclass:name = _swig_property(_gLucifer.lucScalarFieldCrossSection_name_get, _gLucifer.lucScalarFieldCrossSection_name_set)
-    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucScalarFieldCrossSection_nameAllocationType_set
-    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucScalarFieldCrossSection_nameAllocationType_get
-    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucScalarFieldCrossSection_nameAllocationType_get, _gLucifer.lucScalarFieldCrossSection_nameAllocationType_set)
-    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucScalarFieldCrossSection__defaultConstructor_set
-    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucScalarFieldCrossSection__defaultConstructor_get
-    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucScalarFieldCrossSection__defaultConstructor_get, _gLucifer.lucScalarFieldCrossSection__defaultConstructor_set)
-    __swig_setmethods__["_construct"] = _gLucifer.lucScalarFieldCrossSection__construct_set
-    __swig_getmethods__["_construct"] = _gLucifer.lucScalarFieldCrossSection__construct_get
-    if _newclass:_construct = _swig_property(_gLucifer.lucScalarFieldCrossSection__construct_get, _gLucifer.lucScalarFieldCrossSection__construct_set)
-    __swig_setmethods__["_build"] = _gLucifer.lucScalarFieldCrossSection__build_set
-    __swig_getmethods__["_build"] = _gLucifer.lucScalarFieldCrossSection__build_get
-    if _newclass:_build = _swig_property(_gLucifer.lucScalarFieldCrossSection__build_get, _gLucifer.lucScalarFieldCrossSection__build_set)
-    __swig_setmethods__["_initialise"] = _gLucifer.lucScalarFieldCrossSection__initialise_set
-    __swig_getmethods__["_initialise"] = _gLucifer.lucScalarFieldCrossSection__initialise_get
-    if _newclass:_initialise = _swig_property(_gLucifer.lucScalarFieldCrossSection__initialise_get, _gLucifer.lucScalarFieldCrossSection__initialise_set)
-    __swig_setmethods__["_execute"] = _gLucifer.lucScalarFieldCrossSection__execute_set
-    __swig_getmethods__["_execute"] = _gLucifer.lucScalarFieldCrossSection__execute_get
-    if _newclass:_execute = _swig_property(_gLucifer.lucScalarFieldCrossSection__execute_get, _gLucifer.lucScalarFieldCrossSection__execute_set)
-    __swig_setmethods__["_destroy"] = _gLucifer.lucScalarFieldCrossSection__destroy_set
-    __swig_getmethods__["_destroy"] = _gLucifer.lucScalarFieldCrossSection__destroy_get
-    if _newclass:_destroy = _swig_property(_gLucifer.lucScalarFieldCrossSection__destroy_get, _gLucifer.lucScalarFieldCrossSection__destroy_set)
-    __swig_setmethods__["isConstructed"] = _gLucifer.lucScalarFieldCrossSection_isConstructed_set
-    __swig_getmethods__["isConstructed"] = _gLucifer.lucScalarFieldCrossSection_isConstructed_get
-    if _newclass:isConstructed = _swig_property(_gLucifer.lucScalarFieldCrossSection_isConstructed_get, _gLucifer.lucScalarFieldCrossSection_isConstructed_set)
-    __swig_setmethods__["isBuilt"] = _gLucifer.lucScalarFieldCrossSection_isBuilt_set
-    __swig_getmethods__["isBuilt"] = _gLucifer.lucScalarFieldCrossSection_isBuilt_get
-    if _newclass:isBuilt = _swig_property(_gLucifer.lucScalarFieldCrossSection_isBuilt_get, _gLucifer.lucScalarFieldCrossSection_isBuilt_set)
-    __swig_setmethods__["isInitialised"] = _gLucifer.lucScalarFieldCrossSection_isInitialised_set
-    __swig_getmethods__["isInitialised"] = _gLucifer.lucScalarFieldCrossSection_isInitialised_get
-    if _newclass:isInitialised = _swig_property(_gLucifer.lucScalarFieldCrossSection_isInitialised_get, _gLucifer.lucScalarFieldCrossSection_isInitialised_set)
-    __swig_setmethods__["hasExecuted"] = _gLucifer.lucScalarFieldCrossSection_hasExecuted_set
-    __swig_getmethods__["hasExecuted"] = _gLucifer.lucScalarFieldCrossSection_hasExecuted_get
-    if _newclass:hasExecuted = _swig_property(_gLucifer.lucScalarFieldCrossSection_hasExecuted_get, _gLucifer.lucScalarFieldCrossSection_hasExecuted_set)
-    __swig_setmethods__["isDestroyed"] = _gLucifer.lucScalarFieldCrossSection_isDestroyed_set
-    __swig_getmethods__["isDestroyed"] = _gLucifer.lucScalarFieldCrossSection_isDestroyed_get
-    if _newclass:isDestroyed = _swig_property(_gLucifer.lucScalarFieldCrossSection_isDestroyed_get, _gLucifer.lucScalarFieldCrossSection_isDestroyed_set)
-    __swig_setmethods__["constructType"] = _gLucifer.lucScalarFieldCrossSection_constructType_set
-    __swig_getmethods__["constructType"] = _gLucifer.lucScalarFieldCrossSection_constructType_get
-    if _newclass:constructType = _swig_property(_gLucifer.lucScalarFieldCrossSection_constructType_get, _gLucifer.lucScalarFieldCrossSection_constructType_set)
-    __swig_setmethods__["buildType"] = _gLucifer.lucScalarFieldCrossSection_buildType_set
-    __swig_getmethods__["buildType"] = _gLucifer.lucScalarFieldCrossSection_buildType_get
-    if _newclass:buildType = _swig_property(_gLucifer.lucScalarFieldCrossSection_buildType_get, _gLucifer.lucScalarFieldCrossSection_buildType_set)
-    __swig_setmethods__["initialiseType"] = _gLucifer.lucScalarFieldCrossSection_initialiseType_set
-    __swig_getmethods__["initialiseType"] = _gLucifer.lucScalarFieldCrossSection_initialiseType_get
-    if _newclass:initialiseType = _swig_property(_gLucifer.lucScalarFieldCrossSection_initialiseType_get, _gLucifer.lucScalarFieldCrossSection_initialiseType_set)
-    __swig_setmethods__["executeType"] = _gLucifer.lucScalarFieldCrossSection_executeType_set
-    __swig_getmethods__["executeType"] = _gLucifer.lucScalarFieldCrossSection_executeType_get
-    if _newclass:executeType = _swig_property(_gLucifer.lucScalarFieldCrossSection_executeType_get, _gLucifer.lucScalarFieldCrossSection_executeType_set)
-    __swig_setmethods__["destroyType"] = _gLucifer.lucScalarFieldCrossSection_destroyType_set
-    __swig_getmethods__["destroyType"] = _gLucifer.lucScalarFieldCrossSection_destroyType_get
-    if _newclass:destroyType = _swig_property(_gLucifer.lucScalarFieldCrossSection_destroyType_get, _gLucifer.lucScalarFieldCrossSection_destroyType_set)
-    __swig_setmethods__["context"] = _gLucifer.lucScalarFieldCrossSection_context_set
-    __swig_getmethods__["context"] = _gLucifer.lucScalarFieldCrossSection_context_get
-    if _newclass:context = _swig_property(_gLucifer.lucScalarFieldCrossSection_context_get, _gLucifer.lucScalarFieldCrossSection_context_set)
-    __swig_setmethods__["_setup"] = _gLucifer.lucScalarFieldCrossSection__setup_set
-    __swig_getmethods__["_setup"] = _gLucifer.lucScalarFieldCrossSection__setup_get
-    if _newclass:_setup = _swig_property(_gLucifer.lucScalarFieldCrossSection__setup_get, _gLucifer.lucScalarFieldCrossSection__setup_set)
-    __swig_setmethods__["_draw"] = _gLucifer.lucScalarFieldCrossSection__draw_set
-    __swig_getmethods__["_draw"] = _gLucifer.lucScalarFieldCrossSection__draw_get
-    if _newclass:_draw = _swig_property(_gLucifer.lucScalarFieldCrossSection__draw_get, _gLucifer.lucScalarFieldCrossSection__draw_set)
-    __swig_setmethods__["_cleanUp"] = _gLucifer.lucScalarFieldCrossSection__cleanUp_set
-    __swig_getmethods__["_cleanUp"] = _gLucifer.lucScalarFieldCrossSection__cleanUp_get
-    if _newclass:_cleanUp = _swig_property(_gLucifer.lucScalarFieldCrossSection__cleanUp_get, _gLucifer.lucScalarFieldCrossSection__cleanUp_set)
-    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucScalarFieldCrossSection_needsToCleanUp_set
-    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucScalarFieldCrossSection_needsToCleanUp_get
-    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucScalarFieldCrossSection_needsToCleanUp_get, _gLucifer.lucScalarFieldCrossSection_needsToCleanUp_set)
-    __swig_setmethods__["needsToDraw"] = _gLucifer.lucScalarFieldCrossSection_needsToDraw_set
-    __swig_getmethods__["needsToDraw"] = _gLucifer.lucScalarFieldCrossSection_needsToDraw_get
-    if _newclass:needsToDraw = _swig_property(_gLucifer.lucScalarFieldCrossSection_needsToDraw_get, _gLucifer.lucScalarFieldCrossSection_needsToDraw_set)
-    __swig_setmethods__["depthSort"] = _gLucifer.lucScalarFieldCrossSection_depthSort_set
-    __swig_getmethods__["depthSort"] = _gLucifer.lucScalarFieldCrossSection_depthSort_get
-    if _newclass:depthSort = _swig_property(_gLucifer.lucScalarFieldCrossSection_depthSort_get, _gLucifer.lucScalarFieldCrossSection_depthSort_set)
-    __swig_setmethods__["position"] = _gLucifer.lucScalarFieldCrossSection_position_set
-    __swig_getmethods__["position"] = _gLucifer.lucScalarFieldCrossSection_position_get
-    if _newclass:position = _swig_property(_gLucifer.lucScalarFieldCrossSection_position_get, _gLucifer.lucScalarFieldCrossSection_position_set)
-    __swig_setmethods__["lit"] = _gLucifer.lucScalarFieldCrossSection_lit_set
-    __swig_getmethods__["lit"] = _gLucifer.lucScalarFieldCrossSection_lit_get
-    if _newclass:lit = _swig_property(_gLucifer.lucScalarFieldCrossSection_lit_get, _gLucifer.lucScalarFieldCrossSection_lit_set)
-    __swig_setmethods__["disabled"] = _gLucifer.lucScalarFieldCrossSection_disabled_set
-    __swig_getmethods__["disabled"] = _gLucifer.lucScalarFieldCrossSection_disabled_get
-    if _newclass:disabled = _swig_property(_gLucifer.lucScalarFieldCrossSection_disabled_get, _gLucifer.lucScalarFieldCrossSection_disabled_set)
-    __swig_setmethods__["colourMap"] = _gLucifer.lucScalarFieldCrossSection_colourMap_set
-    __swig_getmethods__["colourMap"] = _gLucifer.lucScalarFieldCrossSection_colourMap_get
-    if _newclass:colourMap = _swig_property(_gLucifer.lucScalarFieldCrossSection_colourMap_get, _gLucifer.lucScalarFieldCrossSection_colourMap_set)
-    __swig_setmethods__["colour"] = _gLucifer.lucScalarFieldCrossSection_colour_set
-    __swig_getmethods__["colour"] = _gLucifer.lucScalarFieldCrossSection_colour_get
-    if _newclass:colour = _swig_property(_gLucifer.lucScalarFieldCrossSection_colour_get, _gLucifer.lucScalarFieldCrossSection_colour_set)
-    __swig_setmethods__["opacity"] = _gLucifer.lucScalarFieldCrossSection_opacity_set
-    __swig_getmethods__["opacity"] = _gLucifer.lucScalarFieldCrossSection_opacity_get
-    if _newclass:opacity = _swig_property(_gLucifer.lucScalarFieldCrossSection_opacity_get, _gLucifer.lucScalarFieldCrossSection_opacity_set)
-    __swig_setmethods__["wireframe"] = _gLucifer.lucScalarFieldCrossSection_wireframe_set
-    __swig_getmethods__["wireframe"] = _gLucifer.lucScalarFieldCrossSection_wireframe_get
-    if _newclass:wireframe = _swig_property(_gLucifer.lucScalarFieldCrossSection_wireframe_get, _gLucifer.lucScalarFieldCrossSection_wireframe_set)
-    __swig_setmethods__["lineWidth"] = _gLucifer.lucScalarFieldCrossSection_lineWidth_set
-    __swig_getmethods__["lineWidth"] = _gLucifer.lucScalarFieldCrossSection_lineWidth_get
-    if _newclass:lineWidth = _swig_property(_gLucifer.lucScalarFieldCrossSection_lineWidth_get, _gLucifer.lucScalarFieldCrossSection_lineWidth_set)
-    __swig_setmethods__["id"] = _gLucifer.lucScalarFieldCrossSection_id_set
-    __swig_getmethods__["id"] = _gLucifer.lucScalarFieldCrossSection_id_get
-    if _newclass:id = _swig_property(_gLucifer.lucScalarFieldCrossSection_id_get, _gLucifer.lucScalarFieldCrossSection_id_set)
-    __swig_setmethods__["properties"] = _gLucifer.lucScalarFieldCrossSection_properties_set
-    __swig_getmethods__["properties"] = _gLucifer.lucScalarFieldCrossSection_properties_get
-    if _newclass:properties = _swig_property(_gLucifer.lucScalarFieldCrossSection_properties_get, _gLucifer.lucScalarFieldCrossSection_properties_set)
-    __swig_setmethods__["fieldVariable"] = _gLucifer.lucScalarFieldCrossSection_fieldVariable_set
-    __swig_getmethods__["fieldVariable"] = _gLucifer.lucScalarFieldCrossSection_fieldVariable_get
-    if _newclass:fieldVariable = _swig_property(_gLucifer.lucScalarFieldCrossSection_fieldVariable_get, _gLucifer.lucScalarFieldCrossSection_fieldVariable_set)
-    __swig_setmethods__["value"] = _gLucifer.lucScalarFieldCrossSection_value_set
-    __swig_getmethods__["value"] = _gLucifer.lucScalarFieldCrossSection_value_get
-    if _newclass:value = _swig_property(_gLucifer.lucScalarFieldCrossSection_value_get, _gLucifer.lucScalarFieldCrossSection_value_set)
-    __swig_setmethods__["defaultResolution"] = _gLucifer.lucScalarFieldCrossSection_defaultResolution_set
-    __swig_getmethods__["defaultResolution"] = _gLucifer.lucScalarFieldCrossSection_defaultResolution_get
-    if _newclass:defaultResolution = _swig_property(_gLucifer.lucScalarFieldCrossSection_defaultResolution_get, _gLucifer.lucScalarFieldCrossSection_defaultResolution_set)
-    __swig_setmethods__["resolutionA"] = _gLucifer.lucScalarFieldCrossSection_resolutionA_set
-    __swig_getmethods__["resolutionA"] = _gLucifer.lucScalarFieldCrossSection_resolutionA_get
-    if _newclass:resolutionA = _swig_property(_gLucifer.lucScalarFieldCrossSection_resolutionA_get, _gLucifer.lucScalarFieldCrossSection_resolutionA_set)
-    __swig_setmethods__["resolutionB"] = _gLucifer.lucScalarFieldCrossSection_resolutionB_set
-    __swig_getmethods__["resolutionB"] = _gLucifer.lucScalarFieldCrossSection_resolutionB_get
-    if _newclass:resolutionB = _swig_property(_gLucifer.lucScalarFieldCrossSection_resolutionB_get, _gLucifer.lucScalarFieldCrossSection_resolutionB_set)
-    __swig_setmethods__["normal"] = _gLucifer.lucScalarFieldCrossSection_normal_set
-    __swig_getmethods__["normal"] = _gLucifer.lucScalarFieldCrossSection_normal_get
-    if _newclass:normal = _swig_property(_gLucifer.lucScalarFieldCrossSection_normal_get, _gLucifer.lucScalarFieldCrossSection_normal_set)
-    __swig_setmethods__["coord1"] = _gLucifer.lucScalarFieldCrossSection_coord1_set
-    __swig_getmethods__["coord1"] = _gLucifer.lucScalarFieldCrossSection_coord1_get
-    if _newclass:coord1 = _swig_property(_gLucifer.lucScalarFieldCrossSection_coord1_get, _gLucifer.lucScalarFieldCrossSection_coord1_set)
-    __swig_setmethods__["coord2"] = _gLucifer.lucScalarFieldCrossSection_coord2_set
-    __swig_getmethods__["coord2"] = _gLucifer.lucScalarFieldCrossSection_coord2_get
-    if _newclass:coord2 = _swig_property(_gLucifer.lucScalarFieldCrossSection_coord2_get, _gLucifer.lucScalarFieldCrossSection_coord2_set)
-    __swig_setmethods__["coord3"] = _gLucifer.lucScalarFieldCrossSection_coord3_set
-    __swig_getmethods__["coord3"] = _gLucifer.lucScalarFieldCrossSection_coord3_get
-    if _newclass:coord3 = _swig_property(_gLucifer.lucScalarFieldCrossSection_coord3_get, _gLucifer.lucScalarFieldCrossSection_coord3_set)
-    __swig_setmethods__["axis"] = _gLucifer.lucScalarFieldCrossSection_axis_set
-    __swig_getmethods__["axis"] = _gLucifer.lucScalarFieldCrossSection_axis_get
-    if _newclass:axis = _swig_property(_gLucifer.lucScalarFieldCrossSection_axis_get, _gLucifer.lucScalarFieldCrossSection_axis_set)
-    __swig_setmethods__["axis1"] = _gLucifer.lucScalarFieldCrossSection_axis1_set
-    __swig_getmethods__["axis1"] = _gLucifer.lucScalarFieldCrossSection_axis1_get
-    if _newclass:axis1 = _swig_property(_gLucifer.lucScalarFieldCrossSection_axis1_get, _gLucifer.lucScalarFieldCrossSection_axis1_set)
-    __swig_setmethods__["axis2"] = _gLucifer.lucScalarFieldCrossSection_axis2_set
-    __swig_getmethods__["axis2"] = _gLucifer.lucScalarFieldCrossSection_axis2_get
-    if _newclass:axis2 = _swig_property(_gLucifer.lucScalarFieldCrossSection_axis2_get, _gLucifer.lucScalarFieldCrossSection_axis2_set)
-    __swig_setmethods__["interpolate"] = _gLucifer.lucScalarFieldCrossSection_interpolate_set
-    __swig_getmethods__["interpolate"] = _gLucifer.lucScalarFieldCrossSection_interpolate_get
-    if _newclass:interpolate = _swig_property(_gLucifer.lucScalarFieldCrossSection_interpolate_get, _gLucifer.lucScalarFieldCrossSection_interpolate_set)
-    __swig_setmethods__["axisAligned"] = _gLucifer.lucScalarFieldCrossSection_axisAligned_set
-    __swig_getmethods__["axisAligned"] = _gLucifer.lucScalarFieldCrossSection_axisAligned_get
-    if _newclass:axisAligned = _swig_property(_gLucifer.lucScalarFieldCrossSection_axisAligned_get, _gLucifer.lucScalarFieldCrossSection_axisAligned_set)
-    __swig_setmethods__["gatherData"] = _gLucifer.lucScalarFieldCrossSection_gatherData_set
-    __swig_getmethods__["gatherData"] = _gLucifer.lucScalarFieldCrossSection_gatherData_get
-    if _newclass:gatherData = _swig_property(_gLucifer.lucScalarFieldCrossSection_gatherData_get, _gLucifer.lucScalarFieldCrossSection_gatherData_set)
-    __swig_setmethods__["offsetEdges"] = _gLucifer.lucScalarFieldCrossSection_offsetEdges_set
-    __swig_getmethods__["offsetEdges"] = _gLucifer.lucScalarFieldCrossSection_offsetEdges_get
-    if _newclass:offsetEdges = _swig_property(_gLucifer.lucScalarFieldCrossSection_offsetEdges_get, _gLucifer.lucScalarFieldCrossSection_offsetEdges_set)
-    __swig_setmethods__["cullface"] = _gLucifer.lucScalarFieldCrossSection_cullface_set
-    __swig_getmethods__["cullface"] = _gLucifer.lucScalarFieldCrossSection_cullface_get
-    if _newclass:cullface = _swig_property(_gLucifer.lucScalarFieldCrossSection_cullface_get, _gLucifer.lucScalarFieldCrossSection_cullface_set)
-    __swig_setmethods__["vertices"] = _gLucifer.lucScalarFieldCrossSection_vertices_set
-    __swig_getmethods__["vertices"] = _gLucifer.lucScalarFieldCrossSection_vertices_get
-    if _newclass:vertices = _swig_property(_gLucifer.lucScalarFieldCrossSection_vertices_get, _gLucifer.lucScalarFieldCrossSection_vertices_set)
-    __swig_setmethods__["values"] = _gLucifer.lucScalarFieldCrossSection_values_set
-    __swig_getmethods__["values"] = _gLucifer.lucScalarFieldCrossSection_values_get
-    if _newclass:values = _swig_property(_gLucifer.lucScalarFieldCrossSection_values_get, _gLucifer.lucScalarFieldCrossSection_values_set)
-    __swig_setmethods__["min"] = _gLucifer.lucScalarFieldCrossSection_min_set
-    __swig_getmethods__["min"] = _gLucifer.lucScalarFieldCrossSection_min_get
-    if _newclass:min = _swig_property(_gLucifer.lucScalarFieldCrossSection_min_get, _gLucifer.lucScalarFieldCrossSection_min_set)
-    __swig_setmethods__["max"] = _gLucifer.lucScalarFieldCrossSection_max_set
-    __swig_getmethods__["max"] = _gLucifer.lucScalarFieldCrossSection_max_get
-    if _newclass:max = _swig_property(_gLucifer.lucScalarFieldCrossSection_max_get, _gLucifer.lucScalarFieldCrossSection_max_set)
+    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucScalarField__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucScalarField__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucScalarField__sizeOfSelf_get, _gLucifer.lucScalarField__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucScalarField__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucScalarField__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucScalarField__deleteSelf_get, _gLucifer.lucScalarField__deleteSelf_set)
+    __swig_setmethods__["type"] = _gLucifer.lucScalarField_type_set
+    __swig_getmethods__["type"] = _gLucifer.lucScalarField_type_get
+    if _newclass:type = _swig_property(_gLucifer.lucScalarField_type_get, _gLucifer.lucScalarField_type_set)
+    __swig_setmethods__["nRefs"] = _gLucifer.lucScalarField_nRefs_set
+    __swig_getmethods__["nRefs"] = _gLucifer.lucScalarField_nRefs_get
+    if _newclass:nRefs = _swig_property(_gLucifer.lucScalarField_nRefs_get, _gLucifer.lucScalarField_nRefs_set)
+    __swig_setmethods__["_delete"] = _gLucifer.lucScalarField__delete_set
+    __swig_getmethods__["_delete"] = _gLucifer.lucScalarField__delete_get
+    if _newclass:_delete = _swig_property(_gLucifer.lucScalarField__delete_get, _gLucifer.lucScalarField__delete_set)
+    __swig_setmethods__["_print"] = _gLucifer.lucScalarField__print_set
+    __swig_getmethods__["_print"] = _gLucifer.lucScalarField__print_get
+    if _newclass:_print = _swig_property(_gLucifer.lucScalarField__print_get, _gLucifer.lucScalarField__print_set)
+    __swig_setmethods__["_copy"] = _gLucifer.lucScalarField__copy_set
+    __swig_getmethods__["_copy"] = _gLucifer.lucScalarField__copy_get
+    if _newclass:_copy = _swig_property(_gLucifer.lucScalarField__copy_get, _gLucifer.lucScalarField__copy_set)
+    __swig_setmethods__["name"] = _gLucifer.lucScalarField_name_set
+    __swig_getmethods__["name"] = _gLucifer.lucScalarField_name_get
+    if _newclass:name = _swig_property(_gLucifer.lucScalarField_name_get, _gLucifer.lucScalarField_name_set)
+    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucScalarField_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucScalarField_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucScalarField_nameAllocationType_get, _gLucifer.lucScalarField_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucScalarField__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucScalarField__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucScalarField__defaultConstructor_get, _gLucifer.lucScalarField__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _gLucifer.lucScalarField__construct_set
+    __swig_getmethods__["_construct"] = _gLucifer.lucScalarField__construct_get
+    if _newclass:_construct = _swig_property(_gLucifer.lucScalarField__construct_get, _gLucifer.lucScalarField__construct_set)
+    __swig_setmethods__["_build"] = _gLucifer.lucScalarField__build_set
+    __swig_getmethods__["_build"] = _gLucifer.lucScalarField__build_get
+    if _newclass:_build = _swig_property(_gLucifer.lucScalarField__build_get, _gLucifer.lucScalarField__build_set)
+    __swig_setmethods__["_initialise"] = _gLucifer.lucScalarField__initialise_set
+    __swig_getmethods__["_initialise"] = _gLucifer.lucScalarField__initialise_get
+    if _newclass:_initialise = _swig_property(_gLucifer.lucScalarField__initialise_get, _gLucifer.lucScalarField__initialise_set)
+    __swig_setmethods__["_execute"] = _gLucifer.lucScalarField__execute_set
+    __swig_getmethods__["_execute"] = _gLucifer.lucScalarField__execute_get
+    if _newclass:_execute = _swig_property(_gLucifer.lucScalarField__execute_get, _gLucifer.lucScalarField__execute_set)
+    __swig_setmethods__["_destroy"] = _gLucifer.lucScalarField__destroy_set
+    __swig_getmethods__["_destroy"] = _gLucifer.lucScalarField__destroy_get
+    if _newclass:_destroy = _swig_property(_gLucifer.lucScalarField__destroy_get, _gLucifer.lucScalarField__destroy_set)
+    __swig_setmethods__["isConstructed"] = _gLucifer.lucScalarField_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _gLucifer.lucScalarField_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_gLucifer.lucScalarField_isConstructed_get, _gLucifer.lucScalarField_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _gLucifer.lucScalarField_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _gLucifer.lucScalarField_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_gLucifer.lucScalarField_isBuilt_get, _gLucifer.lucScalarField_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _gLucifer.lucScalarField_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _gLucifer.lucScalarField_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_gLucifer.lucScalarField_isInitialised_get, _gLucifer.lucScalarField_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _gLucifer.lucScalarField_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _gLucifer.lucScalarField_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_gLucifer.lucScalarField_hasExecuted_get, _gLucifer.lucScalarField_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _gLucifer.lucScalarField_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _gLucifer.lucScalarField_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_gLucifer.lucScalarField_isDestroyed_get, _gLucifer.lucScalarField_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _gLucifer.lucScalarField_constructType_set
+    __swig_getmethods__["constructType"] = _gLucifer.lucScalarField_constructType_get
+    if _newclass:constructType = _swig_property(_gLucifer.lucScalarField_constructType_get, _gLucifer.lucScalarField_constructType_set)
+    __swig_setmethods__["buildType"] = _gLucifer.lucScalarField_buildType_set
+    __swig_getmethods__["buildType"] = _gLucifer.lucScalarField_buildType_get
+    if _newclass:buildType = _swig_property(_gLucifer.lucScalarField_buildType_get, _gLucifer.lucScalarField_buildType_set)
+    __swig_setmethods__["initialiseType"] = _gLucifer.lucScalarField_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _gLucifer.lucScalarField_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_gLucifer.lucScalarField_initialiseType_get, _gLucifer.lucScalarField_initialiseType_set)
+    __swig_setmethods__["executeType"] = _gLucifer.lucScalarField_executeType_set
+    __swig_getmethods__["executeType"] = _gLucifer.lucScalarField_executeType_get
+    if _newclass:executeType = _swig_property(_gLucifer.lucScalarField_executeType_get, _gLucifer.lucScalarField_executeType_set)
+    __swig_setmethods__["destroyType"] = _gLucifer.lucScalarField_destroyType_set
+    __swig_getmethods__["destroyType"] = _gLucifer.lucScalarField_destroyType_get
+    if _newclass:destroyType = _swig_property(_gLucifer.lucScalarField_destroyType_get, _gLucifer.lucScalarField_destroyType_set)
+    __swig_setmethods__["context"] = _gLucifer.lucScalarField_context_set
+    __swig_getmethods__["context"] = _gLucifer.lucScalarField_context_get
+    if _newclass:context = _swig_property(_gLucifer.lucScalarField_context_get, _gLucifer.lucScalarField_context_set)
+    __swig_setmethods__["_setup"] = _gLucifer.lucScalarField__setup_set
+    __swig_getmethods__["_setup"] = _gLucifer.lucScalarField__setup_get
+    if _newclass:_setup = _swig_property(_gLucifer.lucScalarField__setup_get, _gLucifer.lucScalarField__setup_set)
+    __swig_setmethods__["_draw"] = _gLucifer.lucScalarField__draw_set
+    __swig_getmethods__["_draw"] = _gLucifer.lucScalarField__draw_get
+    if _newclass:_draw = _swig_property(_gLucifer.lucScalarField__draw_get, _gLucifer.lucScalarField__draw_set)
+    __swig_setmethods__["_cleanUp"] = _gLucifer.lucScalarField__cleanUp_set
+    __swig_getmethods__["_cleanUp"] = _gLucifer.lucScalarField__cleanUp_get
+    if _newclass:_cleanUp = _swig_property(_gLucifer.lucScalarField__cleanUp_get, _gLucifer.lucScalarField__cleanUp_set)
+    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucScalarField_needsToCleanUp_set
+    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucScalarField_needsToCleanUp_get
+    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucScalarField_needsToCleanUp_get, _gLucifer.lucScalarField_needsToCleanUp_set)
+    __swig_setmethods__["needsToDraw"] = _gLucifer.lucScalarField_needsToDraw_set
+    __swig_getmethods__["needsToDraw"] = _gLucifer.lucScalarField_needsToDraw_get
+    if _newclass:needsToDraw = _swig_property(_gLucifer.lucScalarField_needsToDraw_get, _gLucifer.lucScalarField_needsToDraw_set)
+    __swig_setmethods__["depthSort"] = _gLucifer.lucScalarField_depthSort_set
+    __swig_getmethods__["depthSort"] = _gLucifer.lucScalarField_depthSort_get
+    if _newclass:depthSort = _swig_property(_gLucifer.lucScalarField_depthSort_get, _gLucifer.lucScalarField_depthSort_set)
+    __swig_setmethods__["position"] = _gLucifer.lucScalarField_position_set
+    __swig_getmethods__["position"] = _gLucifer.lucScalarField_position_get
+    if _newclass:position = _swig_property(_gLucifer.lucScalarField_position_get, _gLucifer.lucScalarField_position_set)
+    __swig_setmethods__["lit"] = _gLucifer.lucScalarField_lit_set
+    __swig_getmethods__["lit"] = _gLucifer.lucScalarField_lit_get
+    if _newclass:lit = _swig_property(_gLucifer.lucScalarField_lit_get, _gLucifer.lucScalarField_lit_set)
+    __swig_setmethods__["disabled"] = _gLucifer.lucScalarField_disabled_set
+    __swig_getmethods__["disabled"] = _gLucifer.lucScalarField_disabled_get
+    if _newclass:disabled = _swig_property(_gLucifer.lucScalarField_disabled_get, _gLucifer.lucScalarField_disabled_set)
+    __swig_setmethods__["colourMap"] = _gLucifer.lucScalarField_colourMap_set
+    __swig_getmethods__["colourMap"] = _gLucifer.lucScalarField_colourMap_get
+    if _newclass:colourMap = _swig_property(_gLucifer.lucScalarField_colourMap_get, _gLucifer.lucScalarField_colourMap_set)
+    __swig_setmethods__["colour"] = _gLucifer.lucScalarField_colour_set
+    __swig_getmethods__["colour"] = _gLucifer.lucScalarField_colour_get
+    if _newclass:colour = _swig_property(_gLucifer.lucScalarField_colour_get, _gLucifer.lucScalarField_colour_set)
+    __swig_setmethods__["opacity"] = _gLucifer.lucScalarField_opacity_set
+    __swig_getmethods__["opacity"] = _gLucifer.lucScalarField_opacity_get
+    if _newclass:opacity = _swig_property(_gLucifer.lucScalarField_opacity_get, _gLucifer.lucScalarField_opacity_set)
+    __swig_setmethods__["wireframe"] = _gLucifer.lucScalarField_wireframe_set
+    __swig_getmethods__["wireframe"] = _gLucifer.lucScalarField_wireframe_get
+    if _newclass:wireframe = _swig_property(_gLucifer.lucScalarField_wireframe_get, _gLucifer.lucScalarField_wireframe_set)
+    __swig_setmethods__["lineWidth"] = _gLucifer.lucScalarField_lineWidth_set
+    __swig_getmethods__["lineWidth"] = _gLucifer.lucScalarField_lineWidth_get
+    if _newclass:lineWidth = _swig_property(_gLucifer.lucScalarField_lineWidth_get, _gLucifer.lucScalarField_lineWidth_set)
+    __swig_setmethods__["id"] = _gLucifer.lucScalarField_id_set
+    __swig_getmethods__["id"] = _gLucifer.lucScalarField_id_get
+    if _newclass:id = _swig_property(_gLucifer.lucScalarField_id_get, _gLucifer.lucScalarField_id_set)
+    __swig_setmethods__["properties"] = _gLucifer.lucScalarField_properties_set
+    __swig_getmethods__["properties"] = _gLucifer.lucScalarField_properties_get
+    if _newclass:properties = _swig_property(_gLucifer.lucScalarField_properties_get, _gLucifer.lucScalarField_properties_set)
+    __swig_setmethods__["fieldVariable"] = _gLucifer.lucScalarField_fieldVariable_set
+    __swig_getmethods__["fieldVariable"] = _gLucifer.lucScalarField_fieldVariable_get
+    if _newclass:fieldVariable = _swig_property(_gLucifer.lucScalarField_fieldVariable_get, _gLucifer.lucScalarField_fieldVariable_set)
+    __swig_setmethods__["value"] = _gLucifer.lucScalarField_value_set
+    __swig_getmethods__["value"] = _gLucifer.lucScalarField_value_get
+    if _newclass:value = _swig_property(_gLucifer.lucScalarField_value_get, _gLucifer.lucScalarField_value_set)
+    __swig_setmethods__["defaultResolution"] = _gLucifer.lucScalarField_defaultResolution_set
+    __swig_getmethods__["defaultResolution"] = _gLucifer.lucScalarField_defaultResolution_get
+    if _newclass:defaultResolution = _swig_property(_gLucifer.lucScalarField_defaultResolution_get, _gLucifer.lucScalarField_defaultResolution_set)
+    __swig_setmethods__["resolutionA"] = _gLucifer.lucScalarField_resolutionA_set
+    __swig_getmethods__["resolutionA"] = _gLucifer.lucScalarField_resolutionA_get
+    if _newclass:resolutionA = _swig_property(_gLucifer.lucScalarField_resolutionA_get, _gLucifer.lucScalarField_resolutionA_set)
+    __swig_setmethods__["resolutionB"] = _gLucifer.lucScalarField_resolutionB_set
+    __swig_getmethods__["resolutionB"] = _gLucifer.lucScalarField_resolutionB_get
+    if _newclass:resolutionB = _swig_property(_gLucifer.lucScalarField_resolutionB_get, _gLucifer.lucScalarField_resolutionB_set)
+    __swig_setmethods__["normal"] = _gLucifer.lucScalarField_normal_set
+    __swig_getmethods__["normal"] = _gLucifer.lucScalarField_normal_get
+    if _newclass:normal = _swig_property(_gLucifer.lucScalarField_normal_get, _gLucifer.lucScalarField_normal_set)
+    __swig_setmethods__["coord1"] = _gLucifer.lucScalarField_coord1_set
+    __swig_getmethods__["coord1"] = _gLucifer.lucScalarField_coord1_get
+    if _newclass:coord1 = _swig_property(_gLucifer.lucScalarField_coord1_get, _gLucifer.lucScalarField_coord1_set)
+    __swig_setmethods__["coord2"] = _gLucifer.lucScalarField_coord2_set
+    __swig_getmethods__["coord2"] = _gLucifer.lucScalarField_coord2_get
+    if _newclass:coord2 = _swig_property(_gLucifer.lucScalarField_coord2_get, _gLucifer.lucScalarField_coord2_set)
+    __swig_setmethods__["coord3"] = _gLucifer.lucScalarField_coord3_set
+    __swig_getmethods__["coord3"] = _gLucifer.lucScalarField_coord3_get
+    if _newclass:coord3 = _swig_property(_gLucifer.lucScalarField_coord3_get, _gLucifer.lucScalarField_coord3_set)
+    __swig_setmethods__["axis"] = _gLucifer.lucScalarField_axis_set
+    __swig_getmethods__["axis"] = _gLucifer.lucScalarField_axis_get
+    if _newclass:axis = _swig_property(_gLucifer.lucScalarField_axis_get, _gLucifer.lucScalarField_axis_set)
+    __swig_setmethods__["axis1"] = _gLucifer.lucScalarField_axis1_set
+    __swig_getmethods__["axis1"] = _gLucifer.lucScalarField_axis1_get
+    if _newclass:axis1 = _swig_property(_gLucifer.lucScalarField_axis1_get, _gLucifer.lucScalarField_axis1_set)
+    __swig_setmethods__["axis2"] = _gLucifer.lucScalarField_axis2_set
+    __swig_getmethods__["axis2"] = _gLucifer.lucScalarField_axis2_get
+    if _newclass:axis2 = _swig_property(_gLucifer.lucScalarField_axis2_get, _gLucifer.lucScalarField_axis2_set)
+    __swig_setmethods__["interpolate"] = _gLucifer.lucScalarField_interpolate_set
+    __swig_getmethods__["interpolate"] = _gLucifer.lucScalarField_interpolate_get
+    if _newclass:interpolate = _swig_property(_gLucifer.lucScalarField_interpolate_get, _gLucifer.lucScalarField_interpolate_set)
+    __swig_setmethods__["axisAligned"] = _gLucifer.lucScalarField_axisAligned_set
+    __swig_getmethods__["axisAligned"] = _gLucifer.lucScalarField_axisAligned_get
+    if _newclass:axisAligned = _swig_property(_gLucifer.lucScalarField_axisAligned_get, _gLucifer.lucScalarField_axisAligned_set)
+    __swig_setmethods__["gatherData"] = _gLucifer.lucScalarField_gatherData_set
+    __swig_getmethods__["gatherData"] = _gLucifer.lucScalarField_gatherData_get
+    if _newclass:gatherData = _swig_property(_gLucifer.lucScalarField_gatherData_get, _gLucifer.lucScalarField_gatherData_set)
+    __swig_setmethods__["offsetEdges"] = _gLucifer.lucScalarField_offsetEdges_set
+    __swig_getmethods__["offsetEdges"] = _gLucifer.lucScalarField_offsetEdges_get
+    if _newclass:offsetEdges = _swig_property(_gLucifer.lucScalarField_offsetEdges_get, _gLucifer.lucScalarField_offsetEdges_set)
+    __swig_setmethods__["cullface"] = _gLucifer.lucScalarField_cullface_set
+    __swig_getmethods__["cullface"] = _gLucifer.lucScalarField_cullface_get
+    if _newclass:cullface = _swig_property(_gLucifer.lucScalarField_cullface_get, _gLucifer.lucScalarField_cullface_set)
+    __swig_setmethods__["vertices"] = _gLucifer.lucScalarField_vertices_set
+    __swig_getmethods__["vertices"] = _gLucifer.lucScalarField_vertices_get
+    if _newclass:vertices = _swig_property(_gLucifer.lucScalarField_vertices_get, _gLucifer.lucScalarField_vertices_set)
+    __swig_setmethods__["values"] = _gLucifer.lucScalarField_values_set
+    __swig_getmethods__["values"] = _gLucifer.lucScalarField_values_get
+    if _newclass:values = _swig_property(_gLucifer.lucScalarField_values_get, _gLucifer.lucScalarField_values_set)
+    __swig_setmethods__["min"] = _gLucifer.lucScalarField_min_set
+    __swig_getmethods__["min"] = _gLucifer.lucScalarField_min_get
+    if _newclass:min = _swig_property(_gLucifer.lucScalarField_min_get, _gLucifer.lucScalarField_min_set)
+    __swig_setmethods__["max"] = _gLucifer.lucScalarField_max_set
+    __swig_getmethods__["max"] = _gLucifer.lucScalarField_max_get
+    if _newclass:max = _swig_property(_gLucifer.lucScalarField_max_get, _gLucifer.lucScalarField_max_set)
+    __swig_setmethods__["drawSides"] = _gLucifer.lucScalarField_drawSides_set
+    __swig_getmethods__["drawSides"] = _gLucifer.lucScalarField_drawSides_get
+    if _newclass:drawSides = _swig_property(_gLucifer.lucScalarField_drawSides_get, _gLucifer.lucScalarField_drawSides_set)
     def __init__(self): 
-        this = _gLucifer.new_lucScalarFieldCrossSection()
+        this = _gLucifer.new_lucScalarField()
         try: self.this.append(this)
         except: self.this = this
-    __swig_destroy__ = _gLucifer.delete_lucScalarFieldCrossSection
+    __swig_destroy__ = _gLucifer.delete_lucScalarField
     __del__ = lambda self : None;
-lucScalarFieldCrossSection_swigregister = _gLucifer.lucScalarFieldCrossSection_swigregister
-lucScalarFieldCrossSection_swigregister(lucScalarFieldCrossSection)
-lucScalarFieldCrossSection_Type = cvar.lucScalarFieldCrossSection_Type
+lucScalarField_swigregister = _gLucifer.lucScalarField_swigregister
+lucScalarField_swigregister(lucScalarField)
+lucScalarField_Type = cvar.lucScalarField_Type
 
 
-def _lucScalarFieldCrossSection_New(*args):
-  return _gLucifer._lucScalarFieldCrossSection_New(*args)
-_lucScalarFieldCrossSection_New = _gLucifer._lucScalarFieldCrossSection_New
+def _lucScalarField_New(*args):
+  return _gLucifer._lucScalarField_New(*args)
+_lucScalarField_New = _gLucifer._lucScalarField_New
 
-def _lucScalarFieldCrossSection_Delete(*args):
-  return _gLucifer._lucScalarFieldCrossSection_Delete(*args)
-_lucScalarFieldCrossSection_Delete = _gLucifer._lucScalarFieldCrossSection_Delete
+def _lucScalarField_Delete(*args):
+  return _gLucifer._lucScalarField_Delete(*args)
+_lucScalarField_Delete = _gLucifer._lucScalarField_Delete
 
-def _lucScalarFieldCrossSection_Print(*args):
-  return _gLucifer._lucScalarFieldCrossSection_Print(*args)
-_lucScalarFieldCrossSection_Print = _gLucifer._lucScalarFieldCrossSection_Print
+def _lucScalarField_Print(*args):
+  return _gLucifer._lucScalarField_Print(*args)
+_lucScalarField_Print = _gLucifer._lucScalarField_Print
 
-def _lucScalarFieldCrossSection_DefaultNew(*args):
-  return _gLucifer._lucScalarFieldCrossSection_DefaultNew(*args)
-_lucScalarFieldCrossSection_DefaultNew = _gLucifer._lucScalarFieldCrossSection_DefaultNew
+def _lucScalarField_DefaultNew(*args):
+  return _gLucifer._lucScalarField_DefaultNew(*args)
+_lucScalarField_DefaultNew = _gLucifer._lucScalarField_DefaultNew
 
-def _lucScalarFieldCrossSection_AssignFromXML(*args):
-  return _gLucifer._lucScalarFieldCrossSection_AssignFromXML(*args)
-_lucScalarFieldCrossSection_AssignFromXML = _gLucifer._lucScalarFieldCrossSection_AssignFromXML
+def _lucScalarField_AssignFromXML(*args):
+  return _gLucifer._lucScalarField_AssignFromXML(*args)
+_lucScalarField_AssignFromXML = _gLucifer._lucScalarField_AssignFromXML
 
-def _lucScalarFieldCrossSection_Build(*args):
-  return _gLucifer._lucScalarFieldCrossSection_Build(*args)
-_lucScalarFieldCrossSection_Build = _gLucifer._lucScalarFieldCrossSection_Build
-
-def _lucScalarFieldCrossSection_Initialise(*args):
-  return _gLucifer._lucScalarFieldCrossSection_Initialise(*args)
-_lucScalarFieldCrossSection_Initialise = _gLucifer._lucScalarFieldCrossSection_Initialise
-
-def _lucScalarFieldCrossSection_Execute(*args):
-  return _gLucifer._lucScalarFieldCrossSection_Execute(*args)
-_lucScalarFieldCrossSection_Execute = _gLucifer._lucScalarFieldCrossSection_Execute
-
-def _lucScalarFieldCrossSection_Destroy(*args):
-  return _gLucifer._lucScalarFieldCrossSection_Destroy(*args)
-_lucScalarFieldCrossSection_Destroy = _gLucifer._lucScalarFieldCrossSection_Destroy
-
-def _lucScalarFieldCrossSection_Draw(*args):
-  return _gLucifer._lucScalarFieldCrossSection_Draw(*args)
-_lucScalarFieldCrossSection_Draw = _gLucifer._lucScalarFieldCrossSection_Draw
-
-def lucScalarFieldCrossSection_DrawCrossSection(*args):
-  return _gLucifer.lucScalarFieldCrossSection_DrawCrossSection(*args)
-lucScalarFieldCrossSection_DrawCrossSection = _gLucifer.lucScalarFieldCrossSection_DrawCrossSection
-class lucScalarFieldOnMeshCrossSection(_object):
+def _lucScalarField_Draw(*args):
+  return _gLucifer._lucScalarField_Draw(*args)
+_lucScalarField_Draw = _gLucifer._lucScalarField_Draw
+class lucScalarFieldOnMesh(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, lucScalarFieldOnMeshCrossSection, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lucScalarFieldOnMesh, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, lucScalarFieldOnMeshCrossSection, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, lucScalarFieldOnMesh, name)
     __repr__ = _swig_repr
-    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucScalarFieldOnMeshCrossSection__sizeOfSelf_set
-    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucScalarFieldOnMeshCrossSection__sizeOfSelf_get
-    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__sizeOfSelf_get, _gLucifer.lucScalarFieldOnMeshCrossSection__sizeOfSelf_set)
-    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucScalarFieldOnMeshCrossSection__deleteSelf_set
-    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucScalarFieldOnMeshCrossSection__deleteSelf_get
-    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__deleteSelf_get, _gLucifer.lucScalarFieldOnMeshCrossSection__deleteSelf_set)
-    __swig_setmethods__["type"] = _gLucifer.lucScalarFieldOnMeshCrossSection_type_set
-    __swig_getmethods__["type"] = _gLucifer.lucScalarFieldOnMeshCrossSection_type_get
-    if _newclass:type = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_type_get, _gLucifer.lucScalarFieldOnMeshCrossSection_type_set)
-    __swig_setmethods__["nRefs"] = _gLucifer.lucScalarFieldOnMeshCrossSection_nRefs_set
-    __swig_getmethods__["nRefs"] = _gLucifer.lucScalarFieldOnMeshCrossSection_nRefs_get
-    if _newclass:nRefs = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_nRefs_get, _gLucifer.lucScalarFieldOnMeshCrossSection_nRefs_set)
-    __swig_setmethods__["_delete"] = _gLucifer.lucScalarFieldOnMeshCrossSection__delete_set
-    __swig_getmethods__["_delete"] = _gLucifer.lucScalarFieldOnMeshCrossSection__delete_get
-    if _newclass:_delete = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__delete_get, _gLucifer.lucScalarFieldOnMeshCrossSection__delete_set)
-    __swig_setmethods__["_print"] = _gLucifer.lucScalarFieldOnMeshCrossSection__print_set
-    __swig_getmethods__["_print"] = _gLucifer.lucScalarFieldOnMeshCrossSection__print_get
-    if _newclass:_print = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__print_get, _gLucifer.lucScalarFieldOnMeshCrossSection__print_set)
-    __swig_setmethods__["_copy"] = _gLucifer.lucScalarFieldOnMeshCrossSection__copy_set
-    __swig_getmethods__["_copy"] = _gLucifer.lucScalarFieldOnMeshCrossSection__copy_get
-    if _newclass:_copy = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__copy_get, _gLucifer.lucScalarFieldOnMeshCrossSection__copy_set)
-    __swig_setmethods__["name"] = _gLucifer.lucScalarFieldOnMeshCrossSection_name_set
-    __swig_getmethods__["name"] = _gLucifer.lucScalarFieldOnMeshCrossSection_name_get
-    if _newclass:name = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_name_get, _gLucifer.lucScalarFieldOnMeshCrossSection_name_set)
-    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_nameAllocationType_set
-    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_nameAllocationType_get
-    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_nameAllocationType_get, _gLucifer.lucScalarFieldOnMeshCrossSection_nameAllocationType_set)
-    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucScalarFieldOnMeshCrossSection__defaultConstructor_set
-    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucScalarFieldOnMeshCrossSection__defaultConstructor_get
-    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__defaultConstructor_get, _gLucifer.lucScalarFieldOnMeshCrossSection__defaultConstructor_set)
-    __swig_setmethods__["_construct"] = _gLucifer.lucScalarFieldOnMeshCrossSection__construct_set
-    __swig_getmethods__["_construct"] = _gLucifer.lucScalarFieldOnMeshCrossSection__construct_get
-    if _newclass:_construct = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__construct_get, _gLucifer.lucScalarFieldOnMeshCrossSection__construct_set)
-    __swig_setmethods__["_build"] = _gLucifer.lucScalarFieldOnMeshCrossSection__build_set
-    __swig_getmethods__["_build"] = _gLucifer.lucScalarFieldOnMeshCrossSection__build_get
-    if _newclass:_build = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__build_get, _gLucifer.lucScalarFieldOnMeshCrossSection__build_set)
-    __swig_setmethods__["_initialise"] = _gLucifer.lucScalarFieldOnMeshCrossSection__initialise_set
-    __swig_getmethods__["_initialise"] = _gLucifer.lucScalarFieldOnMeshCrossSection__initialise_get
-    if _newclass:_initialise = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__initialise_get, _gLucifer.lucScalarFieldOnMeshCrossSection__initialise_set)
-    __swig_setmethods__["_execute"] = _gLucifer.lucScalarFieldOnMeshCrossSection__execute_set
-    __swig_getmethods__["_execute"] = _gLucifer.lucScalarFieldOnMeshCrossSection__execute_get
-    if _newclass:_execute = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__execute_get, _gLucifer.lucScalarFieldOnMeshCrossSection__execute_set)
-    __swig_setmethods__["_destroy"] = _gLucifer.lucScalarFieldOnMeshCrossSection__destroy_set
-    __swig_getmethods__["_destroy"] = _gLucifer.lucScalarFieldOnMeshCrossSection__destroy_get
-    if _newclass:_destroy = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__destroy_get, _gLucifer.lucScalarFieldOnMeshCrossSection__destroy_set)
-    __swig_setmethods__["isConstructed"] = _gLucifer.lucScalarFieldOnMeshCrossSection_isConstructed_set
-    __swig_getmethods__["isConstructed"] = _gLucifer.lucScalarFieldOnMeshCrossSection_isConstructed_get
-    if _newclass:isConstructed = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_isConstructed_get, _gLucifer.lucScalarFieldOnMeshCrossSection_isConstructed_set)
-    __swig_setmethods__["isBuilt"] = _gLucifer.lucScalarFieldOnMeshCrossSection_isBuilt_set
-    __swig_getmethods__["isBuilt"] = _gLucifer.lucScalarFieldOnMeshCrossSection_isBuilt_get
-    if _newclass:isBuilt = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_isBuilt_get, _gLucifer.lucScalarFieldOnMeshCrossSection_isBuilt_set)
-    __swig_setmethods__["isInitialised"] = _gLucifer.lucScalarFieldOnMeshCrossSection_isInitialised_set
-    __swig_getmethods__["isInitialised"] = _gLucifer.lucScalarFieldOnMeshCrossSection_isInitialised_get
-    if _newclass:isInitialised = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_isInitialised_get, _gLucifer.lucScalarFieldOnMeshCrossSection_isInitialised_set)
-    __swig_setmethods__["hasExecuted"] = _gLucifer.lucScalarFieldOnMeshCrossSection_hasExecuted_set
-    __swig_getmethods__["hasExecuted"] = _gLucifer.lucScalarFieldOnMeshCrossSection_hasExecuted_get
-    if _newclass:hasExecuted = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_hasExecuted_get, _gLucifer.lucScalarFieldOnMeshCrossSection_hasExecuted_set)
-    __swig_setmethods__["isDestroyed"] = _gLucifer.lucScalarFieldOnMeshCrossSection_isDestroyed_set
-    __swig_getmethods__["isDestroyed"] = _gLucifer.lucScalarFieldOnMeshCrossSection_isDestroyed_get
-    if _newclass:isDestroyed = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_isDestroyed_get, _gLucifer.lucScalarFieldOnMeshCrossSection_isDestroyed_set)
-    __swig_setmethods__["constructType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_constructType_set
-    __swig_getmethods__["constructType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_constructType_get
-    if _newclass:constructType = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_constructType_get, _gLucifer.lucScalarFieldOnMeshCrossSection_constructType_set)
-    __swig_setmethods__["buildType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_buildType_set
-    __swig_getmethods__["buildType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_buildType_get
-    if _newclass:buildType = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_buildType_get, _gLucifer.lucScalarFieldOnMeshCrossSection_buildType_set)
-    __swig_setmethods__["initialiseType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_initialiseType_set
-    __swig_getmethods__["initialiseType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_initialiseType_get
-    if _newclass:initialiseType = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_initialiseType_get, _gLucifer.lucScalarFieldOnMeshCrossSection_initialiseType_set)
-    __swig_setmethods__["executeType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_executeType_set
-    __swig_getmethods__["executeType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_executeType_get
-    if _newclass:executeType = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_executeType_get, _gLucifer.lucScalarFieldOnMeshCrossSection_executeType_set)
-    __swig_setmethods__["destroyType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_destroyType_set
-    __swig_getmethods__["destroyType"] = _gLucifer.lucScalarFieldOnMeshCrossSection_destroyType_get
-    if _newclass:destroyType = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_destroyType_get, _gLucifer.lucScalarFieldOnMeshCrossSection_destroyType_set)
-    __swig_setmethods__["context"] = _gLucifer.lucScalarFieldOnMeshCrossSection_context_set
-    __swig_getmethods__["context"] = _gLucifer.lucScalarFieldOnMeshCrossSection_context_get
-    if _newclass:context = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_context_get, _gLucifer.lucScalarFieldOnMeshCrossSection_context_set)
-    __swig_setmethods__["_setup"] = _gLucifer.lucScalarFieldOnMeshCrossSection__setup_set
-    __swig_getmethods__["_setup"] = _gLucifer.lucScalarFieldOnMeshCrossSection__setup_get
-    if _newclass:_setup = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__setup_get, _gLucifer.lucScalarFieldOnMeshCrossSection__setup_set)
-    __swig_setmethods__["_draw"] = _gLucifer.lucScalarFieldOnMeshCrossSection__draw_set
-    __swig_getmethods__["_draw"] = _gLucifer.lucScalarFieldOnMeshCrossSection__draw_get
-    if _newclass:_draw = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__draw_get, _gLucifer.lucScalarFieldOnMeshCrossSection__draw_set)
-    __swig_setmethods__["_cleanUp"] = _gLucifer.lucScalarFieldOnMeshCrossSection__cleanUp_set
-    __swig_getmethods__["_cleanUp"] = _gLucifer.lucScalarFieldOnMeshCrossSection__cleanUp_get
-    if _newclass:_cleanUp = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection__cleanUp_get, _gLucifer.lucScalarFieldOnMeshCrossSection__cleanUp_set)
-    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucScalarFieldOnMeshCrossSection_needsToCleanUp_set
-    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucScalarFieldOnMeshCrossSection_needsToCleanUp_get
-    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_needsToCleanUp_get, _gLucifer.lucScalarFieldOnMeshCrossSection_needsToCleanUp_set)
-    __swig_setmethods__["needsToDraw"] = _gLucifer.lucScalarFieldOnMeshCrossSection_needsToDraw_set
-    __swig_getmethods__["needsToDraw"] = _gLucifer.lucScalarFieldOnMeshCrossSection_needsToDraw_get
-    if _newclass:needsToDraw = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_needsToDraw_get, _gLucifer.lucScalarFieldOnMeshCrossSection_needsToDraw_set)
-    __swig_setmethods__["depthSort"] = _gLucifer.lucScalarFieldOnMeshCrossSection_depthSort_set
-    __swig_getmethods__["depthSort"] = _gLucifer.lucScalarFieldOnMeshCrossSection_depthSort_get
-    if _newclass:depthSort = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_depthSort_get, _gLucifer.lucScalarFieldOnMeshCrossSection_depthSort_set)
-    __swig_setmethods__["position"] = _gLucifer.lucScalarFieldOnMeshCrossSection_position_set
-    __swig_getmethods__["position"] = _gLucifer.lucScalarFieldOnMeshCrossSection_position_get
-    if _newclass:position = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_position_get, _gLucifer.lucScalarFieldOnMeshCrossSection_position_set)
-    __swig_setmethods__["lit"] = _gLucifer.lucScalarFieldOnMeshCrossSection_lit_set
-    __swig_getmethods__["lit"] = _gLucifer.lucScalarFieldOnMeshCrossSection_lit_get
-    if _newclass:lit = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_lit_get, _gLucifer.lucScalarFieldOnMeshCrossSection_lit_set)
-    __swig_setmethods__["disabled"] = _gLucifer.lucScalarFieldOnMeshCrossSection_disabled_set
-    __swig_getmethods__["disabled"] = _gLucifer.lucScalarFieldOnMeshCrossSection_disabled_get
-    if _newclass:disabled = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_disabled_get, _gLucifer.lucScalarFieldOnMeshCrossSection_disabled_set)
-    __swig_setmethods__["colourMap"] = _gLucifer.lucScalarFieldOnMeshCrossSection_colourMap_set
-    __swig_getmethods__["colourMap"] = _gLucifer.lucScalarFieldOnMeshCrossSection_colourMap_get
-    if _newclass:colourMap = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_colourMap_get, _gLucifer.lucScalarFieldOnMeshCrossSection_colourMap_set)
-    __swig_setmethods__["colour"] = _gLucifer.lucScalarFieldOnMeshCrossSection_colour_set
-    __swig_getmethods__["colour"] = _gLucifer.lucScalarFieldOnMeshCrossSection_colour_get
-    if _newclass:colour = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_colour_get, _gLucifer.lucScalarFieldOnMeshCrossSection_colour_set)
-    __swig_setmethods__["opacity"] = _gLucifer.lucScalarFieldOnMeshCrossSection_opacity_set
-    __swig_getmethods__["opacity"] = _gLucifer.lucScalarFieldOnMeshCrossSection_opacity_get
-    if _newclass:opacity = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_opacity_get, _gLucifer.lucScalarFieldOnMeshCrossSection_opacity_set)
-    __swig_setmethods__["wireframe"] = _gLucifer.lucScalarFieldOnMeshCrossSection_wireframe_set
-    __swig_getmethods__["wireframe"] = _gLucifer.lucScalarFieldOnMeshCrossSection_wireframe_get
-    if _newclass:wireframe = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_wireframe_get, _gLucifer.lucScalarFieldOnMeshCrossSection_wireframe_set)
-    __swig_setmethods__["lineWidth"] = _gLucifer.lucScalarFieldOnMeshCrossSection_lineWidth_set
-    __swig_getmethods__["lineWidth"] = _gLucifer.lucScalarFieldOnMeshCrossSection_lineWidth_get
-    if _newclass:lineWidth = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_lineWidth_get, _gLucifer.lucScalarFieldOnMeshCrossSection_lineWidth_set)
-    __swig_setmethods__["id"] = _gLucifer.lucScalarFieldOnMeshCrossSection_id_set
-    __swig_getmethods__["id"] = _gLucifer.lucScalarFieldOnMeshCrossSection_id_get
-    if _newclass:id = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_id_get, _gLucifer.lucScalarFieldOnMeshCrossSection_id_set)
-    __swig_setmethods__["properties"] = _gLucifer.lucScalarFieldOnMeshCrossSection_properties_set
-    __swig_getmethods__["properties"] = _gLucifer.lucScalarFieldOnMeshCrossSection_properties_get
-    if _newclass:properties = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_properties_get, _gLucifer.lucScalarFieldOnMeshCrossSection_properties_set)
-    __swig_setmethods__["fieldVariable"] = _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariable_set
-    __swig_getmethods__["fieldVariable"] = _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariable_get
-    if _newclass:fieldVariable = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariable_get, _gLucifer.lucScalarFieldOnMeshCrossSection_fieldVariable_set)
-    __swig_setmethods__["value"] = _gLucifer.lucScalarFieldOnMeshCrossSection_value_set
-    __swig_getmethods__["value"] = _gLucifer.lucScalarFieldOnMeshCrossSection_value_get
-    if _newclass:value = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_value_get, _gLucifer.lucScalarFieldOnMeshCrossSection_value_set)
-    __swig_setmethods__["defaultResolution"] = _gLucifer.lucScalarFieldOnMeshCrossSection_defaultResolution_set
-    __swig_getmethods__["defaultResolution"] = _gLucifer.lucScalarFieldOnMeshCrossSection_defaultResolution_get
-    if _newclass:defaultResolution = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_defaultResolution_get, _gLucifer.lucScalarFieldOnMeshCrossSection_defaultResolution_set)
-    __swig_setmethods__["resolutionA"] = _gLucifer.lucScalarFieldOnMeshCrossSection_resolutionA_set
-    __swig_getmethods__["resolutionA"] = _gLucifer.lucScalarFieldOnMeshCrossSection_resolutionA_get
-    if _newclass:resolutionA = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_resolutionA_get, _gLucifer.lucScalarFieldOnMeshCrossSection_resolutionA_set)
-    __swig_setmethods__["resolutionB"] = _gLucifer.lucScalarFieldOnMeshCrossSection_resolutionB_set
-    __swig_getmethods__["resolutionB"] = _gLucifer.lucScalarFieldOnMeshCrossSection_resolutionB_get
-    if _newclass:resolutionB = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_resolutionB_get, _gLucifer.lucScalarFieldOnMeshCrossSection_resolutionB_set)
-    __swig_setmethods__["normal"] = _gLucifer.lucScalarFieldOnMeshCrossSection_normal_set
-    __swig_getmethods__["normal"] = _gLucifer.lucScalarFieldOnMeshCrossSection_normal_get
-    if _newclass:normal = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_normal_get, _gLucifer.lucScalarFieldOnMeshCrossSection_normal_set)
-    __swig_setmethods__["coord1"] = _gLucifer.lucScalarFieldOnMeshCrossSection_coord1_set
-    __swig_getmethods__["coord1"] = _gLucifer.lucScalarFieldOnMeshCrossSection_coord1_get
-    if _newclass:coord1 = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_coord1_get, _gLucifer.lucScalarFieldOnMeshCrossSection_coord1_set)
-    __swig_setmethods__["coord2"] = _gLucifer.lucScalarFieldOnMeshCrossSection_coord2_set
-    __swig_getmethods__["coord2"] = _gLucifer.lucScalarFieldOnMeshCrossSection_coord2_get
-    if _newclass:coord2 = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_coord2_get, _gLucifer.lucScalarFieldOnMeshCrossSection_coord2_set)
-    __swig_setmethods__["coord3"] = _gLucifer.lucScalarFieldOnMeshCrossSection_coord3_set
-    __swig_getmethods__["coord3"] = _gLucifer.lucScalarFieldOnMeshCrossSection_coord3_get
-    if _newclass:coord3 = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_coord3_get, _gLucifer.lucScalarFieldOnMeshCrossSection_coord3_set)
-    __swig_setmethods__["axis"] = _gLucifer.lucScalarFieldOnMeshCrossSection_axis_set
-    __swig_getmethods__["axis"] = _gLucifer.lucScalarFieldOnMeshCrossSection_axis_get
-    if _newclass:axis = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_axis_get, _gLucifer.lucScalarFieldOnMeshCrossSection_axis_set)
-    __swig_setmethods__["axis1"] = _gLucifer.lucScalarFieldOnMeshCrossSection_axis1_set
-    __swig_getmethods__["axis1"] = _gLucifer.lucScalarFieldOnMeshCrossSection_axis1_get
-    if _newclass:axis1 = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_axis1_get, _gLucifer.lucScalarFieldOnMeshCrossSection_axis1_set)
-    __swig_setmethods__["axis2"] = _gLucifer.lucScalarFieldOnMeshCrossSection_axis2_set
-    __swig_getmethods__["axis2"] = _gLucifer.lucScalarFieldOnMeshCrossSection_axis2_get
-    if _newclass:axis2 = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_axis2_get, _gLucifer.lucScalarFieldOnMeshCrossSection_axis2_set)
-    __swig_setmethods__["interpolate"] = _gLucifer.lucScalarFieldOnMeshCrossSection_interpolate_set
-    __swig_getmethods__["interpolate"] = _gLucifer.lucScalarFieldOnMeshCrossSection_interpolate_get
-    if _newclass:interpolate = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_interpolate_get, _gLucifer.lucScalarFieldOnMeshCrossSection_interpolate_set)
-    __swig_setmethods__["axisAligned"] = _gLucifer.lucScalarFieldOnMeshCrossSection_axisAligned_set
-    __swig_getmethods__["axisAligned"] = _gLucifer.lucScalarFieldOnMeshCrossSection_axisAligned_get
-    if _newclass:axisAligned = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_axisAligned_get, _gLucifer.lucScalarFieldOnMeshCrossSection_axisAligned_set)
-    __swig_setmethods__["gatherData"] = _gLucifer.lucScalarFieldOnMeshCrossSection_gatherData_set
-    __swig_getmethods__["gatherData"] = _gLucifer.lucScalarFieldOnMeshCrossSection_gatherData_get
-    if _newclass:gatherData = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_gatherData_get, _gLucifer.lucScalarFieldOnMeshCrossSection_gatherData_set)
-    __swig_setmethods__["offsetEdges"] = _gLucifer.lucScalarFieldOnMeshCrossSection_offsetEdges_set
-    __swig_getmethods__["offsetEdges"] = _gLucifer.lucScalarFieldOnMeshCrossSection_offsetEdges_get
-    if _newclass:offsetEdges = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_offsetEdges_get, _gLucifer.lucScalarFieldOnMeshCrossSection_offsetEdges_set)
-    __swig_setmethods__["cullface"] = _gLucifer.lucScalarFieldOnMeshCrossSection_cullface_set
-    __swig_getmethods__["cullface"] = _gLucifer.lucScalarFieldOnMeshCrossSection_cullface_get
-    if _newclass:cullface = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_cullface_get, _gLucifer.lucScalarFieldOnMeshCrossSection_cullface_set)
-    __swig_setmethods__["vertices"] = _gLucifer.lucScalarFieldOnMeshCrossSection_vertices_set
-    __swig_getmethods__["vertices"] = _gLucifer.lucScalarFieldOnMeshCrossSection_vertices_get
-    if _newclass:vertices = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_vertices_get, _gLucifer.lucScalarFieldOnMeshCrossSection_vertices_set)
-    __swig_setmethods__["values"] = _gLucifer.lucScalarFieldOnMeshCrossSection_values_set
-    __swig_getmethods__["values"] = _gLucifer.lucScalarFieldOnMeshCrossSection_values_get
-    if _newclass:values = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_values_get, _gLucifer.lucScalarFieldOnMeshCrossSection_values_set)
-    __swig_setmethods__["min"] = _gLucifer.lucScalarFieldOnMeshCrossSection_min_set
-    __swig_getmethods__["min"] = _gLucifer.lucScalarFieldOnMeshCrossSection_min_get
-    if _newclass:min = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_min_get, _gLucifer.lucScalarFieldOnMeshCrossSection_min_set)
-    __swig_setmethods__["max"] = _gLucifer.lucScalarFieldOnMeshCrossSection_max_set
-    __swig_getmethods__["max"] = _gLucifer.lucScalarFieldOnMeshCrossSection_max_get
-    if _newclass:max = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_max_get, _gLucifer.lucScalarFieldOnMeshCrossSection_max_set)
-    __swig_setmethods__["vertexGridHandle"] = _gLucifer.lucScalarFieldOnMeshCrossSection_vertexGridHandle_set
-    __swig_getmethods__["vertexGridHandle"] = _gLucifer.lucScalarFieldOnMeshCrossSection_vertexGridHandle_get
-    if _newclass:vertexGridHandle = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_vertexGridHandle_get, _gLucifer.lucScalarFieldOnMeshCrossSection_vertexGridHandle_set)
-    __swig_setmethods__["dim"] = _gLucifer.lucScalarFieldOnMeshCrossSection_dim_set
-    __swig_getmethods__["dim"] = _gLucifer.lucScalarFieldOnMeshCrossSection_dim_get
-    if _newclass:dim = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_dim_get, _gLucifer.lucScalarFieldOnMeshCrossSection_dim_set)
-    __swig_setmethods__["fieldDim"] = _gLucifer.lucScalarFieldOnMeshCrossSection_fieldDim_set
-    __swig_getmethods__["fieldDim"] = _gLucifer.lucScalarFieldOnMeshCrossSection_fieldDim_get
-    if _newclass:fieldDim = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_fieldDim_get, _gLucifer.lucScalarFieldOnMeshCrossSection_fieldDim_set)
-    __swig_setmethods__["flipNormals"] = _gLucifer.lucScalarFieldOnMeshCrossSection_flipNormals_set
-    __swig_getmethods__["flipNormals"] = _gLucifer.lucScalarFieldOnMeshCrossSection_flipNormals_get
-    if _newclass:flipNormals = _swig_property(_gLucifer.lucScalarFieldOnMeshCrossSection_flipNormals_get, _gLucifer.lucScalarFieldOnMeshCrossSection_flipNormals_set)
+    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucScalarFieldOnMesh__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucScalarFieldOnMesh__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucScalarFieldOnMesh__sizeOfSelf_get, _gLucifer.lucScalarFieldOnMesh__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucScalarFieldOnMesh__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucScalarFieldOnMesh__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucScalarFieldOnMesh__deleteSelf_get, _gLucifer.lucScalarFieldOnMesh__deleteSelf_set)
+    __swig_setmethods__["type"] = _gLucifer.lucScalarFieldOnMesh_type_set
+    __swig_getmethods__["type"] = _gLucifer.lucScalarFieldOnMesh_type_get
+    if _newclass:type = _swig_property(_gLucifer.lucScalarFieldOnMesh_type_get, _gLucifer.lucScalarFieldOnMesh_type_set)
+    __swig_setmethods__["nRefs"] = _gLucifer.lucScalarFieldOnMesh_nRefs_set
+    __swig_getmethods__["nRefs"] = _gLucifer.lucScalarFieldOnMesh_nRefs_get
+    if _newclass:nRefs = _swig_property(_gLucifer.lucScalarFieldOnMesh_nRefs_get, _gLucifer.lucScalarFieldOnMesh_nRefs_set)
+    __swig_setmethods__["_delete"] = _gLucifer.lucScalarFieldOnMesh__delete_set
+    __swig_getmethods__["_delete"] = _gLucifer.lucScalarFieldOnMesh__delete_get
+    if _newclass:_delete = _swig_property(_gLucifer.lucScalarFieldOnMesh__delete_get, _gLucifer.lucScalarFieldOnMesh__delete_set)
+    __swig_setmethods__["_print"] = _gLucifer.lucScalarFieldOnMesh__print_set
+    __swig_getmethods__["_print"] = _gLucifer.lucScalarFieldOnMesh__print_get
+    if _newclass:_print = _swig_property(_gLucifer.lucScalarFieldOnMesh__print_get, _gLucifer.lucScalarFieldOnMesh__print_set)
+    __swig_setmethods__["_copy"] = _gLucifer.lucScalarFieldOnMesh__copy_set
+    __swig_getmethods__["_copy"] = _gLucifer.lucScalarFieldOnMesh__copy_get
+    if _newclass:_copy = _swig_property(_gLucifer.lucScalarFieldOnMesh__copy_get, _gLucifer.lucScalarFieldOnMesh__copy_set)
+    __swig_setmethods__["name"] = _gLucifer.lucScalarFieldOnMesh_name_set
+    __swig_getmethods__["name"] = _gLucifer.lucScalarFieldOnMesh_name_get
+    if _newclass:name = _swig_property(_gLucifer.lucScalarFieldOnMesh_name_get, _gLucifer.lucScalarFieldOnMesh_name_set)
+    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucScalarFieldOnMesh_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucScalarFieldOnMesh_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucScalarFieldOnMesh_nameAllocationType_get, _gLucifer.lucScalarFieldOnMesh_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucScalarFieldOnMesh__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucScalarFieldOnMesh__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucScalarFieldOnMesh__defaultConstructor_get, _gLucifer.lucScalarFieldOnMesh__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _gLucifer.lucScalarFieldOnMesh__construct_set
+    __swig_getmethods__["_construct"] = _gLucifer.lucScalarFieldOnMesh__construct_get
+    if _newclass:_construct = _swig_property(_gLucifer.lucScalarFieldOnMesh__construct_get, _gLucifer.lucScalarFieldOnMesh__construct_set)
+    __swig_setmethods__["_build"] = _gLucifer.lucScalarFieldOnMesh__build_set
+    __swig_getmethods__["_build"] = _gLucifer.lucScalarFieldOnMesh__build_get
+    if _newclass:_build = _swig_property(_gLucifer.lucScalarFieldOnMesh__build_get, _gLucifer.lucScalarFieldOnMesh__build_set)
+    __swig_setmethods__["_initialise"] = _gLucifer.lucScalarFieldOnMesh__initialise_set
+    __swig_getmethods__["_initialise"] = _gLucifer.lucScalarFieldOnMesh__initialise_get
+    if _newclass:_initialise = _swig_property(_gLucifer.lucScalarFieldOnMesh__initialise_get, _gLucifer.lucScalarFieldOnMesh__initialise_set)
+    __swig_setmethods__["_execute"] = _gLucifer.lucScalarFieldOnMesh__execute_set
+    __swig_getmethods__["_execute"] = _gLucifer.lucScalarFieldOnMesh__execute_get
+    if _newclass:_execute = _swig_property(_gLucifer.lucScalarFieldOnMesh__execute_get, _gLucifer.lucScalarFieldOnMesh__execute_set)
+    __swig_setmethods__["_destroy"] = _gLucifer.lucScalarFieldOnMesh__destroy_set
+    __swig_getmethods__["_destroy"] = _gLucifer.lucScalarFieldOnMesh__destroy_get
+    if _newclass:_destroy = _swig_property(_gLucifer.lucScalarFieldOnMesh__destroy_get, _gLucifer.lucScalarFieldOnMesh__destroy_set)
+    __swig_setmethods__["isConstructed"] = _gLucifer.lucScalarFieldOnMesh_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _gLucifer.lucScalarFieldOnMesh_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_gLucifer.lucScalarFieldOnMesh_isConstructed_get, _gLucifer.lucScalarFieldOnMesh_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _gLucifer.lucScalarFieldOnMesh_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _gLucifer.lucScalarFieldOnMesh_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_gLucifer.lucScalarFieldOnMesh_isBuilt_get, _gLucifer.lucScalarFieldOnMesh_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _gLucifer.lucScalarFieldOnMesh_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _gLucifer.lucScalarFieldOnMesh_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_gLucifer.lucScalarFieldOnMesh_isInitialised_get, _gLucifer.lucScalarFieldOnMesh_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _gLucifer.lucScalarFieldOnMesh_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _gLucifer.lucScalarFieldOnMesh_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_gLucifer.lucScalarFieldOnMesh_hasExecuted_get, _gLucifer.lucScalarFieldOnMesh_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _gLucifer.lucScalarFieldOnMesh_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _gLucifer.lucScalarFieldOnMesh_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_gLucifer.lucScalarFieldOnMesh_isDestroyed_get, _gLucifer.lucScalarFieldOnMesh_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _gLucifer.lucScalarFieldOnMesh_constructType_set
+    __swig_getmethods__["constructType"] = _gLucifer.lucScalarFieldOnMesh_constructType_get
+    if _newclass:constructType = _swig_property(_gLucifer.lucScalarFieldOnMesh_constructType_get, _gLucifer.lucScalarFieldOnMesh_constructType_set)
+    __swig_setmethods__["buildType"] = _gLucifer.lucScalarFieldOnMesh_buildType_set
+    __swig_getmethods__["buildType"] = _gLucifer.lucScalarFieldOnMesh_buildType_get
+    if _newclass:buildType = _swig_property(_gLucifer.lucScalarFieldOnMesh_buildType_get, _gLucifer.lucScalarFieldOnMesh_buildType_set)
+    __swig_setmethods__["initialiseType"] = _gLucifer.lucScalarFieldOnMesh_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _gLucifer.lucScalarFieldOnMesh_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_gLucifer.lucScalarFieldOnMesh_initialiseType_get, _gLucifer.lucScalarFieldOnMesh_initialiseType_set)
+    __swig_setmethods__["executeType"] = _gLucifer.lucScalarFieldOnMesh_executeType_set
+    __swig_getmethods__["executeType"] = _gLucifer.lucScalarFieldOnMesh_executeType_get
+    if _newclass:executeType = _swig_property(_gLucifer.lucScalarFieldOnMesh_executeType_get, _gLucifer.lucScalarFieldOnMesh_executeType_set)
+    __swig_setmethods__["destroyType"] = _gLucifer.lucScalarFieldOnMesh_destroyType_set
+    __swig_getmethods__["destroyType"] = _gLucifer.lucScalarFieldOnMesh_destroyType_get
+    if _newclass:destroyType = _swig_property(_gLucifer.lucScalarFieldOnMesh_destroyType_get, _gLucifer.lucScalarFieldOnMesh_destroyType_set)
+    __swig_setmethods__["context"] = _gLucifer.lucScalarFieldOnMesh_context_set
+    __swig_getmethods__["context"] = _gLucifer.lucScalarFieldOnMesh_context_get
+    if _newclass:context = _swig_property(_gLucifer.lucScalarFieldOnMesh_context_get, _gLucifer.lucScalarFieldOnMesh_context_set)
+    __swig_setmethods__["_setup"] = _gLucifer.lucScalarFieldOnMesh__setup_set
+    __swig_getmethods__["_setup"] = _gLucifer.lucScalarFieldOnMesh__setup_get
+    if _newclass:_setup = _swig_property(_gLucifer.lucScalarFieldOnMesh__setup_get, _gLucifer.lucScalarFieldOnMesh__setup_set)
+    __swig_setmethods__["_draw"] = _gLucifer.lucScalarFieldOnMesh__draw_set
+    __swig_getmethods__["_draw"] = _gLucifer.lucScalarFieldOnMesh__draw_get
+    if _newclass:_draw = _swig_property(_gLucifer.lucScalarFieldOnMesh__draw_get, _gLucifer.lucScalarFieldOnMesh__draw_set)
+    __swig_setmethods__["_cleanUp"] = _gLucifer.lucScalarFieldOnMesh__cleanUp_set
+    __swig_getmethods__["_cleanUp"] = _gLucifer.lucScalarFieldOnMesh__cleanUp_get
+    if _newclass:_cleanUp = _swig_property(_gLucifer.lucScalarFieldOnMesh__cleanUp_get, _gLucifer.lucScalarFieldOnMesh__cleanUp_set)
+    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucScalarFieldOnMesh_needsToCleanUp_set
+    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucScalarFieldOnMesh_needsToCleanUp_get
+    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucScalarFieldOnMesh_needsToCleanUp_get, _gLucifer.lucScalarFieldOnMesh_needsToCleanUp_set)
+    __swig_setmethods__["needsToDraw"] = _gLucifer.lucScalarFieldOnMesh_needsToDraw_set
+    __swig_getmethods__["needsToDraw"] = _gLucifer.lucScalarFieldOnMesh_needsToDraw_get
+    if _newclass:needsToDraw = _swig_property(_gLucifer.lucScalarFieldOnMesh_needsToDraw_get, _gLucifer.lucScalarFieldOnMesh_needsToDraw_set)
+    __swig_setmethods__["depthSort"] = _gLucifer.lucScalarFieldOnMesh_depthSort_set
+    __swig_getmethods__["depthSort"] = _gLucifer.lucScalarFieldOnMesh_depthSort_get
+    if _newclass:depthSort = _swig_property(_gLucifer.lucScalarFieldOnMesh_depthSort_get, _gLucifer.lucScalarFieldOnMesh_depthSort_set)
+    __swig_setmethods__["position"] = _gLucifer.lucScalarFieldOnMesh_position_set
+    __swig_getmethods__["position"] = _gLucifer.lucScalarFieldOnMesh_position_get
+    if _newclass:position = _swig_property(_gLucifer.lucScalarFieldOnMesh_position_get, _gLucifer.lucScalarFieldOnMesh_position_set)
+    __swig_setmethods__["lit"] = _gLucifer.lucScalarFieldOnMesh_lit_set
+    __swig_getmethods__["lit"] = _gLucifer.lucScalarFieldOnMesh_lit_get
+    if _newclass:lit = _swig_property(_gLucifer.lucScalarFieldOnMesh_lit_get, _gLucifer.lucScalarFieldOnMesh_lit_set)
+    __swig_setmethods__["disabled"] = _gLucifer.lucScalarFieldOnMesh_disabled_set
+    __swig_getmethods__["disabled"] = _gLucifer.lucScalarFieldOnMesh_disabled_get
+    if _newclass:disabled = _swig_property(_gLucifer.lucScalarFieldOnMesh_disabled_get, _gLucifer.lucScalarFieldOnMesh_disabled_set)
+    __swig_setmethods__["colourMap"] = _gLucifer.lucScalarFieldOnMesh_colourMap_set
+    __swig_getmethods__["colourMap"] = _gLucifer.lucScalarFieldOnMesh_colourMap_get
+    if _newclass:colourMap = _swig_property(_gLucifer.lucScalarFieldOnMesh_colourMap_get, _gLucifer.lucScalarFieldOnMesh_colourMap_set)
+    __swig_setmethods__["colour"] = _gLucifer.lucScalarFieldOnMesh_colour_set
+    __swig_getmethods__["colour"] = _gLucifer.lucScalarFieldOnMesh_colour_get
+    if _newclass:colour = _swig_property(_gLucifer.lucScalarFieldOnMesh_colour_get, _gLucifer.lucScalarFieldOnMesh_colour_set)
+    __swig_setmethods__["opacity"] = _gLucifer.lucScalarFieldOnMesh_opacity_set
+    __swig_getmethods__["opacity"] = _gLucifer.lucScalarFieldOnMesh_opacity_get
+    if _newclass:opacity = _swig_property(_gLucifer.lucScalarFieldOnMesh_opacity_get, _gLucifer.lucScalarFieldOnMesh_opacity_set)
+    __swig_setmethods__["wireframe"] = _gLucifer.lucScalarFieldOnMesh_wireframe_set
+    __swig_getmethods__["wireframe"] = _gLucifer.lucScalarFieldOnMesh_wireframe_get
+    if _newclass:wireframe = _swig_property(_gLucifer.lucScalarFieldOnMesh_wireframe_get, _gLucifer.lucScalarFieldOnMesh_wireframe_set)
+    __swig_setmethods__["lineWidth"] = _gLucifer.lucScalarFieldOnMesh_lineWidth_set
+    __swig_getmethods__["lineWidth"] = _gLucifer.lucScalarFieldOnMesh_lineWidth_get
+    if _newclass:lineWidth = _swig_property(_gLucifer.lucScalarFieldOnMesh_lineWidth_get, _gLucifer.lucScalarFieldOnMesh_lineWidth_set)
+    __swig_setmethods__["id"] = _gLucifer.lucScalarFieldOnMesh_id_set
+    __swig_getmethods__["id"] = _gLucifer.lucScalarFieldOnMesh_id_get
+    if _newclass:id = _swig_property(_gLucifer.lucScalarFieldOnMesh_id_get, _gLucifer.lucScalarFieldOnMesh_id_set)
+    __swig_setmethods__["properties"] = _gLucifer.lucScalarFieldOnMesh_properties_set
+    __swig_getmethods__["properties"] = _gLucifer.lucScalarFieldOnMesh_properties_get
+    if _newclass:properties = _swig_property(_gLucifer.lucScalarFieldOnMesh_properties_get, _gLucifer.lucScalarFieldOnMesh_properties_set)
+    __swig_setmethods__["fieldVariable"] = _gLucifer.lucScalarFieldOnMesh_fieldVariable_set
+    __swig_getmethods__["fieldVariable"] = _gLucifer.lucScalarFieldOnMesh_fieldVariable_get
+    if _newclass:fieldVariable = _swig_property(_gLucifer.lucScalarFieldOnMesh_fieldVariable_get, _gLucifer.lucScalarFieldOnMesh_fieldVariable_set)
+    __swig_setmethods__["value"] = _gLucifer.lucScalarFieldOnMesh_value_set
+    __swig_getmethods__["value"] = _gLucifer.lucScalarFieldOnMesh_value_get
+    if _newclass:value = _swig_property(_gLucifer.lucScalarFieldOnMesh_value_get, _gLucifer.lucScalarFieldOnMesh_value_set)
+    __swig_setmethods__["defaultResolution"] = _gLucifer.lucScalarFieldOnMesh_defaultResolution_set
+    __swig_getmethods__["defaultResolution"] = _gLucifer.lucScalarFieldOnMesh_defaultResolution_get
+    if _newclass:defaultResolution = _swig_property(_gLucifer.lucScalarFieldOnMesh_defaultResolution_get, _gLucifer.lucScalarFieldOnMesh_defaultResolution_set)
+    __swig_setmethods__["resolutionA"] = _gLucifer.lucScalarFieldOnMesh_resolutionA_set
+    __swig_getmethods__["resolutionA"] = _gLucifer.lucScalarFieldOnMesh_resolutionA_get
+    if _newclass:resolutionA = _swig_property(_gLucifer.lucScalarFieldOnMesh_resolutionA_get, _gLucifer.lucScalarFieldOnMesh_resolutionA_set)
+    __swig_setmethods__["resolutionB"] = _gLucifer.lucScalarFieldOnMesh_resolutionB_set
+    __swig_getmethods__["resolutionB"] = _gLucifer.lucScalarFieldOnMesh_resolutionB_get
+    if _newclass:resolutionB = _swig_property(_gLucifer.lucScalarFieldOnMesh_resolutionB_get, _gLucifer.lucScalarFieldOnMesh_resolutionB_set)
+    __swig_setmethods__["normal"] = _gLucifer.lucScalarFieldOnMesh_normal_set
+    __swig_getmethods__["normal"] = _gLucifer.lucScalarFieldOnMesh_normal_get
+    if _newclass:normal = _swig_property(_gLucifer.lucScalarFieldOnMesh_normal_get, _gLucifer.lucScalarFieldOnMesh_normal_set)
+    __swig_setmethods__["coord1"] = _gLucifer.lucScalarFieldOnMesh_coord1_set
+    __swig_getmethods__["coord1"] = _gLucifer.lucScalarFieldOnMesh_coord1_get
+    if _newclass:coord1 = _swig_property(_gLucifer.lucScalarFieldOnMesh_coord1_get, _gLucifer.lucScalarFieldOnMesh_coord1_set)
+    __swig_setmethods__["coord2"] = _gLucifer.lucScalarFieldOnMesh_coord2_set
+    __swig_getmethods__["coord2"] = _gLucifer.lucScalarFieldOnMesh_coord2_get
+    if _newclass:coord2 = _swig_property(_gLucifer.lucScalarFieldOnMesh_coord2_get, _gLucifer.lucScalarFieldOnMesh_coord2_set)
+    __swig_setmethods__["coord3"] = _gLucifer.lucScalarFieldOnMesh_coord3_set
+    __swig_getmethods__["coord3"] = _gLucifer.lucScalarFieldOnMesh_coord3_get
+    if _newclass:coord3 = _swig_property(_gLucifer.lucScalarFieldOnMesh_coord3_get, _gLucifer.lucScalarFieldOnMesh_coord3_set)
+    __swig_setmethods__["axis"] = _gLucifer.lucScalarFieldOnMesh_axis_set
+    __swig_getmethods__["axis"] = _gLucifer.lucScalarFieldOnMesh_axis_get
+    if _newclass:axis = _swig_property(_gLucifer.lucScalarFieldOnMesh_axis_get, _gLucifer.lucScalarFieldOnMesh_axis_set)
+    __swig_setmethods__["axis1"] = _gLucifer.lucScalarFieldOnMesh_axis1_set
+    __swig_getmethods__["axis1"] = _gLucifer.lucScalarFieldOnMesh_axis1_get
+    if _newclass:axis1 = _swig_property(_gLucifer.lucScalarFieldOnMesh_axis1_get, _gLucifer.lucScalarFieldOnMesh_axis1_set)
+    __swig_setmethods__["axis2"] = _gLucifer.lucScalarFieldOnMesh_axis2_set
+    __swig_getmethods__["axis2"] = _gLucifer.lucScalarFieldOnMesh_axis2_get
+    if _newclass:axis2 = _swig_property(_gLucifer.lucScalarFieldOnMesh_axis2_get, _gLucifer.lucScalarFieldOnMesh_axis2_set)
+    __swig_setmethods__["interpolate"] = _gLucifer.lucScalarFieldOnMesh_interpolate_set
+    __swig_getmethods__["interpolate"] = _gLucifer.lucScalarFieldOnMesh_interpolate_get
+    if _newclass:interpolate = _swig_property(_gLucifer.lucScalarFieldOnMesh_interpolate_get, _gLucifer.lucScalarFieldOnMesh_interpolate_set)
+    __swig_setmethods__["axisAligned"] = _gLucifer.lucScalarFieldOnMesh_axisAligned_set
+    __swig_getmethods__["axisAligned"] = _gLucifer.lucScalarFieldOnMesh_axisAligned_get
+    if _newclass:axisAligned = _swig_property(_gLucifer.lucScalarFieldOnMesh_axisAligned_get, _gLucifer.lucScalarFieldOnMesh_axisAligned_set)
+    __swig_setmethods__["gatherData"] = _gLucifer.lucScalarFieldOnMesh_gatherData_set
+    __swig_getmethods__["gatherData"] = _gLucifer.lucScalarFieldOnMesh_gatherData_get
+    if _newclass:gatherData = _swig_property(_gLucifer.lucScalarFieldOnMesh_gatherData_get, _gLucifer.lucScalarFieldOnMesh_gatherData_set)
+    __swig_setmethods__["offsetEdges"] = _gLucifer.lucScalarFieldOnMesh_offsetEdges_set
+    __swig_getmethods__["offsetEdges"] = _gLucifer.lucScalarFieldOnMesh_offsetEdges_get
+    if _newclass:offsetEdges = _swig_property(_gLucifer.lucScalarFieldOnMesh_offsetEdges_get, _gLucifer.lucScalarFieldOnMesh_offsetEdges_set)
+    __swig_setmethods__["cullface"] = _gLucifer.lucScalarFieldOnMesh_cullface_set
+    __swig_getmethods__["cullface"] = _gLucifer.lucScalarFieldOnMesh_cullface_get
+    if _newclass:cullface = _swig_property(_gLucifer.lucScalarFieldOnMesh_cullface_get, _gLucifer.lucScalarFieldOnMesh_cullface_set)
+    __swig_setmethods__["vertices"] = _gLucifer.lucScalarFieldOnMesh_vertices_set
+    __swig_getmethods__["vertices"] = _gLucifer.lucScalarFieldOnMesh_vertices_get
+    if _newclass:vertices = _swig_property(_gLucifer.lucScalarFieldOnMesh_vertices_get, _gLucifer.lucScalarFieldOnMesh_vertices_set)
+    __swig_setmethods__["values"] = _gLucifer.lucScalarFieldOnMesh_values_set
+    __swig_getmethods__["values"] = _gLucifer.lucScalarFieldOnMesh_values_get
+    if _newclass:values = _swig_property(_gLucifer.lucScalarFieldOnMesh_values_get, _gLucifer.lucScalarFieldOnMesh_values_set)
+    __swig_setmethods__["min"] = _gLucifer.lucScalarFieldOnMesh_min_set
+    __swig_getmethods__["min"] = _gLucifer.lucScalarFieldOnMesh_min_get
+    if _newclass:min = _swig_property(_gLucifer.lucScalarFieldOnMesh_min_get, _gLucifer.lucScalarFieldOnMesh_min_set)
+    __swig_setmethods__["max"] = _gLucifer.lucScalarFieldOnMesh_max_set
+    __swig_getmethods__["max"] = _gLucifer.lucScalarFieldOnMesh_max_get
+    if _newclass:max = _swig_property(_gLucifer.lucScalarFieldOnMesh_max_get, _gLucifer.lucScalarFieldOnMesh_max_set)
+    __swig_setmethods__["vertexGridHandle"] = _gLucifer.lucScalarFieldOnMesh_vertexGridHandle_set
+    __swig_getmethods__["vertexGridHandle"] = _gLucifer.lucScalarFieldOnMesh_vertexGridHandle_get
+    if _newclass:vertexGridHandle = _swig_property(_gLucifer.lucScalarFieldOnMesh_vertexGridHandle_get, _gLucifer.lucScalarFieldOnMesh_vertexGridHandle_set)
+    __swig_setmethods__["dim"] = _gLucifer.lucScalarFieldOnMesh_dim_set
+    __swig_getmethods__["dim"] = _gLucifer.lucScalarFieldOnMesh_dim_get
+    if _newclass:dim = _swig_property(_gLucifer.lucScalarFieldOnMesh_dim_get, _gLucifer.lucScalarFieldOnMesh_dim_set)
+    __swig_setmethods__["fieldDim"] = _gLucifer.lucScalarFieldOnMesh_fieldDim_set
+    __swig_getmethods__["fieldDim"] = _gLucifer.lucScalarFieldOnMesh_fieldDim_get
+    if _newclass:fieldDim = _swig_property(_gLucifer.lucScalarFieldOnMesh_fieldDim_get, _gLucifer.lucScalarFieldOnMesh_fieldDim_set)
+    __swig_setmethods__["flipNormals"] = _gLucifer.lucScalarFieldOnMesh_flipNormals_set
+    __swig_getmethods__["flipNormals"] = _gLucifer.lucScalarFieldOnMesh_flipNormals_get
+    if _newclass:flipNormals = _swig_property(_gLucifer.lucScalarFieldOnMesh_flipNormals_get, _gLucifer.lucScalarFieldOnMesh_flipNormals_set)
+    __swig_setmethods__["drawSides"] = _gLucifer.lucScalarFieldOnMesh_drawSides_set
+    __swig_getmethods__["drawSides"] = _gLucifer.lucScalarFieldOnMesh_drawSides_get
+    if _newclass:drawSides = _swig_property(_gLucifer.lucScalarFieldOnMesh_drawSides_get, _gLucifer.lucScalarFieldOnMesh_drawSides_set)
     def __init__(self): 
-        this = _gLucifer.new_lucScalarFieldOnMeshCrossSection()
+        this = _gLucifer.new_lucScalarFieldOnMesh()
         try: self.this.append(this)
         except: self.this = this
-    __swig_destroy__ = _gLucifer.delete_lucScalarFieldOnMeshCrossSection
+    __swig_destroy__ = _gLucifer.delete_lucScalarFieldOnMesh
     __del__ = lambda self : None;
-lucScalarFieldOnMeshCrossSection_swigregister = _gLucifer.lucScalarFieldOnMeshCrossSection_swigregister
-lucScalarFieldOnMeshCrossSection_swigregister(lucScalarFieldOnMeshCrossSection)
-lucScalarFieldOnMeshCrossSection_Type = cvar.lucScalarFieldOnMeshCrossSection_Type
+lucScalarFieldOnMesh_swigregister = _gLucifer.lucScalarFieldOnMesh_swigregister
+lucScalarFieldOnMesh_swigregister(lucScalarFieldOnMesh)
+lucScalarFieldOnMesh_Type = cvar.lucScalarFieldOnMesh_Type
 
 
-def _lucScalarFieldOnMeshCrossSection_New(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_New(*args)
-_lucScalarFieldOnMeshCrossSection_New = _gLucifer._lucScalarFieldOnMeshCrossSection_New
+def _lucScalarFieldOnMesh_New(*args):
+  return _gLucifer._lucScalarFieldOnMesh_New(*args)
+_lucScalarFieldOnMesh_New = _gLucifer._lucScalarFieldOnMesh_New
 
-def _lucScalarFieldOnMeshCrossSection_Delete(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_Delete(*args)
-_lucScalarFieldOnMeshCrossSection_Delete = _gLucifer._lucScalarFieldOnMeshCrossSection_Delete
+def _lucScalarFieldOnMesh_Delete(*args):
+  return _gLucifer._lucScalarFieldOnMesh_Delete(*args)
+_lucScalarFieldOnMesh_Delete = _gLucifer._lucScalarFieldOnMesh_Delete
 
-def _lucScalarFieldOnMeshCrossSection_Print(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_Print(*args)
-_lucScalarFieldOnMeshCrossSection_Print = _gLucifer._lucScalarFieldOnMeshCrossSection_Print
+def _lucScalarFieldOnMesh_Print(*args):
+  return _gLucifer._lucScalarFieldOnMesh_Print(*args)
+_lucScalarFieldOnMesh_Print = _gLucifer._lucScalarFieldOnMesh_Print
 
-def _lucScalarFieldOnMeshCrossSection_DefaultNew(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_DefaultNew(*args)
-_lucScalarFieldOnMeshCrossSection_DefaultNew = _gLucifer._lucScalarFieldOnMeshCrossSection_DefaultNew
+def _lucScalarFieldOnMesh_DefaultNew(*args):
+  return _gLucifer._lucScalarFieldOnMesh_DefaultNew(*args)
+_lucScalarFieldOnMesh_DefaultNew = _gLucifer._lucScalarFieldOnMesh_DefaultNew
 
-def _lucScalarFieldOnMeshCrossSection_AssignFromXML(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_AssignFromXML(*args)
-_lucScalarFieldOnMeshCrossSection_AssignFromXML = _gLucifer._lucScalarFieldOnMeshCrossSection_AssignFromXML
+def _lucScalarFieldOnMesh_AssignFromXML(*args):
+  return _gLucifer._lucScalarFieldOnMesh_AssignFromXML(*args)
+_lucScalarFieldOnMesh_AssignFromXML = _gLucifer._lucScalarFieldOnMesh_AssignFromXML
 
-def _lucScalarFieldOnMeshCrossSection_Build(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_Build(*args)
-_lucScalarFieldOnMeshCrossSection_Build = _gLucifer._lucScalarFieldOnMeshCrossSection_Build
+def _lucScalarFieldOnMesh_Build(*args):
+  return _gLucifer._lucScalarFieldOnMesh_Build(*args)
+_lucScalarFieldOnMesh_Build = _gLucifer._lucScalarFieldOnMesh_Build
 
-def _lucScalarFieldOnMeshCrossSection_Initialise(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_Initialise(*args)
-_lucScalarFieldOnMeshCrossSection_Initialise = _gLucifer._lucScalarFieldOnMeshCrossSection_Initialise
-
-def _lucScalarFieldOnMeshCrossSection_Execute(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_Execute(*args)
-_lucScalarFieldOnMeshCrossSection_Execute = _gLucifer._lucScalarFieldOnMeshCrossSection_Execute
-
-def _lucScalarFieldOnMeshCrossSection_Destroy(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_Destroy(*args)
-_lucScalarFieldOnMeshCrossSection_Destroy = _gLucifer._lucScalarFieldOnMeshCrossSection_Destroy
-
-def _lucScalarFieldOnMeshCrossSection_Draw(*args):
-  return _gLucifer._lucScalarFieldOnMeshCrossSection_Draw(*args)
-_lucScalarFieldOnMeshCrossSection_Draw = _gLucifer._lucScalarFieldOnMeshCrossSection_Draw
-
-def lucScalarFieldOnMeshCrossSection_DrawCrossSection(*args):
-  return _gLucifer.lucScalarFieldOnMeshCrossSection_DrawCrossSection(*args)
-lucScalarFieldOnMeshCrossSection_DrawCrossSection = _gLucifer.lucScalarFieldOnMeshCrossSection_DrawCrossSection
-class lucSwarmViewer(_object):
+def _lucScalarFieldOnMesh_Draw(*args):
+  return _gLucifer._lucScalarFieldOnMesh_Draw(*args)
+_lucScalarFieldOnMesh_Draw = _gLucifer._lucScalarFieldOnMesh_Draw
+class lucSwarmRGBColourViewer(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, lucSwarmViewer, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lucSwarmRGBColourViewer, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, lucSwarmViewer, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, lucSwarmRGBColourViewer, name)
     __repr__ = _swig_repr
-    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmViewer__sizeOfSelf_set
-    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmViewer__sizeOfSelf_get
-    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucSwarmViewer__sizeOfSelf_get, _gLucifer.lucSwarmViewer__sizeOfSelf_set)
-    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucSwarmViewer__deleteSelf_set
-    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucSwarmViewer__deleteSelf_get
-    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucSwarmViewer__deleteSelf_get, _gLucifer.lucSwarmViewer__deleteSelf_set)
-    __swig_setmethods__["type"] = _gLucifer.lucSwarmViewer_type_set
-    __swig_getmethods__["type"] = _gLucifer.lucSwarmViewer_type_get
-    if _newclass:type = _swig_property(_gLucifer.lucSwarmViewer_type_get, _gLucifer.lucSwarmViewer_type_set)
-    __swig_setmethods__["nRefs"] = _gLucifer.lucSwarmViewer_nRefs_set
-    __swig_getmethods__["nRefs"] = _gLucifer.lucSwarmViewer_nRefs_get
-    if _newclass:nRefs = _swig_property(_gLucifer.lucSwarmViewer_nRefs_get, _gLucifer.lucSwarmViewer_nRefs_set)
-    __swig_setmethods__["_delete"] = _gLucifer.lucSwarmViewer__delete_set
-    __swig_getmethods__["_delete"] = _gLucifer.lucSwarmViewer__delete_get
-    if _newclass:_delete = _swig_property(_gLucifer.lucSwarmViewer__delete_get, _gLucifer.lucSwarmViewer__delete_set)
-    __swig_setmethods__["_print"] = _gLucifer.lucSwarmViewer__print_set
-    __swig_getmethods__["_print"] = _gLucifer.lucSwarmViewer__print_get
-    if _newclass:_print = _swig_property(_gLucifer.lucSwarmViewer__print_get, _gLucifer.lucSwarmViewer__print_set)
-    __swig_setmethods__["_copy"] = _gLucifer.lucSwarmViewer__copy_set
-    __swig_getmethods__["_copy"] = _gLucifer.lucSwarmViewer__copy_get
-    if _newclass:_copy = _swig_property(_gLucifer.lucSwarmViewer__copy_get, _gLucifer.lucSwarmViewer__copy_set)
-    __swig_setmethods__["name"] = _gLucifer.lucSwarmViewer_name_set
-    __swig_getmethods__["name"] = _gLucifer.lucSwarmViewer_name_get
-    if _newclass:name = _swig_property(_gLucifer.lucSwarmViewer_name_get, _gLucifer.lucSwarmViewer_name_set)
-    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucSwarmViewer_nameAllocationType_set
-    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucSwarmViewer_nameAllocationType_get
-    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucSwarmViewer_nameAllocationType_get, _gLucifer.lucSwarmViewer_nameAllocationType_set)
-    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucSwarmViewer__defaultConstructor_set
-    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucSwarmViewer__defaultConstructor_get
-    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucSwarmViewer__defaultConstructor_get, _gLucifer.lucSwarmViewer__defaultConstructor_set)
-    __swig_setmethods__["_construct"] = _gLucifer.lucSwarmViewer__construct_set
-    __swig_getmethods__["_construct"] = _gLucifer.lucSwarmViewer__construct_get
-    if _newclass:_construct = _swig_property(_gLucifer.lucSwarmViewer__construct_get, _gLucifer.lucSwarmViewer__construct_set)
-    __swig_setmethods__["_build"] = _gLucifer.lucSwarmViewer__build_set
-    __swig_getmethods__["_build"] = _gLucifer.lucSwarmViewer__build_get
-    if _newclass:_build = _swig_property(_gLucifer.lucSwarmViewer__build_get, _gLucifer.lucSwarmViewer__build_set)
-    __swig_setmethods__["_initialise"] = _gLucifer.lucSwarmViewer__initialise_set
-    __swig_getmethods__["_initialise"] = _gLucifer.lucSwarmViewer__initialise_get
-    if _newclass:_initialise = _swig_property(_gLucifer.lucSwarmViewer__initialise_get, _gLucifer.lucSwarmViewer__initialise_set)
-    __swig_setmethods__["_execute"] = _gLucifer.lucSwarmViewer__execute_set
-    __swig_getmethods__["_execute"] = _gLucifer.lucSwarmViewer__execute_get
-    if _newclass:_execute = _swig_property(_gLucifer.lucSwarmViewer__execute_get, _gLucifer.lucSwarmViewer__execute_set)
-    __swig_setmethods__["_destroy"] = _gLucifer.lucSwarmViewer__destroy_set
-    __swig_getmethods__["_destroy"] = _gLucifer.lucSwarmViewer__destroy_get
-    if _newclass:_destroy = _swig_property(_gLucifer.lucSwarmViewer__destroy_get, _gLucifer.lucSwarmViewer__destroy_set)
-    __swig_setmethods__["isConstructed"] = _gLucifer.lucSwarmViewer_isConstructed_set
-    __swig_getmethods__["isConstructed"] = _gLucifer.lucSwarmViewer_isConstructed_get
-    if _newclass:isConstructed = _swig_property(_gLucifer.lucSwarmViewer_isConstructed_get, _gLucifer.lucSwarmViewer_isConstructed_set)
-    __swig_setmethods__["isBuilt"] = _gLucifer.lucSwarmViewer_isBuilt_set
-    __swig_getmethods__["isBuilt"] = _gLucifer.lucSwarmViewer_isBuilt_get
-    if _newclass:isBuilt = _swig_property(_gLucifer.lucSwarmViewer_isBuilt_get, _gLucifer.lucSwarmViewer_isBuilt_set)
-    __swig_setmethods__["isInitialised"] = _gLucifer.lucSwarmViewer_isInitialised_set
-    __swig_getmethods__["isInitialised"] = _gLucifer.lucSwarmViewer_isInitialised_get
-    if _newclass:isInitialised = _swig_property(_gLucifer.lucSwarmViewer_isInitialised_get, _gLucifer.lucSwarmViewer_isInitialised_set)
-    __swig_setmethods__["hasExecuted"] = _gLucifer.lucSwarmViewer_hasExecuted_set
-    __swig_getmethods__["hasExecuted"] = _gLucifer.lucSwarmViewer_hasExecuted_get
-    if _newclass:hasExecuted = _swig_property(_gLucifer.lucSwarmViewer_hasExecuted_get, _gLucifer.lucSwarmViewer_hasExecuted_set)
-    __swig_setmethods__["isDestroyed"] = _gLucifer.lucSwarmViewer_isDestroyed_set
-    __swig_getmethods__["isDestroyed"] = _gLucifer.lucSwarmViewer_isDestroyed_get
-    if _newclass:isDestroyed = _swig_property(_gLucifer.lucSwarmViewer_isDestroyed_get, _gLucifer.lucSwarmViewer_isDestroyed_set)
-    __swig_setmethods__["constructType"] = _gLucifer.lucSwarmViewer_constructType_set
-    __swig_getmethods__["constructType"] = _gLucifer.lucSwarmViewer_constructType_get
-    if _newclass:constructType = _swig_property(_gLucifer.lucSwarmViewer_constructType_get, _gLucifer.lucSwarmViewer_constructType_set)
-    __swig_setmethods__["buildType"] = _gLucifer.lucSwarmViewer_buildType_set
-    __swig_getmethods__["buildType"] = _gLucifer.lucSwarmViewer_buildType_get
-    if _newclass:buildType = _swig_property(_gLucifer.lucSwarmViewer_buildType_get, _gLucifer.lucSwarmViewer_buildType_set)
-    __swig_setmethods__["initialiseType"] = _gLucifer.lucSwarmViewer_initialiseType_set
-    __swig_getmethods__["initialiseType"] = _gLucifer.lucSwarmViewer_initialiseType_get
-    if _newclass:initialiseType = _swig_property(_gLucifer.lucSwarmViewer_initialiseType_get, _gLucifer.lucSwarmViewer_initialiseType_set)
-    __swig_setmethods__["executeType"] = _gLucifer.lucSwarmViewer_executeType_set
-    __swig_getmethods__["executeType"] = _gLucifer.lucSwarmViewer_executeType_get
-    if _newclass:executeType = _swig_property(_gLucifer.lucSwarmViewer_executeType_get, _gLucifer.lucSwarmViewer_executeType_set)
-    __swig_setmethods__["destroyType"] = _gLucifer.lucSwarmViewer_destroyType_set
-    __swig_getmethods__["destroyType"] = _gLucifer.lucSwarmViewer_destroyType_get
-    if _newclass:destroyType = _swig_property(_gLucifer.lucSwarmViewer_destroyType_get, _gLucifer.lucSwarmViewer_destroyType_set)
-    __swig_setmethods__["context"] = _gLucifer.lucSwarmViewer_context_set
-    __swig_getmethods__["context"] = _gLucifer.lucSwarmViewer_context_get
-    if _newclass:context = _swig_property(_gLucifer.lucSwarmViewer_context_get, _gLucifer.lucSwarmViewer_context_set)
-    __swig_setmethods__["_setup"] = _gLucifer.lucSwarmViewer__setup_set
-    __swig_getmethods__["_setup"] = _gLucifer.lucSwarmViewer__setup_get
-    if _newclass:_setup = _swig_property(_gLucifer.lucSwarmViewer__setup_get, _gLucifer.lucSwarmViewer__setup_set)
-    __swig_setmethods__["_draw"] = _gLucifer.lucSwarmViewer__draw_set
-    __swig_getmethods__["_draw"] = _gLucifer.lucSwarmViewer__draw_get
-    if _newclass:_draw = _swig_property(_gLucifer.lucSwarmViewer__draw_get, _gLucifer.lucSwarmViewer__draw_set)
-    __swig_setmethods__["_cleanUp"] = _gLucifer.lucSwarmViewer__cleanUp_set
-    __swig_getmethods__["_cleanUp"] = _gLucifer.lucSwarmViewer__cleanUp_get
-    if _newclass:_cleanUp = _swig_property(_gLucifer.lucSwarmViewer__cleanUp_get, _gLucifer.lucSwarmViewer__cleanUp_set)
-    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucSwarmViewer_needsToCleanUp_set
-    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucSwarmViewer_needsToCleanUp_get
-    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucSwarmViewer_needsToCleanUp_get, _gLucifer.lucSwarmViewer_needsToCleanUp_set)
-    __swig_setmethods__["needsToDraw"] = _gLucifer.lucSwarmViewer_needsToDraw_set
-    __swig_getmethods__["needsToDraw"] = _gLucifer.lucSwarmViewer_needsToDraw_get
-    if _newclass:needsToDraw = _swig_property(_gLucifer.lucSwarmViewer_needsToDraw_get, _gLucifer.lucSwarmViewer_needsToDraw_set)
-    __swig_setmethods__["depthSort"] = _gLucifer.lucSwarmViewer_depthSort_set
-    __swig_getmethods__["depthSort"] = _gLucifer.lucSwarmViewer_depthSort_get
-    if _newclass:depthSort = _swig_property(_gLucifer.lucSwarmViewer_depthSort_get, _gLucifer.lucSwarmViewer_depthSort_set)
-    __swig_setmethods__["position"] = _gLucifer.lucSwarmViewer_position_set
-    __swig_getmethods__["position"] = _gLucifer.lucSwarmViewer_position_get
-    if _newclass:position = _swig_property(_gLucifer.lucSwarmViewer_position_get, _gLucifer.lucSwarmViewer_position_set)
-    __swig_setmethods__["lit"] = _gLucifer.lucSwarmViewer_lit_set
-    __swig_getmethods__["lit"] = _gLucifer.lucSwarmViewer_lit_get
-    if _newclass:lit = _swig_property(_gLucifer.lucSwarmViewer_lit_get, _gLucifer.lucSwarmViewer_lit_set)
-    __swig_setmethods__["disabled"] = _gLucifer.lucSwarmViewer_disabled_set
-    __swig_getmethods__["disabled"] = _gLucifer.lucSwarmViewer_disabled_get
-    if _newclass:disabled = _swig_property(_gLucifer.lucSwarmViewer_disabled_get, _gLucifer.lucSwarmViewer_disabled_set)
-    __swig_setmethods__["colourMap"] = _gLucifer.lucSwarmViewer_colourMap_set
-    __swig_getmethods__["colourMap"] = _gLucifer.lucSwarmViewer_colourMap_get
-    if _newclass:colourMap = _swig_property(_gLucifer.lucSwarmViewer_colourMap_get, _gLucifer.lucSwarmViewer_colourMap_set)
-    __swig_setmethods__["colour"] = _gLucifer.lucSwarmViewer_colour_set
-    __swig_getmethods__["colour"] = _gLucifer.lucSwarmViewer_colour_get
-    if _newclass:colour = _swig_property(_gLucifer.lucSwarmViewer_colour_get, _gLucifer.lucSwarmViewer_colour_set)
-    __swig_setmethods__["opacity"] = _gLucifer.lucSwarmViewer_opacity_set
-    __swig_getmethods__["opacity"] = _gLucifer.lucSwarmViewer_opacity_get
-    if _newclass:opacity = _swig_property(_gLucifer.lucSwarmViewer_opacity_get, _gLucifer.lucSwarmViewer_opacity_set)
-    __swig_setmethods__["wireframe"] = _gLucifer.lucSwarmViewer_wireframe_set
-    __swig_getmethods__["wireframe"] = _gLucifer.lucSwarmViewer_wireframe_get
-    if _newclass:wireframe = _swig_property(_gLucifer.lucSwarmViewer_wireframe_get, _gLucifer.lucSwarmViewer_wireframe_set)
-    __swig_setmethods__["lineWidth"] = _gLucifer.lucSwarmViewer_lineWidth_set
-    __swig_getmethods__["lineWidth"] = _gLucifer.lucSwarmViewer_lineWidth_get
-    if _newclass:lineWidth = _swig_property(_gLucifer.lucSwarmViewer_lineWidth_get, _gLucifer.lucSwarmViewer_lineWidth_set)
-    __swig_setmethods__["id"] = _gLucifer.lucSwarmViewer_id_set
-    __swig_getmethods__["id"] = _gLucifer.lucSwarmViewer_id_get
-    if _newclass:id = _swig_property(_gLucifer.lucSwarmViewer_id_get, _gLucifer.lucSwarmViewer_id_set)
-    __swig_setmethods__["properties"] = _gLucifer.lucSwarmViewer_properties_set
-    __swig_getmethods__["properties"] = _gLucifer.lucSwarmViewer_properties_get
-    if _newclass:properties = _swig_property(_gLucifer.lucSwarmViewer_properties_get, _gLucifer.lucSwarmViewer_properties_set)
-    __swig_setmethods__["_plotParticle"] = _gLucifer.lucSwarmViewer__plotParticle_set
-    __swig_getmethods__["_plotParticle"] = _gLucifer.lucSwarmViewer__plotParticle_get
-    if _newclass:_plotParticle = _swig_property(_gLucifer.lucSwarmViewer__plotParticle_get, _gLucifer.lucSwarmViewer__plotParticle_set)
-    __swig_setmethods__["_setParticleColour"] = _gLucifer.lucSwarmViewer__setParticleColour_set
-    __swig_getmethods__["_setParticleColour"] = _gLucifer.lucSwarmViewer__setParticleColour_get
-    if _newclass:_setParticleColour = _swig_property(_gLucifer.lucSwarmViewer__setParticleColour_get, _gLucifer.lucSwarmViewer__setParticleColour_set)
-    __swig_setmethods__["colourVariableName"] = _gLucifer.lucSwarmViewer_colourVariableName_set
-    __swig_getmethods__["colourVariableName"] = _gLucifer.lucSwarmViewer_colourVariableName_get
-    if _newclass:colourVariableName = _swig_property(_gLucifer.lucSwarmViewer_colourVariableName_get, _gLucifer.lucSwarmViewer_colourVariableName_set)
-    __swig_setmethods__["colourVariable"] = _gLucifer.lucSwarmViewer_colourVariable_set
-    __swig_getmethods__["colourVariable"] = _gLucifer.lucSwarmViewer_colourVariable_get
-    if _newclass:colourVariable = _swig_property(_gLucifer.lucSwarmViewer_colourVariable_get, _gLucifer.lucSwarmViewer_colourVariable_set)
-    __swig_setmethods__["sizeVariableName"] = _gLucifer.lucSwarmViewer_sizeVariableName_set
-    __swig_getmethods__["sizeVariableName"] = _gLucifer.lucSwarmViewer_sizeVariableName_get
-    if _newclass:sizeVariableName = _swig_property(_gLucifer.lucSwarmViewer_sizeVariableName_get, _gLucifer.lucSwarmViewer_sizeVariableName_set)
-    __swig_setmethods__["sizeVariable"] = _gLucifer.lucSwarmViewer_sizeVariable_set
-    __swig_getmethods__["sizeVariable"] = _gLucifer.lucSwarmViewer_sizeVariable_get
-    if _newclass:sizeVariable = _swig_property(_gLucifer.lucSwarmViewer_sizeVariable_get, _gLucifer.lucSwarmViewer_sizeVariable_set)
-    __swig_setmethods__["swarm"] = _gLucifer.lucSwarmViewer_swarm_set
-    __swig_getmethods__["swarm"] = _gLucifer.lucSwarmViewer_swarm_get
-    if _newclass:swarm = _swig_property(_gLucifer.lucSwarmViewer_swarm_get, _gLucifer.lucSwarmViewer_swarm_set)
-    __swig_setmethods__["opacityColourMap"] = _gLucifer.lucSwarmViewer_opacityColourMap_set
-    __swig_getmethods__["opacityColourMap"] = _gLucifer.lucSwarmViewer_opacityColourMap_get
-    if _newclass:opacityColourMap = _swig_property(_gLucifer.lucSwarmViewer_opacityColourMap_get, _gLucifer.lucSwarmViewer_opacityColourMap_set)
-    __swig_setmethods__["opacityVariableName"] = _gLucifer.lucSwarmViewer_opacityVariableName_set
-    __swig_getmethods__["opacityVariableName"] = _gLucifer.lucSwarmViewer_opacityVariableName_get
-    if _newclass:opacityVariableName = _swig_property(_gLucifer.lucSwarmViewer_opacityVariableName_get, _gLucifer.lucSwarmViewer_opacityVariableName_set)
-    __swig_setmethods__["opacityVariable"] = _gLucifer.lucSwarmViewer_opacityVariable_set
-    __swig_getmethods__["opacityVariable"] = _gLucifer.lucSwarmViewer_opacityVariable_get
-    if _newclass:opacityVariable = _swig_property(_gLucifer.lucSwarmViewer_opacityVariable_get, _gLucifer.lucSwarmViewer_opacityVariable_set)
-    __swig_setmethods__["maskVariableName"] = _gLucifer.lucSwarmViewer_maskVariableName_set
-    __swig_getmethods__["maskVariableName"] = _gLucifer.lucSwarmViewer_maskVariableName_get
-    if _newclass:maskVariableName = _swig_property(_gLucifer.lucSwarmViewer_maskVariableName_get, _gLucifer.lucSwarmViewer_maskVariableName_set)
-    __swig_setmethods__["maskVariable"] = _gLucifer.lucSwarmViewer_maskVariable_set
-    __swig_getmethods__["maskVariable"] = _gLucifer.lucSwarmViewer_maskVariable_get
-    if _newclass:maskVariable = _swig_property(_gLucifer.lucSwarmViewer_maskVariable_get, _gLucifer.lucSwarmViewer_maskVariable_set)
-    __swig_setmethods__["mask"] = _gLucifer.lucSwarmViewer_mask_set
-    __swig_getmethods__["mask"] = _gLucifer.lucSwarmViewer_mask_get
-    if _newclass:mask = _swig_property(_gLucifer.lucSwarmViewer_mask_get, _gLucifer.lucSwarmViewer_mask_set)
-    __swig_setmethods__["drawParticleNumber"] = _gLucifer.lucSwarmViewer_drawParticleNumber_set
-    __swig_getmethods__["drawParticleNumber"] = _gLucifer.lucSwarmViewer_drawParticleNumber_get
-    if _newclass:drawParticleNumber = _swig_property(_gLucifer.lucSwarmViewer_drawParticleNumber_get, _gLucifer.lucSwarmViewer_drawParticleNumber_set)
-    __swig_setmethods__["sameParticleColour"] = _gLucifer.lucSwarmViewer_sameParticleColour_set
-    __swig_getmethods__["sameParticleColour"] = _gLucifer.lucSwarmViewer_sameParticleColour_get
-    if _newclass:sameParticleColour = _swig_property(_gLucifer.lucSwarmViewer_sameParticleColour_get, _gLucifer.lucSwarmViewer_sameParticleColour_set)
-    __swig_setmethods__["subSample"] = _gLucifer.lucSwarmViewer_subSample_set
-    __swig_getmethods__["subSample"] = _gLucifer.lucSwarmViewer_subSample_get
-    if _newclass:subSample = _swig_property(_gLucifer.lucSwarmViewer_subSample_get, _gLucifer.lucSwarmViewer_subSample_set)
-    __swig_setmethods__["positionRange"] = _gLucifer.lucSwarmViewer_positionRange_set
-    __swig_getmethods__["positionRange"] = _gLucifer.lucSwarmViewer_positionRange_get
-    if _newclass:positionRange = _swig_property(_gLucifer.lucSwarmViewer_positionRange_get, _gLucifer.lucSwarmViewer_positionRange_set)
-    __swig_setmethods__["minPosition"] = _gLucifer.lucSwarmViewer_minPosition_set
-    __swig_getmethods__["minPosition"] = _gLucifer.lucSwarmViewer_minPosition_get
-    if _newclass:minPosition = _swig_property(_gLucifer.lucSwarmViewer_minPosition_get, _gLucifer.lucSwarmViewer_minPosition_set)
-    __swig_setmethods__["maxPosition"] = _gLucifer.lucSwarmViewer_maxPosition_set
-    __swig_getmethods__["maxPosition"] = _gLucifer.lucSwarmViewer_maxPosition_get
-    if _newclass:maxPosition = _swig_property(_gLucifer.lucSwarmViewer_maxPosition_get, _gLucifer.lucSwarmViewer_maxPosition_set)
-    __swig_setmethods__["geomType"] = _gLucifer.lucSwarmViewer_geomType_set
-    __swig_getmethods__["geomType"] = _gLucifer.lucSwarmViewer_geomType_get
-    if _newclass:geomType = _swig_property(_gLucifer.lucSwarmViewer_geomType_get, _gLucifer.lucSwarmViewer_geomType_set)
-    __swig_setmethods__["scaling"] = _gLucifer.lucSwarmViewer_scaling_set
-    __swig_getmethods__["scaling"] = _gLucifer.lucSwarmViewer_scaling_get
-    if _newclass:scaling = _swig_property(_gLucifer.lucSwarmViewer_scaling_get, _gLucifer.lucSwarmViewer_scaling_set)
-    __swig_setmethods__["pointSize"] = _gLucifer.lucSwarmViewer_pointSize_set
-    __swig_getmethods__["pointSize"] = _gLucifer.lucSwarmViewer_pointSize_get
-    if _newclass:pointSize = _swig_property(_gLucifer.lucSwarmViewer_pointSize_get, _gLucifer.lucSwarmViewer_pointSize_set)
-    __swig_setmethods__["pointSmoothing"] = _gLucifer.lucSwarmViewer_pointSmoothing_set
-    __swig_getmethods__["pointSmoothing"] = _gLucifer.lucSwarmViewer_pointSmoothing_get
-    if _newclass:pointSmoothing = _swig_property(_gLucifer.lucSwarmViewer_pointSmoothing_get, _gLucifer.lucSwarmViewer_pointSmoothing_set)
+    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmRGBColourViewer__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmRGBColourViewer__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucSwarmRGBColourViewer__sizeOfSelf_get, _gLucifer.lucSwarmRGBColourViewer__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucSwarmRGBColourViewer__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucSwarmRGBColourViewer__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucSwarmRGBColourViewer__deleteSelf_get, _gLucifer.lucSwarmRGBColourViewer__deleteSelf_set)
+    __swig_setmethods__["type"] = _gLucifer.lucSwarmRGBColourViewer_type_set
+    __swig_getmethods__["type"] = _gLucifer.lucSwarmRGBColourViewer_type_get
+    if _newclass:type = _swig_property(_gLucifer.lucSwarmRGBColourViewer_type_get, _gLucifer.lucSwarmRGBColourViewer_type_set)
+    __swig_setmethods__["nRefs"] = _gLucifer.lucSwarmRGBColourViewer_nRefs_set
+    __swig_getmethods__["nRefs"] = _gLucifer.lucSwarmRGBColourViewer_nRefs_get
+    if _newclass:nRefs = _swig_property(_gLucifer.lucSwarmRGBColourViewer_nRefs_get, _gLucifer.lucSwarmRGBColourViewer_nRefs_set)
+    __swig_setmethods__["_delete"] = _gLucifer.lucSwarmRGBColourViewer__delete_set
+    __swig_getmethods__["_delete"] = _gLucifer.lucSwarmRGBColourViewer__delete_get
+    if _newclass:_delete = _swig_property(_gLucifer.lucSwarmRGBColourViewer__delete_get, _gLucifer.lucSwarmRGBColourViewer__delete_set)
+    __swig_setmethods__["_print"] = _gLucifer.lucSwarmRGBColourViewer__print_set
+    __swig_getmethods__["_print"] = _gLucifer.lucSwarmRGBColourViewer__print_get
+    if _newclass:_print = _swig_property(_gLucifer.lucSwarmRGBColourViewer__print_get, _gLucifer.lucSwarmRGBColourViewer__print_set)
+    __swig_setmethods__["_copy"] = _gLucifer.lucSwarmRGBColourViewer__copy_set
+    __swig_getmethods__["_copy"] = _gLucifer.lucSwarmRGBColourViewer__copy_get
+    if _newclass:_copy = _swig_property(_gLucifer.lucSwarmRGBColourViewer__copy_get, _gLucifer.lucSwarmRGBColourViewer__copy_set)
+    __swig_setmethods__["name"] = _gLucifer.lucSwarmRGBColourViewer_name_set
+    __swig_getmethods__["name"] = _gLucifer.lucSwarmRGBColourViewer_name_get
+    if _newclass:name = _swig_property(_gLucifer.lucSwarmRGBColourViewer_name_get, _gLucifer.lucSwarmRGBColourViewer_name_set)
+    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucSwarmRGBColourViewer_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucSwarmRGBColourViewer_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucSwarmRGBColourViewer_nameAllocationType_get, _gLucifer.lucSwarmRGBColourViewer_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucSwarmRGBColourViewer__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucSwarmRGBColourViewer__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucSwarmRGBColourViewer__defaultConstructor_get, _gLucifer.lucSwarmRGBColourViewer__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _gLucifer.lucSwarmRGBColourViewer__construct_set
+    __swig_getmethods__["_construct"] = _gLucifer.lucSwarmRGBColourViewer__construct_get
+    if _newclass:_construct = _swig_property(_gLucifer.lucSwarmRGBColourViewer__construct_get, _gLucifer.lucSwarmRGBColourViewer__construct_set)
+    __swig_setmethods__["_build"] = _gLucifer.lucSwarmRGBColourViewer__build_set
+    __swig_getmethods__["_build"] = _gLucifer.lucSwarmRGBColourViewer__build_get
+    if _newclass:_build = _swig_property(_gLucifer.lucSwarmRGBColourViewer__build_get, _gLucifer.lucSwarmRGBColourViewer__build_set)
+    __swig_setmethods__["_initialise"] = _gLucifer.lucSwarmRGBColourViewer__initialise_set
+    __swig_getmethods__["_initialise"] = _gLucifer.lucSwarmRGBColourViewer__initialise_get
+    if _newclass:_initialise = _swig_property(_gLucifer.lucSwarmRGBColourViewer__initialise_get, _gLucifer.lucSwarmRGBColourViewer__initialise_set)
+    __swig_setmethods__["_execute"] = _gLucifer.lucSwarmRGBColourViewer__execute_set
+    __swig_getmethods__["_execute"] = _gLucifer.lucSwarmRGBColourViewer__execute_get
+    if _newclass:_execute = _swig_property(_gLucifer.lucSwarmRGBColourViewer__execute_get, _gLucifer.lucSwarmRGBColourViewer__execute_set)
+    __swig_setmethods__["_destroy"] = _gLucifer.lucSwarmRGBColourViewer__destroy_set
+    __swig_getmethods__["_destroy"] = _gLucifer.lucSwarmRGBColourViewer__destroy_get
+    if _newclass:_destroy = _swig_property(_gLucifer.lucSwarmRGBColourViewer__destroy_get, _gLucifer.lucSwarmRGBColourViewer__destroy_set)
+    __swig_setmethods__["isConstructed"] = _gLucifer.lucSwarmRGBColourViewer_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _gLucifer.lucSwarmRGBColourViewer_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_gLucifer.lucSwarmRGBColourViewer_isConstructed_get, _gLucifer.lucSwarmRGBColourViewer_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _gLucifer.lucSwarmRGBColourViewer_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _gLucifer.lucSwarmRGBColourViewer_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_gLucifer.lucSwarmRGBColourViewer_isBuilt_get, _gLucifer.lucSwarmRGBColourViewer_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _gLucifer.lucSwarmRGBColourViewer_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _gLucifer.lucSwarmRGBColourViewer_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_gLucifer.lucSwarmRGBColourViewer_isInitialised_get, _gLucifer.lucSwarmRGBColourViewer_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _gLucifer.lucSwarmRGBColourViewer_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _gLucifer.lucSwarmRGBColourViewer_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_gLucifer.lucSwarmRGBColourViewer_hasExecuted_get, _gLucifer.lucSwarmRGBColourViewer_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _gLucifer.lucSwarmRGBColourViewer_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _gLucifer.lucSwarmRGBColourViewer_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_gLucifer.lucSwarmRGBColourViewer_isDestroyed_get, _gLucifer.lucSwarmRGBColourViewer_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _gLucifer.lucSwarmRGBColourViewer_constructType_set
+    __swig_getmethods__["constructType"] = _gLucifer.lucSwarmRGBColourViewer_constructType_get
+    if _newclass:constructType = _swig_property(_gLucifer.lucSwarmRGBColourViewer_constructType_get, _gLucifer.lucSwarmRGBColourViewer_constructType_set)
+    __swig_setmethods__["buildType"] = _gLucifer.lucSwarmRGBColourViewer_buildType_set
+    __swig_getmethods__["buildType"] = _gLucifer.lucSwarmRGBColourViewer_buildType_get
+    if _newclass:buildType = _swig_property(_gLucifer.lucSwarmRGBColourViewer_buildType_get, _gLucifer.lucSwarmRGBColourViewer_buildType_set)
+    __swig_setmethods__["initialiseType"] = _gLucifer.lucSwarmRGBColourViewer_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _gLucifer.lucSwarmRGBColourViewer_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_gLucifer.lucSwarmRGBColourViewer_initialiseType_get, _gLucifer.lucSwarmRGBColourViewer_initialiseType_set)
+    __swig_setmethods__["executeType"] = _gLucifer.lucSwarmRGBColourViewer_executeType_set
+    __swig_getmethods__["executeType"] = _gLucifer.lucSwarmRGBColourViewer_executeType_get
+    if _newclass:executeType = _swig_property(_gLucifer.lucSwarmRGBColourViewer_executeType_get, _gLucifer.lucSwarmRGBColourViewer_executeType_set)
+    __swig_setmethods__["destroyType"] = _gLucifer.lucSwarmRGBColourViewer_destroyType_set
+    __swig_getmethods__["destroyType"] = _gLucifer.lucSwarmRGBColourViewer_destroyType_get
+    if _newclass:destroyType = _swig_property(_gLucifer.lucSwarmRGBColourViewer_destroyType_get, _gLucifer.lucSwarmRGBColourViewer_destroyType_set)
+    __swig_setmethods__["context"] = _gLucifer.lucSwarmRGBColourViewer_context_set
+    __swig_getmethods__["context"] = _gLucifer.lucSwarmRGBColourViewer_context_get
+    if _newclass:context = _swig_property(_gLucifer.lucSwarmRGBColourViewer_context_get, _gLucifer.lucSwarmRGBColourViewer_context_set)
+    __swig_setmethods__["_setup"] = _gLucifer.lucSwarmRGBColourViewer__setup_set
+    __swig_getmethods__["_setup"] = _gLucifer.lucSwarmRGBColourViewer__setup_get
+    if _newclass:_setup = _swig_property(_gLucifer.lucSwarmRGBColourViewer__setup_get, _gLucifer.lucSwarmRGBColourViewer__setup_set)
+    __swig_setmethods__["_draw"] = _gLucifer.lucSwarmRGBColourViewer__draw_set
+    __swig_getmethods__["_draw"] = _gLucifer.lucSwarmRGBColourViewer__draw_get
+    if _newclass:_draw = _swig_property(_gLucifer.lucSwarmRGBColourViewer__draw_get, _gLucifer.lucSwarmRGBColourViewer__draw_set)
+    __swig_setmethods__["_cleanUp"] = _gLucifer.lucSwarmRGBColourViewer__cleanUp_set
+    __swig_getmethods__["_cleanUp"] = _gLucifer.lucSwarmRGBColourViewer__cleanUp_get
+    if _newclass:_cleanUp = _swig_property(_gLucifer.lucSwarmRGBColourViewer__cleanUp_get, _gLucifer.lucSwarmRGBColourViewer__cleanUp_set)
+    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucSwarmRGBColourViewer_needsToCleanUp_set
+    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucSwarmRGBColourViewer_needsToCleanUp_get
+    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucSwarmRGBColourViewer_needsToCleanUp_get, _gLucifer.lucSwarmRGBColourViewer_needsToCleanUp_set)
+    __swig_setmethods__["needsToDraw"] = _gLucifer.lucSwarmRGBColourViewer_needsToDraw_set
+    __swig_getmethods__["needsToDraw"] = _gLucifer.lucSwarmRGBColourViewer_needsToDraw_get
+    if _newclass:needsToDraw = _swig_property(_gLucifer.lucSwarmRGBColourViewer_needsToDraw_get, _gLucifer.lucSwarmRGBColourViewer_needsToDraw_set)
+    __swig_setmethods__["depthSort"] = _gLucifer.lucSwarmRGBColourViewer_depthSort_set
+    __swig_getmethods__["depthSort"] = _gLucifer.lucSwarmRGBColourViewer_depthSort_get
+    if _newclass:depthSort = _swig_property(_gLucifer.lucSwarmRGBColourViewer_depthSort_get, _gLucifer.lucSwarmRGBColourViewer_depthSort_set)
+    __swig_setmethods__["position"] = _gLucifer.lucSwarmRGBColourViewer_position_set
+    __swig_getmethods__["position"] = _gLucifer.lucSwarmRGBColourViewer_position_get
+    if _newclass:position = _swig_property(_gLucifer.lucSwarmRGBColourViewer_position_get, _gLucifer.lucSwarmRGBColourViewer_position_set)
+    __swig_setmethods__["lit"] = _gLucifer.lucSwarmRGBColourViewer_lit_set
+    __swig_getmethods__["lit"] = _gLucifer.lucSwarmRGBColourViewer_lit_get
+    if _newclass:lit = _swig_property(_gLucifer.lucSwarmRGBColourViewer_lit_get, _gLucifer.lucSwarmRGBColourViewer_lit_set)
+    __swig_setmethods__["disabled"] = _gLucifer.lucSwarmRGBColourViewer_disabled_set
+    __swig_getmethods__["disabled"] = _gLucifer.lucSwarmRGBColourViewer_disabled_get
+    if _newclass:disabled = _swig_property(_gLucifer.lucSwarmRGBColourViewer_disabled_get, _gLucifer.lucSwarmRGBColourViewer_disabled_set)
+    __swig_setmethods__["colourMap"] = _gLucifer.lucSwarmRGBColourViewer_colourMap_set
+    __swig_getmethods__["colourMap"] = _gLucifer.lucSwarmRGBColourViewer_colourMap_get
+    if _newclass:colourMap = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourMap_get, _gLucifer.lucSwarmRGBColourViewer_colourMap_set)
+    __swig_setmethods__["colour"] = _gLucifer.lucSwarmRGBColourViewer_colour_set
+    __swig_getmethods__["colour"] = _gLucifer.lucSwarmRGBColourViewer_colour_get
+    if _newclass:colour = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colour_get, _gLucifer.lucSwarmRGBColourViewer_colour_set)
+    __swig_setmethods__["opacity"] = _gLucifer.lucSwarmRGBColourViewer_opacity_set
+    __swig_getmethods__["opacity"] = _gLucifer.lucSwarmRGBColourViewer_opacity_get
+    if _newclass:opacity = _swig_property(_gLucifer.lucSwarmRGBColourViewer_opacity_get, _gLucifer.lucSwarmRGBColourViewer_opacity_set)
+    __swig_setmethods__["wireframe"] = _gLucifer.lucSwarmRGBColourViewer_wireframe_set
+    __swig_getmethods__["wireframe"] = _gLucifer.lucSwarmRGBColourViewer_wireframe_get
+    if _newclass:wireframe = _swig_property(_gLucifer.lucSwarmRGBColourViewer_wireframe_get, _gLucifer.lucSwarmRGBColourViewer_wireframe_set)
+    __swig_setmethods__["lineWidth"] = _gLucifer.lucSwarmRGBColourViewer_lineWidth_set
+    __swig_getmethods__["lineWidth"] = _gLucifer.lucSwarmRGBColourViewer_lineWidth_get
+    if _newclass:lineWidth = _swig_property(_gLucifer.lucSwarmRGBColourViewer_lineWidth_get, _gLucifer.lucSwarmRGBColourViewer_lineWidth_set)
+    __swig_setmethods__["id"] = _gLucifer.lucSwarmRGBColourViewer_id_set
+    __swig_getmethods__["id"] = _gLucifer.lucSwarmRGBColourViewer_id_get
+    if _newclass:id = _swig_property(_gLucifer.lucSwarmRGBColourViewer_id_get, _gLucifer.lucSwarmRGBColourViewer_id_set)
+    __swig_setmethods__["properties"] = _gLucifer.lucSwarmRGBColourViewer_properties_set
+    __swig_getmethods__["properties"] = _gLucifer.lucSwarmRGBColourViewer_properties_get
+    if _newclass:properties = _swig_property(_gLucifer.lucSwarmRGBColourViewer_properties_get, _gLucifer.lucSwarmRGBColourViewer_properties_set)
+    __swig_setmethods__["_plotParticle"] = _gLucifer.lucSwarmRGBColourViewer__plotParticle_set
+    __swig_getmethods__["_plotParticle"] = _gLucifer.lucSwarmRGBColourViewer__plotParticle_get
+    if _newclass:_plotParticle = _swig_property(_gLucifer.lucSwarmRGBColourViewer__plotParticle_get, _gLucifer.lucSwarmRGBColourViewer__plotParticle_set)
+    __swig_setmethods__["_setParticleColour"] = _gLucifer.lucSwarmRGBColourViewer__setParticleColour_set
+    __swig_getmethods__["_setParticleColour"] = _gLucifer.lucSwarmRGBColourViewer__setParticleColour_get
+    if _newclass:_setParticleColour = _swig_property(_gLucifer.lucSwarmRGBColourViewer__setParticleColour_get, _gLucifer.lucSwarmRGBColourViewer__setParticleColour_set)
+    __swig_setmethods__["colourVariableName"] = _gLucifer.lucSwarmRGBColourViewer_colourVariableName_set
+    __swig_getmethods__["colourVariableName"] = _gLucifer.lucSwarmRGBColourViewer_colourVariableName_get
+    if _newclass:colourVariableName = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourVariableName_get, _gLucifer.lucSwarmRGBColourViewer_colourVariableName_set)
+    __swig_setmethods__["colourVariable"] = _gLucifer.lucSwarmRGBColourViewer_colourVariable_set
+    __swig_getmethods__["colourVariable"] = _gLucifer.lucSwarmRGBColourViewer_colourVariable_get
+    if _newclass:colourVariable = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourVariable_get, _gLucifer.lucSwarmRGBColourViewer_colourVariable_set)
+    __swig_setmethods__["sizeVariableName"] = _gLucifer.lucSwarmRGBColourViewer_sizeVariableName_set
+    __swig_getmethods__["sizeVariableName"] = _gLucifer.lucSwarmRGBColourViewer_sizeVariableName_get
+    if _newclass:sizeVariableName = _swig_property(_gLucifer.lucSwarmRGBColourViewer_sizeVariableName_get, _gLucifer.lucSwarmRGBColourViewer_sizeVariableName_set)
+    __swig_setmethods__["sizeVariable"] = _gLucifer.lucSwarmRGBColourViewer_sizeVariable_set
+    __swig_getmethods__["sizeVariable"] = _gLucifer.lucSwarmRGBColourViewer_sizeVariable_get
+    if _newclass:sizeVariable = _swig_property(_gLucifer.lucSwarmRGBColourViewer_sizeVariable_get, _gLucifer.lucSwarmRGBColourViewer_sizeVariable_set)
+    __swig_setmethods__["swarm"] = _gLucifer.lucSwarmRGBColourViewer_swarm_set
+    __swig_getmethods__["swarm"] = _gLucifer.lucSwarmRGBColourViewer_swarm_get
+    if _newclass:swarm = _swig_property(_gLucifer.lucSwarmRGBColourViewer_swarm_get, _gLucifer.lucSwarmRGBColourViewer_swarm_set)
+    __swig_setmethods__["opacityColourMap"] = _gLucifer.lucSwarmRGBColourViewer_opacityColourMap_set
+    __swig_getmethods__["opacityColourMap"] = _gLucifer.lucSwarmRGBColourViewer_opacityColourMap_get
+    if _newclass:opacityColourMap = _swig_property(_gLucifer.lucSwarmRGBColourViewer_opacityColourMap_get, _gLucifer.lucSwarmRGBColourViewer_opacityColourMap_set)
+    __swig_setmethods__["opacityVariableName"] = _gLucifer.lucSwarmRGBColourViewer_opacityVariableName_set
+    __swig_getmethods__["opacityVariableName"] = _gLucifer.lucSwarmRGBColourViewer_opacityVariableName_get
+    if _newclass:opacityVariableName = _swig_property(_gLucifer.lucSwarmRGBColourViewer_opacityVariableName_get, _gLucifer.lucSwarmRGBColourViewer_opacityVariableName_set)
+    __swig_setmethods__["opacityVariable"] = _gLucifer.lucSwarmRGBColourViewer_opacityVariable_set
+    __swig_getmethods__["opacityVariable"] = _gLucifer.lucSwarmRGBColourViewer_opacityVariable_get
+    if _newclass:opacityVariable = _swig_property(_gLucifer.lucSwarmRGBColourViewer_opacityVariable_get, _gLucifer.lucSwarmRGBColourViewer_opacityVariable_set)
+    __swig_setmethods__["maskVariableName"] = _gLucifer.lucSwarmRGBColourViewer_maskVariableName_set
+    __swig_getmethods__["maskVariableName"] = _gLucifer.lucSwarmRGBColourViewer_maskVariableName_get
+    if _newclass:maskVariableName = _swig_property(_gLucifer.lucSwarmRGBColourViewer_maskVariableName_get, _gLucifer.lucSwarmRGBColourViewer_maskVariableName_set)
+    __swig_setmethods__["maskVariable"] = _gLucifer.lucSwarmRGBColourViewer_maskVariable_set
+    __swig_getmethods__["maskVariable"] = _gLucifer.lucSwarmRGBColourViewer_maskVariable_get
+    if _newclass:maskVariable = _swig_property(_gLucifer.lucSwarmRGBColourViewer_maskVariable_get, _gLucifer.lucSwarmRGBColourViewer_maskVariable_set)
+    __swig_setmethods__["mask"] = _gLucifer.lucSwarmRGBColourViewer_mask_set
+    __swig_getmethods__["mask"] = _gLucifer.lucSwarmRGBColourViewer_mask_get
+    if _newclass:mask = _swig_property(_gLucifer.lucSwarmRGBColourViewer_mask_get, _gLucifer.lucSwarmRGBColourViewer_mask_set)
+    __swig_setmethods__["drawParticleNumber"] = _gLucifer.lucSwarmRGBColourViewer_drawParticleNumber_set
+    __swig_getmethods__["drawParticleNumber"] = _gLucifer.lucSwarmRGBColourViewer_drawParticleNumber_get
+    if _newclass:drawParticleNumber = _swig_property(_gLucifer.lucSwarmRGBColourViewer_drawParticleNumber_get, _gLucifer.lucSwarmRGBColourViewer_drawParticleNumber_set)
+    __swig_setmethods__["sameParticleColour"] = _gLucifer.lucSwarmRGBColourViewer_sameParticleColour_set
+    __swig_getmethods__["sameParticleColour"] = _gLucifer.lucSwarmRGBColourViewer_sameParticleColour_get
+    if _newclass:sameParticleColour = _swig_property(_gLucifer.lucSwarmRGBColourViewer_sameParticleColour_get, _gLucifer.lucSwarmRGBColourViewer_sameParticleColour_set)
+    __swig_setmethods__["subSample"] = _gLucifer.lucSwarmRGBColourViewer_subSample_set
+    __swig_getmethods__["subSample"] = _gLucifer.lucSwarmRGBColourViewer_subSample_get
+    if _newclass:subSample = _swig_property(_gLucifer.lucSwarmRGBColourViewer_subSample_get, _gLucifer.lucSwarmRGBColourViewer_subSample_set)
+    __swig_setmethods__["positionRange"] = _gLucifer.lucSwarmRGBColourViewer_positionRange_set
+    __swig_getmethods__["positionRange"] = _gLucifer.lucSwarmRGBColourViewer_positionRange_get
+    if _newclass:positionRange = _swig_property(_gLucifer.lucSwarmRGBColourViewer_positionRange_get, _gLucifer.lucSwarmRGBColourViewer_positionRange_set)
+    __swig_setmethods__["minPosition"] = _gLucifer.lucSwarmRGBColourViewer_minPosition_set
+    __swig_getmethods__["minPosition"] = _gLucifer.lucSwarmRGBColourViewer_minPosition_get
+    if _newclass:minPosition = _swig_property(_gLucifer.lucSwarmRGBColourViewer_minPosition_get, _gLucifer.lucSwarmRGBColourViewer_minPosition_set)
+    __swig_setmethods__["maxPosition"] = _gLucifer.lucSwarmRGBColourViewer_maxPosition_set
+    __swig_getmethods__["maxPosition"] = _gLucifer.lucSwarmRGBColourViewer_maxPosition_get
+    if _newclass:maxPosition = _swig_property(_gLucifer.lucSwarmRGBColourViewer_maxPosition_get, _gLucifer.lucSwarmRGBColourViewer_maxPosition_set)
+    __swig_setmethods__["geomType"] = _gLucifer.lucSwarmRGBColourViewer_geomType_set
+    __swig_getmethods__["geomType"] = _gLucifer.lucSwarmRGBColourViewer_geomType_get
+    if _newclass:geomType = _swig_property(_gLucifer.lucSwarmRGBColourViewer_geomType_get, _gLucifer.lucSwarmRGBColourViewer_geomType_set)
+    __swig_setmethods__["scaling"] = _gLucifer.lucSwarmRGBColourViewer_scaling_set
+    __swig_getmethods__["scaling"] = _gLucifer.lucSwarmRGBColourViewer_scaling_get
+    if _newclass:scaling = _swig_property(_gLucifer.lucSwarmRGBColourViewer_scaling_get, _gLucifer.lucSwarmRGBColourViewer_scaling_set)
+    __swig_setmethods__["pointSize"] = _gLucifer.lucSwarmRGBColourViewer_pointSize_set
+    __swig_getmethods__["pointSize"] = _gLucifer.lucSwarmRGBColourViewer_pointSize_get
+    if _newclass:pointSize = _swig_property(_gLucifer.lucSwarmRGBColourViewer_pointSize_get, _gLucifer.lucSwarmRGBColourViewer_pointSize_set)
+    __swig_setmethods__["pointSmoothing"] = _gLucifer.lucSwarmRGBColourViewer_pointSmoothing_set
+    __swig_getmethods__["pointSmoothing"] = _gLucifer.lucSwarmRGBColourViewer_pointSmoothing_get
+    if _newclass:pointSmoothing = _swig_property(_gLucifer.lucSwarmRGBColourViewer_pointSmoothing_get, _gLucifer.lucSwarmRGBColourViewer_pointSmoothing_set)
+    __swig_setmethods__["redColourMap"] = _gLucifer.lucSwarmRGBColourViewer_redColourMap_set
+    __swig_getmethods__["redColourMap"] = _gLucifer.lucSwarmRGBColourViewer_redColourMap_get
+    if _newclass:redColourMap = _swig_property(_gLucifer.lucSwarmRGBColourViewer_redColourMap_get, _gLucifer.lucSwarmRGBColourViewer_redColourMap_set)
+    __swig_setmethods__["greenColourMap"] = _gLucifer.lucSwarmRGBColourViewer_greenColourMap_set
+    __swig_getmethods__["greenColourMap"] = _gLucifer.lucSwarmRGBColourViewer_greenColourMap_get
+    if _newclass:greenColourMap = _swig_property(_gLucifer.lucSwarmRGBColourViewer_greenColourMap_get, _gLucifer.lucSwarmRGBColourViewer_greenColourMap_set)
+    __swig_setmethods__["blueColourMap"] = _gLucifer.lucSwarmRGBColourViewer_blueColourMap_set
+    __swig_getmethods__["blueColourMap"] = _gLucifer.lucSwarmRGBColourViewer_blueColourMap_get
+    if _newclass:blueColourMap = _swig_property(_gLucifer.lucSwarmRGBColourViewer_blueColourMap_get, _gLucifer.lucSwarmRGBColourViewer_blueColourMap_set)
+    __swig_setmethods__["colourRedVariableName"] = _gLucifer.lucSwarmRGBColourViewer_colourRedVariableName_set
+    __swig_getmethods__["colourRedVariableName"] = _gLucifer.lucSwarmRGBColourViewer_colourRedVariableName_get
+    if _newclass:colourRedVariableName = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourRedVariableName_get, _gLucifer.lucSwarmRGBColourViewer_colourRedVariableName_set)
+    __swig_setmethods__["colourRedVariable"] = _gLucifer.lucSwarmRGBColourViewer_colourRedVariable_set
+    __swig_getmethods__["colourRedVariable"] = _gLucifer.lucSwarmRGBColourViewer_colourRedVariable_get
+    if _newclass:colourRedVariable = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourRedVariable_get, _gLucifer.lucSwarmRGBColourViewer_colourRedVariable_set)
+    __swig_setmethods__["colourGreenVariableName"] = _gLucifer.lucSwarmRGBColourViewer_colourGreenVariableName_set
+    __swig_getmethods__["colourGreenVariableName"] = _gLucifer.lucSwarmRGBColourViewer_colourGreenVariableName_get
+    if _newclass:colourGreenVariableName = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourGreenVariableName_get, _gLucifer.lucSwarmRGBColourViewer_colourGreenVariableName_set)
+    __swig_setmethods__["colourGreenVariable"] = _gLucifer.lucSwarmRGBColourViewer_colourGreenVariable_set
+    __swig_getmethods__["colourGreenVariable"] = _gLucifer.lucSwarmRGBColourViewer_colourGreenVariable_get
+    if _newclass:colourGreenVariable = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourGreenVariable_get, _gLucifer.lucSwarmRGBColourViewer_colourGreenVariable_set)
+    __swig_setmethods__["colourBlueVariableName"] = _gLucifer.lucSwarmRGBColourViewer_colourBlueVariableName_set
+    __swig_getmethods__["colourBlueVariableName"] = _gLucifer.lucSwarmRGBColourViewer_colourBlueVariableName_get
+    if _newclass:colourBlueVariableName = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourBlueVariableName_get, _gLucifer.lucSwarmRGBColourViewer_colourBlueVariableName_set)
+    __swig_setmethods__["colourBlueVariable"] = _gLucifer.lucSwarmRGBColourViewer_colourBlueVariable_set
+    __swig_getmethods__["colourBlueVariable"] = _gLucifer.lucSwarmRGBColourViewer_colourBlueVariable_get
+    if _newclass:colourBlueVariable = _swig_property(_gLucifer.lucSwarmRGBColourViewer_colourBlueVariable_get, _gLucifer.lucSwarmRGBColourViewer_colourBlueVariable_set)
     def __init__(self): 
-        this = _gLucifer.new_lucSwarmViewer()
+        this = _gLucifer.new_lucSwarmRGBColourViewer()
         try: self.this.append(this)
         except: self.this = this
-    __swig_destroy__ = _gLucifer.delete_lucSwarmViewer
+    __swig_destroy__ = _gLucifer.delete_lucSwarmRGBColourViewer
     __del__ = lambda self : None;
-lucSwarmViewer_swigregister = _gLucifer.lucSwarmViewer_swigregister
-lucSwarmViewer_swigregister(lucSwarmViewer)
-lucSwarmViewer_Type = cvar.lucSwarmViewer_Type
+lucSwarmRGBColourViewer_swigregister = _gLucifer.lucSwarmRGBColourViewer_swigregister
+lucSwarmRGBColourViewer_swigregister(lucSwarmRGBColourViewer)
+lucSwarmRGBColourViewer_Type = cvar.lucSwarmRGBColourViewer_Type
 
 
-def _lucSwarmViewer_New(*args):
-  return _gLucifer._lucSwarmViewer_New(*args)
-_lucSwarmViewer_New = _gLucifer._lucSwarmViewer_New
+def _lucSwarmRGBColourViewer_New(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_New(*args)
+_lucSwarmRGBColourViewer_New = _gLucifer._lucSwarmRGBColourViewer_New
 
-def _lucSwarmViewer_Delete(*args):
-  return _gLucifer._lucSwarmViewer_Delete(*args)
-_lucSwarmViewer_Delete = _gLucifer._lucSwarmViewer_Delete
+def _lucSwarmRGBColourViewer_Delete(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_Delete(*args)
+_lucSwarmRGBColourViewer_Delete = _gLucifer._lucSwarmRGBColourViewer_Delete
 
-def _lucSwarmViewer_Print(*args):
-  return _gLucifer._lucSwarmViewer_Print(*args)
-_lucSwarmViewer_Print = _gLucifer._lucSwarmViewer_Print
+def _lucSwarmRGBColourViewer_Print(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_Print(*args)
+_lucSwarmRGBColourViewer_Print = _gLucifer._lucSwarmRGBColourViewer_Print
 
-def _lucSwarmViewer_Copy(*args):
-  return _gLucifer._lucSwarmViewer_Copy(*args)
-_lucSwarmViewer_Copy = _gLucifer._lucSwarmViewer_Copy
+def _lucSwarmRGBColourViewer_DefaultNew(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_DefaultNew(*args)
+_lucSwarmRGBColourViewer_DefaultNew = _gLucifer._lucSwarmRGBColourViewer_DefaultNew
 
-def _lucSwarmViewer_DefaultNew(*args):
-  return _gLucifer._lucSwarmViewer_DefaultNew(*args)
-_lucSwarmViewer_DefaultNew = _gLucifer._lucSwarmViewer_DefaultNew
+def _lucSwarmRGBColourViewer_AssignFromXML(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_AssignFromXML(*args)
+_lucSwarmRGBColourViewer_AssignFromXML = _gLucifer._lucSwarmRGBColourViewer_AssignFromXML
 
-def _lucSwarmViewer_AssignFromXML(*args):
-  return _gLucifer._lucSwarmViewer_AssignFromXML(*args)
-_lucSwarmViewer_AssignFromXML = _gLucifer._lucSwarmViewer_AssignFromXML
+def _lucSwarmRGBColourViewer_Build(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_Build(*args)
+_lucSwarmRGBColourViewer_Build = _gLucifer._lucSwarmRGBColourViewer_Build
 
-def _lucSwarmViewer_Build(*args):
-  return _gLucifer._lucSwarmViewer_Build(*args)
-_lucSwarmViewer_Build = _gLucifer._lucSwarmViewer_Build
+def _lucSwarmRGBColourViewer_Initialise(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_Initialise(*args)
+_lucSwarmRGBColourViewer_Initialise = _gLucifer._lucSwarmRGBColourViewer_Initialise
 
-def _lucSwarmViewer_Initialise(*args):
-  return _gLucifer._lucSwarmViewer_Initialise(*args)
-_lucSwarmViewer_Initialise = _gLucifer._lucSwarmViewer_Initialise
+def _lucSwarmRGBColourViewer_Execute(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_Execute(*args)
+_lucSwarmRGBColourViewer_Execute = _gLucifer._lucSwarmRGBColourViewer_Execute
 
-def _lucSwarmViewer_Execute(*args):
-  return _gLucifer._lucSwarmViewer_Execute(*args)
-_lucSwarmViewer_Execute = _gLucifer._lucSwarmViewer_Execute
+def _lucSwarmRGBColourViewer_Destroy(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_Destroy(*args)
+_lucSwarmRGBColourViewer_Destroy = _gLucifer._lucSwarmRGBColourViewer_Destroy
 
-def _lucSwarmViewer_Destroy(*args):
-  return _gLucifer._lucSwarmViewer_Destroy(*args)
-_lucSwarmViewer_Destroy = _gLucifer._lucSwarmViewer_Destroy
+def _lucSwarmRGBColourViewer_Setup(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_Setup(*args)
+_lucSwarmRGBColourViewer_Setup = _gLucifer._lucSwarmRGBColourViewer_Setup
 
-def lucSwarmViewer_InitialiseVariable(*args):
-  return _gLucifer.lucSwarmViewer_InitialiseVariable(*args)
-lucSwarmViewer_InitialiseVariable = _gLucifer.lucSwarmViewer_InitialiseVariable
+def _lucSwarmRGBColourViewer_SetParticleColour(*args):
+  return _gLucifer._lucSwarmRGBColourViewer_SetParticleColour(*args)
+_lucSwarmRGBColourViewer_SetParticleColour = _gLucifer._lucSwarmRGBColourViewer_SetParticleColour
 
-def lucSwarmViewer_GetScalar(*args):
-  return _gLucifer.lucSwarmViewer_GetScalar(*args)
-lucSwarmViewer_GetScalar = _gLucifer.lucSwarmViewer_GetScalar
+def lucSwarmRGBColourViewer_UpdateVariables(*args):
+  return _gLucifer.lucSwarmRGBColourViewer_UpdateVariables(*args)
+lucSwarmRGBColourViewer_UpdateVariables = _gLucifer.lucSwarmRGBColourViewer_UpdateVariables
+class lucSwarmShapes(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lucSwarmShapes, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, lucSwarmShapes, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmShapes__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmShapes__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucSwarmShapes__sizeOfSelf_get, _gLucifer.lucSwarmShapes__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucSwarmShapes__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucSwarmShapes__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucSwarmShapes__deleteSelf_get, _gLucifer.lucSwarmShapes__deleteSelf_set)
+    __swig_setmethods__["type"] = _gLucifer.lucSwarmShapes_type_set
+    __swig_getmethods__["type"] = _gLucifer.lucSwarmShapes_type_get
+    if _newclass:type = _swig_property(_gLucifer.lucSwarmShapes_type_get, _gLucifer.lucSwarmShapes_type_set)
+    __swig_setmethods__["nRefs"] = _gLucifer.lucSwarmShapes_nRefs_set
+    __swig_getmethods__["nRefs"] = _gLucifer.lucSwarmShapes_nRefs_get
+    if _newclass:nRefs = _swig_property(_gLucifer.lucSwarmShapes_nRefs_get, _gLucifer.lucSwarmShapes_nRefs_set)
+    __swig_setmethods__["_delete"] = _gLucifer.lucSwarmShapes__delete_set
+    __swig_getmethods__["_delete"] = _gLucifer.lucSwarmShapes__delete_get
+    if _newclass:_delete = _swig_property(_gLucifer.lucSwarmShapes__delete_get, _gLucifer.lucSwarmShapes__delete_set)
+    __swig_setmethods__["_print"] = _gLucifer.lucSwarmShapes__print_set
+    __swig_getmethods__["_print"] = _gLucifer.lucSwarmShapes__print_get
+    if _newclass:_print = _swig_property(_gLucifer.lucSwarmShapes__print_get, _gLucifer.lucSwarmShapes__print_set)
+    __swig_setmethods__["_copy"] = _gLucifer.lucSwarmShapes__copy_set
+    __swig_getmethods__["_copy"] = _gLucifer.lucSwarmShapes__copy_get
+    if _newclass:_copy = _swig_property(_gLucifer.lucSwarmShapes__copy_get, _gLucifer.lucSwarmShapes__copy_set)
+    __swig_setmethods__["name"] = _gLucifer.lucSwarmShapes_name_set
+    __swig_getmethods__["name"] = _gLucifer.lucSwarmShapes_name_get
+    if _newclass:name = _swig_property(_gLucifer.lucSwarmShapes_name_get, _gLucifer.lucSwarmShapes_name_set)
+    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucSwarmShapes_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucSwarmShapes_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucSwarmShapes_nameAllocationType_get, _gLucifer.lucSwarmShapes_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucSwarmShapes__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucSwarmShapes__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucSwarmShapes__defaultConstructor_get, _gLucifer.lucSwarmShapes__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _gLucifer.lucSwarmShapes__construct_set
+    __swig_getmethods__["_construct"] = _gLucifer.lucSwarmShapes__construct_get
+    if _newclass:_construct = _swig_property(_gLucifer.lucSwarmShapes__construct_get, _gLucifer.lucSwarmShapes__construct_set)
+    __swig_setmethods__["_build"] = _gLucifer.lucSwarmShapes__build_set
+    __swig_getmethods__["_build"] = _gLucifer.lucSwarmShapes__build_get
+    if _newclass:_build = _swig_property(_gLucifer.lucSwarmShapes__build_get, _gLucifer.lucSwarmShapes__build_set)
+    __swig_setmethods__["_initialise"] = _gLucifer.lucSwarmShapes__initialise_set
+    __swig_getmethods__["_initialise"] = _gLucifer.lucSwarmShapes__initialise_get
+    if _newclass:_initialise = _swig_property(_gLucifer.lucSwarmShapes__initialise_get, _gLucifer.lucSwarmShapes__initialise_set)
+    __swig_setmethods__["_execute"] = _gLucifer.lucSwarmShapes__execute_set
+    __swig_getmethods__["_execute"] = _gLucifer.lucSwarmShapes__execute_get
+    if _newclass:_execute = _swig_property(_gLucifer.lucSwarmShapes__execute_get, _gLucifer.lucSwarmShapes__execute_set)
+    __swig_setmethods__["_destroy"] = _gLucifer.lucSwarmShapes__destroy_set
+    __swig_getmethods__["_destroy"] = _gLucifer.lucSwarmShapes__destroy_get
+    if _newclass:_destroy = _swig_property(_gLucifer.lucSwarmShapes__destroy_get, _gLucifer.lucSwarmShapes__destroy_set)
+    __swig_setmethods__["isConstructed"] = _gLucifer.lucSwarmShapes_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _gLucifer.lucSwarmShapes_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_gLucifer.lucSwarmShapes_isConstructed_get, _gLucifer.lucSwarmShapes_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _gLucifer.lucSwarmShapes_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _gLucifer.lucSwarmShapes_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_gLucifer.lucSwarmShapes_isBuilt_get, _gLucifer.lucSwarmShapes_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _gLucifer.lucSwarmShapes_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _gLucifer.lucSwarmShapes_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_gLucifer.lucSwarmShapes_isInitialised_get, _gLucifer.lucSwarmShapes_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _gLucifer.lucSwarmShapes_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _gLucifer.lucSwarmShapes_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_gLucifer.lucSwarmShapes_hasExecuted_get, _gLucifer.lucSwarmShapes_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _gLucifer.lucSwarmShapes_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _gLucifer.lucSwarmShapes_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_gLucifer.lucSwarmShapes_isDestroyed_get, _gLucifer.lucSwarmShapes_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _gLucifer.lucSwarmShapes_constructType_set
+    __swig_getmethods__["constructType"] = _gLucifer.lucSwarmShapes_constructType_get
+    if _newclass:constructType = _swig_property(_gLucifer.lucSwarmShapes_constructType_get, _gLucifer.lucSwarmShapes_constructType_set)
+    __swig_setmethods__["buildType"] = _gLucifer.lucSwarmShapes_buildType_set
+    __swig_getmethods__["buildType"] = _gLucifer.lucSwarmShapes_buildType_get
+    if _newclass:buildType = _swig_property(_gLucifer.lucSwarmShapes_buildType_get, _gLucifer.lucSwarmShapes_buildType_set)
+    __swig_setmethods__["initialiseType"] = _gLucifer.lucSwarmShapes_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _gLucifer.lucSwarmShapes_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_gLucifer.lucSwarmShapes_initialiseType_get, _gLucifer.lucSwarmShapes_initialiseType_set)
+    __swig_setmethods__["executeType"] = _gLucifer.lucSwarmShapes_executeType_set
+    __swig_getmethods__["executeType"] = _gLucifer.lucSwarmShapes_executeType_get
+    if _newclass:executeType = _swig_property(_gLucifer.lucSwarmShapes_executeType_get, _gLucifer.lucSwarmShapes_executeType_set)
+    __swig_setmethods__["destroyType"] = _gLucifer.lucSwarmShapes_destroyType_set
+    __swig_getmethods__["destroyType"] = _gLucifer.lucSwarmShapes_destroyType_get
+    if _newclass:destroyType = _swig_property(_gLucifer.lucSwarmShapes_destroyType_get, _gLucifer.lucSwarmShapes_destroyType_set)
+    __swig_setmethods__["context"] = _gLucifer.lucSwarmShapes_context_set
+    __swig_getmethods__["context"] = _gLucifer.lucSwarmShapes_context_get
+    if _newclass:context = _swig_property(_gLucifer.lucSwarmShapes_context_get, _gLucifer.lucSwarmShapes_context_set)
+    __swig_setmethods__["_setup"] = _gLucifer.lucSwarmShapes__setup_set
+    __swig_getmethods__["_setup"] = _gLucifer.lucSwarmShapes__setup_get
+    if _newclass:_setup = _swig_property(_gLucifer.lucSwarmShapes__setup_get, _gLucifer.lucSwarmShapes__setup_set)
+    __swig_setmethods__["_draw"] = _gLucifer.lucSwarmShapes__draw_set
+    __swig_getmethods__["_draw"] = _gLucifer.lucSwarmShapes__draw_get
+    if _newclass:_draw = _swig_property(_gLucifer.lucSwarmShapes__draw_get, _gLucifer.lucSwarmShapes__draw_set)
+    __swig_setmethods__["_cleanUp"] = _gLucifer.lucSwarmShapes__cleanUp_set
+    __swig_getmethods__["_cleanUp"] = _gLucifer.lucSwarmShapes__cleanUp_get
+    if _newclass:_cleanUp = _swig_property(_gLucifer.lucSwarmShapes__cleanUp_get, _gLucifer.lucSwarmShapes__cleanUp_set)
+    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucSwarmShapes_needsToCleanUp_set
+    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucSwarmShapes_needsToCleanUp_get
+    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucSwarmShapes_needsToCleanUp_get, _gLucifer.lucSwarmShapes_needsToCleanUp_set)
+    __swig_setmethods__["needsToDraw"] = _gLucifer.lucSwarmShapes_needsToDraw_set
+    __swig_getmethods__["needsToDraw"] = _gLucifer.lucSwarmShapes_needsToDraw_get
+    if _newclass:needsToDraw = _swig_property(_gLucifer.lucSwarmShapes_needsToDraw_get, _gLucifer.lucSwarmShapes_needsToDraw_set)
+    __swig_setmethods__["depthSort"] = _gLucifer.lucSwarmShapes_depthSort_set
+    __swig_getmethods__["depthSort"] = _gLucifer.lucSwarmShapes_depthSort_get
+    if _newclass:depthSort = _swig_property(_gLucifer.lucSwarmShapes_depthSort_get, _gLucifer.lucSwarmShapes_depthSort_set)
+    __swig_setmethods__["position"] = _gLucifer.lucSwarmShapes_position_set
+    __swig_getmethods__["position"] = _gLucifer.lucSwarmShapes_position_get
+    if _newclass:position = _swig_property(_gLucifer.lucSwarmShapes_position_get, _gLucifer.lucSwarmShapes_position_set)
+    __swig_setmethods__["lit"] = _gLucifer.lucSwarmShapes_lit_set
+    __swig_getmethods__["lit"] = _gLucifer.lucSwarmShapes_lit_get
+    if _newclass:lit = _swig_property(_gLucifer.lucSwarmShapes_lit_get, _gLucifer.lucSwarmShapes_lit_set)
+    __swig_setmethods__["disabled"] = _gLucifer.lucSwarmShapes_disabled_set
+    __swig_getmethods__["disabled"] = _gLucifer.lucSwarmShapes_disabled_get
+    if _newclass:disabled = _swig_property(_gLucifer.lucSwarmShapes_disabled_get, _gLucifer.lucSwarmShapes_disabled_set)
+    __swig_setmethods__["colourMap"] = _gLucifer.lucSwarmShapes_colourMap_set
+    __swig_getmethods__["colourMap"] = _gLucifer.lucSwarmShapes_colourMap_get
+    if _newclass:colourMap = _swig_property(_gLucifer.lucSwarmShapes_colourMap_get, _gLucifer.lucSwarmShapes_colourMap_set)
+    __swig_setmethods__["colour"] = _gLucifer.lucSwarmShapes_colour_set
+    __swig_getmethods__["colour"] = _gLucifer.lucSwarmShapes_colour_get
+    if _newclass:colour = _swig_property(_gLucifer.lucSwarmShapes_colour_get, _gLucifer.lucSwarmShapes_colour_set)
+    __swig_setmethods__["opacity"] = _gLucifer.lucSwarmShapes_opacity_set
+    __swig_getmethods__["opacity"] = _gLucifer.lucSwarmShapes_opacity_get
+    if _newclass:opacity = _swig_property(_gLucifer.lucSwarmShapes_opacity_get, _gLucifer.lucSwarmShapes_opacity_set)
+    __swig_setmethods__["wireframe"] = _gLucifer.lucSwarmShapes_wireframe_set
+    __swig_getmethods__["wireframe"] = _gLucifer.lucSwarmShapes_wireframe_get
+    if _newclass:wireframe = _swig_property(_gLucifer.lucSwarmShapes_wireframe_get, _gLucifer.lucSwarmShapes_wireframe_set)
+    __swig_setmethods__["lineWidth"] = _gLucifer.lucSwarmShapes_lineWidth_set
+    __swig_getmethods__["lineWidth"] = _gLucifer.lucSwarmShapes_lineWidth_get
+    if _newclass:lineWidth = _swig_property(_gLucifer.lucSwarmShapes_lineWidth_get, _gLucifer.lucSwarmShapes_lineWidth_set)
+    __swig_setmethods__["id"] = _gLucifer.lucSwarmShapes_id_set
+    __swig_getmethods__["id"] = _gLucifer.lucSwarmShapes_id_get
+    if _newclass:id = _swig_property(_gLucifer.lucSwarmShapes_id_get, _gLucifer.lucSwarmShapes_id_set)
+    __swig_setmethods__["properties"] = _gLucifer.lucSwarmShapes_properties_set
+    __swig_getmethods__["properties"] = _gLucifer.lucSwarmShapes_properties_get
+    if _newclass:properties = _swig_property(_gLucifer.lucSwarmShapes_properties_get, _gLucifer.lucSwarmShapes_properties_set)
+    __swig_setmethods__["_plotParticle"] = _gLucifer.lucSwarmShapes__plotParticle_set
+    __swig_getmethods__["_plotParticle"] = _gLucifer.lucSwarmShapes__plotParticle_get
+    if _newclass:_plotParticle = _swig_property(_gLucifer.lucSwarmShapes__plotParticle_get, _gLucifer.lucSwarmShapes__plotParticle_set)
+    __swig_setmethods__["_setParticleColour"] = _gLucifer.lucSwarmShapes__setParticleColour_set
+    __swig_getmethods__["_setParticleColour"] = _gLucifer.lucSwarmShapes__setParticleColour_get
+    if _newclass:_setParticleColour = _swig_property(_gLucifer.lucSwarmShapes__setParticleColour_get, _gLucifer.lucSwarmShapes__setParticleColour_set)
+    __swig_setmethods__["colourVariableName"] = _gLucifer.lucSwarmShapes_colourVariableName_set
+    __swig_getmethods__["colourVariableName"] = _gLucifer.lucSwarmShapes_colourVariableName_get
+    if _newclass:colourVariableName = _swig_property(_gLucifer.lucSwarmShapes_colourVariableName_get, _gLucifer.lucSwarmShapes_colourVariableName_set)
+    __swig_setmethods__["colourVariable"] = _gLucifer.lucSwarmShapes_colourVariable_set
+    __swig_getmethods__["colourVariable"] = _gLucifer.lucSwarmShapes_colourVariable_get
+    if _newclass:colourVariable = _swig_property(_gLucifer.lucSwarmShapes_colourVariable_get, _gLucifer.lucSwarmShapes_colourVariable_set)
+    __swig_setmethods__["sizeVariableName"] = _gLucifer.lucSwarmShapes_sizeVariableName_set
+    __swig_getmethods__["sizeVariableName"] = _gLucifer.lucSwarmShapes_sizeVariableName_get
+    if _newclass:sizeVariableName = _swig_property(_gLucifer.lucSwarmShapes_sizeVariableName_get, _gLucifer.lucSwarmShapes_sizeVariableName_set)
+    __swig_setmethods__["sizeVariable"] = _gLucifer.lucSwarmShapes_sizeVariable_set
+    __swig_getmethods__["sizeVariable"] = _gLucifer.lucSwarmShapes_sizeVariable_get
+    if _newclass:sizeVariable = _swig_property(_gLucifer.lucSwarmShapes_sizeVariable_get, _gLucifer.lucSwarmShapes_sizeVariable_set)
+    __swig_setmethods__["swarm"] = _gLucifer.lucSwarmShapes_swarm_set
+    __swig_getmethods__["swarm"] = _gLucifer.lucSwarmShapes_swarm_get
+    if _newclass:swarm = _swig_property(_gLucifer.lucSwarmShapes_swarm_get, _gLucifer.lucSwarmShapes_swarm_set)
+    __swig_setmethods__["opacityColourMap"] = _gLucifer.lucSwarmShapes_opacityColourMap_set
+    __swig_getmethods__["opacityColourMap"] = _gLucifer.lucSwarmShapes_opacityColourMap_get
+    if _newclass:opacityColourMap = _swig_property(_gLucifer.lucSwarmShapes_opacityColourMap_get, _gLucifer.lucSwarmShapes_opacityColourMap_set)
+    __swig_setmethods__["opacityVariableName"] = _gLucifer.lucSwarmShapes_opacityVariableName_set
+    __swig_getmethods__["opacityVariableName"] = _gLucifer.lucSwarmShapes_opacityVariableName_get
+    if _newclass:opacityVariableName = _swig_property(_gLucifer.lucSwarmShapes_opacityVariableName_get, _gLucifer.lucSwarmShapes_opacityVariableName_set)
+    __swig_setmethods__["opacityVariable"] = _gLucifer.lucSwarmShapes_opacityVariable_set
+    __swig_getmethods__["opacityVariable"] = _gLucifer.lucSwarmShapes_opacityVariable_get
+    if _newclass:opacityVariable = _swig_property(_gLucifer.lucSwarmShapes_opacityVariable_get, _gLucifer.lucSwarmShapes_opacityVariable_set)
+    __swig_setmethods__["maskVariableName"] = _gLucifer.lucSwarmShapes_maskVariableName_set
+    __swig_getmethods__["maskVariableName"] = _gLucifer.lucSwarmShapes_maskVariableName_get
+    if _newclass:maskVariableName = _swig_property(_gLucifer.lucSwarmShapes_maskVariableName_get, _gLucifer.lucSwarmShapes_maskVariableName_set)
+    __swig_setmethods__["maskVariable"] = _gLucifer.lucSwarmShapes_maskVariable_set
+    __swig_getmethods__["maskVariable"] = _gLucifer.lucSwarmShapes_maskVariable_get
+    if _newclass:maskVariable = _swig_property(_gLucifer.lucSwarmShapes_maskVariable_get, _gLucifer.lucSwarmShapes_maskVariable_set)
+    __swig_setmethods__["mask"] = _gLucifer.lucSwarmShapes_mask_set
+    __swig_getmethods__["mask"] = _gLucifer.lucSwarmShapes_mask_get
+    if _newclass:mask = _swig_property(_gLucifer.lucSwarmShapes_mask_get, _gLucifer.lucSwarmShapes_mask_set)
+    __swig_setmethods__["drawParticleNumber"] = _gLucifer.lucSwarmShapes_drawParticleNumber_set
+    __swig_getmethods__["drawParticleNumber"] = _gLucifer.lucSwarmShapes_drawParticleNumber_get
+    if _newclass:drawParticleNumber = _swig_property(_gLucifer.lucSwarmShapes_drawParticleNumber_get, _gLucifer.lucSwarmShapes_drawParticleNumber_set)
+    __swig_setmethods__["sameParticleColour"] = _gLucifer.lucSwarmShapes_sameParticleColour_set
+    __swig_getmethods__["sameParticleColour"] = _gLucifer.lucSwarmShapes_sameParticleColour_get
+    if _newclass:sameParticleColour = _swig_property(_gLucifer.lucSwarmShapes_sameParticleColour_get, _gLucifer.lucSwarmShapes_sameParticleColour_set)
+    __swig_setmethods__["subSample"] = _gLucifer.lucSwarmShapes_subSample_set
+    __swig_getmethods__["subSample"] = _gLucifer.lucSwarmShapes_subSample_get
+    if _newclass:subSample = _swig_property(_gLucifer.lucSwarmShapes_subSample_get, _gLucifer.lucSwarmShapes_subSample_set)
+    __swig_setmethods__["positionRange"] = _gLucifer.lucSwarmShapes_positionRange_set
+    __swig_getmethods__["positionRange"] = _gLucifer.lucSwarmShapes_positionRange_get
+    if _newclass:positionRange = _swig_property(_gLucifer.lucSwarmShapes_positionRange_get, _gLucifer.lucSwarmShapes_positionRange_set)
+    __swig_setmethods__["minPosition"] = _gLucifer.lucSwarmShapes_minPosition_set
+    __swig_getmethods__["minPosition"] = _gLucifer.lucSwarmShapes_minPosition_get
+    if _newclass:minPosition = _swig_property(_gLucifer.lucSwarmShapes_minPosition_get, _gLucifer.lucSwarmShapes_minPosition_set)
+    __swig_setmethods__["maxPosition"] = _gLucifer.lucSwarmShapes_maxPosition_set
+    __swig_getmethods__["maxPosition"] = _gLucifer.lucSwarmShapes_maxPosition_get
+    if _newclass:maxPosition = _swig_property(_gLucifer.lucSwarmShapes_maxPosition_get, _gLucifer.lucSwarmShapes_maxPosition_set)
+    __swig_setmethods__["geomType"] = _gLucifer.lucSwarmShapes_geomType_set
+    __swig_getmethods__["geomType"] = _gLucifer.lucSwarmShapes_geomType_get
+    if _newclass:geomType = _swig_property(_gLucifer.lucSwarmShapes_geomType_get, _gLucifer.lucSwarmShapes_geomType_set)
+    __swig_setmethods__["scaling"] = _gLucifer.lucSwarmShapes_scaling_set
+    __swig_getmethods__["scaling"] = _gLucifer.lucSwarmShapes_scaling_get
+    if _newclass:scaling = _swig_property(_gLucifer.lucSwarmShapes_scaling_get, _gLucifer.lucSwarmShapes_scaling_set)
+    __swig_setmethods__["pointSize"] = _gLucifer.lucSwarmShapes_pointSize_set
+    __swig_getmethods__["pointSize"] = _gLucifer.lucSwarmShapes_pointSize_get
+    if _newclass:pointSize = _swig_property(_gLucifer.lucSwarmShapes_pointSize_get, _gLucifer.lucSwarmShapes_pointSize_set)
+    __swig_setmethods__["pointSmoothing"] = _gLucifer.lucSwarmShapes_pointSmoothing_set
+    __swig_getmethods__["pointSmoothing"] = _gLucifer.lucSwarmShapes_pointSmoothing_get
+    if _newclass:pointSmoothing = _swig_property(_gLucifer.lucSwarmShapes_pointSmoothing_get, _gLucifer.lucSwarmShapes_pointSmoothing_set)
+    __swig_setmethods__["planeVectorVariable"] = _gLucifer.lucSwarmShapes_planeVectorVariable_set
+    __swig_getmethods__["planeVectorVariable"] = _gLucifer.lucSwarmShapes_planeVectorVariable_get
+    if _newclass:planeVectorVariable = _swig_property(_gLucifer.lucSwarmShapes_planeVectorVariable_get, _gLucifer.lucSwarmShapes_planeVectorVariable_set)
+    __swig_setmethods__["planeVectorVariableName"] = _gLucifer.lucSwarmShapes_planeVectorVariableName_set
+    __swig_getmethods__["planeVectorVariableName"] = _gLucifer.lucSwarmShapes_planeVectorVariableName_get
+    if _newclass:planeVectorVariableName = _swig_property(_gLucifer.lucSwarmShapes_planeVectorVariableName_get, _gLucifer.lucSwarmShapes_planeVectorVariableName_set)
+    __swig_setmethods__["lengthVariable"] = _gLucifer.lucSwarmShapes_lengthVariable_set
+    __swig_getmethods__["lengthVariable"] = _gLucifer.lucSwarmShapes_lengthVariable_get
+    if _newclass:lengthVariable = _swig_property(_gLucifer.lucSwarmShapes_lengthVariable_get, _gLucifer.lucSwarmShapes_lengthVariable_set)
+    __swig_setmethods__["lengthVariableName"] = _gLucifer.lucSwarmShapes_lengthVariableName_set
+    __swig_getmethods__["lengthVariableName"] = _gLucifer.lucSwarmShapes_lengthVariableName_get
+    if _newclass:lengthVariableName = _swig_property(_gLucifer.lucSwarmShapes_lengthVariableName_get, _gLucifer.lucSwarmShapes_lengthVariableName_set)
+    __swig_setmethods__["widthVariable"] = _gLucifer.lucSwarmShapes_widthVariable_set
+    __swig_getmethods__["widthVariable"] = _gLucifer.lucSwarmShapes_widthVariable_get
+    if _newclass:widthVariable = _swig_property(_gLucifer.lucSwarmShapes_widthVariable_get, _gLucifer.lucSwarmShapes_widthVariable_set)
+    __swig_setmethods__["widthVariableName"] = _gLucifer.lucSwarmShapes_widthVariableName_set
+    __swig_getmethods__["widthVariableName"] = _gLucifer.lucSwarmShapes_widthVariableName_get
+    if _newclass:widthVariableName = _swig_property(_gLucifer.lucSwarmShapes_widthVariableName_get, _gLucifer.lucSwarmShapes_widthVariableName_set)
+    __swig_setmethods__["heightVariable"] = _gLucifer.lucSwarmShapes_heightVariable_set
+    __swig_getmethods__["heightVariable"] = _gLucifer.lucSwarmShapes_heightVariable_get
+    if _newclass:heightVariable = _swig_property(_gLucifer.lucSwarmShapes_heightVariable_get, _gLucifer.lucSwarmShapes_heightVariable_set)
+    __swig_setmethods__["heightVariableName"] = _gLucifer.lucSwarmShapes_heightVariableName_set
+    __swig_getmethods__["heightVariableName"] = _gLucifer.lucSwarmShapes_heightVariableName_get
+    if _newclass:heightVariableName = _swig_property(_gLucifer.lucSwarmShapes_heightVariableName_get, _gLucifer.lucSwarmShapes_heightVariableName_set)
+    __swig_setmethods__["length"] = _gLucifer.lucSwarmShapes_length_set
+    __swig_getmethods__["length"] = _gLucifer.lucSwarmShapes_length_get
+    if _newclass:length = _swig_property(_gLucifer.lucSwarmShapes_length_get, _gLucifer.lucSwarmShapes_length_set)
+    __swig_setmethods__["width"] = _gLucifer.lucSwarmShapes_width_set
+    __swig_getmethods__["width"] = _gLucifer.lucSwarmShapes_width_get
+    if _newclass:width = _swig_property(_gLucifer.lucSwarmShapes_width_get, _gLucifer.lucSwarmShapes_width_set)
+    __swig_setmethods__["height"] = _gLucifer.lucSwarmShapes_height_set
+    __swig_getmethods__["height"] = _gLucifer.lucSwarmShapes_height_get
+    if _newclass:height = _swig_property(_gLucifer.lucSwarmShapes_height_get, _gLucifer.lucSwarmShapes_height_set)
+    __swig_setmethods__["square"] = _gLucifer.lucSwarmShapes_square_set
+    __swig_getmethods__["square"] = _gLucifer.lucSwarmShapes_square_get
+    if _newclass:square = _swig_property(_gLucifer.lucSwarmShapes_square_get, _gLucifer.lucSwarmShapes_square_set)
+    def __init__(self): 
+        this = _gLucifer.new_lucSwarmShapes()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _gLucifer.delete_lucSwarmShapes
+    __del__ = lambda self : None;
+lucSwarmShapes_swigregister = _gLucifer.lucSwarmShapes_swigregister
+lucSwarmShapes_swigregister(lucSwarmShapes)
+lucSwarmShapes_Type = cvar.lucSwarmShapes_Type
 
-def _lucSwarmViewer_Setup(*args):
-  return _gLucifer._lucSwarmViewer_Setup(*args)
-_lucSwarmViewer_Setup = _gLucifer._lucSwarmViewer_Setup
 
-def _lucSwarmViewer_Draw(*args):
-  return _gLucifer._lucSwarmViewer_Draw(*args)
-_lucSwarmViewer_Draw = _gLucifer._lucSwarmViewer_Draw
+def _lucSwarmShapes_New(*args):
+  return _gLucifer._lucSwarmShapes_New(*args)
+_lucSwarmShapes_New = _gLucifer._lucSwarmShapes_New
 
-def lucSwarmViewBase_DrawParticleNumbers(*args):
-  return _gLucifer.lucSwarmViewBase_DrawParticleNumbers(*args)
-lucSwarmViewBase_DrawParticleNumbers = _gLucifer.lucSwarmViewBase_DrawParticleNumbers
+def _lucSwarmShapes_Delete(*args):
+  return _gLucifer._lucSwarmShapes_Delete(*args)
+_lucSwarmShapes_Delete = _gLucifer._lucSwarmShapes_Delete
 
-def lucSwarmViewer_UpdateVariables(*args):
-  return _gLucifer.lucSwarmViewer_UpdateVariables(*args)
-lucSwarmViewer_UpdateVariables = _gLucifer.lucSwarmViewer_UpdateVariables
+def _lucSwarmShapes_Print(*args):
+  return _gLucifer._lucSwarmShapes_Print(*args)
+_lucSwarmShapes_Print = _gLucifer._lucSwarmShapes_Print
 
-def lucSwarmViewer_FindParticleLocalIndex(*args):
-  return _gLucifer.lucSwarmViewer_FindParticleLocalIndex(*args)
-lucSwarmViewer_FindParticleLocalIndex = _gLucifer.lucSwarmViewer_FindParticleLocalIndex
+def _lucSwarmShapes_Copy(*args):
+  return _gLucifer._lucSwarmShapes_Copy(*args)
+_lucSwarmShapes_Copy = _gLucifer._lucSwarmShapes_Copy
 
-def lucSwarmViewer_SetColourComponent(*args):
-  return _gLucifer.lucSwarmViewer_SetColourComponent(*args)
-lucSwarmViewer_SetColourComponent = _gLucifer.lucSwarmViewer_SetColourComponent
+def _lucSwarmShapes_DefaultNew(*args):
+  return _gLucifer._lucSwarmShapes_DefaultNew(*args)
+_lucSwarmShapes_DefaultNew = _gLucifer._lucSwarmShapes_DefaultNew
 
-def _lucSwarmViewer_SetParticleColour(*args):
-  return _gLucifer._lucSwarmViewer_SetParticleColour(*args)
-_lucSwarmViewer_SetParticleColour = _gLucifer._lucSwarmViewer_SetParticleColour
+def _lucSwarmShapes_AssignFromXML(*args):
+  return _gLucifer._lucSwarmShapes_AssignFromXML(*args)
+_lucSwarmShapes_AssignFromXML = _gLucifer._lucSwarmShapes_AssignFromXML
 
-def _lucSwarmViewer_PlotParticle(*args):
-  return _gLucifer._lucSwarmViewer_PlotParticle(*args)
-_lucSwarmViewer_PlotParticle = _gLucifer._lucSwarmViewer_PlotParticle
+def _lucSwarmShapes_Build(*args):
+  return _gLucifer._lucSwarmShapes_Build(*args)
+_lucSwarmShapes_Build = _gLucifer._lucSwarmShapes_Build
+
+def _lucSwarmShapes_Initialise(*args):
+  return _gLucifer._lucSwarmShapes_Initialise(*args)
+_lucSwarmShapes_Initialise = _gLucifer._lucSwarmShapes_Initialise
+
+def _lucSwarmShapes_Execute(*args):
+  return _gLucifer._lucSwarmShapes_Execute(*args)
+_lucSwarmShapes_Execute = _gLucifer._lucSwarmShapes_Execute
+
+def _lucSwarmShapes_Destroy(*args):
+  return _gLucifer._lucSwarmShapes_Destroy(*args)
+_lucSwarmShapes_Destroy = _gLucifer._lucSwarmShapes_Destroy
+
+def _lucSwarmShapes_Setup(*args):
+  return _gLucifer._lucSwarmShapes_Setup(*args)
+_lucSwarmShapes_Setup = _gLucifer._lucSwarmShapes_Setup
+
+def _lucSwarmShapes_PlotParticle(*args):
+  return _gLucifer._lucSwarmShapes_PlotParticle(*args)
+_lucSwarmShapes_PlotParticle = _gLucifer._lucSwarmShapes_PlotParticle
+
+def lucSwarmShapes_UpdateVariables(*args):
+  return _gLucifer.lucSwarmShapes_UpdateVariables(*args)
+lucSwarmShapes_UpdateVariables = _gLucifer.lucSwarmShapes_UpdateVariables
+class lucSwarmVectors(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lucSwarmVectors, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, lucSwarmVectors, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmVectors__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _gLucifer.lucSwarmVectors__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_gLucifer.lucSwarmVectors__sizeOfSelf_get, _gLucifer.lucSwarmVectors__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _gLucifer.lucSwarmVectors__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _gLucifer.lucSwarmVectors__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_gLucifer.lucSwarmVectors__deleteSelf_get, _gLucifer.lucSwarmVectors__deleteSelf_set)
+    __swig_setmethods__["type"] = _gLucifer.lucSwarmVectors_type_set
+    __swig_getmethods__["type"] = _gLucifer.lucSwarmVectors_type_get
+    if _newclass:type = _swig_property(_gLucifer.lucSwarmVectors_type_get, _gLucifer.lucSwarmVectors_type_set)
+    __swig_setmethods__["nRefs"] = _gLucifer.lucSwarmVectors_nRefs_set
+    __swig_getmethods__["nRefs"] = _gLucifer.lucSwarmVectors_nRefs_get
+    if _newclass:nRefs = _swig_property(_gLucifer.lucSwarmVectors_nRefs_get, _gLucifer.lucSwarmVectors_nRefs_set)
+    __swig_setmethods__["_delete"] = _gLucifer.lucSwarmVectors__delete_set
+    __swig_getmethods__["_delete"] = _gLucifer.lucSwarmVectors__delete_get
+    if _newclass:_delete = _swig_property(_gLucifer.lucSwarmVectors__delete_get, _gLucifer.lucSwarmVectors__delete_set)
+    __swig_setmethods__["_print"] = _gLucifer.lucSwarmVectors__print_set
+    __swig_getmethods__["_print"] = _gLucifer.lucSwarmVectors__print_get
+    if _newclass:_print = _swig_property(_gLucifer.lucSwarmVectors__print_get, _gLucifer.lucSwarmVectors__print_set)
+    __swig_setmethods__["_copy"] = _gLucifer.lucSwarmVectors__copy_set
+    __swig_getmethods__["_copy"] = _gLucifer.lucSwarmVectors__copy_get
+    if _newclass:_copy = _swig_property(_gLucifer.lucSwarmVectors__copy_get, _gLucifer.lucSwarmVectors__copy_set)
+    __swig_setmethods__["name"] = _gLucifer.lucSwarmVectors_name_set
+    __swig_getmethods__["name"] = _gLucifer.lucSwarmVectors_name_get
+    if _newclass:name = _swig_property(_gLucifer.lucSwarmVectors_name_get, _gLucifer.lucSwarmVectors_name_set)
+    __swig_setmethods__["nameAllocationType"] = _gLucifer.lucSwarmVectors_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _gLucifer.lucSwarmVectors_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_gLucifer.lucSwarmVectors_nameAllocationType_get, _gLucifer.lucSwarmVectors_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _gLucifer.lucSwarmVectors__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _gLucifer.lucSwarmVectors__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_gLucifer.lucSwarmVectors__defaultConstructor_get, _gLucifer.lucSwarmVectors__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _gLucifer.lucSwarmVectors__construct_set
+    __swig_getmethods__["_construct"] = _gLucifer.lucSwarmVectors__construct_get
+    if _newclass:_construct = _swig_property(_gLucifer.lucSwarmVectors__construct_get, _gLucifer.lucSwarmVectors__construct_set)
+    __swig_setmethods__["_build"] = _gLucifer.lucSwarmVectors__build_set
+    __swig_getmethods__["_build"] = _gLucifer.lucSwarmVectors__build_get
+    if _newclass:_build = _swig_property(_gLucifer.lucSwarmVectors__build_get, _gLucifer.lucSwarmVectors__build_set)
+    __swig_setmethods__["_initialise"] = _gLucifer.lucSwarmVectors__initialise_set
+    __swig_getmethods__["_initialise"] = _gLucifer.lucSwarmVectors__initialise_get
+    if _newclass:_initialise = _swig_property(_gLucifer.lucSwarmVectors__initialise_get, _gLucifer.lucSwarmVectors__initialise_set)
+    __swig_setmethods__["_execute"] = _gLucifer.lucSwarmVectors__execute_set
+    __swig_getmethods__["_execute"] = _gLucifer.lucSwarmVectors__execute_get
+    if _newclass:_execute = _swig_property(_gLucifer.lucSwarmVectors__execute_get, _gLucifer.lucSwarmVectors__execute_set)
+    __swig_setmethods__["_destroy"] = _gLucifer.lucSwarmVectors__destroy_set
+    __swig_getmethods__["_destroy"] = _gLucifer.lucSwarmVectors__destroy_get
+    if _newclass:_destroy = _swig_property(_gLucifer.lucSwarmVectors__destroy_get, _gLucifer.lucSwarmVectors__destroy_set)
+    __swig_setmethods__["isConstructed"] = _gLucifer.lucSwarmVectors_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _gLucifer.lucSwarmVectors_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_gLucifer.lucSwarmVectors_isConstructed_get, _gLucifer.lucSwarmVectors_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _gLucifer.lucSwarmVectors_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _gLucifer.lucSwarmVectors_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_gLucifer.lucSwarmVectors_isBuilt_get, _gLucifer.lucSwarmVectors_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _gLucifer.lucSwarmVectors_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _gLucifer.lucSwarmVectors_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_gLucifer.lucSwarmVectors_isInitialised_get, _gLucifer.lucSwarmVectors_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _gLucifer.lucSwarmVectors_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _gLucifer.lucSwarmVectors_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_gLucifer.lucSwarmVectors_hasExecuted_get, _gLucifer.lucSwarmVectors_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _gLucifer.lucSwarmVectors_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _gLucifer.lucSwarmVectors_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_gLucifer.lucSwarmVectors_isDestroyed_get, _gLucifer.lucSwarmVectors_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _gLucifer.lucSwarmVectors_constructType_set
+    __swig_getmethods__["constructType"] = _gLucifer.lucSwarmVectors_constructType_get
+    if _newclass:constructType = _swig_property(_gLucifer.lucSwarmVectors_constructType_get, _gLucifer.lucSwarmVectors_constructType_set)
+    __swig_setmethods__["buildType"] = _gLucifer.lucSwarmVectors_buildType_set
+    __swig_getmethods__["buildType"] = _gLucifer.lucSwarmVectors_buildType_get
+    if _newclass:buildType = _swig_property(_gLucifer.lucSwarmVectors_buildType_get, _gLucifer.lucSwarmVectors_buildType_set)
+    __swig_setmethods__["initialiseType"] = _gLucifer.lucSwarmVectors_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _gLucifer.lucSwarmVectors_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_gLucifer.lucSwarmVectors_initialiseType_get, _gLucifer.lucSwarmVectors_initialiseType_set)
+    __swig_setmethods__["executeType"] = _gLucifer.lucSwarmVectors_executeType_set
+    __swig_getmethods__["executeType"] = _gLucifer.lucSwarmVectors_executeType_get
+    if _newclass:executeType = _swig_property(_gLucifer.lucSwarmVectors_executeType_get, _gLucifer.lucSwarmVectors_executeType_set)
+    __swig_setmethods__["destroyType"] = _gLucifer.lucSwarmVectors_destroyType_set
+    __swig_getmethods__["destroyType"] = _gLucifer.lucSwarmVectors_destroyType_get
+    if _newclass:destroyType = _swig_property(_gLucifer.lucSwarmVectors_destroyType_get, _gLucifer.lucSwarmVectors_destroyType_set)
+    __swig_setmethods__["context"] = _gLucifer.lucSwarmVectors_context_set
+    __swig_getmethods__["context"] = _gLucifer.lucSwarmVectors_context_get
+    if _newclass:context = _swig_property(_gLucifer.lucSwarmVectors_context_get, _gLucifer.lucSwarmVectors_context_set)
+    __swig_setmethods__["_setup"] = _gLucifer.lucSwarmVectors__setup_set
+    __swig_getmethods__["_setup"] = _gLucifer.lucSwarmVectors__setup_get
+    if _newclass:_setup = _swig_property(_gLucifer.lucSwarmVectors__setup_get, _gLucifer.lucSwarmVectors__setup_set)
+    __swig_setmethods__["_draw"] = _gLucifer.lucSwarmVectors__draw_set
+    __swig_getmethods__["_draw"] = _gLucifer.lucSwarmVectors__draw_get
+    if _newclass:_draw = _swig_property(_gLucifer.lucSwarmVectors__draw_get, _gLucifer.lucSwarmVectors__draw_set)
+    __swig_setmethods__["_cleanUp"] = _gLucifer.lucSwarmVectors__cleanUp_set
+    __swig_getmethods__["_cleanUp"] = _gLucifer.lucSwarmVectors__cleanUp_get
+    if _newclass:_cleanUp = _swig_property(_gLucifer.lucSwarmVectors__cleanUp_get, _gLucifer.lucSwarmVectors__cleanUp_set)
+    __swig_setmethods__["needsToCleanUp"] = _gLucifer.lucSwarmVectors_needsToCleanUp_set
+    __swig_getmethods__["needsToCleanUp"] = _gLucifer.lucSwarmVectors_needsToCleanUp_get
+    if _newclass:needsToCleanUp = _swig_property(_gLucifer.lucSwarmVectors_needsToCleanUp_get, _gLucifer.lucSwarmVectors_needsToCleanUp_set)
+    __swig_setmethods__["needsToDraw"] = _gLucifer.lucSwarmVectors_needsToDraw_set
+    __swig_getmethods__["needsToDraw"] = _gLucifer.lucSwarmVectors_needsToDraw_get
+    if _newclass:needsToDraw = _swig_property(_gLucifer.lucSwarmVectors_needsToDraw_get, _gLucifer.lucSwarmVectors_needsToDraw_set)
+    __swig_setmethods__["depthSort"] = _gLucifer.lucSwarmVectors_depthSort_set
+    __swig_getmethods__["depthSort"] = _gLucifer.lucSwarmVectors_depthSort_get
+    if _newclass:depthSort = _swig_property(_gLucifer.lucSwarmVectors_depthSort_get, _gLucifer.lucSwarmVectors_depthSort_set)
+    __swig_setmethods__["position"] = _gLucifer.lucSwarmVectors_position_set
+    __swig_getmethods__["position"] = _gLucifer.lucSwarmVectors_position_get
+    if _newclass:position = _swig_property(_gLucifer.lucSwarmVectors_position_get, _gLucifer.lucSwarmVectors_position_set)
+    __swig_setmethods__["lit"] = _gLucifer.lucSwarmVectors_lit_set
+    __swig_getmethods__["lit"] = _gLucifer.lucSwarmVectors_lit_get
+    if _newclass:lit = _swig_property(_gLucifer.lucSwarmVectors_lit_get, _gLucifer.lucSwarmVectors_lit_set)
+    __swig_setmethods__["disabled"] = _gLucifer.lucSwarmVectors_disabled_set
+    __swig_getmethods__["disabled"] = _gLucifer.lucSwarmVectors_disabled_get
+    if _newclass:disabled = _swig_property(_gLucifer.lucSwarmVectors_disabled_get, _gLucifer.lucSwarmVectors_disabled_set)
+    __swig_setmethods__["colourMap"] = _gLucifer.lucSwarmVectors_colourMap_set
+    __swig_getmethods__["colourMap"] = _gLucifer.lucSwarmVectors_colourMap_get
+    if _newclass:colourMap = _swig_property(_gLucifer.lucSwarmVectors_colourMap_get, _gLucifer.lucSwarmVectors_colourMap_set)
+    __swig_setmethods__["colour"] = _gLucifer.lucSwarmVectors_colour_set
+    __swig_getmethods__["colour"] = _gLucifer.lucSwarmVectors_colour_get
+    if _newclass:colour = _swig_property(_gLucifer.lucSwarmVectors_colour_get, _gLucifer.lucSwarmVectors_colour_set)
+    __swig_setmethods__["opacity"] = _gLucifer.lucSwarmVectors_opacity_set
+    __swig_getmethods__["opacity"] = _gLucifer.lucSwarmVectors_opacity_get
+    if _newclass:opacity = _swig_property(_gLucifer.lucSwarmVectors_opacity_get, _gLucifer.lucSwarmVectors_opacity_set)
+    __swig_setmethods__["wireframe"] = _gLucifer.lucSwarmVectors_wireframe_set
+    __swig_getmethods__["wireframe"] = _gLucifer.lucSwarmVectors_wireframe_get
+    if _newclass:wireframe = _swig_property(_gLucifer.lucSwarmVectors_wireframe_get, _gLucifer.lucSwarmVectors_wireframe_set)
+    __swig_setmethods__["lineWidth"] = _gLucifer.lucSwarmVectors_lineWidth_set
+    __swig_getmethods__["lineWidth"] = _gLucifer.lucSwarmVectors_lineWidth_get
+    if _newclass:lineWidth = _swig_property(_gLucifer.lucSwarmVectors_lineWidth_get, _gLucifer.lucSwarmVectors_lineWidth_set)
+    __swig_setmethods__["id"] = _gLucifer.lucSwarmVectors_id_set
+    __swig_getmethods__["id"] = _gLucifer.lucSwarmVectors_id_get
+    if _newclass:id = _swig_property(_gLucifer.lucSwarmVectors_id_get, _gLucifer.lucSwarmVectors_id_set)
+    __swig_setmethods__["properties"] = _gLucifer.lucSwarmVectors_properties_set
+    __swig_getmethods__["properties"] = _gLucifer.lucSwarmVectors_properties_get
+    if _newclass:properties = _swig_property(_gLucifer.lucSwarmVectors_properties_get, _gLucifer.lucSwarmVectors_properties_set)
+    __swig_setmethods__["_plotParticle"] = _gLucifer.lucSwarmVectors__plotParticle_set
+    __swig_getmethods__["_plotParticle"] = _gLucifer.lucSwarmVectors__plotParticle_get
+    if _newclass:_plotParticle = _swig_property(_gLucifer.lucSwarmVectors__plotParticle_get, _gLucifer.lucSwarmVectors__plotParticle_set)
+    __swig_setmethods__["_setParticleColour"] = _gLucifer.lucSwarmVectors__setParticleColour_set
+    __swig_getmethods__["_setParticleColour"] = _gLucifer.lucSwarmVectors__setParticleColour_get
+    if _newclass:_setParticleColour = _swig_property(_gLucifer.lucSwarmVectors__setParticleColour_get, _gLucifer.lucSwarmVectors__setParticleColour_set)
+    __swig_setmethods__["colourVariableName"] = _gLucifer.lucSwarmVectors_colourVariableName_set
+    __swig_getmethods__["colourVariableName"] = _gLucifer.lucSwarmVectors_colourVariableName_get
+    if _newclass:colourVariableName = _swig_property(_gLucifer.lucSwarmVectors_colourVariableName_get, _gLucifer.lucSwarmVectors_colourVariableName_set)
+    __swig_setmethods__["colourVariable"] = _gLucifer.lucSwarmVectors_colourVariable_set
+    __swig_getmethods__["colourVariable"] = _gLucifer.lucSwarmVectors_colourVariable_get
+    if _newclass:colourVariable = _swig_property(_gLucifer.lucSwarmVectors_colourVariable_get, _gLucifer.lucSwarmVectors_colourVariable_set)
+    __swig_setmethods__["sizeVariableName"] = _gLucifer.lucSwarmVectors_sizeVariableName_set
+    __swig_getmethods__["sizeVariableName"] = _gLucifer.lucSwarmVectors_sizeVariableName_get
+    if _newclass:sizeVariableName = _swig_property(_gLucifer.lucSwarmVectors_sizeVariableName_get, _gLucifer.lucSwarmVectors_sizeVariableName_set)
+    __swig_setmethods__["sizeVariable"] = _gLucifer.lucSwarmVectors_sizeVariable_set
+    __swig_getmethods__["sizeVariable"] = _gLucifer.lucSwarmVectors_sizeVariable_get
+    if _newclass:sizeVariable = _swig_property(_gLucifer.lucSwarmVectors_sizeVariable_get, _gLucifer.lucSwarmVectors_sizeVariable_set)
+    __swig_setmethods__["swarm"] = _gLucifer.lucSwarmVectors_swarm_set
+    __swig_getmethods__["swarm"] = _gLucifer.lucSwarmVectors_swarm_get
+    if _newclass:swarm = _swig_property(_gLucifer.lucSwarmVectors_swarm_get, _gLucifer.lucSwarmVectors_swarm_set)
+    __swig_setmethods__["opacityColourMap"] = _gLucifer.lucSwarmVectors_opacityColourMap_set
+    __swig_getmethods__["opacityColourMap"] = _gLucifer.lucSwarmVectors_opacityColourMap_get
+    if _newclass:opacityColourMap = _swig_property(_gLucifer.lucSwarmVectors_opacityColourMap_get, _gLucifer.lucSwarmVectors_opacityColourMap_set)
+    __swig_setmethods__["opacityVariableName"] = _gLucifer.lucSwarmVectors_opacityVariableName_set
+    __swig_getmethods__["opacityVariableName"] = _gLucifer.lucSwarmVectors_opacityVariableName_get
+    if _newclass:opacityVariableName = _swig_property(_gLucifer.lucSwarmVectors_opacityVariableName_get, _gLucifer.lucSwarmVectors_opacityVariableName_set)
+    __swig_setmethods__["opacityVariable"] = _gLucifer.lucSwarmVectors_opacityVariable_set
+    __swig_getmethods__["opacityVariable"] = _gLucifer.lucSwarmVectors_opacityVariable_get
+    if _newclass:opacityVariable = _swig_property(_gLucifer.lucSwarmVectors_opacityVariable_get, _gLucifer.lucSwarmVectors_opacityVariable_set)
+    __swig_setmethods__["maskVariableName"] = _gLucifer.lucSwarmVectors_maskVariableName_set
+    __swig_getmethods__["maskVariableName"] = _gLucifer.lucSwarmVectors_maskVariableName_get
+    if _newclass:maskVariableName = _swig_property(_gLucifer.lucSwarmVectors_maskVariableName_get, _gLucifer.lucSwarmVectors_maskVariableName_set)
+    __swig_setmethods__["maskVariable"] = _gLucifer.lucSwarmVectors_maskVariable_set
+    __swig_getmethods__["maskVariable"] = _gLucifer.lucSwarmVectors_maskVariable_get
+    if _newclass:maskVariable = _swig_property(_gLucifer.lucSwarmVectors_maskVariable_get, _gLucifer.lucSwarmVectors_maskVariable_set)
+    __swig_setmethods__["mask"] = _gLucifer.lucSwarmVectors_mask_set
+    __swig_getmethods__["mask"] = _gLucifer.lucSwarmVectors_mask_get
+    if _newclass:mask = _swig_property(_gLucifer.lucSwarmVectors_mask_get, _gLucifer.lucSwarmVectors_mask_set)
+    __swig_setmethods__["drawParticleNumber"] = _gLucifer.lucSwarmVectors_drawParticleNumber_set
+    __swig_getmethods__["drawParticleNumber"] = _gLucifer.lucSwarmVectors_drawParticleNumber_get
+    if _newclass:drawParticleNumber = _swig_property(_gLucifer.lucSwarmVectors_drawParticleNumber_get, _gLucifer.lucSwarmVectors_drawParticleNumber_set)
+    __swig_setmethods__["sameParticleColour"] = _gLucifer.lucSwarmVectors_sameParticleColour_set
+    __swig_getmethods__["sameParticleColour"] = _gLucifer.lucSwarmVectors_sameParticleColour_get
+    if _newclass:sameParticleColour = _swig_property(_gLucifer.lucSwarmVectors_sameParticleColour_get, _gLucifer.lucSwarmVectors_sameParticleColour_set)
+    __swig_setmethods__["subSample"] = _gLucifer.lucSwarmVectors_subSample_set
+    __swig_getmethods__["subSample"] = _gLucifer.lucSwarmVectors_subSample_get
+    if _newclass:subSample = _swig_property(_gLucifer.lucSwarmVectors_subSample_get, _gLucifer.lucSwarmVectors_subSample_set)
+    __swig_setmethods__["positionRange"] = _gLucifer.lucSwarmVectors_positionRange_set
+    __swig_getmethods__["positionRange"] = _gLucifer.lucSwarmVectors_positionRange_get
+    if _newclass:positionRange = _swig_property(_gLucifer.lucSwarmVectors_positionRange_get, _gLucifer.lucSwarmVectors_positionRange_set)
+    __swig_setmethods__["minPosition"] = _gLucifer.lucSwarmVectors_minPosition_set
+    __swig_getmethods__["minPosition"] = _gLucifer.lucSwarmVectors_minPosition_get
+    if _newclass:minPosition = _swig_property(_gLucifer.lucSwarmVectors_minPosition_get, _gLucifer.lucSwarmVectors_minPosition_set)
+    __swig_setmethods__["maxPosition"] = _gLucifer.lucSwarmVectors_maxPosition_set
+    __swig_getmethods__["maxPosition"] = _gLucifer.lucSwarmVectors_maxPosition_get
+    if _newclass:maxPosition = _swig_property(_gLucifer.lucSwarmVectors_maxPosition_get, _gLucifer.lucSwarmVectors_maxPosition_set)
+    __swig_setmethods__["geomType"] = _gLucifer.lucSwarmVectors_geomType_set
+    __swig_getmethods__["geomType"] = _gLucifer.lucSwarmVectors_geomType_get
+    if _newclass:geomType = _swig_property(_gLucifer.lucSwarmVectors_geomType_get, _gLucifer.lucSwarmVectors_geomType_set)
+    __swig_setmethods__["scaling"] = _gLucifer.lucSwarmVectors_scaling_set
+    __swig_getmethods__["scaling"] = _gLucifer.lucSwarmVectors_scaling_get
+    if _newclass:scaling = _swig_property(_gLucifer.lucSwarmVectors_scaling_get, _gLucifer.lucSwarmVectors_scaling_set)
+    __swig_setmethods__["pointSize"] = _gLucifer.lucSwarmVectors_pointSize_set
+    __swig_getmethods__["pointSize"] = _gLucifer.lucSwarmVectors_pointSize_get
+    if _newclass:pointSize = _swig_property(_gLucifer.lucSwarmVectors_pointSize_get, _gLucifer.lucSwarmVectors_pointSize_set)
+    __swig_setmethods__["pointSmoothing"] = _gLucifer.lucSwarmVectors_pointSmoothing_set
+    __swig_getmethods__["pointSmoothing"] = _gLucifer.lucSwarmVectors_pointSmoothing_get
+    if _newclass:pointSmoothing = _swig_property(_gLucifer.lucSwarmVectors_pointSmoothing_get, _gLucifer.lucSwarmVectors_pointSmoothing_set)
+    __swig_setmethods__["directionVariable"] = _gLucifer.lucSwarmVectors_directionVariable_set
+    __swig_getmethods__["directionVariable"] = _gLucifer.lucSwarmVectors_directionVariable_get
+    if _newclass:directionVariable = _swig_property(_gLucifer.lucSwarmVectors_directionVariable_get, _gLucifer.lucSwarmVectors_directionVariable_set)
+    __swig_setmethods__["directionVariableName"] = _gLucifer.lucSwarmVectors_directionVariableName_set
+    __swig_getmethods__["directionVariableName"] = _gLucifer.lucSwarmVectors_directionVariableName_get
+    if _newclass:directionVariableName = _swig_property(_gLucifer.lucSwarmVectors_directionVariableName_get, _gLucifer.lucSwarmVectors_directionVariableName_set)
+    __swig_setmethods__["arrowHeadSize"] = _gLucifer.lucSwarmVectors_arrowHeadSize_set
+    __swig_getmethods__["arrowHeadSize"] = _gLucifer.lucSwarmVectors_arrowHeadSize_get
+    if _newclass:arrowHeadSize = _swig_property(_gLucifer.lucSwarmVectors_arrowHeadSize_get, _gLucifer.lucSwarmVectors_arrowHeadSize_set)
+    __swig_setmethods__["thicknessVariable"] = _gLucifer.lucSwarmVectors_thicknessVariable_set
+    __swig_getmethods__["thicknessVariable"] = _gLucifer.lucSwarmVectors_thicknessVariable_get
+    if _newclass:thicknessVariable = _swig_property(_gLucifer.lucSwarmVectors_thicknessVariable_get, _gLucifer.lucSwarmVectors_thicknessVariable_set)
+    __swig_setmethods__["thicknessVariableName"] = _gLucifer.lucSwarmVectors_thicknessVariableName_set
+    __swig_getmethods__["thicknessVariableName"] = _gLucifer.lucSwarmVectors_thicknessVariableName_get
+    if _newclass:thicknessVariableName = _swig_property(_gLucifer.lucSwarmVectors_thicknessVariableName_get, _gLucifer.lucSwarmVectors_thicknessVariableName_set)
+    __swig_setmethods__["thickness"] = _gLucifer.lucSwarmVectors_thickness_set
+    __swig_getmethods__["thickness"] = _gLucifer.lucSwarmVectors_thickness_get
+    if _newclass:thickness = _swig_property(_gLucifer.lucSwarmVectors_thickness_get, _gLucifer.lucSwarmVectors_thickness_set)
+    __swig_setmethods__["lengthVariable"] = _gLucifer.lucSwarmVectors_lengthVariable_set
+    __swig_getmethods__["lengthVariable"] = _gLucifer.lucSwarmVectors_lengthVariable_get
+    if _newclass:lengthVariable = _swig_property(_gLucifer.lucSwarmVectors_lengthVariable_get, _gLucifer.lucSwarmVectors_lengthVariable_set)
+    __swig_setmethods__["lengthVariableName"] = _gLucifer.lucSwarmVectors_lengthVariableName_set
+    __swig_getmethods__["lengthVariableName"] = _gLucifer.lucSwarmVectors_lengthVariableName_get
+    if _newclass:lengthVariableName = _swig_property(_gLucifer.lucSwarmVectors_lengthVariableName_get, _gLucifer.lucSwarmVectors_lengthVariableName_set)
+    __swig_setmethods__["length"] = _gLucifer.lucSwarmVectors_length_set
+    __swig_getmethods__["length"] = _gLucifer.lucSwarmVectors_length_get
+    if _newclass:length = _swig_property(_gLucifer.lucSwarmVectors_length_get, _gLucifer.lucSwarmVectors_length_set)
+    def __init__(self): 
+        this = _gLucifer.new_lucSwarmVectors()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _gLucifer.delete_lucSwarmVectors
+    __del__ = lambda self : None;
+lucSwarmVectors_swigregister = _gLucifer.lucSwarmVectors_swigregister
+lucSwarmVectors_swigregister(lucSwarmVectors)
+lucSwarmVectors_Type = cvar.lucSwarmVectors_Type
+
+
+def _lucSwarmVectors_New(*args):
+  return _gLucifer._lucSwarmVectors_New(*args)
+_lucSwarmVectors_New = _gLucifer._lucSwarmVectors_New
+
+def _lucSwarmVectors_Delete(*args):
+  return _gLucifer._lucSwarmVectors_Delete(*args)
+_lucSwarmVectors_Delete = _gLucifer._lucSwarmVectors_Delete
+
+def _lucSwarmVectors_Print(*args):
+  return _gLucifer._lucSwarmVectors_Print(*args)
+_lucSwarmVectors_Print = _gLucifer._lucSwarmVectors_Print
+
+def _lucSwarmVectors_Copy(*args):
+  return _gLucifer._lucSwarmVectors_Copy(*args)
+_lucSwarmVectors_Copy = _gLucifer._lucSwarmVectors_Copy
+
+def _lucSwarmVectors_DefaultNew(*args):
+  return _gLucifer._lucSwarmVectors_DefaultNew(*args)
+_lucSwarmVectors_DefaultNew = _gLucifer._lucSwarmVectors_DefaultNew
+
+def _lucSwarmVectors_AssignFromXML(*args):
+  return _gLucifer._lucSwarmVectors_AssignFromXML(*args)
+_lucSwarmVectors_AssignFromXML = _gLucifer._lucSwarmVectors_AssignFromXML
+
+def _lucSwarmVectors_Build(*args):
+  return _gLucifer._lucSwarmVectors_Build(*args)
+_lucSwarmVectors_Build = _gLucifer._lucSwarmVectors_Build
+
+def _lucSwarmVectors_Initialise(*args):
+  return _gLucifer._lucSwarmVectors_Initialise(*args)
+_lucSwarmVectors_Initialise = _gLucifer._lucSwarmVectors_Initialise
+
+def _lucSwarmVectors_Execute(*args):
+  return _gLucifer._lucSwarmVectors_Execute(*args)
+_lucSwarmVectors_Execute = _gLucifer._lucSwarmVectors_Execute
+
+def _lucSwarmVectors_Destroy(*args):
+  return _gLucifer._lucSwarmVectors_Destroy(*args)
+_lucSwarmVectors_Destroy = _gLucifer._lucSwarmVectors_Destroy
+
+def _lucSwarmVectors_Setup(*args):
+  return _gLucifer._lucSwarmVectors_Setup(*args)
+_lucSwarmVectors_Setup = _gLucifer._lucSwarmVectors_Setup
+
+def _lucSwarmVectors_PlotParticle(*args):
+  return _gLucifer._lucSwarmVectors_PlotParticle(*args)
+_lucSwarmVectors_PlotParticle = _gLucifer._lucSwarmVectors_PlotParticle
+
+def lucSwarmVectors_UpdateVariables(*args):
+  return _gLucifer.lucSwarmVectors_UpdateVariables(*args)
+lucSwarmVectors_UpdateVariables = _gLucifer.lucSwarmVectors_UpdateVariables
 class lucTextureMap(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, lucTextureMap, name, value)

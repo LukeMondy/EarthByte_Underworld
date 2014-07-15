@@ -18,23 +18,37 @@ except OSError as exception:
         raise
 
 class Figure(_stgermain.StgCompoundComponent):
-    def __init__(self, num=None, figsize=(640,480), facecolor="white", edgecolor="white", **kwargs):
+    """  The Figure class provides the base container for gLucifer drawing objects, and associated routines for image generation.
+         Generally the user will use the figure() routine to generate or recall Figure instances.
+         
+         A minimal workflow might be as follows:
+            fig = plt.figure()                  # generate a Figure instance
+            fig.Surface(field="PressureField")  # add Surface drawing object
+            fig.show()                          # show the image (in ipython notebook)
+            
+         Currently, the Surface, Points & VectorArrows are the supported drawing objects.  See help() on these objects for their respective options.
+    """
+    def __init__(self, num=None, figsize=(640,480), facecolor="white", edgecolor="white", title=None, axis=False, **kwargs):
         if num and not isinstance(num,(str,int)):
             raise TypeError("'num' object passed in must be of python type 'str' or 'int'")
-        self._num = num
-
         if not isinstance(figsize,tuple):
             raise TypeError("'figsize' object passed in must be of python type 'tuple'")
-        self._figsize = figsize
-
         if not isinstance(facecolor,str):
             raise TypeError("'facecolor' object passed in must be of python type 'str'")
-        self._facecolor = facecolor
-
         if not isinstance(edgecolor,str):
             raise TypeError("'edgecolor' object passed in must be of python type 'str'")
+        if title and not isinstance(title,str):
+            raise TypeError("'title' object passed in must be of python type 'str'")
+        if not isinstance(axis,bool):
+            raise TypeError("'axis' object passed in must be of python type 'bool'")
+
+        self._num = num
+        self._figsize = figsize
+        self._facecolor = facecolor
         self._edgecolor = edgecolor
-        
+        self._title = title
+        self._axis = axis
+
         self._drawingObjects = []
         
         super(Figure,self).__init__(**kwargs)
@@ -58,7 +72,7 @@ class Figure(_stgermain.StgCompoundComponent):
                             "filename"          :"gluciferDB"+uniqueid,
                             "blocking"          :True,
                             "dbPath"            :tmpdir
-                            }
+        }
         self.componentDictionary[self._localNames["win"]] = {
                             "Type"              :"lucWindow",
                             "Database"          :self._localNames[ "db"],
@@ -67,12 +81,14 @@ class Figure(_stgermain.StgCompoundComponent):
                             "height"            :self.figsize[1],
                             "backgroundColour"  :self.facecolor,
                             "useModelBounds"    :False
-                            }
-                            
+        }
         self.componentDictionary[self._localNames["vp"]] = {
                             "Type"              :"lucViewport",
                             "Camera"            :self._localNames["cam"],
-                            "borderColour"      :self.edgecolor
+                            "borderColour"      :self.edgecolor,
+                            "border"            :1,
+                            "title"             :self.title,
+                            "axis"              :self.axis
         }
         self.componentDictionary[self._localNames["cam"]] = {
                             "Type"              :"lucCamera",
@@ -105,8 +121,20 @@ class Figure(_stgermain.StgCompoundComponent):
         return self._edgecolor
 
     @property
+    def title(self):
+        """    title : a title for the image, default: None
+        """
+        return self._title
+
+    @property
+    def axis(self):
+        """    axis : Axis enabled if true.  Default False.
+        """
+        return self._axis
+
+    @property
     def drawingObjects(self):
-        """    drawingObjects : list of objects to be drawn within the figure.  default: None
+        """    drawingObjects : list of objects to be drawn within the figure.
         """
         return self._drawingObjects
 
@@ -226,6 +254,16 @@ class Figure(_stgermain.StgCompoundComponent):
                Returns the generated Points object.
         """
         guy = _drawing.Points(**kwargs)
+        self.drawingObjects.append(guy)
+        return guy
+
+    def VectorArrows(self, **kwargs):
+        """    Add a vector arrow drawing object to the current figure.
+               See 'help(VectorArrows)' for information on the VectorArrows class and it's options.
+               
+               Returns the generated Points object.
+        """
+        guy = _drawing.VectorArrows(**kwargs)
         self.drawingObjects.append(guy)
         return guy
 
