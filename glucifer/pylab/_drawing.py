@@ -204,6 +204,8 @@ class VectorArrows(Drawing):
             raise ValueError("FieldVariable with name '"+vectorField+"' not found. A live instance must be available before you can create this object.")
         if not _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StgDomain.FieldVariable_Type ):
             raise ValueError("FieldVariable with name '"+vectorField+"' not a child of '"+_stgermain.StgDomain.FieldVariable_Type+"' type.")
+        if not ptr.fieldComponentCount > 1:
+            raise ValueError("FieldVariable with name '"+vectorField+"' is not a vector field. It appears to have "+str(ptr.fieldComponentCount)+" components.")
 
         if resolutionX:
             if not isinstance(resolutionX,(int)):
