@@ -10,7 +10,7 @@ try:
     tmpdir = os.environ['TMPDIR']
 except:
     tmpdir = "/tmp"
-tmpdir = tmpdir + "glucifer"
+os.path.join(tmpdir,"glucifer")
 try:
     os.makedirs(tmpdir)
 except OSError as exception:
