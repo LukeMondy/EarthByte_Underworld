@@ -234,8 +234,6 @@ void _lucCrossSection_AssignFromXML( void* drawingObject, Stg_ComponentFactory* 
 void _lucCrossSection_Build( void* drawingObject, void* data )
 {
    lucCrossSection* self    = (lucCrossSection*)drawingObject;
-   AbstractContext* context = self->context;
-   Stg_ComponentFactory* cf = context->CF;
 
    /* Append cullface setting to property string */
    lucDrawingObject_AppendProps(self, "cullface=%d\n", self->cullface);
@@ -385,7 +383,7 @@ void lucCrossSection_AllocateSampleData(void* drawingObject, int dims)
    Index          aIndex, bIndex, d;
    if (dims <= 0) dims = fieldVariable->fieldComponentCount;
 
-   if ((!self->vertices && self->context->rank == 0) || !self->gatherData)
+   if ((!self->vertices && self->rank == 0) || !self->gatherData)
       self->vertices = Memory_Alloc_3DArray( float, self->resolutionA, self->resolutionB, 3, "quad vertices");
    else
       self->vertices = NULL;
@@ -461,40 +459,40 @@ void lucCrossSection_SampleField(void* drawingObject, Bool reverse)
          }
 
          /* Copy vertex data */
-         if (self->context->rank == 0 || !self->gatherData)
+         if (self->rank == 0 || !self->gatherData)
             for (d=0; d<3; d++)
                self->vertices[aIndex][bIndex][d] = (float)pos[d];
       }
    }
    /* Show each proc as it finishes */
-   printf(" (%d)", self->context->rank);
+   printf(" (%d)", self->rank);
    fflush(stdout);
-   MPI_Barrier(self->context->communicator); /* Sync here, then time will show accurately how long sampling took on ALL procs */
+   MPI_Barrier(self->comm); /* Sync here, then time will show accurately how long sampling took on ALL procs */
    Journal_Printf(lucInfo, " -- %f sec.\n", MPI_Wtime() - time);
 
    /* This gathers all sampled data back to the root processor,
     * useful for drawing objects that are connected across proc boundaries
     * eg: surfaces, switch this flag off for others (eg: vectors) */
-   if (self->gatherData && self->context->nproc > 1)
+   if (self->gatherData && self->nproc > 1)
    {
       int count = self->resolutionA * self->resolutionB * dims;
       int r;
       time = MPI_Wtime();
-      for (r=1; r < self->context->nproc; r++)
+      for (r=1; r < self->nproc; r++)
       {
-         if (self->context->rank == r)
+         if (self->rank == r)
          {
             /* Send */
-            (void)MPI_Send(&self->values[0][0][0], count, MPI_FLOAT, 0, r, self->context->communicator);
+            (void)MPI_Send(&self->values[0][0][0], count, MPI_FLOAT, 0, r, self->comm);
             Memory_Free(self->values);
             self->values = NULL;
          }
-         else if (self->context->rank == 0)
+         else if (self->rank == 0)
          {
             /* Receive */
             MPI_Status status;
             float*** rvalues = Memory_Alloc_3DArray( float, self->resolutionA, self->resolutionB, dims, "received vertex values");
-            (void)MPI_Recv(&rvalues[0][0][0], count, MPI_FLOAT, r, r, self->context->communicator, &status);
+            (void)MPI_Recv(&rvalues[0][0][0], count, MPI_FLOAT, r, r, self->comm, &status);
 
             /* If value provided, copy into final data (duplicates overwritten) */
             for ( aIndex = 0 ; aIndex < self->resolutionA ; aIndex++ )

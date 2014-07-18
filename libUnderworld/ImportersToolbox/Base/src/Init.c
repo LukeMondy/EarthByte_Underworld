@@ -58,6 +58,7 @@ Bool ImportersToolbox_Base_Init()
    Stg_ComponentRegister_Add( componentRegister, VoxelDataHandler_GocadProperties_Type,     (Name)"0", _VoxelDataHandler_GocadProperties_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, VoxelDataHandler_GocadMaterials_Type,      (Name)"0", _VoxelDataHandler_GocadMaterials_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, VoxelDataHandler_Geomodeller_Type,         (Name)"0", _VoxelDataHandler_Geomodeller_DefaultNew  );
+   Stg_ComponentRegister_Add( componentRegister, VoxelDataHandler_ndarray_Type,             (Name)"0", _VoxelDataHandler_ndarray_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, VoxelDataHandler_ASCII_Type,               (Name)"0", _VoxelDataHandler_ASCII_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, VoxelDataHandler_GMT_Type,                 (Name)"0", _VoxelDataHandler_GMT_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, VoxelDataHandler_VTKStructuredPoints_Type, (Name)"0", _VoxelDataHandler_VTKStructuredPoints_DefaultNew  );
@@ -74,6 +75,7 @@ Bool ImportersToolbox_Base_Init()
    RegisterParent( VoxelDataHandler_GocadMaterials_Type,      VoxelDataHandler_GocadAbstract_Type );
    RegisterParent( VoxelDataHandler_ASCII_Type,               VoxelDataHandler_Abstract_Type );
    RegisterParent( VoxelDataHandler_GMT_Type,                 VoxelDataHandler_Abstract_Type );
+   RegisterParent( VoxelDataHandler_ndarray_Type,             VoxelDataHandler_Abstract_Type );
    RegisterParent( VoxelDataHandler_VTKStructuredPoints_Type, VoxelDataHandler_Abstract_Type );
    RegisterParent( VoxelFieldVariable_Type,                   FieldVariable_Type );
    RegisterParent( VoxelFieldVariable_GMT_Type,               VoxelFieldVariable_Type );

@@ -31,7 +31,7 @@ def Init(args=[], prependCommandLineArgs=True):
     _stgermain.StgInit( args )
 
     # lets go right ahead and load modules up to gLucifer.
-    _stgermain.LoadModules( {"import":["StgDomain","StgFEM","PICellerator","Underworld","gLucifer"]} )
+    _stgermain.LoadModules( {"import":["StgDomain","StgFEM","PICellerator","Underworld","gLucifer","ImportersToolbox"]} )
 
     uwdict = _stgermain.GetStgDictionaryAsPyDict(_stgermain.getData().dictionary)
 

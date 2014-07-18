@@ -21,6 +21,7 @@ import physics
 import rheology
 import shapes
 import solvers
+import importers
 import swarms
 import utils
 import visualisation

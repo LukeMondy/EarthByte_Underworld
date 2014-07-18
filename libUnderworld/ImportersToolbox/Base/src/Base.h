@@ -44,6 +44,7 @@
 #include "VoxelDataHandler_GocadMaterials.h"
 #include "VoxelDataHandler_ASCII.h"
 #include "VoxelDataHandler_GMT.h"
+#include "VoxelDataHandler_ndarray.h"
 #include "VoxelDataHandler_VTKStructuredPoints.h"
 #include "VoxelDataHandler_Geomodeller.h"
 #include "VoxelParticleLayout.h"

@@ -67,6 +67,9 @@ typedef void (lucDrawingObject_CleanUpFunction)  ( void* object );
       int                                                lineWidth;           \
       int                                                id;                  \
       char*                                              properties;          \
+      MPI_Comm                                           comm;                \
+      int                                                rank;                \
+      int                                                nproc;
 
 struct lucDrawingObject
 {

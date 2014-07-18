@@ -222,7 +222,7 @@ void* _FieldVariable_Copy( void* fieldVariable, void* dest, Bool deep, Name name
 
 void _FieldVariable_AssignFromXML( void* fieldVariable, Stg_ComponentFactory* cf, void* data ) {
    FieldVariable*          self = (FieldVariable*)fieldVariable;
-   FieldVariable_Register* fV_Register;
+   FieldVariable_Register* fV_Register=NULL;
    Dimension_Index         dim;
    Index                   fieldComponentCount;
    Bool                    isCheckpointedAndReloaded, isCheckpointedAndReloaded2;
@@ -240,10 +240,12 @@ void _FieldVariable_AssignFromXML( void* fieldVariable, Stg_ComponentFactory* cf
       data );
 
    if( !context )
-      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", DomainContext, True, data );
+      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", DomainContext, False, data );
    
-   fV_Register = context->fieldVariable_Register; 
-   assert( fV_Register );
+   if (context) {
+      fV_Register = context->fieldVariable_Register;
+      assert( fV_Register );
+   }
 
    dim = Stg_ComponentFactory_GetRootDictUnsignedInt( cf, (Dictionary_Entry_Key)"dim", 0 );
    /* allow this to be overwritten by the component dub dict */

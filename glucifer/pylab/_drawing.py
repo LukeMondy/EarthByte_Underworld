@@ -1,5 +1,6 @@
 import underworld
 import underworld._stgermain as _stgermain
+import numpy as np
 
 class Drawing(_stgermain.StgCompoundComponent):
     def __init__(self, num=None, colours="Purple Blue Green Yellow Orange Red".split(), **kwargs):
@@ -57,17 +58,27 @@ class Drawing(_stgermain.StgCompoundComponent):
 class Surface(Drawing):
     """  This drawing object class draws a surface using the provided scalar field.
     """
-    def __init__(self, field, **kwargs):
-        if not isinstance(field,(str)):
-            raise TypeError("'field' object passed in must be of python type 'str'")
-        fieldPtr = _stgermain.GetLiveComponent(field)
-        if not fieldPtr:
-            raise ValueError("Field with name '"+field+"' not found. A live instance must be available before you can create this object.")
-        if not _stgermain.StGermain.Stg_Class_CompareType( fieldPtr, _stgermain.StgDomain.FieldVariable_Type ):
-            raise ValueError("Field with name '"+field+"' not a child of '"+_stgermain.StgDomain.FieldVariable_Type+"' type.")
-        if not fieldPtr.fieldComponentCount == 1:
-            raise ValueError("Field with name '"+field+"' is not a scalar field. It appears to have "+str(fieldPtr.fieldComponentCount)+" components.")
+    def __init__(self, field=None, ndarray=None, *args, **kwargs):
+        if not((field==None) or (ndarray==None)):
+            raise ValueError("Either an Underworld field or a numpy array must be set as arguments when initialising a Surface object, but not both.")
+
+        if field:
+            if not isinstance(field,(str)):
+                raise TypeError("'field' object passed in must be of python type 'str'")
+            fieldPtr = _stgermain.GetLiveComponent(field)
+            if not fieldPtr:
+                raise ValueError("Field with name '"+field+"' not found. A live instance must be available before you can create this object.")
+            if not _stgermain.StGermain.Stg_Class_CompareType( fieldPtr, _stgermain.StgDomain.FieldVariable_Type ):
+                raise ValueError("Field with name '"+field+"' not a child of '"+_stgermain.StgDomain.FieldVariable_Type+"' type.")
+            if not fieldPtr.fieldComponentCount == 1:
+                raise ValueError("Field with name '"+field+"' is not a scalar field. It appears to have "+str(fieldPtr.fieldComponentCount)+" components.")
         self._field = field
+        
+        if not ndarray==None:
+            self._nvf = underworld.importers.NumpyVoxelField(ndarray=ndarray, **kwargs)
+        self._ndarray=ndarray
+        
+        
         
         # build parent
         super(Surface,self).__init__(**kwargs)
@@ -78,6 +89,12 @@ class Surface(Drawing):
         """
         return self._field
 
+    @property
+    def ndarray(self):
+        """    ndarray (numpy.ndarray): numpy ndarray object for which surfaces should be rendered.  Must be of dimensionality 2 or 3.
+        """
+        return self._ndarray
+
     def _addToStgDict(self):
         # lets build up component dictionary
         # append random string to provided name to ensure unique component names
@@ -86,8 +103,11 @@ class Surface(Drawing):
         super(Surface,self)._addToStgDict()
         
         drdict = self.componentDictionary[self._localNames["dr"]]
-        drdict[         "Type"] = "lucScalarField"
-        drdict["FieldVariable"] = self.field
+        drdict["Type"] = "lucScalarField"
+        if self.field:
+            drdict["FieldVariable"] = self.field
+        else:
+            drdict["FieldVariable"] = self._nvf._localNames["nvf"]
     
     def __del__(self):
         super(Surface,self).__del__()

@@ -22,7 +22,7 @@ class StgCompoundComponent(object):
     __metaclass__ = abc.ABCMeta
     
     _livingInstances = []
-    def __init__(self, modulesList = None):
+    def __init__(self, modulesList = None, **kwargs):
         """ 
         Initialisation function.  All components in provided dictionary are constructed, build & initialised here.
         
@@ -45,6 +45,8 @@ class StgCompoundComponent(object):
         self._isAlive = True
         self._weakref = weakref.ref(self)
         StgCompoundComponent._livingInstances.append(self._weakref)
+        
+        super(StgCompoundComponent, self).__init__()
 
         # use the following dictionary to store user friendly names of stg components in child classes
 

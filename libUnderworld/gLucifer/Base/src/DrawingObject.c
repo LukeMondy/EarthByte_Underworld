@@ -99,7 +99,7 @@ void _lucDrawingObject_Init(
    self->needsToCleanUp = False;
    self->needsToDraw = True;
    self->lit = lit;                /* Lighting enabled, defaults to on */
-   self->disabled = disabled || !self->context->vis;      /* Drawing disabled, defaults to false */
+   self->disabled = disabled || (context && !self->context->vis);      /* Drawing disabled, defaults to false */
    self->lineWidth = lineWidth;
    lucColour_FromString( &self->colour, colourName );
    self->colourMap = colourMap;
@@ -157,8 +157,18 @@ void _lucDrawingObject_AssignFromXML( void* drawingObject, Stg_ComponentFactory*
 
    context = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Context", AbstractContext, False, data );
    if ( !context  )
-      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, data );
+      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, False, data );
 
+   if ( context ) {
+      self->comm  = context->communicator;
+      self->rank  = context->rank;
+      self->nproc = context->nproc;
+   } else {
+      self->comm  = MPI_COMM_WORLD;
+      MPI_Comm_rank( MPI_COMM_WORLD, &self->rank );
+      MPI_Comm_size( MPI_COMM_WORLD, &self->nproc );
+   }
+   
    _lucDrawingObject_Init( self, context,
       Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"lit", True  ),
       Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"disable", False  ),
