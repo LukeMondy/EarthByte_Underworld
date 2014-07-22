@@ -28,25 +28,33 @@ class Figure(_stgermain.StgCompoundComponent):
             
          Currently, the Surface, Points & VectorArrows are the supported drawing objects.  See help() on these objects for their respective options.
     """
-    def __init__(self, num=None, figsize=(640,480), facecolor="white", edgecolor="white", title=None, axis=False, **kwargs):
+    def __init__(self, num=None, figsize=(640,480), facecolour="white", edgecolour="white", title=None, axis=False, **kwargs):
+        """ The initialiser takes as arguments 'num', 'figsize', 'facecolour', 'edgecolour', 'title' and 'axis'.   See help(Figure) for full details on these options.
+        """
         if num and not isinstance(num,(str,int)):
             raise TypeError("'num' object passed in must be of python type 'str' or 'int'")
+        if num and isinstance(num,str) and (" " in num):
+            raise ValueError("'num' object passed in must not contain any spaces.")
+        self._num = num
+
         if not isinstance(figsize,tuple):
             raise TypeError("'figsize' object passed in must be of python type 'tuple'")
-        if not isinstance(facecolor,str):
-            raise TypeError("'facecolor' object passed in must be of python type 'str'")
-        if not isinstance(edgecolor,str):
-            raise TypeError("'edgecolor' object passed in must be of python type 'str'")
+        self._figsize = figsize
+
+        if not isinstance(facecolour,str):
+            raise TypeError("'facecolour' object passed in must be of python type 'str'")
+        self._facecolour = facecolour
+
+        if not isinstance(edgecolour,str):
+            raise TypeError("'edgecolour' object passed in must be of python type 'str'")
+        self._edgecolour = edgecolour
+
         if title and not isinstance(title,str):
             raise TypeError("'title' object passed in must be of python type 'str'")
+        self._title = title
+
         if not isinstance(axis,bool):
             raise TypeError("'axis' object passed in must be of python type 'bool'")
-
-        self._num = num
-        self._figsize = figsize
-        self._facecolor = facecolor
-        self._edgecolor = edgecolor
-        self._title = title
         self._axis = axis
 
         self._drawingObjects = []
@@ -79,13 +87,13 @@ class Figure(_stgermain.StgCompoundComponent):
                             "Viewport"          :[self._localNames["vp"]],
                             "width"             :self.figsize[0],
                             "height"            :self.figsize[1],
-                            "backgroundColour"  :self.facecolor,
+                            "backgroundColour"  :self.facecolour,
                             "useModelBounds"    :False
         }
         self.componentDictionary[self._localNames["vp"]] = {
                             "Type"              :"lucViewport",
                             "Camera"            :self._localNames["cam"],
-                            "borderColour"      :self.edgecolor,
+                            "borderColour"      :self.edgecolour,
                             "border"            :1,
                             "title"             :self.title,
                             "axis"              :self.axis
@@ -98,7 +106,7 @@ class Figure(_stgermain.StgCompoundComponent):
 
     @property
     def num(self):
-        """    num (str,int): integer or string figure identifier. optional, default: none
+        """    num (str,int): integer or string figure identifier. Must not contain spaces. optional, default: none
         """
         return self._num
 
@@ -109,16 +117,16 @@ class Figure(_stgermain.StgCompoundComponent):
         return self._figsize
 
     @property
-    def facecolor(self):
-        """    facecolor : colour of face background, default: white
+    def facecolour(self):
+        """    facecolour : colour of face background, default: white
         """
-        return self._facecolor
+        return self._facecolour
 
     @property
-    def edgecolor(self):
-        """    edgecolor : colour of figure border, default: white
+    def edgecolour(self):
+        """    edgecolour : colour of figure border, default: white
         """
-        return self._edgecolor
+        return self._edgecolour
 
     @property
     def title(self):
@@ -214,6 +222,8 @@ class Figure(_stgermain.StgCompoundComponent):
         for ii in range(vp.drawingObject_Register.objects.count,0,-1):
             _stgermain.StGermain._Stg_ObjectList_RemoveByIndex(vp.drawingObject_Register.objects,ii-1, _stgermain.StGermain.KEEP)
         # first add drawing objects to viewport
+        if len(self.drawingObjects) == 0:
+            raise RuntimeError("There appears to be no drawing objects to render.")
         for object in self.drawingObjects:
             objectPtr = object._getStgPtr()
             objectPtr.id = 0
@@ -268,10 +278,9 @@ class Figure(_stgermain.StgCompoundComponent):
         return guy
 
 
-# weakref dictionary used to allow objects to die
+## weakref dictionary used to allow objects to die
 #_figures = weakref.WeakValueDictionary()
 _figures = {}
-_figCount = 0
 
 def figure(**kwargs):
     """   Creates instances of Figure object using provided arguments, 
@@ -284,18 +293,16 @@ def figure(**kwargs):
     
     _deleteStale()
 
-    # if name not found, use incremented figure count as name
-    if not "num" in kwargs:
-        global _figCount
-        _figCount += 1
-        kwargs["num"] = _figCount
-    # else see if figure with provided name exists and return if found
-    elif kwargs["num"] in _figures:
-        return _figures[kwargs["num"]]
-
-    # if no figure exists, go ahead and create one, then add to list
+    # if name found, check if exists and return
+    if "num" in kwargs:
+        if kwargs["num"] in _figures:
+            return _figures[kwargs["num"]]
+    
+    # if no figure exists in dict, go ahead and create one
     figGuy = Figure(**kwargs)
-    _figures[figGuy.num] = figGuy
+    # if id provided, add to dict:
+    if "num" in kwargs:
+        _figures[figGuy.num] = figGuy
 
     return figGuy
 

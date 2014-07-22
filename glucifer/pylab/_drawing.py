@@ -3,9 +3,11 @@ import underworld._stgermain as _stgermain
 import numpy as np
 
 class Drawing(_stgermain.StgCompoundComponent):
-    def __init__(self, num=None, colours="Purple Blue Green Yellow Orange Red".split(), **kwargs):
+    def __init__(self, num=None, colours="Purple Blue Green Yellow Orange Red".split(), opacity=-1, **kwargs):
         if num and not isinstance(num,(str,int,NoneType)):
             raise TypeError("'num' object passed in must be of python type 'str' or 'int'")
+        if num and isinstance(num,str) and (" " in num):
+            raise ValueError("'num' object passed in must not contain any spaces.")
         self._num = num
 
         if not isinstance(colours,(str,list)):
@@ -15,12 +17,18 @@ class Drawing(_stgermain.StgCompoundComponent):
         else:
             self._colours = colours
 
+        if not isinstance(opacity,(int,float)):
+            raise TypeError("'opacity' object passed in must be of python type 'int' or 'float'")
+        if float(opacity) > 1. or float(opacity) < -1.:
+            raise ValueError("'opacity' object must takes values from 0. to 1., while a value of -1 explicitly disables opacity.")
+        self._opacity = opacity
+
         # build parent
         super(Drawing,self).__init__(**kwargs)
 
     @property
     def num(self):
-        """    num (str,int): integer or string, optional, default: none
+        """    num (str,int): integer or string identifier. Must not contain spaces. optional, default: none
             """
         return self._num
 
@@ -29,6 +37,12 @@ class Drawing(_stgermain.StgCompoundComponent):
         """    colours (list): list of colours to use to draw object.  Should be provided as a list or a string.
         """
         return self._colours
+
+    @property
+    def opacity(self):
+        """    opacity (float): Opacity of drawing object.  Takes values from 0. to 1., while a value of -1 explicitly disables opacity.
+        """
+        return self._opacity
 
     def _getStgPtr(self):
         """ This function should return the required underlying StGermain object ptr. It may be overwritten by the child class if necessary. """
@@ -48,7 +62,8 @@ class Drawing(_stgermain.StgCompoundComponent):
         }
         # add an empty(ish) drawing object.  children should fill it out. in particular they need to set 'Type'
         self.componentDictionary[self._localNames["dr"]] = {
-            "ColourMap"     :self._localNames["cm"]
+            "ColourMap"     :self._localNames["cm"],
+            "opacity"       :self.opacity
         }
 
     def __del__(self):
@@ -58,7 +73,7 @@ class Drawing(_stgermain.StgCompoundComponent):
 class Surface(Drawing):
     """  This drawing object class draws a surface using the provided scalar field.
     """
-    def __init__(self, field=None, ndarray=None, *args, **kwargs):
+    def __init__(self, field=None, ndarray=None, drawSides="xyzXYZ",*args, **kwargs):
         if not((field==None) or (ndarray==None)):
             raise ValueError("Either an Underworld field or a numpy array must be set as arguments when initialising a Surface object, but not both.")
 
@@ -78,7 +93,9 @@ class Surface(Drawing):
             self._nvf = underworld.importers.NumpyVoxelField(ndarray=ndarray, **kwargs)
         self._ndarray=ndarray
         
-        
+        if not isinstance(drawSides,str):
+            raise ValueError("'drawSides' argument must be of python type 'str'")
+        self._drawSides = drawSides
         
         # build parent
         super(Surface,self).__init__(**kwargs)
@@ -95,6 +112,12 @@ class Surface(Drawing):
         """
         return self._ndarray
 
+    @property
+    def drawSides(self):
+        """    drawSides (str): sides (x,y,z,X,Y,Z) for which the surface should be drawn.  default is all sides ("xyzXYZ").
+        """
+        return self._drawSides
+
     def _addToStgDict(self):
         # lets build up component dictionary
         # append random string to provided name to ensure unique component names
@@ -104,6 +127,7 @@ class Surface(Drawing):
         
         drdict = self.componentDictionary[self._localNames["dr"]]
         drdict["Type"] = "lucScalarField"
+        drdict["drawSides"] = self.drawSides
         if self.field:
             drdict["FieldVariable"] = self.field
         else:
@@ -131,7 +155,8 @@ class Points(Drawing):
                 raise TypeError("'colourVariable' object passed in must be of python type 'str'")
             ptr = _stgermain.GetLiveComponent(colourVariable)
             if not ptr:
-                raise ValueError("colourVariable with name '"+colourVariable+"' not found. A live instance must be available before you can create this object.")
+                raise ValueError("colourVariable with name '"+colourVariable+"' not found. A live instance must be available before you can create this object.\n"\
+                                 "Run 'underworld.swarms.tools.Swarm_PrintVariables(\""+swarm+"\")' to find available swarm variables.")
             if not _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StGermain.Variable_Type ) \
                or  _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StgDomain.SwarmVariable_Type ) :
                 raise ValueError("colourVariable with name '"+colourVariable+"' has type '"+ptr.type+"',\n which does not appear to be a child of '"+_stgermain.StGermain.Variable_Type+"' or '"+_stgermain.StgDomain.SwarmVariable_Type+"' types, as required.")
@@ -141,7 +166,8 @@ class Points(Drawing):
                 raise TypeError("'sizeVariable' object passed in must be of python type 'str'")
             ptr = _stgermain.GetLiveComponent(sizeVariable)
             if not ptr:
-                raise ValueError("sizeVariable with name '"+sizeVariable+"' not found. A live instance must be available before you can create this object.")
+                raise ValueError("sizeVariable with name '"+sizeVariable+"' not found. A live instance must be available before you can create this object.\n"\
+                                 "Run 'underworld.swarms.tools.Swarm_PrintVariables(\""+swarm+"\")' to find available swarm variables.")
             if not _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StGermain.Variable_Type ) \
                or  _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StgDomain.SwarmVariable_Type ) :
                 raise ValueError("sizeVariable with name '"+sizeVariable+"' has type '"+ptr.type+"',\n which does not appear to be a child of '"+_stgermain.StGermain.Variable_Type+"' or '"+_stgermain.StgDomain.SwarmVariable_Type+"' types, as required.")
@@ -151,7 +177,8 @@ class Points(Drawing):
                 raise TypeError("'opacityVariable' object passed in must be of python type 'str'")
             ptr = _stgermain.GetLiveComponent(opacityVariable)
             if not ptr:
-                raise ValueError("opacityVariable with name '"+opacityVariable+"' not found. A live instance must be available before you can create this object.")
+                raise ValueError("opacityVariable with name '"+opacityVariable+"' not found. A live instance must be available before you can create this object.\n"\
+                                 "Run 'underworld.swarms.tools.Swarm_PrintVariables(\""+swarm+"\")' to find available swarm variables.")
             if not _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StGermain.Variable_Type ) \
                or  _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StgDomain.SwarmVariable_Type ) :
                 raise ValueError("opacityVariable with name '"+opacityVariable+"' has type '"+ptr.type+"',\n which does not appear to be a child of '"+_stgermain.StGermain.Variable_Type+"' or '"+_stgermain.StgDomain.SwarmVariable_Type+"' types, as required.")
@@ -216,16 +243,16 @@ class Points(Drawing):
 class VectorArrows(Drawing):
     """  This drawing object class draws vector arrows corresponding to the provided vector field.
     """
-    def __init__(self, vectorField, resolutionX=16, resolutionY=16, resolutionZ=16, arrowHeadSize=0.3, lengthScale=0.3,glyphs=3, **kwargs):
-        if not isinstance(vectorField,(str)):
-            raise TypeError("'vectorField' object passed in must be of python type 'str'")
-        ptr = _stgermain.GetLiveComponent(vectorField)
+    def __init__(self, field, resolutionX=16, resolutionY=16, resolutionZ=16, arrowHeadSize=0.3, lengthScale=0.3,glyphs=3, **kwargs):
+        if not isinstance(field,(str)):
+            raise TypeError("'field' object passed in must be of python type 'str'")
+        ptr = _stgermain.GetLiveComponent(field)
         if not ptr:
-            raise ValueError("FieldVariable with name '"+vectorField+"' not found. A live instance must be available before you can create this object.")
+            raise ValueError("FieldVariable with name '"+field+"' not found. A live instance must be available before you can create this object.")
         if not _stgermain.StGermain.Stg_Class_CompareType( ptr, _stgermain.StgDomain.FieldVariable_Type ):
-            raise ValueError("FieldVariable with name '"+vectorField+"' not a child of '"+_stgermain.StgDomain.FieldVariable_Type+"' type.")
+            raise ValueError("FieldVariable with name '"+field+"' not a child of '"+_stgermain.StgDomain.FieldVariable_Type+"' type.")
         if not ptr.fieldComponentCount > 1:
-            raise ValueError("FieldVariable with name '"+vectorField+"' is not a vector field. It appears to have "+str(ptr.fieldComponentCount)+" components.")
+            raise ValueError("FieldVariable with name '"+field+"' is not a vector field. It appears to have "+str(ptr.fieldComponentCount)+" components.")
 
         if resolutionX:
             if not isinstance(resolutionX,(int)):
@@ -248,7 +275,7 @@ class VectorArrows(Drawing):
             if not isinstance(glyphs,(int)):
                 raise TypeError("'glyphs' object passed in must be of python type 'int'")
 
-        self._vectorField = vectorField
+        self._field = field
         self._resolutionX = resolutionX
         self._resolutionY = resolutionY
         self._resolutionZ = resolutionZ
@@ -260,10 +287,10 @@ class VectorArrows(Drawing):
         super(VectorArrows,self).__init__(**kwargs)
     
     @property
-    def vectorField(self):
-        """    vectorField (str): name of live underworld vector field for which vector arrows will be rendered.
+    def field(self):
+        """    field (str): name of live underworld vector field for which vector arrows will be rendered.
         """
-        return self._vectorField
+        return self._field
     @property
     def resolutionX(self):
         """    resolutionX (int): Number of vector arrows to render in the X direction. Default is 16.
@@ -303,7 +330,7 @@ class VectorArrows(Drawing):
 
         drdict = self.componentDictionary[self._localNames["dr"]]
         drdict[           "Type"] = "lucVectorArrows"
-        drdict[  "FieldVariable"] = self.vectorField
+        drdict[  "FieldVariable"] = self.field
         drdict[    "resolutionX"] = self.resolutionX
         drdict[    "resolutionY"] = self.resolutionY
         drdict[    "resolutionZ"] = self.resolutionZ

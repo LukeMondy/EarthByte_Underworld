@@ -54,16 +54,21 @@ def Swarm_GetVariablesAsDict( swarm ):
     return varDict
 
 
-def Swarm_PrintVariables( swarm ):
+def Swarm_PrintVariables( swarmIn ):
     """
     Formatted print to standard out of swarm's variables.
     Note that some swarm variables (such as MaterialSwarmVariables) are excluded as the user cannot modify their data.
 
     Args:
-        swarm (Swig Swarm*): Swarm
+        swarm (Swig Swarm*, str): The swarm, either provided as a swig generated pointer, or via the textual name.
     Returns:
         Nothing
     """
+    if isinstance(swarmIn,(str)):
+        swarm = _uw._stgermain.GetLiveComponent(swarmIn)
+    else:
+        swarm = swarmIn
+
     varNameList = []
     varTypeList = []
     maxLen = 0
