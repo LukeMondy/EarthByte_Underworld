@@ -194,7 +194,11 @@ class Figure(_stgermain.StgCompoundComponent):
         # lets set the final extension to that of the glucifer generated file
         splitabsfilename = os.path.splitext(absfilename)
         splitgenfilename = os.path.splitext(generatedFilename)
-        finaloutFile = splitabsfilename[0]+splitgenfilename[1]
+        if splitabsfilename[1].lower() in [".png", ".jpg", ".jpeg"]:
+            frontpart = splitabsfilename[0]
+        else:
+            frontpart = absfilename
+        finaloutFile = frontpart+splitgenfilename[1]
         from shutil import copyfile
         copyfile(generatedFilename,finaloutFile)
 

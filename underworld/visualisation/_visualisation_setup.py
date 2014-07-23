@@ -291,7 +291,8 @@ def databaseCreate(name="database", singleFile="False",
                                                       singleFile=singleFile,
                                                       writeEvery=writeEvery,
                                                       filename=filename,
-                                                      DrawingObject = drawingObjectList
+                                                      DrawingObject = drawingObjectList,
+                                                      Context = "context"
                                                       )
     return dbObject
 
