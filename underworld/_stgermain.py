@@ -339,6 +339,10 @@ def StgConstruct( pyUWDict, setAsRootDict=False ):
             compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
             pointerDict[compName] = compPointer
             StGermain.Stg_Component_AssignFromXML( compPointer, cf, None, False )
+    if "plugins" in pyUWDict:
+        for guy in pyUWDict["plugins"]:
+            compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), guy["Type"] )
+            StGermain.Stg_Component_AssignFromXML( compPointer, cf, None, False )
 
     # don't like this, but not much choice at this point
     # we retain the concept of a root dict, and also the component factor object, as some things require it during the build phase (annoyingly)
