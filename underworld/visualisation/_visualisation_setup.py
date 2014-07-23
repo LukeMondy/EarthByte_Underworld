@@ -352,7 +352,7 @@ def fieldArrowsCreate(name="fieldArrows", fieldVariable="", arrowHeadSize=0.15, 
     arrows = uw.dictionary.UpdateDictWithComponent( globalDict,
                                                     name          = name,
                                                     Type          = "lucVectorArrows",
-                                                    VectorVariable = fieldVariable,
+                                                    FieldVariable = fieldVariable,
                                                     Colour        = colour,
                                                     arrowHeadSize = str(arrowHeadSize),
                                                     lengthScale   = str(lengthScale)
