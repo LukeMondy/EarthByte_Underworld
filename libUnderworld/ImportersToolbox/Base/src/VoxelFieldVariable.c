@@ -205,7 +205,8 @@ double _VoxelFieldVariable_GetMaxGlobalFieldMagnitude( void* voxelFieldVariable 
 void _VoxelFieldVariable_CacheMinMaxGlobalFieldMagnitude( void* voxelFieldVariable ) {
    VoxelFieldVariable* self = (VoxelFieldVariable*) voxelFieldVariable;
    if(self->minMaxCached == False){
-      for(int ii; ii<self->arraySize[0]*self->arraySize[1]*self->arraySize[2]; ii++) {
+      int ii;
+      for(ii=0; ii<self->arraySize[0]*self->arraySize[1]*self->arraySize[2]; ii++) {
          double value;
          switch ( self->dataType )
          {
