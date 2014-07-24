@@ -51,11 +51,7 @@ const Type Underworld_HDF5ConditionFunction_Type = "Underworld_HDF5ConditionFunc
 
 void _Underworld_HDF5ConditionFunction_AssignFromXML( void* component, Stg_ComponentFactory* cf, void* data ) {
 	Underworld_HDF5ConditionFunction* self = (Underworld_HDF5ConditionFunction*)component;
-	AbstractContext*        context;
 	Dictionary*		pluginDict	= Codelet_GetPluginDictionary( component, cf->rootDict );
-
-	context = (AbstractContext*)Stg_ComponentFactory_ConstructByName( cf, Dictionary_GetString( pluginDict, (Dictionary_Entry_Key)"Context"  ), AbstractContext, True, data );
-	self->context = context;
 	
 	self->feVariableFieldFileName = StG_Strdup( Dictionary_GetString( pluginDict, (Dictionary_Entry_Key)"FeVariableHDF5Filename" ) );
 	self->feVariableMeshFileName  = StG_Strdup( Dictionary_GetString( pluginDict, (Dictionary_Entry_Key)"MeshHDF5Filename" ) );
