@@ -12,6 +12,7 @@
       <param name="ThermalExpansivityLabel"> mantleAlpha </param>
       <param name="DiffusivityLabel"> mantleDiffusivity </param>
       <param name="RadiogenicHeatProductionLabel"> mantleRadiogenicHeatProduction </param>
+      <param name="LatentHeatFusionLabel"> 0 </param>
     </struct>
     <struct name="mantleDensity">
       <param name="Type">Ppc_LinearDensity</param>

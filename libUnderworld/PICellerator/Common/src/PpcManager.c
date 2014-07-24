@@ -282,27 +282,29 @@ void _PpcManager_Build( void* _self, void* data )
          configName = Stg_ComponentFactory_GetString( self->cf, material->name, (Dictionary_Entry_Key)self->tagList[tag_I].name, NULL );
 
          /* if no string can be found, the ppc is not searched for*/
-         if ( !configName ) materialExt->ppc = NULL;
+         Journal_Firewall( configName != NULL, global_error_stream, "Error: in definition of material '%s', no %s property, add one, i.e\n\t<param name=\"%s\"> foobar </param>", material->name, self->tagList[tag_I].name, self->tagList[tag_I].name );
+         /*
+         if ( !configName ) ; //materialExt->ppc = NULL; // flag as error instead?
          else
          {
-            if ( Stg_StringIsNumeric( configName ) )
-            {
-               /* if the string is numeric, then we must create a Ppc_Constant from scrach
-                * using the string "value" */
-               double value = strtod( configName, 0 );
-               char* ppcNameNew;
-               Stg_asprintf( &ppcNameNew, "%s-%s", material->name, self->tagList[tag_I].name );
-               materialExt->ppc = (Ppc*)Ppc_Constant_New( ppcNameNew, self, value );
-               Memory_Free(ppcNameNew);
-            }
-            else
-            {
-               /* else the string is the name of a ppc we look for */
-               materialExt->ppc = Stg_ComponentFactory_ConstructByName( self->cf, (Name)configName, Ppc, True, data );
-            }
-            /* also go ahead and ensure ppc is build */
-            Stg_Component_Build( materialExt->ppc, NULL, False );
+            */
+         if ( Stg_StringIsNumeric( configName ) )
+         {
+            /* if the string is numeric, then we must create a Ppc_Constant from scrach
+             * using the string "value" */
+            double value = strtod( configName, 0 );
+            char* ppcNameNew;
+            Stg_asprintf( &ppcNameNew, "%s-%s", material->name, self->tagList[tag_I].name );
+            materialExt->ppc = (Ppc*)Ppc_Constant_New( ppcNameNew, self, value );
+            Memory_Free(ppcNameNew);
          }
+         else
+         {
+            /* else the string is the name of a ppc we look for */
+            materialExt->ppc = Stg_ComponentFactory_ConstructByName( self->cf, (Name)configName, Ppc, True, data );
+         }
+         /* also go ahead and ensure ppc is build */
+         Stg_Component_Build( materialExt->ppc, NULL, False );
       }
 
       /* Is it passive property? */
@@ -415,16 +417,24 @@ void _PpcManager_Initialise( void* _self, void* data )
       }
 
       if(tagEntry->storeOnParticles) {
-         /* start initialise the particle storage */
-         for ( p_i = 0 ; p_i < mp_local_count ; p_i++  ) {
-            mp = (MaterialPoint*)Swarm_ParticleAt( ms, p_i );
+         // if we are not starting from a checkpoint then don't zero variable and store restart timestep
+         if( self->context->loadFromCheckPoint == True ) {
+            tagEntry->lastStoredTimestep = self->context->timeStep;
+         } else {
 
-            current = ExtensionManager_Get( extMgr, mp, tagEntry->particleExtHandle );
-            current->value = 0.0;
+            /* start initialise the particle storage */
+            for ( p_i = 0 ; p_i < mp_local_count ; p_i++  ) {
+               mp = (MaterialPoint*)Swarm_ParticleAt( ms, p_i );
+
+               current = ExtensionManager_Get( extMgr, mp, tagEntry->particleExtHandle );
+               current->value = 0.0;
+            }
          }
       }
 
-      if( tagEntry->storePreviousValue ) _PpcManager_UpdatePrevious( self, tagEntry );
+      // update previous only if not restarting from checkpoint
+      if( tagEntry->storePreviousValue && self->context->loadFromCheckPoint==False ) _PpcManager_UpdatePrevious( self, tagEntry );
+
    }
 }
 
