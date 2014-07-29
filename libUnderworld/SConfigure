@@ -61,7 +61,7 @@ def UWExit( self ):
    print '\tconfig.cfg (if it exists)'
    print 'to: development@underworldproject.org'
    print '************************************'
-   env.Exit()
+   env.Exit(1)
 
 env.AddMethod( UWExit )
 

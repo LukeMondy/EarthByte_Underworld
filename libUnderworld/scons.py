@@ -7,3 +7,6 @@ subp = subprocess.Popen(
     sconsBin + ' ' + ' '.join(sys.argv[1:]), shell=True
 )
 subp.wait()
+
+# return the return code
+sys.exit(subp.returncode)
