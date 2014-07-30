@@ -63,6 +63,7 @@
    typedef struct VectorAssemblyTerm_NA__F VectorAssemblyTerm_NA__F;
    typedef struct VectorAssemblyTerm_NA_i__Fi VectorAssemblyTerm_NA_i__Fi;
    typedef struct MatrixAssemblyTerm_NA_i__NB_i__F MatrixAssemblyTerm_NA_i__NB_i__F;
+   typedef struct MatrixAssemblyTerm_NA_i__NB_i__Cij MatrixAssemblyTerm_NA_i__NB_i__Cij;
    typedef struct MatrixAssemblyTerm_NA__NB__F MatrixAssemblyTerm_NA__NB__F;
    typedef struct VectorSurfaceAssemblyTerm_NA__Fi__ni VectorSurfaceAssemblyTerm_NA__Fi__ni;
 

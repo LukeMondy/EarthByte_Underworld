@@ -87,6 +87,7 @@
    typedef struct ViscousCreep  ViscousCreep;
    typedef struct PpcRheology  PpcRheology;
    typedef struct MeltViscosity  MeltViscosity;
+   typedef struct Ppc_VonMisesFlowRule  Ppc_VonMisesFlowRule;
 
 	/* typedefs for readability */
 	typedef Index                                   Rheology_Index;

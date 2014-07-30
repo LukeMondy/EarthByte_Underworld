@@ -122,6 +122,9 @@ Bool Underworld_Utils_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( componentRegister, MatrixAssemblyTerm_NA_i__NB_i__F_Type, (Name)"0", _MatrixAssemblyTerm_NA_i__NB_i__F_DefaultNew  );
 	RegisterParent( MatrixAssemblyTerm_NA_i__NB_i__F_Type, StiffnessMatrixTerm_Type );
 
+   Stg_ComponentRegister_Add( componentRegister, MatrixAssemblyTerm_NA_i__NB_i__Cij_Type, (Name)"0", _MatrixAssemblyTerm_NA_i__NB_i__Cij_DefaultNew  );
+   RegisterParent( MatrixAssemblyTerm_NA_i__NB_i__Cij_Type, StiffnessMatrixTerm_Type );
+
    Stg_ComponentRegister_Add( componentRegister, MatrixAssemblyTerm_NA__NB__F_Type, (Name)"0", _MatrixAssemblyTerm_NA__NB__F_DefaultNew  );
 	RegisterParent( MatrixAssemblyTerm_NA__NB__F_Type, StiffnessMatrixTerm_Type );
 
