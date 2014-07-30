@@ -87,7 +87,8 @@
    typedef struct ViscousCreep  ViscousCreep;
    typedef struct PpcRheology  PpcRheology;
    typedef struct MeltViscosity  MeltViscosity;
-
+ 
+        typedef struct PatriceArrhenius  PatriceArrhenius;
 	/* typedefs for readability */
 	typedef Index                                   Rheology_Index;
 

@@ -83,5 +83,5 @@
    #include "ConstitutiveMatCartesian_Refactored.h"
    #include "PpcRheology.h"
    #include "MeltViscosity.h"
-
+   #include "PatriceArrhenius.h"
 #endif

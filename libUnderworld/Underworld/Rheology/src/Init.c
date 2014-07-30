@@ -89,6 +89,7 @@ Bool Underworld_Rheology_Init( int* argc, char** argv[] ) {
 	
 	Stg_ComponentRegister_Add( componentRegister, ConstitutiveMatCartesian_Refactored_Type, (Name)"0", _ConstitutiveMatCartesian_Refactored_DefaultNew  );
 
+
 	/* Register Parents for type checking */
 	RegisterParent( Rheology_Type,                    Stg_Component_Type );
 	RegisterParent( Arrhenius_Type,                   Rheology_Type );
@@ -144,7 +145,10 @@ Bool Underworld_Rheology_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( componentRegister, PpcRheology_Type, (Name)"0", _PpcRheology_DefaultNew  );
    RegisterParent( PpcRheology_Type,     Rheology_Type );
 
-	return True;
+   Stg_ComponentRegister_Add( componentRegister, PatriceArrhenius_Type, (Name)"0", _PatriceArrhenius_DefaultNew  );
+   RegisterParent( PatriceArrhenius_Type,               Rheology_Type );
+   
+   return True;
 }
 
 
