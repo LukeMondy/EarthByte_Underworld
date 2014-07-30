@@ -66,6 +66,7 @@
 
 #include <assert.h>
 #include <string.h>
+#include <petscblaslapack.h>
 
 /* Textual name of this class - This is a global pointer which is used for times when you need to refer to class and not a particular instance of a class */
 const Type REP_Algorithm_Type = "REP_Algorithm";
@@ -221,11 +222,11 @@ void _REP_Algorithm_Execute( void* patch, void* data ) {
    * All repFields associated with this component will be
    * are executed in the below functions 
    */
-	UnderworldContext* context = (UnderworldContext*)data;
-	REP_Algorithm* self = (REP_Algorithm*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)NameOfPatch );
-	double startTime;
-	int field_I;
-	assert( self );
+   UnderworldContext* context = (UnderworldContext*)data;
+   REP_Algorithm* self = (REP_Algorithm*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)NameOfPatch );
+   double startTime;
+   int field_I;
+   assert( self );
 
 	/* TODO: Optimisation question. Is this a test and do function or a straigh do function */
    for( field_I = 0 ; field_I < Stg_ObjectList_Count( repRequiredRawFields_Reg ); field_I++ )
@@ -441,17 +442,13 @@ void _REP_Algorithm_AssembleElement( REP_Algorithm* self, int lElement_I, double
    ElementType*            elementType;
    IntegrationPoint*       particle;
    double                  globalCoord[3], detJac;
-   int                     cell_I, cellParticleCount, nodesPerEl, cParticle_I;
+   int                     cell_I, cellParticleCount, cParticle_I;
    /* Only need one */
    int                     dim = self->repFieldList[0]->dim;
    int                     field_I;
 
    /* Get the element type */
    elementType = FeMesh_GetElementType( mesh, lElement_I );
-
-   /* Get the number of nodes per element */
-   FeMesh_GetElementNodes( mesh, lElement_I, self->incArray );
-   nodesPerEl = IArray_GetSize( self->incArray );
 
    /* Get number of particles per element */
    cell_I = CellLayout_MapElementIdToCellId( swarm->cellLayout, lElement_I );
@@ -462,11 +459,9 @@ void _REP_Algorithm_AssembleElement( REP_Algorithm* self, int lElement_I, double
 
       /* calculate derivatives on particles */
       ElementType_ShapeFunctionsGlobalDerivs( elementType, 
-      mesh, 
-      lElement_I,
-      particle->xi,
-      dim,
-      &detJac, GNx );
+         mesh, lElement_I, particle->xi,
+         dim, &detJac, GNx ); 
+
       /* put particle co-ords into polynomial */
       FeMesh_CoordLocalToGlobal( mesh, lElement_I, particle->xi, globalCoord );
 
@@ -507,7 +502,7 @@ void _REP_Algorithm_Solver(double **array, double* bVec, int n) {
 		
 	NRHS = 1;
 	N = LDA = LDB = n;
-	dgesv_( &N, &NRHS, AT, &LDA, IPIV, bVec, &LDB, &info);
+	LAPACKgesv_( &N, &NRHS, AT, &LDA, IPIV, bVec, &LDB, &info);
 
 	Journal_Firewall( info == 0, Journal_Register( Error_Type, (Name)"error_REP"  ), "Error: In %s looks like the lapack solver (DGESV) died with the error code %d. Could be due to ill-conditioned matrix ... I advise that you manually print the results of the matrices that lapack uses or contact a developer.\n", __func__, info);
 	Memory_Free(IPIV);

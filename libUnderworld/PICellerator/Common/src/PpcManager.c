@@ -223,6 +223,9 @@ void _PpcManager_AssignFromXML( void* _self, Stg_ComponentFactory* cf, void* dat
       // initialise min & max
       self->tagList[tag_I].min = HUGE_VAL;
       self->tagList[tag_I].max = -1 * HUGE_VAL;
+
+      // if we are storing the NL iterations than we set storeOnParticles to True
+      if( self->tagList[tag_I].storeNLOnParticles == True ) self->tagList[tag_I].storeOnParticles = True;
    }
 
    _PpcManager_Init( self, context, cf, ms, is, mr, m, g, sc );
