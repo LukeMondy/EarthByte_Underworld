@@ -80,6 +80,7 @@ Bool Underworld_Init( int* argc, char** argv[] ) {
       if( useSignalHandler ) {
          signal( SIGSEGV, Underworld_SignalHandler );
          signal( SIGTERM, Underworld_SignalHandler );
+         signal( SIGINT,  Underworld_SignalHandler );
       }
 
       Underworld_Rheology_Init( argc, argv );
@@ -145,6 +146,12 @@ void Underworld_SignalHandler( int signal ) {
             "This could have happened by a queueing system (e.g. if the code has run longer than allowed),\n"
             "the code might have been killed on another processor or it may have been killed by the user.\n" );
          break;
+      case SIGINT:
+        fprintf(
+          stderr, 
+          "'SIGINT' (Termination Request).\n"
+          "Isn't it wonderbubble to have CTRL-C?\n" );
+        break;
    }
    exit( EXIT_FAILURE );
 }

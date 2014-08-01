@@ -50,15 +50,15 @@
    #define Stg_PCMGDefaultResidual NULL
    #define KSP_DIVERGED_NAN KSP_DIVERGED_NANORINF
    #define Stg_VecRegister(a1,a2,a3,a4) VecRegister(a1,a4)
-#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
-   #define Stg_PetscObjectDepublish PetscObjectSAWsViewOff
-   #define PetscObjectGrantAccess PetscObjectSAWsGrantAccess
-   #define PetscObjectTakeAccess PetscObjectSAWsTakeAccess
-#else
-   #define Stg_PetscObjectDepublish PetscObjectAMSViewOff
-   #define PetscObjectTakeAccess PetscObjectAMSTakeAccess
-   #define PetscObjectGrantAccess PetscObjectAMSGrantAccess
-#endif
+   #if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
+      #define Stg_PetscObjectDepublish PetscObjectSAWsViewOff
+      #define PetscObjectGrantAccess PetscObjectSAWsGrantAccess
+      #define PetscObjectTakeAccess PetscObjectSAWsTakeAccess
+   #else
+      #define Stg_PetscObjectDepublish PetscObjectAMSViewOff
+      #define PetscObjectTakeAccess PetscObjectAMSTakeAccess
+      #define PetscObjectGrantAccess PetscObjectAMSGrantAccess
+   #endif
    #define PetscGetTime PetscTime
    #define PetscObjectComposeFunctionDynamic( arg1, arg2, arg3, arg4 ) PetscObjectComposeFunction( arg1, arg2, arg4 )
    #define Stg_MatRegister(a1,a2,a3,a4) MatRegister(a1,a4)
@@ -106,17 +106,17 @@
     #if !defined(EXTERN)
     #define EXTERN extern
     #endif
-   #if ( PETSC_VERSION_MINOR > 2  )
-      #define PETSC_EXTERN_CXX_BEGIN EXTERN_C_BEGIN
-      #define PETSC_EXTERN_CXX_END EXTERN_C_END
-      #define Stg_MatCreateAIJ MatCreateAIJ
-      #define Stg_PetscObjectTypeCompare PetscObjectTypeCompare
-      #define Stg_PetscTypeCompare PetscObjectTypeCompare
-   #else
-      #define Stg_MatCreateAIJ MatCreateMPIAIJ
-      #define Stg_PetscObjectTypeCompare PetscTypeCompare
-      #define Stg_PetscTypeCompare PetscTypeCompare
-   #endif
+    #if ( PETSC_VERSION_MINOR > 2  )
+       #define PETSC_EXTERN_CXX_BEGIN EXTERN_C_BEGIN
+       #define PETSC_EXTERN_CXX_END EXTERN_C_END
+       #define Stg_MatCreateAIJ MatCreateAIJ
+       #define Stg_PetscObjectTypeCompare PetscObjectTypeCompare
+       #define Stg_PetscTypeCompare PetscObjectTypeCompare
+    #else
+       #define Stg_MatCreateAIJ MatCreateMPIAIJ
+       #define Stg_PetscObjectTypeCompare PetscTypeCompare
+       #define Stg_PetscTypeCompare PetscTypeCompare
+    #endif
 #else
 /* need these for Mat Vec KSP etc in versions of petsc < 3.2 */
    #include "petscmat.h"

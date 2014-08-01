@@ -32,7 +32,7 @@
 # --penaltyNumber=$PEN // using XML to pass the penalty in via the SLE currently.
 
 count=0
-PROCS=1
+PROCS=8
 
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
@@ -66,6 +66,7 @@ do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 #PEN=`echo "0.25*$PEN" | bc -l`
 PEN=`echo "10^($PENEXP)" | bc -l`
+PEN=0.0
 #SCRP="unpreconditioned"
 SCRP="default"
 #SCRP="unpreconditioned"
@@ -139,7 +140,7 @@ PCRES=15
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
 #NAME="solcxGMG"
-NAME="crunsSolCx_conditionNumberMatrices"
+NAME="crunsSolCx_conditionNumberMatrices_procs=${PROCS}"
 #NAME="penTest"
 DIR="${NAME}_${RESX}x${RESY}"
 OUT="$DIR/cx_10e${VC}_${SCALETEXT}"
@@ -196,8 +197,9 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
   	--elementResI=$RES --elementResJ=$RES \
   	--maxTimeSteps=0 -XA11_ksp_view -XA11_mg_levels_ksp_view \
     -Xdump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -matdumpdir $OUT -solutiondumpdir $OUT \
-    -log_summary \
-#   --components.stokesblockkspinterface.OptionsString="-A11_ksp_type fgmres -A11_ksp_rtol 1e-3 -A11_ksp_monitor -backsolveA11_ksp_type fgmres -log_summary" \
+   --components.stokesblockkspinterface.OptionsString="-A11_ksp_type fgmres -A11_ksp_rtol 1e-3 -A11_ksp_monitor -backsolveA11_ksp_type fgmres -log_summary" \
+   -log_summary \
+#
 
 #    > "./$OUT/output.txt" 2>&1
 
