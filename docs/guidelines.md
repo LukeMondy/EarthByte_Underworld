@@ -61,6 +61,14 @@ Testing
 * Unit tests?
 * Regression tests?
 
+Jenkins, CI server
+------------------
+We run a contiguous integration system Jenkins. Currently it downloads the code each night, configures, compiles and runs the units and system tests. If an error is detected in any of these processes the code is labelled as a Failure.
+
+See https://130.56.248.95:8080/job/underworld2/
+
+To test ipython notebooks perhaps we can use scripts like this https://gist.github.com/shoyer/7497853
+
 
 Useful Link
 ===========
