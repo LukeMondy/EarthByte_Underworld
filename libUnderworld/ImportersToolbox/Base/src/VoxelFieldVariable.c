@@ -114,6 +114,8 @@ void _VoxelFieldVariable_AssignFromXML( void* _VoxelFieldVariable, Stg_Component
       self->useExternalArray = True;
    }
 
+   self->fieldComponentCount = 1;
+
 }
 
 void _VoxelFieldVariable_Build( void* _VoxelFieldVariable, void* data ) {
@@ -366,13 +368,14 @@ void _VoxelFieldVariable_SetArrayValue( void* voxelFieldVariable, double* coord 
       void* voxelData = Memory_Alloc_Bytes_Unnamed( sizeof(double), "double" );
       VoxelDataHandler_GetCurrentVoxelData( self->voxelDataHandler, voxelData, self->dataType );
 
-      void* ptr = self->voxelDataArray + indexIJK[0] + self->arraySize[0]*indexIJK[1] + self->arraySize[0]*self->arraySize[1]*indexIJK[2];
+      int posy = indexIJK[0] + self->arraySize[0]*indexIJK[1] + self->arraySize[0]*self->arraySize[1]*indexIJK[2];
+
       switch ( self->dataType )
       {
-         case Variable_DataType_Char   :  *(( signed char*)ptr) = *((signed char*)voxelData);  doubleData = (double)*((signed char*)voxelData);  break;
-         case Variable_DataType_Int    :  *((         int*)ptr) =         *((int*)voxelData);  doubleData = (double)*((        int*)voxelData);  break;
-         case Variable_DataType_Float  :  *((       float*)ptr) =       *((float*)voxelData);  doubleData = (double)*((      float*)voxelData);  break;
-         case Variable_DataType_Double :  *((      double*)ptr) =      *((double*)voxelData);  doubleData = (double)*((     double*)voxelData);  break;
+         case Variable_DataType_Char   :  *(( signed char*)( self->voxelDataArray + posy*sizeof(signed char) )) = *((signed char*)voxelData);  doubleData = (double)*((signed char*)voxelData);  break;
+         case Variable_DataType_Int    :  *((         int*)( self->voxelDataArray + posy*sizeof(        int) )) =         *((int*)voxelData);  doubleData = (double)*((        int*)voxelData);  break;
+         case Variable_DataType_Float  :  *((       float*)( self->voxelDataArray + posy*sizeof(      float) )) =       *((float*)voxelData);  doubleData = (double)*((      float*)voxelData);  break;
+         case Variable_DataType_Double :  *((      double*)( self->voxelDataArray + posy*sizeof(     double) )) =      *((double*)voxelData);  doubleData = (double)*((     double*)voxelData);  break;
       }
 
       if( doubleData > self->localMax) self->localMax = doubleData;
