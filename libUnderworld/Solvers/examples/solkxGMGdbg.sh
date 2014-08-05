@@ -108,7 +108,7 @@ MGOP=" "
     fi
 
 ID=$SCR$A11
-RES=128
+RES=64
 RESX=$RES
 RESY=$RES
 PP=40

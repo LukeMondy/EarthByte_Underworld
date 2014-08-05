@@ -356,4 +356,7 @@ env.Install('lib/StGermain/Solvers/Viewports', Glob('InputFiles/Viewports/*.xml'
 
 env.Alias("install", env.Install(env['prefix'] + '/share/Solvers/', env.GetLaunchDir() + '/Solvers/InputFiles' ) ) 
 
-
+#
+# Setup the system tests.
+#
+env.AddConvergenceTestSuite('SysTest/ConvergenceTests/testSolver.py')

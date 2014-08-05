@@ -1,0 +1,28 @@
+-augmented_lagrangian 1
+-force_correction 1
+-k_scale_only 1
+-ksp_k2_type GMG
+-ksp_type bsscr
+-pc_type none
+-remove_checkerboard_pressure_null_space 0
+-remove_constant_pressure_null_space 1
+-rescale_equations 0
+-uzawastyle 0
+
+-scr_ksp_type fgmres
+-A11_ksp_type fgmres
+
+-scr_ksp_set_min_it_converge 1
+
+# outer iteration tolerance (pressure)
+-scr_ksp_rtol 1.0e-5
+
+# inner iteration tolerance (search velocity)    		
+-A11_ksp_rtol 1.0e-3  
+
+# back solver tolerance (velocity)       	
+-scr_vel_back_solve_rtol 1.0e-3
+-backsolveA11_ksp_type fgmres   
+-backsolveA11_ksp_rtol 1.0e-3
+
+-Q22_pc_type gkgdiag
