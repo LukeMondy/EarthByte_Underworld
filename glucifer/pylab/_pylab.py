@@ -151,12 +151,20 @@ class Figure(_stgermain.StgCompoundComponent):
         
                 Args:
                     None
+                    
+                Returns:
+                    Ipython Image object (will be displayed inline in an ipython notebook).
+                    If Ipython is not found, nothing is returned.
+                    
         """
-        self._generateDB()
-        self._generateImage()
         
-        from IPython.display import Image
-        return Image(filename=self._findGeneratedFile())
+        try:
+            from IPython.display import Image
+            self._generateDB()
+            self._generateImage()
+            return Image(filename=self._findGeneratedFile())
+        raise:
+            pass
 
     def _findGeneratedFile(self):
         # lets determine what we are outputting (jpg,png)
