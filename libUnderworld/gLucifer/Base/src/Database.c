@@ -1214,7 +1214,7 @@ int lucDatabase_WriteGeometry(lucDatabase* self, int index, lucGeometryType type
       cmp_len = compressBound(src_len);
       buffer = (mz_uint8*)malloc((size_t)cmp_len);
       Journal_Firewall(buffer != NULL, lucError, "Compress database: Out of memory! %s '%s'.\n", self->type, self->name );
-      Journal_Firewall(compress(buffer, &cmp_len, (const unsigned char *)block->data, src_len) == Z_OK, 
+      Journal_Firewall(compress2(buffer, &cmp_len, (const unsigned char *)block->data, src_len, 1) == Z_OK,
          lucError, "Compress database failed! %s '%s'.\n", self->type, self->name );
       if (cmp_len == src_len)
       {

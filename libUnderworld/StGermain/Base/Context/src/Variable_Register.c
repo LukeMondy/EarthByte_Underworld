@@ -257,13 +257,9 @@ Variable* Variable_Register_GetByName(void* variable_Register, Name name)
 
 Variable* Variable_Register_GetByIndex(void* variable_Register, Variable_Index varIndex ) {
 	Variable_Register*	self = (Variable_Register*)variable_Register;
-	#if DEBUG
-	Stream*			error = self->errorStream;
-	
-	Journal_DFirewall(  (varIndex < self->count), error,
+	Journal_DFirewall(  (varIndex < self->count), self->errorStream,
 		"Error: Given variable index %d not between 0 and variable count %d.\n",
 		varIndex, self->count );
-	#endif
 		
 	return  self->_variable[varIndex];
 }

@@ -517,15 +517,16 @@ int Journal_Firewall_Func( int expression, char* expressionText,
    const char* file, const char* func, int line, void* _stream, char* fmt, ... )
 */
 int Journal_Firewall( int expression, void* _stream, const char* fmt, ... ) {
-   int     result = 0;
-   Stream* stream = (Stream*)_stream;
 
-   va_list ap;
-   
    if( expression ) {
       /* Every thing is OK! Back to work as normal */
       return 0;
    }
+   
+   int     result = 0;
+   Stream* stream = (Stream*)_stream;
+
+   va_list ap;
    
    if( stream == NULL ) stream = global_error_stream;
 

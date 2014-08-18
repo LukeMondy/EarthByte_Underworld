@@ -147,10 +147,10 @@ MaterialPoint* OneToOneMapper_GetMaterialPoint( void* mapper, void* integrationP
 	MaterialPoint*			materialPoint; /* Assumes that material swarm holds Material particle or derivative */
 
 	ref = OneToOneMapper_GetMaterialRef( self, integrationPoint );
-	Journal_Firewall( ref != NULL, self->errorStream, "In func %s, no MaterialPointRef found on point\n", __func__ );
+	Journal_DFirewall( ref != NULL, self->errorStream, "In func %s, no MaterialPointRef found on point\n", __func__ );
 
 	swarm = (MaterialPointsSwarm*)Swarm_Register_At( Swarm_Register_GetSwarm_Register(), ref->swarm_I );
-	Journal_Firewall( swarm != NULL, self->errorStream, "In func %s, no swarm found on for index %d\n", __func__, ref->swarm_I );
+	Journal_DFirewall( swarm != NULL, self->errorStream, "In func %s, no swarm found on for index %d\n", __func__, ref->swarm_I );
 
 	if ( materialSwarm != NULL ) {
 		*materialSwarm = swarm;
