@@ -56,3 +56,56 @@ def materialCreate(componentName="background", rheologyName="", shapeName="", de
                                                                )
 
     return newComponentDict
+
+
+def geothermalMaterialCreate(componentName="", shapeName="", thermalConductivity="", heatProduction="", Tdependence = False, a = 0.5):
+  """
+  Creates a new material with a geothermal rheology
+
+  Requires a shape to already be defined
+  If the rheology should be temperature dependent, set Tdependence to True
+
+  Args:
+    componentName (String): give it a name
+    shapeName (String): Point to a predefined shape
+    thermalConductivity (Float)
+    heatProduction (Float)
+  """
+  globalDict = _uw.dictionary.GetDictionary()
+
+  if componentName == "":
+    _uw.utils.sendError("Must specify a component name")
+  if shapeName == "":
+    _uw.utils.sendError("Must specify a Shape name")
+  if thermalConductivity == "":
+    _uw.utils.sendError("Must specify a thermal conductivity value")
+  if heatProduction == "":
+    _uw.utils.sendError("Must specify a heat production value")
+
+  _uw.utils.warnMissingComponent(globalDict, shapeName )
+  componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
+
+  if Tdependence is False:
+    # thermal conductivity IS NOT temperature dependent
+    newComponentDict = _uw.dictionary.UpdateDictWithComponent(  globalDict,
+                                                                name = componentName,
+                                                                Type = "Material",
+                                                                Shape = shapeName,
+                                                                thermalConductivity = thermalConductivity,
+                                                                heatProduction = heatProduction
+                                                                )
+    return newComponentDict
+
+  elif Tdependence is True:
+    # thermal conductivity IS temperature dependent
+    # k = k0 * (298/T)^a     where a is between 0 and 1
+    materialPpc = uw.rheology.TemperatureDependentConductivity(str(componentName)+"_MaterialConductivityPpc", float(thermalConductivity), a)
+
+    newComponentDict = uw.dictionary.UpdateDictWithComponent( globalDict,
+                                                              name = componentName,
+                                                              Type = "Material",
+                                                              Shape = shapeName,
+                                                              thermalConductivity = str(componentName)+"_MaterialConductivityPpc",
+                                                              heatProduction = heatProduction
+                                                              )
+    return newComponentDict, materialPpc

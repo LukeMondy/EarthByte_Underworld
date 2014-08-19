@@ -94,3 +94,55 @@ def joinRheologyAndShape(componentName="background", rheologyName="", shapeName=
                                                                )
 
     return newComponentDict
+
+
+def TemperatureDependentConductivity(thermalConductivity, componentName="", a=0.5):
+  """
+  Temperature-dependent thermal conductivity (k)
+  k = k0 * (298/T)^a     where k0 is room temp conductivity, and 0 < a < 1
+
+  Similar to arrheniusRheology but for geothermal use
+
+  Args:
+    componentName (String): give it a name
+    thermalConductivity (Float): k0
+    a (Float): power function, a
+  """
+  globalDict = _uw.dictionary.GetDictionary()
+
+  # Make sure temperature field exists
+  if "temperatureField" not in globalDict | "TemperatureField" not in globalDict:
+    temperatureField = globalDict["info"]["TemperatureField"]
+  # Make sure the solver is non-linear
+  if "energySLE" not in globalDict:
+    energySolver = _uw.dictionary.UpdateDictWithComponent(  globalDict,
+                                                            Type = "Energy_SLE_Solver"
+                                                            )
+    energySLE = _uw.dictionary.UpdateDictWithComponent( globalDict,
+                                                        name = "energySLE",
+                                                        Type = "Energy_SLE",
+                                                        SLE_Solver = "energySolver",
+                                                        Context = "context",
+                                                        StiffnessMatrix = "kMatrix",
+                                                        ForceVector = "fVector",
+                                                        SolutionVector = "sVector",
+                                                        isNonLinear = "yes"
+                                                        )
+  if "temperatureFieldPpc" not in globalDict:
+    temperatureFieldPpc = _uw.dictionary.UpdateDictWithComponent( globalDict,
+                                                                  Type = "Ppc_Variable",
+                                                                  FieldVariable = "TemperatureField"
+                                                                  )
+
+  #componentName = _uw.utils.checkForNewComponentName(globalDict, componentName)
+
+  newComponentDict = uw.dictionary.UpdateDictWithComponent( globalDict,
+                                                            name = componentName,
+                                                            Type = "Ppc_Polynomial",
+                                                            ImposeMinMax = True,
+                                                            MaxValue = 5.0,
+                                                            MinValue = 0.1,
+                                                            Field = "TemperatureField",
+                                                            Terms = {"Coefficient" : float(thermalConductivity)*298**a, "Power" : -a}
+                                                            )
+  return newComponentDict
