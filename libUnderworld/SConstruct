@@ -169,7 +169,6 @@ while line:
   # if hooks specified find the position in file
   if line.find("[hooks]",0) == 0:
     pos = lineCount 
-    print "Line of interest - ", line ," - located at ", pos
     
   lineCount=lineCount+1
   line=hgrc.readline() # iterate
@@ -177,7 +176,6 @@ while line:
 hgrc.close()
 
 adding=""
-import pdb; pdb.set_trace()
 # if hook not found, add the magic in the .hg/hgrc
 if hook_found == False:
   print "Adding magic precommit hook delaration in .hg/hgrc"
