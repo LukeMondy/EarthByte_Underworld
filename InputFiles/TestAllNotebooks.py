@@ -37,7 +37,7 @@ for f in os.listdir('.'):
       retCode = subprocess.call(['python', f], stdout=logFile, stderr=logFile )
 
       if retCode != 0:
-        logFile.write(" **** ERROR file" + f +" \n"); logFile.flush()
+        logFile.write(" **** ERROR: " + f +" \n"); logFile.flush()
 
         nfails = nfails + 1
         list_fails.append(f)
