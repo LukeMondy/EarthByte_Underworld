@@ -60,9 +60,10 @@ void _Underworld_Vrms_AssignFromXML( void* component, Stg_ComponentFactory* cf, 
    self->velocityField = Stg_ComponentFactory_PluginConstructByKey(
       cf, self, (Dictionary_Entry_Key)"VelocityField", FeVariable, True, data );
 
-   /* Create new Field Variable */
+   /* Create new Field Variable, we don't want it checkpionted like Velocity */
    self->velocitySquaredField = OperatorFeVariable_NewUnary( "VelocitySquaredField", (DomainContext*)self->context,
       self->velocityField, "VectorSquare" );
+   self->velocitySquaredField->isCheckpointedAndReloaded = False;
 
    self->velocitySquaredField->context = (DomainContext*)self->context;
 

@@ -281,13 +281,11 @@ void PETScMGSolver_Setup( void* matrixSolver, void* rhs, void* solution ) {
 	if( self->solversChanged || rebuildOps || self->opsChanged ) {
 		wallTime = MPI_Wtime();
 		PETScMGSolver_UpdateSolvers( self );
-        stg_profile_Func( "PETScMGSolver_UpdateSolvers", MPI_Wtime() - wallTime);
 	   	PetscPrintf( PETSC_COMM_WORLD, "PETScMGSolver_UpdateSolvers %g\n", MPI_Wtime() - wallTime);
 	}
 	if( rebuildOps ) {
 		wallTime = MPI_Wtime();
 		PETScMGSolver_UpdateOps( self );
-		stg_profile_Func( "PETScMGSolver_UpdateOps", MPI_Wtime() - wallTime);
 		PetscPrintf( PETSC_COMM_WORLD,  "PETScMGSolver_UpdateOps %g\n", MPI_Wtime() - wallTime);
 
 	}
@@ -296,7 +294,6 @@ void PETScMGSolver_Setup( void* matrixSolver, void* rhs, void* solution ) {
 		wallTime = MPI_Wtime();
 		PETScMGSolver_UpdateMatrices( self );
 		PETScMGSolver_UpdateWorkVectors( self );
-		stg_profile_Func( "PETScMGSolver_UpdateMats-WorkVecs", MPI_Wtime() - wallTime); 
 		PetscPrintf( PETSC_COMM_WORLD, "PETScMGSolver_UpdateMats-WorkVecs %g\n", MPI_Wtime() - wallTime); 
 	}
 
