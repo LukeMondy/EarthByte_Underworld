@@ -475,12 +475,18 @@ void _FiniteElementContext_SaveMesh( void* context ) {
       if ( Stg_Class_IsInstance( stgComp, FeMesh_Type ) ) {
          mesh = (FeMesh*)stgComp;
 
-         if( mesh->isCheckpointedAndReloaded == True && mesh->requiresCheckpointing == True ){         
+         if( mesh->isCheckpointedAndReloaded == True ) {
+            /* only checkpoint mesh if it's:
+               - the initial timestep
+               - the mesh is continuously deforming
+            */
+            if( mesh->isDeforming == True || ((AbstractContext*)context)->timeStep == 0 ){         
 #ifdef WRITE_HDF5
-         _FiniteElementContext_DumpMeshHDF5( context, mesh );
+               _FiniteElementContext_DumpMeshHDF5( context, mesh );
 #else
-         _FiniteElementContext_DumpMeshAscii( context, mesh );
+               _FiniteElementContext_DumpMeshAscii( context, mesh );
 #endif
+            }
          }
       }
    }

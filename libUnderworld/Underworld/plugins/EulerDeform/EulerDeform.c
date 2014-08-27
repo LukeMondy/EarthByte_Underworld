@@ -177,6 +177,7 @@ void _Underworld_EulerDeform_Build( void* component, void* data ) {
 			sys->wrapLeft = Dictionary_GetBool_WithDefault( sysDict, (Dictionary_Entry_Key)"wrapLeft", False  );
 			sys->mesh = Stg_ComponentFactory_ConstructByName( uwCtx->CF, (Name)meshName, Mesh, True, data  );
 
+                        sys->mesh->isDeforming = True;
                         Stg_Component_Build( sys->mesh, data, False );
 			sys->surfaceIdx = Dictionary_GetInt_WithDefault( sysDict, (Dictionary_Entry_Key)"SurfaceIndex", -1 );
                         if( sys->surfaceIdx == -1 ) {

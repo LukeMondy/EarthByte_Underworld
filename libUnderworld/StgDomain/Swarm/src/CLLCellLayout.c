@@ -189,7 +189,7 @@ void _CLLCellLayout_Build( void *cLLCellLayout, void *data ){
       /** add to register to enable possible checkpointing */
       LiveComponentRegister_Add( LiveComponentRegister_GetLiveComponentRegister(), (Stg_Component*)self->mesh );
       self->mesh->isCheckpointedAndReloaded = False;
-      self->mesh->requiresCheckpointing     = False;
+      self->mesh->isDeforming     = False;
 
       /** set mesh to use generator we just created  */
       Mesh_SetGenerator( self->mesh, gen );
@@ -227,7 +227,7 @@ void _CLLCellLayout_Build( void *cLLCellLayout, void *data ){
       /** add to register to enable possible checkpointing */
       LiveComponentRegister_Add( LiveComponentRegister_GetLiveComponentRegister(), (Stg_Component*)self->mesh );
       self->mesh->isCheckpointedAndReloaded = False;
-      self->mesh->requiresCheckpointing     = False;
+      self->mesh->isDeforming     = False;
 
       /** set mesh to use generator we just created  */
       Mesh_SetGenerator( self->mesh, gen );
