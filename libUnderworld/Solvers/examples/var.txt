@@ -1,3 +1,2 @@
-| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | MG LEVELS |
+| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |
 |-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----+----|
- .250 | gkgdiag | -rescale_equations 0 | fgmres | 1e-4 | default  | fgmres | 1e-5 | 64 | gmg | kxTest_64x64 | fgmresfgmres | 3 |

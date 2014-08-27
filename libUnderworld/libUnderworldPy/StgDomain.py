@@ -949,9 +949,9 @@ class Mesh(_object):
     __swig_setmethods__["isCheckpointedAndReloaded"] = _StgDomain.Mesh_isCheckpointedAndReloaded_set
     __swig_getmethods__["isCheckpointedAndReloaded"] = _StgDomain.Mesh_isCheckpointedAndReloaded_get
     if _newclass:isCheckpointedAndReloaded = _swig_property(_StgDomain.Mesh_isCheckpointedAndReloaded_get, _StgDomain.Mesh_isCheckpointedAndReloaded_set)
-    __swig_setmethods__["requiresCheckpointing"] = _StgDomain.Mesh_requiresCheckpointing_set
-    __swig_getmethods__["requiresCheckpointing"] = _StgDomain.Mesh_requiresCheckpointing_get
-    if _newclass:requiresCheckpointing = _swig_property(_StgDomain.Mesh_requiresCheckpointing_get, _StgDomain.Mesh_requiresCheckpointing_set)
+    __swig_setmethods__["isDeforming"] = _StgDomain.Mesh_isDeforming_set
+    __swig_getmethods__["isDeforming"] = _StgDomain.Mesh_isDeforming_get
+    if _newclass:isDeforming = _swig_property(_StgDomain.Mesh_isDeforming_get, _StgDomain.Mesh_isDeforming_set)
     __swig_setmethods__["emReg"] = _StgDomain.Mesh_emReg_set
     __swig_getmethods__["emReg"] = _StgDomain.Mesh_emReg_get
     if _newclass:emReg = _swig_property(_StgDomain.Mesh_emReg_get, _StgDomain.Mesh_emReg_set)
@@ -1725,6 +1725,9 @@ class CartesianGenerator(_object):
     __swig_setmethods__["initVtkFile"] = _StgDomain.CartesianGenerator_initVtkFile_set
     __swig_getmethods__["initVtkFile"] = _StgDomain.CartesianGenerator_initVtkFile_get
     if _newclass:initVtkFile = _swig_property(_StgDomain.CartesianGenerator_initVtkFile_get, _StgDomain.CartesianGenerator_initVtkFile_set)
+    __swig_setmethods__["initMeshFile"] = _StgDomain.CartesianGenerator_initMeshFile_set
+    __swig_getmethods__["initMeshFile"] = _StgDomain.CartesianGenerator_initMeshFile_get
+    if _newclass:initMeshFile = _swig_property(_StgDomain.CartesianGenerator_initMeshFile_get, _StgDomain.CartesianGenerator_initMeshFile_set)
     def __init__(self): 
         this = _StgDomain.new_CartesianGenerator()
         try: self.this.append(this)

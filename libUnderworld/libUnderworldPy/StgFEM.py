@@ -2364,6 +2364,9 @@ class C2Generator(_object):
     __swig_setmethods__["initVtkFile"] = _StgFEM.C2Generator_initVtkFile_set
     __swig_getmethods__["initVtkFile"] = _StgFEM.C2Generator_initVtkFile_get
     if _newclass:initVtkFile = _swig_property(_StgFEM.C2Generator_initVtkFile_get, _StgFEM.C2Generator_initVtkFile_set)
+    __swig_setmethods__["initMeshFile"] = _StgFEM.C2Generator_initMeshFile_set
+    __swig_getmethods__["initMeshFile"] = _StgFEM.C2Generator_initMeshFile_get
+    if _newclass:initMeshFile = _swig_property(_StgFEM.C2Generator_initMeshFile_get, _StgFEM.C2Generator_initMeshFile_set)
     def __init__(self): 
         this = _StgFEM.new_C2Generator()
         try: self.this.append(this)
@@ -3366,9 +3369,9 @@ class FeMesh(_object):
     __swig_setmethods__["isCheckpointedAndReloaded"] = _StgFEM.FeMesh_isCheckpointedAndReloaded_set
     __swig_getmethods__["isCheckpointedAndReloaded"] = _StgFEM.FeMesh_isCheckpointedAndReloaded_get
     if _newclass:isCheckpointedAndReloaded = _swig_property(_StgFEM.FeMesh_isCheckpointedAndReloaded_get, _StgFEM.FeMesh_isCheckpointedAndReloaded_set)
-    __swig_setmethods__["requiresCheckpointing"] = _StgFEM.FeMesh_requiresCheckpointing_set
-    __swig_getmethods__["requiresCheckpointing"] = _StgFEM.FeMesh_requiresCheckpointing_get
-    if _newclass:requiresCheckpointing = _swig_property(_StgFEM.FeMesh_requiresCheckpointing_get, _StgFEM.FeMesh_requiresCheckpointing_set)
+    __swig_setmethods__["isDeforming"] = _StgFEM.FeMesh_isDeforming_set
+    __swig_getmethods__["isDeforming"] = _StgFEM.FeMesh_isDeforming_get
+    if _newclass:isDeforming = _swig_property(_StgFEM.FeMesh_isDeforming_get, _StgFEM.FeMesh_isDeforming_set)
     __swig_setmethods__["emReg"] = _StgFEM.FeMesh_emReg_set
     __swig_getmethods__["emReg"] = _StgFEM.FeMesh_emReg_get
     if _newclass:emReg = _swig_property(_StgFEM.FeMesh_emReg_get, _StgFEM.FeMesh_emReg_set)
