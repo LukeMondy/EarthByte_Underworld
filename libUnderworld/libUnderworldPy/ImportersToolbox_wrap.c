@@ -3162,46 +3162,46 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_ParticleMelting swig_types[249]
 #define SWIGTYPE_p_ParticleMovementHandler swig_types[250]
 #define SWIGTYPE_p_ParticleShadowSync swig_types[251]
-#define SWIGTYPE_p_PatriceArrhenius swig_types[252]
-#define SWIGTYPE_p_PerCellParticleLayout swig_types[253]
-#define SWIGTYPE_p_PeriodicBoundariesManager swig_types[254]
-#define SWIGTYPE_p_PeriodicBoundary swig_types[255]
-#define SWIGTYPE_p_PhysicalPropertyConfiguration swig_types[256]
-#define SWIGTYPE_p_PlaneParticleLayout swig_types[257]
-#define SWIGTYPE_p_Plugin swig_types[258]
-#define SWIGTYPE_p_PluginsManager swig_types[259]
-#define SWIGTYPE_p_PolygonShape swig_types[260]
-#define SWIGTYPE_p_PolygonShapeXZ swig_types[261]
-#define SWIGTYPE_p_Pouliquen_etal swig_types[262]
-#define SWIGTYPE_p_Ppc swig_types[263]
-#define SWIGTYPE_p_PpcFeVariable swig_types[264]
-#define SWIGTYPE_p_PpcManager swig_types[265]
-#define SWIGTYPE_p_PpcRheology swig_types[266]
-#define SWIGTYPE_p_Ppc_Condition swig_types[267]
-#define SWIGTYPE_p_Ppc_Constant swig_types[268]
-#define SWIGTYPE_p_Ppc_Coord swig_types[269]
-#define SWIGTYPE_p_Ppc_Depth swig_types[270]
-#define SWIGTYPE_p_Ppc_Dt swig_types[271]
-#define SWIGTYPE_p_Ppc_IsInsideShape swig_types[272]
-#define SWIGTYPE_p_Ppc_IsMaterial swig_types[273]
-#define SWIGTYPE_p_Ppc_JacobianCondition swig_types[274]
-#define SWIGTYPE_p_Ppc_Linear swig_types[275]
-#define SWIGTYPE_p_Ppc_LinearDensity swig_types[276]
-#define SWIGTYPE_p_Ppc_LinearDensityMelt swig_types[277]
-#define SWIGTYPE_p_Ppc_LithostaticPressure swig_types[278]
-#define SWIGTYPE_p_Ppc_MeltHeating swig_types[279]
-#define SWIGTYPE_p_Ppc_MineralPhase swig_types[280]
-#define SWIGTYPE_p_Ppc_Operation swig_types[281]
-#define SWIGTYPE_p_Ppc_PartialMelt swig_types[282]
-#define SWIGTYPE_p_Ppc_Polynomial swig_types[283]
-#define SWIGTYPE_p_Ppc_PressureCalibrate swig_types[284]
-#define SWIGTYPE_p_Ppc_Reciprocol swig_types[285]
-#define SWIGTYPE_p_Ppc_Switch swig_types[286]
-#define SWIGTYPE_p_Ppc_Table swig_types[287]
-#define SWIGTYPE_p_Ppc_TempDependentDiffusivity swig_types[288]
-#define SWIGTYPE_p_Ppc_TempDependentDiffusivityAlt swig_types[289]
-#define SWIGTYPE_p_Ppc_Variable swig_types[290]
-#define SWIGTYPE_p_Ppc_Variable_DataType swig_types[291]
+#define SWIGTYPE_p_PerCellParticleLayout swig_types[252]
+#define SWIGTYPE_p_PeriodicBoundariesManager swig_types[253]
+#define SWIGTYPE_p_PeriodicBoundary swig_types[254]
+#define SWIGTYPE_p_PhysicalPropertyConfiguration swig_types[255]
+#define SWIGTYPE_p_PlaneParticleLayout swig_types[256]
+#define SWIGTYPE_p_Plugin swig_types[257]
+#define SWIGTYPE_p_PluginsManager swig_types[258]
+#define SWIGTYPE_p_PolygonShape swig_types[259]
+#define SWIGTYPE_p_PolygonShapeXZ swig_types[260]
+#define SWIGTYPE_p_Pouliquen_etal swig_types[261]
+#define SWIGTYPE_p_Ppc swig_types[262]
+#define SWIGTYPE_p_PpcFeVariable swig_types[263]
+#define SWIGTYPE_p_PpcManager swig_types[264]
+#define SWIGTYPE_p_PpcRheology swig_types[265]
+#define SWIGTYPE_p_Ppc_Condition swig_types[266]
+#define SWIGTYPE_p_Ppc_Constant swig_types[267]
+#define SWIGTYPE_p_Ppc_Coord swig_types[268]
+#define SWIGTYPE_p_Ppc_Depth swig_types[269]
+#define SWIGTYPE_p_Ppc_Dt swig_types[270]
+#define SWIGTYPE_p_Ppc_IsInsideShape swig_types[271]
+#define SWIGTYPE_p_Ppc_IsMaterial swig_types[272]
+#define SWIGTYPE_p_Ppc_JacobianCondition swig_types[273]
+#define SWIGTYPE_p_Ppc_Linear swig_types[274]
+#define SWIGTYPE_p_Ppc_LinearDensity swig_types[275]
+#define SWIGTYPE_p_Ppc_LinearDensityMelt swig_types[276]
+#define SWIGTYPE_p_Ppc_LithostaticPressure swig_types[277]
+#define SWIGTYPE_p_Ppc_MeltHeating swig_types[278]
+#define SWIGTYPE_p_Ppc_MineralPhase swig_types[279]
+#define SWIGTYPE_p_Ppc_Operation swig_types[280]
+#define SWIGTYPE_p_Ppc_PartialMelt swig_types[281]
+#define SWIGTYPE_p_Ppc_Polynomial swig_types[282]
+#define SWIGTYPE_p_Ppc_PressureCalibrate swig_types[283]
+#define SWIGTYPE_p_Ppc_Reciprocol swig_types[284]
+#define SWIGTYPE_p_Ppc_Switch swig_types[285]
+#define SWIGTYPE_p_Ppc_Table swig_types[286]
+#define SWIGTYPE_p_Ppc_TempDependentDiffusivity swig_types[287]
+#define SWIGTYPE_p_Ppc_TempDependentDiffusivityAlt swig_types[288]
+#define SWIGTYPE_p_Ppc_Variable swig_types[289]
+#define SWIGTYPE_p_Ppc_Variable_DataType swig_types[290]
+#define SWIGTYPE_p_Ppc_VonMisesFlowRule swig_types[291]
 #define SWIGTYPE_p_Ppc_a_Constant swig_types[292]
 #define SWIGTYPE_p_Ppc_a_Vector swig_types[293]
 #define SWIGTYPE_p_PressureGradForceTerm swig_types[294]
@@ -7291,6 +7291,58 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_VoxelFieldVariable_useExternalArray_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct VoxelFieldVariable *arg1 = (struct VoxelFieldVariable *) 0 ;
+  Bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:VoxelFieldVariable_useExternalArray_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_VoxelFieldVariable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VoxelFieldVariable_useExternalArray_set" "', argument " "1"" of type '" "struct VoxelFieldVariable *""'"); 
+  }
+  arg1 = (struct VoxelFieldVariable *)(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VoxelFieldVariable_useExternalArray_set" "', argument " "2"" of type '" "Bool""'");
+  } 
+  arg2 = (Bool)(val2);
+  if (arg1) (arg1)->useExternalArray = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VoxelFieldVariable_useExternalArray_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct VoxelFieldVariable *arg1 = (struct VoxelFieldVariable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:VoxelFieldVariable_useExternalArray_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_VoxelFieldVariable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VoxelFieldVariable_useExternalArray_get" "', argument " "1"" of type '" "struct VoxelFieldVariable *""'"); 
+  }
+  arg1 = (struct VoxelFieldVariable *)(argp1);
+  result = (Bool) ((arg1)->useExternalArray);
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_VoxelFieldVariable_errorStream_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct VoxelFieldVariable *arg1 = (struct VoxelFieldVariable *) 0 ;
@@ -8199,6 +8251,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"VoxelFieldVariable_zSliceCoord_get", _wrap_VoxelFieldVariable_zSliceCoord_get, METH_VARARGS, NULL},
 	 { (char *)"VoxelFieldVariable_useNearestCell_set", _wrap_VoxelFieldVariable_useNearestCell_set, METH_VARARGS, NULL},
 	 { (char *)"VoxelFieldVariable_useNearestCell_get", _wrap_VoxelFieldVariable_useNearestCell_get, METH_VARARGS, NULL},
+	 { (char *)"VoxelFieldVariable_useExternalArray_set", _wrap_VoxelFieldVariable_useExternalArray_set, METH_VARARGS, NULL},
+	 { (char *)"VoxelFieldVariable_useExternalArray_get", _wrap_VoxelFieldVariable_useExternalArray_get, METH_VARARGS, NULL},
 	 { (char *)"VoxelFieldVariable_errorStream_set", _wrap_VoxelFieldVariable_errorStream_set, METH_VARARGS, NULL},
 	 { (char *)"VoxelFieldVariable_errorStream_get", _wrap_VoxelFieldVariable_errorStream_get, METH_VARARGS, NULL},
 	 { (char *)"VoxelFieldVariable_minMaxCached_set", _wrap_VoxelFieldVariable_minMaxCached_set, METH_VARARGS, NULL},
@@ -8480,7 +8534,6 @@ static swig_type_info _swigt__p_ParticleLayout = {"_p_ParticleLayout", "struct P
 static swig_type_info _swigt__p_ParticleMelting = {"_p_ParticleMelting", "struct ParticleMelting *|ParticleMelting *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ParticleMovementHandler = {"_p_ParticleMovementHandler", "struct ParticleMovementHandler *|ParticleMovementHandler *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ParticleShadowSync = {"_p_ParticleShadowSync", "struct ParticleShadowSync *|ParticleShadowSync *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_PatriceArrhenius = {"_p_PatriceArrhenius", "struct PatriceArrhenius *|PatriceArrhenius *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PerCellParticleLayout = {"_p_PerCellParticleLayout", "struct PerCellParticleLayout *|PerCellParticleLayout *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PeriodicBoundariesManager = {"_p_PeriodicBoundariesManager", "struct PeriodicBoundariesManager *|PeriodicBoundariesManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PeriodicBoundary = {"_p_PeriodicBoundary", "struct PeriodicBoundary *|PeriodicBoundary *", 0, 0, (void*)0, 0};
@@ -8520,6 +8573,7 @@ static swig_type_info _swigt__p_Ppc_TempDependentDiffusivity = {"_p_Ppc_TempDepe
 static swig_type_info _swigt__p_Ppc_TempDependentDiffusivityAlt = {"_p_Ppc_TempDependentDiffusivityAlt", "struct Ppc_TempDependentDiffusivityAlt *|Ppc_TempDependentDiffusivityAlt *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ppc_Variable = {"_p_Ppc_Variable", "struct Ppc_Variable *|Ppc_Variable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ppc_Variable_DataType = {"_p_Ppc_Variable_DataType", "enum Ppc_Variable_DataType *|Ppc_Variable_DataType *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Ppc_VonMisesFlowRule = {"_p_Ppc_VonMisesFlowRule", "struct Ppc_VonMisesFlowRule *|Ppc_VonMisesFlowRule *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ppc_a_Constant = {"_p_Ppc_a_Constant", "struct Ppc_a_Constant *|Ppc_a_Constant *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ppc_a_Vector = {"_p_Ppc_a_Vector", "struct Ppc_a_Vector *|Ppc_a_Vector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PressureGradForceTerm = {"_p_PressureGradForceTerm", "struct PressureGradForceTerm *|PressureGradForceTerm *", 0, 0, (void*)0, 0};
@@ -9179,7 +9233,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_ParticleMelting,
   &_swigt__p_ParticleMovementHandler,
   &_swigt__p_ParticleShadowSync,
-  &_swigt__p_PatriceArrhenius,
   &_swigt__p_PerCellParticleLayout,
   &_swigt__p_PeriodicBoundariesManager,
   &_swigt__p_PeriodicBoundary,
@@ -9219,6 +9272,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Ppc_TempDependentDiffusivityAlt,
   &_swigt__p_Ppc_Variable,
   &_swigt__p_Ppc_Variable_DataType,
+  &_swigt__p_Ppc_VonMisesFlowRule,
   &_swigt__p_Ppc_a_Constant,
   &_swigt__p_Ppc_a_Vector,
   &_swigt__p_PressureGradForceTerm,
@@ -9878,7 +9932,6 @@ static swig_cast_info _swigc__p_ParticleLayout[] = {  {&_swigt__p_ParticleLayout
 static swig_cast_info _swigc__p_ParticleMelting[] = {  {&_swigt__p_ParticleMelting, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ParticleMovementHandler[] = {  {&_swigt__p_ParticleMovementHandler, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ParticleShadowSync[] = {  {&_swigt__p_ParticleShadowSync, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_PatriceArrhenius[] = {  {&_swigt__p_PatriceArrhenius, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PerCellParticleLayout[] = {  {&_swigt__p_PerCellParticleLayout, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PeriodicBoundariesManager[] = {  {&_swigt__p_PeriodicBoundariesManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PeriodicBoundary[] = {  {&_swigt__p_PeriodicBoundary, 0, 0, 0},{0, 0, 0, 0}};
@@ -9918,6 +9971,7 @@ static swig_cast_info _swigc__p_Ppc_TempDependentDiffusivity[] = {  {&_swigt__p_
 static swig_cast_info _swigc__p_Ppc_TempDependentDiffusivityAlt[] = {  {&_swigt__p_Ppc_TempDependentDiffusivityAlt, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ppc_Variable[] = {  {&_swigt__p_Ppc_Variable, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ppc_Variable_DataType[] = {  {&_swigt__p_Ppc_Variable_DataType, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Ppc_VonMisesFlowRule[] = {  {&_swigt__p_Ppc_VonMisesFlowRule, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ppc_a_Constant[] = {  {&_swigt__p_Ppc_a_Constant, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ppc_a_Vector[] = {  {&_swigt__p_Ppc_a_Vector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PressureGradForceTerm[] = {  {&_swigt__p_PressureGradForceTerm, 0, 0, 0},{0, 0, 0, 0}};
@@ -10577,7 +10631,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_ParticleMelting,
   _swigc__p_ParticleMovementHandler,
   _swigc__p_ParticleShadowSync,
-  _swigc__p_PatriceArrhenius,
   _swigc__p_PerCellParticleLayout,
   _swigc__p_PeriodicBoundariesManager,
   _swigc__p_PeriodicBoundary,
@@ -10617,6 +10670,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Ppc_TempDependentDiffusivityAlt,
   _swigc__p_Ppc_Variable,
   _swigc__p_Ppc_Variable_DataType,
+  _swigc__p_Ppc_VonMisesFlowRule,
   _swigc__p_Ppc_a_Constant,
   _swigc__p_Ppc_a_Vector,
   _swigc__p_PressureGradForceTerm,

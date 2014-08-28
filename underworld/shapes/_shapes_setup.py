@@ -95,3 +95,29 @@ def sphereCreate( componentName="sphereShape",
                                                                     radius  = str(radius)
                                                                     )
     return newComponentShapeDict
+
+
+def voxelFieldShape(componentName, LowerLimit, UpperLimit, voxel_field="Materials_VoxelField"):
+    """
+    Creates a voxel field shape from the VoxelField variable
+
+    Args:
+        componentName (String): give it a name
+        voxel_field (String): name of voxel field in the dictionary (default: "Materials_VoxelField")
+        LowerLimit (Float): lower bound
+        UpperLimit (Float): upper bound
+    Returns:
+        None
+
+    """
+    globalDict = _uw.dictionary.GetDictionary()
+    _uw.utils.warnMissingComponent(globalDict, voxel_field)
+
+    newComponentShapeDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
+                                                                    name = str(componentName),
+                                                                    Type = "FieldValueShape",
+                                                                    ValueField = str(voxel_field),
+                                                                    LowerLimit = LowerLimit,
+                                                                    UpperLimit = UpperLimit
+                                                                    )
+    return newComponentShapeDict

@@ -101,7 +101,6 @@ void _FeMesh_Init( FeMesh* self, ElementType* elType, const char* family, Bool e
    /* checkpoint non-constant meshes */
    if ( self->feElFamily && strcmp( self->feElFamily, "constant" ) ){
       self->isCheckpointedAndReloaded = True;
-      self->requiresCheckpointing     = True;
    }
 	
 	self->inc = IArray_New();

@@ -115,7 +115,7 @@ void _Mesh_Init( Mesh* self, AbstractContext* context ) {
 	self->emReg = NULL;
 
 	self->isCheckpointedAndReloaded = False;
-	self->requiresCheckpointing     = False;
+	self->isDeforming     = False;
 
 	self->isRegular = False;
 }

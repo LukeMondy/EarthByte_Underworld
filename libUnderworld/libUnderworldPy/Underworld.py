@@ -1493,9 +1493,15 @@ class Compressible(_object):
     __swig_setmethods__["geometryMesh"] = _Underworld.Compressible_geometryMesh_set
     __swig_getmethods__["geometryMesh"] = _Underworld.Compressible_geometryMesh_get
     if _newclass:geometryMesh = _swig_property(_Underworld.Compressible_geometryMesh_get, _Underworld.Compressible_geometryMesh_set)
+    __swig_setmethods__["compressibleTag"] = _Underworld.Compressible_compressibleTag_set
+    __swig_getmethods__["compressibleTag"] = _Underworld.Compressible_compressibleTag_get
+    if _newclass:compressibleTag = _swig_property(_Underworld.Compressible_compressibleTag_get, _Underworld.Compressible_compressibleTag_set)
     __swig_setmethods__["materials_Register"] = _Underworld.Compressible_materials_Register_set
     __swig_getmethods__["materials_Register"] = _Underworld.Compressible_materials_Register_get
     if _newclass:materials_Register = _swig_property(_Underworld.Compressible_materials_Register_get, _Underworld.Compressible_materials_Register_set)
+    __swig_setmethods__["ppcManager"] = _Underworld.Compressible_ppcManager_set
+    __swig_getmethods__["ppcManager"] = _Underworld.Compressible_ppcManager_get
+    if _newclass:ppcManager = _swig_property(_Underworld.Compressible_ppcManager_get, _Underworld.Compressible_ppcManager_set)
     def __init__(self): 
         this = _Underworld.new_Compressible()
         try: self.this.append(this)
@@ -13010,10 +13016,6 @@ REP_Algorithm_MakeLM = _Underworld.REP_Algorithm_MakeLM
 def _REP_Algorithm_CommunicateBoundaries(*args):
   return _Underworld._REP_Algorithm_CommunicateBoundaries(*args)
 _REP_Algorithm_CommunicateBoundaries = _Underworld._REP_Algorithm_CommunicateBoundaries
-
-def dgesv_(*args):
-  return _Underworld.dgesv_(*args)
-dgesv_ = _Underworld.dgesv_
 class SmoothVelGradField(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, SmoothVelGradField, name, value)

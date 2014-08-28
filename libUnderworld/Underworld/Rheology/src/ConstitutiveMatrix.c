@@ -97,12 +97,12 @@ void _ConstitutiveMatrix_Init(
    Journal_Firewall( ((IntegrationPointsSwarm*)self->integrationSwarm)->mapper != NULL,
       global_error_stream,
       "Error in function %s - ConstitutiveMatrix \'%s\' uses an %s, \'%s\', that doesn't have a mapper associated with it.\n"
-      "\'%s\' assumes its IntegrationPointsSwarm has a mapping to a %s via a mapper component\n\n"
+      "\'%s\' assumes its %s has a mapping to a %s via a mapper component\n\n"
       "In the case:\n- The model uses particles (FEM+PIC) for defining multiple materials then the IntegrationPointsSwarm passed to \'%s\' should\n"
       "be updated to the IntegrationPointsSwarm mapped to the principle \'MaterialPointsSwarm\' (most likely the \'picIntegrationPoints\')\n\n"
       "- The model uses no particles (FEM only) then a proxy mapper and MaterialPointsSwarm must be associate with \'%s\'. An example of this can be\n"
       "found at Underworld/InputFiles/Underworld_Components/GaussSwarmWithGaussMaterialSwarm.xml\n",
-      __func__, self->name, IntegrationPointsSwarm_Type, MaterialPointsSwarm_Type, self->integrationSwarm->name, self->name, self->name, self->name );
+      __func__, self->name, IntegrationPointsSwarm_Type, self->integrationSwarm->name, self->name, IntegrationPointsSwarm_Type, MaterialPointsSwarm_Type, self->name, self->name );
 
    Journal_Firewall(
       Stg_Class_IsInstance( ((IntegrationPointsSwarm*)self->integrationSwarm)->mapper, OneToOneMapper_Type ) || Stg_Class_IsInstance( ((IntegrationPointsSwarm*)self->integrationSwarm)->mapper, OneToManyMapper_Type ),

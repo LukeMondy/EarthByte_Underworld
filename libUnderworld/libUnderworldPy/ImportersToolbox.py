@@ -264,6 +264,9 @@ class VoxelFieldVariable(_object):
     __swig_setmethods__["useNearestCell"] = _ImportersToolbox.VoxelFieldVariable_useNearestCell_set
     __swig_getmethods__["useNearestCell"] = _ImportersToolbox.VoxelFieldVariable_useNearestCell_get
     if _newclass:useNearestCell = _swig_property(_ImportersToolbox.VoxelFieldVariable_useNearestCell_get, _ImportersToolbox.VoxelFieldVariable_useNearestCell_set)
+    __swig_setmethods__["useExternalArray"] = _ImportersToolbox.VoxelFieldVariable_useExternalArray_set
+    __swig_getmethods__["useExternalArray"] = _ImportersToolbox.VoxelFieldVariable_useExternalArray_get
+    if _newclass:useExternalArray = _swig_property(_ImportersToolbox.VoxelFieldVariable_useExternalArray_get, _ImportersToolbox.VoxelFieldVariable_useExternalArray_set)
     __swig_setmethods__["errorStream"] = _ImportersToolbox.VoxelFieldVariable_errorStream_set
     __swig_getmethods__["errorStream"] = _ImportersToolbox.VoxelFieldVariable_errorStream_get
     if _newclass:errorStream = _swig_property(_ImportersToolbox.VoxelFieldVariable_errorStream_get, _ImportersToolbox.VoxelFieldVariable_errorStream_set)

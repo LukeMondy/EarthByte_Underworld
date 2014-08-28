@@ -185,7 +185,11 @@ void _XDMFGenerator_WriteFieldSchema( UnderworldContext* context, Stream* stream
                                  Journal_Printf( stream, "      <Time Value=\"%g\" />\n\n", context->currentTime );
          /** now print out topology info, only quadrilateral elements are supported at the moment **/
                                  Journal_Printf( stream, "         <Topology Type=\"%s\" NumberOfElements=\"%u\"> \n", topologyType, elementGlobalSize );
-                                 Journal_Printf( stream, "            <DataItem Format=\"HDF\" DataType=\"Int\"  Dimensions=\"%u %u\">%sMesh.%s.%05d.h5:/connectivity</DataItem>\n", elementGlobalSize, maxNodes, prefixGuy, feMesh->name, context->timeStep );
+                                 if( feMesh->isDeforming == 1 ) {
+                                    Journal_Printf( stream, "            <DataItem Format=\"HDF\" DataType=\"Int\"  Dimensions=\"%u %u\">%sMesh.%s.%05d.h5:/connectivity</DataItem>\n", elementGlobalSize, maxNodes, prefixGuy, feMesh->name, context->timeStep );
+                                 } else {
+                                    Journal_Printf( stream, "            <DataItem Format=\"HDF\" DataType=\"Int\"  Dimensions=\"%u %u\">%sMesh.%s.%05d.h5:/connectivity</DataItem>\n", elementGlobalSize, maxNodes, prefixGuy, feMesh->name, 0 );
+                                 }
                                  Journal_Printf( stream, "         </Topology>\n\n" );
                                  Journal_Printf( stream, "         <Geometry Type=\"XYZ\">\n" );
 
@@ -197,16 +201,28 @@ void _XDMFGenerator_WriteFieldSchema( UnderworldContext* context, Stream* stream
                                  Journal_Printf( stream, "            <DataItem ItemType=\"Function\"  Dimensions=\"%u 3\" Function=\"JOIN($0, $1, 0*$1)\">\n", totalVerts );
                                  Journal_Printf( stream, "               <DataItem ItemType=\"HyperSlab\" Dimensions=\"%u 1\" Name=\"XCoords\">\n", totalVerts );
                                  Journal_Printf( stream, "                  <DataItem Dimensions=\"3 2\" Format=\"XML\"> 0 0 1 1 %u 1 </DataItem>\n", totalVerts );
-                                 Journal_Printf( stream, "                  <DataItem Format=\"HDF\" %s Dimensions=\"%u 2\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name,  context->timeStep );
+                                 if( feMesh->isDeforming == 1 ) {
+                                    Journal_Printf( stream, "                  <DataItem Format=\"HDF\" %s Dimensions=\"%u 2\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name,  context->timeStep );
+                                 } else {
+                                    Journal_Printf( stream, "                  <DataItem Format=\"HDF\" %s Dimensions=\"%u 2\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name,  0 );
+                                 }
                                  Journal_Printf( stream, "               </DataItem>\n" );
                                  Journal_Printf( stream, "               <DataItem ItemType=\"HyperSlab\" Dimensions=\"%u 1\" Name=\"YCoords\">\n", totalVerts );
                                  Journal_Printf( stream, "                  <DataItem Dimensions=\"3 2\" Format=\"XML\"> 0 1 1 1 %u 1 </DataItem>\n", totalVerts );
-                                 Journal_Printf( stream, "                  <DataItem Format=\"HDF\" %s Dimensions=\"%u 2\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name, context->timeStep );
+                                 if( feMesh->isDeforming == 1 ) {
+                                    Journal_Printf( stream, "                  <DataItem Format=\"HDF\" %s Dimensions=\"%u 2\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name, context->timeStep );
+                                 } else {
+                                    Journal_Printf( stream, "                  <DataItem Format=\"HDF\" %s Dimensions=\"%u 2\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name, 0 );
+                                 }
                                  Journal_Printf( stream, "               </DataItem>\n" );
                                  Journal_Printf( stream, "            </DataItem>\n" );
          } else if ( nDims == 3 ) {
             /** in 3d we simply feed back the 3d hdf5 array, nice and easy **/
-                                 Journal_Printf( stream, "            <DataItem Format=\"HDF\" %s Dimensions=\"%u 3\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name, context->timeStep );
+                                 if( feMesh->isDeforming == 1 ) {
+                                    Journal_Printf( stream, "            <DataItem Format=\"HDF\" %s Dimensions=\"%u 3\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name, context->timeStep );
+                                 } else {
+                                    Journal_Printf( stream, "            <DataItem Format=\"HDF\" %s Dimensions=\"%u 3\">%sMesh.%s.%05d.h5:/vertices</DataItem>\n", variableType, totalVerts, prefixGuy, feMesh->name, 0 );
+                                 }
          } else {
             Journal_DPrintf( errorStream, "\n\n Error: Mesh vertex location is not of dofCount 2 or 3.\n\n" );
          }
