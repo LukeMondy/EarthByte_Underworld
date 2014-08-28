@@ -495,7 +495,6 @@ void _AbstractContext_AssignFromXML( void* context, Stg_ComponentFactory* cf, vo
       self->loadSwarmsFromCheckpoint = Dictionary_Entry_Value_AsBool( 
          Dictionary_GetDefault( self->dictionary, "loadSwarmsFromCheckpoint", Dictionary_Entry_Value_FromBool( True ) ) );
       self->timeStep = self->restartTimestep;
-      self->nextCheckpointTime += self->currentTime;
    }
    else {
       self->loadFromCheckPoint = False;
@@ -649,6 +648,8 @@ void _AbstractContext_Initialise( void* context, void* data ) {
        */ 
       _AbstractContext_LoadTimeInfoFromCheckPoint( (void*)self, self->restartTimestep, &dtLoadedFromFile );
       self->_setDt( self, dtLoadedFromFile );
+
+      self->nextCheckpointTime += self->currentTime;
 
       if( self->maxTimeSteps == -1 ){
          self->gracefulQuit = True;
