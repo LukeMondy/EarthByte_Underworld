@@ -63,12 +63,6 @@
 
    typedef void (FeVariable_SyncShadowValuesFunc)( void* feVariable );
 
-   /* Function prototypes for import / export */
-   typedef void (FeVariable_ReadNodalValuesFromFile_Function)
-      ( void* feVariable, const char* prefixStr, unsigned int timeStep );
-
-   typedef void (FeVariable_IO_File_Function) ( void* feVariable, const char* fileName, Bool saveCoords );
-
    /* 
     * A global list of import/export info objects - can be added to later by plugins. Needs to be initialised in
     * FeDiscretisation_Init().
@@ -86,8 +80,6 @@
       FeVariable_GetValueAtNodeFunction*           _getValueAtNode; \
       FeVariable_SyncShadowValuesFunc*             _syncShadowValues; \
       FeVariable_SyncShadowValuesFunc*             _calibrateBCValues; /* function for when nonAABCs is True */\
-      FeVariable_IO_File_Function                  *_saveToFile; \
-      FeVariable_IO_File_Function                  *_readToFile; \
       /* FeVariable info */ \
       Stream*                                      debug; \
       /* Mesh that this variable is discretised over */ \
