@@ -9,6 +9,7 @@ _sys.setdlopenflags( _oldflags | _ctypes.RTLD_GLOBAL )
 
 import libUnderworld
 from _underworld import *
+from _tools import initializer
 import boundary
 import equations
 import fields
