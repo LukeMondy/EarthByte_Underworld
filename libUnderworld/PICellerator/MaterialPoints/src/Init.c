@@ -104,6 +104,11 @@ Bool PICellerator_MaterialPoints_Init( int* argc, char** argv[] ) {
 
   Stg_ComponentRegister_Add( componentsRegister, GeneralSwarm_Type, (Name)"0", _GeneralSwarm_DefaultNew  );
   RegisterParent( GeneralSwarm_Type, Swarm_Type );
+  
+  // clear globals
+   int ParticleFeVariable_nNames = 0;
+   int ParticleFeVariable_curName = 0;
+
 
 	return True;
 }
