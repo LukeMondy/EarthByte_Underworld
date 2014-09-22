@@ -244,7 +244,7 @@ void C0Generator_BuildGeometry( C0Generator* self, FeMesh* mesh ) {
 	elMesh = self->elMesh;
 	nDims = Mesh_GetDimSize( elMesh );
 	nDomainEls = Mesh_GetDomainSize( elMesh, nDims );
-	mesh->verts = AllocArray2D( double, nDomainEls, nDims );
+    Mesh_GenerateVertices( mesh, nDomainEls, nDims );
 	centroid = AllocArray( double, nDims );
 	for( e_i = 0; e_i < nDomainEls; e_i++ ) {
 		elType = Mesh_GetElementType( elMesh, e_i );

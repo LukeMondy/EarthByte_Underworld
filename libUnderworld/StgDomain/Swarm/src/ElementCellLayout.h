@@ -119,7 +119,7 @@
 	Cell_PointIndex _ElementCellLayout_PointCount( void* elementCellLayout, Cell_Index cellIndex );
 	
 	/* Returns the cell point array... this is the mesh's element node array */
-	void _ElementCellLayout_InitialisePoints( void* elementCellLayout, Cell_Index cellIndex, Cell_PointIndex pointCount, double*** points );
+	void _ElementCellLayout_InitialisePoints( void* elementCellLayout, Cell_Index cellIndex, Cell_PointIndex pointCount, Cell_Points points );
 	
 	/** Implements CellLayout_MapElementIdToCellId(): just returns a cell number, after checking size */
 	Cell_Index _ElementCellLayout_MapElementIdToCellId( void* cellLayout, unsigned element_dI ); 

@@ -2211,9 +2211,7 @@ void CartesianGenerator_GenGeom( CartesianGenerator* self, Mesh* mesh, void* dat
 
     /* Allocate for coordinates. */
     sync = (Sync*)IGraph_GetDomain( (IGraph*)mesh->topo, 0 );
-    mesh->verts = AllocNamedArray2D( double, Sync_GetNumDomains( sync ), 
-				     mesh->topo->nDims, 
-				     "Mesh::verts" );
+    Mesh_GenerateVertices( mesh, Sync_GetNumDomains( sync ), mesh->topo->nDims );
 
 
 /* Below is the algorithm to choose method to generate node geometry
@@ -2289,17 +2287,17 @@ void CartesianGenerator_CalcGeom( void* _self, Mesh* mesh, Sync* sync, Grid* gri
 		/* Calculate coordinate. */
 		for( d_i = 0; d_i < mesh->topo->nDims; d_i++ ) {
                    if( inds[d_i] <= self->contactDepth[d_i][0] ) {
-                      mesh->verts[n_i][d_i] = self->crdMin[d_i];
+                      Mesh_GetVertex( mesh, n_i )[d_i] = self->crdMin[d_i];
                       if( self->contactDepth[d_i][0] ) {
-                         mesh->verts[n_i][d_i] +=
+                         Mesh_GetVertex( mesh, n_i )[d_i] +=
                             ((double)inds[d_i] / (double)self->contactDepth[d_i][0]) *
                             self->contactGeom[d_i];
                       }
                    }
                    else if( inds[d_i] >= grid->sizes[d_i] - self->contactDepth[d_i][1] - 1 ) {
-                      mesh->verts[n_i][d_i] = self->crdMax[d_i];
+                      Mesh_GetVertex( mesh, n_i )[d_i] = self->crdMax[d_i];
                       if( self->contactDepth[d_i][1] ) {
-                         mesh->verts[n_i][d_i] -=
+                         Mesh_GetVertex( mesh, n_i )[d_i] -=
                             ((double)(grid->sizes[d_i] - 1 - inds[d_i]) /
                              (double)self->contactDepth[d_i][1]) *
                             self->contactGeom[d_i];

@@ -305,9 +305,9 @@ void _Swarm_Print( void* swarm, Stream* stream ) {
 		Journal_Printf( swarmStream, "\tcellPointTbl[%u][0-%u]: ", cell_I, self->cellPointCountTbl[cell_I] );
 		for( point_I = 0; point_I < self->cellPointCountTbl[cell_I]; point_I++ ) {
 			Journal_Printf( swarmStream, "{%.3g %.3g %.3g} ",
-				(*self->cellPointTbl[cell_I][point_I])[0], 
-				(*self->cellPointTbl[cell_I][point_I])[1], 
-				(*self->cellPointTbl[cell_I][point_I])[2] );
+				(self->cellPointTbl[cell_I][point_I])[0],
+				(self->cellPointTbl[cell_I][point_I])[1],
+				(self->cellPointTbl[cell_I][point_I])[2] );
 		}
 		Journal_Printf( swarmStream, "\n" );
 	}
@@ -1394,13 +1394,13 @@ void Swarm_GetCellMinMaxCoords( void* swarm, Cell_DomainIndex cell_I, Coord min,
 	double*             currCoord;
 
 	for ( dim_I = 0; dim_I < dim; dim_I++ ) {
-		min[dim_I] = (*self->cellPointTbl[cell_I][0])[dim_I];
-		max[dim_I] = (*self->cellPointTbl[cell_I][0])[dim_I];
+		min[dim_I] = (self->cellPointTbl[cell_I][0])[dim_I];
+		max[dim_I] = (self->cellPointTbl[cell_I][0])[dim_I];
 	}
 
 	for ( cPoint_I = 1; cPoint_I < self->cellPointCountTbl[cell_I]; cPoint_I++ ) {
 		for ( dim_I = 0; dim_I < dim; dim_I++ ) {
-			currCoord = (*self->cellPointTbl[cell_I][cPoint_I]);
+			currCoord = (self->cellPointTbl[cell_I][cPoint_I]);
 			if ( currCoord[dim_I] < min[dim_I] ) {
 				min[dim_I] = currCoord[dim_I];
 			}

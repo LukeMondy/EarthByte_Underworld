@@ -166,7 +166,7 @@ void RegularRemesher_Remesh( void* _self ) {
 	 if( !ISet_Has( self->staticWalls[w_i], d_i ) )
 	    continue;
 	 for( v_i = 0; v_i < self->nWallVerts[d_i][w_i]; v_i++ ) {
-	    mesh->verts[self->wallVerts[d_i][w_i][v_i]][d_i] = 
+	    Mesh_GetVertex( mesh, self->wallVerts[d_i][w_i][v_i] )[d_i] =
 	       self->wallCrds[d_i][w_i][v_i];
 	 }
       }
@@ -231,7 +231,7 @@ void RegularRemesher_Remesh( void* _self ) {
 	 continue;
 
       Sync_SyncArray( self->syncs[d_i], 
-		      mesh->verts[0] + d_i, nDims * sizeof(double), 
+		      Mesh_GetVertex( mesh, 0 ) + d_i, nDims * sizeof(double),
 		      self->crds[d_i], sizeof(double), 
 		      sizeof(double) );
 
@@ -261,24 +261,24 @@ void RegularRemesher_Remesh( void* _self ) {
          /* Do interpolation. */
          if( gen ) {
             if( center <= gen->contactDepth[d_i][0] ) {
-               mesh->verts[v_i][d_i] = leftCrd;
+               Mesh_GetVertex( mesh, v_i )[d_i] = leftCrd;
                if( gen->contactDepth[d_i][0] ) {
-                  mesh->verts[v_i][d_i] +=
+                  Mesh_GetVertex( mesh, v_i )[d_i] +=
                      ((double)center / (double)gen->contactDepth[d_i][0]) *
                      gen->contactGeom[d_i];
                }
             }
             else if( center >= vGrid->sizes[d_i] - gen->contactDepth[d_i][1] - 1 ) {
-               mesh->verts[v_i][d_i] = rightCrd;
+               Mesh_GetVertex( mesh, v_i )[d_i] = rightCrd;
                if( gen->contactDepth[d_i][1] ) {
-                  mesh->verts[v_i][d_i] -=
+                  Mesh_GetVertex( mesh, v_i )[d_i] -=
                      ((double)(vGrid->sizes[d_i] - 1 - center) /
                       (double)gen->contactDepth[d_i][1]) *
                      gen->contactGeom[d_i];
                }
             }
             else {
-               mesh->verts[v_i][d_i] = leftCrd + (gen->contactDepth[d_i][0] ? gen->contactGeom[d_i] : 0.0) +
+               Mesh_GetVertex( mesh, v_i )[d_i] = leftCrd + (gen->contactDepth[d_i][0] ? gen->contactGeom[d_i] : 0.0) +
                   ((double)(center - gen->contactDepth[d_i][0]) / 
                    (double)(vGrid->sizes[d_i] - (gen->contactDepth[d_i][0] + gen->contactDepth[d_i][1]) - 1)) *
                   ((rightCrd - leftCrd) - ((gen->contactDepth[d_i][1] ? 1.0 : 0.0) + (gen->contactDepth[d_i][0] ? 1.0 : 0.0)) * gen->contactGeom[d_i]);
@@ -287,7 +287,7 @@ void RegularRemesher_Remesh( void* _self ) {
          else {
 
                /* Blend coordinate. */
-               mesh->verts[v_i][d_i] = leftCrd + 
+               Mesh_GetVertex( mesh, v_i )[d_i] = leftCrd +
                   (double)center * (rightCrd - leftCrd) / 
                   (double)(vGrid->sizes[d_i] - 1);
 
@@ -305,7 +305,7 @@ void RegularRemesher_Remesh( void* _self ) {
                leftCrd = Mesh_GetVertex( mesh, Grid_Project( vGrid, inds ) )[1];
 
                /* Blend coordinate. */
-               mesh->verts[v_i][d_i] = leftCrd + 
+               Mesh_GetVertex( mesh, v_i )[d_i] = leftCrd +
                   (double)center * (rightCrd - leftCrd) / 
                   (double)(vGrid->sizes[d_i] - self->contactDepth - 1);
 
@@ -316,7 +316,7 @@ void RegularRemesher_Remesh( void* _self ) {
                   contact range. */
                inds[1] = self->contactDepth;
                rightCrd = Mesh_GetVertex( mesh, Grid_Project( vGrid, inds ) )[1];
-               mesh->verts[v_i][d_i] = leftCrd + 
+               Mesh_GetVertex( mesh, v_i )[d_i] = leftCrd +
                   (double)center * (rightCrd - leftCrd) / 
                   (double)self->contactDepth;
 
@@ -325,7 +325,7 @@ void RegularRemesher_Remesh( void* _self ) {
          else {
 
                /* Blend coordinate. */
-               mesh->verts[v_i][d_i] = leftCrd + 
+               Mesh_GetVertex( mesh, v_i )[d_i] = leftCrd +
                   (double)center * (rightCrd - leftCrd) / 
                   (double)(vGrid->sizes[d_i] - 1);
 
@@ -385,8 +385,8 @@ void RegularRemesher_Remesh( void* _self ) {
          inds[0]++;
          nodeInds[1] = Grid_Project( vGrid, inds );
 
-         mesh->verts[nodeInds[0]][1] = (double)(ii*ii);
-         mesh->verts[nodeInds[1]][1] = (double)((ii+1)*(ii+1));
+         Mesh_GetVertex( mesh, nodeInds[0] )[1] = (double)(ii*ii);
+         Mesh_GetVertex( mesh, nodeInds[1] )[1] = (double)((ii+1)*(ii+1));
 
          memset( elMat[0], 0, 4 * sizeof(double) );
          memset( elVec, 0, 2 * sizeof(double) );
@@ -447,7 +447,7 @@ void RegularRemesher_Remesh( void* _self ) {
       VecGetArray( x, &delta );
       for( inds[0] = 0; inds[0] < vGrid->sizes[0]; inds[0]++ ) {
          nodeIndex = Grid_Project( vGrid, inds );
-         mesh->verts[nodeIndex][1] -= self->diffusionCoef * self->ctx->dt * delta[inds[0]];
+         Mesh_GetVertex( mesh, nodeIndex )[1] -= self->diffusionCoef * self->ctx->dt * delta[inds[0]];
       }
       VecRestoreArray( x, &delta );
 
@@ -525,7 +525,7 @@ void RegularRemesher_Remesh( void* _self ) {
       VecGetArray( x, &soln );
       for( inds[0] = 0; inds[0] < vGrid->sizes[0]; inds[0]++ ) {
          nodeIndex = Grid_Project( vGrid, inds );
-         mesh->verts[nodeIndex][1] = soln[inds[0]];
+         Mesh_GetVertex( mesh, nodeIndex )[1] = soln[inds[0]];
       }
       VecRestoreArray( x, &soln );
 
@@ -574,7 +574,7 @@ void RegularRemesher_Remesh( void* _self ) {
 
       for( inds[0] = 0; inds[0] < vGrid->sizes[0]; inds[0]++ ) {
          nodeIndex = Grid_Project( vGrid, inds );
-         mesh->verts[nodeIndex][1] += newHeights[inds[0]] * dt;
+         Mesh_GetVertex( mesh, nodeIndex )[1] += newHeights[inds[0]] * dt;
       }
 
       MemFree( newHeights );
@@ -658,7 +658,7 @@ void RegularRemesher_Build( void* _self ) {
 	 ISet_Clear( wallSet );
 	 for( v_i = 0; v_i < self->nWallVerts[d_i][w_i]; v_i++ ) {
 	    self->wallCrds[d_i][w_i][v_i] = 
-	       mesh->verts[self->wallVerts[d_i][w_i][v_i]][d_i];
+	       Mesh_GetVertex( mesh, self->wallVerts[d_i][w_i][v_i] )[d_i];
 	 }
       }
    }

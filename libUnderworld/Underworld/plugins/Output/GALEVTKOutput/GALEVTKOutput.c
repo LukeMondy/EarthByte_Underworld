@@ -602,9 +602,7 @@ void GALEVTKOutput_fields(void *context, int myRank, int nprocs,
              mesh generator, go to the mesh generator.  */
           if(!strcmp(gen->type,"SurfaceAdaptor")) {
             gen=(CartesianGenerator *)((SurfaceAdaptor *)(gen))->generator;
-          } else if (!strcmp(gen->type,"GALESurfaceAdaptor")) {
-            gen=(CartesianGenerator *)((GALESurfaceAdaptor *)(gen))->generator; 
-          }
+          } 
 
           elGrid=gen->elGrid;
           vertGrid=gen->vertGrid;

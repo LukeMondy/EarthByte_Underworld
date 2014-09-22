@@ -227,7 +227,7 @@ Cell_PointIndex _ElementCellLayout_PointCount( void* elementCellLayout, Cell_Ind
 }
 
 void _ElementCellLayout_InitialisePoints( void* elementCellLayout, Cell_Index cellIndex, Cell_PointIndex pointCount, 
-					  double*** points )
+					  Cell_Points points )
 {
 	ElementCellLayout* self = (ElementCellLayout*)elementCellLayout;
 	Cell_PointIndex point_I;
@@ -241,7 +241,7 @@ void _ElementCellLayout_InitialisePoints( void* elementCellLayout, Cell_Index ce
 	
 	/* point to the mesh's node's coordinates */
 	for( point_I = 0; point_I < pointCount; point_I++ ) {
-		points[point_I] = &self->mesh->verts[inc[point_I]];
+		points[point_I] = Mesh_GetVertex( self->mesh, inc[point_I] );
 	}
 }
 

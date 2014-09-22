@@ -332,7 +332,7 @@ void SurfaceAdaptor_Generate( void* adaptor, void* _mesh, void* data ) {
 
 		/* Deform this node. */
                 deform = deformFunc( self, mesh, grid->sizes, n_i, inds);
-		mesh->verts[n_i][1] += height * deform;
+		Mesh_GetVertex( mesh, n_i )[1] += height * deform;
 	}
 
 	/* Free resources. */
@@ -347,11 +347,11 @@ void SurfaceAdaptor_Generate( void* adaptor, void* _mesh, void* data ) {
 double SurfaceAdaptor_Wedge2D( SurfaceAdaptor* self, Mesh* mesh, 
 			     unsigned* globalSize, unsigned vertex, unsigned* vertexInds )
 {
-   if( mesh->verts[vertex][0] >= self->info.wedge.offs[0] ) {
-      if( mesh->verts[vertex][0] >= self->info.wedge.endOffs[0] )
+   if( Mesh_GetVertex( mesh, vertex )[0] >= self->info.wedge.offs[0] ) {
+      if( Mesh_GetVertex( mesh, vertex )[0] >= self->info.wedge.endOffs[0] )
          return (self->info.wedge.endOffs[0] - self->info.wedge.offs[0]) * self->info.wedge.grad[0];
       else
-         return (mesh->verts[vertex][0] - self->info.wedge.offs[0]) * self->info.wedge.grad[0];
+         return (Mesh_GetVertex( mesh, vertex )[0] - self->info.wedge.offs[0]) * self->info.wedge.grad[0];
    }
    else 
       return 0.0;
@@ -360,13 +360,13 @@ double SurfaceAdaptor_Wedge2D( SurfaceAdaptor* self, Mesh* mesh,
 double SurfaceAdaptor_Wedge3D( SurfaceAdaptor* self, Mesh* mesh, 
 			     unsigned* globalSize, unsigned vertex, unsigned* vertexInds )
 {
-   if( mesh->verts[vertex][0] >= self->info.wedge.offs[0] ) {
-      if( mesh->verts[vertex][0] >= self->info.wedge.endOffs[0] ) {
+   if( Mesh_GetVertex( mesh, vertex )[0] >= self->info.wedge.offs[0] ) {
+      if( Mesh_GetVertex( mesh, vertex )[0] >= self->info.wedge.endOffs[0] ) {
          return (self->info.wedge.endOffs[0] - self->info.wedge.offs[0]) * self->info.wedge.grad[0] + 
-					 (mesh->verts[vertex][2] - self->info.wedge.offs[1]) * self->info.wedge.grad[1];
+					 (Mesh_GetVertex( mesh, vertex )[2] - self->info.wedge.offs[1]) * self->info.wedge.grad[1];
 			} else {
-         return (mesh->verts[vertex][0] - self->info.wedge.offs[0]) * self->info.wedge.grad[0] +
-					 (mesh->verts[vertex][2] - self->info.wedge.offs[1]) * self->info.wedge.grad[1];
+         return (Mesh_GetVertex( mesh, vertex )[0] - self->info.wedge.offs[0]) * self->info.wedge.grad[0] +
+					 (Mesh_GetVertex( mesh, vertex )[2] - self->info.wedge.offs[1]) * self->info.wedge.grad[1];
 			}
    }
    else 
@@ -379,45 +379,45 @@ double SurfaceAdaptor_Plateau( SurfaceAdaptor* self, Mesh* mesh,
   double x_factor, z_factor;
   x_factor =1;
   z_factor=1;
-  if( mesh->verts[vertex][0] < self->info.plateau.x1
-      || mesh->verts[vertex][0] > self->info.plateau.x4)
+  if( Mesh_GetVertex( mesh, vertex )[0] < self->info.plateau.x1
+      || Mesh_GetVertex( mesh, vertex )[0] > self->info.plateau.x4)
     {
       x_factor=0;
     }
-  else if( mesh->verts[vertex][0] <= self->info.plateau.x2)
+  else if( Mesh_GetVertex( mesh, vertex )[0] <= self->info.plateau.x2)
     {
-      x_factor=(mesh->verts[vertex][0] - self->info.plateau.x1)
+      x_factor=(Mesh_GetVertex( mesh, vertex )[0] - self->info.plateau.x1)
         /(self->info.plateau.x2 - self->info.plateau.x1);
     }
-  else if( mesh->verts[vertex][0] <= self->info.plateau.x3)
+  else if( Mesh_GetVertex( mesh, vertex )[0] <= self->info.plateau.x3)
     {
       x_factor=1;
     }
-  else if( mesh->verts[vertex][0] <= self->info.plateau.x4)
+  else if( Mesh_GetVertex( mesh, vertex )[0] <= self->info.plateau.x4)
     {
-      x_factor=(self->info.plateau.x4 - mesh->verts[vertex][0])
+      x_factor=(self->info.plateau.x4 - Mesh_GetVertex( mesh, vertex )[0])
         /(self->info.plateau.x4 - self->info.plateau.x3);
     }
 
   if(mesh->topo->nDims==3)
     {
-      if( mesh->verts[vertex][2] < self->info.plateau.z1
-          || mesh->verts[vertex][2] > self->info.plateau.z4)
+      if( Mesh_GetVertex( mesh, vertex )[2] < self->info.plateau.z1
+          || Mesh_GetVertex( mesh, vertex )[2] > self->info.plateau.z4)
         {
           z_factor=0;
         }
-      else if( mesh->verts[vertex][2] <= self->info.plateau.z2)
+      else if( Mesh_GetVertex( mesh, vertex )[2] <= self->info.plateau.z2)
         {
-          z_factor=(mesh->verts[vertex][2] - self->info.plateau.z1)
+          z_factor=(Mesh_GetVertex( mesh, vertex )[2] - self->info.plateau.z1)
             /(self->info.plateau.z2 - self->info.plateau.z1);
         }
-      else if( mesh->verts[vertex][2] <= self->info.plateau.z3)
+      else if( Mesh_GetVertex( mesh, vertex )[2] <= self->info.plateau.z3)
         {
           z_factor=1;
         }
-      else if( mesh->verts[vertex][2] <= self->info.plateau.z4)
+      else if( Mesh_GetVertex( mesh, vertex )[2] <= self->info.plateau.z4)
         {
-          z_factor=(self->info.plateau.z4 - mesh->verts[vertex][2])
+          z_factor=(self->info.plateau.z4 - Mesh_GetVertex( mesh, vertex )[2])
             /(self->info.plateau.z4 - self->info.plateau.z3);
         }
     }
@@ -432,17 +432,17 @@ double SurfaceAdaptor_Topo_Data( SurfaceAdaptor* self, Mesh* mesh,
   int i,k,ip,kp;
   double dx,dz;
 
-  i=floor((mesh->verts[vertex][0] - self->info.topo_data.minX)
+  i=floor((Mesh_GetVertex( mesh, vertex )[0] - self->info.topo_data.minX)
           /self->info.topo_data.dx + 0.5);
-  k=floor((mesh->verts[vertex][2] - self->info.topo_data.minZ)
+  k=floor((Mesh_GetVertex( mesh, vertex )[2] - self->info.topo_data.minZ)
           /self->info.topo_data.dz + 0.5);
 
   if(i<0 || i>self->info.topo_data.nx-1
      || k<0 || k>self->info.topo_data.nz-1)
     {
       printf("Coordinate not covered by the topography file: %g %g\n\tminX: %g\n\tmaxX: %g\n\tminZ: %g\n\tmaxZ: %g\n\tnx: %d\n\tnz: %d\n",
-             mesh->verts[vertex][0],
-             mesh->verts[vertex][2],
+             Mesh_GetVertex( mesh, vertex )[0],
+             Mesh_GetVertex( mesh, vertex )[2],
              self->info.topo_data.minX,
              self->info.topo_data.maxX,
              self->info.topo_data.minZ,
@@ -460,10 +460,10 @@ double SurfaceAdaptor_Topo_Data( SurfaceAdaptor* self, Mesh* mesh,
   if(kp>self->info.topo_data.nz-1)
     kp=k;
 
-  dx=(mesh->verts[vertex][0]
+  dx=(Mesh_GetVertex( mesh, vertex )[0]
       - (i*self->info.topo_data.dx+self->info.topo_data.minX))
     /self->info.topo_data.dx;
-  dz=(mesh->verts[vertex][2]
+  dz=(Mesh_GetVertex( mesh, vertex )[2]
       - (k*self->info.topo_data.dz+self->info.topo_data.minZ))
     /self->info.topo_data.dz;
 
@@ -479,10 +479,10 @@ double SurfaceAdaptor_Sine( SurfaceAdaptor* self, Mesh* mesh,
 	double	dx, dy;
 	double	rad;
 
-	dx = mesh->verts[vertex][0] - self->info.trig.origin[0];
+	dx = Mesh_GetVertex( mesh, vertex )[0] - self->info.trig.origin[0];
 	rad = dx * dx;
 	if( mesh->topo->nDims == 3 ) {
-		dy = mesh->verts[vertex][1] - self->info.trig.origin[1];
+		dy = Mesh_GetVertex( mesh, vertex )[1] - self->info.trig.origin[1];
 		rad += dy * dy;
 	}
 	rad = sqrt( rad );
@@ -496,10 +496,10 @@ double SurfaceAdaptor_Cosine( SurfaceAdaptor* self, Mesh* mesh,
 	double	dx, dz;
 	double	rad;
 
-	dx = mesh->verts[vertex][0] - self->info.trig.origin[0];
+	dx = Mesh_GetVertex( mesh, vertex )[0] - self->info.trig.origin[0];
 	rad = dx * dx;
 	if( mesh->topo->nDims == 3 ) {
-		dz = mesh->verts[vertex][2] - self->info.trig.origin[2];
+		dz = Mesh_GetVertex( mesh, vertex )[2] - self->info.trig.origin[2];
 		rad += dz * dz;
 	}
 	rad = sqrt( rad );

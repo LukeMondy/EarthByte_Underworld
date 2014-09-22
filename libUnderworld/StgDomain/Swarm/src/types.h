@@ -56,7 +56,7 @@
 	typedef Index					Cell_DomainIndex;
 	typedef Index					Cell_ShadowIndex;
 	typedef Index					Cell_ShadowTransferIndex;
-	typedef double**				Cell_Point;
+	typedef double*	    			Cell_Point;
 	typedef Cell_Point*				Cell_Points;
 	typedef Cell_Points*				Cell_PointsList;
 	typedef Index					Cell_PointIndex;

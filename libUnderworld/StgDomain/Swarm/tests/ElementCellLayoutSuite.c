@@ -126,26 +126,26 @@ void ElementCellLayoutSuite_TestElementCellLayout( ElementCellLayoutSuiteData* d
    if( data->rank == procToWatch ) {
       for( element = 0; element < Mesh_GetLocalSize( data->mesh, data->nDims ); element++ ) {
          Cell_PointIndex   count;
-         double***         cellPoints;
+         Cell_Points       cellPoints;
    
          cell = CellLayout_MapElementIdToCellId( data->elementCellLayout, element );
 
          pcu_check_true( cell == element );
 
          count = data->elementCellLayout->_pointCount( data->elementCellLayout, cell );
-         cellPoints = Memory_Alloc_Array( double**, count, "cellPoints" );
+         cellPoints = Memory_Alloc_Array( Cell_Point, count, "cellPoints" );
          /* for the element cell layout, the elements map to cells as 1:1, as such the "points" which define the cell as the
           * same as the "nodes" which define the element */
          data->elementCellLayout->_initialisePoints( data->elementCellLayout, cell, count, cellPoints );
 
-         testParticle.coord[0] = ( (*cellPoints[0])[0] + (*cellPoints[1])[0] ) / 2;
-         testParticle.coord[1] = ( (*cellPoints[0])[1] + (*cellPoints[2])[1] ) / 2;
-         testParticle.coord[2] = ( (*cellPoints[0])[2] + (*cellPoints[4])[2] ) / 2;
+         testParticle.coord[0] = ( (cellPoints[0])[0] + (cellPoints[1])[0] ) / 2;
+         testParticle.coord[1] = ( (cellPoints[0])[1] + (cellPoints[2])[1] ) / 2;
+         testParticle.coord[2] = ( (cellPoints[0])[2] + (cellPoints[4])[2] ) / 2;
          pcu_check_true( CellLayout_IsInCell( data->elementCellLayout, cell, &testParticle ) );
 
-         testParticle.coord[0] = (*cellPoints[count-2])[0] + 1;
-         testParticle.coord[1] = (*cellPoints[count-2])[1] + 1;
-         testParticle.coord[2] = (*cellPoints[count-2])[2] + 1;
+         testParticle.coord[0] = (cellPoints[count-2])[0] + 1;
+         testParticle.coord[1] = (cellPoints[count-2])[1] + 1;
+         testParticle.coord[2] = (cellPoints[count-2])[2] + 1;
          pcu_check_true( !CellLayout_IsInCell( data->elementCellLayout, cell, &testParticle ) );
 
          Memory_Free( cellPoints );

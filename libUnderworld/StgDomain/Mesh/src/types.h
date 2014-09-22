@@ -144,7 +144,6 @@ typedef enum {
 	typedef struct CartesianGenerator		CartesianGenerator;
 	typedef struct MeshAdaptor			MeshAdaptor;
 	typedef struct SurfaceAdaptor			SurfaceAdaptor;
-	typedef struct GALESurfaceAdaptor   GALESurfaceAdaptor;
 	typedef struct CompressionAdaptor		CompressionAdaptor;
    typedef struct LinearSpaceAdaptor               LinearSpaceAdaptor;
    typedef struct NodeBunching         NodeBunching;

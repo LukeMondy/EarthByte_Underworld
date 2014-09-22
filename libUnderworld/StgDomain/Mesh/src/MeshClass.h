@@ -55,7 +55,7 @@
 								\
 		/* Mesh info */					\
 		MeshTopology*			topo;		\
-		double**			verts;		\
+		double*			vertices;		\
 								\
 		List*				vars;		\
 								\
@@ -207,6 +207,9 @@
 
 	void Mesh_DeformationUpdate( void* mesh );
 	void Mesh_Sync( void* mesh );
+
+    void Mesh_GenerateVertices( void* mesh, unsigned nVerts, unsigned nDims );
+
 
 	/*--------------------------------------------------------------------------------------------------------------------------
 	** Private Member functions

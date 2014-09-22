@@ -45,7 +45,6 @@ Bool Geothermal_Base_Init( int* argc, char** argv[] ) {
 	Stg_ComponentRegister_Get_ComponentRegister( ),
 	ThermalDataMaterial_Type, "0",
 	(Stg_Component_DefaultConstructorFunction*)_ThermalDataMaterial_DefaultNew);
-    Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister(), ConductivityMaterialManager_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_ConductivityMaterialManager_DefaultNew);
     Stg_ComponentRegister_Add(
 	Stg_ComponentRegister_Get_ComponentRegister( ),
 	IrregularQuadGenerator_Type, "0",
@@ -58,8 +57,6 @@ Bool Geothermal_Base_Init( int* argc, char** argv[] ) {
 	Stg_ComponentRegister_Get_ComponentRegister( ),
 	Mesh_SimplexAlgorithms_Type, "0",
 	(Stg_Component_DefaultConstructorFunction*) Mesh_SimplexAlgorithms_New);
-    Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister(), FieldVariableSurfaceAdaptor_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*) FieldVariableSurfaceAdaptor_New);
-    Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister(), FieldVariableSurfaceAdaptorSimple_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*) FieldVariableSurfaceAdaptorSimple_New);    
     Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister(), IrregularMeshGaussLayout_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*) _IrregularMeshGaussLayout_DefaultNew);
     Stg_ComponentRegister_Add(
 	Stg_ComponentRegister_Get_ComponentRegister( ),
@@ -71,13 +68,10 @@ Bool Geothermal_Base_Init( int* argc, char** argv[] ) {
 
     RegisterParent( ThermalDataShape_Type, 		Stg_Shape_Type 			);
     RegisterParent( ThermalDataMaterial_Type,		Stg_Component_Type 		);
-    RegisterParent( ConductivityMaterialManager_Type,	Stg_Component_Type 		);
     RegisterParent( IrregularQuadGenerator_Type,	MeshGenerator_Type 		);
     RegisterParent( IrregularTriGenerator_Type,		MeshGenerator_Type 		);
     RegisterParent( Mesh_SimplexType_Type,		Mesh_ElementType_Type 		);
     RegisterParent( Mesh_SimplexAlgorithms_Type,	Mesh_Algorithms_Type 		);
-    RegisterParent( FieldVariableSurfaceAdaptor_Type,	MeshAdaptor_Type		);
-    RegisterParent( FieldVariableSurfaceAdaptorSimple_Type,	MeshAdaptor_Type		);
     RegisterParent( DiscreetPointsVC_Type, 		VariableCondition_Type 		);
     RegisterParent( IrregularMeshGaussLayout_Type,	GaussParticleLayout_Type	);
     /*RegisterParent( MaterialLayer_Type,			Stg_Component_Type		);*/

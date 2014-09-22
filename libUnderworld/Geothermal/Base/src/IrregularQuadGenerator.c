@@ -621,19 +621,19 @@ void IrregularQuadGenerator_GenTopoAndGeom( IrregularQuadGenerator* self, Mesh* 
 
 	/* generate the geometry for the nodes */
 	sync = (Sync*)IGraph_GetDomain( topo, 0 );
-	mesh->verts = AllocNamedArray2D( double, Sync_GetNumDomains( sync ), topo->nDims, "Mesh::verts" );
+    Mesh_GenerateVertices( mesh, Sync_GetNumDomains( sync ), topo->nDims );
 
 	for( i = 0; i < numNodes; i++ ) {
-		mesh->verts[i][0] = nodes[i][0];
-		mesh->verts[i][1] = nodes[i][1];
+		Mesh_GetVertex( mesh, i )[0] = nodes[i][0];
+		Mesh_GetVertex( mesh, i )[1] = nodes[i][1];
 	}
 	for( i = 0; i < numEdges; i++ ) {
-		mesh->verts[i + numNodes][0] = edgeCentreNodes[i][0];
-		mesh->verts[i + numNodes][1] = edgeCentreNodes[i][1];
+		Mesh_GetVertex( mesh, i + numNodes )[0] = edgeCentreNodes[i][0];
+		Mesh_GetVertex( mesh, i + numNodes )[1] = edgeCentreNodes[i][1];
 	}
 	for( i = 0; i < numTris; i++ ) {
-		mesh->verts[i + numNodes + numEdges][0] = triCentreNodes[i][0];
-		mesh->verts[i + numNodes + numEdges][1] = triCentreNodes[i][1];
+		Mesh_GetVertex( mesh, i + numNodes + numEdges )[0] = triCentreNodes[i][0];
+		Mesh_GetVertex( mesh, i + numNodes + numEdges )[1] = triCentreNodes[i][1];
 	}
 	MPI_Barrier( self->mpiComm );
 
@@ -1052,19 +1052,19 @@ void IrregularQuadGenerator_GenTopoAndGeom_Parallel( IrregularQuadGenerator* sel
 
 	/* generate the geometry for the nodes */
 	sync = (Sync*)IGraph_GetDomain( topo, 0 );
-	mesh->verts = AllocNamedArray2D( double, Sync_GetNumDomains( sync ), topo->nDims, "Mesh::verts" );
+    Mesh_GenerateVertices( mesh, Sync_GetNumDomains( sync ), topo->nDims );
 
 	for( i = 0; i < numNodesLocal; i++ ) {
-		mesh->verts[i][0] = nodes[i][0];
-		mesh->verts[i][1] = nodes[i][1];
+		Mesh_GetVertex( mesh, i )[0] = nodes[i][0];
+		Mesh_GetVertex( mesh, i )[1] = nodes[i][1];
 	}
 	for( i = 0; i < numEdgesLocal; i++ ) {
-		mesh->verts[i + numNodesLocal][0] = edgeCentreNodes[i][0];
-		mesh->verts[i + numNodesLocal][1] = edgeCentreNodes[i][1];
+		Mesh_GetVertex( mesh, i + numNodesLocal )[0] = edgeCentreNodes[i][0];
+		Mesh_GetVertex( mesh, i + numNodesLocal )[1] = edgeCentreNodes[i][1];
 	}
 	for( i = 0; i < numTrisLocal; i++ ) {
-		mesh->verts[i + numNodesLocal + numEdgesLocal][0] = triCentreNodes[i][0];
-		mesh->verts[i + numNodesLocal + numEdgesLocal][1] = triCentreNodes[i][1];
+		Mesh_GetVertex( mesh, i + numNodesLocal + numEdgesLocal )[0] = triCentreNodes[i][0];
+		Mesh_GetVertex( mesh, i + numNodesLocal + numEdgesLocal )[1] = triCentreNodes[i][1];
 	}
 	MPI_Barrier( self->mpiComm );
 

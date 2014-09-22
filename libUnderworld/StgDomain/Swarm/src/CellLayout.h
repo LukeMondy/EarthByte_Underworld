@@ -47,7 +47,7 @@
 	typedef void (CellLayout_InitialisePointsFunction)	( void* cellLayout, 
 		Cell_Index cell_I, 
 		Cell_PointIndex pointCount, 
-		double*** points );
+		Cell_Points points );
 	typedef Cell_Index (CellLayout_MapElementIdToCellIdFunction) ( void* cellLayout, unsigned element_dI ); 
 	typedef Bool (CellLayout_IsInCellFunction) ( void* cellLayout, Cell_Index cell_I, void* particle );
 	typedef Cell_Index (CellLayout_CellOfFunction) ( void* cellLayout, void* particle );

@@ -340,7 +340,7 @@ void _SingleCellLayout_InitialisePoints( void* singleCellLayout, Cell_Index cell
 
 	/* since points have been pre-calculated, just return pointers to them */
 	for ( point_I=0; point_I < pointCount; point_I++ ) {
-		points[point_I] = &self->cellPointCoords[point_I];
+		points[point_I] = self->cellPointCoords[point_I];
 	}
 }
 

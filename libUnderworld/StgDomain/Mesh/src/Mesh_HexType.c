@@ -407,14 +407,14 @@ Bool Mesh_HexType_ElementHasPoint3DGeneral( Mesh_HexType* self, unsigned elInd, 
 
 		for( v_i = 0; v_i < self->mapSize; v_i++ )
 			self->inc[v_i] = inc[self->vertMap[v_i]];
-		if( Simplex_Search3D( mesh->verts, self->inc, 10, self->tetInds, point, bc, &inside ) ) {
+		if( Simplex_Search3D( mesh, self->inc, 10, self->tetInds, point, bc, &inside ) ) {
 			*dim = MT_VOLUME;
 			*ind = elInd;
 			return True;
 		}
 	}
 	else {
-		if( Simplex_Search3D( mesh->verts, (unsigned*)inc, 10, self->tetInds, point, bc, &inside ) ) {
+		if( Simplex_Search3D( mesh, (unsigned*)inc, 10, self->tetInds, point, bc, &inside ) ) {
 			*dim = MT_VOLUME;
 			*ind = elInd;
 			return True;
@@ -457,10 +457,10 @@ Bool Mesh_HexType_ElementHasPoint3DWithIncidence( Mesh_HexType* self, unsigned e
 
 		for( v_i = 0; v_i < self->mapSize; v_i++ )
 			self->inc[v_i] = inc[self->vertMap[v_i]];
-		fnd = Simplex_Search3D( mesh->verts, self->inc, 10, self->tetInds, point, bc, &inside );
+		fnd = Simplex_Search3D( mesh, self->inc, 10, self->tetInds, point, bc, &inside );
 	}
 	else
-		fnd = Simplex_Search3D( mesh->verts, (unsigned*)inc, 10, self->tetInds, point, bc, &inside );
+		fnd = Simplex_Search3D( mesh, (unsigned*)inc, 10, self->tetInds, point, bc, &inside );
 	if( fnd ) {
 		unsigned*	inds = self->tetInds[inside];
 
@@ -955,10 +955,10 @@ Bool Mesh_HexType_ElementHasPoint2DGeneral( Mesh_HexType* self, unsigned elInd, 
 
 		for( v_i = 0; v_i < self->mapSize; v_i++ )
 			self->inc[v_i] = inc[self->vertMap[v_i]];
-		fnd = Simplex_Search2D( mesh->verts, self->inc, 2, self->triInds, point, bc, &inside );
+		fnd = Simplex_Search2D( mesh, self->inc, 2, self->triInds, point, bc, &inside );
 	}
 	else
-		fnd = Simplex_Search2D( mesh->verts, (unsigned*)inc, 2, self->triInds, point, bc, &inside );
+		fnd = Simplex_Search2D( mesh, (unsigned*)inc, 2, self->triInds, point, bc, &inside );
 	if( fnd ) {
 		*dim = MT_FACE;
 		*ind = elInd;
@@ -1001,10 +1001,10 @@ Bool Mesh_HexType_ElementHasPoint2DWithIncidence( Mesh_HexType* self, unsigned e
 
 		for( v_i = 0; v_i < self->mapSize; v_i++ )
 			self->inc[v_i] = inc[self->vertMap[v_i]];
-		fnd = Simplex_Search2D( mesh->verts, self->inc, 2, self->triInds, point, bc, &inside );
+		fnd = Simplex_Search2D( mesh, self->inc, 2, self->triInds, point, bc, &inside );
 	}
 	else
-		fnd = Simplex_Search2D( mesh->verts, (unsigned*)inc, 2, self->triInds, point, bc, &inside );
+		fnd = Simplex_Search2D( mesh, (unsigned*)inc, 2, self->triInds, point, bc, &inside );
 	if( fnd ) {
 		unsigned	*inds = self->triInds[inside];
 

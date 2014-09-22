@@ -40,17 +40,22 @@
 #ifndef __StgDomain_Geometry_Simplex_h__
 #define __StgDomain_Geometry_Simplex_h__
 
-	Bool Simplex_Search3D( double** verts, unsigned* inc, 
+#include <StGermain/StGermain.h>
+#include <StgDomain/StgDomain.h>
+#include "Geometry.h"
+#include <StgDomain/Mesh/Mesh.h>
+
+	Bool Simplex_Search3D( Mesh* mesh, unsigned* inc,
 			       unsigned nSimplices, unsigned** inds, 
 			       double* point, double* bc, unsigned* inside );
-	Bool Simplex_Search2D( double** verts, unsigned* inc, 
+	Bool Simplex_Search2D( Mesh* mesh, unsigned* inc,
 			       unsigned nSimplices, unsigned** inds, 
 			       double* point, double* bc, unsigned* inside );
 
-	void Simplex_Barycenter3D( double** verts, unsigned* inc, unsigned* inds, double* point, double* bc );
-	void Simplex_Barycenter2D( double** verts, unsigned* inc, unsigned* inds, double* point, double* bc );
+	void Simplex_Barycenter3D( Mesh* mesh, unsigned* inc, unsigned* inds, double* point, double* bc );
+	void Simplex_Barycenter2D( Mesh* mesh, unsigned* inc, unsigned* inds, double* point, double* bc );
 
-	double Simplex_Volume( double** verts, unsigned* inc, unsigned* inds );
-	double Simplex_Area( double** verts, unsigned* inc, unsigned* inds );
+	double Simplex_Volume( Mesh* mesh, unsigned* inc, unsigned* inds );
+	double Simplex_Area( Mesh* mesh, unsigned* inc, unsigned* inds );
 
 #endif /* __StgDomain_Geometry_Simplex_h__ */

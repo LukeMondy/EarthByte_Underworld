@@ -65,7 +65,6 @@
 #include "CartesianGenerator.h"
 #include "MeshAdaptor.h"
 #include "SurfaceAdaptor.h"
-#include "GALESurfaceAdaptor.h"
 #include "CompressionAdaptor.h"
 #include "linearSpaceAdaptor.h"
 #include "NodeBunching.h"

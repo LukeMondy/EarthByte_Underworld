@@ -133,7 +133,7 @@ import_array();
 	*DIM2 = $self->topo->nDims;
 
 	/* need to offset the value because in stg it is allocated as a 2d array. note that it is contiguous. */
-    *ARGOUTVIEW_ARRAY2 = (Pointer)( (ArithPointer)$self->verts + sizeof(Pointer) * *DIM1 ) ; 
+    *ARGOUTVIEW_ARRAY2 = (Pointer)( $self->vertices ) ;
 
   }
 

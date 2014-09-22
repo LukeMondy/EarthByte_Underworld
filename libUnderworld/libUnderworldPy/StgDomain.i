@@ -18,6 +18,12 @@
 #define WRITE_HDF5
 #endif
 
+//%include "numpy.i"
+//
+//%init %{
+//import_array();
+//%}
+
 %include "StgDomain_Typemaps.i"
 
 %include "Geometry/ComplexMath.h"
@@ -148,3 +154,19 @@
 //
 //}
 //
+
+//%extend Mesh
+//{
+//
+//  void getAsNumpyArray( double** ARGOUTVIEW_ARRAY2, int* DIM1, int* DIM2 ){
+//
+//	Sync* sync = (Sync*)IGraph_GetDomain( (IGraph*)$self->topo, 0 );
+//	*DIM1 = Sync_GetNumDomains( sync );
+//	*DIM2 = $self->topo->nDims;
+//
+//	/* need to offset the value because in stg it is allocated as a 2d array. note that it is contiguous. */
+//    *ARGOUTVIEW_ARRAY2 = (Pointer)( $self->vertices ) ;
+//
+//  }
+//
+//}
