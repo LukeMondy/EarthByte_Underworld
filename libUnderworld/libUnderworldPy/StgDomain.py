@@ -351,30 +351,12780 @@ RMatrix_Mult = _StgDomain.RMatrix_Mult
 def RMatrix_VectorMult(*args):
   return _StgDomain.RMatrix_VectorMult(*args)
 RMatrix_VectorMult = _StgDomain.RMatrix_VectorMult
+class Eigenvector(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Eigenvector, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Eigenvector, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["vector"] = _StgDomain.Eigenvector_vector_set
+    __swig_getmethods__["vector"] = _StgDomain.Eigenvector_vector_get
+    if _newclass:vector = _swig_property(_StgDomain.Eigenvector_vector_get, _StgDomain.Eigenvector_vector_set)
+    __swig_setmethods__["eigenvalue"] = _StgDomain.Eigenvector_eigenvalue_set
+    __swig_getmethods__["eigenvalue"] = _StgDomain.Eigenvector_eigenvalue_get
+    if _newclass:eigenvalue = _swig_property(_StgDomain.Eigenvector_eigenvalue_get, _StgDomain.Eigenvector_eigenvalue_set)
+    def __init__(self): 
+        this = _StgDomain.new_Eigenvector()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Eigenvector
+    __del__ = lambda self : None;
+Eigenvector_swigregister = _StgDomain.Eigenvector_swigregister
+Eigenvector_swigregister(Eigenvector)
 
-def Simplex_Search3D(*args):
-  return _StgDomain.Simplex_Search3D(*args)
-Simplex_Search3D = _StgDomain.Simplex_Search3D
+ST2D_00 = _StgDomain.ST2D_00
+ST2D_11 = _StgDomain.ST2D_11
+ST2D_01 = _StgDomain.ST2D_01
+FT2D_00 = _StgDomain.FT2D_00
+FT2D_11 = _StgDomain.FT2D_11
+FT2D_01 = _StgDomain.FT2D_01
+FT2D_10 = _StgDomain.FT2D_10
+ST3D_00 = _StgDomain.ST3D_00
+ST3D_11 = _StgDomain.ST3D_11
+ST3D_22 = _StgDomain.ST3D_22
+ST3D_01 = _StgDomain.ST3D_01
+ST3D_02 = _StgDomain.ST3D_02
+ST3D_12 = _StgDomain.ST3D_12
+FT3D_00 = _StgDomain.FT3D_00
+FT3D_11 = _StgDomain.FT3D_11
+FT3D_22 = _StgDomain.FT3D_22
+FT3D_01 = _StgDomain.FT3D_01
+FT3D_02 = _StgDomain.FT3D_02
+FT3D_10 = _StgDomain.FT3D_10
+FT3D_12 = _StgDomain.FT3D_12
+FT3D_20 = _StgDomain.FT3D_20
+FT3D_21 = _StgDomain.FT3D_21
 
-def Simplex_Search2D(*args):
-  return _StgDomain.Simplex_Search2D(*args)
-Simplex_Search2D = _StgDomain.Simplex_Search2D
+def TensorArray_TensorMap(*args):
+  return _StgDomain.TensorArray_TensorMap(*args)
+TensorArray_TensorMap = _StgDomain.TensorArray_TensorMap
 
-def Simplex_Barycenter3D(*args):
-  return _StgDomain.Simplex_Barycenter3D(*args)
-Simplex_Barycenter3D = _StgDomain.Simplex_Barycenter3D
+def SymmetricTensor_TensorMap(*args):
+  return _StgDomain.SymmetricTensor_TensorMap(*args)
+SymmetricTensor_TensorMap = _StgDomain.SymmetricTensor_TensorMap
 
-def Simplex_Barycenter2D(*args):
-  return _StgDomain.Simplex_Barycenter2D(*args)
-Simplex_Barycenter2D = _StgDomain.Simplex_Barycenter2D
+def StGermain_SymmetricTensor_ToTensorArray(*args):
+  return _StgDomain.StGermain_SymmetricTensor_ToTensorArray(*args)
+StGermain_SymmetricTensor_ToTensorArray = _StgDomain.StGermain_SymmetricTensor_ToTensorArray
 
-def Simplex_Volume(*args):
-  return _StgDomain.Simplex_Volume(*args)
-Simplex_Volume = _StgDomain.Simplex_Volume
+def StGermain_SymmetricTensor_ToTensorArray2D(*args):
+  return _StgDomain.StGermain_SymmetricTensor_ToTensorArray2D(*args)
+StGermain_SymmetricTensor_ToTensorArray2D = _StgDomain.StGermain_SymmetricTensor_ToTensorArray2D
 
-def Simplex_Area(*args):
-  return _StgDomain.Simplex_Area(*args)
-Simplex_Area = _StgDomain.Simplex_Area
+def StGermain_SymmetricTensor_ToTensorArray3D(*args):
+  return _StgDomain.StGermain_SymmetricTensor_ToTensorArray3D(*args)
+StGermain_SymmetricTensor_ToTensorArray3D = _StgDomain.StGermain_SymmetricTensor_ToTensorArray3D
+
+def TensorArray_ToMatrix(*args):
+  return _StgDomain.TensorArray_ToMatrix(*args)
+TensorArray_ToMatrix = _StgDomain.TensorArray_ToMatrix
+
+def SymmetricTensor_ToMatrix(*args):
+  return _StgDomain.SymmetricTensor_ToMatrix(*args)
+SymmetricTensor_ToMatrix = _StgDomain.SymmetricTensor_ToMatrix
+
+def TensorArray_SetFromDoubleArray(*args):
+  return _StgDomain.TensorArray_SetFromDoubleArray(*args)
+TensorArray_SetFromDoubleArray = _StgDomain.TensorArray_SetFromDoubleArray
+
+def TensorArray_GetAntisymmetricPart(*args):
+  return _StgDomain.TensorArray_GetAntisymmetricPart(*args)
+TensorArray_GetAntisymmetricPart = _StgDomain.TensorArray_GetAntisymmetricPart
+
+def TensorArray_GetSymmetricPart(*args):
+  return _StgDomain.TensorArray_GetSymmetricPart(*args)
+TensorArray_GetSymmetricPart = _StgDomain.TensorArray_GetSymmetricPart
+
+def Journal_PrintTensorArray_Unnamed(*args):
+  return _StgDomain.Journal_PrintTensorArray_Unnamed(*args)
+Journal_PrintTensorArray_Unnamed = _StgDomain.Journal_PrintTensorArray_Unnamed
+
+def Journal_PrintSymmetricTensor_Unnamed(*args):
+  return _StgDomain.Journal_PrintSymmetricTensor_Unnamed(*args)
+Journal_PrintSymmetricTensor_Unnamed = _StgDomain.Journal_PrintSymmetricTensor_Unnamed
+
+def Journal_PrintSquareArray_Unnamed(*args):
+  return _StgDomain.Journal_PrintSquareArray_Unnamed(*args)
+Journal_PrintSquareArray_Unnamed = _StgDomain.Journal_PrintSquareArray_Unnamed
+
+def TensorArray_GetTrace(*args):
+  return _StgDomain.TensorArray_GetTrace(*args)
+TensorArray_GetTrace = _StgDomain.TensorArray_GetTrace
+
+def SymmetricTensor_GetTrace(*args):
+  return _StgDomain.SymmetricTensor_GetTrace(*args)
+SymmetricTensor_GetTrace = _StgDomain.SymmetricTensor_GetTrace
+
+def TensorArray_2ndInvariant(*args):
+  return _StgDomain.TensorArray_2ndInvariant(*args)
+TensorArray_2ndInvariant = _StgDomain.TensorArray_2ndInvariant
+
+def SymmetricTensor_2ndInvariant(*args):
+  return _StgDomain.SymmetricTensor_2ndInvariant(*args)
+SymmetricTensor_2ndInvariant = _StgDomain.SymmetricTensor_2ndInvariant
+
+def TensorArray_Zero(*args):
+  return _StgDomain.TensorArray_Zero(*args)
+TensorArray_Zero = _StgDomain.TensorArray_Zero
+
+def SymmetricTensor_Zero(*args):
+  return _StgDomain.SymmetricTensor_Zero(*args)
+SymmetricTensor_Zero = _StgDomain.SymmetricTensor_Zero
+
+def ZeroMatrix(*args):
+  return _StgDomain.ZeroMatrix(*args)
+ZeroMatrix = _StgDomain.ZeroMatrix
+
+def TensorArray_MultiplyByVectors(*args):
+  return _StgDomain.TensorArray_MultiplyByVectors(*args)
+TensorArray_MultiplyByVectors = _StgDomain.TensorArray_MultiplyByVectors
+
+def SymmetricTensor_ApplyOnVector(*args):
+  return _StgDomain.SymmetricTensor_ApplyOnVector(*args)
+SymmetricTensor_ApplyOnVector = _StgDomain.SymmetricTensor_ApplyOnVector
+
+def SymmetricTensor_MultiplyByVectors(*args):
+  return _StgDomain.SymmetricTensor_MultiplyByVectors(*args)
+SymmetricTensor_MultiplyByVectors = _StgDomain.SymmetricTensor_MultiplyByVectors
+
+def SymmetricTensor_CalcAllEigenvalues(*args):
+  return _StgDomain.SymmetricTensor_CalcAllEigenvalues(*args)
+SymmetricTensor_CalcAllEigenvalues = _StgDomain.SymmetricTensor_CalcAllEigenvalues
+
+def SymmetricTensor_CalcAllEigenvalues2D(*args):
+  return _StgDomain.SymmetricTensor_CalcAllEigenvalues2D(*args)
+SymmetricTensor_CalcAllEigenvalues2D = _StgDomain.SymmetricTensor_CalcAllEigenvalues2D
+
+def SymmetricTensor_CalcAllEigenvalues3D(*args):
+  return _StgDomain.SymmetricTensor_CalcAllEigenvalues3D(*args)
+SymmetricTensor_CalcAllEigenvalues3D = _StgDomain.SymmetricTensor_CalcAllEigenvalues3D
+
+def SymmetricTensor_CalcAllEigenvectors(*args):
+  return _StgDomain.SymmetricTensor_CalcAllEigenvectors(*args)
+SymmetricTensor_CalcAllEigenvectors = _StgDomain.SymmetricTensor_CalcAllEigenvectors
+
+def SymmetricTensor_CalcEigenvector2D(*args):
+  return _StgDomain.SymmetricTensor_CalcEigenvector2D(*args)
+SymmetricTensor_CalcEigenvector2D = _StgDomain.SymmetricTensor_CalcEigenvector2D
+
+def SymmetricTensor_CalcAllEigenvectors2D(*args):
+  return _StgDomain.SymmetricTensor_CalcAllEigenvectors2D(*args)
+SymmetricTensor_CalcAllEigenvectors2D = _StgDomain.SymmetricTensor_CalcAllEigenvectors2D
+
+def SymmetricTensor_CalcEigenvector3D(*args):
+  return _StgDomain.SymmetricTensor_CalcEigenvector3D(*args)
+SymmetricTensor_CalcEigenvector3D = _StgDomain.SymmetricTensor_CalcEigenvector3D
+
+def SymmetricTensor_CalcAllEigenvectors3D(*args):
+  return _StgDomain.SymmetricTensor_CalcAllEigenvectors3D(*args)
+SymmetricTensor_CalcAllEigenvectors3D = _StgDomain.SymmetricTensor_CalcAllEigenvectors3D
+
+def SymmetricTensor_CalcAllEigenvectorsJacobi(*args):
+  return _StgDomain.SymmetricTensor_CalcAllEigenvectorsJacobi(*args)
+SymmetricTensor_CalcAllEigenvectorsJacobi = _StgDomain.SymmetricTensor_CalcAllEigenvectorsJacobi
+
+def Matrix_CalcAllEigenvectorsJacobi(*args):
+  return _StgDomain.Matrix_CalcAllEigenvectorsJacobi(*args)
+Matrix_CalcAllEigenvectorsJacobi = _StgDomain.Matrix_CalcAllEigenvectorsJacobi
+
+def EigenvectorList_Sort(*args):
+  return _StgDomain.EigenvectorList_Sort(*args)
+EigenvectorList_Sort = _StgDomain.EigenvectorList_Sort
+
+def StGermain_MatrixDeterminant_AxisIndependent(*args):
+  return _StgDomain.StGermain_MatrixDeterminant_AxisIndependent(*args)
+StGermain_MatrixDeterminant_AxisIndependent = _StgDomain.StGermain_MatrixDeterminant_AxisIndependent
+
+def CubicSolver_OnlyRealRoots(*args):
+  return _StgDomain.CubicSolver_OnlyRealRoots(*args)
+CubicSolver_OnlyRealRoots = _StgDomain.CubicSolver_OnlyRealRoots
+
+def TensorArray_SolveSystem(*args):
+  return _StgDomain.TensorArray_SolveSystem(*args)
+TensorArray_SolveSystem = _StgDomain.TensorArray_SolveSystem
+
+def TensorArray_Identity(*args):
+  return _StgDomain.TensorArray_Identity(*args)
+TensorArray_Identity = _StgDomain.TensorArray_Identity
+
+def SymmetricTensor_Identity(*args):
+  return _StgDomain.SymmetricTensor_Identity(*args)
+SymmetricTensor_Identity = _StgDomain.SymmetricTensor_Identity
+
+def TensorArray_Transpose(*args):
+  return _StgDomain.TensorArray_Transpose(*args)
+TensorArray_Transpose = _StgDomain.TensorArray_Transpose
+
+def TensorArray_Add(*args):
+  return _StgDomain.TensorArray_Add(*args)
+TensorArray_Add = _StgDomain.TensorArray_Add
+
+def TensorArray_Subtract(*args):
+  return _StgDomain.TensorArray_Subtract(*args)
+TensorArray_Subtract = _StgDomain.TensorArray_Subtract
+
+def TensorArray_MultiplyByTensorArray(*args):
+  return _StgDomain.TensorArray_MultiplyByTensorArray(*args)
+TensorArray_MultiplyByTensorArray = _StgDomain.TensorArray_MultiplyByTensorArray
+
+def TensorArray_MultiplyByRightTranspose(*args):
+  return _StgDomain.TensorArray_MultiplyByRightTranspose(*args)
+TensorArray_MultiplyByRightTranspose = _StgDomain.TensorArray_MultiplyByRightTranspose
+
+def TensorArray_MultiplyByLeftTranspose(*args):
+  return _StgDomain.TensorArray_MultiplyByLeftTranspose(*args)
+TensorArray_MultiplyByLeftTranspose = _StgDomain.TensorArray_MultiplyByLeftTranspose
+
+def TensorArray_MultiplyBySymmetricTensor(*args):
+  return _StgDomain.TensorArray_MultiplyBySymmetricTensor(*args)
+TensorArray_MultiplyBySymmetricTensor = _StgDomain.TensorArray_MultiplyBySymmetricTensor
+
+def TensorArray_MultiplyByLeftVector(*args):
+  return _StgDomain.TensorArray_MultiplyByLeftVector(*args)
+TensorArray_MultiplyByLeftVector = _StgDomain.TensorArray_MultiplyByLeftVector
+
+def TensorArray_MultiplyByRightVector(*args):
+  return _StgDomain.TensorArray_MultiplyByRightVector(*args)
+TensorArray_MultiplyByRightVector = _StgDomain.TensorArray_MultiplyByRightVector
+
+def TensorArray_CalcDeterminant(*args):
+  return _StgDomain.TensorArray_CalcDeterminant(*args)
+TensorArray_CalcDeterminant = _StgDomain.TensorArray_CalcDeterminant
+
+def TensorArray_CalcInverse(*args):
+  return _StgDomain.TensorArray_CalcInverse(*args)
+TensorArray_CalcInverse = _StgDomain.TensorArray_CalcInverse
+
+def TensorArray_CalcInverseWithDeterminant(*args):
+  return _StgDomain.TensorArray_CalcInverseWithDeterminant(*args)
+TensorArray_CalcInverseWithDeterminant = _StgDomain.TensorArray_CalcInverseWithDeterminant
+
+def TensorArray_DoubleContraction(*args):
+  return _StgDomain.TensorArray_DoubleContraction(*args)
+TensorArray_DoubleContraction = _StgDomain.TensorArray_DoubleContraction
+
+def SymmetricTensor_DoubleContraction(*args):
+  return _StgDomain.SymmetricTensor_DoubleContraction(*args)
+SymmetricTensor_DoubleContraction = _StgDomain.SymmetricTensor_DoubleContraction
+
+def NonSquareMatrix_Transpose(*args):
+  return _StgDomain.NonSquareMatrix_Transpose(*args)
+NonSquareMatrix_Transpose = _StgDomain.NonSquareMatrix_Transpose
+
+def NonSquareMatrix_MultiplicationByNonSquareMatrix(*args):
+  return _StgDomain.NonSquareMatrix_MultiplicationByNonSquareMatrix(*args)
+NonSquareMatrix_MultiplicationByNonSquareMatrix = _StgDomain.NonSquareMatrix_MultiplicationByNonSquareMatrix
+
+def NonSquareMatrix_CumulativeMultiplicationByNonSquareMatrix(*args):
+  return _StgDomain.NonSquareMatrix_CumulativeMultiplicationByNonSquareMatrix(*args)
+NonSquareMatrix_CumulativeMultiplicationByNonSquareMatrix = _StgDomain.NonSquareMatrix_CumulativeMultiplicationByNonSquareMatrix
+
+def NonSquareMatrix_MatrixVectorMultiplication(*args):
+  return _StgDomain.NonSquareMatrix_MatrixVectorMultiplication(*args)
+NonSquareMatrix_MatrixVectorMultiplication = _StgDomain.NonSquareMatrix_MatrixVectorMultiplication
+
+def NonSquareMatrix_CumulativeMatrixVectorMultiplication(*args):
+  return _StgDomain.NonSquareMatrix_CumulativeMatrixVectorMultiplication(*args)
+NonSquareMatrix_CumulativeMatrixVectorMultiplication = _StgDomain.NonSquareMatrix_CumulativeMatrixVectorMultiplication
+
+def Journal_PrintNonSquareMatrix_Unnamed(*args):
+  return _StgDomain.Journal_PrintNonSquareMatrix_Unnamed(*args)
+Journal_PrintNonSquareMatrix_Unnamed = _StgDomain.Journal_PrintNonSquareMatrix_Unnamed
+UPPER_RIGHT_QUADRANT = _StgDomain.UPPER_RIGHT_QUADRANT
+UPPER_LEFT_QUADRANT = _StgDomain.UPPER_LEFT_QUADRANT
+LOWER_LEFT_QUADRANT = _StgDomain.LOWER_LEFT_QUADRANT
+LOWER_RIGHT_QUADRANT = _StgDomain.LOWER_RIGHT_QUADRANT
+M_PI = _StgDomain.M_PI
+M_1_PI = _StgDomain.M_1_PI
+M_2_PI = _StgDomain.M_2_PI
+
+def StGermain_RectangularToSpherical(*args):
+  return _StgDomain.StGermain_RectangularToSpherical(*args)
+StGermain_RectangularToSpherical = _StgDomain.StGermain_RectangularToSpherical
+
+def StGermain_SphericalToRectangular(*args):
+  return _StgDomain.StGermain_SphericalToRectangular(*args)
+StGermain_SphericalToRectangular = _StgDomain.StGermain_SphericalToRectangular
+
+def StGermain_TrigDomain(*args):
+  return _StgDomain.StGermain_TrigDomain(*args)
+StGermain_TrigDomain = _StgDomain.StGermain_TrigDomain
+
+def StGermain_TrigQuadrant(*args):
+  return _StgDomain.StGermain_TrigQuadrant(*args)
+StGermain_TrigQuadrant = _StgDomain.StGermain_TrigQuadrant
+I_AXIS = _StgDomain.I_AXIS
+J_AXIS = _StgDomain.J_AXIS
+K_AXIS = _StgDomain.K_AXIS
+
+def Vec_Cross3D(*args):
+  return _StgDomain.Vec_Cross3D(*args)
+Vec_Cross3D = _StgDomain.Vec_Cross3D
+
+def Vec_Div2D(*args):
+  return _StgDomain.Vec_Div2D(*args)
+Vec_Div2D = _StgDomain.Vec_Div2D
+
+def Vec_Div3D(*args):
+  return _StgDomain.Vec_Div3D(*args)
+Vec_Div3D = _StgDomain.Vec_Div3D
+
+def Vec_Norm2D(*args):
+  return _StgDomain.Vec_Norm2D(*args)
+Vec_Norm2D = _StgDomain.Vec_Norm2D
+
+def Vec_Norm3D(*args):
+  return _StgDomain.Vec_Norm3D(*args)
+Vec_Norm3D = _StgDomain.Vec_Norm3D
+
+def StGermain_RotateVector(*args):
+  return _StgDomain.StGermain_RotateVector(*args)
+StGermain_RotateVector = _StgDomain.StGermain_RotateVector
+
+def StGermain_RotateCoordinateAxis(*args):
+  return _StgDomain.StGermain_RotateCoordinateAxis(*args)
+StGermain_RotateCoordinateAxis = _StgDomain.StGermain_RotateCoordinateAxis
+
+def StGermain_VectorSubtraction(*args):
+  return _StgDomain.StGermain_VectorSubtraction(*args)
+StGermain_VectorSubtraction = _StgDomain.StGermain_VectorSubtraction
+
+def StGermain_VectorAddition(*args):
+  return _StgDomain.StGermain_VectorAddition(*args)
+StGermain_VectorAddition = _StgDomain.StGermain_VectorAddition
+
+def StGermain_VectorMagnitude(*args):
+  return _StgDomain.StGermain_VectorMagnitude(*args)
+StGermain_VectorMagnitude = _StgDomain.StGermain_VectorMagnitude
+
+def StGermain_VectorDotProduct(*args):
+  return _StgDomain.StGermain_VectorDotProduct(*args)
+StGermain_VectorDotProduct = _StgDomain.StGermain_VectorDotProduct
+
+def StGermain_VectorCrossProduct(*args):
+  return _StgDomain.StGermain_VectorCrossProduct(*args)
+StGermain_VectorCrossProduct = _StgDomain.StGermain_VectorCrossProduct
+
+def StGermain_VectorCrossProductMagnitude(*args):
+  return _StgDomain.StGermain_VectorCrossProductMagnitude(*args)
+StGermain_VectorCrossProductMagnitude = _StgDomain.StGermain_VectorCrossProductMagnitude
+
+def StGermain_ScalarTripleProduct(*args):
+  return _StgDomain.StGermain_ScalarTripleProduct(*args)
+StGermain_ScalarTripleProduct = _StgDomain.StGermain_ScalarTripleProduct
+
+def StGermain_VectorNormalise(*args):
+  return _StgDomain.StGermain_VectorNormalise(*args)
+StGermain_VectorNormalise = _StgDomain.StGermain_VectorNormalise
+
+def StGermain_AngleBetweenVectors(*args):
+  return _StgDomain.StGermain_AngleBetweenVectors(*args)
+StGermain_AngleBetweenVectors = _StgDomain.StGermain_AngleBetweenVectors
+
+def StGermain_DistanceBetweenPoints(*args):
+  return _StgDomain.StGermain_DistanceBetweenPoints(*args)
+StGermain_DistanceBetweenPoints = _StgDomain.StGermain_DistanceBetweenPoints
+
+def StGermain_NormalToPlane(*args):
+  return _StgDomain.StGermain_NormalToPlane(*args)
+StGermain_NormalToPlane = _StgDomain.StGermain_NormalToPlane
+
+def StGermain_TriangleCentroid(*args):
+  return _StgDomain.StGermain_TriangleCentroid(*args)
+StGermain_TriangleCentroid = _StgDomain.StGermain_TriangleCentroid
+
+def StGermain_TriangleArea(*args):
+  return _StgDomain.StGermain_TriangleArea(*args)
+StGermain_TriangleArea = _StgDomain.StGermain_TriangleArea
+
+def StGermain_ConvexQuadrilateralArea(*args):
+  return _StgDomain.StGermain_ConvexQuadrilateralArea(*args)
+StGermain_ConvexQuadrilateralArea = _StgDomain.StGermain_ConvexQuadrilateralArea
+
+def StGermain_ParallelepipedVolume(*args):
+  return _StgDomain.StGermain_ParallelepipedVolume(*args)
+StGermain_ParallelepipedVolume = _StgDomain.StGermain_ParallelepipedVolume
+
+def StGermain_ParallelepipedVolumeFromCoordList(*args):
+  return _StgDomain.StGermain_ParallelepipedVolumeFromCoordList(*args)
+StGermain_ParallelepipedVolumeFromCoordList = _StgDomain.StGermain_ParallelepipedVolumeFromCoordList
+
+def StGermain_AverageCoord(*args):
+  return _StgDomain.StGermain_AverageCoord(*args)
+StGermain_AverageCoord = _StgDomain.StGermain_AverageCoord
+
+def StGermain_PrintVector(*args):
+  return _StgDomain.StGermain_PrintVector(*args)
+StGermain_PrintVector = _StgDomain.StGermain_PrintVector
+
+def StGermain_RotateAroundPoint(*args):
+  return _StgDomain.StGermain_RotateAroundPoint(*args)
+StGermain_RotateAroundPoint = _StgDomain.StGermain_RotateAroundPoint
+class Mesh(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mesh, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mesh, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Mesh__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Mesh__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Mesh__sizeOfSelf_get, _StgDomain.Mesh__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Mesh__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Mesh__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Mesh__deleteSelf_get, _StgDomain.Mesh__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Mesh_type_set
+    __swig_getmethods__["type"] = _StgDomain.Mesh_type_get
+    if _newclass:type = _swig_property(_StgDomain.Mesh_type_get, _StgDomain.Mesh_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Mesh_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Mesh_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Mesh_nRefs_get, _StgDomain.Mesh_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Mesh__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Mesh__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Mesh__delete_get, _StgDomain.Mesh__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Mesh__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Mesh__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Mesh__print_get, _StgDomain.Mesh__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Mesh__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Mesh__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Mesh__copy_get, _StgDomain.Mesh__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Mesh_name_set
+    __swig_getmethods__["name"] = _StgDomain.Mesh_name_get
+    if _newclass:name = _swig_property(_StgDomain.Mesh_name_get, _StgDomain.Mesh_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Mesh_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Mesh_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Mesh_nameAllocationType_get, _StgDomain.Mesh_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Mesh__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Mesh__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Mesh__defaultConstructor_get, _StgDomain.Mesh__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Mesh__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Mesh__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Mesh__construct_get, _StgDomain.Mesh__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Mesh__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Mesh__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Mesh__build_get, _StgDomain.Mesh__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Mesh__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Mesh__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Mesh__initialise_get, _StgDomain.Mesh__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Mesh__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Mesh__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Mesh__execute_get, _StgDomain.Mesh__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Mesh__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Mesh__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Mesh__destroy_get, _StgDomain.Mesh__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Mesh_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Mesh_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Mesh_isConstructed_get, _StgDomain.Mesh_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Mesh_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Mesh_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Mesh_isBuilt_get, _StgDomain.Mesh_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Mesh_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Mesh_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Mesh_isInitialised_get, _StgDomain.Mesh_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Mesh_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Mesh_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Mesh_hasExecuted_get, _StgDomain.Mesh_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Mesh_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Mesh_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Mesh_isDestroyed_get, _StgDomain.Mesh_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Mesh_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Mesh_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Mesh_constructType_get, _StgDomain.Mesh_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Mesh_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Mesh_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Mesh_buildType_get, _StgDomain.Mesh_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Mesh_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Mesh_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Mesh_initialiseType_get, _StgDomain.Mesh_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Mesh_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Mesh_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Mesh_executeType_get, _StgDomain.Mesh_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Mesh_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Mesh_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Mesh_destroyType_get, _StgDomain.Mesh_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Mesh_context_set
+    __swig_getmethods__["context"] = _StgDomain.Mesh_context_get
+    if _newclass:context = _swig_property(_StgDomain.Mesh_context_get, _StgDomain.Mesh_context_set)
+    __swig_setmethods__["topo"] = _StgDomain.Mesh_topo_set
+    __swig_getmethods__["topo"] = _StgDomain.Mesh_topo_get
+    if _newclass:topo = _swig_property(_StgDomain.Mesh_topo_get, _StgDomain.Mesh_topo_set)
+    __swig_setmethods__["vertices"] = _StgDomain.Mesh_vertices_set
+    __swig_getmethods__["vertices"] = _StgDomain.Mesh_vertices_get
+    if _newclass:vertices = _swig_property(_StgDomain.Mesh_vertices_get, _StgDomain.Mesh_vertices_set)
+    __swig_setmethods__["vars"] = _StgDomain.Mesh_vars_set
+    __swig_getmethods__["vars"] = _StgDomain.Mesh_vars_get
+    if _newclass:vars = _swig_property(_StgDomain.Mesh_vars_get, _StgDomain.Mesh_vars_set)
+    __swig_setmethods__["minSep"] = _StgDomain.Mesh_minSep_set
+    __swig_getmethods__["minSep"] = _StgDomain.Mesh_minSep_get
+    if _newclass:minSep = _swig_property(_StgDomain.Mesh_minSep_get, _StgDomain.Mesh_minSep_set)
+    __swig_setmethods__["minAxialSep"] = _StgDomain.Mesh_minAxialSep_set
+    __swig_getmethods__["minAxialSep"] = _StgDomain.Mesh_minAxialSep_get
+    if _newclass:minAxialSep = _swig_property(_StgDomain.Mesh_minAxialSep_get, _StgDomain.Mesh_minAxialSep_set)
+    __swig_setmethods__["minLocalCrd"] = _StgDomain.Mesh_minLocalCrd_set
+    __swig_getmethods__["minLocalCrd"] = _StgDomain.Mesh_minLocalCrd_get
+    if _newclass:minLocalCrd = _swig_property(_StgDomain.Mesh_minLocalCrd_get, _StgDomain.Mesh_minLocalCrd_set)
+    __swig_setmethods__["maxLocalCrd"] = _StgDomain.Mesh_maxLocalCrd_set
+    __swig_getmethods__["maxLocalCrd"] = _StgDomain.Mesh_maxLocalCrd_get
+    if _newclass:maxLocalCrd = _swig_property(_StgDomain.Mesh_maxLocalCrd_get, _StgDomain.Mesh_maxLocalCrd_set)
+    __swig_setmethods__["minDomainCrd"] = _StgDomain.Mesh_minDomainCrd_set
+    __swig_getmethods__["minDomainCrd"] = _StgDomain.Mesh_minDomainCrd_get
+    if _newclass:minDomainCrd = _swig_property(_StgDomain.Mesh_minDomainCrd_get, _StgDomain.Mesh_minDomainCrd_set)
+    __swig_setmethods__["maxDomainCrd"] = _StgDomain.Mesh_maxDomainCrd_set
+    __swig_getmethods__["maxDomainCrd"] = _StgDomain.Mesh_maxDomainCrd_get
+    if _newclass:maxDomainCrd = _swig_property(_StgDomain.Mesh_maxDomainCrd_get, _StgDomain.Mesh_maxDomainCrd_set)
+    __swig_setmethods__["minGlobalCrd"] = _StgDomain.Mesh_minGlobalCrd_set
+    __swig_getmethods__["minGlobalCrd"] = _StgDomain.Mesh_minGlobalCrd_get
+    if _newclass:minGlobalCrd = _swig_property(_StgDomain.Mesh_minGlobalCrd_get, _StgDomain.Mesh_minGlobalCrd_set)
+    __swig_setmethods__["maxGlobalCrd"] = _StgDomain.Mesh_maxGlobalCrd_set
+    __swig_getmethods__["maxGlobalCrd"] = _StgDomain.Mesh_maxGlobalCrd_get
+    if _newclass:maxGlobalCrd = _swig_property(_StgDomain.Mesh_maxGlobalCrd_get, _StgDomain.Mesh_maxGlobalCrd_set)
+    __swig_setmethods__["algorithms"] = _StgDomain.Mesh_algorithms_set
+    __swig_getmethods__["algorithms"] = _StgDomain.Mesh_algorithms_get
+    if _newclass:algorithms = _swig_property(_StgDomain.Mesh_algorithms_get, _StgDomain.Mesh_algorithms_set)
+    __swig_setmethods__["nElTypes"] = _StgDomain.Mesh_nElTypes_set
+    __swig_getmethods__["nElTypes"] = _StgDomain.Mesh_nElTypes_get
+    if _newclass:nElTypes = _swig_property(_StgDomain.Mesh_nElTypes_get, _StgDomain.Mesh_nElTypes_set)
+    __swig_setmethods__["elTypes"] = _StgDomain.Mesh_elTypes_set
+    __swig_getmethods__["elTypes"] = _StgDomain.Mesh_elTypes_get
+    if _newclass:elTypes = _swig_property(_StgDomain.Mesh_elTypes_get, _StgDomain.Mesh_elTypes_set)
+    __swig_setmethods__["elTypeMap"] = _StgDomain.Mesh_elTypeMap_set
+    __swig_getmethods__["elTypeMap"] = _StgDomain.Mesh_elTypeMap_get
+    if _newclass:elTypeMap = _swig_property(_StgDomain.Mesh_elTypeMap_get, _StgDomain.Mesh_elTypeMap_set)
+    __swig_setmethods__["topoDataSizes"] = _StgDomain.Mesh_topoDataSizes_set
+    __swig_getmethods__["topoDataSizes"] = _StgDomain.Mesh_topoDataSizes_get
+    if _newclass:topoDataSizes = _swig_property(_StgDomain.Mesh_topoDataSizes_get, _StgDomain.Mesh_topoDataSizes_set)
+    __swig_setmethods__["topoDataInfos"] = _StgDomain.Mesh_topoDataInfos_set
+    __swig_getmethods__["topoDataInfos"] = _StgDomain.Mesh_topoDataInfos_get
+    if _newclass:topoDataInfos = _swig_property(_StgDomain.Mesh_topoDataInfos_get, _StgDomain.Mesh_topoDataInfos_set)
+    __swig_setmethods__["topoDatas"] = _StgDomain.Mesh_topoDatas_set
+    __swig_getmethods__["topoDatas"] = _StgDomain.Mesh_topoDatas_get
+    if _newclass:topoDatas = _swig_property(_StgDomain.Mesh_topoDatas_get, _StgDomain.Mesh_topoDatas_set)
+    __swig_setmethods__["info"] = _StgDomain.Mesh_info_set
+    __swig_getmethods__["info"] = _StgDomain.Mesh_info_get
+    if _newclass:info = _swig_property(_StgDomain.Mesh_info_get, _StgDomain.Mesh_info_set)
+    __swig_setmethods__["vertGridId"] = _StgDomain.Mesh_vertGridId_set
+    __swig_getmethods__["vertGridId"] = _StgDomain.Mesh_vertGridId_get
+    if _newclass:vertGridId = _swig_property(_StgDomain.Mesh_vertGridId_get, _StgDomain.Mesh_vertGridId_set)
+    __swig_setmethods__["elGridId"] = _StgDomain.Mesh_elGridId_set
+    __swig_getmethods__["elGridId"] = _StgDomain.Mesh_elGridId_get
+    if _newclass:elGridId = _swig_property(_StgDomain.Mesh_elGridId_get, _StgDomain.Mesh_elGridId_set)
+    __swig_setmethods__["periodicId"] = _StgDomain.Mesh_periodicId_set
+    __swig_getmethods__["periodicId"] = _StgDomain.Mesh_periodicId_get
+    if _newclass:periodicId = _swig_property(_StgDomain.Mesh_periodicId_get, _StgDomain.Mesh_periodicId_set)
+    __swig_setmethods__["localOriginId"] = _StgDomain.Mesh_localOriginId_set
+    __swig_getmethods__["localOriginId"] = _StgDomain.Mesh_localOriginId_get
+    if _newclass:localOriginId = _swig_property(_StgDomain.Mesh_localOriginId_get, _StgDomain.Mesh_localOriginId_set)
+    __swig_setmethods__["localRangeId"] = _StgDomain.Mesh_localRangeId_set
+    __swig_getmethods__["localRangeId"] = _StgDomain.Mesh_localRangeId_get
+    if _newclass:localRangeId = _swig_property(_StgDomain.Mesh_localRangeId_get, _StgDomain.Mesh_localRangeId_set)
+    __swig_setmethods__["isRegular"] = _StgDomain.Mesh_isRegular_set
+    __swig_getmethods__["isRegular"] = _StgDomain.Mesh_isRegular_get
+    if _newclass:isRegular = _swig_property(_StgDomain.Mesh_isRegular_get, _StgDomain.Mesh_isRegular_set)
+    __swig_setmethods__["generator"] = _StgDomain.Mesh_generator_set
+    __swig_getmethods__["generator"] = _StgDomain.Mesh_generator_get
+    if _newclass:generator = _swig_property(_StgDomain.Mesh_generator_get, _StgDomain.Mesh_generator_set)
+    __swig_setmethods__["isCheckpointedAndReloaded"] = _StgDomain.Mesh_isCheckpointedAndReloaded_set
+    __swig_getmethods__["isCheckpointedAndReloaded"] = _StgDomain.Mesh_isCheckpointedAndReloaded_get
+    if _newclass:isCheckpointedAndReloaded = _swig_property(_StgDomain.Mesh_isCheckpointedAndReloaded_get, _StgDomain.Mesh_isCheckpointedAndReloaded_set)
+    __swig_setmethods__["isDeforming"] = _StgDomain.Mesh_isDeforming_set
+    __swig_getmethods__["isDeforming"] = _StgDomain.Mesh_isDeforming_get
+    if _newclass:isDeforming = _swig_property(_StgDomain.Mesh_isDeforming_get, _StgDomain.Mesh_isDeforming_set)
+    __swig_setmethods__["emReg"] = _StgDomain.Mesh_emReg_set
+    __swig_getmethods__["emReg"] = _StgDomain.Mesh_emReg_get
+    if _newclass:emReg = _swig_property(_StgDomain.Mesh_emReg_get, _StgDomain.Mesh_emReg_set)
+    def __init__(self): 
+        this = _StgDomain.new_Mesh()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Mesh
+    __del__ = lambda self : None;
+Mesh_swigregister = _StgDomain.Mesh_swigregister
+Mesh_swigregister(Mesh)
+cvar = _StgDomain.cvar
+TensorMapFT2D = cvar.TensorMapFT2D
+TensorMapST2D = cvar.TensorMapST2D
+TensorMapFT3D = cvar.TensorMapFT3D
+TensorMapST3D = cvar.TensorMapST3D
+Mesh_Type = cvar.Mesh_Type
+
+MeshCHECKPOINT_V1 = _StgDomain.MeshCHECKPOINT_V1
+MeshCHECKPOINT_V2 = _StgDomain.MeshCHECKPOINT_V2
+
+def Mesh_New(*args):
+  return _StgDomain.Mesh_New(*args)
+Mesh_New = _StgDomain.Mesh_New
+
+def _Mesh_New(*args):
+  return _StgDomain._Mesh_New(*args)
+_Mesh_New = _StgDomain._Mesh_New
+
+def _Mesh_Init(*args):
+  return _StgDomain._Mesh_Init(*args)
+_Mesh_Init = _StgDomain._Mesh_Init
+
+def _Mesh_Delete(*args):
+  return _StgDomain._Mesh_Delete(*args)
+_Mesh_Delete = _StgDomain._Mesh_Delete
+
+def _Mesh_Print(*args):
+  return _StgDomain._Mesh_Print(*args)
+_Mesh_Print = _StgDomain._Mesh_Print
+
+def _Mesh_AssignFromXML(*args):
+  return _StgDomain._Mesh_AssignFromXML(*args)
+_Mesh_AssignFromXML = _StgDomain._Mesh_AssignFromXML
+
+def _Mesh_Build(*args):
+  return _StgDomain._Mesh_Build(*args)
+_Mesh_Build = _StgDomain._Mesh_Build
+
+def _Mesh_Initialise(*args):
+  return _StgDomain._Mesh_Initialise(*args)
+_Mesh_Initialise = _StgDomain._Mesh_Initialise
+
+def _Mesh_Execute(*args):
+  return _StgDomain._Mesh_Execute(*args)
+_Mesh_Execute = _StgDomain._Mesh_Execute
+
+def _Mesh_Destroy(*args):
+  return _StgDomain._Mesh_Destroy(*args)
+_Mesh_Destroy = _StgDomain._Mesh_Destroy
+
+def Mesh_SetGenerator(*args):
+  return _StgDomain.Mesh_SetGenerator(*args)
+Mesh_SetGenerator = _StgDomain.Mesh_SetGenerator
+
+def Mesh_SetAlgorithms(*args):
+  return _StgDomain.Mesh_SetAlgorithms(*args)
+Mesh_SetAlgorithms = _StgDomain.Mesh_SetAlgorithms
+
+def Mesh_SetExtensionManagerRegister(*args):
+  return _StgDomain.Mesh_SetExtensionManagerRegister(*args)
+Mesh_SetExtensionManagerRegister = _StgDomain.Mesh_SetExtensionManagerRegister
+
+def Mesh_SetTopologyDataSize(*args):
+  return _StgDomain.Mesh_SetTopologyDataSize(*args)
+Mesh_SetTopologyDataSize = _StgDomain.Mesh_SetTopologyDataSize
+
+def Mesh_GetTopologyData(*args):
+  return _StgDomain.Mesh_GetTopologyData(*args)
+Mesh_GetTopologyData = _StgDomain.Mesh_GetTopologyData
+
+def Mesh_GetDimSize(*args):
+  return _StgDomain.Mesh_GetDimSize(*args)
+Mesh_GetDimSize = _StgDomain.Mesh_GetDimSize
+
+def Mesh_GetGlobalSize(*args):
+  return _StgDomain.Mesh_GetGlobalSize(*args)
+Mesh_GetGlobalSize = _StgDomain.Mesh_GetGlobalSize
+
+def Mesh_GetLocalSize(*args):
+  return _StgDomain.Mesh_GetLocalSize(*args)
+Mesh_GetLocalSize = _StgDomain.Mesh_GetLocalSize
+
+def Mesh_GetRemoteSize(*args):
+  return _StgDomain.Mesh_GetRemoteSize(*args)
+Mesh_GetRemoteSize = _StgDomain.Mesh_GetRemoteSize
+
+def Mesh_GetDomainSize(*args):
+  return _StgDomain.Mesh_GetDomainSize(*args)
+Mesh_GetDomainSize = _StgDomain.Mesh_GetDomainSize
+
+def Mesh_GetSharedSize(*args):
+  return _StgDomain.Mesh_GetSharedSize(*args)
+Mesh_GetSharedSize = _StgDomain.Mesh_GetSharedSize
+
+def Mesh_GetTopology(*args):
+  return _StgDomain.Mesh_GetTopology(*args)
+Mesh_GetTopology = _StgDomain.Mesh_GetTopology
+
+def Mesh_GetSync(*args):
+  return _StgDomain.Mesh_GetSync(*args)
+Mesh_GetSync = _StgDomain.Mesh_GetSync
+
+def Mesh_GlobalToDomain(*args):
+  return _StgDomain.Mesh_GlobalToDomain(*args)
+Mesh_GlobalToDomain = _StgDomain.Mesh_GlobalToDomain
+
+def Mesh_DomainToGlobal(*args):
+  return _StgDomain.Mesh_DomainToGlobal(*args)
+Mesh_DomainToGlobal = _StgDomain.Mesh_DomainToGlobal
+
+def Mesh_LocalToShared(*args):
+  return _StgDomain.Mesh_LocalToShared(*args)
+Mesh_LocalToShared = _StgDomain.Mesh_LocalToShared
+
+def Mesh_SharedToLocal(*args):
+  return _StgDomain.Mesh_SharedToLocal(*args)
+Mesh_SharedToLocal = _StgDomain.Mesh_SharedToLocal
+
+def Mesh_GetOwner(*args):
+  return _StgDomain.Mesh_GetOwner(*args)
+Mesh_GetOwner = _StgDomain.Mesh_GetOwner
+
+def Mesh_GetSharers(*args):
+  return _StgDomain.Mesh_GetSharers(*args)
+Mesh_GetSharers = _StgDomain.Mesh_GetSharers
+
+def Mesh_HasIncidence(*args):
+  return _StgDomain.Mesh_HasIncidence(*args)
+Mesh_HasIncidence = _StgDomain.Mesh_HasIncidence
+
+def Mesh_GetIncidenceSize(*args):
+  return _StgDomain.Mesh_GetIncidenceSize(*args)
+Mesh_GetIncidenceSize = _StgDomain.Mesh_GetIncidenceSize
+
+def Mesh_GetIncidence(*args):
+  return _StgDomain.Mesh_GetIncidence(*args)
+Mesh_GetIncidence = _StgDomain.Mesh_GetIncidence
+
+def Mesh_NearestVertex(*args):
+  return _StgDomain.Mesh_NearestVertex(*args)
+Mesh_NearestVertex = _StgDomain.Mesh_NearestVertex
+
+def Mesh_Search(*args):
+  return _StgDomain.Mesh_Search(*args)
+Mesh_Search = _StgDomain.Mesh_Search
+
+def Mesh_SearchElements(*args):
+  return _StgDomain.Mesh_SearchElements(*args)
+Mesh_SearchElements = _StgDomain.Mesh_SearchElements
+
+def Mesh_ElementHasPoint(*args):
+  return _StgDomain.Mesh_ElementHasPoint(*args)
+Mesh_ElementHasPoint = _StgDomain.Mesh_ElementHasPoint
+
+def Mesh_GetElementType(*args):
+  return _StgDomain.Mesh_GetElementType(*args)
+Mesh_GetElementType = _StgDomain.Mesh_GetElementType
+
+def Mesh_GetCommTopology(*args):
+  return _StgDomain.Mesh_GetCommTopology(*args)
+Mesh_GetCommTopology = _StgDomain.Mesh_GetCommTopology
+
+def Mesh_GetVertex(*args):
+  return _StgDomain.Mesh_GetVertex(*args)
+Mesh_GetVertex = _StgDomain.Mesh_GetVertex
+
+def Mesh_HasExtension(*args):
+  return _StgDomain.Mesh_HasExtension(*args)
+Mesh_HasExtension = _StgDomain.Mesh_HasExtension
+
+def _Mesh_GetExtension(*args):
+  return _StgDomain._Mesh_GetExtension(*args)
+_Mesh_GetExtension = _StgDomain._Mesh_GetExtension
+
+def Mesh_GetMinimumSeparation(*args):
+  return _StgDomain.Mesh_GetMinimumSeparation(*args)
+Mesh_GetMinimumSeparation = _StgDomain.Mesh_GetMinimumSeparation
+
+def Mesh_GetLocalCoordRange(*args):
+  return _StgDomain.Mesh_GetLocalCoordRange(*args)
+Mesh_GetLocalCoordRange = _StgDomain.Mesh_GetLocalCoordRange
+
+def Mesh_GetDomainCoordRange(*args):
+  return _StgDomain.Mesh_GetDomainCoordRange(*args)
+Mesh_GetDomainCoordRange = _StgDomain.Mesh_GetDomainCoordRange
+
+def Mesh_GetGlobalCoordRange(*args):
+  return _StgDomain.Mesh_GetGlobalCoordRange(*args)
+Mesh_GetGlobalCoordRange = _StgDomain.Mesh_GetGlobalCoordRange
+
+def Mesh_DeformationUpdate(*args):
+  return _StgDomain.Mesh_DeformationUpdate(*args)
+Mesh_DeformationUpdate = _StgDomain.Mesh_DeformationUpdate
+
+def Mesh_Sync(*args):
+  return _StgDomain.Mesh_Sync(*args)
+Mesh_Sync = _StgDomain.Mesh_Sync
+
+def Mesh_GenerateVertices(*args):
+  return _StgDomain.Mesh_GenerateVertices(*args)
+Mesh_GenerateVertices = _StgDomain.Mesh_GenerateVertices
+
+def Mesh_Destruct(*args):
+  return _StgDomain.Mesh_Destruct(*args)
+Mesh_Destruct = _StgDomain.Mesh_Destruct
+class MeshGenerator(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MeshGenerator, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MeshGenerator, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.MeshGenerator__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.MeshGenerator__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.MeshGenerator__sizeOfSelf_get, _StgDomain.MeshGenerator__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.MeshGenerator__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.MeshGenerator__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.MeshGenerator__deleteSelf_get, _StgDomain.MeshGenerator__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.MeshGenerator_type_set
+    __swig_getmethods__["type"] = _StgDomain.MeshGenerator_type_get
+    if _newclass:type = _swig_property(_StgDomain.MeshGenerator_type_get, _StgDomain.MeshGenerator_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.MeshGenerator_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.MeshGenerator_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.MeshGenerator_nRefs_get, _StgDomain.MeshGenerator_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.MeshGenerator__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.MeshGenerator__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.MeshGenerator__delete_get, _StgDomain.MeshGenerator__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.MeshGenerator__print_set
+    __swig_getmethods__["_print"] = _StgDomain.MeshGenerator__print_get
+    if _newclass:_print = _swig_property(_StgDomain.MeshGenerator__print_get, _StgDomain.MeshGenerator__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.MeshGenerator__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.MeshGenerator__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.MeshGenerator__copy_get, _StgDomain.MeshGenerator__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.MeshGenerator_name_set
+    __swig_getmethods__["name"] = _StgDomain.MeshGenerator_name_get
+    if _newclass:name = _swig_property(_StgDomain.MeshGenerator_name_get, _StgDomain.MeshGenerator_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.MeshGenerator_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.MeshGenerator_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.MeshGenerator_nameAllocationType_get, _StgDomain.MeshGenerator_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.MeshGenerator__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.MeshGenerator__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.MeshGenerator__defaultConstructor_get, _StgDomain.MeshGenerator__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.MeshGenerator__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.MeshGenerator__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.MeshGenerator__construct_get, _StgDomain.MeshGenerator__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.MeshGenerator__build_set
+    __swig_getmethods__["_build"] = _StgDomain.MeshGenerator__build_get
+    if _newclass:_build = _swig_property(_StgDomain.MeshGenerator__build_get, _StgDomain.MeshGenerator__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.MeshGenerator__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.MeshGenerator__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.MeshGenerator__initialise_get, _StgDomain.MeshGenerator__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.MeshGenerator__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.MeshGenerator__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.MeshGenerator__execute_get, _StgDomain.MeshGenerator__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.MeshGenerator__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.MeshGenerator__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.MeshGenerator__destroy_get, _StgDomain.MeshGenerator__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.MeshGenerator_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.MeshGenerator_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.MeshGenerator_isConstructed_get, _StgDomain.MeshGenerator_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.MeshGenerator_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.MeshGenerator_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.MeshGenerator_isBuilt_get, _StgDomain.MeshGenerator_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.MeshGenerator_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.MeshGenerator_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.MeshGenerator_isInitialised_get, _StgDomain.MeshGenerator_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.MeshGenerator_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.MeshGenerator_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.MeshGenerator_hasExecuted_get, _StgDomain.MeshGenerator_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.MeshGenerator_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.MeshGenerator_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.MeshGenerator_isDestroyed_get, _StgDomain.MeshGenerator_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.MeshGenerator_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.MeshGenerator_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.MeshGenerator_constructType_get, _StgDomain.MeshGenerator_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.MeshGenerator_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.MeshGenerator_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.MeshGenerator_buildType_get, _StgDomain.MeshGenerator_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.MeshGenerator_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.MeshGenerator_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.MeshGenerator_initialiseType_get, _StgDomain.MeshGenerator_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.MeshGenerator_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.MeshGenerator_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.MeshGenerator_executeType_get, _StgDomain.MeshGenerator_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.MeshGenerator_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.MeshGenerator_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.MeshGenerator_destroyType_get, _StgDomain.MeshGenerator_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.MeshGenerator_context_set
+    __swig_getmethods__["context"] = _StgDomain.MeshGenerator_context_get
+    if _newclass:context = _swig_property(_StgDomain.MeshGenerator_context_get, _StgDomain.MeshGenerator_context_set)
+    __swig_setmethods__["setDimSizeFunc"] = _StgDomain.MeshGenerator_setDimSizeFunc_set
+    __swig_getmethods__["setDimSizeFunc"] = _StgDomain.MeshGenerator_setDimSizeFunc_get
+    if _newclass:setDimSizeFunc = _swig_property(_StgDomain.MeshGenerator_setDimSizeFunc_get, _StgDomain.MeshGenerator_setDimSizeFunc_set)
+    __swig_setmethods__["generateFunc"] = _StgDomain.MeshGenerator_generateFunc_set
+    __swig_getmethods__["generateFunc"] = _StgDomain.MeshGenerator_generateFunc_get
+    if _newclass:generateFunc = _swig_property(_StgDomain.MeshGenerator_generateFunc_get, _StgDomain.MeshGenerator_generateFunc_set)
+    __swig_setmethods__["mpiComm"] = _StgDomain.MeshGenerator_mpiComm_set
+    __swig_getmethods__["mpiComm"] = _StgDomain.MeshGenerator_mpiComm_get
+    if _newclass:mpiComm = _swig_property(_StgDomain.MeshGenerator_mpiComm_get, _StgDomain.MeshGenerator_mpiComm_set)
+    __swig_setmethods__["nMeshes"] = _StgDomain.MeshGenerator_nMeshes_set
+    __swig_getmethods__["nMeshes"] = _StgDomain.MeshGenerator_nMeshes_get
+    if _newclass:nMeshes = _swig_property(_StgDomain.MeshGenerator_nMeshes_get, _StgDomain.MeshGenerator_nMeshes_set)
+    __swig_setmethods__["meshes"] = _StgDomain.MeshGenerator_meshes_set
+    __swig_getmethods__["meshes"] = _StgDomain.MeshGenerator_meshes_get
+    if _newclass:meshes = _swig_property(_StgDomain.MeshGenerator_meshes_get, _StgDomain.MeshGenerator_meshes_set)
+    __swig_setmethods__["nDims"] = _StgDomain.MeshGenerator_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.MeshGenerator_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.MeshGenerator_nDims_get, _StgDomain.MeshGenerator_nDims_set)
+    __swig_setmethods__["enabledDims"] = _StgDomain.MeshGenerator_enabledDims_set
+    __swig_getmethods__["enabledDims"] = _StgDomain.MeshGenerator_enabledDims_get
+    if _newclass:enabledDims = _swig_property(_StgDomain.MeshGenerator_enabledDims_get, _StgDomain.MeshGenerator_enabledDims_set)
+    __swig_setmethods__["enabledInc"] = _StgDomain.MeshGenerator_enabledInc_set
+    __swig_getmethods__["enabledInc"] = _StgDomain.MeshGenerator_enabledInc_get
+    if _newclass:enabledInc = _swig_property(_StgDomain.MeshGenerator_enabledInc_get, _StgDomain.MeshGenerator_enabledInc_set)
+    def __init__(self): 
+        this = _StgDomain.new_MeshGenerator()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_MeshGenerator
+    __del__ = lambda self : None;
+MeshGenerator_swigregister = _StgDomain.MeshGenerator_swigregister
+MeshGenerator_swigregister(MeshGenerator)
+MeshGenerator_Type = cvar.MeshGenerator_Type
+
+
+def _MeshGenerator_New(*args):
+  return _StgDomain._MeshGenerator_New(*args)
+_MeshGenerator_New = _StgDomain._MeshGenerator_New
+
+def _MeshGenerator_Init(*args):
+  return _StgDomain._MeshGenerator_Init(*args)
+_MeshGenerator_Init = _StgDomain._MeshGenerator_Init
+
+def _MeshGenerator_Delete(*args):
+  return _StgDomain._MeshGenerator_Delete(*args)
+_MeshGenerator_Delete = _StgDomain._MeshGenerator_Delete
+
+def _MeshGenerator_Print(*args):
+  return _StgDomain._MeshGenerator_Print(*args)
+_MeshGenerator_Print = _StgDomain._MeshGenerator_Print
+
+def _MeshGenerator_AssignFromXML(*args):
+  return _StgDomain._MeshGenerator_AssignFromXML(*args)
+_MeshGenerator_AssignFromXML = _StgDomain._MeshGenerator_AssignFromXML
+
+def _MeshGenerator_Build(*args):
+  return _StgDomain._MeshGenerator_Build(*args)
+_MeshGenerator_Build = _StgDomain._MeshGenerator_Build
+
+def _MeshGenerator_Initialise(*args):
+  return _StgDomain._MeshGenerator_Initialise(*args)
+_MeshGenerator_Initialise = _StgDomain._MeshGenerator_Initialise
+
+def _MeshGenerator_Execute(*args):
+  return _StgDomain._MeshGenerator_Execute(*args)
+_MeshGenerator_Execute = _StgDomain._MeshGenerator_Execute
+
+def _MeshGenerator_Destroy(*args):
+  return _StgDomain._MeshGenerator_Destroy(*args)
+_MeshGenerator_Destroy = _StgDomain._MeshGenerator_Destroy
+
+def _MeshGenerator_SetDimSize(*args):
+  return _StgDomain._MeshGenerator_SetDimSize(*args)
+_MeshGenerator_SetDimSize = _StgDomain._MeshGenerator_SetDimSize
+
+def MeshGenerator_SetMPIComm(*args):
+  return _StgDomain.MeshGenerator_SetMPIComm(*args)
+MeshGenerator_SetMPIComm = _StgDomain.MeshGenerator_SetMPIComm
+
+def MeshGenerator_AddMesh(*args):
+  return _StgDomain.MeshGenerator_AddMesh(*args)
+MeshGenerator_AddMesh = _StgDomain.MeshGenerator_AddMesh
+
+def MeshGenerator_SetFullIncidence(*args):
+  return _StgDomain.MeshGenerator_SetFullIncidence(*args)
+MeshGenerator_SetFullIncidence = _StgDomain.MeshGenerator_SetFullIncidence
+
+def MeshGenerator_SetDimState(*args):
+  return _StgDomain.MeshGenerator_SetDimState(*args)
+MeshGenerator_SetDimState = _StgDomain.MeshGenerator_SetDimState
+
+def MeshGenerator_ClearIncidenceStates(*args):
+  return _StgDomain.MeshGenerator_ClearIncidenceStates(*args)
+MeshGenerator_ClearIncidenceStates = _StgDomain.MeshGenerator_ClearIncidenceStates
+
+def MeshGenerator_SetIncidenceState(*args):
+  return _StgDomain.MeshGenerator_SetIncidenceState(*args)
+MeshGenerator_SetIncidenceState = _StgDomain.MeshGenerator_SetIncidenceState
+
+def MeshGenerator_Destruct(*args):
+  return _StgDomain.MeshGenerator_Destruct(*args)
+MeshGenerator_Destruct = _StgDomain.MeshGenerator_Destruct
+class MeshAdaptor(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MeshAdaptor, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MeshAdaptor, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.MeshAdaptor__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.MeshAdaptor__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.MeshAdaptor__sizeOfSelf_get, _StgDomain.MeshAdaptor__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.MeshAdaptor__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.MeshAdaptor__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.MeshAdaptor__deleteSelf_get, _StgDomain.MeshAdaptor__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.MeshAdaptor_type_set
+    __swig_getmethods__["type"] = _StgDomain.MeshAdaptor_type_get
+    if _newclass:type = _swig_property(_StgDomain.MeshAdaptor_type_get, _StgDomain.MeshAdaptor_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.MeshAdaptor_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.MeshAdaptor_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.MeshAdaptor_nRefs_get, _StgDomain.MeshAdaptor_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.MeshAdaptor__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.MeshAdaptor__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.MeshAdaptor__delete_get, _StgDomain.MeshAdaptor__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.MeshAdaptor__print_set
+    __swig_getmethods__["_print"] = _StgDomain.MeshAdaptor__print_get
+    if _newclass:_print = _swig_property(_StgDomain.MeshAdaptor__print_get, _StgDomain.MeshAdaptor__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.MeshAdaptor__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.MeshAdaptor__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.MeshAdaptor__copy_get, _StgDomain.MeshAdaptor__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.MeshAdaptor_name_set
+    __swig_getmethods__["name"] = _StgDomain.MeshAdaptor_name_get
+    if _newclass:name = _swig_property(_StgDomain.MeshAdaptor_name_get, _StgDomain.MeshAdaptor_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.MeshAdaptor_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.MeshAdaptor_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.MeshAdaptor_nameAllocationType_get, _StgDomain.MeshAdaptor_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.MeshAdaptor__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.MeshAdaptor__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.MeshAdaptor__defaultConstructor_get, _StgDomain.MeshAdaptor__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.MeshAdaptor__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.MeshAdaptor__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.MeshAdaptor__construct_get, _StgDomain.MeshAdaptor__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.MeshAdaptor__build_set
+    __swig_getmethods__["_build"] = _StgDomain.MeshAdaptor__build_get
+    if _newclass:_build = _swig_property(_StgDomain.MeshAdaptor__build_get, _StgDomain.MeshAdaptor__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.MeshAdaptor__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.MeshAdaptor__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.MeshAdaptor__initialise_get, _StgDomain.MeshAdaptor__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.MeshAdaptor__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.MeshAdaptor__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.MeshAdaptor__execute_get, _StgDomain.MeshAdaptor__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.MeshAdaptor__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.MeshAdaptor__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.MeshAdaptor__destroy_get, _StgDomain.MeshAdaptor__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.MeshAdaptor_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.MeshAdaptor_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.MeshAdaptor_isConstructed_get, _StgDomain.MeshAdaptor_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.MeshAdaptor_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.MeshAdaptor_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.MeshAdaptor_isBuilt_get, _StgDomain.MeshAdaptor_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.MeshAdaptor_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.MeshAdaptor_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.MeshAdaptor_isInitialised_get, _StgDomain.MeshAdaptor_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.MeshAdaptor_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.MeshAdaptor_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.MeshAdaptor_hasExecuted_get, _StgDomain.MeshAdaptor_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.MeshAdaptor_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.MeshAdaptor_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.MeshAdaptor_isDestroyed_get, _StgDomain.MeshAdaptor_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.MeshAdaptor_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.MeshAdaptor_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.MeshAdaptor_constructType_get, _StgDomain.MeshAdaptor_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.MeshAdaptor_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.MeshAdaptor_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.MeshAdaptor_buildType_get, _StgDomain.MeshAdaptor_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.MeshAdaptor_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.MeshAdaptor_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.MeshAdaptor_initialiseType_get, _StgDomain.MeshAdaptor_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.MeshAdaptor_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.MeshAdaptor_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.MeshAdaptor_executeType_get, _StgDomain.MeshAdaptor_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.MeshAdaptor_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.MeshAdaptor_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.MeshAdaptor_destroyType_get, _StgDomain.MeshAdaptor_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.MeshAdaptor_context_set
+    __swig_getmethods__["context"] = _StgDomain.MeshAdaptor_context_get
+    if _newclass:context = _swig_property(_StgDomain.MeshAdaptor_context_get, _StgDomain.MeshAdaptor_context_set)
+    __swig_setmethods__["setDimSizeFunc"] = _StgDomain.MeshAdaptor_setDimSizeFunc_set
+    __swig_getmethods__["setDimSizeFunc"] = _StgDomain.MeshAdaptor_setDimSizeFunc_get
+    if _newclass:setDimSizeFunc = _swig_property(_StgDomain.MeshAdaptor_setDimSizeFunc_get, _StgDomain.MeshAdaptor_setDimSizeFunc_set)
+    __swig_setmethods__["generateFunc"] = _StgDomain.MeshAdaptor_generateFunc_set
+    __swig_getmethods__["generateFunc"] = _StgDomain.MeshAdaptor_generateFunc_get
+    if _newclass:generateFunc = _swig_property(_StgDomain.MeshAdaptor_generateFunc_get, _StgDomain.MeshAdaptor_generateFunc_set)
+    __swig_setmethods__["mpiComm"] = _StgDomain.MeshAdaptor_mpiComm_set
+    __swig_getmethods__["mpiComm"] = _StgDomain.MeshAdaptor_mpiComm_get
+    if _newclass:mpiComm = _swig_property(_StgDomain.MeshAdaptor_mpiComm_get, _StgDomain.MeshAdaptor_mpiComm_set)
+    __swig_setmethods__["nMeshes"] = _StgDomain.MeshAdaptor_nMeshes_set
+    __swig_getmethods__["nMeshes"] = _StgDomain.MeshAdaptor_nMeshes_get
+    if _newclass:nMeshes = _swig_property(_StgDomain.MeshAdaptor_nMeshes_get, _StgDomain.MeshAdaptor_nMeshes_set)
+    __swig_setmethods__["meshes"] = _StgDomain.MeshAdaptor_meshes_set
+    __swig_getmethods__["meshes"] = _StgDomain.MeshAdaptor_meshes_get
+    if _newclass:meshes = _swig_property(_StgDomain.MeshAdaptor_meshes_get, _StgDomain.MeshAdaptor_meshes_set)
+    __swig_setmethods__["nDims"] = _StgDomain.MeshAdaptor_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.MeshAdaptor_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.MeshAdaptor_nDims_get, _StgDomain.MeshAdaptor_nDims_set)
+    __swig_setmethods__["enabledDims"] = _StgDomain.MeshAdaptor_enabledDims_set
+    __swig_getmethods__["enabledDims"] = _StgDomain.MeshAdaptor_enabledDims_get
+    if _newclass:enabledDims = _swig_property(_StgDomain.MeshAdaptor_enabledDims_get, _StgDomain.MeshAdaptor_enabledDims_set)
+    __swig_setmethods__["enabledInc"] = _StgDomain.MeshAdaptor_enabledInc_set
+    __swig_getmethods__["enabledInc"] = _StgDomain.MeshAdaptor_enabledInc_get
+    if _newclass:enabledInc = _swig_property(_StgDomain.MeshAdaptor_enabledInc_get, _StgDomain.MeshAdaptor_enabledInc_set)
+    __swig_setmethods__["generator"] = _StgDomain.MeshAdaptor_generator_set
+    __swig_getmethods__["generator"] = _StgDomain.MeshAdaptor_generator_get
+    if _newclass:generator = _swig_property(_StgDomain.MeshAdaptor_generator_get, _StgDomain.MeshAdaptor_generator_set)
+    __swig_setmethods__["srcMesh"] = _StgDomain.MeshAdaptor_srcMesh_set
+    __swig_getmethods__["srcMesh"] = _StgDomain.MeshAdaptor_srcMesh_get
+    if _newclass:srcMesh = _swig_property(_StgDomain.MeshAdaptor_srcMesh_get, _StgDomain.MeshAdaptor_srcMesh_set)
+    def __init__(self): 
+        this = _StgDomain.new_MeshAdaptor()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_MeshAdaptor
+    __del__ = lambda self : None;
+MeshAdaptor_swigregister = _StgDomain.MeshAdaptor_swigregister
+MeshAdaptor_swigregister(MeshAdaptor)
+MeshAdaptor_Type = cvar.MeshAdaptor_Type
+
+
+def _MeshAdaptor_New(*args):
+  return _StgDomain._MeshAdaptor_New(*args)
+_MeshAdaptor_New = _StgDomain._MeshAdaptor_New
+
+def _MeshAdaptor_Init(*args):
+  return _StgDomain._MeshAdaptor_Init(*args)
+_MeshAdaptor_Init = _StgDomain._MeshAdaptor_Init
+
+def _MeshAdaptor_Delete(*args):
+  return _StgDomain._MeshAdaptor_Delete(*args)
+_MeshAdaptor_Delete = _StgDomain._MeshAdaptor_Delete
+
+def _MeshAdaptor_Print(*args):
+  return _StgDomain._MeshAdaptor_Print(*args)
+_MeshAdaptor_Print = _StgDomain._MeshAdaptor_Print
+
+def _MeshAdaptor_AssignFromXML(*args):
+  return _StgDomain._MeshAdaptor_AssignFromXML(*args)
+_MeshAdaptor_AssignFromXML = _StgDomain._MeshAdaptor_AssignFromXML
+
+def _MeshAdaptor_Build(*args):
+  return _StgDomain._MeshAdaptor_Build(*args)
+_MeshAdaptor_Build = _StgDomain._MeshAdaptor_Build
+
+def _MeshAdaptor_Initialise(*args):
+  return _StgDomain._MeshAdaptor_Initialise(*args)
+_MeshAdaptor_Initialise = _StgDomain._MeshAdaptor_Initialise
+
+def _MeshAdaptor_Execute(*args):
+  return _StgDomain._MeshAdaptor_Execute(*args)
+_MeshAdaptor_Execute = _StgDomain._MeshAdaptor_Execute
+
+def _MeshAdaptor_Destroy(*args):
+  return _StgDomain._MeshAdaptor_Destroy(*args)
+_MeshAdaptor_Destroy = _StgDomain._MeshAdaptor_Destroy
+
+def MeshAdaptor_SetGenerator(*args):
+  return _StgDomain.MeshAdaptor_SetGenerator(*args)
+MeshAdaptor_SetGenerator = _StgDomain.MeshAdaptor_SetGenerator
+
+def MeshAdaptor_SetSourceMesh(*args):
+  return _StgDomain.MeshAdaptor_SetSourceMesh(*args)
+MeshAdaptor_SetSourceMesh = _StgDomain.MeshAdaptor_SetSourceMesh
+class CartesianGenerator(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, CartesianGenerator, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, CartesianGenerator, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.CartesianGenerator__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.CartesianGenerator__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.CartesianGenerator__sizeOfSelf_get, _StgDomain.CartesianGenerator__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.CartesianGenerator__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.CartesianGenerator__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.CartesianGenerator__deleteSelf_get, _StgDomain.CartesianGenerator__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.CartesianGenerator_type_set
+    __swig_getmethods__["type"] = _StgDomain.CartesianGenerator_type_get
+    if _newclass:type = _swig_property(_StgDomain.CartesianGenerator_type_get, _StgDomain.CartesianGenerator_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.CartesianGenerator_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.CartesianGenerator_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.CartesianGenerator_nRefs_get, _StgDomain.CartesianGenerator_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.CartesianGenerator__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.CartesianGenerator__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.CartesianGenerator__delete_get, _StgDomain.CartesianGenerator__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.CartesianGenerator__print_set
+    __swig_getmethods__["_print"] = _StgDomain.CartesianGenerator__print_get
+    if _newclass:_print = _swig_property(_StgDomain.CartesianGenerator__print_get, _StgDomain.CartesianGenerator__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.CartesianGenerator__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.CartesianGenerator__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.CartesianGenerator__copy_get, _StgDomain.CartesianGenerator__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.CartesianGenerator_name_set
+    __swig_getmethods__["name"] = _StgDomain.CartesianGenerator_name_get
+    if _newclass:name = _swig_property(_StgDomain.CartesianGenerator_name_get, _StgDomain.CartesianGenerator_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.CartesianGenerator_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.CartesianGenerator_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.CartesianGenerator_nameAllocationType_get, _StgDomain.CartesianGenerator_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.CartesianGenerator__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.CartesianGenerator__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.CartesianGenerator__defaultConstructor_get, _StgDomain.CartesianGenerator__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.CartesianGenerator__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.CartesianGenerator__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.CartesianGenerator__construct_get, _StgDomain.CartesianGenerator__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.CartesianGenerator__build_set
+    __swig_getmethods__["_build"] = _StgDomain.CartesianGenerator__build_get
+    if _newclass:_build = _swig_property(_StgDomain.CartesianGenerator__build_get, _StgDomain.CartesianGenerator__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.CartesianGenerator__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.CartesianGenerator__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.CartesianGenerator__initialise_get, _StgDomain.CartesianGenerator__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.CartesianGenerator__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.CartesianGenerator__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.CartesianGenerator__execute_get, _StgDomain.CartesianGenerator__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.CartesianGenerator__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.CartesianGenerator__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.CartesianGenerator__destroy_get, _StgDomain.CartesianGenerator__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.CartesianGenerator_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.CartesianGenerator_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.CartesianGenerator_isConstructed_get, _StgDomain.CartesianGenerator_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.CartesianGenerator_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.CartesianGenerator_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.CartesianGenerator_isBuilt_get, _StgDomain.CartesianGenerator_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.CartesianGenerator_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.CartesianGenerator_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.CartesianGenerator_isInitialised_get, _StgDomain.CartesianGenerator_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.CartesianGenerator_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.CartesianGenerator_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.CartesianGenerator_hasExecuted_get, _StgDomain.CartesianGenerator_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.CartesianGenerator_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.CartesianGenerator_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.CartesianGenerator_isDestroyed_get, _StgDomain.CartesianGenerator_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.CartesianGenerator_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.CartesianGenerator_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.CartesianGenerator_constructType_get, _StgDomain.CartesianGenerator_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.CartesianGenerator_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.CartesianGenerator_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.CartesianGenerator_buildType_get, _StgDomain.CartesianGenerator_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.CartesianGenerator_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.CartesianGenerator_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.CartesianGenerator_initialiseType_get, _StgDomain.CartesianGenerator_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.CartesianGenerator_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.CartesianGenerator_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.CartesianGenerator_executeType_get, _StgDomain.CartesianGenerator_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.CartesianGenerator_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.CartesianGenerator_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.CartesianGenerator_destroyType_get, _StgDomain.CartesianGenerator_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.CartesianGenerator_context_set
+    __swig_getmethods__["context"] = _StgDomain.CartesianGenerator_context_get
+    if _newclass:context = _swig_property(_StgDomain.CartesianGenerator_context_get, _StgDomain.CartesianGenerator_context_set)
+    __swig_setmethods__["setDimSizeFunc"] = _StgDomain.CartesianGenerator_setDimSizeFunc_set
+    __swig_getmethods__["setDimSizeFunc"] = _StgDomain.CartesianGenerator_setDimSizeFunc_get
+    if _newclass:setDimSizeFunc = _swig_property(_StgDomain.CartesianGenerator_setDimSizeFunc_get, _StgDomain.CartesianGenerator_setDimSizeFunc_set)
+    __swig_setmethods__["generateFunc"] = _StgDomain.CartesianGenerator_generateFunc_set
+    __swig_getmethods__["generateFunc"] = _StgDomain.CartesianGenerator_generateFunc_get
+    if _newclass:generateFunc = _swig_property(_StgDomain.CartesianGenerator_generateFunc_get, _StgDomain.CartesianGenerator_generateFunc_set)
+    __swig_setmethods__["mpiComm"] = _StgDomain.CartesianGenerator_mpiComm_set
+    __swig_getmethods__["mpiComm"] = _StgDomain.CartesianGenerator_mpiComm_get
+    if _newclass:mpiComm = _swig_property(_StgDomain.CartesianGenerator_mpiComm_get, _StgDomain.CartesianGenerator_mpiComm_set)
+    __swig_setmethods__["nMeshes"] = _StgDomain.CartesianGenerator_nMeshes_set
+    __swig_getmethods__["nMeshes"] = _StgDomain.CartesianGenerator_nMeshes_get
+    if _newclass:nMeshes = _swig_property(_StgDomain.CartesianGenerator_nMeshes_get, _StgDomain.CartesianGenerator_nMeshes_set)
+    __swig_setmethods__["meshes"] = _StgDomain.CartesianGenerator_meshes_set
+    __swig_getmethods__["meshes"] = _StgDomain.CartesianGenerator_meshes_get
+    if _newclass:meshes = _swig_property(_StgDomain.CartesianGenerator_meshes_get, _StgDomain.CartesianGenerator_meshes_set)
+    __swig_setmethods__["nDims"] = _StgDomain.CartesianGenerator_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.CartesianGenerator_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.CartesianGenerator_nDims_get, _StgDomain.CartesianGenerator_nDims_set)
+    __swig_setmethods__["enabledDims"] = _StgDomain.CartesianGenerator_enabledDims_set
+    __swig_getmethods__["enabledDims"] = _StgDomain.CartesianGenerator_enabledDims_get
+    if _newclass:enabledDims = _swig_property(_StgDomain.CartesianGenerator_enabledDims_get, _StgDomain.CartesianGenerator_enabledDims_set)
+    __swig_setmethods__["enabledInc"] = _StgDomain.CartesianGenerator_enabledInc_set
+    __swig_getmethods__["enabledInc"] = _StgDomain.CartesianGenerator_enabledInc_get
+    if _newclass:enabledInc = _swig_property(_StgDomain.CartesianGenerator_enabledInc_get, _StgDomain.CartesianGenerator_enabledInc_set)
+    __swig_setmethods__["setTopologyParamsFunc"] = _StgDomain.CartesianGenerator_setTopologyParamsFunc_set
+    __swig_getmethods__["setTopologyParamsFunc"] = _StgDomain.CartesianGenerator_setTopologyParamsFunc_get
+    if _newclass:setTopologyParamsFunc = _swig_property(_StgDomain.CartesianGenerator_setTopologyParamsFunc_get, _StgDomain.CartesianGenerator_setTopologyParamsFunc_set)
+    __swig_setmethods__["genElementsFunc"] = _StgDomain.CartesianGenerator_genElementsFunc_set
+    __swig_getmethods__["genElementsFunc"] = _StgDomain.CartesianGenerator_genElementsFunc_get
+    if _newclass:genElementsFunc = _swig_property(_StgDomain.CartesianGenerator_genElementsFunc_get, _StgDomain.CartesianGenerator_genElementsFunc_set)
+    __swig_setmethods__["genFacesFunc"] = _StgDomain.CartesianGenerator_genFacesFunc_set
+    __swig_getmethods__["genFacesFunc"] = _StgDomain.CartesianGenerator_genFacesFunc_get
+    if _newclass:genFacesFunc = _swig_property(_StgDomain.CartesianGenerator_genFacesFunc_get, _StgDomain.CartesianGenerator_genFacesFunc_set)
+    __swig_setmethods__["genEdgesFunc"] = _StgDomain.CartesianGenerator_genEdgesFunc_set
+    __swig_getmethods__["genEdgesFunc"] = _StgDomain.CartesianGenerator_genEdgesFunc_get
+    if _newclass:genEdgesFunc = _swig_property(_StgDomain.CartesianGenerator_genEdgesFunc_get, _StgDomain.CartesianGenerator_genEdgesFunc_set)
+    __swig_setmethods__["genVerticesFunc"] = _StgDomain.CartesianGenerator_genVerticesFunc_set
+    __swig_getmethods__["genVerticesFunc"] = _StgDomain.CartesianGenerator_genVerticesFunc_get
+    if _newclass:genVerticesFunc = _swig_property(_StgDomain.CartesianGenerator_genVerticesFunc_get, _StgDomain.CartesianGenerator_genVerticesFunc_set)
+    __swig_setmethods__["genElementVertexIncFunc"] = _StgDomain.CartesianGenerator_genElementVertexIncFunc_set
+    __swig_getmethods__["genElementVertexIncFunc"] = _StgDomain.CartesianGenerator_genElementVertexIncFunc_get
+    if _newclass:genElementVertexIncFunc = _swig_property(_StgDomain.CartesianGenerator_genElementVertexIncFunc_get, _StgDomain.CartesianGenerator_genElementVertexIncFunc_set)
+    __swig_setmethods__["genVolumeEdgeIncFunc"] = _StgDomain.CartesianGenerator_genVolumeEdgeIncFunc_set
+    __swig_getmethods__["genVolumeEdgeIncFunc"] = _StgDomain.CartesianGenerator_genVolumeEdgeIncFunc_get
+    if _newclass:genVolumeEdgeIncFunc = _swig_property(_StgDomain.CartesianGenerator_genVolumeEdgeIncFunc_get, _StgDomain.CartesianGenerator_genVolumeEdgeIncFunc_set)
+    __swig_setmethods__["genVolumeFaceIncFunc"] = _StgDomain.CartesianGenerator_genVolumeFaceIncFunc_set
+    __swig_getmethods__["genVolumeFaceIncFunc"] = _StgDomain.CartesianGenerator_genVolumeFaceIncFunc_get
+    if _newclass:genVolumeFaceIncFunc = _swig_property(_StgDomain.CartesianGenerator_genVolumeFaceIncFunc_get, _StgDomain.CartesianGenerator_genVolumeFaceIncFunc_set)
+    __swig_setmethods__["genFaceVertexIncFunc"] = _StgDomain.CartesianGenerator_genFaceVertexIncFunc_set
+    __swig_getmethods__["genFaceVertexIncFunc"] = _StgDomain.CartesianGenerator_genFaceVertexIncFunc_get
+    if _newclass:genFaceVertexIncFunc = _swig_property(_StgDomain.CartesianGenerator_genFaceVertexIncFunc_get, _StgDomain.CartesianGenerator_genFaceVertexIncFunc_set)
+    __swig_setmethods__["genFaceEdgeIncFunc"] = _StgDomain.CartesianGenerator_genFaceEdgeIncFunc_set
+    __swig_getmethods__["genFaceEdgeIncFunc"] = _StgDomain.CartesianGenerator_genFaceEdgeIncFunc_get
+    if _newclass:genFaceEdgeIncFunc = _swig_property(_StgDomain.CartesianGenerator_genFaceEdgeIncFunc_get, _StgDomain.CartesianGenerator_genFaceEdgeIncFunc_set)
+    __swig_setmethods__["genEdgeVertexIncFunc"] = _StgDomain.CartesianGenerator_genEdgeVertexIncFunc_set
+    __swig_getmethods__["genEdgeVertexIncFunc"] = _StgDomain.CartesianGenerator_genEdgeVertexIncFunc_get
+    if _newclass:genEdgeVertexIncFunc = _swig_property(_StgDomain.CartesianGenerator_genEdgeVertexIncFunc_get, _StgDomain.CartesianGenerator_genEdgeVertexIncFunc_set)
+    __swig_setmethods__["genElementTypesFunc"] = _StgDomain.CartesianGenerator_genElementTypesFunc_set
+    __swig_getmethods__["genElementTypesFunc"] = _StgDomain.CartesianGenerator_genElementTypesFunc_get
+    if _newclass:genElementTypesFunc = _swig_property(_StgDomain.CartesianGenerator_genElementTypesFunc_get, _StgDomain.CartesianGenerator_genElementTypesFunc_set)
+    __swig_setmethods__["calcGeomFunc"] = _StgDomain.CartesianGenerator_calcGeomFunc_set
+    __swig_getmethods__["calcGeomFunc"] = _StgDomain.CartesianGenerator_calcGeomFunc_get
+    if _newclass:calcGeomFunc = _swig_property(_StgDomain.CartesianGenerator_calcGeomFunc_get, _StgDomain.CartesianGenerator_calcGeomFunc_set)
+    __swig_setmethods__["comm"] = _StgDomain.CartesianGenerator_comm_set
+    __swig_getmethods__["comm"] = _StgDomain.CartesianGenerator_comm_get
+    if _newclass:comm = _swig_property(_StgDomain.CartesianGenerator_comm_get, _StgDomain.CartesianGenerator_comm_set)
+    __swig_setmethods__["regular"] = _StgDomain.CartesianGenerator_regular_set
+    __swig_getmethods__["regular"] = _StgDomain.CartesianGenerator_regular_get
+    if _newclass:regular = _swig_property(_StgDomain.CartesianGenerator_regular_get, _StgDomain.CartesianGenerator_regular_set)
+    __swig_setmethods__["periodic"] = _StgDomain.CartesianGenerator_periodic_set
+    __swig_getmethods__["periodic"] = _StgDomain.CartesianGenerator_periodic_get
+    if _newclass:periodic = _swig_property(_StgDomain.CartesianGenerator_periodic_get, _StgDomain.CartesianGenerator_periodic_set)
+    __swig_setmethods__["readFromFile"] = _StgDomain.CartesianGenerator_readFromFile_set
+    __swig_getmethods__["readFromFile"] = _StgDomain.CartesianGenerator_readFromFile_get
+    if _newclass:readFromFile = _swig_property(_StgDomain.CartesianGenerator_readFromFile_get, _StgDomain.CartesianGenerator_readFromFile_set)
+    __swig_setmethods__["maxDecompDims"] = _StgDomain.CartesianGenerator_maxDecompDims_set
+    __swig_getmethods__["maxDecompDims"] = _StgDomain.CartesianGenerator_maxDecompDims_get
+    if _newclass:maxDecompDims = _swig_property(_StgDomain.CartesianGenerator_maxDecompDims_get, _StgDomain.CartesianGenerator_maxDecompDims_set)
+    __swig_setmethods__["minDecomp"] = _StgDomain.CartesianGenerator_minDecomp_set
+    __swig_getmethods__["minDecomp"] = _StgDomain.CartesianGenerator_minDecomp_get
+    if _newclass:minDecomp = _swig_property(_StgDomain.CartesianGenerator_minDecomp_get, _StgDomain.CartesianGenerator_minDecomp_set)
+    __swig_setmethods__["maxDecomp"] = _StgDomain.CartesianGenerator_maxDecomp_set
+    __swig_getmethods__["maxDecomp"] = _StgDomain.CartesianGenerator_maxDecomp_get
+    if _newclass:maxDecomp = _swig_property(_StgDomain.CartesianGenerator_maxDecomp_get, _StgDomain.CartesianGenerator_maxDecomp_set)
+    __swig_setmethods__["shadowDepth"] = _StgDomain.CartesianGenerator_shadowDepth_set
+    __swig_getmethods__["shadowDepth"] = _StgDomain.CartesianGenerator_shadowDepth_get
+    if _newclass:shadowDepth = _swig_property(_StgDomain.CartesianGenerator_shadowDepth_get, _StgDomain.CartesianGenerator_shadowDepth_set)
+    __swig_setmethods__["crdMin"] = _StgDomain.CartesianGenerator_crdMin_set
+    __swig_getmethods__["crdMin"] = _StgDomain.CartesianGenerator_crdMin_get
+    if _newclass:crdMin = _swig_property(_StgDomain.CartesianGenerator_crdMin_get, _StgDomain.CartesianGenerator_crdMin_set)
+    __swig_setmethods__["crdMax"] = _StgDomain.CartesianGenerator_crdMax_set
+    __swig_getmethods__["crdMax"] = _StgDomain.CartesianGenerator_crdMax_get
+    if _newclass:crdMax = _swig_property(_StgDomain.CartesianGenerator_crdMax_get, _StgDomain.CartesianGenerator_crdMax_set)
+    __swig_setmethods__["vertGrid"] = _StgDomain.CartesianGenerator_vertGrid_set
+    __swig_getmethods__["vertGrid"] = _StgDomain.CartesianGenerator_vertGrid_get
+    if _newclass:vertGrid = _swig_property(_StgDomain.CartesianGenerator_vertGrid_get, _StgDomain.CartesianGenerator_vertGrid_set)
+    __swig_setmethods__["elGrid"] = _StgDomain.CartesianGenerator_elGrid_set
+    __swig_getmethods__["elGrid"] = _StgDomain.CartesianGenerator_elGrid_get
+    if _newclass:elGrid = _swig_property(_StgDomain.CartesianGenerator_elGrid_get, _StgDomain.CartesianGenerator_elGrid_set)
+    __swig_setmethods__["procGrid"] = _StgDomain.CartesianGenerator_procGrid_set
+    __swig_getmethods__["procGrid"] = _StgDomain.CartesianGenerator_procGrid_get
+    if _newclass:procGrid = _swig_property(_StgDomain.CartesianGenerator_procGrid_get, _StgDomain.CartesianGenerator_procGrid_set)
+    __swig_setmethods__["origin"] = _StgDomain.CartesianGenerator_origin_set
+    __swig_getmethods__["origin"] = _StgDomain.CartesianGenerator_origin_get
+    if _newclass:origin = _swig_property(_StgDomain.CartesianGenerator_origin_get, _StgDomain.CartesianGenerator_origin_set)
+    __swig_setmethods__["range"] = _StgDomain.CartesianGenerator_range_set
+    __swig_getmethods__["range"] = _StgDomain.CartesianGenerator_range_get
+    if _newclass:range = _swig_property(_StgDomain.CartesianGenerator_range_get, _StgDomain.CartesianGenerator_range_set)
+    __swig_setmethods__["vertOrigin"] = _StgDomain.CartesianGenerator_vertOrigin_set
+    __swig_getmethods__["vertOrigin"] = _StgDomain.CartesianGenerator_vertOrigin_get
+    if _newclass:vertOrigin = _swig_property(_StgDomain.CartesianGenerator_vertOrigin_get, _StgDomain.CartesianGenerator_vertOrigin_set)
+    __swig_setmethods__["vertRange"] = _StgDomain.CartesianGenerator_vertRange_set
+    __swig_getmethods__["vertRange"] = _StgDomain.CartesianGenerator_vertRange_get
+    if _newclass:vertRange = _swig_property(_StgDomain.CartesianGenerator_vertRange_get, _StgDomain.CartesianGenerator_vertRange_set)
+    __swig_setmethods__["contactDepth"] = _StgDomain.CartesianGenerator_contactDepth_set
+    __swig_getmethods__["contactDepth"] = _StgDomain.CartesianGenerator_contactDepth_get
+    if _newclass:contactDepth = _swig_property(_StgDomain.CartesianGenerator_contactDepth_get, _StgDomain.CartesianGenerator_contactDepth_set)
+    __swig_setmethods__["contactGeom"] = _StgDomain.CartesianGenerator_contactGeom_set
+    __swig_getmethods__["contactGeom"] = _StgDomain.CartesianGenerator_contactGeom_get
+    if _newclass:contactGeom = _swig_property(_StgDomain.CartesianGenerator_contactGeom_get, _StgDomain.CartesianGenerator_contactGeom_set)
+    __swig_setmethods__["initVtkFile"] = _StgDomain.CartesianGenerator_initVtkFile_set
+    __swig_getmethods__["initVtkFile"] = _StgDomain.CartesianGenerator_initVtkFile_get
+    if _newclass:initVtkFile = _swig_property(_StgDomain.CartesianGenerator_initVtkFile_get, _StgDomain.CartesianGenerator_initVtkFile_set)
+    __swig_setmethods__["initMeshFile"] = _StgDomain.CartesianGenerator_initMeshFile_set
+    __swig_getmethods__["initMeshFile"] = _StgDomain.CartesianGenerator_initMeshFile_get
+    if _newclass:initMeshFile = _swig_property(_StgDomain.CartesianGenerator_initMeshFile_get, _StgDomain.CartesianGenerator_initMeshFile_set)
+    def __init__(self): 
+        this = _StgDomain.new_CartesianGenerator()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_CartesianGenerator
+    __del__ = lambda self : None;
+CartesianGenerator_swigregister = _StgDomain.CartesianGenerator_swigregister
+CartesianGenerator_swigregister(CartesianGenerator)
+CartesianGenerator_Type = cvar.CartesianGenerator_Type
+
+
+def _CartesianGenerator_DefaultNew(*args):
+  return _StgDomain._CartesianGenerator_DefaultNew(*args)
+_CartesianGenerator_DefaultNew = _StgDomain._CartesianGenerator_DefaultNew
+
+def CartesianGenerator_New(*args):
+  return _StgDomain.CartesianGenerator_New(*args)
+CartesianGenerator_New = _StgDomain.CartesianGenerator_New
+
+def _CartesianGenerator_New(*args):
+  return _StgDomain._CartesianGenerator_New(*args)
+_CartesianGenerator_New = _StgDomain._CartesianGenerator_New
+
+def _CartesianGenerator_Init(*args):
+  return _StgDomain._CartesianGenerator_Init(*args)
+_CartesianGenerator_Init = _StgDomain._CartesianGenerator_Init
+
+def _CartesianGenerator_Delete(*args):
+  return _StgDomain._CartesianGenerator_Delete(*args)
+_CartesianGenerator_Delete = _StgDomain._CartesianGenerator_Delete
+
+def _CartesianGenerator_Print(*args):
+  return _StgDomain._CartesianGenerator_Print(*args)
+_CartesianGenerator_Print = _StgDomain._CartesianGenerator_Print
+
+def _CartesianGenerator_AssignFromXML(*args):
+  return _StgDomain._CartesianGenerator_AssignFromXML(*args)
+_CartesianGenerator_AssignFromXML = _StgDomain._CartesianGenerator_AssignFromXML
+
+def _CartesianGenerator_Build(*args):
+  return _StgDomain._CartesianGenerator_Build(*args)
+_CartesianGenerator_Build = _StgDomain._CartesianGenerator_Build
+
+def _CartesianGenerator_Initialise(*args):
+  return _StgDomain._CartesianGenerator_Initialise(*args)
+_CartesianGenerator_Initialise = _StgDomain._CartesianGenerator_Initialise
+
+def _CartesianGenerator_Execute(*args):
+  return _StgDomain._CartesianGenerator_Execute(*args)
+_CartesianGenerator_Execute = _StgDomain._CartesianGenerator_Execute
+
+def _CartesianGenerator_Destroy(*args):
+  return _StgDomain._CartesianGenerator_Destroy(*args)
+_CartesianGenerator_Destroy = _StgDomain._CartesianGenerator_Destroy
+
+def CartesianGenerator_SetDimSize(*args):
+  return _StgDomain.CartesianGenerator_SetDimSize(*args)
+CartesianGenerator_SetDimSize = _StgDomain.CartesianGenerator_SetDimSize
+
+def CartesianGenerator_Generate(*args):
+  return _StgDomain.CartesianGenerator_Generate(*args)
+CartesianGenerator_Generate = _StgDomain.CartesianGenerator_Generate
+
+def _CartesianGenerator_SetTopologyParams(*args):
+  return _StgDomain._CartesianGenerator_SetTopologyParams(*args)
+_CartesianGenerator_SetTopologyParams = _StgDomain._CartesianGenerator_SetTopologyParams
+
+def _CartesianGenerator_GenElements(*args):
+  return _StgDomain._CartesianGenerator_GenElements(*args)
+_CartesianGenerator_GenElements = _StgDomain._CartesianGenerator_GenElements
+
+def _CartesianGenerator_GenFaces(*args):
+  return _StgDomain._CartesianGenerator_GenFaces(*args)
+_CartesianGenerator_GenFaces = _StgDomain._CartesianGenerator_GenFaces
+
+def _CartesianGenerator_GenEdges(*args):
+  return _StgDomain._CartesianGenerator_GenEdges(*args)
+_CartesianGenerator_GenEdges = _StgDomain._CartesianGenerator_GenEdges
+
+def _CartesianGenerator_GenVertices(*args):
+  return _StgDomain._CartesianGenerator_GenVertices(*args)
+_CartesianGenerator_GenVertices = _StgDomain._CartesianGenerator_GenVertices
+
+def _CartesianGenerator_GenElementVertexInc(*args):
+  return _StgDomain._CartesianGenerator_GenElementVertexInc(*args)
+_CartesianGenerator_GenElementVertexInc = _StgDomain._CartesianGenerator_GenElementVertexInc
+
+def _CartesianGenerator_GenVolumeEdgeInc(*args):
+  return _StgDomain._CartesianGenerator_GenVolumeEdgeInc(*args)
+_CartesianGenerator_GenVolumeEdgeInc = _StgDomain._CartesianGenerator_GenVolumeEdgeInc
+
+def _CartesianGenerator_GenVolumeFaceInc(*args):
+  return _StgDomain._CartesianGenerator_GenVolumeFaceInc(*args)
+_CartesianGenerator_GenVolumeFaceInc = _StgDomain._CartesianGenerator_GenVolumeFaceInc
+
+def _CartesianGenerator_GenFaceVertexInc(*args):
+  return _StgDomain._CartesianGenerator_GenFaceVertexInc(*args)
+_CartesianGenerator_GenFaceVertexInc = _StgDomain._CartesianGenerator_GenFaceVertexInc
+
+def _CartesianGenerator_GenFaceEdgeInc(*args):
+  return _StgDomain._CartesianGenerator_GenFaceEdgeInc(*args)
+_CartesianGenerator_GenFaceEdgeInc = _StgDomain._CartesianGenerator_GenFaceEdgeInc
+
+def _CartesianGenerator_GenEdgeVertexInc(*args):
+  return _StgDomain._CartesianGenerator_GenEdgeVertexInc(*args)
+_CartesianGenerator_GenEdgeVertexInc = _StgDomain._CartesianGenerator_GenEdgeVertexInc
+
+def _CartesianGenerator_GenElementTypes(*args):
+  return _StgDomain._CartesianGenerator_GenElementTypes(*args)
+_CartesianGenerator_GenElementTypes = _StgDomain._CartesianGenerator_GenElementTypes
+
+def CartesianGenerator_SetGeometryParams(*args):
+  return _StgDomain.CartesianGenerator_SetGeometryParams(*args)
+CartesianGenerator_SetGeometryParams = _StgDomain.CartesianGenerator_SetGeometryParams
+
+def CartesianGenerator_SetShadowDepth(*args):
+  return _StgDomain.CartesianGenerator_SetShadowDepth(*args)
+CartesianGenerator_SetShadowDepth = _StgDomain.CartesianGenerator_SetShadowDepth
+
+def CartesianGenerator_BuildDecomp(*args):
+  return _StgDomain.CartesianGenerator_BuildDecomp(*args)
+CartesianGenerator_BuildDecomp = _StgDomain.CartesianGenerator_BuildDecomp
+
+def CartesianGenerator_RecurseDecomps(*args):
+  return _StgDomain.CartesianGenerator_RecurseDecomps(*args)
+CartesianGenerator_RecurseDecomps = _StgDomain.CartesianGenerator_RecurseDecomps
+
+def CartesianGenerator_GenTopo(*args):
+  return _StgDomain.CartesianGenerator_GenTopo(*args)
+CartesianGenerator_GenTopo = _StgDomain.CartesianGenerator_GenTopo
+
+def CartesianGenerator_GenEdges2D(*args):
+  return _StgDomain.CartesianGenerator_GenEdges2D(*args)
+CartesianGenerator_GenEdges2D = _StgDomain.CartesianGenerator_GenEdges2D
+
+def CartesianGenerator_GenEdges3D(*args):
+  return _StgDomain.CartesianGenerator_GenEdges3D(*args)
+CartesianGenerator_GenEdges3D = _StgDomain.CartesianGenerator_GenEdges3D
+
+def CartesianGenerator_GenBndVerts(*args):
+  return _StgDomain.CartesianGenerator_GenBndVerts(*args)
+CartesianGenerator_GenBndVerts = _StgDomain.CartesianGenerator_GenBndVerts
+
+def CartesianGenerator_CompleteVertexNeighbours(*args):
+  return _StgDomain.CartesianGenerator_CompleteVertexNeighbours(*args)
+CartesianGenerator_CompleteVertexNeighbours = _StgDomain.CartesianGenerator_CompleteVertexNeighbours
+
+def CartesianGenerator_MapToDomain(*args):
+  return _StgDomain.CartesianGenerator_MapToDomain(*args)
+CartesianGenerator_MapToDomain = _StgDomain.CartesianGenerator_MapToDomain
+
+def CartesianGenerator_GenGeom(*args):
+  return _StgDomain.CartesianGenerator_GenGeom(*args)
+CartesianGenerator_GenGeom = _StgDomain.CartesianGenerator_GenGeom
+
+def CartesianGenerator_CalcGeom(*args):
+  return _StgDomain.CartesianGenerator_CalcGeom(*args)
+CartesianGenerator_CalcGeom = _StgDomain.CartesianGenerator_CalcGeom
+
+def CartesianGenerator_Destruct(*args):
+  return _StgDomain.CartesianGenerator_Destruct(*args)
+CartesianGenerator_Destruct = _StgDomain.CartesianGenerator_Destruct
+
+def CartesianGenerator_DestructTopology(*args):
+  return _StgDomain.CartesianGenerator_DestructTopology(*args)
+CartesianGenerator_DestructTopology = _StgDomain.CartesianGenerator_DestructTopology
+
+def CartesianGenerator_DestructGeometry(*args):
+  return _StgDomain.CartesianGenerator_DestructGeometry(*args)
+CartesianGenerator_DestructGeometry = _StgDomain.CartesianGenerator_DestructGeometry
+
+def CartesianGenerator_ReadFromHDF5(*args):
+  return _StgDomain.CartesianGenerator_ReadFromHDF5(*args)
+CartesianGenerator_ReadFromHDF5 = _StgDomain.CartesianGenerator_ReadFromHDF5
+
+def CartesianGenerator_ReadFromASCII(*args):
+  return _StgDomain.CartesianGenerator_ReadFromASCII(*args)
+CartesianGenerator_ReadFromASCII = _StgDomain.CartesianGenerator_ReadFromASCII
+
+def CartesianGenerator_ReadFromVTK(*args):
+  return _StgDomain.CartesianGenerator_ReadFromVTK(*args)
+CartesianGenerator_ReadFromVTK = _StgDomain.CartesianGenerator_ReadFromVTK
+class CompressionAdaptor(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, CompressionAdaptor, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, CompressionAdaptor, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.CompressionAdaptor__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.CompressionAdaptor__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.CompressionAdaptor__sizeOfSelf_get, _StgDomain.CompressionAdaptor__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.CompressionAdaptor__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.CompressionAdaptor__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.CompressionAdaptor__deleteSelf_get, _StgDomain.CompressionAdaptor__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.CompressionAdaptor_type_set
+    __swig_getmethods__["type"] = _StgDomain.CompressionAdaptor_type_get
+    if _newclass:type = _swig_property(_StgDomain.CompressionAdaptor_type_get, _StgDomain.CompressionAdaptor_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.CompressionAdaptor_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.CompressionAdaptor_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.CompressionAdaptor_nRefs_get, _StgDomain.CompressionAdaptor_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.CompressionAdaptor__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.CompressionAdaptor__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.CompressionAdaptor__delete_get, _StgDomain.CompressionAdaptor__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.CompressionAdaptor__print_set
+    __swig_getmethods__["_print"] = _StgDomain.CompressionAdaptor__print_get
+    if _newclass:_print = _swig_property(_StgDomain.CompressionAdaptor__print_get, _StgDomain.CompressionAdaptor__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.CompressionAdaptor__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.CompressionAdaptor__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.CompressionAdaptor__copy_get, _StgDomain.CompressionAdaptor__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.CompressionAdaptor_name_set
+    __swig_getmethods__["name"] = _StgDomain.CompressionAdaptor_name_get
+    if _newclass:name = _swig_property(_StgDomain.CompressionAdaptor_name_get, _StgDomain.CompressionAdaptor_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.CompressionAdaptor_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.CompressionAdaptor_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.CompressionAdaptor_nameAllocationType_get, _StgDomain.CompressionAdaptor_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.CompressionAdaptor__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.CompressionAdaptor__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.CompressionAdaptor__defaultConstructor_get, _StgDomain.CompressionAdaptor__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.CompressionAdaptor__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.CompressionAdaptor__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.CompressionAdaptor__construct_get, _StgDomain.CompressionAdaptor__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.CompressionAdaptor__build_set
+    __swig_getmethods__["_build"] = _StgDomain.CompressionAdaptor__build_get
+    if _newclass:_build = _swig_property(_StgDomain.CompressionAdaptor__build_get, _StgDomain.CompressionAdaptor__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.CompressionAdaptor__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.CompressionAdaptor__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.CompressionAdaptor__initialise_get, _StgDomain.CompressionAdaptor__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.CompressionAdaptor__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.CompressionAdaptor__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.CompressionAdaptor__execute_get, _StgDomain.CompressionAdaptor__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.CompressionAdaptor__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.CompressionAdaptor__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.CompressionAdaptor__destroy_get, _StgDomain.CompressionAdaptor__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.CompressionAdaptor_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.CompressionAdaptor_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.CompressionAdaptor_isConstructed_get, _StgDomain.CompressionAdaptor_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.CompressionAdaptor_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.CompressionAdaptor_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.CompressionAdaptor_isBuilt_get, _StgDomain.CompressionAdaptor_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.CompressionAdaptor_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.CompressionAdaptor_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.CompressionAdaptor_isInitialised_get, _StgDomain.CompressionAdaptor_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.CompressionAdaptor_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.CompressionAdaptor_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.CompressionAdaptor_hasExecuted_get, _StgDomain.CompressionAdaptor_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.CompressionAdaptor_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.CompressionAdaptor_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.CompressionAdaptor_isDestroyed_get, _StgDomain.CompressionAdaptor_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.CompressionAdaptor_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.CompressionAdaptor_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.CompressionAdaptor_constructType_get, _StgDomain.CompressionAdaptor_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.CompressionAdaptor_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.CompressionAdaptor_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.CompressionAdaptor_buildType_get, _StgDomain.CompressionAdaptor_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.CompressionAdaptor_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.CompressionAdaptor_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.CompressionAdaptor_initialiseType_get, _StgDomain.CompressionAdaptor_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.CompressionAdaptor_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.CompressionAdaptor_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.CompressionAdaptor_executeType_get, _StgDomain.CompressionAdaptor_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.CompressionAdaptor_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.CompressionAdaptor_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.CompressionAdaptor_destroyType_get, _StgDomain.CompressionAdaptor_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.CompressionAdaptor_context_set
+    __swig_getmethods__["context"] = _StgDomain.CompressionAdaptor_context_get
+    if _newclass:context = _swig_property(_StgDomain.CompressionAdaptor_context_get, _StgDomain.CompressionAdaptor_context_set)
+    __swig_setmethods__["setDimSizeFunc"] = _StgDomain.CompressionAdaptor_setDimSizeFunc_set
+    __swig_getmethods__["setDimSizeFunc"] = _StgDomain.CompressionAdaptor_setDimSizeFunc_get
+    if _newclass:setDimSizeFunc = _swig_property(_StgDomain.CompressionAdaptor_setDimSizeFunc_get, _StgDomain.CompressionAdaptor_setDimSizeFunc_set)
+    __swig_setmethods__["generateFunc"] = _StgDomain.CompressionAdaptor_generateFunc_set
+    __swig_getmethods__["generateFunc"] = _StgDomain.CompressionAdaptor_generateFunc_get
+    if _newclass:generateFunc = _swig_property(_StgDomain.CompressionAdaptor_generateFunc_get, _StgDomain.CompressionAdaptor_generateFunc_set)
+    __swig_setmethods__["mpiComm"] = _StgDomain.CompressionAdaptor_mpiComm_set
+    __swig_getmethods__["mpiComm"] = _StgDomain.CompressionAdaptor_mpiComm_get
+    if _newclass:mpiComm = _swig_property(_StgDomain.CompressionAdaptor_mpiComm_get, _StgDomain.CompressionAdaptor_mpiComm_set)
+    __swig_setmethods__["nMeshes"] = _StgDomain.CompressionAdaptor_nMeshes_set
+    __swig_getmethods__["nMeshes"] = _StgDomain.CompressionAdaptor_nMeshes_get
+    if _newclass:nMeshes = _swig_property(_StgDomain.CompressionAdaptor_nMeshes_get, _StgDomain.CompressionAdaptor_nMeshes_set)
+    __swig_setmethods__["meshes"] = _StgDomain.CompressionAdaptor_meshes_set
+    __swig_getmethods__["meshes"] = _StgDomain.CompressionAdaptor_meshes_get
+    if _newclass:meshes = _swig_property(_StgDomain.CompressionAdaptor_meshes_get, _StgDomain.CompressionAdaptor_meshes_set)
+    __swig_setmethods__["nDims"] = _StgDomain.CompressionAdaptor_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.CompressionAdaptor_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.CompressionAdaptor_nDims_get, _StgDomain.CompressionAdaptor_nDims_set)
+    __swig_setmethods__["enabledDims"] = _StgDomain.CompressionAdaptor_enabledDims_set
+    __swig_getmethods__["enabledDims"] = _StgDomain.CompressionAdaptor_enabledDims_get
+    if _newclass:enabledDims = _swig_property(_StgDomain.CompressionAdaptor_enabledDims_get, _StgDomain.CompressionAdaptor_enabledDims_set)
+    __swig_setmethods__["enabledInc"] = _StgDomain.CompressionAdaptor_enabledInc_set
+    __swig_getmethods__["enabledInc"] = _StgDomain.CompressionAdaptor_enabledInc_get
+    if _newclass:enabledInc = _swig_property(_StgDomain.CompressionAdaptor_enabledInc_get, _StgDomain.CompressionAdaptor_enabledInc_set)
+    __swig_setmethods__["generator"] = _StgDomain.CompressionAdaptor_generator_set
+    __swig_getmethods__["generator"] = _StgDomain.CompressionAdaptor_generator_get
+    if _newclass:generator = _swig_property(_StgDomain.CompressionAdaptor_generator_get, _StgDomain.CompressionAdaptor_generator_set)
+    __swig_setmethods__["srcMesh"] = _StgDomain.CompressionAdaptor_srcMesh_set
+    __swig_getmethods__["srcMesh"] = _StgDomain.CompressionAdaptor_srcMesh_get
+    if _newclass:srcMesh = _swig_property(_StgDomain.CompressionAdaptor_srcMesh_get, _StgDomain.CompressionAdaptor_srcMesh_set)
+    __swig_setmethods__["compressionfactor"] = _StgDomain.CompressionAdaptor_compressionfactor_set
+    __swig_getmethods__["compressionfactor"] = _StgDomain.CompressionAdaptor_compressionfactor_get
+    if _newclass:compressionfactor = _swig_property(_StgDomain.CompressionAdaptor_compressionfactor_get, _StgDomain.CompressionAdaptor_compressionfactor_set)
+    def __init__(self): 
+        this = _StgDomain.new_CompressionAdaptor()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_CompressionAdaptor
+    __del__ = lambda self : None;
+CompressionAdaptor_swigregister = _StgDomain.CompressionAdaptor_swigregister
+CompressionAdaptor_swigregister(CompressionAdaptor)
+CompressionAdaptor_Type = cvar.CompressionAdaptor_Type
+
+
+def CompressionAdaptor_New(*args):
+  return _StgDomain.CompressionAdaptor_New(*args)
+CompressionAdaptor_New = _StgDomain.CompressionAdaptor_New
+
+def _CompressionAdaptor_New(*args):
+  return _StgDomain._CompressionAdaptor_New(*args)
+_CompressionAdaptor_New = _StgDomain._CompressionAdaptor_New
+
+def _CompressionAdaptor_Init(*args):
+  return _StgDomain._CompressionAdaptor_Init(*args)
+_CompressionAdaptor_Init = _StgDomain._CompressionAdaptor_Init
+
+def _CompressionAdaptor_Delete(*args):
+  return _StgDomain._CompressionAdaptor_Delete(*args)
+_CompressionAdaptor_Delete = _StgDomain._CompressionAdaptor_Delete
+
+def _CompressionAdaptor_Print(*args):
+  return _StgDomain._CompressionAdaptor_Print(*args)
+_CompressionAdaptor_Print = _StgDomain._CompressionAdaptor_Print
+
+def _CompressionAdaptor_AssignFromXML(*args):
+  return _StgDomain._CompressionAdaptor_AssignFromXML(*args)
+_CompressionAdaptor_AssignFromXML = _StgDomain._CompressionAdaptor_AssignFromXML
+
+def _CompressionAdaptor_Build(*args):
+  return _StgDomain._CompressionAdaptor_Build(*args)
+_CompressionAdaptor_Build = _StgDomain._CompressionAdaptor_Build
+
+def _CompressionAdaptor_Initialise(*args):
+  return _StgDomain._CompressionAdaptor_Initialise(*args)
+_CompressionAdaptor_Initialise = _StgDomain._CompressionAdaptor_Initialise
+
+def _CompressionAdaptor_Execute(*args):
+  return _StgDomain._CompressionAdaptor_Execute(*args)
+_CompressionAdaptor_Execute = _StgDomain._CompressionAdaptor_Execute
+
+def _CompressionAdaptor_Destroy(*args):
+  return _StgDomain._CompressionAdaptor_Destroy(*args)
+_CompressionAdaptor_Destroy = _StgDomain._CompressionAdaptor_Destroy
+
+def CompressionAdaptor_Generate(*args):
+  return _StgDomain.CompressionAdaptor_Generate(*args)
+CompressionAdaptor_Generate = _StgDomain.CompressionAdaptor_Generate
+class MeshVariable(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MeshVariable, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MeshVariable, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.MeshVariable__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.MeshVariable__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.MeshVariable__sizeOfSelf_get, _StgDomain.MeshVariable__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.MeshVariable__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.MeshVariable__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.MeshVariable__deleteSelf_get, _StgDomain.MeshVariable__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.MeshVariable_type_set
+    __swig_getmethods__["type"] = _StgDomain.MeshVariable_type_get
+    if _newclass:type = _swig_property(_StgDomain.MeshVariable_type_get, _StgDomain.MeshVariable_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.MeshVariable_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.MeshVariable_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.MeshVariable_nRefs_get, _StgDomain.MeshVariable_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.MeshVariable__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.MeshVariable__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.MeshVariable__delete_get, _StgDomain.MeshVariable__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.MeshVariable__print_set
+    __swig_getmethods__["_print"] = _StgDomain.MeshVariable__print_get
+    if _newclass:_print = _swig_property(_StgDomain.MeshVariable__print_get, _StgDomain.MeshVariable__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.MeshVariable__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.MeshVariable__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.MeshVariable__copy_get, _StgDomain.MeshVariable__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.MeshVariable_name_set
+    __swig_getmethods__["name"] = _StgDomain.MeshVariable_name_get
+    if _newclass:name = _swig_property(_StgDomain.MeshVariable_name_get, _StgDomain.MeshVariable_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.MeshVariable_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.MeshVariable_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.MeshVariable_nameAllocationType_get, _StgDomain.MeshVariable_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.MeshVariable__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.MeshVariable__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.MeshVariable__defaultConstructor_get, _StgDomain.MeshVariable__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.MeshVariable__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.MeshVariable__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.MeshVariable__construct_get, _StgDomain.MeshVariable__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.MeshVariable__build_set
+    __swig_getmethods__["_build"] = _StgDomain.MeshVariable__build_get
+    if _newclass:_build = _swig_property(_StgDomain.MeshVariable__build_get, _StgDomain.MeshVariable__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.MeshVariable__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.MeshVariable__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.MeshVariable__initialise_get, _StgDomain.MeshVariable__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.MeshVariable__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.MeshVariable__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.MeshVariable__execute_get, _StgDomain.MeshVariable__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.MeshVariable__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.MeshVariable__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.MeshVariable__destroy_get, _StgDomain.MeshVariable__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.MeshVariable_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.MeshVariable_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.MeshVariable_isConstructed_get, _StgDomain.MeshVariable_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.MeshVariable_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.MeshVariable_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.MeshVariable_isBuilt_get, _StgDomain.MeshVariable_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.MeshVariable_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.MeshVariable_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.MeshVariable_isInitialised_get, _StgDomain.MeshVariable_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.MeshVariable_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.MeshVariable_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.MeshVariable_hasExecuted_get, _StgDomain.MeshVariable_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.MeshVariable_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.MeshVariable_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.MeshVariable_isDestroyed_get, _StgDomain.MeshVariable_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.MeshVariable_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.MeshVariable_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.MeshVariable_constructType_get, _StgDomain.MeshVariable_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.MeshVariable_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.MeshVariable_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.MeshVariable_buildType_get, _StgDomain.MeshVariable_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.MeshVariable_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.MeshVariable_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.MeshVariable_initialiseType_get, _StgDomain.MeshVariable_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.MeshVariable_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.MeshVariable_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.MeshVariable_executeType_get, _StgDomain.MeshVariable_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.MeshVariable_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.MeshVariable_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.MeshVariable_destroyType_get, _StgDomain.MeshVariable_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.MeshVariable_context_set
+    __swig_getmethods__["context"] = _StgDomain.MeshVariable_context_get
+    if _newclass:context = _swig_property(_StgDomain.MeshVariable_context_get, _StgDomain.MeshVariable_context_set)
+    __swig_setmethods__["offsetCount"] = _StgDomain.MeshVariable_offsetCount_set
+    __swig_getmethods__["offsetCount"] = _StgDomain.MeshVariable_offsetCount_get
+    if _newclass:offsetCount = _swig_property(_StgDomain.MeshVariable_offsetCount_get, _StgDomain.MeshVariable_offsetCount_set)
+    __swig_setmethods__["offsets"] = _StgDomain.MeshVariable_offsets_set
+    __swig_getmethods__["offsets"] = _StgDomain.MeshVariable_offsets_get
+    if _newclass:offsets = _swig_property(_StgDomain.MeshVariable_offsets_get, _StgDomain.MeshVariable_offsets_set)
+    __swig_setmethods__["dataTypes"] = _StgDomain.MeshVariable_dataTypes_set
+    __swig_getmethods__["dataTypes"] = _StgDomain.MeshVariable_dataTypes_get
+    if _newclass:dataTypes = _swig_property(_StgDomain.MeshVariable_dataTypes_get, _StgDomain.MeshVariable_dataTypes_set)
+    __swig_setmethods__["dataTypeCounts"] = _StgDomain.MeshVariable_dataTypeCounts_set
+    __swig_getmethods__["dataTypeCounts"] = _StgDomain.MeshVariable_dataTypeCounts_get
+    if _newclass:dataTypeCounts = _swig_property(_StgDomain.MeshVariable_dataTypeCounts_get, _StgDomain.MeshVariable_dataTypeCounts_set)
+    __swig_setmethods__["structSizePtr"] = _StgDomain.MeshVariable_structSizePtr_set
+    __swig_getmethods__["structSizePtr"] = _StgDomain.MeshVariable_structSizePtr_get
+    if _newclass:structSizePtr = _swig_property(_StgDomain.MeshVariable_structSizePtr_get, _StgDomain.MeshVariable_structSizePtr_set)
+    __swig_setmethods__["arrayPtrPtr"] = _StgDomain.MeshVariable_arrayPtrPtr_set
+    __swig_getmethods__["arrayPtrPtr"] = _StgDomain.MeshVariable_arrayPtrPtr_get
+    if _newclass:arrayPtrPtr = _swig_property(_StgDomain.MeshVariable_arrayPtrPtr_get, _StgDomain.MeshVariable_arrayPtrPtr_set)
+    __swig_setmethods__["arraySizePtr"] = _StgDomain.MeshVariable_arraySizePtr_set
+    __swig_getmethods__["arraySizePtr"] = _StgDomain.MeshVariable_arraySizePtr_get
+    if _newclass:arraySizePtr = _swig_property(_StgDomain.MeshVariable_arraySizePtr_get, _StgDomain.MeshVariable_arraySizePtr_set)
+    __swig_setmethods__["arraySizeFunc"] = _StgDomain.MeshVariable_arraySizeFunc_set
+    __swig_getmethods__["arraySizeFunc"] = _StgDomain.MeshVariable_arraySizeFunc_get
+    if _newclass:arraySizeFunc = _swig_property(_StgDomain.MeshVariable_arraySizeFunc_get, _StgDomain.MeshVariable_arraySizeFunc_set)
+    __swig_setmethods__["dataSizes"] = _StgDomain.MeshVariable_dataSizes_set
+    __swig_getmethods__["dataSizes"] = _StgDomain.MeshVariable_dataSizes_get
+    if _newclass:dataSizes = _swig_property(_StgDomain.MeshVariable_dataSizes_get, _StgDomain.MeshVariable_dataSizes_set)
+    __swig_setmethods__["structSize"] = _StgDomain.MeshVariable_structSize_set
+    __swig_getmethods__["structSize"] = _StgDomain.MeshVariable_structSize_get
+    if _newclass:structSize = _swig_property(_StgDomain.MeshVariable_structSize_get, _StgDomain.MeshVariable_structSize_set)
+    __swig_setmethods__["arrayPtr"] = _StgDomain.MeshVariable_arrayPtr_set
+    __swig_getmethods__["arrayPtr"] = _StgDomain.MeshVariable_arrayPtr_get
+    if _newclass:arrayPtr = _swig_property(_StgDomain.MeshVariable_arrayPtr_get, _StgDomain.MeshVariable_arrayPtr_set)
+    __swig_setmethods__["arraySize"] = _StgDomain.MeshVariable_arraySize_set
+    __swig_getmethods__["arraySize"] = _StgDomain.MeshVariable_arraySize_get
+    if _newclass:arraySize = _swig_property(_StgDomain.MeshVariable_arraySize_get, _StgDomain.MeshVariable_arraySize_set)
+    __swig_setmethods__["subVariablesCount"] = _StgDomain.MeshVariable_subVariablesCount_set
+    __swig_getmethods__["subVariablesCount"] = _StgDomain.MeshVariable_subVariablesCount_get
+    if _newclass:subVariablesCount = _swig_property(_StgDomain.MeshVariable_subVariablesCount_get, _StgDomain.MeshVariable_subVariablesCount_set)
+    __swig_setmethods__["components"] = _StgDomain.MeshVariable_components_set
+    __swig_getmethods__["components"] = _StgDomain.MeshVariable_components_get
+    if _newclass:components = _swig_property(_StgDomain.MeshVariable_components_get, _StgDomain.MeshVariable_components_set)
+    __swig_setmethods__["allocateSelf"] = _StgDomain.MeshVariable_allocateSelf_set
+    __swig_getmethods__["allocateSelf"] = _StgDomain.MeshVariable_allocateSelf_get
+    if _newclass:allocateSelf = _swig_property(_StgDomain.MeshVariable_allocateSelf_get, _StgDomain.MeshVariable_allocateSelf_set)
+    __swig_setmethods__["vr"] = _StgDomain.MeshVariable_vr_set
+    __swig_getmethods__["vr"] = _StgDomain.MeshVariable_vr_get
+    if _newclass:vr = _swig_property(_StgDomain.MeshVariable_vr_get, _StgDomain.MeshVariable_vr_set)
+    __swig_setmethods__["parent"] = _StgDomain.MeshVariable_parent_set
+    __swig_getmethods__["parent"] = _StgDomain.MeshVariable_parent_get
+    if _newclass:parent = _swig_property(_StgDomain.MeshVariable_parent_get, _StgDomain.MeshVariable_parent_set)
+    __swig_setmethods__["mesh"] = _StgDomain.MeshVariable_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.MeshVariable_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.MeshVariable_mesh_get, _StgDomain.MeshVariable_mesh_set)
+    __swig_setmethods__["topoDim"] = _StgDomain.MeshVariable_topoDim_set
+    __swig_getmethods__["topoDim"] = _StgDomain.MeshVariable_topoDim_get
+    if _newclass:topoDim = _swig_property(_StgDomain.MeshVariable_topoDim_get, _StgDomain.MeshVariable_topoDim_set)
+    __swig_setmethods__["meshArraySize"] = _StgDomain.MeshVariable_meshArraySize_set
+    __swig_getmethods__["meshArraySize"] = _StgDomain.MeshVariable_meshArraySize_get
+    if _newclass:meshArraySize = _swig_property(_StgDomain.MeshVariable_meshArraySize_get, _StgDomain.MeshVariable_meshArraySize_set)
+    def __init__(self): 
+        this = _StgDomain.new_MeshVariable()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_MeshVariable
+    __del__ = lambda self : None;
+MeshVariable_swigregister = _StgDomain.MeshVariable_swigregister
+MeshVariable_swigregister(MeshVariable)
+MeshVariable_Type = cvar.MeshVariable_Type
+
+
+def MeshVariable_New(*args):
+  return _StgDomain.MeshVariable_New(*args)
+MeshVariable_New = _StgDomain.MeshVariable_New
+
+def _MeshVariable_New(*args):
+  return _StgDomain._MeshVariable_New(*args)
+_MeshVariable_New = _StgDomain._MeshVariable_New
+
+def _MeshVariable_Init(*args):
+  return _StgDomain._MeshVariable_Init(*args)
+_MeshVariable_Init = _StgDomain._MeshVariable_Init
+
+def _MeshVariable_Delete(*args):
+  return _StgDomain._MeshVariable_Delete(*args)
+_MeshVariable_Delete = _StgDomain._MeshVariable_Delete
+
+def _MeshVariable_Print(*args):
+  return _StgDomain._MeshVariable_Print(*args)
+_MeshVariable_Print = _StgDomain._MeshVariable_Print
+
+def _MeshVariable_AssignFromXML(*args):
+  return _StgDomain._MeshVariable_AssignFromXML(*args)
+_MeshVariable_AssignFromXML = _StgDomain._MeshVariable_AssignFromXML
+
+def _MeshVariable_Build(*args):
+  return _StgDomain._MeshVariable_Build(*args)
+_MeshVariable_Build = _StgDomain._MeshVariable_Build
+
+def _MeshVariable_Initialise(*args):
+  return _StgDomain._MeshVariable_Initialise(*args)
+_MeshVariable_Initialise = _StgDomain._MeshVariable_Initialise
+
+def _MeshVariable_Execute(*args):
+  return _StgDomain._MeshVariable_Execute(*args)
+_MeshVariable_Execute = _StgDomain._MeshVariable_Execute
+
+def _MeshVariable_Destroy(*args):
+  return _StgDomain._MeshVariable_Destroy(*args)
+_MeshVariable_Destroy = _StgDomain._MeshVariable_Destroy
+
+def MeshVariable_SetMesh(*args):
+  return _StgDomain.MeshVariable_SetMesh(*args)
+MeshVariable_SetMesh = _StgDomain.MeshVariable_SetMesh
+
+def _MeshVariable_GetMeshArraySize(*args):
+  return _StgDomain._MeshVariable_GetMeshArraySize(*args)
+_MeshVariable_GetMeshArraySize = _StgDomain._MeshVariable_GetMeshArraySize
+class Grid(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Grid, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Grid, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Grid__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Grid__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Grid__sizeOfSelf_get, _StgDomain.Grid__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Grid__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Grid__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Grid__deleteSelf_get, _StgDomain.Grid__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Grid_type_set
+    __swig_getmethods__["type"] = _StgDomain.Grid_type_get
+    if _newclass:type = _swig_property(_StgDomain.Grid_type_get, _StgDomain.Grid_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Grid_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Grid_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Grid_nRefs_get, _StgDomain.Grid_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Grid__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Grid__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Grid__delete_get, _StgDomain.Grid__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Grid__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Grid__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Grid__print_get, _StgDomain.Grid__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Grid__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Grid__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Grid__copy_get, _StgDomain.Grid__copy_set)
+    __swig_setmethods__["nDims"] = _StgDomain.Grid_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.Grid_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.Grid_nDims_get, _StgDomain.Grid_nDims_set)
+    __swig_setmethods__["sizes"] = _StgDomain.Grid_sizes_set
+    __swig_getmethods__["sizes"] = _StgDomain.Grid_sizes_get
+    if _newclass:sizes = _swig_property(_StgDomain.Grid_sizes_get, _StgDomain.Grid_sizes_set)
+    __swig_setmethods__["basis"] = _StgDomain.Grid_basis_set
+    __swig_getmethods__["basis"] = _StgDomain.Grid_basis_get
+    if _newclass:basis = _swig_property(_StgDomain.Grid_basis_get, _StgDomain.Grid_basis_set)
+    __swig_setmethods__["nPoints"] = _StgDomain.Grid_nPoints_set
+    __swig_getmethods__["nPoints"] = _StgDomain.Grid_nPoints_get
+    if _newclass:nPoints = _swig_property(_StgDomain.Grid_nPoints_get, _StgDomain.Grid_nPoints_set)
+    __swig_setmethods__["map"] = _StgDomain.Grid_map_set
+    __swig_getmethods__["map"] = _StgDomain.Grid_map_get
+    if _newclass:map = _swig_property(_StgDomain.Grid_map_get, _StgDomain.Grid_map_set)
+    __swig_setmethods__["invMap"] = _StgDomain.Grid_invMap_set
+    __swig_getmethods__["invMap"] = _StgDomain.Grid_invMap_get
+    if _newclass:invMap = _swig_property(_StgDomain.Grid_invMap_get, _StgDomain.Grid_invMap_set)
+    def __init__(self): 
+        this = _StgDomain.new_Grid()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Grid
+    __del__ = lambda self : None;
+Grid_swigregister = _StgDomain.Grid_swigregister
+Grid_swigregister(Grid)
+Grid_Type = cvar.Grid_Type
+
+
+def Grid_New():
+  return _StgDomain.Grid_New()
+Grid_New = _StgDomain.Grid_New
+
+def _Grid_New(*args):
+  return _StgDomain._Grid_New(*args)
+_Grid_New = _StgDomain._Grid_New
+
+def _Grid_Init(*args):
+  return _StgDomain._Grid_Init(*args)
+_Grid_Init = _StgDomain._Grid_Init
+
+def _Grid_Delete(*args):
+  return _StgDomain._Grid_Delete(*args)
+_Grid_Delete = _StgDomain._Grid_Delete
+
+def _Grid_Print(*args):
+  return _StgDomain._Grid_Print(*args)
+_Grid_Print = _StgDomain._Grid_Print
+
+def Grid_SetNumDims(*args):
+  return _StgDomain.Grid_SetNumDims(*args)
+Grid_SetNumDims = _StgDomain.Grid_SetNumDims
+
+def Grid_SetSizes(*args):
+  return _StgDomain.Grid_SetSizes(*args)
+Grid_SetSizes = _StgDomain.Grid_SetSizes
+
+def Grid_SetMapping(*args):
+  return _StgDomain.Grid_SetMapping(*args)
+Grid_SetMapping = _StgDomain.Grid_SetMapping
+
+def Grid_GetNumDims(*args):
+  return _StgDomain.Grid_GetNumDims(*args)
+Grid_GetNumDims = _StgDomain.Grid_GetNumDims
+
+def Grid_GetSizes(*args):
+  return _StgDomain.Grid_GetSizes(*args)
+Grid_GetSizes = _StgDomain.Grid_GetSizes
+
+def Grid_GetNumPoints(*args):
+  return _StgDomain.Grid_GetNumPoints(*args)
+Grid_GetNumPoints = _StgDomain.Grid_GetNumPoints
+
+def Grid_GetMapping(*args):
+  return _StgDomain.Grid_GetMapping(*args)
+Grid_GetMapping = _StgDomain.Grid_GetMapping
+
+def Grid_Lift(*args):
+  return _StgDomain.Grid_Lift(*args)
+Grid_Lift = _StgDomain.Grid_Lift
+
+def Grid_Project(*args):
+  return _StgDomain.Grid_Project(*args)
+Grid_Project = _StgDomain.Grid_Project
+class linearSpaceAdaptor_Segment(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, linearSpaceAdaptor_Segment, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, linearSpaceAdaptor_Segment, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x"] = _StgDomain.linearSpaceAdaptor_Segment_x_set
+    __swig_getmethods__["x"] = _StgDomain.linearSpaceAdaptor_Segment_x_get
+    if _newclass:x = _swig_property(_StgDomain.linearSpaceAdaptor_Segment_x_get, _StgDomain.linearSpaceAdaptor_Segment_x_set)
+    __swig_setmethods__["y"] = _StgDomain.linearSpaceAdaptor_Segment_y_set
+    __swig_getmethods__["y"] = _StgDomain.linearSpaceAdaptor_Segment_y_get
+    if _newclass:y = _swig_property(_StgDomain.linearSpaceAdaptor_Segment_y_get, _StgDomain.linearSpaceAdaptor_Segment_y_set)
+    __swig_setmethods__["p"] = _StgDomain.linearSpaceAdaptor_Segment_p_set
+    __swig_getmethods__["p"] = _StgDomain.linearSpaceAdaptor_Segment_p_get
+    if _newclass:p = _swig_property(_StgDomain.linearSpaceAdaptor_Segment_p_get, _StgDomain.linearSpaceAdaptor_Segment_p_set)
+    __swig_setmethods__["y0"] = _StgDomain.linearSpaceAdaptor_Segment_y0_set
+    __swig_getmethods__["y0"] = _StgDomain.linearSpaceAdaptor_Segment_y0_get
+    if _newclass:y0 = _swig_property(_StgDomain.linearSpaceAdaptor_Segment_y0_get, _StgDomain.linearSpaceAdaptor_Segment_y0_set)
+    def __init__(self): 
+        this = _StgDomain.new_linearSpaceAdaptor_Segment()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_linearSpaceAdaptor_Segment
+    __del__ = lambda self : None;
+linearSpaceAdaptor_Segment_swigregister = _StgDomain.linearSpaceAdaptor_Segment_swigregister
+linearSpaceAdaptor_Segment_swigregister(linearSpaceAdaptor_Segment)
+
+class LinearSpaceAdaptor(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, LinearSpaceAdaptor, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, LinearSpaceAdaptor, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.LinearSpaceAdaptor__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.LinearSpaceAdaptor__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.LinearSpaceAdaptor__sizeOfSelf_get, _StgDomain.LinearSpaceAdaptor__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.LinearSpaceAdaptor__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.LinearSpaceAdaptor__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.LinearSpaceAdaptor__deleteSelf_get, _StgDomain.LinearSpaceAdaptor__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.LinearSpaceAdaptor_type_set
+    __swig_getmethods__["type"] = _StgDomain.LinearSpaceAdaptor_type_get
+    if _newclass:type = _swig_property(_StgDomain.LinearSpaceAdaptor_type_get, _StgDomain.LinearSpaceAdaptor_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.LinearSpaceAdaptor_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.LinearSpaceAdaptor_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.LinearSpaceAdaptor_nRefs_get, _StgDomain.LinearSpaceAdaptor_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.LinearSpaceAdaptor__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.LinearSpaceAdaptor__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.LinearSpaceAdaptor__delete_get, _StgDomain.LinearSpaceAdaptor__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.LinearSpaceAdaptor__print_set
+    __swig_getmethods__["_print"] = _StgDomain.LinearSpaceAdaptor__print_get
+    if _newclass:_print = _swig_property(_StgDomain.LinearSpaceAdaptor__print_get, _StgDomain.LinearSpaceAdaptor__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.LinearSpaceAdaptor__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.LinearSpaceAdaptor__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.LinearSpaceAdaptor__copy_get, _StgDomain.LinearSpaceAdaptor__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.LinearSpaceAdaptor_name_set
+    __swig_getmethods__["name"] = _StgDomain.LinearSpaceAdaptor_name_get
+    if _newclass:name = _swig_property(_StgDomain.LinearSpaceAdaptor_name_get, _StgDomain.LinearSpaceAdaptor_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.LinearSpaceAdaptor_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.LinearSpaceAdaptor_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.LinearSpaceAdaptor_nameAllocationType_get, _StgDomain.LinearSpaceAdaptor_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.LinearSpaceAdaptor__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.LinearSpaceAdaptor__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.LinearSpaceAdaptor__defaultConstructor_get, _StgDomain.LinearSpaceAdaptor__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.LinearSpaceAdaptor__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.LinearSpaceAdaptor__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.LinearSpaceAdaptor__construct_get, _StgDomain.LinearSpaceAdaptor__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.LinearSpaceAdaptor__build_set
+    __swig_getmethods__["_build"] = _StgDomain.LinearSpaceAdaptor__build_get
+    if _newclass:_build = _swig_property(_StgDomain.LinearSpaceAdaptor__build_get, _StgDomain.LinearSpaceAdaptor__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.LinearSpaceAdaptor__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.LinearSpaceAdaptor__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.LinearSpaceAdaptor__initialise_get, _StgDomain.LinearSpaceAdaptor__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.LinearSpaceAdaptor__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.LinearSpaceAdaptor__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.LinearSpaceAdaptor__execute_get, _StgDomain.LinearSpaceAdaptor__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.LinearSpaceAdaptor__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.LinearSpaceAdaptor__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.LinearSpaceAdaptor__destroy_get, _StgDomain.LinearSpaceAdaptor__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.LinearSpaceAdaptor_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.LinearSpaceAdaptor_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.LinearSpaceAdaptor_isConstructed_get, _StgDomain.LinearSpaceAdaptor_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.LinearSpaceAdaptor_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.LinearSpaceAdaptor_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.LinearSpaceAdaptor_isBuilt_get, _StgDomain.LinearSpaceAdaptor_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.LinearSpaceAdaptor_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.LinearSpaceAdaptor_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.LinearSpaceAdaptor_isInitialised_get, _StgDomain.LinearSpaceAdaptor_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.LinearSpaceAdaptor_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.LinearSpaceAdaptor_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.LinearSpaceAdaptor_hasExecuted_get, _StgDomain.LinearSpaceAdaptor_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.LinearSpaceAdaptor_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.LinearSpaceAdaptor_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.LinearSpaceAdaptor_isDestroyed_get, _StgDomain.LinearSpaceAdaptor_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.LinearSpaceAdaptor_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.LinearSpaceAdaptor_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.LinearSpaceAdaptor_constructType_get, _StgDomain.LinearSpaceAdaptor_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.LinearSpaceAdaptor_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.LinearSpaceAdaptor_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.LinearSpaceAdaptor_buildType_get, _StgDomain.LinearSpaceAdaptor_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.LinearSpaceAdaptor_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.LinearSpaceAdaptor_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.LinearSpaceAdaptor_initialiseType_get, _StgDomain.LinearSpaceAdaptor_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.LinearSpaceAdaptor_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.LinearSpaceAdaptor_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.LinearSpaceAdaptor_executeType_get, _StgDomain.LinearSpaceAdaptor_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.LinearSpaceAdaptor_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.LinearSpaceAdaptor_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.LinearSpaceAdaptor_destroyType_get, _StgDomain.LinearSpaceAdaptor_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.LinearSpaceAdaptor_context_set
+    __swig_getmethods__["context"] = _StgDomain.LinearSpaceAdaptor_context_get
+    if _newclass:context = _swig_property(_StgDomain.LinearSpaceAdaptor_context_get, _StgDomain.LinearSpaceAdaptor_context_set)
+    __swig_setmethods__["setDimSizeFunc"] = _StgDomain.LinearSpaceAdaptor_setDimSizeFunc_set
+    __swig_getmethods__["setDimSizeFunc"] = _StgDomain.LinearSpaceAdaptor_setDimSizeFunc_get
+    if _newclass:setDimSizeFunc = _swig_property(_StgDomain.LinearSpaceAdaptor_setDimSizeFunc_get, _StgDomain.LinearSpaceAdaptor_setDimSizeFunc_set)
+    __swig_setmethods__["generateFunc"] = _StgDomain.LinearSpaceAdaptor_generateFunc_set
+    __swig_getmethods__["generateFunc"] = _StgDomain.LinearSpaceAdaptor_generateFunc_get
+    if _newclass:generateFunc = _swig_property(_StgDomain.LinearSpaceAdaptor_generateFunc_get, _StgDomain.LinearSpaceAdaptor_generateFunc_set)
+    __swig_setmethods__["mpiComm"] = _StgDomain.LinearSpaceAdaptor_mpiComm_set
+    __swig_getmethods__["mpiComm"] = _StgDomain.LinearSpaceAdaptor_mpiComm_get
+    if _newclass:mpiComm = _swig_property(_StgDomain.LinearSpaceAdaptor_mpiComm_get, _StgDomain.LinearSpaceAdaptor_mpiComm_set)
+    __swig_setmethods__["nMeshes"] = _StgDomain.LinearSpaceAdaptor_nMeshes_set
+    __swig_getmethods__["nMeshes"] = _StgDomain.LinearSpaceAdaptor_nMeshes_get
+    if _newclass:nMeshes = _swig_property(_StgDomain.LinearSpaceAdaptor_nMeshes_get, _StgDomain.LinearSpaceAdaptor_nMeshes_set)
+    __swig_setmethods__["meshes"] = _StgDomain.LinearSpaceAdaptor_meshes_set
+    __swig_getmethods__["meshes"] = _StgDomain.LinearSpaceAdaptor_meshes_get
+    if _newclass:meshes = _swig_property(_StgDomain.LinearSpaceAdaptor_meshes_get, _StgDomain.LinearSpaceAdaptor_meshes_set)
+    __swig_setmethods__["nDims"] = _StgDomain.LinearSpaceAdaptor_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.LinearSpaceAdaptor_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.LinearSpaceAdaptor_nDims_get, _StgDomain.LinearSpaceAdaptor_nDims_set)
+    __swig_setmethods__["enabledDims"] = _StgDomain.LinearSpaceAdaptor_enabledDims_set
+    __swig_getmethods__["enabledDims"] = _StgDomain.LinearSpaceAdaptor_enabledDims_get
+    if _newclass:enabledDims = _swig_property(_StgDomain.LinearSpaceAdaptor_enabledDims_get, _StgDomain.LinearSpaceAdaptor_enabledDims_set)
+    __swig_setmethods__["enabledInc"] = _StgDomain.LinearSpaceAdaptor_enabledInc_set
+    __swig_getmethods__["enabledInc"] = _StgDomain.LinearSpaceAdaptor_enabledInc_get
+    if _newclass:enabledInc = _swig_property(_StgDomain.LinearSpaceAdaptor_enabledInc_get, _StgDomain.LinearSpaceAdaptor_enabledInc_set)
+    __swig_setmethods__["generator"] = _StgDomain.LinearSpaceAdaptor_generator_set
+    __swig_getmethods__["generator"] = _StgDomain.LinearSpaceAdaptor_generator_get
+    if _newclass:generator = _swig_property(_StgDomain.LinearSpaceAdaptor_generator_get, _StgDomain.LinearSpaceAdaptor_generator_set)
+    __swig_setmethods__["srcMesh"] = _StgDomain.LinearSpaceAdaptor_srcMesh_set
+    __swig_getmethods__["srcMesh"] = _StgDomain.LinearSpaceAdaptor_srcMesh_get
+    if _newclass:srcMesh = _swig_property(_StgDomain.LinearSpaceAdaptor_srcMesh_get, _StgDomain.LinearSpaceAdaptor_srcMesh_set)
+    __swig_setmethods__["nSegmentsx"] = _StgDomain.LinearSpaceAdaptor_nSegmentsx_set
+    __swig_getmethods__["nSegmentsx"] = _StgDomain.LinearSpaceAdaptor_nSegmentsx_get
+    if _newclass:nSegmentsx = _swig_property(_StgDomain.LinearSpaceAdaptor_nSegmentsx_get, _StgDomain.LinearSpaceAdaptor_nSegmentsx_set)
+    __swig_setmethods__["nSegmentsy"] = _StgDomain.LinearSpaceAdaptor_nSegmentsy_set
+    __swig_getmethods__["nSegmentsy"] = _StgDomain.LinearSpaceAdaptor_nSegmentsy_get
+    if _newclass:nSegmentsy = _swig_property(_StgDomain.LinearSpaceAdaptor_nSegmentsy_get, _StgDomain.LinearSpaceAdaptor_nSegmentsy_set)
+    __swig_setmethods__["nSegmentsz"] = _StgDomain.LinearSpaceAdaptor_nSegmentsz_set
+    __swig_getmethods__["nSegmentsz"] = _StgDomain.LinearSpaceAdaptor_nSegmentsz_get
+    if _newclass:nSegmentsz = _swig_property(_StgDomain.LinearSpaceAdaptor_nSegmentsz_get, _StgDomain.LinearSpaceAdaptor_nSegmentsz_set)
+    __swig_setmethods__["tablex"] = _StgDomain.LinearSpaceAdaptor_tablex_set
+    __swig_getmethods__["tablex"] = _StgDomain.LinearSpaceAdaptor_tablex_get
+    if _newclass:tablex = _swig_property(_StgDomain.LinearSpaceAdaptor_tablex_get, _StgDomain.LinearSpaceAdaptor_tablex_set)
+    __swig_setmethods__["tabley"] = _StgDomain.LinearSpaceAdaptor_tabley_set
+    __swig_getmethods__["tabley"] = _StgDomain.LinearSpaceAdaptor_tabley_get
+    if _newclass:tabley = _swig_property(_StgDomain.LinearSpaceAdaptor_tabley_get, _StgDomain.LinearSpaceAdaptor_tabley_set)
+    __swig_setmethods__["tablez"] = _StgDomain.LinearSpaceAdaptor_tablez_set
+    __swig_getmethods__["tablez"] = _StgDomain.LinearSpaceAdaptor_tablez_get
+    if _newclass:tablez = _swig_property(_StgDomain.LinearSpaceAdaptor_tablez_get, _StgDomain.LinearSpaceAdaptor_tablez_set)
+    __swig_setmethods__["minX"] = _StgDomain.LinearSpaceAdaptor_minX_set
+    __swig_getmethods__["minX"] = _StgDomain.LinearSpaceAdaptor_minX_get
+    if _newclass:minX = _swig_property(_StgDomain.LinearSpaceAdaptor_minX_get, _StgDomain.LinearSpaceAdaptor_minX_set)
+    __swig_setmethods__["maxX"] = _StgDomain.LinearSpaceAdaptor_maxX_set
+    __swig_getmethods__["maxX"] = _StgDomain.LinearSpaceAdaptor_maxX_get
+    if _newclass:maxX = _swig_property(_StgDomain.LinearSpaceAdaptor_maxX_get, _StgDomain.LinearSpaceAdaptor_maxX_set)
+    __swig_setmethods__["minY"] = _StgDomain.LinearSpaceAdaptor_minY_set
+    __swig_getmethods__["minY"] = _StgDomain.LinearSpaceAdaptor_minY_get
+    if _newclass:minY = _swig_property(_StgDomain.LinearSpaceAdaptor_minY_get, _StgDomain.LinearSpaceAdaptor_minY_set)
+    __swig_setmethods__["maxY"] = _StgDomain.LinearSpaceAdaptor_maxY_set
+    __swig_getmethods__["maxY"] = _StgDomain.LinearSpaceAdaptor_maxY_get
+    if _newclass:maxY = _swig_property(_StgDomain.LinearSpaceAdaptor_maxY_get, _StgDomain.LinearSpaceAdaptor_maxY_set)
+    __swig_setmethods__["minZ"] = _StgDomain.LinearSpaceAdaptor_minZ_set
+    __swig_getmethods__["minZ"] = _StgDomain.LinearSpaceAdaptor_minZ_get
+    if _newclass:minZ = _swig_property(_StgDomain.LinearSpaceAdaptor_minZ_get, _StgDomain.LinearSpaceAdaptor_minZ_set)
+    __swig_setmethods__["maxZ"] = _StgDomain.LinearSpaceAdaptor_maxZ_set
+    __swig_getmethods__["maxZ"] = _StgDomain.LinearSpaceAdaptor_maxZ_get
+    if _newclass:maxZ = _swig_property(_StgDomain.LinearSpaceAdaptor_maxZ_get, _StgDomain.LinearSpaceAdaptor_maxZ_set)
+    __swig_setmethods__["loadFromCheckPoint"] = _StgDomain.LinearSpaceAdaptor_loadFromCheckPoint_set
+    __swig_getmethods__["loadFromCheckPoint"] = _StgDomain.LinearSpaceAdaptor_loadFromCheckPoint_get
+    if _newclass:loadFromCheckPoint = _swig_property(_StgDomain.LinearSpaceAdaptor_loadFromCheckPoint_get, _StgDomain.LinearSpaceAdaptor_loadFromCheckPoint_set)
+    def __init__(self): 
+        this = _StgDomain.new_LinearSpaceAdaptor()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_LinearSpaceAdaptor
+    __del__ = lambda self : None;
+LinearSpaceAdaptor_swigregister = _StgDomain.LinearSpaceAdaptor_swigregister
+LinearSpaceAdaptor_swigregister(LinearSpaceAdaptor)
+LinearSpaceAdaptor_Type = cvar.LinearSpaceAdaptor_Type
+
+
+def LinearSpaceAdaptor_New(*args):
+  return _StgDomain.LinearSpaceAdaptor_New(*args)
+LinearSpaceAdaptor_New = _StgDomain.LinearSpaceAdaptor_New
+
+def _LinearSpaceAdaptor_New(*args):
+  return _StgDomain._LinearSpaceAdaptor_New(*args)
+_LinearSpaceAdaptor_New = _StgDomain._LinearSpaceAdaptor_New
+
+def _LinearSpaceAdaptor_Delete(*args):
+  return _StgDomain._LinearSpaceAdaptor_Delete(*args)
+_LinearSpaceAdaptor_Delete = _StgDomain._LinearSpaceAdaptor_Delete
+
+def _LinearSpaceAdaptor_Print(*args):
+  return _StgDomain._LinearSpaceAdaptor_Print(*args)
+_LinearSpaceAdaptor_Print = _StgDomain._LinearSpaceAdaptor_Print
+
+def _LinearSpaceAdaptor_AssignFromXML(*args):
+  return _StgDomain._LinearSpaceAdaptor_AssignFromXML(*args)
+_LinearSpaceAdaptor_AssignFromXML = _StgDomain._LinearSpaceAdaptor_AssignFromXML
+
+def _LinearSpaceAdaptor_Build(*args):
+  return _StgDomain._LinearSpaceAdaptor_Build(*args)
+_LinearSpaceAdaptor_Build = _StgDomain._LinearSpaceAdaptor_Build
+
+def _LinearSpaceAdaptor_Initialise(*args):
+  return _StgDomain._LinearSpaceAdaptor_Initialise(*args)
+_LinearSpaceAdaptor_Initialise = _StgDomain._LinearSpaceAdaptor_Initialise
+
+def _LinearSpaceAdaptor_Execute(*args):
+  return _StgDomain._LinearSpaceAdaptor_Execute(*args)
+_LinearSpaceAdaptor_Execute = _StgDomain._LinearSpaceAdaptor_Execute
+
+def _LinearSpaceAdaptor_Destroy(*args):
+  return _StgDomain._LinearSpaceAdaptor_Destroy(*args)
+_LinearSpaceAdaptor_Destroy = _StgDomain._LinearSpaceAdaptor_Destroy
+
+def LinearSpaceAdaptor_Generate(*args):
+  return _StgDomain.LinearSpaceAdaptor_Generate(*args)
+LinearSpaceAdaptor_Generate = _StgDomain.LinearSpaceAdaptor_Generate
+
+def _LinearSpaceAdaptor_Init(*args):
+  return _StgDomain._LinearSpaceAdaptor_Init(*args)
+_LinearSpaceAdaptor_Init = _StgDomain._LinearSpaceAdaptor_Init
+
+def LinearSpaceAdaptor_FillTable(*args):
+  return _StgDomain.LinearSpaceAdaptor_FillTable(*args)
+LinearSpaceAdaptor_FillTable = _StgDomain.LinearSpaceAdaptor_FillTable
+
+def LinearSpaceAdaptor_MapPoint(*args):
+  return _StgDomain.LinearSpaceAdaptor_MapPoint(*args)
+LinearSpaceAdaptor_MapPoint = _StgDomain.LinearSpaceAdaptor_MapPoint
+class Mesh_ElementType(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mesh_ElementType, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mesh_ElementType, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Mesh_ElementType__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Mesh_ElementType__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Mesh_ElementType__sizeOfSelf_get, _StgDomain.Mesh_ElementType__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Mesh_ElementType__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Mesh_ElementType__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Mesh_ElementType__deleteSelf_get, _StgDomain.Mesh_ElementType__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Mesh_ElementType_type_set
+    __swig_getmethods__["type"] = _StgDomain.Mesh_ElementType_type_get
+    if _newclass:type = _swig_property(_StgDomain.Mesh_ElementType_type_get, _StgDomain.Mesh_ElementType_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Mesh_ElementType_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Mesh_ElementType_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Mesh_ElementType_nRefs_get, _StgDomain.Mesh_ElementType_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Mesh_ElementType__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Mesh_ElementType__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Mesh_ElementType__delete_get, _StgDomain.Mesh_ElementType__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Mesh_ElementType__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Mesh_ElementType__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Mesh_ElementType__print_get, _StgDomain.Mesh_ElementType__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Mesh_ElementType__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Mesh_ElementType__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Mesh_ElementType__copy_get, _StgDomain.Mesh_ElementType__copy_set)
+    __swig_setmethods__["updateFunc"] = _StgDomain.Mesh_ElementType_updateFunc_set
+    __swig_getmethods__["updateFunc"] = _StgDomain.Mesh_ElementType_updateFunc_get
+    if _newclass:updateFunc = _swig_property(_StgDomain.Mesh_ElementType_updateFunc_get, _StgDomain.Mesh_ElementType_updateFunc_set)
+    __swig_setmethods__["elementHasPointFunc"] = _StgDomain.Mesh_ElementType_elementHasPointFunc_set
+    __swig_getmethods__["elementHasPointFunc"] = _StgDomain.Mesh_ElementType_elementHasPointFunc_get
+    if _newclass:elementHasPointFunc = _swig_property(_StgDomain.Mesh_ElementType_elementHasPointFunc_get, _StgDomain.Mesh_ElementType_elementHasPointFunc_set)
+    __swig_setmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_ElementType_getMinimumSeparationFunc_set
+    __swig_getmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_ElementType_getMinimumSeparationFunc_get
+    if _newclass:getMinimumSeparationFunc = _swig_property(_StgDomain.Mesh_ElementType_getMinimumSeparationFunc_get, _StgDomain.Mesh_ElementType_getMinimumSeparationFunc_set)
+    __swig_setmethods__["getCentroidFunc"] = _StgDomain.Mesh_ElementType_getCentroidFunc_set
+    __swig_getmethods__["getCentroidFunc"] = _StgDomain.Mesh_ElementType_getCentroidFunc_get
+    if _newclass:getCentroidFunc = _swig_property(_StgDomain.Mesh_ElementType_getCentroidFunc_get, _StgDomain.Mesh_ElementType_getCentroidFunc_set)
+    __swig_setmethods__["mesh"] = _StgDomain.Mesh_ElementType_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.Mesh_ElementType_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.Mesh_ElementType_mesh_get, _StgDomain.Mesh_ElementType_mesh_set)
+    def __init__(self): 
+        this = _StgDomain.new_Mesh_ElementType()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Mesh_ElementType
+    __del__ = lambda self : None;
+Mesh_ElementType_swigregister = _StgDomain.Mesh_ElementType_swigregister
+Mesh_ElementType_swigregister(Mesh_ElementType)
+Mesh_ElementType_Type = cvar.Mesh_ElementType_Type
+
+
+def _Mesh_ElementType_New(*args):
+  return _StgDomain._Mesh_ElementType_New(*args)
+_Mesh_ElementType_New = _StgDomain._Mesh_ElementType_New
+
+def _Mesh_ElementType_Init(*args):
+  return _StgDomain._Mesh_ElementType_Init(*args)
+_Mesh_ElementType_Init = _StgDomain._Mesh_ElementType_Init
+
+def _Mesh_ElementType_Delete(*args):
+  return _StgDomain._Mesh_ElementType_Delete(*args)
+_Mesh_ElementType_Delete = _StgDomain._Mesh_ElementType_Delete
+
+def _Mesh_ElementType_Print(*args):
+  return _StgDomain._Mesh_ElementType_Print(*args)
+_Mesh_ElementType_Print = _StgDomain._Mesh_ElementType_Print
+
+def _Mesh_ElementType_GetCentroid(*args):
+  return _StgDomain._Mesh_ElementType_GetCentroid(*args)
+_Mesh_ElementType_GetCentroid = _StgDomain._Mesh_ElementType_GetCentroid
+
+def Mesh_ElementType_SetMesh(*args):
+  return _StgDomain.Mesh_ElementType_SetMesh(*args)
+Mesh_ElementType_SetMesh = _StgDomain.Mesh_ElementType_SetMesh
+class Mesh_Algorithms(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mesh_Algorithms, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mesh_Algorithms, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Mesh_Algorithms__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Mesh_Algorithms__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Mesh_Algorithms__sizeOfSelf_get, _StgDomain.Mesh_Algorithms__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Mesh_Algorithms__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Mesh_Algorithms__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Mesh_Algorithms__deleteSelf_get, _StgDomain.Mesh_Algorithms__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Mesh_Algorithms_type_set
+    __swig_getmethods__["type"] = _StgDomain.Mesh_Algorithms_type_get
+    if _newclass:type = _swig_property(_StgDomain.Mesh_Algorithms_type_get, _StgDomain.Mesh_Algorithms_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Mesh_Algorithms_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Mesh_Algorithms_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Mesh_Algorithms_nRefs_get, _StgDomain.Mesh_Algorithms_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Mesh_Algorithms__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Mesh_Algorithms__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Mesh_Algorithms__delete_get, _StgDomain.Mesh_Algorithms__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Mesh_Algorithms__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Mesh_Algorithms__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Mesh_Algorithms__print_get, _StgDomain.Mesh_Algorithms__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Mesh_Algorithms__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Mesh_Algorithms__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Mesh_Algorithms__copy_get, _StgDomain.Mesh_Algorithms__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Mesh_Algorithms_name_set
+    __swig_getmethods__["name"] = _StgDomain.Mesh_Algorithms_name_get
+    if _newclass:name = _swig_property(_StgDomain.Mesh_Algorithms_name_get, _StgDomain.Mesh_Algorithms_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Mesh_Algorithms_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Mesh_Algorithms_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Mesh_Algorithms_nameAllocationType_get, _StgDomain.Mesh_Algorithms_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Mesh_Algorithms__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Mesh_Algorithms__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Mesh_Algorithms__defaultConstructor_get, _StgDomain.Mesh_Algorithms__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Mesh_Algorithms__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Mesh_Algorithms__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Mesh_Algorithms__construct_get, _StgDomain.Mesh_Algorithms__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Mesh_Algorithms__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Mesh_Algorithms__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Mesh_Algorithms__build_get, _StgDomain.Mesh_Algorithms__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Mesh_Algorithms__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Mesh_Algorithms__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Mesh_Algorithms__initialise_get, _StgDomain.Mesh_Algorithms__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Mesh_Algorithms__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Mesh_Algorithms__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Mesh_Algorithms__execute_get, _StgDomain.Mesh_Algorithms__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Mesh_Algorithms__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Mesh_Algorithms__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Mesh_Algorithms__destroy_get, _StgDomain.Mesh_Algorithms__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Mesh_Algorithms_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Mesh_Algorithms_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Mesh_Algorithms_isConstructed_get, _StgDomain.Mesh_Algorithms_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Mesh_Algorithms_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Mesh_Algorithms_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Mesh_Algorithms_isBuilt_get, _StgDomain.Mesh_Algorithms_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Mesh_Algorithms_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Mesh_Algorithms_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Mesh_Algorithms_isInitialised_get, _StgDomain.Mesh_Algorithms_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Mesh_Algorithms_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Mesh_Algorithms_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Mesh_Algorithms_hasExecuted_get, _StgDomain.Mesh_Algorithms_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Mesh_Algorithms_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Mesh_Algorithms_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Mesh_Algorithms_isDestroyed_get, _StgDomain.Mesh_Algorithms_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Mesh_Algorithms_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Mesh_Algorithms_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Mesh_Algorithms_constructType_get, _StgDomain.Mesh_Algorithms_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Mesh_Algorithms_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Mesh_Algorithms_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Mesh_Algorithms_buildType_get, _StgDomain.Mesh_Algorithms_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Mesh_Algorithms_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Mesh_Algorithms_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Mesh_Algorithms_initialiseType_get, _StgDomain.Mesh_Algorithms_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Mesh_Algorithms_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Mesh_Algorithms_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Mesh_Algorithms_executeType_get, _StgDomain.Mesh_Algorithms_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Mesh_Algorithms_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Mesh_Algorithms_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Mesh_Algorithms_destroyType_get, _StgDomain.Mesh_Algorithms_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Mesh_Algorithms_context_set
+    __swig_getmethods__["context"] = _StgDomain.Mesh_Algorithms_context_get
+    if _newclass:context = _swig_property(_StgDomain.Mesh_Algorithms_context_get, _StgDomain.Mesh_Algorithms_context_set)
+    __swig_setmethods__["setMeshFunc"] = _StgDomain.Mesh_Algorithms_setMeshFunc_set
+    __swig_getmethods__["setMeshFunc"] = _StgDomain.Mesh_Algorithms_setMeshFunc_get
+    if _newclass:setMeshFunc = _swig_property(_StgDomain.Mesh_Algorithms_setMeshFunc_get, _StgDomain.Mesh_Algorithms_setMeshFunc_set)
+    __swig_setmethods__["updateFunc"] = _StgDomain.Mesh_Algorithms_updateFunc_set
+    __swig_getmethods__["updateFunc"] = _StgDomain.Mesh_Algorithms_updateFunc_get
+    if _newclass:updateFunc = _swig_property(_StgDomain.Mesh_Algorithms_updateFunc_get, _StgDomain.Mesh_Algorithms_updateFunc_set)
+    __swig_setmethods__["nearestVertexFunc"] = _StgDomain.Mesh_Algorithms_nearestVertexFunc_set
+    __swig_getmethods__["nearestVertexFunc"] = _StgDomain.Mesh_Algorithms_nearestVertexFunc_get
+    if _newclass:nearestVertexFunc = _swig_property(_StgDomain.Mesh_Algorithms_nearestVertexFunc_get, _StgDomain.Mesh_Algorithms_nearestVertexFunc_set)
+    __swig_setmethods__["searchFunc"] = _StgDomain.Mesh_Algorithms_searchFunc_set
+    __swig_getmethods__["searchFunc"] = _StgDomain.Mesh_Algorithms_searchFunc_get
+    if _newclass:searchFunc = _swig_property(_StgDomain.Mesh_Algorithms_searchFunc_get, _StgDomain.Mesh_Algorithms_searchFunc_set)
+    __swig_setmethods__["searchElementsFunc"] = _StgDomain.Mesh_Algorithms_searchElementsFunc_set
+    __swig_getmethods__["searchElementsFunc"] = _StgDomain.Mesh_Algorithms_searchElementsFunc_get
+    if _newclass:searchElementsFunc = _swig_property(_StgDomain.Mesh_Algorithms_searchElementsFunc_get, _StgDomain.Mesh_Algorithms_searchElementsFunc_set)
+    __swig_setmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_Algorithms_getMinimumSeparationFunc_set
+    __swig_getmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_Algorithms_getMinimumSeparationFunc_get
+    if _newclass:getMinimumSeparationFunc = _swig_property(_StgDomain.Mesh_Algorithms_getMinimumSeparationFunc_get, _StgDomain.Mesh_Algorithms_getMinimumSeparationFunc_set)
+    __swig_setmethods__["getLocalCoordRangeFunc"] = _StgDomain.Mesh_Algorithms_getLocalCoordRangeFunc_set
+    __swig_getmethods__["getLocalCoordRangeFunc"] = _StgDomain.Mesh_Algorithms_getLocalCoordRangeFunc_get
+    if _newclass:getLocalCoordRangeFunc = _swig_property(_StgDomain.Mesh_Algorithms_getLocalCoordRangeFunc_get, _StgDomain.Mesh_Algorithms_getLocalCoordRangeFunc_set)
+    __swig_setmethods__["getDomainCoordRangeFunc"] = _StgDomain.Mesh_Algorithms_getDomainCoordRangeFunc_set
+    __swig_getmethods__["getDomainCoordRangeFunc"] = _StgDomain.Mesh_Algorithms_getDomainCoordRangeFunc_get
+    if _newclass:getDomainCoordRangeFunc = _swig_property(_StgDomain.Mesh_Algorithms_getDomainCoordRangeFunc_get, _StgDomain.Mesh_Algorithms_getDomainCoordRangeFunc_set)
+    __swig_setmethods__["getGlobalCoordRangeFunc"] = _StgDomain.Mesh_Algorithms_getGlobalCoordRangeFunc_set
+    __swig_getmethods__["getGlobalCoordRangeFunc"] = _StgDomain.Mesh_Algorithms_getGlobalCoordRangeFunc_get
+    if _newclass:getGlobalCoordRangeFunc = _swig_property(_StgDomain.Mesh_Algorithms_getGlobalCoordRangeFunc_get, _StgDomain.Mesh_Algorithms_getGlobalCoordRangeFunc_set)
+    __swig_setmethods__["nearestVertex"] = _StgDomain.Mesh_Algorithms_nearestVertex_set
+    __swig_getmethods__["nearestVertex"] = _StgDomain.Mesh_Algorithms_nearestVertex_get
+    if _newclass:nearestVertex = _swig_property(_StgDomain.Mesh_Algorithms_nearestVertex_get, _StgDomain.Mesh_Algorithms_nearestVertex_set)
+    __swig_setmethods__["search"] = _StgDomain.Mesh_Algorithms_search_set
+    __swig_getmethods__["search"] = _StgDomain.Mesh_Algorithms_search_get
+    if _newclass:search = _swig_property(_StgDomain.Mesh_Algorithms_search_get, _StgDomain.Mesh_Algorithms_search_set)
+    __swig_setmethods__["mesh"] = _StgDomain.Mesh_Algorithms_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.Mesh_Algorithms_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.Mesh_Algorithms_mesh_get, _StgDomain.Mesh_Algorithms_mesh_set)
+    __swig_setmethods__["rank"] = _StgDomain.Mesh_Algorithms_rank_set
+    __swig_getmethods__["rank"] = _StgDomain.Mesh_Algorithms_rank_get
+    if _newclass:rank = _swig_property(_StgDomain.Mesh_Algorithms_rank_get, _StgDomain.Mesh_Algorithms_rank_set)
+    __swig_setmethods__["incArray"] = _StgDomain.Mesh_Algorithms_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.Mesh_Algorithms_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.Mesh_Algorithms_incArray_get, _StgDomain.Mesh_Algorithms_incArray_set)
+    __swig_setmethods__["tree"] = _StgDomain.Mesh_Algorithms_tree_set
+    __swig_getmethods__["tree"] = _StgDomain.Mesh_Algorithms_tree_get
+    if _newclass:tree = _swig_property(_StgDomain.Mesh_Algorithms_tree_get, _StgDomain.Mesh_Algorithms_tree_set)
+    def __init__(self): 
+        this = _StgDomain.new_Mesh_Algorithms()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Mesh_Algorithms
+    __del__ = lambda self : None;
+Mesh_Algorithms_swigregister = _StgDomain.Mesh_Algorithms_swigregister
+Mesh_Algorithms_swigregister(Mesh_Algorithms)
+Mesh_Algorithms_Type = cvar.Mesh_Algorithms_Type
+
+
+def Mesh_Algorithms_New(*args):
+  return _StgDomain.Mesh_Algorithms_New(*args)
+Mesh_Algorithms_New = _StgDomain.Mesh_Algorithms_New
+
+def _Mesh_Algorithms_New(*args):
+  return _StgDomain._Mesh_Algorithms_New(*args)
+_Mesh_Algorithms_New = _StgDomain._Mesh_Algorithms_New
+
+def _Mesh_Algorithms_Init(*args):
+  return _StgDomain._Mesh_Algorithms_Init(*args)
+_Mesh_Algorithms_Init = _StgDomain._Mesh_Algorithms_Init
+
+def _Mesh_Algorithms_Delete(*args):
+  return _StgDomain._Mesh_Algorithms_Delete(*args)
+_Mesh_Algorithms_Delete = _StgDomain._Mesh_Algorithms_Delete
+
+def _Mesh_Algorithms_Print(*args):
+  return _StgDomain._Mesh_Algorithms_Print(*args)
+_Mesh_Algorithms_Print = _StgDomain._Mesh_Algorithms_Print
+
+def _Mesh_Algorithms_AssignFromXML(*args):
+  return _StgDomain._Mesh_Algorithms_AssignFromXML(*args)
+_Mesh_Algorithms_AssignFromXML = _StgDomain._Mesh_Algorithms_AssignFromXML
+
+def _Mesh_Algorithms_Build(*args):
+  return _StgDomain._Mesh_Algorithms_Build(*args)
+_Mesh_Algorithms_Build = _StgDomain._Mesh_Algorithms_Build
+
+def _Mesh_Algorithms_Initialise(*args):
+  return _StgDomain._Mesh_Algorithms_Initialise(*args)
+_Mesh_Algorithms_Initialise = _StgDomain._Mesh_Algorithms_Initialise
+
+def _Mesh_Algorithms_Execute(*args):
+  return _StgDomain._Mesh_Algorithms_Execute(*args)
+_Mesh_Algorithms_Execute = _StgDomain._Mesh_Algorithms_Execute
+
+def _Mesh_Algorithms_Destroy(*args):
+  return _StgDomain._Mesh_Algorithms_Destroy(*args)
+_Mesh_Algorithms_Destroy = _StgDomain._Mesh_Algorithms_Destroy
+
+def _Mesh_Algorithms_SetMesh(*args):
+  return _StgDomain._Mesh_Algorithms_SetMesh(*args)
+_Mesh_Algorithms_SetMesh = _StgDomain._Mesh_Algorithms_SetMesh
+
+def _Mesh_Algorithms_Update(*args):
+  return _StgDomain._Mesh_Algorithms_Update(*args)
+_Mesh_Algorithms_Update = _StgDomain._Mesh_Algorithms_Update
+
+def _Mesh_Algorithms_NearestVertex(*args):
+  return _StgDomain._Mesh_Algorithms_NearestVertex(*args)
+_Mesh_Algorithms_NearestVertex = _StgDomain._Mesh_Algorithms_NearestVertex
+
+def _Mesh_Algorithms_Search(*args):
+  return _StgDomain._Mesh_Algorithms_Search(*args)
+_Mesh_Algorithms_Search = _StgDomain._Mesh_Algorithms_Search
+
+def _Mesh_Algorithms_SearchElements(*args):
+  return _StgDomain._Mesh_Algorithms_SearchElements(*args)
+_Mesh_Algorithms_SearchElements = _StgDomain._Mesh_Algorithms_SearchElements
+
+def _Mesh_Algorithms_GetMinimumSeparation(*args):
+  return _StgDomain._Mesh_Algorithms_GetMinimumSeparation(*args)
+_Mesh_Algorithms_GetMinimumSeparation = _StgDomain._Mesh_Algorithms_GetMinimumSeparation
+
+def _Mesh_Algorithms_GetLocalCoordRange(*args):
+  return _StgDomain._Mesh_Algorithms_GetLocalCoordRange(*args)
+_Mesh_Algorithms_GetLocalCoordRange = _StgDomain._Mesh_Algorithms_GetLocalCoordRange
+
+def _Mesh_Algorithms_GetDomainCoordRange(*args):
+  return _StgDomain._Mesh_Algorithms_GetDomainCoordRange(*args)
+_Mesh_Algorithms_GetDomainCoordRange = _StgDomain._Mesh_Algorithms_GetDomainCoordRange
+
+def _Mesh_Algorithms_GetGlobalCoordRange(*args):
+  return _StgDomain._Mesh_Algorithms_GetGlobalCoordRange(*args)
+_Mesh_Algorithms_GetGlobalCoordRange = _StgDomain._Mesh_Algorithms_GetGlobalCoordRange
+
+def Mesh_Algorithms_NearestVertexWithNeighbours(*args):
+  return _StgDomain.Mesh_Algorithms_NearestVertexWithNeighbours(*args)
+Mesh_Algorithms_NearestVertexWithNeighbours = _StgDomain.Mesh_Algorithms_NearestVertexWithNeighbours
+
+def Mesh_Algorithms_NearestVertexGeneral(*args):
+  return _StgDomain.Mesh_Algorithms_NearestVertexGeneral(*args)
+Mesh_Algorithms_NearestVertexGeneral = _StgDomain.Mesh_Algorithms_NearestVertexGeneral
+
+def Mesh_Algorithms_SearchWithFullIncidence(*args):
+  return _StgDomain.Mesh_Algorithms_SearchWithFullIncidence(*args)
+Mesh_Algorithms_SearchWithFullIncidence = _StgDomain.Mesh_Algorithms_SearchWithFullIncidence
+
+def Mesh_Algorithms_SearchWithMinIncidence(*args):
+  return _StgDomain.Mesh_Algorithms_SearchWithMinIncidence(*args)
+Mesh_Algorithms_SearchWithMinIncidence = _StgDomain.Mesh_Algorithms_SearchWithMinIncidence
+
+def Mesh_Algorithms_SearchGeneral(*args):
+  return _StgDomain.Mesh_Algorithms_SearchGeneral(*args)
+Mesh_Algorithms_SearchGeneral = _StgDomain.Mesh_Algorithms_SearchGeneral
+class Mesh_CentroidAlgorithms(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mesh_CentroidAlgorithms, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mesh_CentroidAlgorithms, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Mesh_CentroidAlgorithms__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Mesh_CentroidAlgorithms__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__sizeOfSelf_get, _StgDomain.Mesh_CentroidAlgorithms__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Mesh_CentroidAlgorithms__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Mesh_CentroidAlgorithms__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__deleteSelf_get, _StgDomain.Mesh_CentroidAlgorithms__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Mesh_CentroidAlgorithms_type_set
+    __swig_getmethods__["type"] = _StgDomain.Mesh_CentroidAlgorithms_type_get
+    if _newclass:type = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_type_get, _StgDomain.Mesh_CentroidAlgorithms_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Mesh_CentroidAlgorithms_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Mesh_CentroidAlgorithms_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_nRefs_get, _StgDomain.Mesh_CentroidAlgorithms_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Mesh_CentroidAlgorithms__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Mesh_CentroidAlgorithms__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__delete_get, _StgDomain.Mesh_CentroidAlgorithms__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Mesh_CentroidAlgorithms__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Mesh_CentroidAlgorithms__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__print_get, _StgDomain.Mesh_CentroidAlgorithms__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Mesh_CentroidAlgorithms__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Mesh_CentroidAlgorithms__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__copy_get, _StgDomain.Mesh_CentroidAlgorithms__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Mesh_CentroidAlgorithms_name_set
+    __swig_getmethods__["name"] = _StgDomain.Mesh_CentroidAlgorithms_name_get
+    if _newclass:name = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_name_get, _StgDomain.Mesh_CentroidAlgorithms_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Mesh_CentroidAlgorithms_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Mesh_CentroidAlgorithms_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_nameAllocationType_get, _StgDomain.Mesh_CentroidAlgorithms_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Mesh_CentroidAlgorithms__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Mesh_CentroidAlgorithms__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__defaultConstructor_get, _StgDomain.Mesh_CentroidAlgorithms__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Mesh_CentroidAlgorithms__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Mesh_CentroidAlgorithms__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__construct_get, _StgDomain.Mesh_CentroidAlgorithms__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Mesh_CentroidAlgorithms__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Mesh_CentroidAlgorithms__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__build_get, _StgDomain.Mesh_CentroidAlgorithms__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Mesh_CentroidAlgorithms__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Mesh_CentroidAlgorithms__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__initialise_get, _StgDomain.Mesh_CentroidAlgorithms__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Mesh_CentroidAlgorithms__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Mesh_CentroidAlgorithms__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__execute_get, _StgDomain.Mesh_CentroidAlgorithms__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Mesh_CentroidAlgorithms__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Mesh_CentroidAlgorithms__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Mesh_CentroidAlgorithms__destroy_get, _StgDomain.Mesh_CentroidAlgorithms__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Mesh_CentroidAlgorithms_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Mesh_CentroidAlgorithms_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_isConstructed_get, _StgDomain.Mesh_CentroidAlgorithms_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Mesh_CentroidAlgorithms_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Mesh_CentroidAlgorithms_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_isBuilt_get, _StgDomain.Mesh_CentroidAlgorithms_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Mesh_CentroidAlgorithms_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Mesh_CentroidAlgorithms_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_isInitialised_get, _StgDomain.Mesh_CentroidAlgorithms_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Mesh_CentroidAlgorithms_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Mesh_CentroidAlgorithms_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_hasExecuted_get, _StgDomain.Mesh_CentroidAlgorithms_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Mesh_CentroidAlgorithms_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Mesh_CentroidAlgorithms_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_isDestroyed_get, _StgDomain.Mesh_CentroidAlgorithms_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Mesh_CentroidAlgorithms_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Mesh_CentroidAlgorithms_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_constructType_get, _StgDomain.Mesh_CentroidAlgorithms_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Mesh_CentroidAlgorithms_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Mesh_CentroidAlgorithms_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_buildType_get, _StgDomain.Mesh_CentroidAlgorithms_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Mesh_CentroidAlgorithms_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Mesh_CentroidAlgorithms_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_initialiseType_get, _StgDomain.Mesh_CentroidAlgorithms_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Mesh_CentroidAlgorithms_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Mesh_CentroidAlgorithms_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_executeType_get, _StgDomain.Mesh_CentroidAlgorithms_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Mesh_CentroidAlgorithms_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Mesh_CentroidAlgorithms_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_destroyType_get, _StgDomain.Mesh_CentroidAlgorithms_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Mesh_CentroidAlgorithms_context_set
+    __swig_getmethods__["context"] = _StgDomain.Mesh_CentroidAlgorithms_context_get
+    if _newclass:context = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_context_get, _StgDomain.Mesh_CentroidAlgorithms_context_set)
+    __swig_setmethods__["setMeshFunc"] = _StgDomain.Mesh_CentroidAlgorithms_setMeshFunc_set
+    __swig_getmethods__["setMeshFunc"] = _StgDomain.Mesh_CentroidAlgorithms_setMeshFunc_get
+    if _newclass:setMeshFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_setMeshFunc_get, _StgDomain.Mesh_CentroidAlgorithms_setMeshFunc_set)
+    __swig_setmethods__["updateFunc"] = _StgDomain.Mesh_CentroidAlgorithms_updateFunc_set
+    __swig_getmethods__["updateFunc"] = _StgDomain.Mesh_CentroidAlgorithms_updateFunc_get
+    if _newclass:updateFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_updateFunc_get, _StgDomain.Mesh_CentroidAlgorithms_updateFunc_set)
+    __swig_setmethods__["nearestVertexFunc"] = _StgDomain.Mesh_CentroidAlgorithms_nearestVertexFunc_set
+    __swig_getmethods__["nearestVertexFunc"] = _StgDomain.Mesh_CentroidAlgorithms_nearestVertexFunc_get
+    if _newclass:nearestVertexFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_nearestVertexFunc_get, _StgDomain.Mesh_CentroidAlgorithms_nearestVertexFunc_set)
+    __swig_setmethods__["searchFunc"] = _StgDomain.Mesh_CentroidAlgorithms_searchFunc_set
+    __swig_getmethods__["searchFunc"] = _StgDomain.Mesh_CentroidAlgorithms_searchFunc_get
+    if _newclass:searchFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_searchFunc_get, _StgDomain.Mesh_CentroidAlgorithms_searchFunc_set)
+    __swig_setmethods__["searchElementsFunc"] = _StgDomain.Mesh_CentroidAlgorithms_searchElementsFunc_set
+    __swig_getmethods__["searchElementsFunc"] = _StgDomain.Mesh_CentroidAlgorithms_searchElementsFunc_get
+    if _newclass:searchElementsFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_searchElementsFunc_get, _StgDomain.Mesh_CentroidAlgorithms_searchElementsFunc_set)
+    __swig_setmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_CentroidAlgorithms_getMinimumSeparationFunc_set
+    __swig_getmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_CentroidAlgorithms_getMinimumSeparationFunc_get
+    if _newclass:getMinimumSeparationFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_getMinimumSeparationFunc_get, _StgDomain.Mesh_CentroidAlgorithms_getMinimumSeparationFunc_set)
+    __swig_setmethods__["getLocalCoordRangeFunc"] = _StgDomain.Mesh_CentroidAlgorithms_getLocalCoordRangeFunc_set
+    __swig_getmethods__["getLocalCoordRangeFunc"] = _StgDomain.Mesh_CentroidAlgorithms_getLocalCoordRangeFunc_get
+    if _newclass:getLocalCoordRangeFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_getLocalCoordRangeFunc_get, _StgDomain.Mesh_CentroidAlgorithms_getLocalCoordRangeFunc_set)
+    __swig_setmethods__["getDomainCoordRangeFunc"] = _StgDomain.Mesh_CentroidAlgorithms_getDomainCoordRangeFunc_set
+    __swig_getmethods__["getDomainCoordRangeFunc"] = _StgDomain.Mesh_CentroidAlgorithms_getDomainCoordRangeFunc_get
+    if _newclass:getDomainCoordRangeFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_getDomainCoordRangeFunc_get, _StgDomain.Mesh_CentroidAlgorithms_getDomainCoordRangeFunc_set)
+    __swig_setmethods__["getGlobalCoordRangeFunc"] = _StgDomain.Mesh_CentroidAlgorithms_getGlobalCoordRangeFunc_set
+    __swig_getmethods__["getGlobalCoordRangeFunc"] = _StgDomain.Mesh_CentroidAlgorithms_getGlobalCoordRangeFunc_get
+    if _newclass:getGlobalCoordRangeFunc = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_getGlobalCoordRangeFunc_get, _StgDomain.Mesh_CentroidAlgorithms_getGlobalCoordRangeFunc_set)
+    __swig_setmethods__["nearestVertex"] = _StgDomain.Mesh_CentroidAlgorithms_nearestVertex_set
+    __swig_getmethods__["nearestVertex"] = _StgDomain.Mesh_CentroidAlgorithms_nearestVertex_get
+    if _newclass:nearestVertex = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_nearestVertex_get, _StgDomain.Mesh_CentroidAlgorithms_nearestVertex_set)
+    __swig_setmethods__["search"] = _StgDomain.Mesh_CentroidAlgorithms_search_set
+    __swig_getmethods__["search"] = _StgDomain.Mesh_CentroidAlgorithms_search_get
+    if _newclass:search = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_search_get, _StgDomain.Mesh_CentroidAlgorithms_search_set)
+    __swig_setmethods__["mesh"] = _StgDomain.Mesh_CentroidAlgorithms_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.Mesh_CentroidAlgorithms_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_mesh_get, _StgDomain.Mesh_CentroidAlgorithms_mesh_set)
+    __swig_setmethods__["rank"] = _StgDomain.Mesh_CentroidAlgorithms_rank_set
+    __swig_getmethods__["rank"] = _StgDomain.Mesh_CentroidAlgorithms_rank_get
+    if _newclass:rank = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_rank_get, _StgDomain.Mesh_CentroidAlgorithms_rank_set)
+    __swig_setmethods__["incArray"] = _StgDomain.Mesh_CentroidAlgorithms_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.Mesh_CentroidAlgorithms_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_incArray_get, _StgDomain.Mesh_CentroidAlgorithms_incArray_set)
+    __swig_setmethods__["tree"] = _StgDomain.Mesh_CentroidAlgorithms_tree_set
+    __swig_getmethods__["tree"] = _StgDomain.Mesh_CentroidAlgorithms_tree_get
+    if _newclass:tree = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_tree_get, _StgDomain.Mesh_CentroidAlgorithms_tree_set)
+    __swig_setmethods__["elMesh"] = _StgDomain.Mesh_CentroidAlgorithms_elMesh_set
+    __swig_getmethods__["elMesh"] = _StgDomain.Mesh_CentroidAlgorithms_elMesh_get
+    if _newclass:elMesh = _swig_property(_StgDomain.Mesh_CentroidAlgorithms_elMesh_get, _StgDomain.Mesh_CentroidAlgorithms_elMesh_set)
+    def __init__(self): 
+        this = _StgDomain.new_Mesh_CentroidAlgorithms()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Mesh_CentroidAlgorithms
+    __del__ = lambda self : None;
+Mesh_CentroidAlgorithms_swigregister = _StgDomain.Mesh_CentroidAlgorithms_swigregister
+Mesh_CentroidAlgorithms_swigregister(Mesh_CentroidAlgorithms)
+Mesh_CentroidAlgorithms_Type = cvar.Mesh_CentroidAlgorithms_Type
+
+
+def Mesh_CentroidAlgorithms_New(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_New(*args)
+Mesh_CentroidAlgorithms_New = _StgDomain.Mesh_CentroidAlgorithms_New
+
+def _Mesh_CentroidAlgorithms_New(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_New(*args)
+_Mesh_CentroidAlgorithms_New = _StgDomain._Mesh_CentroidAlgorithms_New
+
+def _Mesh_CentroidAlgorithms_Init(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_Init(*args)
+_Mesh_CentroidAlgorithms_Init = _StgDomain._Mesh_CentroidAlgorithms_Init
+
+def _Mesh_CentroidAlgorithms_Delete(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_Delete(*args)
+_Mesh_CentroidAlgorithms_Delete = _StgDomain._Mesh_CentroidAlgorithms_Delete
+
+def _Mesh_CentroidAlgorithms_Print(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_Print(*args)
+_Mesh_CentroidAlgorithms_Print = _StgDomain._Mesh_CentroidAlgorithms_Print
+
+def _Mesh_CentroidAlgorithms_AssignFromXML(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_AssignFromXML(*args)
+_Mesh_CentroidAlgorithms_AssignFromXML = _StgDomain._Mesh_CentroidAlgorithms_AssignFromXML
+
+def _Mesh_CentroidAlgorithms_Build(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_Build(*args)
+_Mesh_CentroidAlgorithms_Build = _StgDomain._Mesh_CentroidAlgorithms_Build
+
+def _Mesh_CentroidAlgorithms_Initialise(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_Initialise(*args)
+_Mesh_CentroidAlgorithms_Initialise = _StgDomain._Mesh_CentroidAlgorithms_Initialise
+
+def _Mesh_CentroidAlgorithms_Execute(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_Execute(*args)
+_Mesh_CentroidAlgorithms_Execute = _StgDomain._Mesh_CentroidAlgorithms_Execute
+
+def _Mesh_CentroidAlgorithms_Destroy(*args):
+  return _StgDomain._Mesh_CentroidAlgorithms_Destroy(*args)
+_Mesh_CentroidAlgorithms_Destroy = _StgDomain._Mesh_CentroidAlgorithms_Destroy
+
+def Mesh_CentroidAlgorithms_SetElementMesh(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_SetElementMesh(*args)
+Mesh_CentroidAlgorithms_SetElementMesh = _StgDomain.Mesh_CentroidAlgorithms_SetElementMesh
+
+def Mesh_CentroidAlgorithms_Update(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_Update(*args)
+Mesh_CentroidAlgorithms_Update = _StgDomain.Mesh_CentroidAlgorithms_Update
+
+def Mesh_CentroidAlgorithms_NearestVertex(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_NearestVertex(*args)
+Mesh_CentroidAlgorithms_NearestVertex = _StgDomain.Mesh_CentroidAlgorithms_NearestVertex
+
+def Mesh_CentroidAlgorithms_Search(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_Search(*args)
+Mesh_CentroidAlgorithms_Search = _StgDomain.Mesh_CentroidAlgorithms_Search
+
+def Mesh_CentroidAlgorithms_SearchElements(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_SearchElements(*args)
+Mesh_CentroidAlgorithms_SearchElements = _StgDomain.Mesh_CentroidAlgorithms_SearchElements
+
+def Mesh_CentroidAlgorithms_GetLocalCoordRange(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_GetLocalCoordRange(*args)
+Mesh_CentroidAlgorithms_GetLocalCoordRange = _StgDomain.Mesh_CentroidAlgorithms_GetLocalCoordRange
+
+def Mesh_CentroidAlgorithms_GetDomainCoordRange(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_GetDomainCoordRange(*args)
+Mesh_CentroidAlgorithms_GetDomainCoordRange = _StgDomain.Mesh_CentroidAlgorithms_GetDomainCoordRange
+
+def Mesh_CentroidAlgorithms_GetGlobalCoordRange(*args):
+  return _StgDomain.Mesh_CentroidAlgorithms_GetGlobalCoordRange(*args)
+Mesh_CentroidAlgorithms_GetGlobalCoordRange = _StgDomain.Mesh_CentroidAlgorithms_GetGlobalCoordRange
+class Mesh_CentroidType(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mesh_CentroidType, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mesh_CentroidType, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Mesh_CentroidType__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Mesh_CentroidType__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Mesh_CentroidType__sizeOfSelf_get, _StgDomain.Mesh_CentroidType__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Mesh_CentroidType__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Mesh_CentroidType__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Mesh_CentroidType__deleteSelf_get, _StgDomain.Mesh_CentroidType__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Mesh_CentroidType_type_set
+    __swig_getmethods__["type"] = _StgDomain.Mesh_CentroidType_type_get
+    if _newclass:type = _swig_property(_StgDomain.Mesh_CentroidType_type_get, _StgDomain.Mesh_CentroidType_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Mesh_CentroidType_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Mesh_CentroidType_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Mesh_CentroidType_nRefs_get, _StgDomain.Mesh_CentroidType_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Mesh_CentroidType__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Mesh_CentroidType__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Mesh_CentroidType__delete_get, _StgDomain.Mesh_CentroidType__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Mesh_CentroidType__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Mesh_CentroidType__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Mesh_CentroidType__print_get, _StgDomain.Mesh_CentroidType__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Mesh_CentroidType__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Mesh_CentroidType__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Mesh_CentroidType__copy_get, _StgDomain.Mesh_CentroidType__copy_set)
+    __swig_setmethods__["updateFunc"] = _StgDomain.Mesh_CentroidType_updateFunc_set
+    __swig_getmethods__["updateFunc"] = _StgDomain.Mesh_CentroidType_updateFunc_get
+    if _newclass:updateFunc = _swig_property(_StgDomain.Mesh_CentroidType_updateFunc_get, _StgDomain.Mesh_CentroidType_updateFunc_set)
+    __swig_setmethods__["elementHasPointFunc"] = _StgDomain.Mesh_CentroidType_elementHasPointFunc_set
+    __swig_getmethods__["elementHasPointFunc"] = _StgDomain.Mesh_CentroidType_elementHasPointFunc_get
+    if _newclass:elementHasPointFunc = _swig_property(_StgDomain.Mesh_CentroidType_elementHasPointFunc_get, _StgDomain.Mesh_CentroidType_elementHasPointFunc_set)
+    __swig_setmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_CentroidType_getMinimumSeparationFunc_set
+    __swig_getmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_CentroidType_getMinimumSeparationFunc_get
+    if _newclass:getMinimumSeparationFunc = _swig_property(_StgDomain.Mesh_CentroidType_getMinimumSeparationFunc_get, _StgDomain.Mesh_CentroidType_getMinimumSeparationFunc_set)
+    __swig_setmethods__["getCentroidFunc"] = _StgDomain.Mesh_CentroidType_getCentroidFunc_set
+    __swig_getmethods__["getCentroidFunc"] = _StgDomain.Mesh_CentroidType_getCentroidFunc_get
+    if _newclass:getCentroidFunc = _swig_property(_StgDomain.Mesh_CentroidType_getCentroidFunc_get, _StgDomain.Mesh_CentroidType_getCentroidFunc_set)
+    __swig_setmethods__["mesh"] = _StgDomain.Mesh_CentroidType_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.Mesh_CentroidType_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.Mesh_CentroidType_mesh_get, _StgDomain.Mesh_CentroidType_mesh_set)
+    __swig_setmethods__["elMesh"] = _StgDomain.Mesh_CentroidType_elMesh_set
+    __swig_getmethods__["elMesh"] = _StgDomain.Mesh_CentroidType_elMesh_get
+    if _newclass:elMesh = _swig_property(_StgDomain.Mesh_CentroidType_elMesh_get, _StgDomain.Mesh_CentroidType_elMesh_set)
+    __swig_setmethods__["incArray"] = _StgDomain.Mesh_CentroidType_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.Mesh_CentroidType_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.Mesh_CentroidType_incArray_get, _StgDomain.Mesh_CentroidType_incArray_set)
+    def __init__(self): 
+        this = _StgDomain.new_Mesh_CentroidType()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Mesh_CentroidType
+    __del__ = lambda self : None;
+Mesh_CentroidType_swigregister = _StgDomain.Mesh_CentroidType_swigregister
+Mesh_CentroidType_swigregister(Mesh_CentroidType)
+Mesh_CentroidType_Type = cvar.Mesh_CentroidType_Type
+
+
+def Mesh_CentroidType_New():
+  return _StgDomain.Mesh_CentroidType_New()
+Mesh_CentroidType_New = _StgDomain.Mesh_CentroidType_New
+
+def _Mesh_CentroidType_New(*args):
+  return _StgDomain._Mesh_CentroidType_New(*args)
+_Mesh_CentroidType_New = _StgDomain._Mesh_CentroidType_New
+
+def _Mesh_CentroidType_Init(*args):
+  return _StgDomain._Mesh_CentroidType_Init(*args)
+_Mesh_CentroidType_Init = _StgDomain._Mesh_CentroidType_Init
+
+def _Mesh_CentroidType_Delete(*args):
+  return _StgDomain._Mesh_CentroidType_Delete(*args)
+_Mesh_CentroidType_Delete = _StgDomain._Mesh_CentroidType_Delete
+
+def _Mesh_CentroidType_Print(*args):
+  return _StgDomain._Mesh_CentroidType_Print(*args)
+_Mesh_CentroidType_Print = _StgDomain._Mesh_CentroidType_Print
+
+def Mesh_CentroidType_Update(*args):
+  return _StgDomain.Mesh_CentroidType_Update(*args)
+Mesh_CentroidType_Update = _StgDomain.Mesh_CentroidType_Update
+
+def Mesh_CentroidType_ElementHasPoint(*args):
+  return _StgDomain.Mesh_CentroidType_ElementHasPoint(*args)
+Mesh_CentroidType_ElementHasPoint = _StgDomain.Mesh_CentroidType_ElementHasPoint
+
+def Mesh_CentroidType_GetMinimumSeparation(*args):
+  return _StgDomain.Mesh_CentroidType_GetMinimumSeparation(*args)
+Mesh_CentroidType_GetMinimumSeparation = _StgDomain.Mesh_CentroidType_GetMinimumSeparation
+
+def Mesh_CentroidType_GetCentroid(*args):
+  return _StgDomain.Mesh_CentroidType_GetCentroid(*args)
+Mesh_CentroidType_GetCentroid = _StgDomain.Mesh_CentroidType_GetCentroid
+
+def Mesh_CentroidType_SetElementMesh(*args):
+  return _StgDomain.Mesh_CentroidType_SetElementMesh(*args)
+Mesh_CentroidType_SetElementMesh = _StgDomain.Mesh_CentroidType_SetElementMesh
+class Mesh_HexAlgorithms(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mesh_HexAlgorithms, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mesh_HexAlgorithms, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Mesh_HexAlgorithms__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Mesh_HexAlgorithms__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Mesh_HexAlgorithms__sizeOfSelf_get, _StgDomain.Mesh_HexAlgorithms__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Mesh_HexAlgorithms__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Mesh_HexAlgorithms__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Mesh_HexAlgorithms__deleteSelf_get, _StgDomain.Mesh_HexAlgorithms__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Mesh_HexAlgorithms_type_set
+    __swig_getmethods__["type"] = _StgDomain.Mesh_HexAlgorithms_type_get
+    if _newclass:type = _swig_property(_StgDomain.Mesh_HexAlgorithms_type_get, _StgDomain.Mesh_HexAlgorithms_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Mesh_HexAlgorithms_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Mesh_HexAlgorithms_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Mesh_HexAlgorithms_nRefs_get, _StgDomain.Mesh_HexAlgorithms_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Mesh_HexAlgorithms__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Mesh_HexAlgorithms__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Mesh_HexAlgorithms__delete_get, _StgDomain.Mesh_HexAlgorithms__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Mesh_HexAlgorithms__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Mesh_HexAlgorithms__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Mesh_HexAlgorithms__print_get, _StgDomain.Mesh_HexAlgorithms__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Mesh_HexAlgorithms__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Mesh_HexAlgorithms__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Mesh_HexAlgorithms__copy_get, _StgDomain.Mesh_HexAlgorithms__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Mesh_HexAlgorithms_name_set
+    __swig_getmethods__["name"] = _StgDomain.Mesh_HexAlgorithms_name_get
+    if _newclass:name = _swig_property(_StgDomain.Mesh_HexAlgorithms_name_get, _StgDomain.Mesh_HexAlgorithms_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Mesh_HexAlgorithms_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Mesh_HexAlgorithms_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Mesh_HexAlgorithms_nameAllocationType_get, _StgDomain.Mesh_HexAlgorithms_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Mesh_HexAlgorithms__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Mesh_HexAlgorithms__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Mesh_HexAlgorithms__defaultConstructor_get, _StgDomain.Mesh_HexAlgorithms__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Mesh_HexAlgorithms__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Mesh_HexAlgorithms__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Mesh_HexAlgorithms__construct_get, _StgDomain.Mesh_HexAlgorithms__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Mesh_HexAlgorithms__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Mesh_HexAlgorithms__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Mesh_HexAlgorithms__build_get, _StgDomain.Mesh_HexAlgorithms__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Mesh_HexAlgorithms__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Mesh_HexAlgorithms__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Mesh_HexAlgorithms__initialise_get, _StgDomain.Mesh_HexAlgorithms__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Mesh_HexAlgorithms__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Mesh_HexAlgorithms__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Mesh_HexAlgorithms__execute_get, _StgDomain.Mesh_HexAlgorithms__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Mesh_HexAlgorithms__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Mesh_HexAlgorithms__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Mesh_HexAlgorithms__destroy_get, _StgDomain.Mesh_HexAlgorithms__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Mesh_HexAlgorithms_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Mesh_HexAlgorithms_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Mesh_HexAlgorithms_isConstructed_get, _StgDomain.Mesh_HexAlgorithms_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Mesh_HexAlgorithms_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Mesh_HexAlgorithms_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Mesh_HexAlgorithms_isBuilt_get, _StgDomain.Mesh_HexAlgorithms_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Mesh_HexAlgorithms_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Mesh_HexAlgorithms_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Mesh_HexAlgorithms_isInitialised_get, _StgDomain.Mesh_HexAlgorithms_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Mesh_HexAlgorithms_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Mesh_HexAlgorithms_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Mesh_HexAlgorithms_hasExecuted_get, _StgDomain.Mesh_HexAlgorithms_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Mesh_HexAlgorithms_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Mesh_HexAlgorithms_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Mesh_HexAlgorithms_isDestroyed_get, _StgDomain.Mesh_HexAlgorithms_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Mesh_HexAlgorithms_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Mesh_HexAlgorithms_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Mesh_HexAlgorithms_constructType_get, _StgDomain.Mesh_HexAlgorithms_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Mesh_HexAlgorithms_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Mesh_HexAlgorithms_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Mesh_HexAlgorithms_buildType_get, _StgDomain.Mesh_HexAlgorithms_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Mesh_HexAlgorithms_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Mesh_HexAlgorithms_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Mesh_HexAlgorithms_initialiseType_get, _StgDomain.Mesh_HexAlgorithms_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Mesh_HexAlgorithms_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Mesh_HexAlgorithms_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Mesh_HexAlgorithms_executeType_get, _StgDomain.Mesh_HexAlgorithms_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Mesh_HexAlgorithms_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Mesh_HexAlgorithms_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Mesh_HexAlgorithms_destroyType_get, _StgDomain.Mesh_HexAlgorithms_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Mesh_HexAlgorithms_context_set
+    __swig_getmethods__["context"] = _StgDomain.Mesh_HexAlgorithms_context_get
+    if _newclass:context = _swig_property(_StgDomain.Mesh_HexAlgorithms_context_get, _StgDomain.Mesh_HexAlgorithms_context_set)
+    __swig_setmethods__["setMeshFunc"] = _StgDomain.Mesh_HexAlgorithms_setMeshFunc_set
+    __swig_getmethods__["setMeshFunc"] = _StgDomain.Mesh_HexAlgorithms_setMeshFunc_get
+    if _newclass:setMeshFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_setMeshFunc_get, _StgDomain.Mesh_HexAlgorithms_setMeshFunc_set)
+    __swig_setmethods__["updateFunc"] = _StgDomain.Mesh_HexAlgorithms_updateFunc_set
+    __swig_getmethods__["updateFunc"] = _StgDomain.Mesh_HexAlgorithms_updateFunc_get
+    if _newclass:updateFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_updateFunc_get, _StgDomain.Mesh_HexAlgorithms_updateFunc_set)
+    __swig_setmethods__["nearestVertexFunc"] = _StgDomain.Mesh_HexAlgorithms_nearestVertexFunc_set
+    __swig_getmethods__["nearestVertexFunc"] = _StgDomain.Mesh_HexAlgorithms_nearestVertexFunc_get
+    if _newclass:nearestVertexFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_nearestVertexFunc_get, _StgDomain.Mesh_HexAlgorithms_nearestVertexFunc_set)
+    __swig_setmethods__["searchFunc"] = _StgDomain.Mesh_HexAlgorithms_searchFunc_set
+    __swig_getmethods__["searchFunc"] = _StgDomain.Mesh_HexAlgorithms_searchFunc_get
+    if _newclass:searchFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_searchFunc_get, _StgDomain.Mesh_HexAlgorithms_searchFunc_set)
+    __swig_setmethods__["searchElementsFunc"] = _StgDomain.Mesh_HexAlgorithms_searchElementsFunc_set
+    __swig_getmethods__["searchElementsFunc"] = _StgDomain.Mesh_HexAlgorithms_searchElementsFunc_get
+    if _newclass:searchElementsFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_searchElementsFunc_get, _StgDomain.Mesh_HexAlgorithms_searchElementsFunc_set)
+    __swig_setmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_HexAlgorithms_getMinimumSeparationFunc_set
+    __swig_getmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_HexAlgorithms_getMinimumSeparationFunc_get
+    if _newclass:getMinimumSeparationFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_getMinimumSeparationFunc_get, _StgDomain.Mesh_HexAlgorithms_getMinimumSeparationFunc_set)
+    __swig_setmethods__["getLocalCoordRangeFunc"] = _StgDomain.Mesh_HexAlgorithms_getLocalCoordRangeFunc_set
+    __swig_getmethods__["getLocalCoordRangeFunc"] = _StgDomain.Mesh_HexAlgorithms_getLocalCoordRangeFunc_get
+    if _newclass:getLocalCoordRangeFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_getLocalCoordRangeFunc_get, _StgDomain.Mesh_HexAlgorithms_getLocalCoordRangeFunc_set)
+    __swig_setmethods__["getDomainCoordRangeFunc"] = _StgDomain.Mesh_HexAlgorithms_getDomainCoordRangeFunc_set
+    __swig_getmethods__["getDomainCoordRangeFunc"] = _StgDomain.Mesh_HexAlgorithms_getDomainCoordRangeFunc_get
+    if _newclass:getDomainCoordRangeFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_getDomainCoordRangeFunc_get, _StgDomain.Mesh_HexAlgorithms_getDomainCoordRangeFunc_set)
+    __swig_setmethods__["getGlobalCoordRangeFunc"] = _StgDomain.Mesh_HexAlgorithms_getGlobalCoordRangeFunc_set
+    __swig_getmethods__["getGlobalCoordRangeFunc"] = _StgDomain.Mesh_HexAlgorithms_getGlobalCoordRangeFunc_get
+    if _newclass:getGlobalCoordRangeFunc = _swig_property(_StgDomain.Mesh_HexAlgorithms_getGlobalCoordRangeFunc_get, _StgDomain.Mesh_HexAlgorithms_getGlobalCoordRangeFunc_set)
+    __swig_setmethods__["nearestVertex"] = _StgDomain.Mesh_HexAlgorithms_nearestVertex_set
+    __swig_getmethods__["nearestVertex"] = _StgDomain.Mesh_HexAlgorithms_nearestVertex_get
+    if _newclass:nearestVertex = _swig_property(_StgDomain.Mesh_HexAlgorithms_nearestVertex_get, _StgDomain.Mesh_HexAlgorithms_nearestVertex_set)
+    __swig_setmethods__["search"] = _StgDomain.Mesh_HexAlgorithms_search_set
+    __swig_getmethods__["search"] = _StgDomain.Mesh_HexAlgorithms_search_get
+    if _newclass:search = _swig_property(_StgDomain.Mesh_HexAlgorithms_search_get, _StgDomain.Mesh_HexAlgorithms_search_set)
+    __swig_setmethods__["mesh"] = _StgDomain.Mesh_HexAlgorithms_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.Mesh_HexAlgorithms_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.Mesh_HexAlgorithms_mesh_get, _StgDomain.Mesh_HexAlgorithms_mesh_set)
+    __swig_setmethods__["rank"] = _StgDomain.Mesh_HexAlgorithms_rank_set
+    __swig_getmethods__["rank"] = _StgDomain.Mesh_HexAlgorithms_rank_get
+    if _newclass:rank = _swig_property(_StgDomain.Mesh_HexAlgorithms_rank_get, _StgDomain.Mesh_HexAlgorithms_rank_set)
+    __swig_setmethods__["incArray"] = _StgDomain.Mesh_HexAlgorithms_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.Mesh_HexAlgorithms_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.Mesh_HexAlgorithms_incArray_get, _StgDomain.Mesh_HexAlgorithms_incArray_set)
+    __swig_setmethods__["tree"] = _StgDomain.Mesh_HexAlgorithms_tree_set
+    __swig_getmethods__["tree"] = _StgDomain.Mesh_HexAlgorithms_tree_get
+    if _newclass:tree = _swig_property(_StgDomain.Mesh_HexAlgorithms_tree_get, _StgDomain.Mesh_HexAlgorithms_tree_set)
+    def __init__(self): 
+        this = _StgDomain.new_Mesh_HexAlgorithms()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Mesh_HexAlgorithms
+    __del__ = lambda self : None;
+Mesh_HexAlgorithms_swigregister = _StgDomain.Mesh_HexAlgorithms_swigregister
+Mesh_HexAlgorithms_swigregister(Mesh_HexAlgorithms)
+Mesh_HexAlgorithms_Type = cvar.Mesh_HexAlgorithms_Type
+
+
+def Mesh_HexAlgorithms_New(*args):
+  return _StgDomain.Mesh_HexAlgorithms_New(*args)
+Mesh_HexAlgorithms_New = _StgDomain.Mesh_HexAlgorithms_New
+
+def _Mesh_HexAlgorithms_New(*args):
+  return _StgDomain._Mesh_HexAlgorithms_New(*args)
+_Mesh_HexAlgorithms_New = _StgDomain._Mesh_HexAlgorithms_New
+
+def _Mesh_HexAlgorithms_Init(*args):
+  return _StgDomain._Mesh_HexAlgorithms_Init(*args)
+_Mesh_HexAlgorithms_Init = _StgDomain._Mesh_HexAlgorithms_Init
+
+def _Mesh_HexAlgorithms_Delete(*args):
+  return _StgDomain._Mesh_HexAlgorithms_Delete(*args)
+_Mesh_HexAlgorithms_Delete = _StgDomain._Mesh_HexAlgorithms_Delete
+
+def _Mesh_HexAlgorithms_Print(*args):
+  return _StgDomain._Mesh_HexAlgorithms_Print(*args)
+_Mesh_HexAlgorithms_Print = _StgDomain._Mesh_HexAlgorithms_Print
+
+def _Mesh_HexAlgorithms_AssignFromXML(*args):
+  return _StgDomain._Mesh_HexAlgorithms_AssignFromXML(*args)
+_Mesh_HexAlgorithms_AssignFromXML = _StgDomain._Mesh_HexAlgorithms_AssignFromXML
+
+def _Mesh_HexAlgorithms_Build(*args):
+  return _StgDomain._Mesh_HexAlgorithms_Build(*args)
+_Mesh_HexAlgorithms_Build = _StgDomain._Mesh_HexAlgorithms_Build
+
+def _Mesh_HexAlgorithms_Initialise(*args):
+  return _StgDomain._Mesh_HexAlgorithms_Initialise(*args)
+_Mesh_HexAlgorithms_Initialise = _StgDomain._Mesh_HexAlgorithms_Initialise
+
+def _Mesh_HexAlgorithms_Execute(*args):
+  return _StgDomain._Mesh_HexAlgorithms_Execute(*args)
+_Mesh_HexAlgorithms_Execute = _StgDomain._Mesh_HexAlgorithms_Execute
+
+def _Mesh_HexAlgorithms_Destroy(*args):
+  return _StgDomain._Mesh_HexAlgorithms_Destroy(*args)
+_Mesh_HexAlgorithms_Destroy = _StgDomain._Mesh_HexAlgorithms_Destroy
+class Mesh_HexType(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mesh_HexType, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mesh_HexType, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Mesh_HexType__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Mesh_HexType__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Mesh_HexType__sizeOfSelf_get, _StgDomain.Mesh_HexType__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Mesh_HexType__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Mesh_HexType__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Mesh_HexType__deleteSelf_get, _StgDomain.Mesh_HexType__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Mesh_HexType_type_set
+    __swig_getmethods__["type"] = _StgDomain.Mesh_HexType_type_get
+    if _newclass:type = _swig_property(_StgDomain.Mesh_HexType_type_get, _StgDomain.Mesh_HexType_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Mesh_HexType_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Mesh_HexType_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Mesh_HexType_nRefs_get, _StgDomain.Mesh_HexType_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Mesh_HexType__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Mesh_HexType__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Mesh_HexType__delete_get, _StgDomain.Mesh_HexType__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Mesh_HexType__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Mesh_HexType__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Mesh_HexType__print_get, _StgDomain.Mesh_HexType__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Mesh_HexType__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Mesh_HexType__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Mesh_HexType__copy_get, _StgDomain.Mesh_HexType__copy_set)
+    __swig_setmethods__["updateFunc"] = _StgDomain.Mesh_HexType_updateFunc_set
+    __swig_getmethods__["updateFunc"] = _StgDomain.Mesh_HexType_updateFunc_get
+    if _newclass:updateFunc = _swig_property(_StgDomain.Mesh_HexType_updateFunc_get, _StgDomain.Mesh_HexType_updateFunc_set)
+    __swig_setmethods__["elementHasPointFunc"] = _StgDomain.Mesh_HexType_elementHasPointFunc_set
+    __swig_getmethods__["elementHasPointFunc"] = _StgDomain.Mesh_HexType_elementHasPointFunc_get
+    if _newclass:elementHasPointFunc = _swig_property(_StgDomain.Mesh_HexType_elementHasPointFunc_get, _StgDomain.Mesh_HexType_elementHasPointFunc_set)
+    __swig_setmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_HexType_getMinimumSeparationFunc_set
+    __swig_getmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_HexType_getMinimumSeparationFunc_get
+    if _newclass:getMinimumSeparationFunc = _swig_property(_StgDomain.Mesh_HexType_getMinimumSeparationFunc_get, _StgDomain.Mesh_HexType_getMinimumSeparationFunc_set)
+    __swig_setmethods__["getCentroidFunc"] = _StgDomain.Mesh_HexType_getCentroidFunc_set
+    __swig_getmethods__["getCentroidFunc"] = _StgDomain.Mesh_HexType_getCentroidFunc_get
+    if _newclass:getCentroidFunc = _swig_property(_StgDomain.Mesh_HexType_getCentroidFunc_get, _StgDomain.Mesh_HexType_getCentroidFunc_set)
+    __swig_setmethods__["mesh"] = _StgDomain.Mesh_HexType_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.Mesh_HexType_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.Mesh_HexType_mesh_get, _StgDomain.Mesh_HexType_mesh_set)
+    __swig_setmethods__["mapSize"] = _StgDomain.Mesh_HexType_mapSize_set
+    __swig_getmethods__["mapSize"] = _StgDomain.Mesh_HexType_mapSize_get
+    if _newclass:mapSize = _swig_property(_StgDomain.Mesh_HexType_mapSize_get, _StgDomain.Mesh_HexType_mapSize_set)
+    __swig_setmethods__["vertMap"] = _StgDomain.Mesh_HexType_vertMap_set
+    __swig_getmethods__["vertMap"] = _StgDomain.Mesh_HexType_vertMap_get
+    if _newclass:vertMap = _swig_property(_StgDomain.Mesh_HexType_vertMap_get, _StgDomain.Mesh_HexType_vertMap_set)
+    __swig_setmethods__["inc"] = _StgDomain.Mesh_HexType_inc_set
+    __swig_getmethods__["inc"] = _StgDomain.Mesh_HexType_inc_get
+    if _newclass:inc = _swig_property(_StgDomain.Mesh_HexType_inc_get, _StgDomain.Mesh_HexType_inc_set)
+    __swig_setmethods__["elementHasPoint"] = _StgDomain.Mesh_HexType_elementHasPoint_set
+    __swig_getmethods__["elementHasPoint"] = _StgDomain.Mesh_HexType_elementHasPoint_get
+    if _newclass:elementHasPoint = _swig_property(_StgDomain.Mesh_HexType_elementHasPoint_get, _StgDomain.Mesh_HexType_elementHasPoint_set)
+    __swig_setmethods__["triInds"] = _StgDomain.Mesh_HexType_triInds_set
+    __swig_getmethods__["triInds"] = _StgDomain.Mesh_HexType_triInds_get
+    if _newclass:triInds = _swig_property(_StgDomain.Mesh_HexType_triInds_get, _StgDomain.Mesh_HexType_triInds_set)
+    __swig_setmethods__["tetInds"] = _StgDomain.Mesh_HexType_tetInds_set
+    __swig_getmethods__["tetInds"] = _StgDomain.Mesh_HexType_tetInds_get
+    if _newclass:tetInds = _swig_property(_StgDomain.Mesh_HexType_tetInds_get, _StgDomain.Mesh_HexType_tetInds_set)
+    __swig_setmethods__["incArray"] = _StgDomain.Mesh_HexType_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.Mesh_HexType_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.Mesh_HexType_incArray_get, _StgDomain.Mesh_HexType_incArray_set)
+    def __init__(self): 
+        this = _StgDomain.new_Mesh_HexType()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Mesh_HexType
+    __del__ = lambda self : None;
+Mesh_HexType_swigregister = _StgDomain.Mesh_HexType_swigregister
+Mesh_HexType_swigregister(Mesh_HexType)
+Mesh_HexType_Type = cvar.Mesh_HexType_Type
+
+
+def Mesh_HexType_New():
+  return _StgDomain.Mesh_HexType_New()
+Mesh_HexType_New = _StgDomain.Mesh_HexType_New
+
+def _Mesh_HexType_New(*args):
+  return _StgDomain._Mesh_HexType_New(*args)
+_Mesh_HexType_New = _StgDomain._Mesh_HexType_New
+
+def _Mesh_HexType_Init(*args):
+  return _StgDomain._Mesh_HexType_Init(*args)
+_Mesh_HexType_Init = _StgDomain._Mesh_HexType_Init
+
+def _Mesh_HexType_Delete(*args):
+  return _StgDomain._Mesh_HexType_Delete(*args)
+_Mesh_HexType_Delete = _StgDomain._Mesh_HexType_Delete
+
+def _Mesh_HexType_Print(*args):
+  return _StgDomain._Mesh_HexType_Print(*args)
+_Mesh_HexType_Print = _StgDomain._Mesh_HexType_Print
+
+def Mesh_HexType_Update(*args):
+  return _StgDomain.Mesh_HexType_Update(*args)
+Mesh_HexType_Update = _StgDomain.Mesh_HexType_Update
+
+def Mesh_HexType_ElementHasPoint(*args):
+  return _StgDomain.Mesh_HexType_ElementHasPoint(*args)
+Mesh_HexType_ElementHasPoint = _StgDomain.Mesh_HexType_ElementHasPoint
+
+def Mesh_HexType_GetMinimumSeparation(*args):
+  return _StgDomain.Mesh_HexType_GetMinimumSeparation(*args)
+Mesh_HexType_GetMinimumSeparation = _StgDomain.Mesh_HexType_GetMinimumSeparation
+
+def Mesh_HexType_GetMinimumSeparationGeneral(*args):
+  return _StgDomain.Mesh_HexType_GetMinimumSeparationGeneral(*args)
+Mesh_HexType_GetMinimumSeparationGeneral = _StgDomain.Mesh_HexType_GetMinimumSeparationGeneral
+
+def Mesh_HexType_SetVertexMap(*args):
+  return _StgDomain.Mesh_HexType_SetVertexMap(*args)
+Mesh_HexType_SetVertexMap = _StgDomain.Mesh_HexType_SetVertexMap
+
+def Mesh_HexType_ElementHasPoint3DGeneral(*args):
+  return _StgDomain.Mesh_HexType_ElementHasPoint3DGeneral(*args)
+Mesh_HexType_ElementHasPoint3DGeneral = _StgDomain.Mesh_HexType_ElementHasPoint3DGeneral
+
+def Mesh_HexType_ElementHasPoint3DWithIncidence(*args):
+  return _StgDomain.Mesh_HexType_ElementHasPoint3DWithIncidence(*args)
+Mesh_HexType_ElementHasPoint3DWithIncidence = _StgDomain.Mesh_HexType_ElementHasPoint3DWithIncidence
+
+def Mesh_HexType_ElementHasPoint2DGeneral(*args):
+  return _StgDomain.Mesh_HexType_ElementHasPoint2DGeneral(*args)
+Mesh_HexType_ElementHasPoint2DGeneral = _StgDomain.Mesh_HexType_ElementHasPoint2DGeneral
+
+def Mesh_HexType_ElementHasPoint2DWithIncidence(*args):
+  return _StgDomain.Mesh_HexType_ElementHasPoint2DWithIncidence(*args)
+Mesh_HexType_ElementHasPoint2DWithIncidence = _StgDomain.Mesh_HexType_ElementHasPoint2DWithIncidence
+
+def Mesh_HexType_ElementHasPoint1DGeneral(*args):
+  return _StgDomain.Mesh_HexType_ElementHasPoint1DGeneral(*args)
+Mesh_HexType_ElementHasPoint1DGeneral = _StgDomain.Mesh_HexType_ElementHasPoint1DGeneral
+
+def Mesh_HexType_ElementHasPoint1DWithIncidence(*args):
+  return _StgDomain.Mesh_HexType_ElementHasPoint1DWithIncidence(*args)
+Mesh_HexType_ElementHasPoint1DWithIncidence = _StgDomain.Mesh_HexType_ElementHasPoint1DWithIncidence
+class Mesh_RegularAlgorithms(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mesh_RegularAlgorithms, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mesh_RegularAlgorithms, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Mesh_RegularAlgorithms__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Mesh_RegularAlgorithms__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Mesh_RegularAlgorithms__sizeOfSelf_get, _StgDomain.Mesh_RegularAlgorithms__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Mesh_RegularAlgorithms__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Mesh_RegularAlgorithms__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Mesh_RegularAlgorithms__deleteSelf_get, _StgDomain.Mesh_RegularAlgorithms__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Mesh_RegularAlgorithms_type_set
+    __swig_getmethods__["type"] = _StgDomain.Mesh_RegularAlgorithms_type_get
+    if _newclass:type = _swig_property(_StgDomain.Mesh_RegularAlgorithms_type_get, _StgDomain.Mesh_RegularAlgorithms_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Mesh_RegularAlgorithms_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Mesh_RegularAlgorithms_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Mesh_RegularAlgorithms_nRefs_get, _StgDomain.Mesh_RegularAlgorithms_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Mesh_RegularAlgorithms__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Mesh_RegularAlgorithms__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Mesh_RegularAlgorithms__delete_get, _StgDomain.Mesh_RegularAlgorithms__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Mesh_RegularAlgorithms__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Mesh_RegularAlgorithms__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Mesh_RegularAlgorithms__print_get, _StgDomain.Mesh_RegularAlgorithms__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Mesh_RegularAlgorithms__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Mesh_RegularAlgorithms__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Mesh_RegularAlgorithms__copy_get, _StgDomain.Mesh_RegularAlgorithms__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Mesh_RegularAlgorithms_name_set
+    __swig_getmethods__["name"] = _StgDomain.Mesh_RegularAlgorithms_name_get
+    if _newclass:name = _swig_property(_StgDomain.Mesh_RegularAlgorithms_name_get, _StgDomain.Mesh_RegularAlgorithms_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Mesh_RegularAlgorithms_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Mesh_RegularAlgorithms_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Mesh_RegularAlgorithms_nameAllocationType_get, _StgDomain.Mesh_RegularAlgorithms_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Mesh_RegularAlgorithms__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Mesh_RegularAlgorithms__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Mesh_RegularAlgorithms__defaultConstructor_get, _StgDomain.Mesh_RegularAlgorithms__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Mesh_RegularAlgorithms__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Mesh_RegularAlgorithms__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Mesh_RegularAlgorithms__construct_get, _StgDomain.Mesh_RegularAlgorithms__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Mesh_RegularAlgorithms__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Mesh_RegularAlgorithms__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Mesh_RegularAlgorithms__build_get, _StgDomain.Mesh_RegularAlgorithms__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Mesh_RegularAlgorithms__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Mesh_RegularAlgorithms__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Mesh_RegularAlgorithms__initialise_get, _StgDomain.Mesh_RegularAlgorithms__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Mesh_RegularAlgorithms__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Mesh_RegularAlgorithms__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Mesh_RegularAlgorithms__execute_get, _StgDomain.Mesh_RegularAlgorithms__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Mesh_RegularAlgorithms__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Mesh_RegularAlgorithms__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Mesh_RegularAlgorithms__destroy_get, _StgDomain.Mesh_RegularAlgorithms__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Mesh_RegularAlgorithms_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Mesh_RegularAlgorithms_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Mesh_RegularAlgorithms_isConstructed_get, _StgDomain.Mesh_RegularAlgorithms_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Mesh_RegularAlgorithms_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Mesh_RegularAlgorithms_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Mesh_RegularAlgorithms_isBuilt_get, _StgDomain.Mesh_RegularAlgorithms_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Mesh_RegularAlgorithms_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Mesh_RegularAlgorithms_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Mesh_RegularAlgorithms_isInitialised_get, _StgDomain.Mesh_RegularAlgorithms_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Mesh_RegularAlgorithms_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Mesh_RegularAlgorithms_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Mesh_RegularAlgorithms_hasExecuted_get, _StgDomain.Mesh_RegularAlgorithms_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Mesh_RegularAlgorithms_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Mesh_RegularAlgorithms_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Mesh_RegularAlgorithms_isDestroyed_get, _StgDomain.Mesh_RegularAlgorithms_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Mesh_RegularAlgorithms_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Mesh_RegularAlgorithms_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Mesh_RegularAlgorithms_constructType_get, _StgDomain.Mesh_RegularAlgorithms_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Mesh_RegularAlgorithms_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Mesh_RegularAlgorithms_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Mesh_RegularAlgorithms_buildType_get, _StgDomain.Mesh_RegularAlgorithms_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Mesh_RegularAlgorithms_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Mesh_RegularAlgorithms_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Mesh_RegularAlgorithms_initialiseType_get, _StgDomain.Mesh_RegularAlgorithms_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Mesh_RegularAlgorithms_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Mesh_RegularAlgorithms_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Mesh_RegularAlgorithms_executeType_get, _StgDomain.Mesh_RegularAlgorithms_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Mesh_RegularAlgorithms_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Mesh_RegularAlgorithms_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Mesh_RegularAlgorithms_destroyType_get, _StgDomain.Mesh_RegularAlgorithms_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Mesh_RegularAlgorithms_context_set
+    __swig_getmethods__["context"] = _StgDomain.Mesh_RegularAlgorithms_context_get
+    if _newclass:context = _swig_property(_StgDomain.Mesh_RegularAlgorithms_context_get, _StgDomain.Mesh_RegularAlgorithms_context_set)
+    __swig_setmethods__["setMeshFunc"] = _StgDomain.Mesh_RegularAlgorithms_setMeshFunc_set
+    __swig_getmethods__["setMeshFunc"] = _StgDomain.Mesh_RegularAlgorithms_setMeshFunc_get
+    if _newclass:setMeshFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_setMeshFunc_get, _StgDomain.Mesh_RegularAlgorithms_setMeshFunc_set)
+    __swig_setmethods__["updateFunc"] = _StgDomain.Mesh_RegularAlgorithms_updateFunc_set
+    __swig_getmethods__["updateFunc"] = _StgDomain.Mesh_RegularAlgorithms_updateFunc_get
+    if _newclass:updateFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_updateFunc_get, _StgDomain.Mesh_RegularAlgorithms_updateFunc_set)
+    __swig_setmethods__["nearestVertexFunc"] = _StgDomain.Mesh_RegularAlgorithms_nearestVertexFunc_set
+    __swig_getmethods__["nearestVertexFunc"] = _StgDomain.Mesh_RegularAlgorithms_nearestVertexFunc_get
+    if _newclass:nearestVertexFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_nearestVertexFunc_get, _StgDomain.Mesh_RegularAlgorithms_nearestVertexFunc_set)
+    __swig_setmethods__["searchFunc"] = _StgDomain.Mesh_RegularAlgorithms_searchFunc_set
+    __swig_getmethods__["searchFunc"] = _StgDomain.Mesh_RegularAlgorithms_searchFunc_get
+    if _newclass:searchFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_searchFunc_get, _StgDomain.Mesh_RegularAlgorithms_searchFunc_set)
+    __swig_setmethods__["searchElementsFunc"] = _StgDomain.Mesh_RegularAlgorithms_searchElementsFunc_set
+    __swig_getmethods__["searchElementsFunc"] = _StgDomain.Mesh_RegularAlgorithms_searchElementsFunc_get
+    if _newclass:searchElementsFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_searchElementsFunc_get, _StgDomain.Mesh_RegularAlgorithms_searchElementsFunc_set)
+    __swig_setmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_RegularAlgorithms_getMinimumSeparationFunc_set
+    __swig_getmethods__["getMinimumSeparationFunc"] = _StgDomain.Mesh_RegularAlgorithms_getMinimumSeparationFunc_get
+    if _newclass:getMinimumSeparationFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_getMinimumSeparationFunc_get, _StgDomain.Mesh_RegularAlgorithms_getMinimumSeparationFunc_set)
+    __swig_setmethods__["getLocalCoordRangeFunc"] = _StgDomain.Mesh_RegularAlgorithms_getLocalCoordRangeFunc_set
+    __swig_getmethods__["getLocalCoordRangeFunc"] = _StgDomain.Mesh_RegularAlgorithms_getLocalCoordRangeFunc_get
+    if _newclass:getLocalCoordRangeFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_getLocalCoordRangeFunc_get, _StgDomain.Mesh_RegularAlgorithms_getLocalCoordRangeFunc_set)
+    __swig_setmethods__["getDomainCoordRangeFunc"] = _StgDomain.Mesh_RegularAlgorithms_getDomainCoordRangeFunc_set
+    __swig_getmethods__["getDomainCoordRangeFunc"] = _StgDomain.Mesh_RegularAlgorithms_getDomainCoordRangeFunc_get
+    if _newclass:getDomainCoordRangeFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_getDomainCoordRangeFunc_get, _StgDomain.Mesh_RegularAlgorithms_getDomainCoordRangeFunc_set)
+    __swig_setmethods__["getGlobalCoordRangeFunc"] = _StgDomain.Mesh_RegularAlgorithms_getGlobalCoordRangeFunc_set
+    __swig_getmethods__["getGlobalCoordRangeFunc"] = _StgDomain.Mesh_RegularAlgorithms_getGlobalCoordRangeFunc_get
+    if _newclass:getGlobalCoordRangeFunc = _swig_property(_StgDomain.Mesh_RegularAlgorithms_getGlobalCoordRangeFunc_get, _StgDomain.Mesh_RegularAlgorithms_getGlobalCoordRangeFunc_set)
+    __swig_setmethods__["nearestVertex"] = _StgDomain.Mesh_RegularAlgorithms_nearestVertex_set
+    __swig_getmethods__["nearestVertex"] = _StgDomain.Mesh_RegularAlgorithms_nearestVertex_get
+    if _newclass:nearestVertex = _swig_property(_StgDomain.Mesh_RegularAlgorithms_nearestVertex_get, _StgDomain.Mesh_RegularAlgorithms_nearestVertex_set)
+    __swig_setmethods__["search"] = _StgDomain.Mesh_RegularAlgorithms_search_set
+    __swig_getmethods__["search"] = _StgDomain.Mesh_RegularAlgorithms_search_get
+    if _newclass:search = _swig_property(_StgDomain.Mesh_RegularAlgorithms_search_get, _StgDomain.Mesh_RegularAlgorithms_search_set)
+    __swig_setmethods__["mesh"] = _StgDomain.Mesh_RegularAlgorithms_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.Mesh_RegularAlgorithms_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.Mesh_RegularAlgorithms_mesh_get, _StgDomain.Mesh_RegularAlgorithms_mesh_set)
+    __swig_setmethods__["rank"] = _StgDomain.Mesh_RegularAlgorithms_rank_set
+    __swig_getmethods__["rank"] = _StgDomain.Mesh_RegularAlgorithms_rank_get
+    if _newclass:rank = _swig_property(_StgDomain.Mesh_RegularAlgorithms_rank_get, _StgDomain.Mesh_RegularAlgorithms_rank_set)
+    __swig_setmethods__["incArray"] = _StgDomain.Mesh_RegularAlgorithms_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.Mesh_RegularAlgorithms_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.Mesh_RegularAlgorithms_incArray_get, _StgDomain.Mesh_RegularAlgorithms_incArray_set)
+    __swig_setmethods__["tree"] = _StgDomain.Mesh_RegularAlgorithms_tree_set
+    __swig_getmethods__["tree"] = _StgDomain.Mesh_RegularAlgorithms_tree_get
+    if _newclass:tree = _swig_property(_StgDomain.Mesh_RegularAlgorithms_tree_get, _StgDomain.Mesh_RegularAlgorithms_tree_set)
+    __swig_setmethods__["sep"] = _StgDomain.Mesh_RegularAlgorithms_sep_set
+    __swig_getmethods__["sep"] = _StgDomain.Mesh_RegularAlgorithms_sep_get
+    if _newclass:sep = _swig_property(_StgDomain.Mesh_RegularAlgorithms_sep_get, _StgDomain.Mesh_RegularAlgorithms_sep_set)
+    __swig_setmethods__["minCrd"] = _StgDomain.Mesh_RegularAlgorithms_minCrd_set
+    __swig_getmethods__["minCrd"] = _StgDomain.Mesh_RegularAlgorithms_minCrd_get
+    if _newclass:minCrd = _swig_property(_StgDomain.Mesh_RegularAlgorithms_minCrd_get, _StgDomain.Mesh_RegularAlgorithms_minCrd_set)
+    __swig_setmethods__["maxCrd"] = _StgDomain.Mesh_RegularAlgorithms_maxCrd_set
+    __swig_getmethods__["maxCrd"] = _StgDomain.Mesh_RegularAlgorithms_maxCrd_get
+    if _newclass:maxCrd = _swig_property(_StgDomain.Mesh_RegularAlgorithms_maxCrd_get, _StgDomain.Mesh_RegularAlgorithms_maxCrd_set)
+    def __init__(self): 
+        this = _StgDomain.new_Mesh_RegularAlgorithms()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Mesh_RegularAlgorithms
+    __del__ = lambda self : None;
+Mesh_RegularAlgorithms_swigregister = _StgDomain.Mesh_RegularAlgorithms_swigregister
+Mesh_RegularAlgorithms_swigregister(Mesh_RegularAlgorithms)
+Mesh_RegularAlgorithms_Type = cvar.Mesh_RegularAlgorithms_Type
+
+
+def Mesh_RegularAlgorithms_New(*args):
+  return _StgDomain.Mesh_RegularAlgorithms_New(*args)
+Mesh_RegularAlgorithms_New = _StgDomain.Mesh_RegularAlgorithms_New
+
+def _Mesh_RegularAlgorithms_New(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_New(*args)
+_Mesh_RegularAlgorithms_New = _StgDomain._Mesh_RegularAlgorithms_New
+
+def _Mesh_RegularAlgorithms_Init(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_Init(*args)
+_Mesh_RegularAlgorithms_Init = _StgDomain._Mesh_RegularAlgorithms_Init
+
+def _Mesh_RegularAlgorithms_Delete(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_Delete(*args)
+_Mesh_RegularAlgorithms_Delete = _StgDomain._Mesh_RegularAlgorithms_Delete
+
+def _Mesh_RegularAlgorithms_Print(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_Print(*args)
+_Mesh_RegularAlgorithms_Print = _StgDomain._Mesh_RegularAlgorithms_Print
+
+def _Mesh_RegularAlgorithms_AssignFromXML(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_AssignFromXML(*args)
+_Mesh_RegularAlgorithms_AssignFromXML = _StgDomain._Mesh_RegularAlgorithms_AssignFromXML
+
+def _Mesh_RegularAlgorithms_Build(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_Build(*args)
+_Mesh_RegularAlgorithms_Build = _StgDomain._Mesh_RegularAlgorithms_Build
+
+def _Mesh_RegularAlgorithms_Initialise(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_Initialise(*args)
+_Mesh_RegularAlgorithms_Initialise = _StgDomain._Mesh_RegularAlgorithms_Initialise
+
+def _Mesh_RegularAlgorithms_Execute(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_Execute(*args)
+_Mesh_RegularAlgorithms_Execute = _StgDomain._Mesh_RegularAlgorithms_Execute
+
+def _Mesh_RegularAlgorithms_Destroy(*args):
+  return _StgDomain._Mesh_RegularAlgorithms_Destroy(*args)
+_Mesh_RegularAlgorithms_Destroy = _StgDomain._Mesh_RegularAlgorithms_Destroy
+
+def Mesh_RegularAlgorithms_SetMesh(*args):
+  return _StgDomain.Mesh_RegularAlgorithms_SetMesh(*args)
+Mesh_RegularAlgorithms_SetMesh = _StgDomain.Mesh_RegularAlgorithms_SetMesh
+
+def Mesh_RegularAlgorithms_Update(*args):
+  return _StgDomain.Mesh_RegularAlgorithms_Update(*args)
+Mesh_RegularAlgorithms_Update = _StgDomain.Mesh_RegularAlgorithms_Update
+
+def Mesh_RegularAlgorithms_SearchElements(*args):
+  return _StgDomain.Mesh_RegularAlgorithms_SearchElements(*args)
+Mesh_RegularAlgorithms_SearchElements = _StgDomain.Mesh_RegularAlgorithms_SearchElements
+
+def Mesh_RegularAlgorithms_Destruct(*args):
+  return _StgDomain.Mesh_RegularAlgorithms_Destruct(*args)
+Mesh_RegularAlgorithms_Destruct = _StgDomain.Mesh_RegularAlgorithms_Destruct
+class MeshTopology(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MeshTopology, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MeshTopology, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.MeshTopology__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.MeshTopology__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.MeshTopology__sizeOfSelf_get, _StgDomain.MeshTopology__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.MeshTopology__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.MeshTopology__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.MeshTopology__deleteSelf_get, _StgDomain.MeshTopology__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.MeshTopology_type_set
+    __swig_getmethods__["type"] = _StgDomain.MeshTopology_type_get
+    if _newclass:type = _swig_property(_StgDomain.MeshTopology_type_get, _StgDomain.MeshTopology_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.MeshTopology_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.MeshTopology_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.MeshTopology_nRefs_get, _StgDomain.MeshTopology_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.MeshTopology__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.MeshTopology__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.MeshTopology__delete_get, _StgDomain.MeshTopology__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.MeshTopology__print_set
+    __swig_getmethods__["_print"] = _StgDomain.MeshTopology__print_get
+    if _newclass:_print = _swig_property(_StgDomain.MeshTopology__print_get, _StgDomain.MeshTopology__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.MeshTopology__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.MeshTopology__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.MeshTopology__copy_get, _StgDomain.MeshTopology__copy_set)
+    __swig_setmethods__["setCommFunc"] = _StgDomain.MeshTopology_setCommFunc_set
+    __swig_getmethods__["setCommFunc"] = _StgDomain.MeshTopology_setCommFunc_get
+    if _newclass:setCommFunc = _swig_property(_StgDomain.MeshTopology_setCommFunc_get, _StgDomain.MeshTopology_setCommFunc_set)
+    __swig_setmethods__["setNumDimsFunc"] = _StgDomain.MeshTopology_setNumDimsFunc_set
+    __swig_getmethods__["setNumDimsFunc"] = _StgDomain.MeshTopology_setNumDimsFunc_get
+    if _newclass:setNumDimsFunc = _swig_property(_StgDomain.MeshTopology_setNumDimsFunc_get, _StgDomain.MeshTopology_setNumDimsFunc_set)
+    __swig_setmethods__["setShadowDepthFunc"] = _StgDomain.MeshTopology_setShadowDepthFunc_set
+    __swig_getmethods__["setShadowDepthFunc"] = _StgDomain.MeshTopology_setShadowDepthFunc_get
+    if _newclass:setShadowDepthFunc = _swig_property(_StgDomain.MeshTopology_setShadowDepthFunc_get, _StgDomain.MeshTopology_setShadowDepthFunc_set)
+    __swig_setmethods__["getNumCellsFunc"] = _StgDomain.MeshTopology_getNumCellsFunc_set
+    __swig_getmethods__["getNumCellsFunc"] = _StgDomain.MeshTopology_getNumCellsFunc_get
+    if _newclass:getNumCellsFunc = _swig_property(_StgDomain.MeshTopology_getNumCellsFunc_get, _StgDomain.MeshTopology_getNumCellsFunc_set)
+    __swig_setmethods__["getIncidenceFunc"] = _StgDomain.MeshTopology_getIncidenceFunc_set
+    __swig_getmethods__["getIncidenceFunc"] = _StgDomain.MeshTopology_getIncidenceFunc_get
+    if _newclass:getIncidenceFunc = _swig_property(_StgDomain.MeshTopology_getIncidenceFunc_get, _StgDomain.MeshTopology_getIncidenceFunc_set)
+    __swig_setmethods__["nDims"] = _StgDomain.MeshTopology_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.MeshTopology_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.MeshTopology_nDims_get, _StgDomain.MeshTopology_nDims_set)
+    __swig_setmethods__["nTDims"] = _StgDomain.MeshTopology_nTDims_set
+    __swig_getmethods__["nTDims"] = _StgDomain.MeshTopology_nTDims_get
+    if _newclass:nTDims = _swig_property(_StgDomain.MeshTopology_nTDims_get, _StgDomain.MeshTopology_nTDims_set)
+    __swig_setmethods__["shadDepth"] = _StgDomain.MeshTopology_shadDepth_set
+    __swig_getmethods__["shadDepth"] = _StgDomain.MeshTopology_shadDepth_get
+    if _newclass:shadDepth = _swig_property(_StgDomain.MeshTopology_shadDepth_get, _StgDomain.MeshTopology_shadDepth_set)
+    __swig_setmethods__["comm"] = _StgDomain.MeshTopology_comm_set
+    __swig_getmethods__["comm"] = _StgDomain.MeshTopology_comm_get
+    if _newclass:comm = _swig_property(_StgDomain.MeshTopology_comm_get, _StgDomain.MeshTopology_comm_set)
+    def __init__(self): 
+        this = _StgDomain.new_MeshTopology()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_MeshTopology
+    __del__ = lambda self : None;
+MeshTopology_swigregister = _StgDomain.MeshTopology_swigregister
+MeshTopology_swigregister(MeshTopology)
+MeshTopology_Type = cvar.MeshTopology_Type
+
+
+def _MeshTopology_New(*args):
+  return _StgDomain._MeshTopology_New(*args)
+_MeshTopology_New = _StgDomain._MeshTopology_New
+
+def _MeshTopology_Init(*args):
+  return _StgDomain._MeshTopology_Init(*args)
+_MeshTopology_Init = _StgDomain._MeshTopology_Init
+
+def MeshTopology_Destruct(*args):
+  return _StgDomain.MeshTopology_Destruct(*args)
+MeshTopology_Destruct = _StgDomain.MeshTopology_Destruct
+
+def _MeshTopology_Delete(*args):
+  return _StgDomain._MeshTopology_Delete(*args)
+_MeshTopology_Delete = _StgDomain._MeshTopology_Delete
+
+def MeshTopology_Copy(*args):
+  return _StgDomain.MeshTopology_Copy(*args)
+MeshTopology_Copy = _StgDomain.MeshTopology_Copy
+
+def _MeshTopology_SetNumDims(*args):
+  return _StgDomain._MeshTopology_SetNumDims(*args)
+_MeshTopology_SetNumDims = _StgDomain._MeshTopology_SetNumDims
+
+def _MeshTopology_SetComm(*args):
+  return _StgDomain._MeshTopology_SetComm(*args)
+_MeshTopology_SetComm = _StgDomain._MeshTopology_SetComm
+
+def _MeshTopology_SetShadowDepth(*args):
+  return _StgDomain._MeshTopology_SetShadowDepth(*args)
+_MeshTopology_SetShadowDepth = _StgDomain._MeshTopology_SetShadowDepth
+
+def MeshTopology_GetNumDims(*args):
+  return _StgDomain.MeshTopology_GetNumDims(*args)
+MeshTopology_GetNumDims = _StgDomain.MeshTopology_GetNumDims
+
+def MeshTopology_GetComm(*args):
+  return _StgDomain.MeshTopology_GetComm(*args)
+MeshTopology_GetComm = _StgDomain.MeshTopology_GetComm
+class NodeBunching_PointData(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, NodeBunching_PointData, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, NodeBunching_PointData, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x"] = _StgDomain.NodeBunching_PointData_x_set
+    __swig_getmethods__["x"] = _StgDomain.NodeBunching_PointData_x_get
+    if _newclass:x = _swig_property(_StgDomain.NodeBunching_PointData_x_get, _StgDomain.NodeBunching_PointData_x_set)
+    __swig_setmethods__["size"] = _StgDomain.NodeBunching_PointData_size_set
+    __swig_getmethods__["size"] = _StgDomain.NodeBunching_PointData_size_get
+    if _newclass:size = _swig_property(_StgDomain.NodeBunching_PointData_size_get, _StgDomain.NodeBunching_PointData_size_set)
+    __swig_setmethods__["numNodesCte"] = _StgDomain.NodeBunching_PointData_numNodesCte_set
+    __swig_getmethods__["numNodesCte"] = _StgDomain.NodeBunching_PointData_numNodesCte_get
+    if _newclass:numNodesCte = _swig_property(_StgDomain.NodeBunching_PointData_numNodesCte_get, _StgDomain.NodeBunching_PointData_numNodesCte_set)
+    __swig_setmethods__["numNodesVar"] = _StgDomain.NodeBunching_PointData_numNodesVar_set
+    __swig_getmethods__["numNodesVar"] = _StgDomain.NodeBunching_PointData_numNodesVar_get
+    if _newclass:numNodesVar = _swig_property(_StgDomain.NodeBunching_PointData_numNodesVar_get, _StgDomain.NodeBunching_PointData_numNodesVar_set)
+    __swig_setmethods__["cteElemSize"] = _StgDomain.NodeBunching_PointData_cteElemSize_set
+    __swig_getmethods__["cteElemSize"] = _StgDomain.NodeBunching_PointData_cteElemSize_get
+    if _newclass:cteElemSize = _swig_property(_StgDomain.NodeBunching_PointData_cteElemSize_get, _StgDomain.NodeBunching_PointData_cteElemSize_set)
+    def __init__(self): 
+        this = _StgDomain.new_NodeBunching_PointData()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_NodeBunching_PointData
+    __del__ = lambda self : None;
+NodeBunching_PointData_swigregister = _StgDomain.NodeBunching_PointData_swigregister
+NodeBunching_PointData_swigregister(NodeBunching_PointData)
+NodeBunching_Type = cvar.NodeBunching_Type
+
+class NodeBunching(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, NodeBunching, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, NodeBunching, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.NodeBunching__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.NodeBunching__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.NodeBunching__sizeOfSelf_get, _StgDomain.NodeBunching__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.NodeBunching__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.NodeBunching__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.NodeBunching__deleteSelf_get, _StgDomain.NodeBunching__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.NodeBunching_type_set
+    __swig_getmethods__["type"] = _StgDomain.NodeBunching_type_get
+    if _newclass:type = _swig_property(_StgDomain.NodeBunching_type_get, _StgDomain.NodeBunching_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.NodeBunching_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.NodeBunching_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.NodeBunching_nRefs_get, _StgDomain.NodeBunching_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.NodeBunching__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.NodeBunching__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.NodeBunching__delete_get, _StgDomain.NodeBunching__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.NodeBunching__print_set
+    __swig_getmethods__["_print"] = _StgDomain.NodeBunching__print_get
+    if _newclass:_print = _swig_property(_StgDomain.NodeBunching__print_get, _StgDomain.NodeBunching__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.NodeBunching__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.NodeBunching__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.NodeBunching__copy_get, _StgDomain.NodeBunching__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.NodeBunching_name_set
+    __swig_getmethods__["name"] = _StgDomain.NodeBunching_name_get
+    if _newclass:name = _swig_property(_StgDomain.NodeBunching_name_get, _StgDomain.NodeBunching_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.NodeBunching_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.NodeBunching_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.NodeBunching_nameAllocationType_get, _StgDomain.NodeBunching_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.NodeBunching__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.NodeBunching__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.NodeBunching__defaultConstructor_get, _StgDomain.NodeBunching__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.NodeBunching__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.NodeBunching__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.NodeBunching__construct_get, _StgDomain.NodeBunching__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.NodeBunching__build_set
+    __swig_getmethods__["_build"] = _StgDomain.NodeBunching__build_get
+    if _newclass:_build = _swig_property(_StgDomain.NodeBunching__build_get, _StgDomain.NodeBunching__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.NodeBunching__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.NodeBunching__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.NodeBunching__initialise_get, _StgDomain.NodeBunching__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.NodeBunching__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.NodeBunching__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.NodeBunching__execute_get, _StgDomain.NodeBunching__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.NodeBunching__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.NodeBunching__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.NodeBunching__destroy_get, _StgDomain.NodeBunching__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.NodeBunching_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.NodeBunching_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.NodeBunching_isConstructed_get, _StgDomain.NodeBunching_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.NodeBunching_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.NodeBunching_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.NodeBunching_isBuilt_get, _StgDomain.NodeBunching_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.NodeBunching_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.NodeBunching_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.NodeBunching_isInitialised_get, _StgDomain.NodeBunching_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.NodeBunching_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.NodeBunching_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.NodeBunching_hasExecuted_get, _StgDomain.NodeBunching_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.NodeBunching_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.NodeBunching_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.NodeBunching_isDestroyed_get, _StgDomain.NodeBunching_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.NodeBunching_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.NodeBunching_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.NodeBunching_constructType_get, _StgDomain.NodeBunching_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.NodeBunching_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.NodeBunching_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.NodeBunching_buildType_get, _StgDomain.NodeBunching_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.NodeBunching_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.NodeBunching_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.NodeBunching_initialiseType_get, _StgDomain.NodeBunching_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.NodeBunching_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.NodeBunching_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.NodeBunching_executeType_get, _StgDomain.NodeBunching_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.NodeBunching_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.NodeBunching_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.NodeBunching_destroyType_get, _StgDomain.NodeBunching_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.NodeBunching_context_set
+    __swig_getmethods__["context"] = _StgDomain.NodeBunching_context_get
+    if _newclass:context = _swig_property(_StgDomain.NodeBunching_context_get, _StgDomain.NodeBunching_context_set)
+    __swig_setmethods__["setDimSizeFunc"] = _StgDomain.NodeBunching_setDimSizeFunc_set
+    __swig_getmethods__["setDimSizeFunc"] = _StgDomain.NodeBunching_setDimSizeFunc_get
+    if _newclass:setDimSizeFunc = _swig_property(_StgDomain.NodeBunching_setDimSizeFunc_get, _StgDomain.NodeBunching_setDimSizeFunc_set)
+    __swig_setmethods__["generateFunc"] = _StgDomain.NodeBunching_generateFunc_set
+    __swig_getmethods__["generateFunc"] = _StgDomain.NodeBunching_generateFunc_get
+    if _newclass:generateFunc = _swig_property(_StgDomain.NodeBunching_generateFunc_get, _StgDomain.NodeBunching_generateFunc_set)
+    __swig_setmethods__["mpiComm"] = _StgDomain.NodeBunching_mpiComm_set
+    __swig_getmethods__["mpiComm"] = _StgDomain.NodeBunching_mpiComm_get
+    if _newclass:mpiComm = _swig_property(_StgDomain.NodeBunching_mpiComm_get, _StgDomain.NodeBunching_mpiComm_set)
+    __swig_setmethods__["nMeshes"] = _StgDomain.NodeBunching_nMeshes_set
+    __swig_getmethods__["nMeshes"] = _StgDomain.NodeBunching_nMeshes_get
+    if _newclass:nMeshes = _swig_property(_StgDomain.NodeBunching_nMeshes_get, _StgDomain.NodeBunching_nMeshes_set)
+    __swig_setmethods__["meshes"] = _StgDomain.NodeBunching_meshes_set
+    __swig_getmethods__["meshes"] = _StgDomain.NodeBunching_meshes_get
+    if _newclass:meshes = _swig_property(_StgDomain.NodeBunching_meshes_get, _StgDomain.NodeBunching_meshes_set)
+    __swig_setmethods__["nDims"] = _StgDomain.NodeBunching_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.NodeBunching_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.NodeBunching_nDims_get, _StgDomain.NodeBunching_nDims_set)
+    __swig_setmethods__["enabledDims"] = _StgDomain.NodeBunching_enabledDims_set
+    __swig_getmethods__["enabledDims"] = _StgDomain.NodeBunching_enabledDims_get
+    if _newclass:enabledDims = _swig_property(_StgDomain.NodeBunching_enabledDims_get, _StgDomain.NodeBunching_enabledDims_set)
+    __swig_setmethods__["enabledInc"] = _StgDomain.NodeBunching_enabledInc_set
+    __swig_getmethods__["enabledInc"] = _StgDomain.NodeBunching_enabledInc_get
+    if _newclass:enabledInc = _swig_property(_StgDomain.NodeBunching_enabledInc_get, _StgDomain.NodeBunching_enabledInc_set)
+    __swig_setmethods__["generator"] = _StgDomain.NodeBunching_generator_set
+    __swig_getmethods__["generator"] = _StgDomain.NodeBunching_generator_get
+    if _newclass:generator = _swig_property(_StgDomain.NodeBunching_generator_get, _StgDomain.NodeBunching_generator_set)
+    __swig_setmethods__["srcMesh"] = _StgDomain.NodeBunching_srcMesh_set
+    __swig_getmethods__["srcMesh"] = _StgDomain.NodeBunching_srcMesh_get
+    if _newclass:srcMesh = _swig_property(_StgDomain.NodeBunching_srcMesh_get, _StgDomain.NodeBunching_srcMesh_set)
+    __swig_setmethods__["nSegmentsx"] = _StgDomain.NodeBunching_nSegmentsx_set
+    __swig_getmethods__["nSegmentsx"] = _StgDomain.NodeBunching_nSegmentsx_get
+    if _newclass:nSegmentsx = _swig_property(_StgDomain.NodeBunching_nSegmentsx_get, _StgDomain.NodeBunching_nSegmentsx_set)
+    __swig_setmethods__["nSegmentsy"] = _StgDomain.NodeBunching_nSegmentsy_set
+    __swig_getmethods__["nSegmentsy"] = _StgDomain.NodeBunching_nSegmentsy_get
+    if _newclass:nSegmentsy = _swig_property(_StgDomain.NodeBunching_nSegmentsy_get, _StgDomain.NodeBunching_nSegmentsy_set)
+    __swig_setmethods__["nSegmentsz"] = _StgDomain.NodeBunching_nSegmentsz_set
+    __swig_getmethods__["nSegmentsz"] = _StgDomain.NodeBunching_nSegmentsz_get
+    if _newclass:nSegmentsz = _swig_property(_StgDomain.NodeBunching_nSegmentsz_get, _StgDomain.NodeBunching_nSegmentsz_set)
+    __swig_setmethods__["tablex"] = _StgDomain.NodeBunching_tablex_set
+    __swig_getmethods__["tablex"] = _StgDomain.NodeBunching_tablex_get
+    if _newclass:tablex = _swig_property(_StgDomain.NodeBunching_tablex_get, _StgDomain.NodeBunching_tablex_set)
+    __swig_setmethods__["tabley"] = _StgDomain.NodeBunching_tabley_set
+    __swig_getmethods__["tabley"] = _StgDomain.NodeBunching_tabley_get
+    if _newclass:tabley = _swig_property(_StgDomain.NodeBunching_tabley_get, _StgDomain.NodeBunching_tabley_set)
+    __swig_setmethods__["tablez"] = _StgDomain.NodeBunching_tablez_set
+    __swig_getmethods__["tablez"] = _StgDomain.NodeBunching_tablez_get
+    if _newclass:tablez = _swig_property(_StgDomain.NodeBunching_tablez_get, _StgDomain.NodeBunching_tablez_set)
+    __swig_setmethods__["minX"] = _StgDomain.NodeBunching_minX_set
+    __swig_getmethods__["minX"] = _StgDomain.NodeBunching_minX_get
+    if _newclass:minX = _swig_property(_StgDomain.NodeBunching_minX_get, _StgDomain.NodeBunching_minX_set)
+    __swig_setmethods__["maxX"] = _StgDomain.NodeBunching_maxX_set
+    __swig_getmethods__["maxX"] = _StgDomain.NodeBunching_maxX_get
+    if _newclass:maxX = _swig_property(_StgDomain.NodeBunching_maxX_get, _StgDomain.NodeBunching_maxX_set)
+    __swig_setmethods__["minY"] = _StgDomain.NodeBunching_minY_set
+    __swig_getmethods__["minY"] = _StgDomain.NodeBunching_minY_get
+    if _newclass:minY = _swig_property(_StgDomain.NodeBunching_minY_get, _StgDomain.NodeBunching_minY_set)
+    __swig_setmethods__["maxY"] = _StgDomain.NodeBunching_maxY_set
+    __swig_getmethods__["maxY"] = _StgDomain.NodeBunching_maxY_get
+    if _newclass:maxY = _swig_property(_StgDomain.NodeBunching_maxY_get, _StgDomain.NodeBunching_maxY_set)
+    __swig_setmethods__["minZ"] = _StgDomain.NodeBunching_minZ_set
+    __swig_getmethods__["minZ"] = _StgDomain.NodeBunching_minZ_get
+    if _newclass:minZ = _swig_property(_StgDomain.NodeBunching_minZ_get, _StgDomain.NodeBunching_minZ_set)
+    __swig_setmethods__["maxZ"] = _StgDomain.NodeBunching_maxZ_set
+    __swig_getmethods__["maxZ"] = _StgDomain.NodeBunching_maxZ_get
+    if _newclass:maxZ = _swig_property(_StgDomain.NodeBunching_maxZ_get, _StgDomain.NodeBunching_maxZ_set)
+    __swig_setmethods__["loadFromCheckPoint"] = _StgDomain.NodeBunching_loadFromCheckPoint_set
+    __swig_getmethods__["loadFromCheckPoint"] = _StgDomain.NodeBunching_loadFromCheckPoint_get
+    if _newclass:loadFromCheckPoint = _swig_property(_StgDomain.NodeBunching_loadFromCheckPoint_get, _StgDomain.NodeBunching_loadFromCheckPoint_set)
+    __swig_setmethods__["nPointsx"] = _StgDomain.NodeBunching_nPointsx_set
+    __swig_getmethods__["nPointsx"] = _StgDomain.NodeBunching_nPointsx_get
+    if _newclass:nPointsx = _swig_property(_StgDomain.NodeBunching_nPointsx_get, _StgDomain.NodeBunching_nPointsx_set)
+    __swig_setmethods__["nPointsy"] = _StgDomain.NodeBunching_nPointsy_set
+    __swig_getmethods__["nPointsy"] = _StgDomain.NodeBunching_nPointsy_get
+    if _newclass:nPointsy = _swig_property(_StgDomain.NodeBunching_nPointsy_get, _StgDomain.NodeBunching_nPointsy_set)
+    __swig_setmethods__["nPointsz"] = _StgDomain.NodeBunching_nPointsz_set
+    __swig_getmethods__["nPointsz"] = _StgDomain.NodeBunching_nPointsz_get
+    if _newclass:nPointsz = _swig_property(_StgDomain.NodeBunching_nPointsz_get, _StgDomain.NodeBunching_nPointsz_set)
+    __swig_setmethods__["pointsx"] = _StgDomain.NodeBunching_pointsx_set
+    __swig_getmethods__["pointsx"] = _StgDomain.NodeBunching_pointsx_get
+    if _newclass:pointsx = _swig_property(_StgDomain.NodeBunching_pointsx_get, _StgDomain.NodeBunching_pointsx_set)
+    __swig_setmethods__["pointsy"] = _StgDomain.NodeBunching_pointsy_set
+    __swig_getmethods__["pointsy"] = _StgDomain.NodeBunching_pointsy_get
+    if _newclass:pointsy = _swig_property(_StgDomain.NodeBunching_pointsy_get, _StgDomain.NodeBunching_pointsy_set)
+    __swig_setmethods__["pointsz"] = _StgDomain.NodeBunching_pointsz_set
+    __swig_getmethods__["pointsz"] = _StgDomain.NodeBunching_pointsz_get
+    if _newclass:pointsz = _swig_property(_StgDomain.NodeBunching_pointsz_get, _StgDomain.NodeBunching_pointsz_set)
+    __swig_setmethods__["newCoordsx"] = _StgDomain.NodeBunching_newCoordsx_set
+    __swig_getmethods__["newCoordsx"] = _StgDomain.NodeBunching_newCoordsx_get
+    if _newclass:newCoordsx = _swig_property(_StgDomain.NodeBunching_newCoordsx_get, _StgDomain.NodeBunching_newCoordsx_set)
+    __swig_setmethods__["newCoordsy"] = _StgDomain.NodeBunching_newCoordsy_set
+    __swig_getmethods__["newCoordsy"] = _StgDomain.NodeBunching_newCoordsy_get
+    if _newclass:newCoordsy = _swig_property(_StgDomain.NodeBunching_newCoordsy_get, _StgDomain.NodeBunching_newCoordsy_set)
+    __swig_setmethods__["newCoordsz"] = _StgDomain.NodeBunching_newCoordsz_set
+    __swig_getmethods__["newCoordsz"] = _StgDomain.NodeBunching_newCoordsz_get
+    if _newclass:newCoordsz = _swig_property(_StgDomain.NodeBunching_newCoordsz_get, _StgDomain.NodeBunching_newCoordsz_set)
+    __swig_setmethods__["nCoordsx"] = _StgDomain.NodeBunching_nCoordsx_set
+    __swig_getmethods__["nCoordsx"] = _StgDomain.NodeBunching_nCoordsx_get
+    if _newclass:nCoordsx = _swig_property(_StgDomain.NodeBunching_nCoordsx_get, _StgDomain.NodeBunching_nCoordsx_set)
+    __swig_setmethods__["nCoordsy"] = _StgDomain.NodeBunching_nCoordsy_set
+    __swig_getmethods__["nCoordsy"] = _StgDomain.NodeBunching_nCoordsy_get
+    if _newclass:nCoordsy = _swig_property(_StgDomain.NodeBunching_nCoordsy_get, _StgDomain.NodeBunching_nCoordsy_set)
+    __swig_setmethods__["nCoordsz"] = _StgDomain.NodeBunching_nCoordsz_set
+    __swig_getmethods__["nCoordsz"] = _StgDomain.NodeBunching_nCoordsz_get
+    if _newclass:nCoordsz = _swig_property(_StgDomain.NodeBunching_nCoordsz_get, _StgDomain.NodeBunching_nCoordsz_set)
+    __swig_setmethods__["factor"] = _StgDomain.NodeBunching_factor_set
+    __swig_getmethods__["factor"] = _StgDomain.NodeBunching_factor_get
+    if _newclass:factor = _swig_property(_StgDomain.NodeBunching_factor_get, _StgDomain.NodeBunching_factor_set)
+    __swig_setmethods__["nNodes"] = _StgDomain.NodeBunching_nNodes_set
+    __swig_getmethods__["nNodes"] = _StgDomain.NodeBunching_nNodes_get
+    if _newclass:nNodes = _swig_property(_StgDomain.NodeBunching_nNodes_get, _StgDomain.NodeBunching_nNodes_set)
+    __swig_setmethods__["debugMode"] = _StgDomain.NodeBunching_debugMode_set
+    __swig_getmethods__["debugMode"] = _StgDomain.NodeBunching_debugMode_get
+    if _newclass:debugMode = _swig_property(_StgDomain.NodeBunching_debugMode_get, _StgDomain.NodeBunching_debugMode_set)
+    def __init__(self): 
+        this = _StgDomain.new_NodeBunching()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_NodeBunching
+    __del__ = lambda self : None;
+NodeBunching_swigregister = _StgDomain.NodeBunching_swigregister
+NodeBunching_swigregister(NodeBunching)
+
+
+def NodeBunching_New(*args):
+  return _StgDomain.NodeBunching_New(*args)
+NodeBunching_New = _StgDomain.NodeBunching_New
+
+def _NodeBunching_New(*args):
+  return _StgDomain._NodeBunching_New(*args)
+_NodeBunching_New = _StgDomain._NodeBunching_New
+
+def _NodeBunching_Init(*args):
+  return _StgDomain._NodeBunching_Init(*args)
+_NodeBunching_Init = _StgDomain._NodeBunching_Init
+
+def _NodeBunching_Delete(*args):
+  return _StgDomain._NodeBunching_Delete(*args)
+_NodeBunching_Delete = _StgDomain._NodeBunching_Delete
+
+def _NodeBunching_Print(*args):
+  return _StgDomain._NodeBunching_Print(*args)
+_NodeBunching_Print = _StgDomain._NodeBunching_Print
+
+def _NodeBunching_AssignFromXML(*args):
+  return _StgDomain._NodeBunching_AssignFromXML(*args)
+_NodeBunching_AssignFromXML = _StgDomain._NodeBunching_AssignFromXML
+
+def _NodeBunching_Build(*args):
+  return _StgDomain._NodeBunching_Build(*args)
+_NodeBunching_Build = _StgDomain._NodeBunching_Build
+
+def _NodeBunching_Initialise(*args):
+  return _StgDomain._NodeBunching_Initialise(*args)
+_NodeBunching_Initialise = _StgDomain._NodeBunching_Initialise
+
+def _NodeBunching_Execute(*args):
+  return _StgDomain._NodeBunching_Execute(*args)
+_NodeBunching_Execute = _StgDomain._NodeBunching_Execute
+
+def _NodeBunching_Destroy(*args):
+  return _StgDomain._NodeBunching_Destroy(*args)
+_NodeBunching_Destroy = _StgDomain._NodeBunching_Destroy
+class Remesher(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Remesher, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Remesher, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Remesher__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Remesher__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Remesher__sizeOfSelf_get, _StgDomain.Remesher__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Remesher__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Remesher__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Remesher__deleteSelf_get, _StgDomain.Remesher__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Remesher_type_set
+    __swig_getmethods__["type"] = _StgDomain.Remesher_type_get
+    if _newclass:type = _swig_property(_StgDomain.Remesher_type_get, _StgDomain.Remesher_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Remesher_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Remesher_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Remesher_nRefs_get, _StgDomain.Remesher_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Remesher__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Remesher__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Remesher__delete_get, _StgDomain.Remesher__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Remesher__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Remesher__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Remesher__print_get, _StgDomain.Remesher__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Remesher__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Remesher__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Remesher__copy_get, _StgDomain.Remesher__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Remesher_name_set
+    __swig_getmethods__["name"] = _StgDomain.Remesher_name_get
+    if _newclass:name = _swig_property(_StgDomain.Remesher_name_get, _StgDomain.Remesher_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Remesher_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Remesher_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Remesher_nameAllocationType_get, _StgDomain.Remesher_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Remesher__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Remesher__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Remesher__defaultConstructor_get, _StgDomain.Remesher__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Remesher__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Remesher__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Remesher__construct_get, _StgDomain.Remesher__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Remesher__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Remesher__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Remesher__build_get, _StgDomain.Remesher__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Remesher__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Remesher__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Remesher__initialise_get, _StgDomain.Remesher__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Remesher__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Remesher__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Remesher__execute_get, _StgDomain.Remesher__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Remesher__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Remesher__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Remesher__destroy_get, _StgDomain.Remesher__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Remesher_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Remesher_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Remesher_isConstructed_get, _StgDomain.Remesher_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Remesher_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Remesher_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Remesher_isBuilt_get, _StgDomain.Remesher_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Remesher_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Remesher_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Remesher_isInitialised_get, _StgDomain.Remesher_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Remesher_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Remesher_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Remesher_hasExecuted_get, _StgDomain.Remesher_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Remesher_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Remesher_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Remesher_isDestroyed_get, _StgDomain.Remesher_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Remesher_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Remesher_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Remesher_constructType_get, _StgDomain.Remesher_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Remesher_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Remesher_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Remesher_buildType_get, _StgDomain.Remesher_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Remesher_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Remesher_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Remesher_initialiseType_get, _StgDomain.Remesher_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Remesher_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Remesher_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Remesher_executeType_get, _StgDomain.Remesher_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Remesher_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Remesher_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Remesher_destroyType_get, _StgDomain.Remesher_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Remesher_context_set
+    __swig_getmethods__["context"] = _StgDomain.Remesher_context_get
+    if _newclass:context = _swig_property(_StgDomain.Remesher_context_get, _StgDomain.Remesher_context_set)
+    __swig_setmethods__["remeshFunc"] = _StgDomain.Remesher_remeshFunc_set
+    __swig_getmethods__["remeshFunc"] = _StgDomain.Remesher_remeshFunc_get
+    if _newclass:remeshFunc = _swig_property(_StgDomain.Remesher_remeshFunc_get, _StgDomain.Remesher_remeshFunc_set)
+    __swig_setmethods__["mesh"] = _StgDomain.Remesher_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.Remesher_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.Remesher_mesh_get, _StgDomain.Remesher_mesh_set)
+    def __init__(self): 
+        this = _StgDomain.new_Remesher()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Remesher
+    __del__ = lambda self : None;
+Remesher_swigregister = _StgDomain.Remesher_swigregister
+Remesher_swigregister(Remesher)
+Remesher_Type = cvar.Remesher_Type
+
+
+def _Remesher_New(*args):
+  return _StgDomain._Remesher_New(*args)
+_Remesher_New = _StgDomain._Remesher_New
+
+def _Remesher_Init(*args):
+  return _StgDomain._Remesher_Init(*args)
+_Remesher_Init = _StgDomain._Remesher_Init
+
+def _Remesher_Delete(*args):
+  return _StgDomain._Remesher_Delete(*args)
+_Remesher_Delete = _StgDomain._Remesher_Delete
+
+def _Remesher_Print(*args):
+  return _StgDomain._Remesher_Print(*args)
+_Remesher_Print = _StgDomain._Remesher_Print
+
+def _Remesher_DefaultNew(*args):
+  return _StgDomain._Remesher_DefaultNew(*args)
+_Remesher_DefaultNew = _StgDomain._Remesher_DefaultNew
+
+def _Remesher_AssignFromXML(*args):
+  return _StgDomain._Remesher_AssignFromXML(*args)
+_Remesher_AssignFromXML = _StgDomain._Remesher_AssignFromXML
+
+def _Remesher_Build(*args):
+  return _StgDomain._Remesher_Build(*args)
+_Remesher_Build = _StgDomain._Remesher_Build
+
+def _Remesher_Initialise(*args):
+  return _StgDomain._Remesher_Initialise(*args)
+_Remesher_Initialise = _StgDomain._Remesher_Initialise
+
+def _Remesher_Execute(*args):
+  return _StgDomain._Remesher_Execute(*args)
+_Remesher_Execute = _StgDomain._Remesher_Execute
+
+def _Remesher_Destroy(*args):
+  return _StgDomain._Remesher_Destroy(*args)
+_Remesher_Destroy = _StgDomain._Remesher_Destroy
+SurfaceAdaptor_SurfaceType_Wedge = _StgDomain.SurfaceAdaptor_SurfaceType_Wedge
+SurfaceAdaptor_SurfaceType_Plateau = _StgDomain.SurfaceAdaptor_SurfaceType_Plateau
+SurfaceAdaptor_SurfaceType_Topo_Data = _StgDomain.SurfaceAdaptor_SurfaceType_Topo_Data
+SurfaceAdaptor_SurfaceType_Sine = _StgDomain.SurfaceAdaptor_SurfaceType_Sine
+SurfaceAdaptor_SurfaceType_Cosine = _StgDomain.SurfaceAdaptor_SurfaceType_Cosine
+SurfaceAdaptor_SurfaceType_Invalid = _StgDomain.SurfaceAdaptor_SurfaceType_Invalid
+class SurfaceAdaptor_WedgeInfo(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SurfaceAdaptor_WedgeInfo, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SurfaceAdaptor_WedgeInfo, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["offs"] = _StgDomain.SurfaceAdaptor_WedgeInfo_offs_set
+    __swig_getmethods__["offs"] = _StgDomain.SurfaceAdaptor_WedgeInfo_offs_get
+    if _newclass:offs = _swig_property(_StgDomain.SurfaceAdaptor_WedgeInfo_offs_get, _StgDomain.SurfaceAdaptor_WedgeInfo_offs_set)
+    __swig_setmethods__["endOffs"] = _StgDomain.SurfaceAdaptor_WedgeInfo_endOffs_set
+    __swig_getmethods__["endOffs"] = _StgDomain.SurfaceAdaptor_WedgeInfo_endOffs_get
+    if _newclass:endOffs = _swig_property(_StgDomain.SurfaceAdaptor_WedgeInfo_endOffs_get, _StgDomain.SurfaceAdaptor_WedgeInfo_endOffs_set)
+    __swig_setmethods__["grad"] = _StgDomain.SurfaceAdaptor_WedgeInfo_grad_set
+    __swig_getmethods__["grad"] = _StgDomain.SurfaceAdaptor_WedgeInfo_grad_get
+    if _newclass:grad = _swig_property(_StgDomain.SurfaceAdaptor_WedgeInfo_grad_get, _StgDomain.SurfaceAdaptor_WedgeInfo_grad_set)
+    def __init__(self): 
+        this = _StgDomain.new_SurfaceAdaptor_WedgeInfo()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SurfaceAdaptor_WedgeInfo
+    __del__ = lambda self : None;
+SurfaceAdaptor_WedgeInfo_swigregister = _StgDomain.SurfaceAdaptor_WedgeInfo_swigregister
+SurfaceAdaptor_WedgeInfo_swigregister(SurfaceAdaptor_WedgeInfo)
+SurfaceAdaptor_Type = cvar.SurfaceAdaptor_Type
+
+class SurfaceAdaptor_PlateauInfo(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SurfaceAdaptor_PlateauInfo, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SurfaceAdaptor_PlateauInfo, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x1"] = _StgDomain.SurfaceAdaptor_PlateauInfo_x1_set
+    __swig_getmethods__["x1"] = _StgDomain.SurfaceAdaptor_PlateauInfo_x1_get
+    if _newclass:x1 = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_x1_get, _StgDomain.SurfaceAdaptor_PlateauInfo_x1_set)
+    __swig_setmethods__["x2"] = _StgDomain.SurfaceAdaptor_PlateauInfo_x2_set
+    __swig_getmethods__["x2"] = _StgDomain.SurfaceAdaptor_PlateauInfo_x2_get
+    if _newclass:x2 = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_x2_get, _StgDomain.SurfaceAdaptor_PlateauInfo_x2_set)
+    __swig_setmethods__["x3"] = _StgDomain.SurfaceAdaptor_PlateauInfo_x3_set
+    __swig_getmethods__["x3"] = _StgDomain.SurfaceAdaptor_PlateauInfo_x3_get
+    if _newclass:x3 = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_x3_get, _StgDomain.SurfaceAdaptor_PlateauInfo_x3_set)
+    __swig_setmethods__["x4"] = _StgDomain.SurfaceAdaptor_PlateauInfo_x4_set
+    __swig_getmethods__["x4"] = _StgDomain.SurfaceAdaptor_PlateauInfo_x4_get
+    if _newclass:x4 = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_x4_get, _StgDomain.SurfaceAdaptor_PlateauInfo_x4_set)
+    __swig_setmethods__["z1"] = _StgDomain.SurfaceAdaptor_PlateauInfo_z1_set
+    __swig_getmethods__["z1"] = _StgDomain.SurfaceAdaptor_PlateauInfo_z1_get
+    if _newclass:z1 = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_z1_get, _StgDomain.SurfaceAdaptor_PlateauInfo_z1_set)
+    __swig_setmethods__["z2"] = _StgDomain.SurfaceAdaptor_PlateauInfo_z2_set
+    __swig_getmethods__["z2"] = _StgDomain.SurfaceAdaptor_PlateauInfo_z2_get
+    if _newclass:z2 = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_z2_get, _StgDomain.SurfaceAdaptor_PlateauInfo_z2_set)
+    __swig_setmethods__["z3"] = _StgDomain.SurfaceAdaptor_PlateauInfo_z3_set
+    __swig_getmethods__["z3"] = _StgDomain.SurfaceAdaptor_PlateauInfo_z3_get
+    if _newclass:z3 = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_z3_get, _StgDomain.SurfaceAdaptor_PlateauInfo_z3_set)
+    __swig_setmethods__["z4"] = _StgDomain.SurfaceAdaptor_PlateauInfo_z4_set
+    __swig_getmethods__["z4"] = _StgDomain.SurfaceAdaptor_PlateauInfo_z4_get
+    if _newclass:z4 = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_z4_get, _StgDomain.SurfaceAdaptor_PlateauInfo_z4_set)
+    __swig_setmethods__["height"] = _StgDomain.SurfaceAdaptor_PlateauInfo_height_set
+    __swig_getmethods__["height"] = _StgDomain.SurfaceAdaptor_PlateauInfo_height_get
+    if _newclass:height = _swig_property(_StgDomain.SurfaceAdaptor_PlateauInfo_height_get, _StgDomain.SurfaceAdaptor_PlateauInfo_height_set)
+    def __init__(self): 
+        this = _StgDomain.new_SurfaceAdaptor_PlateauInfo()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SurfaceAdaptor_PlateauInfo
+    __del__ = lambda self : None;
+SurfaceAdaptor_PlateauInfo_swigregister = _StgDomain.SurfaceAdaptor_PlateauInfo_swigregister
+SurfaceAdaptor_PlateauInfo_swigregister(SurfaceAdaptor_PlateauInfo)
+
+class SurfaceAdaptor_Topo_DataInfo(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SurfaceAdaptor_Topo_DataInfo, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SurfaceAdaptor_Topo_DataInfo, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["nx"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_nx_set
+    __swig_getmethods__["nx"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_nx_get
+    if _newclass:nx = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_nx_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_nx_set)
+    __swig_setmethods__["nz"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_nz_set
+    __swig_getmethods__["nz"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_nz_get
+    if _newclass:nz = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_nz_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_nz_set)
+    __swig_setmethods__["minX"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_minX_set
+    __swig_getmethods__["minX"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_minX_get
+    if _newclass:minX = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_minX_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_minX_set)
+    __swig_setmethods__["maxX"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_maxX_set
+    __swig_getmethods__["maxX"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_maxX_get
+    if _newclass:maxX = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_maxX_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_maxX_set)
+    __swig_setmethods__["minZ"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_minZ_set
+    __swig_getmethods__["minZ"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_minZ_get
+    if _newclass:minZ = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_minZ_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_minZ_set)
+    __swig_setmethods__["maxZ"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_maxZ_set
+    __swig_getmethods__["maxZ"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_maxZ_get
+    if _newclass:maxZ = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_maxZ_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_maxZ_set)
+    __swig_setmethods__["dx"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_dx_set
+    __swig_getmethods__["dx"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_dx_get
+    if _newclass:dx = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_dx_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_dx_set)
+    __swig_setmethods__["dz"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_dz_set
+    __swig_getmethods__["dz"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_dz_get
+    if _newclass:dz = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_dz_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_dz_set)
+    __swig_setmethods__["heights"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_heights_set
+    __swig_getmethods__["heights"] = _StgDomain.SurfaceAdaptor_Topo_DataInfo_heights_get
+    if _newclass:heights = _swig_property(_StgDomain.SurfaceAdaptor_Topo_DataInfo_heights_get, _StgDomain.SurfaceAdaptor_Topo_DataInfo_heights_set)
+    def __init__(self): 
+        this = _StgDomain.new_SurfaceAdaptor_Topo_DataInfo()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SurfaceAdaptor_Topo_DataInfo
+    __del__ = lambda self : None;
+SurfaceAdaptor_Topo_DataInfo_swigregister = _StgDomain.SurfaceAdaptor_Topo_DataInfo_swigregister
+SurfaceAdaptor_Topo_DataInfo_swigregister(SurfaceAdaptor_Topo_DataInfo)
+
+class SurfaceAdaptor_TrigInfo(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SurfaceAdaptor_TrigInfo, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SurfaceAdaptor_TrigInfo, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["origin"] = _StgDomain.SurfaceAdaptor_TrigInfo_origin_set
+    __swig_getmethods__["origin"] = _StgDomain.SurfaceAdaptor_TrigInfo_origin_get
+    if _newclass:origin = _swig_property(_StgDomain.SurfaceAdaptor_TrigInfo_origin_get, _StgDomain.SurfaceAdaptor_TrigInfo_origin_set)
+    __swig_setmethods__["amp"] = _StgDomain.SurfaceAdaptor_TrigInfo_amp_set
+    __swig_getmethods__["amp"] = _StgDomain.SurfaceAdaptor_TrigInfo_amp_get
+    if _newclass:amp = _swig_property(_StgDomain.SurfaceAdaptor_TrigInfo_amp_get, _StgDomain.SurfaceAdaptor_TrigInfo_amp_set)
+    __swig_setmethods__["freq"] = _StgDomain.SurfaceAdaptor_TrigInfo_freq_set
+    __swig_getmethods__["freq"] = _StgDomain.SurfaceAdaptor_TrigInfo_freq_get
+    if _newclass:freq = _swig_property(_StgDomain.SurfaceAdaptor_TrigInfo_freq_get, _StgDomain.SurfaceAdaptor_TrigInfo_freq_set)
+    def __init__(self): 
+        this = _StgDomain.new_SurfaceAdaptor_TrigInfo()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SurfaceAdaptor_TrigInfo
+    __del__ = lambda self : None;
+SurfaceAdaptor_TrigInfo_swigregister = _StgDomain.SurfaceAdaptor_TrigInfo_swigregister
+SurfaceAdaptor_TrigInfo_swigregister(SurfaceAdaptor_TrigInfo)
+
+class SurfaceAdaptor_SurfaceInfo(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SurfaceAdaptor_SurfaceInfo, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SurfaceAdaptor_SurfaceInfo, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["wedge"] = _StgDomain.SurfaceAdaptor_SurfaceInfo_wedge_set
+    __swig_getmethods__["wedge"] = _StgDomain.SurfaceAdaptor_SurfaceInfo_wedge_get
+    if _newclass:wedge = _swig_property(_StgDomain.SurfaceAdaptor_SurfaceInfo_wedge_get, _StgDomain.SurfaceAdaptor_SurfaceInfo_wedge_set)
+    __swig_setmethods__["plateau"] = _StgDomain.SurfaceAdaptor_SurfaceInfo_plateau_set
+    __swig_getmethods__["plateau"] = _StgDomain.SurfaceAdaptor_SurfaceInfo_plateau_get
+    if _newclass:plateau = _swig_property(_StgDomain.SurfaceAdaptor_SurfaceInfo_plateau_get, _StgDomain.SurfaceAdaptor_SurfaceInfo_plateau_set)
+    __swig_setmethods__["topo_data"] = _StgDomain.SurfaceAdaptor_SurfaceInfo_topo_data_set
+    __swig_getmethods__["topo_data"] = _StgDomain.SurfaceAdaptor_SurfaceInfo_topo_data_get
+    if _newclass:topo_data = _swig_property(_StgDomain.SurfaceAdaptor_SurfaceInfo_topo_data_get, _StgDomain.SurfaceAdaptor_SurfaceInfo_topo_data_set)
+    __swig_setmethods__["trig"] = _StgDomain.SurfaceAdaptor_SurfaceInfo_trig_set
+    __swig_getmethods__["trig"] = _StgDomain.SurfaceAdaptor_SurfaceInfo_trig_get
+    if _newclass:trig = _swig_property(_StgDomain.SurfaceAdaptor_SurfaceInfo_trig_get, _StgDomain.SurfaceAdaptor_SurfaceInfo_trig_set)
+    def __init__(self): 
+        this = _StgDomain.new_SurfaceAdaptor_SurfaceInfo()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SurfaceAdaptor_SurfaceInfo
+    __del__ = lambda self : None;
+SurfaceAdaptor_SurfaceInfo_swigregister = _StgDomain.SurfaceAdaptor_SurfaceInfo_swigregister
+SurfaceAdaptor_SurfaceInfo_swigregister(SurfaceAdaptor_SurfaceInfo)
+
+class SurfaceAdaptor(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SurfaceAdaptor, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SurfaceAdaptor, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.SurfaceAdaptor__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.SurfaceAdaptor__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.SurfaceAdaptor__sizeOfSelf_get, _StgDomain.SurfaceAdaptor__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.SurfaceAdaptor__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.SurfaceAdaptor__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.SurfaceAdaptor__deleteSelf_get, _StgDomain.SurfaceAdaptor__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.SurfaceAdaptor_type_set
+    __swig_getmethods__["type"] = _StgDomain.SurfaceAdaptor_type_get
+    if _newclass:type = _swig_property(_StgDomain.SurfaceAdaptor_type_get, _StgDomain.SurfaceAdaptor_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.SurfaceAdaptor_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.SurfaceAdaptor_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.SurfaceAdaptor_nRefs_get, _StgDomain.SurfaceAdaptor_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.SurfaceAdaptor__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.SurfaceAdaptor__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.SurfaceAdaptor__delete_get, _StgDomain.SurfaceAdaptor__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.SurfaceAdaptor__print_set
+    __swig_getmethods__["_print"] = _StgDomain.SurfaceAdaptor__print_get
+    if _newclass:_print = _swig_property(_StgDomain.SurfaceAdaptor__print_get, _StgDomain.SurfaceAdaptor__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.SurfaceAdaptor__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.SurfaceAdaptor__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.SurfaceAdaptor__copy_get, _StgDomain.SurfaceAdaptor__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.SurfaceAdaptor_name_set
+    __swig_getmethods__["name"] = _StgDomain.SurfaceAdaptor_name_get
+    if _newclass:name = _swig_property(_StgDomain.SurfaceAdaptor_name_get, _StgDomain.SurfaceAdaptor_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.SurfaceAdaptor_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.SurfaceAdaptor_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.SurfaceAdaptor_nameAllocationType_get, _StgDomain.SurfaceAdaptor_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.SurfaceAdaptor__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.SurfaceAdaptor__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.SurfaceAdaptor__defaultConstructor_get, _StgDomain.SurfaceAdaptor__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.SurfaceAdaptor__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.SurfaceAdaptor__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.SurfaceAdaptor__construct_get, _StgDomain.SurfaceAdaptor__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.SurfaceAdaptor__build_set
+    __swig_getmethods__["_build"] = _StgDomain.SurfaceAdaptor__build_get
+    if _newclass:_build = _swig_property(_StgDomain.SurfaceAdaptor__build_get, _StgDomain.SurfaceAdaptor__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.SurfaceAdaptor__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.SurfaceAdaptor__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.SurfaceAdaptor__initialise_get, _StgDomain.SurfaceAdaptor__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.SurfaceAdaptor__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.SurfaceAdaptor__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.SurfaceAdaptor__execute_get, _StgDomain.SurfaceAdaptor__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.SurfaceAdaptor__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.SurfaceAdaptor__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.SurfaceAdaptor__destroy_get, _StgDomain.SurfaceAdaptor__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.SurfaceAdaptor_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.SurfaceAdaptor_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.SurfaceAdaptor_isConstructed_get, _StgDomain.SurfaceAdaptor_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.SurfaceAdaptor_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.SurfaceAdaptor_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.SurfaceAdaptor_isBuilt_get, _StgDomain.SurfaceAdaptor_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.SurfaceAdaptor_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.SurfaceAdaptor_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.SurfaceAdaptor_isInitialised_get, _StgDomain.SurfaceAdaptor_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.SurfaceAdaptor_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.SurfaceAdaptor_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.SurfaceAdaptor_hasExecuted_get, _StgDomain.SurfaceAdaptor_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.SurfaceAdaptor_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.SurfaceAdaptor_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.SurfaceAdaptor_isDestroyed_get, _StgDomain.SurfaceAdaptor_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.SurfaceAdaptor_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.SurfaceAdaptor_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.SurfaceAdaptor_constructType_get, _StgDomain.SurfaceAdaptor_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.SurfaceAdaptor_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.SurfaceAdaptor_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.SurfaceAdaptor_buildType_get, _StgDomain.SurfaceAdaptor_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.SurfaceAdaptor_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.SurfaceAdaptor_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.SurfaceAdaptor_initialiseType_get, _StgDomain.SurfaceAdaptor_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.SurfaceAdaptor_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.SurfaceAdaptor_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.SurfaceAdaptor_executeType_get, _StgDomain.SurfaceAdaptor_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.SurfaceAdaptor_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.SurfaceAdaptor_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.SurfaceAdaptor_destroyType_get, _StgDomain.SurfaceAdaptor_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.SurfaceAdaptor_context_set
+    __swig_getmethods__["context"] = _StgDomain.SurfaceAdaptor_context_get
+    if _newclass:context = _swig_property(_StgDomain.SurfaceAdaptor_context_get, _StgDomain.SurfaceAdaptor_context_set)
+    __swig_setmethods__["setDimSizeFunc"] = _StgDomain.SurfaceAdaptor_setDimSizeFunc_set
+    __swig_getmethods__["setDimSizeFunc"] = _StgDomain.SurfaceAdaptor_setDimSizeFunc_get
+    if _newclass:setDimSizeFunc = _swig_property(_StgDomain.SurfaceAdaptor_setDimSizeFunc_get, _StgDomain.SurfaceAdaptor_setDimSizeFunc_set)
+    __swig_setmethods__["generateFunc"] = _StgDomain.SurfaceAdaptor_generateFunc_set
+    __swig_getmethods__["generateFunc"] = _StgDomain.SurfaceAdaptor_generateFunc_get
+    if _newclass:generateFunc = _swig_property(_StgDomain.SurfaceAdaptor_generateFunc_get, _StgDomain.SurfaceAdaptor_generateFunc_set)
+    __swig_setmethods__["mpiComm"] = _StgDomain.SurfaceAdaptor_mpiComm_set
+    __swig_getmethods__["mpiComm"] = _StgDomain.SurfaceAdaptor_mpiComm_get
+    if _newclass:mpiComm = _swig_property(_StgDomain.SurfaceAdaptor_mpiComm_get, _StgDomain.SurfaceAdaptor_mpiComm_set)
+    __swig_setmethods__["nMeshes"] = _StgDomain.SurfaceAdaptor_nMeshes_set
+    __swig_getmethods__["nMeshes"] = _StgDomain.SurfaceAdaptor_nMeshes_get
+    if _newclass:nMeshes = _swig_property(_StgDomain.SurfaceAdaptor_nMeshes_get, _StgDomain.SurfaceAdaptor_nMeshes_set)
+    __swig_setmethods__["meshes"] = _StgDomain.SurfaceAdaptor_meshes_set
+    __swig_getmethods__["meshes"] = _StgDomain.SurfaceAdaptor_meshes_get
+    if _newclass:meshes = _swig_property(_StgDomain.SurfaceAdaptor_meshes_get, _StgDomain.SurfaceAdaptor_meshes_set)
+    __swig_setmethods__["nDims"] = _StgDomain.SurfaceAdaptor_nDims_set
+    __swig_getmethods__["nDims"] = _StgDomain.SurfaceAdaptor_nDims_get
+    if _newclass:nDims = _swig_property(_StgDomain.SurfaceAdaptor_nDims_get, _StgDomain.SurfaceAdaptor_nDims_set)
+    __swig_setmethods__["enabledDims"] = _StgDomain.SurfaceAdaptor_enabledDims_set
+    __swig_getmethods__["enabledDims"] = _StgDomain.SurfaceAdaptor_enabledDims_get
+    if _newclass:enabledDims = _swig_property(_StgDomain.SurfaceAdaptor_enabledDims_get, _StgDomain.SurfaceAdaptor_enabledDims_set)
+    __swig_setmethods__["enabledInc"] = _StgDomain.SurfaceAdaptor_enabledInc_set
+    __swig_getmethods__["enabledInc"] = _StgDomain.SurfaceAdaptor_enabledInc_get
+    if _newclass:enabledInc = _swig_property(_StgDomain.SurfaceAdaptor_enabledInc_get, _StgDomain.SurfaceAdaptor_enabledInc_set)
+    __swig_setmethods__["generator"] = _StgDomain.SurfaceAdaptor_generator_set
+    __swig_getmethods__["generator"] = _StgDomain.SurfaceAdaptor_generator_get
+    if _newclass:generator = _swig_property(_StgDomain.SurfaceAdaptor_generator_get, _StgDomain.SurfaceAdaptor_generator_set)
+    __swig_setmethods__["srcMesh"] = _StgDomain.SurfaceAdaptor_srcMesh_set
+    __swig_getmethods__["srcMesh"] = _StgDomain.SurfaceAdaptor_srcMesh_get
+    if _newclass:srcMesh = _swig_property(_StgDomain.SurfaceAdaptor_srcMesh_get, _StgDomain.SurfaceAdaptor_srcMesh_set)
+    __swig_setmethods__["surfaceType"] = _StgDomain.SurfaceAdaptor_surfaceType_set
+    __swig_getmethods__["surfaceType"] = _StgDomain.SurfaceAdaptor_surfaceType_get
+    if _newclass:surfaceType = _swig_property(_StgDomain.SurfaceAdaptor_surfaceType_get, _StgDomain.SurfaceAdaptor_surfaceType_set)
+    __swig_setmethods__["info"] = _StgDomain.SurfaceAdaptor_info_set
+    __swig_getmethods__["info"] = _StgDomain.SurfaceAdaptor_info_get
+    if _newclass:info = _swig_property(_StgDomain.SurfaceAdaptor_info_get, _StgDomain.SurfaceAdaptor_info_set)
+    __swig_setmethods__["contactDepth"] = _StgDomain.SurfaceAdaptor_contactDepth_set
+    __swig_getmethods__["contactDepth"] = _StgDomain.SurfaceAdaptor_contactDepth_get
+    if _newclass:contactDepth = _swig_property(_StgDomain.SurfaceAdaptor_contactDepth_get, _StgDomain.SurfaceAdaptor_contactDepth_set)
+    def __init__(self): 
+        this = _StgDomain.new_SurfaceAdaptor()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SurfaceAdaptor
+    __del__ = lambda self : None;
+SurfaceAdaptor_swigregister = _StgDomain.SurfaceAdaptor_swigregister
+SurfaceAdaptor_swigregister(SurfaceAdaptor)
+
+
+def SurfaceAdaptor_New(*args):
+  return _StgDomain.SurfaceAdaptor_New(*args)
+SurfaceAdaptor_New = _StgDomain.SurfaceAdaptor_New
+
+def _SurfaceAdaptor_New(*args):
+  return _StgDomain._SurfaceAdaptor_New(*args)
+_SurfaceAdaptor_New = _StgDomain._SurfaceAdaptor_New
+
+def _SurfaceAdaptor_Init(*args):
+  return _StgDomain._SurfaceAdaptor_Init(*args)
+_SurfaceAdaptor_Init = _StgDomain._SurfaceAdaptor_Init
+
+def _SurfaceAdaptor_Delete(*args):
+  return _StgDomain._SurfaceAdaptor_Delete(*args)
+_SurfaceAdaptor_Delete = _StgDomain._SurfaceAdaptor_Delete
+
+def _SurfaceAdaptor_Print(*args):
+  return _StgDomain._SurfaceAdaptor_Print(*args)
+_SurfaceAdaptor_Print = _StgDomain._SurfaceAdaptor_Print
+
+def _SurfaceAdaptor_AssignFromXML(*args):
+  return _StgDomain._SurfaceAdaptor_AssignFromXML(*args)
+_SurfaceAdaptor_AssignFromXML = _StgDomain._SurfaceAdaptor_AssignFromXML
+
+def _SurfaceAdaptor_Build(*args):
+  return _StgDomain._SurfaceAdaptor_Build(*args)
+_SurfaceAdaptor_Build = _StgDomain._SurfaceAdaptor_Build
+
+def _SurfaceAdaptor_Initialise(*args):
+  return _StgDomain._SurfaceAdaptor_Initialise(*args)
+_SurfaceAdaptor_Initialise = _StgDomain._SurfaceAdaptor_Initialise
+
+def _SurfaceAdaptor_Execute(*args):
+  return _StgDomain._SurfaceAdaptor_Execute(*args)
+_SurfaceAdaptor_Execute = _StgDomain._SurfaceAdaptor_Execute
+
+def _SurfaceAdaptor_Destroy(*args):
+  return _StgDomain._SurfaceAdaptor_Destroy(*args)
+_SurfaceAdaptor_Destroy = _StgDomain._SurfaceAdaptor_Destroy
+
+def SurfaceAdaptor_Generate(*args):
+  return _StgDomain.SurfaceAdaptor_Generate(*args)
+SurfaceAdaptor_Generate = _StgDomain.SurfaceAdaptor_Generate
+
+def SurfaceAdaptor_Wedge2D(*args):
+  return _StgDomain.SurfaceAdaptor_Wedge2D(*args)
+SurfaceAdaptor_Wedge2D = _StgDomain.SurfaceAdaptor_Wedge2D
+
+def SurfaceAdaptor_Wedge3D(*args):
+  return _StgDomain.SurfaceAdaptor_Wedge3D(*args)
+SurfaceAdaptor_Wedge3D = _StgDomain.SurfaceAdaptor_Wedge3D
+
+def SurfaceAdaptor_Plateau(*args):
+  return _StgDomain.SurfaceAdaptor_Plateau(*args)
+SurfaceAdaptor_Plateau = _StgDomain.SurfaceAdaptor_Plateau
+
+def SurfaceAdaptor_Topo_Data(*args):
+  return _StgDomain.SurfaceAdaptor_Topo_Data(*args)
+SurfaceAdaptor_Topo_Data = _StgDomain.SurfaceAdaptor_Topo_Data
+
+def SurfaceAdaptor_Sine(*args):
+  return _StgDomain.SurfaceAdaptor_Sine(*args)
+SurfaceAdaptor_Sine = _StgDomain.SurfaceAdaptor_Sine
+
+def SurfaceAdaptor_Cosine(*args):
+  return _StgDomain.SurfaceAdaptor_Cosine(*args)
+SurfaceAdaptor_Cosine = _StgDomain.SurfaceAdaptor_Cosine
+MT_VERTEX = _StgDomain.MT_VERTEX
+MT_EDGE = _StgDomain.MT_EDGE
+MT_FACE = _StgDomain.MT_FACE
+MT_VOLUME = _StgDomain.MT_VOLUME
+class MeshElement(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MeshElement, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MeshElement, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["elementIndex"] = _StgDomain.MeshElement_elementIndex_set
+    __swig_getmethods__["elementIndex"] = _StgDomain.MeshElement_elementIndex_get
+    if _newclass:elementIndex = _swig_property(_StgDomain.MeshElement_elementIndex_get, _StgDomain.MeshElement_elementIndex_set)
+    __swig_setmethods__["elementMesh"] = _StgDomain.MeshElement_elementMesh_set
+    __swig_getmethods__["elementMesh"] = _StgDomain.MeshElement_elementMesh_get
+    if _newclass:elementMesh = _swig_property(_StgDomain.MeshElement_elementMesh_get, _StgDomain.MeshElement_elementMesh_set)
+    def __init__(self): 
+        this = _StgDomain.new_MeshElement()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_MeshElement
+    __del__ = lambda self : None;
+MeshElement_swigregister = _StgDomain.MeshElement_swigregister
+MeshElement_swigregister(MeshElement)
+
+class Stg_Shape(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Stg_Shape, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Stg_Shape, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Stg_Shape__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Stg_Shape__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Stg_Shape__sizeOfSelf_get, _StgDomain.Stg_Shape__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Stg_Shape__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Stg_Shape__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Stg_Shape__deleteSelf_get, _StgDomain.Stg_Shape__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Stg_Shape_type_set
+    __swig_getmethods__["type"] = _StgDomain.Stg_Shape_type_get
+    if _newclass:type = _swig_property(_StgDomain.Stg_Shape_type_get, _StgDomain.Stg_Shape_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Stg_Shape_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Stg_Shape_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Stg_Shape_nRefs_get, _StgDomain.Stg_Shape_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Stg_Shape__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Stg_Shape__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Stg_Shape__delete_get, _StgDomain.Stg_Shape__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Stg_Shape__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Stg_Shape__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Stg_Shape__print_get, _StgDomain.Stg_Shape__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Stg_Shape__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Stg_Shape__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Stg_Shape__copy_get, _StgDomain.Stg_Shape__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Stg_Shape_name_set
+    __swig_getmethods__["name"] = _StgDomain.Stg_Shape_name_get
+    if _newclass:name = _swig_property(_StgDomain.Stg_Shape_name_get, _StgDomain.Stg_Shape_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Stg_Shape_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Stg_Shape_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Stg_Shape_nameAllocationType_get, _StgDomain.Stg_Shape_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Stg_Shape__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Stg_Shape__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Stg_Shape__defaultConstructor_get, _StgDomain.Stg_Shape__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Stg_Shape__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Stg_Shape__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Stg_Shape__construct_get, _StgDomain.Stg_Shape__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Stg_Shape__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Stg_Shape__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Stg_Shape__build_get, _StgDomain.Stg_Shape__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Stg_Shape__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Stg_Shape__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Stg_Shape__initialise_get, _StgDomain.Stg_Shape__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Stg_Shape__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Stg_Shape__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Stg_Shape__execute_get, _StgDomain.Stg_Shape__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Stg_Shape__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Stg_Shape__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Stg_Shape__destroy_get, _StgDomain.Stg_Shape__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Stg_Shape_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Stg_Shape_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Stg_Shape_isConstructed_get, _StgDomain.Stg_Shape_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Stg_Shape_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Stg_Shape_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Stg_Shape_isBuilt_get, _StgDomain.Stg_Shape_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Stg_Shape_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Stg_Shape_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Stg_Shape_isInitialised_get, _StgDomain.Stg_Shape_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Stg_Shape_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Stg_Shape_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Stg_Shape_hasExecuted_get, _StgDomain.Stg_Shape_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Stg_Shape_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Stg_Shape_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Stg_Shape_isDestroyed_get, _StgDomain.Stg_Shape_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Stg_Shape_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Stg_Shape_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Stg_Shape_constructType_get, _StgDomain.Stg_Shape_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Stg_Shape_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Stg_Shape_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Stg_Shape_buildType_get, _StgDomain.Stg_Shape_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Stg_Shape_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Stg_Shape_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Stg_Shape_initialiseType_get, _StgDomain.Stg_Shape_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Stg_Shape_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Stg_Shape_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Stg_Shape_executeType_get, _StgDomain.Stg_Shape_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Stg_Shape_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Stg_Shape_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Stg_Shape_destroyType_get, _StgDomain.Stg_Shape_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Stg_Shape_context_set
+    __swig_getmethods__["context"] = _StgDomain.Stg_Shape_context_get
+    if _newclass:context = _swig_property(_StgDomain.Stg_Shape_context_get, _StgDomain.Stg_Shape_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.Stg_Shape__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.Stg_Shape__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.Stg_Shape__isCoordInside_get, _StgDomain.Stg_Shape__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.Stg_Shape__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.Stg_Shape__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.Stg_Shape__calculateVolume_get, _StgDomain.Stg_Shape__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.Stg_Shape__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.Stg_Shape__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.Stg_Shape__distanceFromCenterAxis_get, _StgDomain.Stg_Shape__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.Stg_Shape_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Stg_Shape_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Stg_Shape_dim_get, _StgDomain.Stg_Shape_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.Stg_Shape_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.Stg_Shape_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.Stg_Shape_centre_get, _StgDomain.Stg_Shape_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.Stg_Shape_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.Stg_Shape_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.Stg_Shape_invert_get, _StgDomain.Stg_Shape_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.Stg_Shape_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.Stg_Shape_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.Stg_Shape_rotationMatrix_get, _StgDomain.Stg_Shape_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.Stg_Shape_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.Stg_Shape_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.Stg_Shape_rotations_get, _StgDomain.Stg_Shape_rotations_set)
+    def __init__(self): 
+        this = _StgDomain.new_Stg_Shape()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Stg_Shape
+    __del__ = lambda self : None;
+Stg_Shape_swigregister = _StgDomain.Stg_Shape_swigregister
+Stg_Shape_swigregister(Stg_Shape)
+Stg_Shape_Type = cvar.Stg_Shape_Type
+
+
+def _Stg_Shape_New(*args):
+  return _StgDomain._Stg_Shape_New(*args)
+_Stg_Shape_New = _StgDomain._Stg_Shape_New
+
+def _Stg_Shape_Init(*args):
+  return _StgDomain._Stg_Shape_Init(*args)
+_Stg_Shape_Init = _StgDomain._Stg_Shape_Init
+
+def Stg_Shape_InitAll(*args):
+  return _StgDomain.Stg_Shape_InitAll(*args)
+Stg_Shape_InitAll = _StgDomain.Stg_Shape_InitAll
+
+def _Stg_Shape_Delete(*args):
+  return _StgDomain._Stg_Shape_Delete(*args)
+_Stg_Shape_Delete = _StgDomain._Stg_Shape_Delete
+
+def _Stg_Shape_Print(*args):
+  return _StgDomain._Stg_Shape_Print(*args)
+_Stg_Shape_Print = _StgDomain._Stg_Shape_Print
+
+def _Stg_Shape_Copy(*args):
+  return _StgDomain._Stg_Shape_Copy(*args)
+_Stg_Shape_Copy = _StgDomain._Stg_Shape_Copy
+
+def _Stg_Shape_AssignFromXML(*args):
+  return _StgDomain._Stg_Shape_AssignFromXML(*args)
+_Stg_Shape_AssignFromXML = _StgDomain._Stg_Shape_AssignFromXML
+
+def _Stg_Shape_Build(*args):
+  return _StgDomain._Stg_Shape_Build(*args)
+_Stg_Shape_Build = _StgDomain._Stg_Shape_Build
+
+def _Stg_Shape_Initialise(*args):
+  return _StgDomain._Stg_Shape_Initialise(*args)
+_Stg_Shape_Initialise = _StgDomain._Stg_Shape_Initialise
+
+def _Stg_Shape_Execute(*args):
+  return _StgDomain._Stg_Shape_Execute(*args)
+_Stg_Shape_Execute = _StgDomain._Stg_Shape_Execute
+
+def _Stg_Shape_Destroy(*args):
+  return _StgDomain._Stg_Shape_Destroy(*args)
+_Stg_Shape_Destroy = _StgDomain._Stg_Shape_Destroy
+
+def Stg_Shape_IsCoordInside(*args):
+  return _StgDomain.Stg_Shape_IsCoordInside(*args)
+Stg_Shape_IsCoordInside = _StgDomain.Stg_Shape_IsCoordInside
+
+def Stg_Shape_CalculateVolume(*args):
+  return _StgDomain.Stg_Shape_CalculateVolume(*args)
+Stg_Shape_CalculateVolume = _StgDomain.Stg_Shape_CalculateVolume
+
+def Stg_Shape_DistanceFromCenterAxis(*args):
+  return _StgDomain.Stg_Shape_DistanceFromCenterAxis(*args)
+Stg_Shape_DistanceFromCenterAxis = _StgDomain.Stg_Shape_DistanceFromCenterAxis
+
+def Stg_Shape_TransformCoord(*args):
+  return _StgDomain.Stg_Shape_TransformCoord(*args)
+Stg_Shape_TransformCoord = _StgDomain.Stg_Shape_TransformCoord
+
+def Stg_Shape_TranslateCoord(*args):
+  return _StgDomain.Stg_Shape_TranslateCoord(*args)
+Stg_Shape_TranslateCoord = _StgDomain.Stg_Shape_TranslateCoord
+class BelowPlane(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BelowPlane, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, BelowPlane, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.BelowPlane__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.BelowPlane__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.BelowPlane__sizeOfSelf_get, _StgDomain.BelowPlane__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.BelowPlane__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.BelowPlane__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.BelowPlane__deleteSelf_get, _StgDomain.BelowPlane__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.BelowPlane_type_set
+    __swig_getmethods__["type"] = _StgDomain.BelowPlane_type_get
+    if _newclass:type = _swig_property(_StgDomain.BelowPlane_type_get, _StgDomain.BelowPlane_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.BelowPlane_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.BelowPlane_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.BelowPlane_nRefs_get, _StgDomain.BelowPlane_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.BelowPlane__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.BelowPlane__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.BelowPlane__delete_get, _StgDomain.BelowPlane__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.BelowPlane__print_set
+    __swig_getmethods__["_print"] = _StgDomain.BelowPlane__print_get
+    if _newclass:_print = _swig_property(_StgDomain.BelowPlane__print_get, _StgDomain.BelowPlane__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.BelowPlane__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.BelowPlane__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.BelowPlane__copy_get, _StgDomain.BelowPlane__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.BelowPlane_name_set
+    __swig_getmethods__["name"] = _StgDomain.BelowPlane_name_get
+    if _newclass:name = _swig_property(_StgDomain.BelowPlane_name_get, _StgDomain.BelowPlane_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.BelowPlane_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.BelowPlane_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.BelowPlane_nameAllocationType_get, _StgDomain.BelowPlane_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.BelowPlane__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.BelowPlane__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.BelowPlane__defaultConstructor_get, _StgDomain.BelowPlane__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.BelowPlane__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.BelowPlane__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.BelowPlane__construct_get, _StgDomain.BelowPlane__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.BelowPlane__build_set
+    __swig_getmethods__["_build"] = _StgDomain.BelowPlane__build_get
+    if _newclass:_build = _swig_property(_StgDomain.BelowPlane__build_get, _StgDomain.BelowPlane__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.BelowPlane__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.BelowPlane__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.BelowPlane__initialise_get, _StgDomain.BelowPlane__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.BelowPlane__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.BelowPlane__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.BelowPlane__execute_get, _StgDomain.BelowPlane__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.BelowPlane__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.BelowPlane__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.BelowPlane__destroy_get, _StgDomain.BelowPlane__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.BelowPlane_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.BelowPlane_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.BelowPlane_isConstructed_get, _StgDomain.BelowPlane_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.BelowPlane_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.BelowPlane_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.BelowPlane_isBuilt_get, _StgDomain.BelowPlane_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.BelowPlane_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.BelowPlane_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.BelowPlane_isInitialised_get, _StgDomain.BelowPlane_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.BelowPlane_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.BelowPlane_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.BelowPlane_hasExecuted_get, _StgDomain.BelowPlane_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.BelowPlane_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.BelowPlane_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.BelowPlane_isDestroyed_get, _StgDomain.BelowPlane_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.BelowPlane_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.BelowPlane_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.BelowPlane_constructType_get, _StgDomain.BelowPlane_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.BelowPlane_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.BelowPlane_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.BelowPlane_buildType_get, _StgDomain.BelowPlane_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.BelowPlane_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.BelowPlane_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.BelowPlane_initialiseType_get, _StgDomain.BelowPlane_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.BelowPlane_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.BelowPlane_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.BelowPlane_executeType_get, _StgDomain.BelowPlane_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.BelowPlane_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.BelowPlane_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.BelowPlane_destroyType_get, _StgDomain.BelowPlane_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.BelowPlane_context_set
+    __swig_getmethods__["context"] = _StgDomain.BelowPlane_context_get
+    if _newclass:context = _swig_property(_StgDomain.BelowPlane_context_get, _StgDomain.BelowPlane_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.BelowPlane__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.BelowPlane__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.BelowPlane__isCoordInside_get, _StgDomain.BelowPlane__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.BelowPlane__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.BelowPlane__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.BelowPlane__calculateVolume_get, _StgDomain.BelowPlane__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.BelowPlane__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.BelowPlane__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.BelowPlane__distanceFromCenterAxis_get, _StgDomain.BelowPlane__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.BelowPlane_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.BelowPlane_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.BelowPlane_dim_get, _StgDomain.BelowPlane_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.BelowPlane_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.BelowPlane_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.BelowPlane_centre_get, _StgDomain.BelowPlane_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.BelowPlane_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.BelowPlane_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.BelowPlane_invert_get, _StgDomain.BelowPlane_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.BelowPlane_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.BelowPlane_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.BelowPlane_rotationMatrix_get, _StgDomain.BelowPlane_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.BelowPlane_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.BelowPlane_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.BelowPlane_rotations_get, _StgDomain.BelowPlane_rotations_set)
+    __swig_setmethods__["offset"] = _StgDomain.BelowPlane_offset_set
+    __swig_getmethods__["offset"] = _StgDomain.BelowPlane_offset_get
+    if _newclass:offset = _swig_property(_StgDomain.BelowPlane_offset_get, _StgDomain.BelowPlane_offset_set)
+    __swig_setmethods__["width"] = _StgDomain.BelowPlane_width_set
+    __swig_getmethods__["width"] = _StgDomain.BelowPlane_width_get
+    if _newclass:width = _swig_property(_StgDomain.BelowPlane_width_get, _StgDomain.BelowPlane_width_set)
+    __swig_setmethods__["minValue"] = _StgDomain.BelowPlane_minValue_set
+    __swig_getmethods__["minValue"] = _StgDomain.BelowPlane_minValue_get
+    if _newclass:minValue = _swig_property(_StgDomain.BelowPlane_minValue_get, _StgDomain.BelowPlane_minValue_set)
+    __swig_setmethods__["maxValue"] = _StgDomain.BelowPlane_maxValue_set
+    __swig_getmethods__["maxValue"] = _StgDomain.BelowPlane_maxValue_get
+    if _newclass:maxValue = _swig_property(_StgDomain.BelowPlane_maxValue_get, _StgDomain.BelowPlane_maxValue_set)
+    def __init__(self): 
+        this = _StgDomain.new_BelowPlane()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_BelowPlane
+    __del__ = lambda self : None;
+BelowPlane_swigregister = _StgDomain.BelowPlane_swigregister
+BelowPlane_swigregister(BelowPlane)
+BelowPlane_Type = cvar.BelowPlane_Type
+
+
+def _BelowPlane_New(*args):
+  return _StgDomain._BelowPlane_New(*args)
+_BelowPlane_New = _StgDomain._BelowPlane_New
+
+def _BelowPlane_Init(*args):
+  return _StgDomain._BelowPlane_Init(*args)
+_BelowPlane_Init = _StgDomain._BelowPlane_Init
+
+def _BelowPlane_Delete(*args):
+  return _StgDomain._BelowPlane_Delete(*args)
+_BelowPlane_Delete = _StgDomain._BelowPlane_Delete
+
+def _BelowPlane_Print(*args):
+  return _StgDomain._BelowPlane_Print(*args)
+_BelowPlane_Print = _StgDomain._BelowPlane_Print
+
+def _BelowPlane_Copy(*args):
+  return _StgDomain._BelowPlane_Copy(*args)
+_BelowPlane_Copy = _StgDomain._BelowPlane_Copy
+
+def _BelowPlane_DefaultNew(*args):
+  return _StgDomain._BelowPlane_DefaultNew(*args)
+_BelowPlane_DefaultNew = _StgDomain._BelowPlane_DefaultNew
+
+def _BelowPlane_AssignFromXML(*args):
+  return _StgDomain._BelowPlane_AssignFromXML(*args)
+_BelowPlane_AssignFromXML = _StgDomain._BelowPlane_AssignFromXML
+
+def _BelowPlane_Build(*args):
+  return _StgDomain._BelowPlane_Build(*args)
+_BelowPlane_Build = _StgDomain._BelowPlane_Build
+
+def _BelowPlane_Initialise(*args):
+  return _StgDomain._BelowPlane_Initialise(*args)
+_BelowPlane_Initialise = _StgDomain._BelowPlane_Initialise
+
+def _BelowPlane_Execute(*args):
+  return _StgDomain._BelowPlane_Execute(*args)
+_BelowPlane_Execute = _StgDomain._BelowPlane_Execute
+
+def _BelowPlane_Destroy(*args):
+  return _StgDomain._BelowPlane_Destroy(*args)
+_BelowPlane_Destroy = _StgDomain._BelowPlane_Destroy
+
+def _BelowPlane_IsCoordInside(*args):
+  return _StgDomain._BelowPlane_IsCoordInside(*args)
+_BelowPlane_IsCoordInside = _StgDomain._BelowPlane_IsCoordInside
+
+def _BelowPlane_CalculateVolume(*args):
+  return _StgDomain._BelowPlane_CalculateVolume(*args)
+_BelowPlane_CalculateVolume = _StgDomain._BelowPlane_CalculateVolume
+
+def _BelowPlane_DistanceFromCenterAxis(*args):
+  return _StgDomain._BelowPlane_DistanceFromCenterAxis(*args)
+_BelowPlane_DistanceFromCenterAxis = _StgDomain._BelowPlane_DistanceFromCenterAxis
+class BelowCosinePlane(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BelowCosinePlane, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, BelowCosinePlane, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.BelowCosinePlane__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.BelowCosinePlane__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.BelowCosinePlane__sizeOfSelf_get, _StgDomain.BelowCosinePlane__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.BelowCosinePlane__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.BelowCosinePlane__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.BelowCosinePlane__deleteSelf_get, _StgDomain.BelowCosinePlane__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.BelowCosinePlane_type_set
+    __swig_getmethods__["type"] = _StgDomain.BelowCosinePlane_type_get
+    if _newclass:type = _swig_property(_StgDomain.BelowCosinePlane_type_get, _StgDomain.BelowCosinePlane_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.BelowCosinePlane_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.BelowCosinePlane_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.BelowCosinePlane_nRefs_get, _StgDomain.BelowCosinePlane_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.BelowCosinePlane__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.BelowCosinePlane__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.BelowCosinePlane__delete_get, _StgDomain.BelowCosinePlane__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.BelowCosinePlane__print_set
+    __swig_getmethods__["_print"] = _StgDomain.BelowCosinePlane__print_get
+    if _newclass:_print = _swig_property(_StgDomain.BelowCosinePlane__print_get, _StgDomain.BelowCosinePlane__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.BelowCosinePlane__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.BelowCosinePlane__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.BelowCosinePlane__copy_get, _StgDomain.BelowCosinePlane__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.BelowCosinePlane_name_set
+    __swig_getmethods__["name"] = _StgDomain.BelowCosinePlane_name_get
+    if _newclass:name = _swig_property(_StgDomain.BelowCosinePlane_name_get, _StgDomain.BelowCosinePlane_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.BelowCosinePlane_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.BelowCosinePlane_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.BelowCosinePlane_nameAllocationType_get, _StgDomain.BelowCosinePlane_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.BelowCosinePlane__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.BelowCosinePlane__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.BelowCosinePlane__defaultConstructor_get, _StgDomain.BelowCosinePlane__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.BelowCosinePlane__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.BelowCosinePlane__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.BelowCosinePlane__construct_get, _StgDomain.BelowCosinePlane__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.BelowCosinePlane__build_set
+    __swig_getmethods__["_build"] = _StgDomain.BelowCosinePlane__build_get
+    if _newclass:_build = _swig_property(_StgDomain.BelowCosinePlane__build_get, _StgDomain.BelowCosinePlane__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.BelowCosinePlane__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.BelowCosinePlane__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.BelowCosinePlane__initialise_get, _StgDomain.BelowCosinePlane__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.BelowCosinePlane__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.BelowCosinePlane__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.BelowCosinePlane__execute_get, _StgDomain.BelowCosinePlane__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.BelowCosinePlane__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.BelowCosinePlane__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.BelowCosinePlane__destroy_get, _StgDomain.BelowCosinePlane__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.BelowCosinePlane_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.BelowCosinePlane_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.BelowCosinePlane_isConstructed_get, _StgDomain.BelowCosinePlane_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.BelowCosinePlane_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.BelowCosinePlane_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.BelowCosinePlane_isBuilt_get, _StgDomain.BelowCosinePlane_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.BelowCosinePlane_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.BelowCosinePlane_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.BelowCosinePlane_isInitialised_get, _StgDomain.BelowCosinePlane_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.BelowCosinePlane_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.BelowCosinePlane_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.BelowCosinePlane_hasExecuted_get, _StgDomain.BelowCosinePlane_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.BelowCosinePlane_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.BelowCosinePlane_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.BelowCosinePlane_isDestroyed_get, _StgDomain.BelowCosinePlane_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.BelowCosinePlane_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.BelowCosinePlane_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.BelowCosinePlane_constructType_get, _StgDomain.BelowCosinePlane_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.BelowCosinePlane_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.BelowCosinePlane_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.BelowCosinePlane_buildType_get, _StgDomain.BelowCosinePlane_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.BelowCosinePlane_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.BelowCosinePlane_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.BelowCosinePlane_initialiseType_get, _StgDomain.BelowCosinePlane_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.BelowCosinePlane_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.BelowCosinePlane_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.BelowCosinePlane_executeType_get, _StgDomain.BelowCosinePlane_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.BelowCosinePlane_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.BelowCosinePlane_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.BelowCosinePlane_destroyType_get, _StgDomain.BelowCosinePlane_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.BelowCosinePlane_context_set
+    __swig_getmethods__["context"] = _StgDomain.BelowCosinePlane_context_get
+    if _newclass:context = _swig_property(_StgDomain.BelowCosinePlane_context_get, _StgDomain.BelowCosinePlane_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.BelowCosinePlane__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.BelowCosinePlane__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.BelowCosinePlane__isCoordInside_get, _StgDomain.BelowCosinePlane__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.BelowCosinePlane__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.BelowCosinePlane__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.BelowCosinePlane__calculateVolume_get, _StgDomain.BelowCosinePlane__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.BelowCosinePlane__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.BelowCosinePlane__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.BelowCosinePlane__distanceFromCenterAxis_get, _StgDomain.BelowCosinePlane__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.BelowCosinePlane_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.BelowCosinePlane_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.BelowCosinePlane_dim_get, _StgDomain.BelowCosinePlane_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.BelowCosinePlane_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.BelowCosinePlane_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.BelowCosinePlane_centre_get, _StgDomain.BelowCosinePlane_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.BelowCosinePlane_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.BelowCosinePlane_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.BelowCosinePlane_invert_get, _StgDomain.BelowCosinePlane_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.BelowCosinePlane_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.BelowCosinePlane_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.BelowCosinePlane_rotationMatrix_get, _StgDomain.BelowCosinePlane_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.BelowCosinePlane_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.BelowCosinePlane_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.BelowCosinePlane_rotations_get, _StgDomain.BelowCosinePlane_rotations_set)
+    __swig_setmethods__["offset"] = _StgDomain.BelowCosinePlane_offset_set
+    __swig_getmethods__["offset"] = _StgDomain.BelowCosinePlane_offset_get
+    if _newclass:offset = _swig_property(_StgDomain.BelowCosinePlane_offset_get, _StgDomain.BelowCosinePlane_offset_set)
+    __swig_setmethods__["width"] = _StgDomain.BelowCosinePlane_width_set
+    __swig_getmethods__["width"] = _StgDomain.BelowCosinePlane_width_get
+    if _newclass:width = _swig_property(_StgDomain.BelowCosinePlane_width_get, _StgDomain.BelowCosinePlane_width_set)
+    __swig_setmethods__["minValue"] = _StgDomain.BelowCosinePlane_minValue_set
+    __swig_getmethods__["minValue"] = _StgDomain.BelowCosinePlane_minValue_get
+    if _newclass:minValue = _swig_property(_StgDomain.BelowCosinePlane_minValue_get, _StgDomain.BelowCosinePlane_minValue_set)
+    __swig_setmethods__["maxValue"] = _StgDomain.BelowCosinePlane_maxValue_set
+    __swig_getmethods__["maxValue"] = _StgDomain.BelowCosinePlane_maxValue_get
+    if _newclass:maxValue = _swig_property(_StgDomain.BelowCosinePlane_maxValue_get, _StgDomain.BelowCosinePlane_maxValue_set)
+    __swig_setmethods__["amplitude"] = _StgDomain.BelowCosinePlane_amplitude_set
+    __swig_getmethods__["amplitude"] = _StgDomain.BelowCosinePlane_amplitude_get
+    if _newclass:amplitude = _swig_property(_StgDomain.BelowCosinePlane_amplitude_get, _StgDomain.BelowCosinePlane_amplitude_set)
+    __swig_setmethods__["wavelength"] = _StgDomain.BelowCosinePlane_wavelength_set
+    __swig_getmethods__["wavelength"] = _StgDomain.BelowCosinePlane_wavelength_get
+    if _newclass:wavelength = _swig_property(_StgDomain.BelowCosinePlane_wavelength_get, _StgDomain.BelowCosinePlane_wavelength_set)
+    __swig_setmethods__["phase"] = _StgDomain.BelowCosinePlane_phase_set
+    __swig_getmethods__["phase"] = _StgDomain.BelowCosinePlane_phase_get
+    if _newclass:phase = _swig_property(_StgDomain.BelowCosinePlane_phase_get, _StgDomain.BelowCosinePlane_phase_set)
+    def __init__(self): 
+        this = _StgDomain.new_BelowCosinePlane()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_BelowCosinePlane
+    __del__ = lambda self : None;
+BelowCosinePlane_swigregister = _StgDomain.BelowCosinePlane_swigregister
+BelowCosinePlane_swigregister(BelowCosinePlane)
+BelowCosinePlane_Type = cvar.BelowCosinePlane_Type
+
+
+def BelowCosinePlane_New(*args):
+  return _StgDomain.BelowCosinePlane_New(*args)
+BelowCosinePlane_New = _StgDomain.BelowCosinePlane_New
+
+def _BelowCosinePlane_New(*args):
+  return _StgDomain._BelowCosinePlane_New(*args)
+_BelowCosinePlane_New = _StgDomain._BelowCosinePlane_New
+
+def _BelowCosinePlane_Init(*args):
+  return _StgDomain._BelowCosinePlane_Init(*args)
+_BelowCosinePlane_Init = _StgDomain._BelowCosinePlane_Init
+
+def _BelowCosinePlane_Delete(*args):
+  return _StgDomain._BelowCosinePlane_Delete(*args)
+_BelowCosinePlane_Delete = _StgDomain._BelowCosinePlane_Delete
+
+def _BelowCosinePlane_Print(*args):
+  return _StgDomain._BelowCosinePlane_Print(*args)
+_BelowCosinePlane_Print = _StgDomain._BelowCosinePlane_Print
+
+def _BelowCosinePlane_Copy(*args):
+  return _StgDomain._BelowCosinePlane_Copy(*args)
+_BelowCosinePlane_Copy = _StgDomain._BelowCosinePlane_Copy
+
+def _BelowCosinePlane_DefaultNew(*args):
+  return _StgDomain._BelowCosinePlane_DefaultNew(*args)
+_BelowCosinePlane_DefaultNew = _StgDomain._BelowCosinePlane_DefaultNew
+
+def _BelowCosinePlane_AssignFromXML(*args):
+  return _StgDomain._BelowCosinePlane_AssignFromXML(*args)
+_BelowCosinePlane_AssignFromXML = _StgDomain._BelowCosinePlane_AssignFromXML
+
+def _BelowCosinePlane_Build(*args):
+  return _StgDomain._BelowCosinePlane_Build(*args)
+_BelowCosinePlane_Build = _StgDomain._BelowCosinePlane_Build
+
+def _BelowCosinePlane_Initialise(*args):
+  return _StgDomain._BelowCosinePlane_Initialise(*args)
+_BelowCosinePlane_Initialise = _StgDomain._BelowCosinePlane_Initialise
+
+def _BelowCosinePlane_Execute(*args):
+  return _StgDomain._BelowCosinePlane_Execute(*args)
+_BelowCosinePlane_Execute = _StgDomain._BelowCosinePlane_Execute
+
+def _BelowCosinePlane_Destroy(*args):
+  return _StgDomain._BelowCosinePlane_Destroy(*args)
+_BelowCosinePlane_Destroy = _StgDomain._BelowCosinePlane_Destroy
+
+def _BelowCosinePlane_IsCoordInside(*args):
+  return _StgDomain._BelowCosinePlane_IsCoordInside(*args)
+_BelowCosinePlane_IsCoordInside = _StgDomain._BelowCosinePlane_IsCoordInside
+
+def _BelowCosinePlane_CalculateVolume(*args):
+  return _StgDomain._BelowCosinePlane_CalculateVolume(*args)
+_BelowCosinePlane_CalculateVolume = _StgDomain._BelowCosinePlane_CalculateVolume
+
+def _BelowCosinePlane_DistanceFromCenterAxis(*args):
+  return _StgDomain._BelowCosinePlane_DistanceFromCenterAxis(*args)
+_BelowCosinePlane_DistanceFromCenterAxis = _StgDomain._BelowCosinePlane_DistanceFromCenterAxis
+class Box(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Box, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Box, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Box__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Box__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Box__sizeOfSelf_get, _StgDomain.Box__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Box__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Box__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Box__deleteSelf_get, _StgDomain.Box__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Box_type_set
+    __swig_getmethods__["type"] = _StgDomain.Box_type_get
+    if _newclass:type = _swig_property(_StgDomain.Box_type_get, _StgDomain.Box_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Box_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Box_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Box_nRefs_get, _StgDomain.Box_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Box__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Box__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Box__delete_get, _StgDomain.Box__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Box__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Box__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Box__print_get, _StgDomain.Box__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Box__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Box__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Box__copy_get, _StgDomain.Box__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Box_name_set
+    __swig_getmethods__["name"] = _StgDomain.Box_name_get
+    if _newclass:name = _swig_property(_StgDomain.Box_name_get, _StgDomain.Box_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Box_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Box_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Box_nameAllocationType_get, _StgDomain.Box_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Box__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Box__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Box__defaultConstructor_get, _StgDomain.Box__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Box__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Box__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Box__construct_get, _StgDomain.Box__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Box__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Box__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Box__build_get, _StgDomain.Box__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Box__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Box__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Box__initialise_get, _StgDomain.Box__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Box__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Box__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Box__execute_get, _StgDomain.Box__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Box__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Box__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Box__destroy_get, _StgDomain.Box__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Box_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Box_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Box_isConstructed_get, _StgDomain.Box_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Box_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Box_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Box_isBuilt_get, _StgDomain.Box_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Box_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Box_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Box_isInitialised_get, _StgDomain.Box_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Box_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Box_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Box_hasExecuted_get, _StgDomain.Box_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Box_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Box_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Box_isDestroyed_get, _StgDomain.Box_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Box_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Box_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Box_constructType_get, _StgDomain.Box_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Box_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Box_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Box_buildType_get, _StgDomain.Box_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Box_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Box_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Box_initialiseType_get, _StgDomain.Box_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Box_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Box_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Box_executeType_get, _StgDomain.Box_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Box_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Box_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Box_destroyType_get, _StgDomain.Box_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Box_context_set
+    __swig_getmethods__["context"] = _StgDomain.Box_context_get
+    if _newclass:context = _swig_property(_StgDomain.Box_context_get, _StgDomain.Box_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.Box__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.Box__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.Box__isCoordInside_get, _StgDomain.Box__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.Box__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.Box__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.Box__calculateVolume_get, _StgDomain.Box__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.Box__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.Box__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.Box__distanceFromCenterAxis_get, _StgDomain.Box__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.Box_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Box_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Box_dim_get, _StgDomain.Box_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.Box_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.Box_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.Box_centre_get, _StgDomain.Box_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.Box_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.Box_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.Box_invert_get, _StgDomain.Box_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.Box_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.Box_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.Box_rotationMatrix_get, _StgDomain.Box_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.Box_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.Box_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.Box_rotations_get, _StgDomain.Box_rotations_set)
+    __swig_setmethods__["width"] = _StgDomain.Box_width_set
+    __swig_getmethods__["width"] = _StgDomain.Box_width_get
+    if _newclass:width = _swig_property(_StgDomain.Box_width_get, _StgDomain.Box_width_set)
+    def __init__(self): 
+        this = _StgDomain.new_Box()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Box
+    __del__ = lambda self : None;
+Box_swigregister = _StgDomain.Box_swigregister
+Box_swigregister(Box)
+Box_Type = cvar.Box_Type
+
+
+def Box_New(*args):
+  return _StgDomain.Box_New(*args)
+Box_New = _StgDomain.Box_New
+
+def _Box_New(*args):
+  return _StgDomain._Box_New(*args)
+_Box_New = _StgDomain._Box_New
+
+def _Box_Init(*args):
+  return _StgDomain._Box_Init(*args)
+_Box_Init = _StgDomain._Box_Init
+
+def _Box_Delete(*args):
+  return _StgDomain._Box_Delete(*args)
+_Box_Delete = _StgDomain._Box_Delete
+
+def _Box_Print(*args):
+  return _StgDomain._Box_Print(*args)
+_Box_Print = _StgDomain._Box_Print
+
+def _Box_Copy(*args):
+  return _StgDomain._Box_Copy(*args)
+_Box_Copy = _StgDomain._Box_Copy
+
+def _Box_DefaultNew(*args):
+  return _StgDomain._Box_DefaultNew(*args)
+_Box_DefaultNew = _StgDomain._Box_DefaultNew
+
+def _Box_AssignFromXML(*args):
+  return _StgDomain._Box_AssignFromXML(*args)
+_Box_AssignFromXML = _StgDomain._Box_AssignFromXML
+
+def _Box_Build(*args):
+  return _StgDomain._Box_Build(*args)
+_Box_Build = _StgDomain._Box_Build
+
+def _Box_Initialise(*args):
+  return _StgDomain._Box_Initialise(*args)
+_Box_Initialise = _StgDomain._Box_Initialise
+
+def _Box_Execute(*args):
+  return _StgDomain._Box_Execute(*args)
+_Box_Execute = _StgDomain._Box_Execute
+
+def _Box_Destroy(*args):
+  return _StgDomain._Box_Destroy(*args)
+_Box_Destroy = _StgDomain._Box_Destroy
+
+def _Box_IsCoordInside(*args):
+  return _StgDomain._Box_IsCoordInside(*args)
+_Box_IsCoordInside = _StgDomain._Box_IsCoordInside
+
+def _Box_CalculateVolume(*args):
+  return _StgDomain._Box_CalculateVolume(*args)
+_Box_CalculateVolume = _StgDomain._Box_CalculateVolume
+
+def _Box_DistanceFromCenterAxis(*args):
+  return _StgDomain._Box_DistanceFromCenterAxis(*args)
+_Box_DistanceFromCenterAxis = _StgDomain._Box_DistanceFromCenterAxis
+class ConvexHull(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ConvexHull, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ConvexHull, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.ConvexHull__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.ConvexHull__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.ConvexHull__sizeOfSelf_get, _StgDomain.ConvexHull__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.ConvexHull__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.ConvexHull__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.ConvexHull__deleteSelf_get, _StgDomain.ConvexHull__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.ConvexHull_type_set
+    __swig_getmethods__["type"] = _StgDomain.ConvexHull_type_get
+    if _newclass:type = _swig_property(_StgDomain.ConvexHull_type_get, _StgDomain.ConvexHull_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.ConvexHull_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.ConvexHull_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.ConvexHull_nRefs_get, _StgDomain.ConvexHull_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.ConvexHull__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.ConvexHull__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.ConvexHull__delete_get, _StgDomain.ConvexHull__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.ConvexHull__print_set
+    __swig_getmethods__["_print"] = _StgDomain.ConvexHull__print_get
+    if _newclass:_print = _swig_property(_StgDomain.ConvexHull__print_get, _StgDomain.ConvexHull__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.ConvexHull__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.ConvexHull__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.ConvexHull__copy_get, _StgDomain.ConvexHull__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.ConvexHull_name_set
+    __swig_getmethods__["name"] = _StgDomain.ConvexHull_name_get
+    if _newclass:name = _swig_property(_StgDomain.ConvexHull_name_get, _StgDomain.ConvexHull_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.ConvexHull_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.ConvexHull_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.ConvexHull_nameAllocationType_get, _StgDomain.ConvexHull_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.ConvexHull__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.ConvexHull__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.ConvexHull__defaultConstructor_get, _StgDomain.ConvexHull__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.ConvexHull__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.ConvexHull__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.ConvexHull__construct_get, _StgDomain.ConvexHull__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.ConvexHull__build_set
+    __swig_getmethods__["_build"] = _StgDomain.ConvexHull__build_get
+    if _newclass:_build = _swig_property(_StgDomain.ConvexHull__build_get, _StgDomain.ConvexHull__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.ConvexHull__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.ConvexHull__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.ConvexHull__initialise_get, _StgDomain.ConvexHull__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.ConvexHull__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.ConvexHull__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.ConvexHull__execute_get, _StgDomain.ConvexHull__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.ConvexHull__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.ConvexHull__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.ConvexHull__destroy_get, _StgDomain.ConvexHull__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.ConvexHull_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.ConvexHull_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.ConvexHull_isConstructed_get, _StgDomain.ConvexHull_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.ConvexHull_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.ConvexHull_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.ConvexHull_isBuilt_get, _StgDomain.ConvexHull_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.ConvexHull_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.ConvexHull_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.ConvexHull_isInitialised_get, _StgDomain.ConvexHull_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.ConvexHull_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.ConvexHull_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.ConvexHull_hasExecuted_get, _StgDomain.ConvexHull_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.ConvexHull_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.ConvexHull_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.ConvexHull_isDestroyed_get, _StgDomain.ConvexHull_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.ConvexHull_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.ConvexHull_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.ConvexHull_constructType_get, _StgDomain.ConvexHull_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.ConvexHull_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.ConvexHull_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.ConvexHull_buildType_get, _StgDomain.ConvexHull_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.ConvexHull_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.ConvexHull_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.ConvexHull_initialiseType_get, _StgDomain.ConvexHull_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.ConvexHull_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.ConvexHull_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.ConvexHull_executeType_get, _StgDomain.ConvexHull_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.ConvexHull_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.ConvexHull_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.ConvexHull_destroyType_get, _StgDomain.ConvexHull_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.ConvexHull_context_set
+    __swig_getmethods__["context"] = _StgDomain.ConvexHull_context_get
+    if _newclass:context = _swig_property(_StgDomain.ConvexHull_context_get, _StgDomain.ConvexHull_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.ConvexHull__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.ConvexHull__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.ConvexHull__isCoordInside_get, _StgDomain.ConvexHull__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.ConvexHull__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.ConvexHull__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.ConvexHull__calculateVolume_get, _StgDomain.ConvexHull__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.ConvexHull__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.ConvexHull__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.ConvexHull__distanceFromCenterAxis_get, _StgDomain.ConvexHull__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.ConvexHull_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.ConvexHull_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.ConvexHull_dim_get, _StgDomain.ConvexHull_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.ConvexHull_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.ConvexHull_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.ConvexHull_centre_get, _StgDomain.ConvexHull_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.ConvexHull_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.ConvexHull_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.ConvexHull_invert_get, _StgDomain.ConvexHull_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.ConvexHull_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.ConvexHull_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.ConvexHull_rotationMatrix_get, _StgDomain.ConvexHull_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.ConvexHull_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.ConvexHull_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.ConvexHull_rotations_get, _StgDomain.ConvexHull_rotations_set)
+    __swig_setmethods__["vertexList"] = _StgDomain.ConvexHull_vertexList_set
+    __swig_getmethods__["vertexList"] = _StgDomain.ConvexHull_vertexList_get
+    if _newclass:vertexList = _swig_property(_StgDomain.ConvexHull_vertexList_get, _StgDomain.ConvexHull_vertexList_set)
+    __swig_setmethods__["vertexCount"] = _StgDomain.ConvexHull_vertexCount_set
+    __swig_getmethods__["vertexCount"] = _StgDomain.ConvexHull_vertexCount_get
+    if _newclass:vertexCount = _swig_property(_StgDomain.ConvexHull_vertexCount_get, _StgDomain.ConvexHull_vertexCount_set)
+    __swig_setmethods__["facesList"] = _StgDomain.ConvexHull_facesList_set
+    __swig_getmethods__["facesList"] = _StgDomain.ConvexHull_facesList_get
+    if _newclass:facesList = _swig_property(_StgDomain.ConvexHull_facesList_get, _StgDomain.ConvexHull_facesList_set)
+    def __init__(self): 
+        this = _StgDomain.new_ConvexHull()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ConvexHull
+    __del__ = lambda self : None;
+ConvexHull_swigregister = _StgDomain.ConvexHull_swigregister
+ConvexHull_swigregister(ConvexHull)
+ConvexHull_Type = cvar.ConvexHull_Type
+
+
+def ConvexHull_New(*args):
+  return _StgDomain.ConvexHull_New(*args)
+ConvexHull_New = _StgDomain.ConvexHull_New
+
+def _ConvexHull_New(*args):
+  return _StgDomain._ConvexHull_New(*args)
+_ConvexHull_New = _StgDomain._ConvexHull_New
+
+def _ConvexHull_Init(*args):
+  return _StgDomain._ConvexHull_Init(*args)
+_ConvexHull_Init = _StgDomain._ConvexHull_Init
+
+def _ConvexHull_Delete(*args):
+  return _StgDomain._ConvexHull_Delete(*args)
+_ConvexHull_Delete = _StgDomain._ConvexHull_Delete
+
+def _ConvexHull_Print(*args):
+  return _StgDomain._ConvexHull_Print(*args)
+_ConvexHull_Print = _StgDomain._ConvexHull_Print
+
+def _ConvexHull_Copy(*args):
+  return _StgDomain._ConvexHull_Copy(*args)
+_ConvexHull_Copy = _StgDomain._ConvexHull_Copy
+
+def _ConvexHull_DefaultNew(*args):
+  return _StgDomain._ConvexHull_DefaultNew(*args)
+_ConvexHull_DefaultNew = _StgDomain._ConvexHull_DefaultNew
+
+def _ConvexHull_AssignFromXML(*args):
+  return _StgDomain._ConvexHull_AssignFromXML(*args)
+_ConvexHull_AssignFromXML = _StgDomain._ConvexHull_AssignFromXML
+
+def _ConvexHull_Build(*args):
+  return _StgDomain._ConvexHull_Build(*args)
+_ConvexHull_Build = _StgDomain._ConvexHull_Build
+
+def _ConvexHull_Initialise(*args):
+  return _StgDomain._ConvexHull_Initialise(*args)
+_ConvexHull_Initialise = _StgDomain._ConvexHull_Initialise
+
+def _ConvexHull_Execute(*args):
+  return _StgDomain._ConvexHull_Execute(*args)
+_ConvexHull_Execute = _StgDomain._ConvexHull_Execute
+
+def _ConvexHull_Destroy(*args):
+  return _StgDomain._ConvexHull_Destroy(*args)
+_ConvexHull_Destroy = _StgDomain._ConvexHull_Destroy
+
+def _ConvexHull_IsCoordInside(*args):
+  return _StgDomain._ConvexHull_IsCoordInside(*args)
+_ConvexHull_IsCoordInside = _StgDomain._ConvexHull_IsCoordInside
+
+def _ConvexHull_CalculateVolume(*args):
+  return _StgDomain._ConvexHull_CalculateVolume(*args)
+_ConvexHull_CalculateVolume = _StgDomain._ConvexHull_CalculateVolume
+
+def _ConvecHull_DistanceFromCenterAxis(*args):
+  return _StgDomain._ConvecHull_DistanceFromCenterAxis(*args)
+_ConvecHull_DistanceFromCenterAxis = _StgDomain._ConvecHull_DistanceFromCenterAxis
+class Cylinder(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Cylinder, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Cylinder, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Cylinder__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Cylinder__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Cylinder__sizeOfSelf_get, _StgDomain.Cylinder__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Cylinder__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Cylinder__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Cylinder__deleteSelf_get, _StgDomain.Cylinder__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Cylinder_type_set
+    __swig_getmethods__["type"] = _StgDomain.Cylinder_type_get
+    if _newclass:type = _swig_property(_StgDomain.Cylinder_type_get, _StgDomain.Cylinder_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Cylinder_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Cylinder_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Cylinder_nRefs_get, _StgDomain.Cylinder_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Cylinder__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Cylinder__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Cylinder__delete_get, _StgDomain.Cylinder__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Cylinder__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Cylinder__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Cylinder__print_get, _StgDomain.Cylinder__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Cylinder__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Cylinder__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Cylinder__copy_get, _StgDomain.Cylinder__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Cylinder_name_set
+    __swig_getmethods__["name"] = _StgDomain.Cylinder_name_get
+    if _newclass:name = _swig_property(_StgDomain.Cylinder_name_get, _StgDomain.Cylinder_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Cylinder_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Cylinder_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Cylinder_nameAllocationType_get, _StgDomain.Cylinder_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Cylinder__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Cylinder__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Cylinder__defaultConstructor_get, _StgDomain.Cylinder__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Cylinder__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Cylinder__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Cylinder__construct_get, _StgDomain.Cylinder__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Cylinder__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Cylinder__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Cylinder__build_get, _StgDomain.Cylinder__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Cylinder__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Cylinder__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Cylinder__initialise_get, _StgDomain.Cylinder__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Cylinder__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Cylinder__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Cylinder__execute_get, _StgDomain.Cylinder__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Cylinder__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Cylinder__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Cylinder__destroy_get, _StgDomain.Cylinder__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Cylinder_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Cylinder_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Cylinder_isConstructed_get, _StgDomain.Cylinder_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Cylinder_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Cylinder_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Cylinder_isBuilt_get, _StgDomain.Cylinder_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Cylinder_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Cylinder_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Cylinder_isInitialised_get, _StgDomain.Cylinder_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Cylinder_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Cylinder_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Cylinder_hasExecuted_get, _StgDomain.Cylinder_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Cylinder_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Cylinder_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Cylinder_isDestroyed_get, _StgDomain.Cylinder_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Cylinder_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Cylinder_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Cylinder_constructType_get, _StgDomain.Cylinder_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Cylinder_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Cylinder_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Cylinder_buildType_get, _StgDomain.Cylinder_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Cylinder_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Cylinder_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Cylinder_initialiseType_get, _StgDomain.Cylinder_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Cylinder_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Cylinder_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Cylinder_executeType_get, _StgDomain.Cylinder_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Cylinder_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Cylinder_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Cylinder_destroyType_get, _StgDomain.Cylinder_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Cylinder_context_set
+    __swig_getmethods__["context"] = _StgDomain.Cylinder_context_get
+    if _newclass:context = _swig_property(_StgDomain.Cylinder_context_get, _StgDomain.Cylinder_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.Cylinder__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.Cylinder__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.Cylinder__isCoordInside_get, _StgDomain.Cylinder__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.Cylinder__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.Cylinder__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.Cylinder__calculateVolume_get, _StgDomain.Cylinder__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.Cylinder__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.Cylinder__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.Cylinder__distanceFromCenterAxis_get, _StgDomain.Cylinder__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.Cylinder_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Cylinder_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Cylinder_dim_get, _StgDomain.Cylinder_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.Cylinder_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.Cylinder_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.Cylinder_centre_get, _StgDomain.Cylinder_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.Cylinder_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.Cylinder_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.Cylinder_invert_get, _StgDomain.Cylinder_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.Cylinder_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.Cylinder_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.Cylinder_rotationMatrix_get, _StgDomain.Cylinder_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.Cylinder_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.Cylinder_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.Cylinder_rotations_get, _StgDomain.Cylinder_rotations_set)
+    __swig_setmethods__["radius"] = _StgDomain.Cylinder_radius_set
+    __swig_getmethods__["radius"] = _StgDomain.Cylinder_radius_get
+    if _newclass:radius = _swig_property(_StgDomain.Cylinder_radius_get, _StgDomain.Cylinder_radius_set)
+    __swig_setmethods__["start"] = _StgDomain.Cylinder_start_set
+    __swig_getmethods__["start"] = _StgDomain.Cylinder_start_get
+    if _newclass:start = _swig_property(_StgDomain.Cylinder_start_get, _StgDomain.Cylinder_start_set)
+    __swig_setmethods__["end"] = _StgDomain.Cylinder_end_set
+    __swig_getmethods__["end"] = _StgDomain.Cylinder_end_get
+    if _newclass:end = _swig_property(_StgDomain.Cylinder_end_get, _StgDomain.Cylinder_end_set)
+    __swig_setmethods__["alongAxis"] = _StgDomain.Cylinder_alongAxis_set
+    __swig_getmethods__["alongAxis"] = _StgDomain.Cylinder_alongAxis_get
+    if _newclass:alongAxis = _swig_property(_StgDomain.Cylinder_alongAxis_get, _StgDomain.Cylinder_alongAxis_set)
+    def __init__(self): 
+        this = _StgDomain.new_Cylinder()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Cylinder
+    __del__ = lambda self : None;
+Cylinder_swigregister = _StgDomain.Cylinder_swigregister
+Cylinder_swigregister(Cylinder)
+Cylinder_Type = cvar.Cylinder_Type
+
+
+def Cylinder_New(*args):
+  return _StgDomain.Cylinder_New(*args)
+Cylinder_New = _StgDomain.Cylinder_New
+
+def _Cylinder_New(*args):
+  return _StgDomain._Cylinder_New(*args)
+_Cylinder_New = _StgDomain._Cylinder_New
+
+def _Cylinder_Init(*args):
+  return _StgDomain._Cylinder_Init(*args)
+_Cylinder_Init = _StgDomain._Cylinder_Init
+
+def _Cylinder_Delete(*args):
+  return _StgDomain._Cylinder_Delete(*args)
+_Cylinder_Delete = _StgDomain._Cylinder_Delete
+
+def _Cylinder_Print(*args):
+  return _StgDomain._Cylinder_Print(*args)
+_Cylinder_Print = _StgDomain._Cylinder_Print
+
+def _Cylinder_Copy(*args):
+  return _StgDomain._Cylinder_Copy(*args)
+_Cylinder_Copy = _StgDomain._Cylinder_Copy
+
+def _Cylinder_DefaultNew(*args):
+  return _StgDomain._Cylinder_DefaultNew(*args)
+_Cylinder_DefaultNew = _StgDomain._Cylinder_DefaultNew
+
+def _Cylinder_AssignFromXML(*args):
+  return _StgDomain._Cylinder_AssignFromXML(*args)
+_Cylinder_AssignFromXML = _StgDomain._Cylinder_AssignFromXML
+
+def _Cylinder_Build(*args):
+  return _StgDomain._Cylinder_Build(*args)
+_Cylinder_Build = _StgDomain._Cylinder_Build
+
+def _Cylinder_Initialise(*args):
+  return _StgDomain._Cylinder_Initialise(*args)
+_Cylinder_Initialise = _StgDomain._Cylinder_Initialise
+
+def _Cylinder_Execute(*args):
+  return _StgDomain._Cylinder_Execute(*args)
+_Cylinder_Execute = _StgDomain._Cylinder_Execute
+
+def _Cylinder_Destroy(*args):
+  return _StgDomain._Cylinder_Destroy(*args)
+_Cylinder_Destroy = _StgDomain._Cylinder_Destroy
+
+def _Cylinder_IsCoordInside(*args):
+  return _StgDomain._Cylinder_IsCoordInside(*args)
+_Cylinder_IsCoordInside = _StgDomain._Cylinder_IsCoordInside
+
+def _Cylinder_DistanceFromCenterAxis(*args):
+  return _StgDomain._Cylinder_DistanceFromCenterAxis(*args)
+_Cylinder_DistanceFromCenterAxis = _StgDomain._Cylinder_DistanceFromCenterAxis
+
+def _Cylinder_CalculateVolume(*args):
+  return _StgDomain._Cylinder_CalculateVolume(*args)
+_Cylinder_CalculateVolume = _StgDomain._Cylinder_CalculateVolume
+class Everywhere(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Everywhere, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Everywhere, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Everywhere__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Everywhere__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Everywhere__sizeOfSelf_get, _StgDomain.Everywhere__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Everywhere__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Everywhere__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Everywhere__deleteSelf_get, _StgDomain.Everywhere__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Everywhere_type_set
+    __swig_getmethods__["type"] = _StgDomain.Everywhere_type_get
+    if _newclass:type = _swig_property(_StgDomain.Everywhere_type_get, _StgDomain.Everywhere_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Everywhere_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Everywhere_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Everywhere_nRefs_get, _StgDomain.Everywhere_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Everywhere__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Everywhere__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Everywhere__delete_get, _StgDomain.Everywhere__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Everywhere__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Everywhere__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Everywhere__print_get, _StgDomain.Everywhere__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Everywhere__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Everywhere__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Everywhere__copy_get, _StgDomain.Everywhere__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Everywhere_name_set
+    __swig_getmethods__["name"] = _StgDomain.Everywhere_name_get
+    if _newclass:name = _swig_property(_StgDomain.Everywhere_name_get, _StgDomain.Everywhere_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Everywhere_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Everywhere_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Everywhere_nameAllocationType_get, _StgDomain.Everywhere_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Everywhere__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Everywhere__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Everywhere__defaultConstructor_get, _StgDomain.Everywhere__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Everywhere__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Everywhere__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Everywhere__construct_get, _StgDomain.Everywhere__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Everywhere__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Everywhere__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Everywhere__build_get, _StgDomain.Everywhere__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Everywhere__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Everywhere__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Everywhere__initialise_get, _StgDomain.Everywhere__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Everywhere__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Everywhere__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Everywhere__execute_get, _StgDomain.Everywhere__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Everywhere__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Everywhere__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Everywhere__destroy_get, _StgDomain.Everywhere__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Everywhere_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Everywhere_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Everywhere_isConstructed_get, _StgDomain.Everywhere_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Everywhere_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Everywhere_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Everywhere_isBuilt_get, _StgDomain.Everywhere_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Everywhere_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Everywhere_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Everywhere_isInitialised_get, _StgDomain.Everywhere_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Everywhere_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Everywhere_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Everywhere_hasExecuted_get, _StgDomain.Everywhere_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Everywhere_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Everywhere_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Everywhere_isDestroyed_get, _StgDomain.Everywhere_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Everywhere_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Everywhere_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Everywhere_constructType_get, _StgDomain.Everywhere_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Everywhere_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Everywhere_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Everywhere_buildType_get, _StgDomain.Everywhere_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Everywhere_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Everywhere_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Everywhere_initialiseType_get, _StgDomain.Everywhere_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Everywhere_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Everywhere_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Everywhere_executeType_get, _StgDomain.Everywhere_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Everywhere_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Everywhere_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Everywhere_destroyType_get, _StgDomain.Everywhere_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Everywhere_context_set
+    __swig_getmethods__["context"] = _StgDomain.Everywhere_context_get
+    if _newclass:context = _swig_property(_StgDomain.Everywhere_context_get, _StgDomain.Everywhere_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.Everywhere__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.Everywhere__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.Everywhere__isCoordInside_get, _StgDomain.Everywhere__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.Everywhere__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.Everywhere__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.Everywhere__calculateVolume_get, _StgDomain.Everywhere__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.Everywhere__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.Everywhere__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.Everywhere__distanceFromCenterAxis_get, _StgDomain.Everywhere__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.Everywhere_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Everywhere_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Everywhere_dim_get, _StgDomain.Everywhere_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.Everywhere_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.Everywhere_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.Everywhere_centre_get, _StgDomain.Everywhere_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.Everywhere_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.Everywhere_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.Everywhere_invert_get, _StgDomain.Everywhere_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.Everywhere_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.Everywhere_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.Everywhere_rotationMatrix_get, _StgDomain.Everywhere_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.Everywhere_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.Everywhere_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.Everywhere_rotations_get, _StgDomain.Everywhere_rotations_set)
+    def __init__(self): 
+        this = _StgDomain.new_Everywhere()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Everywhere
+    __del__ = lambda self : None;
+Everywhere_swigregister = _StgDomain.Everywhere_swigregister
+Everywhere_swigregister(Everywhere)
+Everywhere_Type = cvar.Everywhere_Type
+
+
+def Everywhere_New(*args):
+  return _StgDomain.Everywhere_New(*args)
+Everywhere_New = _StgDomain.Everywhere_New
+
+def _Everywhere_New(*args):
+  return _StgDomain._Everywhere_New(*args)
+_Everywhere_New = _StgDomain._Everywhere_New
+
+def _Everywhere_Init(*args):
+  return _StgDomain._Everywhere_Init(*args)
+_Everywhere_Init = _StgDomain._Everywhere_Init
+
+def _Everywhere_Delete(*args):
+  return _StgDomain._Everywhere_Delete(*args)
+_Everywhere_Delete = _StgDomain._Everywhere_Delete
+
+def _Everywhere_Print(*args):
+  return _StgDomain._Everywhere_Print(*args)
+_Everywhere_Print = _StgDomain._Everywhere_Print
+
+def _Everywhere_Copy(*args):
+  return _StgDomain._Everywhere_Copy(*args)
+_Everywhere_Copy = _StgDomain._Everywhere_Copy
+
+def _Everywhere_DefaultNew(*args):
+  return _StgDomain._Everywhere_DefaultNew(*args)
+_Everywhere_DefaultNew = _StgDomain._Everywhere_DefaultNew
+
+def _Everywhere_AssignFromXML(*args):
+  return _StgDomain._Everywhere_AssignFromXML(*args)
+_Everywhere_AssignFromXML = _StgDomain._Everywhere_AssignFromXML
+
+def _Everywhere_Build(*args):
+  return _StgDomain._Everywhere_Build(*args)
+_Everywhere_Build = _StgDomain._Everywhere_Build
+
+def _Everywhere_Initialise(*args):
+  return _StgDomain._Everywhere_Initialise(*args)
+_Everywhere_Initialise = _StgDomain._Everywhere_Initialise
+
+def _Everywhere_Execute(*args):
+  return _StgDomain._Everywhere_Execute(*args)
+_Everywhere_Execute = _StgDomain._Everywhere_Execute
+
+def _Everywhere_Destroy(*args):
+  return _StgDomain._Everywhere_Destroy(*args)
+_Everywhere_Destroy = _StgDomain._Everywhere_Destroy
+
+def _Everywhere_IsCoordInside(*args):
+  return _StgDomain._Everywhere_IsCoordInside(*args)
+_Everywhere_IsCoordInside = _StgDomain._Everywhere_IsCoordInside
+
+def _Everywhere_CalculateVolume(*args):
+  return _StgDomain._Everywhere_CalculateVolume(*args)
+_Everywhere_CalculateVolume = _StgDomain._Everywhere_CalculateVolume
+
+def _Everywhere_DistanceFromCenterAxis(*args):
+  return _StgDomain._Everywhere_DistanceFromCenterAxis(*args)
+_Everywhere_DistanceFromCenterAxis = _StgDomain._Everywhere_DistanceFromCenterAxis
+class Intersection(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Intersection, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Intersection, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Intersection__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Intersection__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Intersection__sizeOfSelf_get, _StgDomain.Intersection__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Intersection__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Intersection__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Intersection__deleteSelf_get, _StgDomain.Intersection__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Intersection_type_set
+    __swig_getmethods__["type"] = _StgDomain.Intersection_type_get
+    if _newclass:type = _swig_property(_StgDomain.Intersection_type_get, _StgDomain.Intersection_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Intersection_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Intersection_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Intersection_nRefs_get, _StgDomain.Intersection_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Intersection__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Intersection__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Intersection__delete_get, _StgDomain.Intersection__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Intersection__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Intersection__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Intersection__print_get, _StgDomain.Intersection__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Intersection__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Intersection__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Intersection__copy_get, _StgDomain.Intersection__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Intersection_name_set
+    __swig_getmethods__["name"] = _StgDomain.Intersection_name_get
+    if _newclass:name = _swig_property(_StgDomain.Intersection_name_get, _StgDomain.Intersection_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Intersection_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Intersection_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Intersection_nameAllocationType_get, _StgDomain.Intersection_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Intersection__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Intersection__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Intersection__defaultConstructor_get, _StgDomain.Intersection__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Intersection__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Intersection__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Intersection__construct_get, _StgDomain.Intersection__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Intersection__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Intersection__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Intersection__build_get, _StgDomain.Intersection__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Intersection__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Intersection__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Intersection__initialise_get, _StgDomain.Intersection__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Intersection__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Intersection__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Intersection__execute_get, _StgDomain.Intersection__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Intersection__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Intersection__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Intersection__destroy_get, _StgDomain.Intersection__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Intersection_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Intersection_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Intersection_isConstructed_get, _StgDomain.Intersection_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Intersection_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Intersection_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Intersection_isBuilt_get, _StgDomain.Intersection_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Intersection_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Intersection_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Intersection_isInitialised_get, _StgDomain.Intersection_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Intersection_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Intersection_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Intersection_hasExecuted_get, _StgDomain.Intersection_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Intersection_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Intersection_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Intersection_isDestroyed_get, _StgDomain.Intersection_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Intersection_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Intersection_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Intersection_constructType_get, _StgDomain.Intersection_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Intersection_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Intersection_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Intersection_buildType_get, _StgDomain.Intersection_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Intersection_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Intersection_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Intersection_initialiseType_get, _StgDomain.Intersection_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Intersection_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Intersection_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Intersection_executeType_get, _StgDomain.Intersection_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Intersection_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Intersection_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Intersection_destroyType_get, _StgDomain.Intersection_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Intersection_context_set
+    __swig_getmethods__["context"] = _StgDomain.Intersection_context_get
+    if _newclass:context = _swig_property(_StgDomain.Intersection_context_get, _StgDomain.Intersection_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.Intersection__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.Intersection__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.Intersection__isCoordInside_get, _StgDomain.Intersection__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.Intersection__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.Intersection__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.Intersection__calculateVolume_get, _StgDomain.Intersection__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.Intersection__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.Intersection__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.Intersection__distanceFromCenterAxis_get, _StgDomain.Intersection__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.Intersection_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Intersection_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Intersection_dim_get, _StgDomain.Intersection_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.Intersection_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.Intersection_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.Intersection_centre_get, _StgDomain.Intersection_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.Intersection_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.Intersection_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.Intersection_invert_get, _StgDomain.Intersection_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.Intersection_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.Intersection_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.Intersection_rotationMatrix_get, _StgDomain.Intersection_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.Intersection_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.Intersection_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.Intersection_rotations_get, _StgDomain.Intersection_rotations_set)
+    __swig_setmethods__["shapeList"] = _StgDomain.Intersection_shapeList_set
+    __swig_getmethods__["shapeList"] = _StgDomain.Intersection_shapeList_get
+    if _newclass:shapeList = _swig_property(_StgDomain.Intersection_shapeList_get, _StgDomain.Intersection_shapeList_set)
+    __swig_setmethods__["shapeCount"] = _StgDomain.Intersection_shapeCount_set
+    __swig_getmethods__["shapeCount"] = _StgDomain.Intersection_shapeCount_get
+    if _newclass:shapeCount = _swig_property(_StgDomain.Intersection_shapeCount_get, _StgDomain.Intersection_shapeCount_set)
+    __swig_setmethods__["isComplement"] = _StgDomain.Intersection_isComplement_set
+    __swig_getmethods__["isComplement"] = _StgDomain.Intersection_isComplement_get
+    if _newclass:isComplement = _swig_property(_StgDomain.Intersection_isComplement_get, _StgDomain.Intersection_isComplement_set)
+    def __init__(self): 
+        this = _StgDomain.new_Intersection()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Intersection
+    __del__ = lambda self : None;
+Intersection_swigregister = _StgDomain.Intersection_swigregister
+Intersection_swigregister(Intersection)
+Intersection_Type = cvar.Intersection_Type
+
+
+def Intersection_New(*args):
+  return _StgDomain.Intersection_New(*args)
+Intersection_New = _StgDomain.Intersection_New
+
+def _Intersection_New(*args):
+  return _StgDomain._Intersection_New(*args)
+_Intersection_New = _StgDomain._Intersection_New
+
+def _Intersection_Init(*args):
+  return _StgDomain._Intersection_Init(*args)
+_Intersection_Init = _StgDomain._Intersection_Init
+
+def _Intersection_Delete(*args):
+  return _StgDomain._Intersection_Delete(*args)
+_Intersection_Delete = _StgDomain._Intersection_Delete
+
+def _Intersection_Print(*args):
+  return _StgDomain._Intersection_Print(*args)
+_Intersection_Print = _StgDomain._Intersection_Print
+
+def _Intersection_Copy(*args):
+  return _StgDomain._Intersection_Copy(*args)
+_Intersection_Copy = _StgDomain._Intersection_Copy
+
+def _Intersection_DefaultNew(*args):
+  return _StgDomain._Intersection_DefaultNew(*args)
+_Intersection_DefaultNew = _StgDomain._Intersection_DefaultNew
+
+def _Intersection_AssignFromXML(*args):
+  return _StgDomain._Intersection_AssignFromXML(*args)
+_Intersection_AssignFromXML = _StgDomain._Intersection_AssignFromXML
+
+def _Intersection_Build(*args):
+  return _StgDomain._Intersection_Build(*args)
+_Intersection_Build = _StgDomain._Intersection_Build
+
+def _Intersection_Initialise(*args):
+  return _StgDomain._Intersection_Initialise(*args)
+_Intersection_Initialise = _StgDomain._Intersection_Initialise
+
+def _Intersection_Execute(*args):
+  return _StgDomain._Intersection_Execute(*args)
+_Intersection_Execute = _StgDomain._Intersection_Execute
+
+def _Intersection_Destroy(*args):
+  return _StgDomain._Intersection_Destroy(*args)
+_Intersection_Destroy = _StgDomain._Intersection_Destroy
+
+def _Intersection_IsCoordInside(*args):
+  return _StgDomain._Intersection_IsCoordInside(*args)
+_Intersection_IsCoordInside = _StgDomain._Intersection_IsCoordInside
+
+def _Intersection_CalculateVolume(*args):
+  return _StgDomain._Intersection_CalculateVolume(*args)
+_Intersection_CalculateVolume = _StgDomain._Intersection_CalculateVolume
+
+def _Intersection_DistanceFromCenterAxis(*args):
+  return _StgDomain._Intersection_DistanceFromCenterAxis(*args)
+_Intersection_DistanceFromCenterAxis = _StgDomain._Intersection_DistanceFromCenterAxis
+class PolygonShape(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, PolygonShape, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, PolygonShape, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.PolygonShape__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.PolygonShape__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.PolygonShape__sizeOfSelf_get, _StgDomain.PolygonShape__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.PolygonShape__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.PolygonShape__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.PolygonShape__deleteSelf_get, _StgDomain.PolygonShape__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.PolygonShape_type_set
+    __swig_getmethods__["type"] = _StgDomain.PolygonShape_type_get
+    if _newclass:type = _swig_property(_StgDomain.PolygonShape_type_get, _StgDomain.PolygonShape_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.PolygonShape_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.PolygonShape_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.PolygonShape_nRefs_get, _StgDomain.PolygonShape_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.PolygonShape__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.PolygonShape__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.PolygonShape__delete_get, _StgDomain.PolygonShape__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.PolygonShape__print_set
+    __swig_getmethods__["_print"] = _StgDomain.PolygonShape__print_get
+    if _newclass:_print = _swig_property(_StgDomain.PolygonShape__print_get, _StgDomain.PolygonShape__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.PolygonShape__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.PolygonShape__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.PolygonShape__copy_get, _StgDomain.PolygonShape__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.PolygonShape_name_set
+    __swig_getmethods__["name"] = _StgDomain.PolygonShape_name_get
+    if _newclass:name = _swig_property(_StgDomain.PolygonShape_name_get, _StgDomain.PolygonShape_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.PolygonShape_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.PolygonShape_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.PolygonShape_nameAllocationType_get, _StgDomain.PolygonShape_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.PolygonShape__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.PolygonShape__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.PolygonShape__defaultConstructor_get, _StgDomain.PolygonShape__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.PolygonShape__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.PolygonShape__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.PolygonShape__construct_get, _StgDomain.PolygonShape__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.PolygonShape__build_set
+    __swig_getmethods__["_build"] = _StgDomain.PolygonShape__build_get
+    if _newclass:_build = _swig_property(_StgDomain.PolygonShape__build_get, _StgDomain.PolygonShape__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.PolygonShape__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.PolygonShape__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.PolygonShape__initialise_get, _StgDomain.PolygonShape__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.PolygonShape__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.PolygonShape__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.PolygonShape__execute_get, _StgDomain.PolygonShape__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.PolygonShape__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.PolygonShape__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.PolygonShape__destroy_get, _StgDomain.PolygonShape__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.PolygonShape_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.PolygonShape_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.PolygonShape_isConstructed_get, _StgDomain.PolygonShape_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.PolygonShape_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.PolygonShape_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.PolygonShape_isBuilt_get, _StgDomain.PolygonShape_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.PolygonShape_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.PolygonShape_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.PolygonShape_isInitialised_get, _StgDomain.PolygonShape_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.PolygonShape_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.PolygonShape_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.PolygonShape_hasExecuted_get, _StgDomain.PolygonShape_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.PolygonShape_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.PolygonShape_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.PolygonShape_isDestroyed_get, _StgDomain.PolygonShape_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.PolygonShape_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.PolygonShape_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.PolygonShape_constructType_get, _StgDomain.PolygonShape_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.PolygonShape_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.PolygonShape_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.PolygonShape_buildType_get, _StgDomain.PolygonShape_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.PolygonShape_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.PolygonShape_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.PolygonShape_initialiseType_get, _StgDomain.PolygonShape_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.PolygonShape_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.PolygonShape_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.PolygonShape_executeType_get, _StgDomain.PolygonShape_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.PolygonShape_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.PolygonShape_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.PolygonShape_destroyType_get, _StgDomain.PolygonShape_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.PolygonShape_context_set
+    __swig_getmethods__["context"] = _StgDomain.PolygonShape_context_get
+    if _newclass:context = _swig_property(_StgDomain.PolygonShape_context_get, _StgDomain.PolygonShape_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.PolygonShape__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.PolygonShape__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.PolygonShape__isCoordInside_get, _StgDomain.PolygonShape__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.PolygonShape__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.PolygonShape__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.PolygonShape__calculateVolume_get, _StgDomain.PolygonShape__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.PolygonShape__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.PolygonShape__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.PolygonShape__distanceFromCenterAxis_get, _StgDomain.PolygonShape__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.PolygonShape_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.PolygonShape_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.PolygonShape_dim_get, _StgDomain.PolygonShape_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.PolygonShape_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.PolygonShape_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.PolygonShape_centre_get, _StgDomain.PolygonShape_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.PolygonShape_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.PolygonShape_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.PolygonShape_invert_get, _StgDomain.PolygonShape_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.PolygonShape_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.PolygonShape_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.PolygonShape_rotationMatrix_get, _StgDomain.PolygonShape_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.PolygonShape_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.PolygonShape_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.PolygonShape_rotations_get, _StgDomain.PolygonShape_rotations_set)
+    __swig_setmethods__["vertexList"] = _StgDomain.PolygonShape_vertexList_set
+    __swig_getmethods__["vertexList"] = _StgDomain.PolygonShape_vertexList_get
+    if _newclass:vertexList = _swig_property(_StgDomain.PolygonShape_vertexList_get, _StgDomain.PolygonShape_vertexList_set)
+    __swig_setmethods__["vertexCount"] = _StgDomain.PolygonShape_vertexCount_set
+    __swig_getmethods__["vertexCount"] = _StgDomain.PolygonShape_vertexCount_get
+    if _newclass:vertexCount = _swig_property(_StgDomain.PolygonShape_vertexCount_get, _StgDomain.PolygonShape_vertexCount_set)
+    __swig_setmethods__["start"] = _StgDomain.PolygonShape_start_set
+    __swig_getmethods__["start"] = _StgDomain.PolygonShape_start_get
+    if _newclass:start = _swig_property(_StgDomain.PolygonShape_start_get, _StgDomain.PolygonShape_start_set)
+    __swig_setmethods__["end"] = _StgDomain.PolygonShape_end_set
+    __swig_getmethods__["end"] = _StgDomain.PolygonShape_end_get
+    if _newclass:end = _swig_property(_StgDomain.PolygonShape_end_get, _StgDomain.PolygonShape_end_set)
+    __swig_setmethods__["centroid"] = _StgDomain.PolygonShape_centroid_set
+    __swig_getmethods__["centroid"] = _StgDomain.PolygonShape_centroid_get
+    if _newclass:centroid = _swig_property(_StgDomain.PolygonShape_centroid_get, _StgDomain.PolygonShape_centroid_set)
+    def __init__(self): 
+        this = _StgDomain.new_PolygonShape()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_PolygonShape
+    __del__ = lambda self : None;
+PolygonShape_swigregister = _StgDomain.PolygonShape_swigregister
+PolygonShape_swigregister(PolygonShape)
+PolygonShape_Type = cvar.PolygonShape_Type
+
+
+def PolygonShape_New(*args):
+  return _StgDomain.PolygonShape_New(*args)
+PolygonShape_New = _StgDomain.PolygonShape_New
+
+def _PolygonShape_New(*args):
+  return _StgDomain._PolygonShape_New(*args)
+_PolygonShape_New = _StgDomain._PolygonShape_New
+
+def _PolygonShape_Init(*args):
+  return _StgDomain._PolygonShape_Init(*args)
+_PolygonShape_Init = _StgDomain._PolygonShape_Init
+
+def _PolygonShape_Delete(*args):
+  return _StgDomain._PolygonShape_Delete(*args)
+_PolygonShape_Delete = _StgDomain._PolygonShape_Delete
+
+def _PolygonShape_Print(*args):
+  return _StgDomain._PolygonShape_Print(*args)
+_PolygonShape_Print = _StgDomain._PolygonShape_Print
+
+def _PolygonShape_Copy(*args):
+  return _StgDomain._PolygonShape_Copy(*args)
+_PolygonShape_Copy = _StgDomain._PolygonShape_Copy
+
+def _PolygonShape_DefaultNew(*args):
+  return _StgDomain._PolygonShape_DefaultNew(*args)
+_PolygonShape_DefaultNew = _StgDomain._PolygonShape_DefaultNew
+
+def _PolygonShape_AssignFromXML(*args):
+  return _StgDomain._PolygonShape_AssignFromXML(*args)
+_PolygonShape_AssignFromXML = _StgDomain._PolygonShape_AssignFromXML
+
+def _PolygonShape_Build(*args):
+  return _StgDomain._PolygonShape_Build(*args)
+_PolygonShape_Build = _StgDomain._PolygonShape_Build
+
+def _PolygonShape_Initialise(*args):
+  return _StgDomain._PolygonShape_Initialise(*args)
+_PolygonShape_Initialise = _StgDomain._PolygonShape_Initialise
+
+def _PolygonShape_Execute(*args):
+  return _StgDomain._PolygonShape_Execute(*args)
+_PolygonShape_Execute = _StgDomain._PolygonShape_Execute
+
+def _PolygonShape_Destroy(*args):
+  return _StgDomain._PolygonShape_Destroy(*args)
+_PolygonShape_Destroy = _StgDomain._PolygonShape_Destroy
+
+def _PolygonShape_IsCoordInside(*args):
+  return _StgDomain._PolygonShape_IsCoordInside(*args)
+_PolygonShape_IsCoordInside = _StgDomain._PolygonShape_IsCoordInside
+
+def _PolygonShape_CalculateVolume(*args):
+  return _StgDomain._PolygonShape_CalculateVolume(*args)
+_PolygonShape_CalculateVolume = _StgDomain._PolygonShape_CalculateVolume
+
+def _PolygonShape_DistanceFromCenterAxis(*args):
+  return _StgDomain._PolygonShape_DistanceFromCenterAxis(*args)
+_PolygonShape_DistanceFromCenterAxis = _StgDomain._PolygonShape_DistanceFromCenterAxis
+class PolygonShapeXZ(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, PolygonShapeXZ, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, PolygonShapeXZ, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.PolygonShapeXZ__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.PolygonShapeXZ__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.PolygonShapeXZ__sizeOfSelf_get, _StgDomain.PolygonShapeXZ__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.PolygonShapeXZ__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.PolygonShapeXZ__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.PolygonShapeXZ__deleteSelf_get, _StgDomain.PolygonShapeXZ__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.PolygonShapeXZ_type_set
+    __swig_getmethods__["type"] = _StgDomain.PolygonShapeXZ_type_get
+    if _newclass:type = _swig_property(_StgDomain.PolygonShapeXZ_type_get, _StgDomain.PolygonShapeXZ_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.PolygonShapeXZ_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.PolygonShapeXZ_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.PolygonShapeXZ_nRefs_get, _StgDomain.PolygonShapeXZ_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.PolygonShapeXZ__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.PolygonShapeXZ__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.PolygonShapeXZ__delete_get, _StgDomain.PolygonShapeXZ__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.PolygonShapeXZ__print_set
+    __swig_getmethods__["_print"] = _StgDomain.PolygonShapeXZ__print_get
+    if _newclass:_print = _swig_property(_StgDomain.PolygonShapeXZ__print_get, _StgDomain.PolygonShapeXZ__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.PolygonShapeXZ__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.PolygonShapeXZ__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.PolygonShapeXZ__copy_get, _StgDomain.PolygonShapeXZ__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.PolygonShapeXZ_name_set
+    __swig_getmethods__["name"] = _StgDomain.PolygonShapeXZ_name_get
+    if _newclass:name = _swig_property(_StgDomain.PolygonShapeXZ_name_get, _StgDomain.PolygonShapeXZ_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.PolygonShapeXZ_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.PolygonShapeXZ_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.PolygonShapeXZ_nameAllocationType_get, _StgDomain.PolygonShapeXZ_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.PolygonShapeXZ__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.PolygonShapeXZ__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.PolygonShapeXZ__defaultConstructor_get, _StgDomain.PolygonShapeXZ__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.PolygonShapeXZ__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.PolygonShapeXZ__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.PolygonShapeXZ__construct_get, _StgDomain.PolygonShapeXZ__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.PolygonShapeXZ__build_set
+    __swig_getmethods__["_build"] = _StgDomain.PolygonShapeXZ__build_get
+    if _newclass:_build = _swig_property(_StgDomain.PolygonShapeXZ__build_get, _StgDomain.PolygonShapeXZ__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.PolygonShapeXZ__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.PolygonShapeXZ__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.PolygonShapeXZ__initialise_get, _StgDomain.PolygonShapeXZ__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.PolygonShapeXZ__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.PolygonShapeXZ__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.PolygonShapeXZ__execute_get, _StgDomain.PolygonShapeXZ__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.PolygonShapeXZ__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.PolygonShapeXZ__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.PolygonShapeXZ__destroy_get, _StgDomain.PolygonShapeXZ__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.PolygonShapeXZ_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.PolygonShapeXZ_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.PolygonShapeXZ_isConstructed_get, _StgDomain.PolygonShapeXZ_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.PolygonShapeXZ_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.PolygonShapeXZ_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.PolygonShapeXZ_isBuilt_get, _StgDomain.PolygonShapeXZ_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.PolygonShapeXZ_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.PolygonShapeXZ_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.PolygonShapeXZ_isInitialised_get, _StgDomain.PolygonShapeXZ_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.PolygonShapeXZ_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.PolygonShapeXZ_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.PolygonShapeXZ_hasExecuted_get, _StgDomain.PolygonShapeXZ_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.PolygonShapeXZ_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.PolygonShapeXZ_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.PolygonShapeXZ_isDestroyed_get, _StgDomain.PolygonShapeXZ_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.PolygonShapeXZ_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.PolygonShapeXZ_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.PolygonShapeXZ_constructType_get, _StgDomain.PolygonShapeXZ_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.PolygonShapeXZ_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.PolygonShapeXZ_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.PolygonShapeXZ_buildType_get, _StgDomain.PolygonShapeXZ_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.PolygonShapeXZ_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.PolygonShapeXZ_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.PolygonShapeXZ_initialiseType_get, _StgDomain.PolygonShapeXZ_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.PolygonShapeXZ_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.PolygonShapeXZ_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.PolygonShapeXZ_executeType_get, _StgDomain.PolygonShapeXZ_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.PolygonShapeXZ_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.PolygonShapeXZ_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.PolygonShapeXZ_destroyType_get, _StgDomain.PolygonShapeXZ_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.PolygonShapeXZ_context_set
+    __swig_getmethods__["context"] = _StgDomain.PolygonShapeXZ_context_get
+    if _newclass:context = _swig_property(_StgDomain.PolygonShapeXZ_context_get, _StgDomain.PolygonShapeXZ_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.PolygonShapeXZ__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.PolygonShapeXZ__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.PolygonShapeXZ__isCoordInside_get, _StgDomain.PolygonShapeXZ__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.PolygonShapeXZ__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.PolygonShapeXZ__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.PolygonShapeXZ__calculateVolume_get, _StgDomain.PolygonShapeXZ__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.PolygonShapeXZ__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.PolygonShapeXZ__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.PolygonShapeXZ__distanceFromCenterAxis_get, _StgDomain.PolygonShapeXZ__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.PolygonShapeXZ_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.PolygonShapeXZ_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.PolygonShapeXZ_dim_get, _StgDomain.PolygonShapeXZ_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.PolygonShapeXZ_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.PolygonShapeXZ_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.PolygonShapeXZ_centre_get, _StgDomain.PolygonShapeXZ_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.PolygonShapeXZ_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.PolygonShapeXZ_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.PolygonShapeXZ_invert_get, _StgDomain.PolygonShapeXZ_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.PolygonShapeXZ_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.PolygonShapeXZ_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.PolygonShapeXZ_rotationMatrix_get, _StgDomain.PolygonShapeXZ_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.PolygonShapeXZ_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.PolygonShapeXZ_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.PolygonShapeXZ_rotations_get, _StgDomain.PolygonShapeXZ_rotations_set)
+    __swig_setmethods__["vertexList"] = _StgDomain.PolygonShapeXZ_vertexList_set
+    __swig_getmethods__["vertexList"] = _StgDomain.PolygonShapeXZ_vertexList_get
+    if _newclass:vertexList = _swig_property(_StgDomain.PolygonShapeXZ_vertexList_get, _StgDomain.PolygonShapeXZ_vertexList_set)
+    __swig_setmethods__["vertexCount"] = _StgDomain.PolygonShapeXZ_vertexCount_set
+    __swig_getmethods__["vertexCount"] = _StgDomain.PolygonShapeXZ_vertexCount_get
+    if _newclass:vertexCount = _swig_property(_StgDomain.PolygonShapeXZ_vertexCount_get, _StgDomain.PolygonShapeXZ_vertexCount_set)
+    __swig_setmethods__["start"] = _StgDomain.PolygonShapeXZ_start_set
+    __swig_getmethods__["start"] = _StgDomain.PolygonShapeXZ_start_get
+    if _newclass:start = _swig_property(_StgDomain.PolygonShapeXZ_start_get, _StgDomain.PolygonShapeXZ_start_set)
+    __swig_setmethods__["end"] = _StgDomain.PolygonShapeXZ_end_set
+    __swig_getmethods__["end"] = _StgDomain.PolygonShapeXZ_end_get
+    if _newclass:end = _swig_property(_StgDomain.PolygonShapeXZ_end_get, _StgDomain.PolygonShapeXZ_end_set)
+    __swig_setmethods__["centroid"] = _StgDomain.PolygonShapeXZ_centroid_set
+    __swig_getmethods__["centroid"] = _StgDomain.PolygonShapeXZ_centroid_get
+    if _newclass:centroid = _swig_property(_StgDomain.PolygonShapeXZ_centroid_get, _StgDomain.PolygonShapeXZ_centroid_set)
+    def __init__(self): 
+        this = _StgDomain.new_PolygonShapeXZ()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_PolygonShapeXZ
+    __del__ = lambda self : None;
+PolygonShapeXZ_swigregister = _StgDomain.PolygonShapeXZ_swigregister
+PolygonShapeXZ_swigregister(PolygonShapeXZ)
+PolygonShapeXZ_Type = cvar.PolygonShapeXZ_Type
+
+
+def PolygonShapeXZ_New(*args):
+  return _StgDomain.PolygonShapeXZ_New(*args)
+PolygonShapeXZ_New = _StgDomain.PolygonShapeXZ_New
+
+def _PolygonShapeXZ_New(*args):
+  return _StgDomain._PolygonShapeXZ_New(*args)
+_PolygonShapeXZ_New = _StgDomain._PolygonShapeXZ_New
+
+def _PolygonShapeXZ_Init(*args):
+  return _StgDomain._PolygonShapeXZ_Init(*args)
+_PolygonShapeXZ_Init = _StgDomain._PolygonShapeXZ_Init
+
+def _PolygonShapeXZ_Delete(*args):
+  return _StgDomain._PolygonShapeXZ_Delete(*args)
+_PolygonShapeXZ_Delete = _StgDomain._PolygonShapeXZ_Delete
+
+def _PolygonShapeXZ_Print(*args):
+  return _StgDomain._PolygonShapeXZ_Print(*args)
+_PolygonShapeXZ_Print = _StgDomain._PolygonShapeXZ_Print
+
+def _PolygonShapeXZ_Copy(*args):
+  return _StgDomain._PolygonShapeXZ_Copy(*args)
+_PolygonShapeXZ_Copy = _StgDomain._PolygonShapeXZ_Copy
+
+def _PolygonShapeXZ_DefaultNew(*args):
+  return _StgDomain._PolygonShapeXZ_DefaultNew(*args)
+_PolygonShapeXZ_DefaultNew = _StgDomain._PolygonShapeXZ_DefaultNew
+
+def _PolygonShapeXZ_AssignFromXML(*args):
+  return _StgDomain._PolygonShapeXZ_AssignFromXML(*args)
+_PolygonShapeXZ_AssignFromXML = _StgDomain._PolygonShapeXZ_AssignFromXML
+
+def _PolygonShapeXZ_Build(*args):
+  return _StgDomain._PolygonShapeXZ_Build(*args)
+_PolygonShapeXZ_Build = _StgDomain._PolygonShapeXZ_Build
+
+def _PolygonShapeXZ_Initialise(*args):
+  return _StgDomain._PolygonShapeXZ_Initialise(*args)
+_PolygonShapeXZ_Initialise = _StgDomain._PolygonShapeXZ_Initialise
+
+def _PolygonShapeXZ_Execute(*args):
+  return _StgDomain._PolygonShapeXZ_Execute(*args)
+_PolygonShapeXZ_Execute = _StgDomain._PolygonShapeXZ_Execute
+
+def _PolygonShapeXZ_Destroy(*args):
+  return _StgDomain._PolygonShapeXZ_Destroy(*args)
+_PolygonShapeXZ_Destroy = _StgDomain._PolygonShapeXZ_Destroy
+
+def _PolygonShapeXZ_IsCoordInside(*args):
+  return _StgDomain._PolygonShapeXZ_IsCoordInside(*args)
+_PolygonShapeXZ_IsCoordInside = _StgDomain._PolygonShapeXZ_IsCoordInside
+
+def _PolygonShapeXZ_CalculateVolume(*args):
+  return _StgDomain._PolygonShapeXZ_CalculateVolume(*args)
+_PolygonShapeXZ_CalculateVolume = _StgDomain._PolygonShapeXZ_CalculateVolume
+
+def _PolygonShapeXZ_DistanceFromCenterAxis(*args):
+  return _StgDomain._PolygonShapeXZ_DistanceFromCenterAxis(*args)
+_PolygonShapeXZ_DistanceFromCenterAxis = _StgDomain._PolygonShapeXZ_DistanceFromCenterAxis
+class Sphere(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Sphere, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Sphere, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Sphere__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Sphere__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Sphere__sizeOfSelf_get, _StgDomain.Sphere__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Sphere__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Sphere__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Sphere__deleteSelf_get, _StgDomain.Sphere__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Sphere_type_set
+    __swig_getmethods__["type"] = _StgDomain.Sphere_type_get
+    if _newclass:type = _swig_property(_StgDomain.Sphere_type_get, _StgDomain.Sphere_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Sphere_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Sphere_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Sphere_nRefs_get, _StgDomain.Sphere_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Sphere__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Sphere__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Sphere__delete_get, _StgDomain.Sphere__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Sphere__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Sphere__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Sphere__print_get, _StgDomain.Sphere__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Sphere__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Sphere__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Sphere__copy_get, _StgDomain.Sphere__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Sphere_name_set
+    __swig_getmethods__["name"] = _StgDomain.Sphere_name_get
+    if _newclass:name = _swig_property(_StgDomain.Sphere_name_get, _StgDomain.Sphere_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Sphere_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Sphere_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Sphere_nameAllocationType_get, _StgDomain.Sphere_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Sphere__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Sphere__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Sphere__defaultConstructor_get, _StgDomain.Sphere__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Sphere__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Sphere__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Sphere__construct_get, _StgDomain.Sphere__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Sphere__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Sphere__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Sphere__build_get, _StgDomain.Sphere__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Sphere__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Sphere__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Sphere__initialise_get, _StgDomain.Sphere__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Sphere__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Sphere__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Sphere__execute_get, _StgDomain.Sphere__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Sphere__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Sphere__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Sphere__destroy_get, _StgDomain.Sphere__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Sphere_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Sphere_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Sphere_isConstructed_get, _StgDomain.Sphere_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Sphere_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Sphere_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Sphere_isBuilt_get, _StgDomain.Sphere_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Sphere_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Sphere_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Sphere_isInitialised_get, _StgDomain.Sphere_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Sphere_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Sphere_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Sphere_hasExecuted_get, _StgDomain.Sphere_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Sphere_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Sphere_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Sphere_isDestroyed_get, _StgDomain.Sphere_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Sphere_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Sphere_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Sphere_constructType_get, _StgDomain.Sphere_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Sphere_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Sphere_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Sphere_buildType_get, _StgDomain.Sphere_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Sphere_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Sphere_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Sphere_initialiseType_get, _StgDomain.Sphere_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Sphere_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Sphere_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Sphere_executeType_get, _StgDomain.Sphere_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Sphere_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Sphere_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Sphere_destroyType_get, _StgDomain.Sphere_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Sphere_context_set
+    __swig_getmethods__["context"] = _StgDomain.Sphere_context_get
+    if _newclass:context = _swig_property(_StgDomain.Sphere_context_get, _StgDomain.Sphere_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.Sphere__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.Sphere__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.Sphere__isCoordInside_get, _StgDomain.Sphere__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.Sphere__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.Sphere__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.Sphere__calculateVolume_get, _StgDomain.Sphere__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.Sphere__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.Sphere__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.Sphere__distanceFromCenterAxis_get, _StgDomain.Sphere__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.Sphere_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Sphere_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Sphere_dim_get, _StgDomain.Sphere_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.Sphere_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.Sphere_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.Sphere_centre_get, _StgDomain.Sphere_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.Sphere_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.Sphere_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.Sphere_invert_get, _StgDomain.Sphere_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.Sphere_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.Sphere_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.Sphere_rotationMatrix_get, _StgDomain.Sphere_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.Sphere_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.Sphere_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.Sphere_rotations_get, _StgDomain.Sphere_rotations_set)
+    __swig_setmethods__["radius"] = _StgDomain.Sphere_radius_set
+    __swig_getmethods__["radius"] = _StgDomain.Sphere_radius_get
+    if _newclass:radius = _swig_property(_StgDomain.Sphere_radius_get, _StgDomain.Sphere_radius_set)
+    __swig_setmethods__["radiusSquared"] = _StgDomain.Sphere_radiusSquared_set
+    __swig_getmethods__["radiusSquared"] = _StgDomain.Sphere_radiusSquared_get
+    if _newclass:radiusSquared = _swig_property(_StgDomain.Sphere_radiusSquared_get, _StgDomain.Sphere_radiusSquared_set)
+    def __init__(self): 
+        this = _StgDomain.new_Sphere()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Sphere
+    __del__ = lambda self : None;
+Sphere_swigregister = _StgDomain.Sphere_swigregister
+Sphere_swigregister(Sphere)
+Sphere_Type = cvar.Sphere_Type
+
+
+def Sphere_New(*args):
+  return _StgDomain.Sphere_New(*args)
+Sphere_New = _StgDomain.Sphere_New
+
+def _Sphere_New(*args):
+  return _StgDomain._Sphere_New(*args)
+_Sphere_New = _StgDomain._Sphere_New
+
+def _Sphere_Init(*args):
+  return _StgDomain._Sphere_Init(*args)
+_Sphere_Init = _StgDomain._Sphere_Init
+
+def _Sphere_Delete(*args):
+  return _StgDomain._Sphere_Delete(*args)
+_Sphere_Delete = _StgDomain._Sphere_Delete
+
+def _Sphere_Print(*args):
+  return _StgDomain._Sphere_Print(*args)
+_Sphere_Print = _StgDomain._Sphere_Print
+
+def _Sphere_Copy(*args):
+  return _StgDomain._Sphere_Copy(*args)
+_Sphere_Copy = _StgDomain._Sphere_Copy
+
+def _Sphere_DefaultNew(*args):
+  return _StgDomain._Sphere_DefaultNew(*args)
+_Sphere_DefaultNew = _StgDomain._Sphere_DefaultNew
+
+def _Sphere_AssignFromXML(*args):
+  return _StgDomain._Sphere_AssignFromXML(*args)
+_Sphere_AssignFromXML = _StgDomain._Sphere_AssignFromXML
+
+def _Sphere_Build(*args):
+  return _StgDomain._Sphere_Build(*args)
+_Sphere_Build = _StgDomain._Sphere_Build
+
+def _Sphere_Initialise(*args):
+  return _StgDomain._Sphere_Initialise(*args)
+_Sphere_Initialise = _StgDomain._Sphere_Initialise
+
+def _Sphere_Execute(*args):
+  return _StgDomain._Sphere_Execute(*args)
+_Sphere_Execute = _StgDomain._Sphere_Execute
+
+def _Sphere_Destroy(*args):
+  return _StgDomain._Sphere_Destroy(*args)
+_Sphere_Destroy = _StgDomain._Sphere_Destroy
+
+def _Sphere_IsCoordInside(*args):
+  return _StgDomain._Sphere_IsCoordInside(*args)
+_Sphere_IsCoordInside = _StgDomain._Sphere_IsCoordInside
+
+def _Sphere_DistanceFromCenterAxis(*args):
+  return _StgDomain._Sphere_DistanceFromCenterAxis(*args)
+_Sphere_DistanceFromCenterAxis = _StgDomain._Sphere_DistanceFromCenterAxis
+
+def _Sphere_CalculateVolume(*args):
+  return _StgDomain._Sphere_CalculateVolume(*args)
+_Sphere_CalculateVolume = _StgDomain._Sphere_CalculateVolume
+class Superellipsoid(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Superellipsoid, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Superellipsoid, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Superellipsoid__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Superellipsoid__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Superellipsoid__sizeOfSelf_get, _StgDomain.Superellipsoid__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Superellipsoid__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Superellipsoid__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Superellipsoid__deleteSelf_get, _StgDomain.Superellipsoid__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Superellipsoid_type_set
+    __swig_getmethods__["type"] = _StgDomain.Superellipsoid_type_get
+    if _newclass:type = _swig_property(_StgDomain.Superellipsoid_type_get, _StgDomain.Superellipsoid_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Superellipsoid_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Superellipsoid_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Superellipsoid_nRefs_get, _StgDomain.Superellipsoid_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Superellipsoid__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Superellipsoid__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Superellipsoid__delete_get, _StgDomain.Superellipsoid__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Superellipsoid__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Superellipsoid__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Superellipsoid__print_get, _StgDomain.Superellipsoid__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Superellipsoid__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Superellipsoid__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Superellipsoid__copy_get, _StgDomain.Superellipsoid__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Superellipsoid_name_set
+    __swig_getmethods__["name"] = _StgDomain.Superellipsoid_name_get
+    if _newclass:name = _swig_property(_StgDomain.Superellipsoid_name_get, _StgDomain.Superellipsoid_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Superellipsoid_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Superellipsoid_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Superellipsoid_nameAllocationType_get, _StgDomain.Superellipsoid_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Superellipsoid__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Superellipsoid__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Superellipsoid__defaultConstructor_get, _StgDomain.Superellipsoid__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Superellipsoid__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Superellipsoid__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Superellipsoid__construct_get, _StgDomain.Superellipsoid__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Superellipsoid__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Superellipsoid__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Superellipsoid__build_get, _StgDomain.Superellipsoid__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Superellipsoid__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Superellipsoid__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Superellipsoid__initialise_get, _StgDomain.Superellipsoid__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Superellipsoid__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Superellipsoid__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Superellipsoid__execute_get, _StgDomain.Superellipsoid__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Superellipsoid__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Superellipsoid__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Superellipsoid__destroy_get, _StgDomain.Superellipsoid__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Superellipsoid_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Superellipsoid_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Superellipsoid_isConstructed_get, _StgDomain.Superellipsoid_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Superellipsoid_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Superellipsoid_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Superellipsoid_isBuilt_get, _StgDomain.Superellipsoid_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Superellipsoid_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Superellipsoid_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Superellipsoid_isInitialised_get, _StgDomain.Superellipsoid_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Superellipsoid_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Superellipsoid_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Superellipsoid_hasExecuted_get, _StgDomain.Superellipsoid_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Superellipsoid_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Superellipsoid_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Superellipsoid_isDestroyed_get, _StgDomain.Superellipsoid_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Superellipsoid_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Superellipsoid_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Superellipsoid_constructType_get, _StgDomain.Superellipsoid_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Superellipsoid_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Superellipsoid_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Superellipsoid_buildType_get, _StgDomain.Superellipsoid_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Superellipsoid_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Superellipsoid_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Superellipsoid_initialiseType_get, _StgDomain.Superellipsoid_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Superellipsoid_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Superellipsoid_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Superellipsoid_executeType_get, _StgDomain.Superellipsoid_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Superellipsoid_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Superellipsoid_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Superellipsoid_destroyType_get, _StgDomain.Superellipsoid_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Superellipsoid_context_set
+    __swig_getmethods__["context"] = _StgDomain.Superellipsoid_context_get
+    if _newclass:context = _swig_property(_StgDomain.Superellipsoid_context_get, _StgDomain.Superellipsoid_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.Superellipsoid__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.Superellipsoid__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.Superellipsoid__isCoordInside_get, _StgDomain.Superellipsoid__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.Superellipsoid__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.Superellipsoid__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.Superellipsoid__calculateVolume_get, _StgDomain.Superellipsoid__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.Superellipsoid__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.Superellipsoid__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.Superellipsoid__distanceFromCenterAxis_get, _StgDomain.Superellipsoid__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.Superellipsoid_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Superellipsoid_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Superellipsoid_dim_get, _StgDomain.Superellipsoid_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.Superellipsoid_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.Superellipsoid_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.Superellipsoid_centre_get, _StgDomain.Superellipsoid_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.Superellipsoid_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.Superellipsoid_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.Superellipsoid_invert_get, _StgDomain.Superellipsoid_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.Superellipsoid_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.Superellipsoid_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.Superellipsoid_rotationMatrix_get, _StgDomain.Superellipsoid_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.Superellipsoid_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.Superellipsoid_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.Superellipsoid_rotations_get, _StgDomain.Superellipsoid_rotations_set)
+    __swig_setmethods__["epsilon1"] = _StgDomain.Superellipsoid_epsilon1_set
+    __swig_getmethods__["epsilon1"] = _StgDomain.Superellipsoid_epsilon1_get
+    if _newclass:epsilon1 = _swig_property(_StgDomain.Superellipsoid_epsilon1_get, _StgDomain.Superellipsoid_epsilon1_set)
+    __swig_setmethods__["epsilon2"] = _StgDomain.Superellipsoid_epsilon2_set
+    __swig_getmethods__["epsilon2"] = _StgDomain.Superellipsoid_epsilon2_get
+    if _newclass:epsilon2 = _swig_property(_StgDomain.Superellipsoid_epsilon2_get, _StgDomain.Superellipsoid_epsilon2_set)
+    __swig_setmethods__["radius"] = _StgDomain.Superellipsoid_radius_set
+    __swig_getmethods__["radius"] = _StgDomain.Superellipsoid_radius_get
+    if _newclass:radius = _swig_property(_StgDomain.Superellipsoid_radius_get, _StgDomain.Superellipsoid_radius_set)
+    def __init__(self): 
+        this = _StgDomain.new_Superellipsoid()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Superellipsoid
+    __del__ = lambda self : None;
+Superellipsoid_swigregister = _StgDomain.Superellipsoid_swigregister
+Superellipsoid_swigregister(Superellipsoid)
+Superellipsoid_Type = cvar.Superellipsoid_Type
+
+
+def Superellipsoid_New(*args):
+  return _StgDomain.Superellipsoid_New(*args)
+Superellipsoid_New = _StgDomain.Superellipsoid_New
+
+def _Superellipsoid_New(*args):
+  return _StgDomain._Superellipsoid_New(*args)
+_Superellipsoid_New = _StgDomain._Superellipsoid_New
+
+def _Superellipsoid_Init(*args):
+  return _StgDomain._Superellipsoid_Init(*args)
+_Superellipsoid_Init = _StgDomain._Superellipsoid_Init
+
+def _Superellipsoid_Delete(*args):
+  return _StgDomain._Superellipsoid_Delete(*args)
+_Superellipsoid_Delete = _StgDomain._Superellipsoid_Delete
+
+def _Superellipsoid_Print(*args):
+  return _StgDomain._Superellipsoid_Print(*args)
+_Superellipsoid_Print = _StgDomain._Superellipsoid_Print
+
+def _Superellipsoid_Copy(*args):
+  return _StgDomain._Superellipsoid_Copy(*args)
+_Superellipsoid_Copy = _StgDomain._Superellipsoid_Copy
+
+def _Superellipsoid_DefaultNew(*args):
+  return _StgDomain._Superellipsoid_DefaultNew(*args)
+_Superellipsoid_DefaultNew = _StgDomain._Superellipsoid_DefaultNew
+
+def _Superellipsoid_AssignFromXML(*args):
+  return _StgDomain._Superellipsoid_AssignFromXML(*args)
+_Superellipsoid_AssignFromXML = _StgDomain._Superellipsoid_AssignFromXML
+
+def _Superellipsoid_Build(*args):
+  return _StgDomain._Superellipsoid_Build(*args)
+_Superellipsoid_Build = _StgDomain._Superellipsoid_Build
+
+def _Superellipsoid_Initialise(*args):
+  return _StgDomain._Superellipsoid_Initialise(*args)
+_Superellipsoid_Initialise = _StgDomain._Superellipsoid_Initialise
+
+def _Superellipsoid_Execute(*args):
+  return _StgDomain._Superellipsoid_Execute(*args)
+_Superellipsoid_Execute = _StgDomain._Superellipsoid_Execute
+
+def _Superellipsoid_Destroy(*args):
+  return _StgDomain._Superellipsoid_Destroy(*args)
+_Superellipsoid_Destroy = _StgDomain._Superellipsoid_Destroy
+
+def _Superellipsoid_IsCoordInside(*args):
+  return _StgDomain._Superellipsoid_IsCoordInside(*args)
+_Superellipsoid_IsCoordInside = _StgDomain._Superellipsoid_IsCoordInside
+
+def _Superellipsoid_CalculateVolume(*args):
+  return _StgDomain._Superellipsoid_CalculateVolume(*args)
+_Superellipsoid_CalculateVolume = _StgDomain._Superellipsoid_CalculateVolume
+
+def _Superellipsoid_DistanceFromCenterAxis(*args):
+  return _StgDomain._Superellipsoid_DistanceFromCenterAxis(*args)
+_Superellipsoid_DistanceFromCenterAxis = _StgDomain._Superellipsoid_DistanceFromCenterAxis
+class Union(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Union, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Union, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Union__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Union__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Union__sizeOfSelf_get, _StgDomain.Union__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Union__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Union__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Union__deleteSelf_get, _StgDomain.Union__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Union_type_set
+    __swig_getmethods__["type"] = _StgDomain.Union_type_get
+    if _newclass:type = _swig_property(_StgDomain.Union_type_get, _StgDomain.Union_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Union_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Union_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Union_nRefs_get, _StgDomain.Union_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Union__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Union__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Union__delete_get, _StgDomain.Union__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Union__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Union__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Union__print_get, _StgDomain.Union__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Union__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Union__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Union__copy_get, _StgDomain.Union__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Union_name_set
+    __swig_getmethods__["name"] = _StgDomain.Union_name_get
+    if _newclass:name = _swig_property(_StgDomain.Union_name_get, _StgDomain.Union_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Union_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Union_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Union_nameAllocationType_get, _StgDomain.Union_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Union__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Union__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Union__defaultConstructor_get, _StgDomain.Union__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Union__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Union__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Union__construct_get, _StgDomain.Union__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Union__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Union__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Union__build_get, _StgDomain.Union__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Union__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Union__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Union__initialise_get, _StgDomain.Union__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Union__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Union__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Union__execute_get, _StgDomain.Union__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Union__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Union__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Union__destroy_get, _StgDomain.Union__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Union_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Union_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Union_isConstructed_get, _StgDomain.Union_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Union_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Union_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Union_isBuilt_get, _StgDomain.Union_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Union_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Union_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Union_isInitialised_get, _StgDomain.Union_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Union_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Union_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Union_hasExecuted_get, _StgDomain.Union_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Union_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Union_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Union_isDestroyed_get, _StgDomain.Union_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Union_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Union_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Union_constructType_get, _StgDomain.Union_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Union_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Union_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Union_buildType_get, _StgDomain.Union_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Union_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Union_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Union_initialiseType_get, _StgDomain.Union_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Union_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Union_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Union_executeType_get, _StgDomain.Union_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Union_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Union_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Union_destroyType_get, _StgDomain.Union_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Union_context_set
+    __swig_getmethods__["context"] = _StgDomain.Union_context_get
+    if _newclass:context = _swig_property(_StgDomain.Union_context_get, _StgDomain.Union_context_set)
+    __swig_setmethods__["_isCoordInside"] = _StgDomain.Union__isCoordInside_set
+    __swig_getmethods__["_isCoordInside"] = _StgDomain.Union__isCoordInside_get
+    if _newclass:_isCoordInside = _swig_property(_StgDomain.Union__isCoordInside_get, _StgDomain.Union__isCoordInside_set)
+    __swig_setmethods__["_calculateVolume"] = _StgDomain.Union__calculateVolume_set
+    __swig_getmethods__["_calculateVolume"] = _StgDomain.Union__calculateVolume_get
+    if _newclass:_calculateVolume = _swig_property(_StgDomain.Union__calculateVolume_get, _StgDomain.Union__calculateVolume_set)
+    __swig_setmethods__["_distanceFromCenterAxis"] = _StgDomain.Union__distanceFromCenterAxis_set
+    __swig_getmethods__["_distanceFromCenterAxis"] = _StgDomain.Union__distanceFromCenterAxis_get
+    if _newclass:_distanceFromCenterAxis = _swig_property(_StgDomain.Union__distanceFromCenterAxis_get, _StgDomain.Union__distanceFromCenterAxis_set)
+    __swig_setmethods__["dim"] = _StgDomain.Union_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Union_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Union_dim_get, _StgDomain.Union_dim_set)
+    __swig_setmethods__["centre"] = _StgDomain.Union_centre_set
+    __swig_getmethods__["centre"] = _StgDomain.Union_centre_get
+    if _newclass:centre = _swig_property(_StgDomain.Union_centre_get, _StgDomain.Union_centre_set)
+    __swig_setmethods__["invert"] = _StgDomain.Union_invert_set
+    __swig_getmethods__["invert"] = _StgDomain.Union_invert_get
+    if _newclass:invert = _swig_property(_StgDomain.Union_invert_get, _StgDomain.Union_invert_set)
+    __swig_setmethods__["rotationMatrix"] = _StgDomain.Union_rotationMatrix_set
+    __swig_getmethods__["rotationMatrix"] = _StgDomain.Union_rotationMatrix_get
+    if _newclass:rotationMatrix = _swig_property(_StgDomain.Union_rotationMatrix_get, _StgDomain.Union_rotationMatrix_set)
+    __swig_setmethods__["rotations"] = _StgDomain.Union_rotations_set
+    __swig_getmethods__["rotations"] = _StgDomain.Union_rotations_get
+    if _newclass:rotations = _swig_property(_StgDomain.Union_rotations_get, _StgDomain.Union_rotations_set)
+    __swig_setmethods__["shapeList"] = _StgDomain.Union_shapeList_set
+    __swig_getmethods__["shapeList"] = _StgDomain.Union_shapeList_get
+    if _newclass:shapeList = _swig_property(_StgDomain.Union_shapeList_get, _StgDomain.Union_shapeList_set)
+    __swig_setmethods__["shapeCount"] = _StgDomain.Union_shapeCount_set
+    __swig_getmethods__["shapeCount"] = _StgDomain.Union_shapeCount_get
+    if _newclass:shapeCount = _swig_property(_StgDomain.Union_shapeCount_get, _StgDomain.Union_shapeCount_set)
+    __swig_setmethods__["isComplement"] = _StgDomain.Union_isComplement_set
+    __swig_getmethods__["isComplement"] = _StgDomain.Union_isComplement_get
+    if _newclass:isComplement = _swig_property(_StgDomain.Union_isComplement_get, _StgDomain.Union_isComplement_set)
+    def __init__(self): 
+        this = _StgDomain.new_Union()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Union
+    __del__ = lambda self : None;
+Union_swigregister = _StgDomain.Union_swigregister
+Union_swigregister(Union)
+Union_Type = cvar.Union_Type
+
+
+def Union_New(*args):
+  return _StgDomain.Union_New(*args)
+Union_New = _StgDomain.Union_New
+
+def _Union_New(*args):
+  return _StgDomain._Union_New(*args)
+_Union_New = _StgDomain._Union_New
+
+def _Union_Init(*args):
+  return _StgDomain._Union_Init(*args)
+_Union_Init = _StgDomain._Union_Init
+
+def _Union_Delete(*args):
+  return _StgDomain._Union_Delete(*args)
+_Union_Delete = _StgDomain._Union_Delete
+
+def _Union_Print(*args):
+  return _StgDomain._Union_Print(*args)
+_Union_Print = _StgDomain._Union_Print
+
+def _Union_Copy(*args):
+  return _StgDomain._Union_Copy(*args)
+_Union_Copy = _StgDomain._Union_Copy
+
+def _Union_DefaultNew(*args):
+  return _StgDomain._Union_DefaultNew(*args)
+_Union_DefaultNew = _StgDomain._Union_DefaultNew
+
+def _Union_AssignFromXML(*args):
+  return _StgDomain._Union_AssignFromXML(*args)
+_Union_AssignFromXML = _StgDomain._Union_AssignFromXML
+
+def _Union_Build(*args):
+  return _StgDomain._Union_Build(*args)
+_Union_Build = _StgDomain._Union_Build
+
+def _Union_Initialise(*args):
+  return _StgDomain._Union_Initialise(*args)
+_Union_Initialise = _StgDomain._Union_Initialise
+
+def _Union_Execute(*args):
+  return _StgDomain._Union_Execute(*args)
+_Union_Execute = _StgDomain._Union_Execute
+
+def _Union_Destroy(*args):
+  return _StgDomain._Union_Destroy(*args)
+_Union_Destroy = _StgDomain._Union_Destroy
+
+def _Union_IsCoordInside(*args):
+  return _StgDomain._Union_IsCoordInside(*args)
+_Union_IsCoordInside = _StgDomain._Union_IsCoordInside
+
+def _Union_CalculateVolume(*args):
+  return _StgDomain._Union_CalculateVolume(*args)
+_Union_CalculateVolume = _StgDomain._Union_CalculateVolume
+
+def _Union_DistanceFromCenterAxis(*args):
+  return _StgDomain._Union_DistanceFromCenterAxis(*args)
+_Union_DistanceFromCenterAxis = _StgDomain._Union_DistanceFromCenterAxis
+class ParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.ParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.ParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.ParticleLayout__sizeOfSelf_get, _StgDomain.ParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.ParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.ParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.ParticleLayout__deleteSelf_get, _StgDomain.ParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.ParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.ParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.ParticleLayout_type_get, _StgDomain.ParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.ParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.ParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.ParticleLayout_nRefs_get, _StgDomain.ParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.ParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.ParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.ParticleLayout__delete_get, _StgDomain.ParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.ParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.ParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.ParticleLayout__print_get, _StgDomain.ParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.ParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.ParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.ParticleLayout__copy_get, _StgDomain.ParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.ParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.ParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.ParticleLayout_name_get, _StgDomain.ParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.ParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.ParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.ParticleLayout_nameAllocationType_get, _StgDomain.ParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.ParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.ParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.ParticleLayout__defaultConstructor_get, _StgDomain.ParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.ParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.ParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.ParticleLayout__construct_get, _StgDomain.ParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.ParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.ParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.ParticleLayout__build_get, _StgDomain.ParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.ParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.ParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.ParticleLayout__initialise_get, _StgDomain.ParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.ParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.ParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.ParticleLayout__execute_get, _StgDomain.ParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.ParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.ParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.ParticleLayout__destroy_get, _StgDomain.ParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.ParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.ParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.ParticleLayout_isConstructed_get, _StgDomain.ParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.ParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.ParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.ParticleLayout_isBuilt_get, _StgDomain.ParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.ParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.ParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.ParticleLayout_isInitialised_get, _StgDomain.ParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.ParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.ParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.ParticleLayout_hasExecuted_get, _StgDomain.ParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.ParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.ParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.ParticleLayout_isDestroyed_get, _StgDomain.ParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.ParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.ParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.ParticleLayout_constructType_get, _StgDomain.ParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.ParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.ParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.ParticleLayout_buildType_get, _StgDomain.ParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.ParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.ParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.ParticleLayout_initialiseType_get, _StgDomain.ParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.ParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.ParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.ParticleLayout_executeType_get, _StgDomain.ParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.ParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.ParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.ParticleLayout_destroyType_get, _StgDomain.ParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.ParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.ParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.ParticleLayout_context_get, _StgDomain.ParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.ParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.ParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.ParticleLayout__setInitialCounts_get, _StgDomain.ParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.ParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.ParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.ParticleLayout__initialiseParticles_get, _StgDomain.ParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.ParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.ParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.ParticleLayout_debug_get, _StgDomain.ParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.ParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.ParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.ParticleLayout_coordSystem_get, _StgDomain.ParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.ParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.ParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.ParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.ParticleLayout_weightsInitialisedAtStartup_set)
+    def __init__(self): 
+        this = _StgDomain.new_ParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ParticleLayout
+    __del__ = lambda self : None;
+ParticleLayout_swigregister = _StgDomain.ParticleLayout_swigregister
+ParticleLayout_swigregister(ParticleLayout)
+ParticleLayout_Type = cvar.ParticleLayout_Type
+
+
+def _ParticleLayout_New(*args):
+  return _StgDomain._ParticleLayout_New(*args)
+_ParticleLayout_New = _StgDomain._ParticleLayout_New
+
+def _ParticleLayout_Init(*args):
+  return _StgDomain._ParticleLayout_Init(*args)
+_ParticleLayout_Init = _StgDomain._ParticleLayout_Init
+
+def _ParticleLayout_Delete(*args):
+  return _StgDomain._ParticleLayout_Delete(*args)
+_ParticleLayout_Delete = _StgDomain._ParticleLayout_Delete
+
+def _ParticleLayout_Print(*args):
+  return _StgDomain._ParticleLayout_Print(*args)
+_ParticleLayout_Print = _StgDomain._ParticleLayout_Print
+
+def _ParticleLayout_Destroy(*args):
+  return _StgDomain._ParticleLayout_Destroy(*args)
+_ParticleLayout_Destroy = _StgDomain._ParticleLayout_Destroy
+
+def _ParticleLayout_Copy(*args):
+  return _StgDomain._ParticleLayout_Copy(*args)
+_ParticleLayout_Copy = _StgDomain._ParticleLayout_Copy
+
+def _ParticleLayout_AssignFromXML(*args):
+  return _StgDomain._ParticleLayout_AssignFromXML(*args)
+_ParticleLayout_AssignFromXML = _StgDomain._ParticleLayout_AssignFromXML
+
+def ParticleLayout_SetInitialCounts(*args):
+  return _StgDomain.ParticleLayout_SetInitialCounts(*args)
+ParticleLayout_SetInitialCounts = _StgDomain.ParticleLayout_SetInitialCounts
+
+def ParticleLayout_InitialiseParticles(*args):
+  return _StgDomain.ParticleLayout_InitialiseParticles(*args)
+ParticleLayout_InitialiseParticles = _StgDomain.ParticleLayout_InitialiseParticles
+class GlobalParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, GlobalParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, GlobalParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.GlobalParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.GlobalParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.GlobalParticleLayout__sizeOfSelf_get, _StgDomain.GlobalParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.GlobalParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.GlobalParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.GlobalParticleLayout__deleteSelf_get, _StgDomain.GlobalParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.GlobalParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.GlobalParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.GlobalParticleLayout_type_get, _StgDomain.GlobalParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.GlobalParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.GlobalParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.GlobalParticleLayout_nRefs_get, _StgDomain.GlobalParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.GlobalParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.GlobalParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.GlobalParticleLayout__delete_get, _StgDomain.GlobalParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.GlobalParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.GlobalParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.GlobalParticleLayout__print_get, _StgDomain.GlobalParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.GlobalParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.GlobalParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.GlobalParticleLayout__copy_get, _StgDomain.GlobalParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.GlobalParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.GlobalParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.GlobalParticleLayout_name_get, _StgDomain.GlobalParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.GlobalParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.GlobalParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.GlobalParticleLayout_nameAllocationType_get, _StgDomain.GlobalParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.GlobalParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.GlobalParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.GlobalParticleLayout__defaultConstructor_get, _StgDomain.GlobalParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.GlobalParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.GlobalParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.GlobalParticleLayout__construct_get, _StgDomain.GlobalParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.GlobalParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.GlobalParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.GlobalParticleLayout__build_get, _StgDomain.GlobalParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.GlobalParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.GlobalParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.GlobalParticleLayout__initialise_get, _StgDomain.GlobalParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.GlobalParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.GlobalParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.GlobalParticleLayout__execute_get, _StgDomain.GlobalParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.GlobalParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.GlobalParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.GlobalParticleLayout__destroy_get, _StgDomain.GlobalParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.GlobalParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.GlobalParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.GlobalParticleLayout_isConstructed_get, _StgDomain.GlobalParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.GlobalParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.GlobalParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.GlobalParticleLayout_isBuilt_get, _StgDomain.GlobalParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.GlobalParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.GlobalParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.GlobalParticleLayout_isInitialised_get, _StgDomain.GlobalParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.GlobalParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.GlobalParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.GlobalParticleLayout_hasExecuted_get, _StgDomain.GlobalParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.GlobalParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.GlobalParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.GlobalParticleLayout_isDestroyed_get, _StgDomain.GlobalParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.GlobalParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.GlobalParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.GlobalParticleLayout_constructType_get, _StgDomain.GlobalParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.GlobalParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.GlobalParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.GlobalParticleLayout_buildType_get, _StgDomain.GlobalParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.GlobalParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.GlobalParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.GlobalParticleLayout_initialiseType_get, _StgDomain.GlobalParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.GlobalParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.GlobalParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.GlobalParticleLayout_executeType_get, _StgDomain.GlobalParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.GlobalParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.GlobalParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.GlobalParticleLayout_destroyType_get, _StgDomain.GlobalParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.GlobalParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.GlobalParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.GlobalParticleLayout_context_get, _StgDomain.GlobalParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.GlobalParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.GlobalParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.GlobalParticleLayout__setInitialCounts_get, _StgDomain.GlobalParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.GlobalParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.GlobalParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.GlobalParticleLayout__initialiseParticles_get, _StgDomain.GlobalParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.GlobalParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.GlobalParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.GlobalParticleLayout_debug_get, _StgDomain.GlobalParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.GlobalParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.GlobalParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.GlobalParticleLayout_coordSystem_get, _StgDomain.GlobalParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.GlobalParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.GlobalParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.GlobalParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.GlobalParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialiseParticle"] = _StgDomain.GlobalParticleLayout__initialiseParticle_set
+    __swig_getmethods__["_initialiseParticle"] = _StgDomain.GlobalParticleLayout__initialiseParticle_get
+    if _newclass:_initialiseParticle = _swig_property(_StgDomain.GlobalParticleLayout__initialiseParticle_get, _StgDomain.GlobalParticleLayout__initialiseParticle_set)
+    __swig_setmethods__["totalInitialParticles"] = _StgDomain.GlobalParticleLayout_totalInitialParticles_set
+    __swig_getmethods__["totalInitialParticles"] = _StgDomain.GlobalParticleLayout_totalInitialParticles_get
+    if _newclass:totalInitialParticles = _swig_property(_StgDomain.GlobalParticleLayout_totalInitialParticles_get, _StgDomain.GlobalParticleLayout_totalInitialParticles_set)
+    __swig_setmethods__["averageInitialParticlesPerCell"] = _StgDomain.GlobalParticleLayout_averageInitialParticlesPerCell_set
+    __swig_getmethods__["averageInitialParticlesPerCell"] = _StgDomain.GlobalParticleLayout_averageInitialParticlesPerCell_get
+    if _newclass:averageInitialParticlesPerCell = _swig_property(_StgDomain.GlobalParticleLayout_averageInitialParticlesPerCell_get, _StgDomain.GlobalParticleLayout_averageInitialParticlesPerCell_set)
+    __swig_setmethods__["mustUseAllParticles"] = _StgDomain.GlobalParticleLayout_mustUseAllParticles_set
+    __swig_getmethods__["mustUseAllParticles"] = _StgDomain.GlobalParticleLayout_mustUseAllParticles_get
+    if _newclass:mustUseAllParticles = _swig_property(_StgDomain.GlobalParticleLayout_mustUseAllParticles_get, _StgDomain.GlobalParticleLayout_mustUseAllParticles_set)
+    def __init__(self): 
+        this = _StgDomain.new_GlobalParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_GlobalParticleLayout
+    __del__ = lambda self : None;
+GlobalParticleLayout_swigregister = _StgDomain.GlobalParticleLayout_swigregister
+GlobalParticleLayout_swigregister(GlobalParticleLayout)
+GlobalParticleLayout_Type = cvar.GlobalParticleLayout_Type
+
+
+def _GlobalParticleLayout_New(*args):
+  return _StgDomain._GlobalParticleLayout_New(*args)
+_GlobalParticleLayout_New = _StgDomain._GlobalParticleLayout_New
+
+def _GlobalParticleLayout_AssignFromXML(*args):
+  return _StgDomain._GlobalParticleLayout_AssignFromXML(*args)
+_GlobalParticleLayout_AssignFromXML = _StgDomain._GlobalParticleLayout_AssignFromXML
+
+def _GlobalParticleLayout_Init(*args):
+  return _StgDomain._GlobalParticleLayout_Init(*args)
+_GlobalParticleLayout_Init = _StgDomain._GlobalParticleLayout_Init
+
+def _GlobalParticleLayout_Delete(*args):
+  return _StgDomain._GlobalParticleLayout_Delete(*args)
+_GlobalParticleLayout_Delete = _StgDomain._GlobalParticleLayout_Delete
+
+def _GlobalParticleLayout_Print(*args):
+  return _StgDomain._GlobalParticleLayout_Print(*args)
+_GlobalParticleLayout_Print = _StgDomain._GlobalParticleLayout_Print
+
+def _GlobalParticleLayout_Destroy(*args):
+  return _StgDomain._GlobalParticleLayout_Destroy(*args)
+_GlobalParticleLayout_Destroy = _StgDomain._GlobalParticleLayout_Destroy
+
+def _GlobalParticleLayout_Copy(*args):
+  return _StgDomain._GlobalParticleLayout_Copy(*args)
+_GlobalParticleLayout_Copy = _StgDomain._GlobalParticleLayout_Copy
+
+def _GlobalParticleLayout_SetInitialCounts(*args):
+  return _StgDomain._GlobalParticleLayout_SetInitialCounts(*args)
+_GlobalParticleLayout_SetInitialCounts = _StgDomain._GlobalParticleLayout_SetInitialCounts
+
+def _GlobalParticleLayout_InitialiseParticles(*args):
+  return _StgDomain._GlobalParticleLayout_InitialiseParticles(*args)
+_GlobalParticleLayout_InitialiseParticles = _StgDomain._GlobalParticleLayout_InitialiseParticles
+
+def GlobalParticleLayout_InitialiseParticle(*args):
+  return _StgDomain.GlobalParticleLayout_InitialiseParticle(*args)
+GlobalParticleLayout_InitialiseParticle = _StgDomain.GlobalParticleLayout_InitialiseParticle
+class BackgroundParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BackgroundParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, BackgroundParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.BackgroundParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.BackgroundParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.BackgroundParticleLayout__sizeOfSelf_get, _StgDomain.BackgroundParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.BackgroundParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.BackgroundParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.BackgroundParticleLayout__deleteSelf_get, _StgDomain.BackgroundParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.BackgroundParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.BackgroundParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.BackgroundParticleLayout_type_get, _StgDomain.BackgroundParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.BackgroundParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.BackgroundParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.BackgroundParticleLayout_nRefs_get, _StgDomain.BackgroundParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.BackgroundParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.BackgroundParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.BackgroundParticleLayout__delete_get, _StgDomain.BackgroundParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.BackgroundParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.BackgroundParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.BackgroundParticleLayout__print_get, _StgDomain.BackgroundParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.BackgroundParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.BackgroundParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.BackgroundParticleLayout__copy_get, _StgDomain.BackgroundParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.BackgroundParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.BackgroundParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.BackgroundParticleLayout_name_get, _StgDomain.BackgroundParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.BackgroundParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.BackgroundParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.BackgroundParticleLayout_nameAllocationType_get, _StgDomain.BackgroundParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.BackgroundParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.BackgroundParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.BackgroundParticleLayout__defaultConstructor_get, _StgDomain.BackgroundParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.BackgroundParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.BackgroundParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.BackgroundParticleLayout__construct_get, _StgDomain.BackgroundParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.BackgroundParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.BackgroundParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.BackgroundParticleLayout__build_get, _StgDomain.BackgroundParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.BackgroundParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.BackgroundParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.BackgroundParticleLayout__initialise_get, _StgDomain.BackgroundParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.BackgroundParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.BackgroundParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.BackgroundParticleLayout__execute_get, _StgDomain.BackgroundParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.BackgroundParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.BackgroundParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.BackgroundParticleLayout__destroy_get, _StgDomain.BackgroundParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.BackgroundParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.BackgroundParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.BackgroundParticleLayout_isConstructed_get, _StgDomain.BackgroundParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.BackgroundParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.BackgroundParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.BackgroundParticleLayout_isBuilt_get, _StgDomain.BackgroundParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.BackgroundParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.BackgroundParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.BackgroundParticleLayout_isInitialised_get, _StgDomain.BackgroundParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.BackgroundParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.BackgroundParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.BackgroundParticleLayout_hasExecuted_get, _StgDomain.BackgroundParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.BackgroundParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.BackgroundParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.BackgroundParticleLayout_isDestroyed_get, _StgDomain.BackgroundParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.BackgroundParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.BackgroundParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.BackgroundParticleLayout_constructType_get, _StgDomain.BackgroundParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.BackgroundParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.BackgroundParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.BackgroundParticleLayout_buildType_get, _StgDomain.BackgroundParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.BackgroundParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.BackgroundParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.BackgroundParticleLayout_initialiseType_get, _StgDomain.BackgroundParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.BackgroundParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.BackgroundParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.BackgroundParticleLayout_executeType_get, _StgDomain.BackgroundParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.BackgroundParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.BackgroundParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.BackgroundParticleLayout_destroyType_get, _StgDomain.BackgroundParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.BackgroundParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.BackgroundParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.BackgroundParticleLayout_context_get, _StgDomain.BackgroundParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.BackgroundParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.BackgroundParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.BackgroundParticleLayout__setInitialCounts_get, _StgDomain.BackgroundParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.BackgroundParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.BackgroundParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.BackgroundParticleLayout__initialiseParticles_get, _StgDomain.BackgroundParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.BackgroundParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.BackgroundParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.BackgroundParticleLayout_debug_get, _StgDomain.BackgroundParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.BackgroundParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.BackgroundParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.BackgroundParticleLayout_coordSystem_get, _StgDomain.BackgroundParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.BackgroundParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.BackgroundParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.BackgroundParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.BackgroundParticleLayout_weightsInitialisedAtStartup_set)
+    def __init__(self): 
+        this = _StgDomain.new_BackgroundParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_BackgroundParticleLayout
+    __del__ = lambda self : None;
+BackgroundParticleLayout_swigregister = _StgDomain.BackgroundParticleLayout_swigregister
+BackgroundParticleLayout_swigregister(BackgroundParticleLayout)
+BackgroundParticleLayout_Type = cvar.BackgroundParticleLayout_Type
+
+
+def BackgroundParticleLayout_New(*args):
+  return _StgDomain.BackgroundParticleLayout_New(*args)
+BackgroundParticleLayout_New = _StgDomain.BackgroundParticleLayout_New
+
+def _BackgroundParticleLayout_New(*args):
+  return _StgDomain._BackgroundParticleLayout_New(*args)
+_BackgroundParticleLayout_New = _StgDomain._BackgroundParticleLayout_New
+
+def _BackgroundParticleLayout_Init(*args):
+  return _StgDomain._BackgroundParticleLayout_Init(*args)
+_BackgroundParticleLayout_Init = _StgDomain._BackgroundParticleLayout_Init
+
+def _BackgroundParticleLayout_Delete(*args):
+  return _StgDomain._BackgroundParticleLayout_Delete(*args)
+_BackgroundParticleLayout_Delete = _StgDomain._BackgroundParticleLayout_Delete
+
+def _BackgroundParticleLayout_Print(*args):
+  return _StgDomain._BackgroundParticleLayout_Print(*args)
+_BackgroundParticleLayout_Print = _StgDomain._BackgroundParticleLayout_Print
+
+def _BackgroundParticleLayout_Copy(*args):
+  return _StgDomain._BackgroundParticleLayout_Copy(*args)
+_BackgroundParticleLayout_Copy = _StgDomain._BackgroundParticleLayout_Copy
+
+def _BackgroundParticleLayout_DefaultNew(*args):
+  return _StgDomain._BackgroundParticleLayout_DefaultNew(*args)
+_BackgroundParticleLayout_DefaultNew = _StgDomain._BackgroundParticleLayout_DefaultNew
+
+def _BackgroundParticleLayout_AssignFromXML(*args):
+  return _StgDomain._BackgroundParticleLayout_AssignFromXML(*args)
+_BackgroundParticleLayout_AssignFromXML = _StgDomain._BackgroundParticleLayout_AssignFromXML
+
+def _BackgroundParticleLayout_Build(*args):
+  return _StgDomain._BackgroundParticleLayout_Build(*args)
+_BackgroundParticleLayout_Build = _StgDomain._BackgroundParticleLayout_Build
+
+def _BackgroundParticleLayout_Initialise(*args):
+  return _StgDomain._BackgroundParticleLayout_Initialise(*args)
+_BackgroundParticleLayout_Initialise = _StgDomain._BackgroundParticleLayout_Initialise
+
+def _BackgroundParticleLayout_Execute(*args):
+  return _StgDomain._BackgroundParticleLayout_Execute(*args)
+_BackgroundParticleLayout_Execute = _StgDomain._BackgroundParticleLayout_Execute
+
+def _BackgroundParticleLayout_Destroy(*args):
+  return _StgDomain._BackgroundParticleLayout_Destroy(*args)
+_BackgroundParticleLayout_Destroy = _StgDomain._BackgroundParticleLayout_Destroy
+
+def _BackgroundParticleLayout_SetInitialCounts(*args):
+  return _StgDomain._BackgroundParticleLayout_SetInitialCounts(*args)
+_BackgroundParticleLayout_SetInitialCounts = _StgDomain._BackgroundParticleLayout_SetInitialCounts
+
+def _BackgroundParticleLayout_InitialiseParticles(*args):
+  return _StgDomain._BackgroundParticleLayout_InitialiseParticles(*args)
+_BackgroundParticleLayout_InitialiseParticles = _StgDomain._BackgroundParticleLayout_InitialiseParticles
+class SwarmVariable(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SwarmVariable, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SwarmVariable, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.SwarmVariable__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.SwarmVariable__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.SwarmVariable__sizeOfSelf_get, _StgDomain.SwarmVariable__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.SwarmVariable__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.SwarmVariable__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.SwarmVariable__deleteSelf_get, _StgDomain.SwarmVariable__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.SwarmVariable_type_set
+    __swig_getmethods__["type"] = _StgDomain.SwarmVariable_type_get
+    if _newclass:type = _swig_property(_StgDomain.SwarmVariable_type_get, _StgDomain.SwarmVariable_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.SwarmVariable_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.SwarmVariable_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.SwarmVariable_nRefs_get, _StgDomain.SwarmVariable_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.SwarmVariable__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.SwarmVariable__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.SwarmVariable__delete_get, _StgDomain.SwarmVariable__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.SwarmVariable__print_set
+    __swig_getmethods__["_print"] = _StgDomain.SwarmVariable__print_get
+    if _newclass:_print = _swig_property(_StgDomain.SwarmVariable__print_get, _StgDomain.SwarmVariable__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.SwarmVariable__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.SwarmVariable__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.SwarmVariable__copy_get, _StgDomain.SwarmVariable__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.SwarmVariable_name_set
+    __swig_getmethods__["name"] = _StgDomain.SwarmVariable_name_get
+    if _newclass:name = _swig_property(_StgDomain.SwarmVariable_name_get, _StgDomain.SwarmVariable_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.SwarmVariable_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.SwarmVariable_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.SwarmVariable_nameAllocationType_get, _StgDomain.SwarmVariable_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.SwarmVariable__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.SwarmVariable__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.SwarmVariable__defaultConstructor_get, _StgDomain.SwarmVariable__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.SwarmVariable__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.SwarmVariable__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.SwarmVariable__construct_get, _StgDomain.SwarmVariable__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.SwarmVariable__build_set
+    __swig_getmethods__["_build"] = _StgDomain.SwarmVariable__build_get
+    if _newclass:_build = _swig_property(_StgDomain.SwarmVariable__build_get, _StgDomain.SwarmVariable__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.SwarmVariable__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.SwarmVariable__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.SwarmVariable__initialise_get, _StgDomain.SwarmVariable__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.SwarmVariable__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.SwarmVariable__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.SwarmVariable__execute_get, _StgDomain.SwarmVariable__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.SwarmVariable__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.SwarmVariable__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.SwarmVariable__destroy_get, _StgDomain.SwarmVariable__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.SwarmVariable_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.SwarmVariable_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.SwarmVariable_isConstructed_get, _StgDomain.SwarmVariable_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.SwarmVariable_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.SwarmVariable_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.SwarmVariable_isBuilt_get, _StgDomain.SwarmVariable_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.SwarmVariable_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.SwarmVariable_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.SwarmVariable_isInitialised_get, _StgDomain.SwarmVariable_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.SwarmVariable_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.SwarmVariable_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.SwarmVariable_hasExecuted_get, _StgDomain.SwarmVariable_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.SwarmVariable_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.SwarmVariable_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.SwarmVariable_isDestroyed_get, _StgDomain.SwarmVariable_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.SwarmVariable_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.SwarmVariable_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.SwarmVariable_constructType_get, _StgDomain.SwarmVariable_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.SwarmVariable_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.SwarmVariable_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.SwarmVariable_buildType_get, _StgDomain.SwarmVariable_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.SwarmVariable_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.SwarmVariable_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.SwarmVariable_initialiseType_get, _StgDomain.SwarmVariable_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.SwarmVariable_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.SwarmVariable_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.SwarmVariable_executeType_get, _StgDomain.SwarmVariable_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.SwarmVariable_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.SwarmVariable_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.SwarmVariable_destroyType_get, _StgDomain.SwarmVariable_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.SwarmVariable_context_set
+    __swig_getmethods__["context"] = _StgDomain.SwarmVariable_context_get
+    if _newclass:context = _swig_property(_StgDomain.SwarmVariable_context_get, _StgDomain.SwarmVariable_context_set)
+    __swig_setmethods__["_valueAt"] = _StgDomain.SwarmVariable__valueAt_set
+    __swig_getmethods__["_valueAt"] = _StgDomain.SwarmVariable__valueAt_get
+    if _newclass:_valueAt = _swig_property(_StgDomain.SwarmVariable__valueAt_get, _StgDomain.SwarmVariable__valueAt_set)
+    __swig_setmethods__["_getMinGlobalMagnitude"] = _StgDomain.SwarmVariable__getMinGlobalMagnitude_set
+    __swig_getmethods__["_getMinGlobalMagnitude"] = _StgDomain.SwarmVariable__getMinGlobalMagnitude_get
+    if _newclass:_getMinGlobalMagnitude = _swig_property(_StgDomain.SwarmVariable__getMinGlobalMagnitude_get, _StgDomain.SwarmVariable__getMinGlobalMagnitude_set)
+    __swig_setmethods__["_getMaxGlobalMagnitude"] = _StgDomain.SwarmVariable__getMaxGlobalMagnitude_set
+    __swig_getmethods__["_getMaxGlobalMagnitude"] = _StgDomain.SwarmVariable__getMaxGlobalMagnitude_get
+    if _newclass:_getMaxGlobalMagnitude = _swig_property(_StgDomain.SwarmVariable__getMaxGlobalMagnitude_get, _StgDomain.SwarmVariable__getMaxGlobalMagnitude_set)
+    __swig_setmethods__["swarm"] = _StgDomain.SwarmVariable_swarm_set
+    __swig_getmethods__["swarm"] = _StgDomain.SwarmVariable_swarm_get
+    if _newclass:swarm = _swig_property(_StgDomain.SwarmVariable_swarm_get, _StgDomain.SwarmVariable_swarm_set)
+    __swig_setmethods__["variable"] = _StgDomain.SwarmVariable_variable_set
+    __swig_getmethods__["variable"] = _StgDomain.SwarmVariable_variable_get
+    if _newclass:variable = _swig_property(_StgDomain.SwarmVariable_variable_get, _StgDomain.SwarmVariable_variable_set)
+    __swig_setmethods__["dofCount"] = _StgDomain.SwarmVariable_dofCount_set
+    __swig_getmethods__["dofCount"] = _StgDomain.SwarmVariable_dofCount_get
+    if _newclass:dofCount = _swig_property(_StgDomain.SwarmVariable_dofCount_get, _StgDomain.SwarmVariable_dofCount_set)
+    __swig_setmethods__["dim"] = _StgDomain.SwarmVariable_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.SwarmVariable_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.SwarmVariable_dim_get, _StgDomain.SwarmVariable_dim_set)
+    __swig_setmethods__["swarmVariable_Register"] = _StgDomain.SwarmVariable_swarmVariable_Register_set
+    __swig_getmethods__["swarmVariable_Register"] = _StgDomain.SwarmVariable_swarmVariable_Register_get
+    if _newclass:swarmVariable_Register = _swig_property(_StgDomain.SwarmVariable_swarmVariable_Register_get, _StgDomain.SwarmVariable_swarmVariable_Register_set)
+    __swig_setmethods__["isCheckpointedAndReloaded"] = _StgDomain.SwarmVariable_isCheckpointedAndReloaded_set
+    __swig_getmethods__["isCheckpointedAndReloaded"] = _StgDomain.SwarmVariable_isCheckpointedAndReloaded_get
+    if _newclass:isCheckpointedAndReloaded = _swig_property(_StgDomain.SwarmVariable_isCheckpointedAndReloaded_get, _StgDomain.SwarmVariable_isCheckpointedAndReloaded_set)
+    __swig_setmethods__["cachedTimestep"] = _StgDomain.SwarmVariable_cachedTimestep_set
+    __swig_getmethods__["cachedTimestep"] = _StgDomain.SwarmVariable_cachedTimestep_get
+    if _newclass:cachedTimestep = _swig_property(_StgDomain.SwarmVariable_cachedTimestep_get, _StgDomain.SwarmVariable_cachedTimestep_set)
+    __swig_setmethods__["magnitudeMin"] = _StgDomain.SwarmVariable_magnitudeMin_set
+    __swig_getmethods__["magnitudeMin"] = _StgDomain.SwarmVariable_magnitudeMin_get
+    if _newclass:magnitudeMin = _swig_property(_StgDomain.SwarmVariable_magnitudeMin_get, _StgDomain.SwarmVariable_magnitudeMin_set)
+    __swig_setmethods__["magnitudeMax"] = _StgDomain.SwarmVariable_magnitudeMax_set
+    __swig_getmethods__["magnitudeMax"] = _StgDomain.SwarmVariable_magnitudeMax_get
+    if _newclass:magnitudeMax = _swig_property(_StgDomain.SwarmVariable_magnitudeMax_get, _StgDomain.SwarmVariable_magnitudeMax_set)
+    __swig_setmethods__["useCacheMaxMin"] = _StgDomain.SwarmVariable_useCacheMaxMin_set
+    __swig_getmethods__["useCacheMaxMin"] = _StgDomain.SwarmVariable_useCacheMaxMin_get
+    if _newclass:useCacheMaxMin = _swig_property(_StgDomain.SwarmVariable_useCacheMaxMin_get, _StgDomain.SwarmVariable_useCacheMaxMin_set)
+    __swig_setmethods__["addToSwarmParticleExtension"] = _StgDomain.SwarmVariable_addToSwarmParticleExtension_set
+    __swig_getmethods__["addToSwarmParticleExtension"] = _StgDomain.SwarmVariable_addToSwarmParticleExtension_get
+    if _newclass:addToSwarmParticleExtension = _swig_property(_StgDomain.SwarmVariable_addToSwarmParticleExtension_get, _StgDomain.SwarmVariable_addToSwarmParticleExtension_set)
+    def __init__(self): 
+        this = _StgDomain.new_SwarmVariable()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SwarmVariable
+    __del__ = lambda self : None;
+SwarmVariable_swigregister = _StgDomain.SwarmVariable_swigregister
+SwarmVariable_swigregister(SwarmVariable)
+SwarmVariable_Type = cvar.SwarmVariable_Type
+
+
+def _SwarmVariable_DefaultNew(*args):
+  return _StgDomain._SwarmVariable_DefaultNew(*args)
+_SwarmVariable_DefaultNew = _StgDomain._SwarmVariable_DefaultNew
+
+def SwarmVariable_New(*args):
+  return _StgDomain.SwarmVariable_New(*args)
+SwarmVariable_New = _StgDomain.SwarmVariable_New
+
+def _SwarmVariable_New(*args):
+  return _StgDomain._SwarmVariable_New(*args)
+_SwarmVariable_New = _StgDomain._SwarmVariable_New
+
+def _SwarmVariable_Init(*args):
+  return _StgDomain._SwarmVariable_Init(*args)
+_SwarmVariable_Init = _StgDomain._SwarmVariable_Init
+
+def _SwarmVariable_Delete(*args):
+  return _StgDomain._SwarmVariable_Delete(*args)
+_SwarmVariable_Delete = _StgDomain._SwarmVariable_Delete
+
+def _SwarmVariable_Print(*args):
+  return _StgDomain._SwarmVariable_Print(*args)
+_SwarmVariable_Print = _StgDomain._SwarmVariable_Print
+
+def _SwarmVariable_AssignFromXML(*args):
+  return _StgDomain._SwarmVariable_AssignFromXML(*args)
+_SwarmVariable_AssignFromXML = _StgDomain._SwarmVariable_AssignFromXML
+
+def _SwarmVariable_Build(*args):
+  return _StgDomain._SwarmVariable_Build(*args)
+_SwarmVariable_Build = _StgDomain._SwarmVariable_Build
+
+def _SwarmVariable_Execute(*args):
+  return _StgDomain._SwarmVariable_Execute(*args)
+_SwarmVariable_Execute = _StgDomain._SwarmVariable_Execute
+
+def _SwarmVariable_Destroy(*args):
+  return _StgDomain._SwarmVariable_Destroy(*args)
+_SwarmVariable_Destroy = _StgDomain._SwarmVariable_Destroy
+
+def _SwarmVariable_Initialise(*args):
+  return _StgDomain._SwarmVariable_Initialise(*args)
+_SwarmVariable_Initialise = _StgDomain._SwarmVariable_Initialise
+
+def _SwarmVariable_Copy(*args):
+  return _StgDomain._SwarmVariable_Copy(*args)
+_SwarmVariable_Copy = _StgDomain._SwarmVariable_Copy
+
+def SwarmVariable_GetMinGlobalMagnitude(*args):
+  return _StgDomain.SwarmVariable_GetMinGlobalMagnitude(*args)
+SwarmVariable_GetMinGlobalMagnitude = _StgDomain.SwarmVariable_GetMinGlobalMagnitude
+
+def SwarmVariable_GetMaxGlobalMagnitude(*args):
+  return _StgDomain.SwarmVariable_GetMaxGlobalMagnitude(*args)
+SwarmVariable_GetMaxGlobalMagnitude = _StgDomain.SwarmVariable_GetMaxGlobalMagnitude
+
+def SwarmVariable_CacheMinMaxGlobalMagnitude(*args):
+  return _StgDomain.SwarmVariable_CacheMinMaxGlobalMagnitude(*args)
+SwarmVariable_CacheMinMaxGlobalMagnitude = _StgDomain.SwarmVariable_CacheMinMaxGlobalMagnitude
+
+def SwarmVariable_GetMinMaxGlobalMagnitude(*args):
+  return _StgDomain.SwarmVariable_GetMinMaxGlobalMagnitude(*args)
+SwarmVariable_GetMinMaxGlobalMagnitude = _StgDomain.SwarmVariable_GetMinMaxGlobalMagnitude
+
+def SwarmVariable_GetCachedMinGlobalMagnitude(*args):
+  return _StgDomain.SwarmVariable_GetCachedMinGlobalMagnitude(*args)
+SwarmVariable_GetCachedMinGlobalMagnitude = _StgDomain.SwarmVariable_GetCachedMinGlobalMagnitude
+
+def SwarmVariable_GetCachedMaxGlobalMagnitude(*args):
+  return _StgDomain.SwarmVariable_GetCachedMaxGlobalMagnitude(*args)
+SwarmVariable_GetCachedMaxGlobalMagnitude = _StgDomain.SwarmVariable_GetCachedMaxGlobalMagnitude
+
+def _SwarmVariable_ValueAt(*args):
+  return _StgDomain._SwarmVariable_ValueAt(*args)
+_SwarmVariable_ValueAt = _StgDomain._SwarmVariable_ValueAt
+
+def _SwarmVariable_ValueAtDouble(*args):
+  return _StgDomain._SwarmVariable_ValueAtDouble(*args)
+_SwarmVariable_ValueAtDouble = _StgDomain._SwarmVariable_ValueAtDouble
+
+def _SwarmVariable_ValueAtInt(*args):
+  return _StgDomain._SwarmVariable_ValueAtInt(*args)
+_SwarmVariable_ValueAtInt = _StgDomain._SwarmVariable_ValueAtInt
+
+def _SwarmVariable_ValueAtFloat(*args):
+  return _StgDomain._SwarmVariable_ValueAtFloat(*args)
+_SwarmVariable_ValueAtFloat = _StgDomain._SwarmVariable_ValueAtFloat
+
+def _SwarmVariable_ValueAtChar(*args):
+  return _StgDomain._SwarmVariable_ValueAtChar(*args)
+_SwarmVariable_ValueAtChar = _StgDomain._SwarmVariable_ValueAtChar
+
+def _SwarmVariable_ValueAtShort(*args):
+  return _StgDomain._SwarmVariable_ValueAtShort(*args)
+_SwarmVariable_ValueAtShort = _StgDomain._SwarmVariable_ValueAtShort
+
+def _SwarmVariable_GetMaxGlobalMagnitude(*args):
+  return _StgDomain._SwarmVariable_GetMaxGlobalMagnitude(*args)
+_SwarmVariable_GetMaxGlobalMagnitude = _StgDomain._SwarmVariable_GetMaxGlobalMagnitude
+
+def _SwarmVariable_GetMinGlobalMagnitude(*args):
+  return _StgDomain._SwarmVariable_GetMinGlobalMagnitude(*args)
+_SwarmVariable_GetMinGlobalMagnitude = _StgDomain._SwarmVariable_GetMinGlobalMagnitude
+class CellLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, CellLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, CellLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.CellLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.CellLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.CellLayout__sizeOfSelf_get, _StgDomain.CellLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.CellLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.CellLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.CellLayout__deleteSelf_get, _StgDomain.CellLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.CellLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.CellLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.CellLayout_type_get, _StgDomain.CellLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.CellLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.CellLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.CellLayout_nRefs_get, _StgDomain.CellLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.CellLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.CellLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.CellLayout__delete_get, _StgDomain.CellLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.CellLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.CellLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.CellLayout__print_get, _StgDomain.CellLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.CellLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.CellLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.CellLayout__copy_get, _StgDomain.CellLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.CellLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.CellLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.CellLayout_name_get, _StgDomain.CellLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.CellLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.CellLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.CellLayout_nameAllocationType_get, _StgDomain.CellLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.CellLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.CellLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.CellLayout__defaultConstructor_get, _StgDomain.CellLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.CellLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.CellLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.CellLayout__construct_get, _StgDomain.CellLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.CellLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.CellLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.CellLayout__build_get, _StgDomain.CellLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.CellLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.CellLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.CellLayout__initialise_get, _StgDomain.CellLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.CellLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.CellLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.CellLayout__execute_get, _StgDomain.CellLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.CellLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.CellLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.CellLayout__destroy_get, _StgDomain.CellLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.CellLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.CellLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.CellLayout_isConstructed_get, _StgDomain.CellLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.CellLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.CellLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.CellLayout_isBuilt_get, _StgDomain.CellLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.CellLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.CellLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.CellLayout_isInitialised_get, _StgDomain.CellLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.CellLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.CellLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.CellLayout_hasExecuted_get, _StgDomain.CellLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.CellLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.CellLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.CellLayout_isDestroyed_get, _StgDomain.CellLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.CellLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.CellLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.CellLayout_constructType_get, _StgDomain.CellLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.CellLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.CellLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.CellLayout_buildType_get, _StgDomain.CellLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.CellLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.CellLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.CellLayout_initialiseType_get, _StgDomain.CellLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.CellLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.CellLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.CellLayout_executeType_get, _StgDomain.CellLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.CellLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.CellLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.CellLayout_destroyType_get, _StgDomain.CellLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.CellLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.CellLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.CellLayout_context_get, _StgDomain.CellLayout_context_set)
+    __swig_setmethods__["_cellLocalCount"] = _StgDomain.CellLayout__cellLocalCount_set
+    __swig_getmethods__["_cellLocalCount"] = _StgDomain.CellLayout__cellLocalCount_get
+    if _newclass:_cellLocalCount = _swig_property(_StgDomain.CellLayout__cellLocalCount_get, _StgDomain.CellLayout__cellLocalCount_set)
+    __swig_setmethods__["_cellShadowCount"] = _StgDomain.CellLayout__cellShadowCount_set
+    __swig_getmethods__["_cellShadowCount"] = _StgDomain.CellLayout__cellShadowCount_get
+    if _newclass:_cellShadowCount = _swig_property(_StgDomain.CellLayout__cellShadowCount_get, _StgDomain.CellLayout__cellShadowCount_set)
+    __swig_setmethods__["_pointCount"] = _StgDomain.CellLayout__pointCount_set
+    __swig_getmethods__["_pointCount"] = _StgDomain.CellLayout__pointCount_get
+    if _newclass:_pointCount = _swig_property(_StgDomain.CellLayout__pointCount_get, _StgDomain.CellLayout__pointCount_set)
+    __swig_setmethods__["_initialisePoints"] = _StgDomain.CellLayout__initialisePoints_set
+    __swig_getmethods__["_initialisePoints"] = _StgDomain.CellLayout__initialisePoints_get
+    if _newclass:_initialisePoints = _swig_property(_StgDomain.CellLayout__initialisePoints_get, _StgDomain.CellLayout__initialisePoints_set)
+    __swig_setmethods__["_mapElementIdToCellId"] = _StgDomain.CellLayout__mapElementIdToCellId_set
+    __swig_getmethods__["_mapElementIdToCellId"] = _StgDomain.CellLayout__mapElementIdToCellId_get
+    if _newclass:_mapElementIdToCellId = _swig_property(_StgDomain.CellLayout__mapElementIdToCellId_get, _StgDomain.CellLayout__mapElementIdToCellId_set)
+    __swig_setmethods__["_isInCell"] = _StgDomain.CellLayout__isInCell_set
+    __swig_getmethods__["_isInCell"] = _StgDomain.CellLayout__isInCell_get
+    if _newclass:_isInCell = _swig_property(_StgDomain.CellLayout__isInCell_get, _StgDomain.CellLayout__isInCell_set)
+    __swig_setmethods__["_cellOf"] = _StgDomain.CellLayout__cellOf_set
+    __swig_getmethods__["_cellOf"] = _StgDomain.CellLayout__cellOf_get
+    if _newclass:_cellOf = _swig_property(_StgDomain.CellLayout__cellOf_get, _StgDomain.CellLayout__cellOf_set)
+    __swig_setmethods__["_getShadowInfo"] = _StgDomain.CellLayout__getShadowInfo_set
+    __swig_getmethods__["_getShadowInfo"] = _StgDomain.CellLayout__getShadowInfo_get
+    if _newclass:_getShadowInfo = _swig_property(_StgDomain.CellLayout__getShadowInfo_get, _StgDomain.CellLayout__getShadowInfo_set)
+    def __init__(self): 
+        this = _StgDomain.new_CellLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_CellLayout
+    __del__ = lambda self : None;
+CellLayout_swigregister = _StgDomain.CellLayout_swigregister
+CellLayout_swigregister(CellLayout)
+CellLayout_Type = cvar.CellLayout_Type
+
+
+def _CellLayout_New(*args):
+  return _StgDomain._CellLayout_New(*args)
+_CellLayout_New = _StgDomain._CellLayout_New
+
+def _CellLayout_Init(*args):
+  return _StgDomain._CellLayout_Init(*args)
+_CellLayout_Init = _StgDomain._CellLayout_Init
+
+def _CellLayout_Delete(*args):
+  return _StgDomain._CellLayout_Delete(*args)
+_CellLayout_Delete = _StgDomain._CellLayout_Delete
+
+def _CellLayout_Print(*args):
+  return _StgDomain._CellLayout_Print(*args)
+_CellLayout_Print = _StgDomain._CellLayout_Print
+
+def _CellLayout_Destroy(*args):
+  return _StgDomain._CellLayout_Destroy(*args)
+_CellLayout_Destroy = _StgDomain._CellLayout_Destroy
+
+def _CellLayout_Copy(*args):
+  return _StgDomain._CellLayout_Copy(*args)
+_CellLayout_Copy = _StgDomain._CellLayout_Copy
+
+def _CellLayout_AssignFromXML(*args):
+  return _StgDomain._CellLayout_AssignFromXML(*args)
+_CellLayout_AssignFromXML = _StgDomain._CellLayout_AssignFromXML
+
+def CellLayout_CellDomainCount(*args):
+  return _StgDomain.CellLayout_CellDomainCount(*args)
+CellLayout_CellDomainCount = _StgDomain.CellLayout_CellDomainCount
+
+def CellLayout_CellLocalCount(*args):
+  return _StgDomain.CellLayout_CellLocalCount(*args)
+CellLayout_CellLocalCount = _StgDomain.CellLayout_CellLocalCount
+
+def CellLayout_CellShadowCount(*args):
+  return _StgDomain.CellLayout_CellShadowCount(*args)
+CellLayout_CellShadowCount = _StgDomain.CellLayout_CellShadowCount
+
+def CellLayout_PointCount(*args):
+  return _StgDomain.CellLayout_PointCount(*args)
+CellLayout_PointCount = _StgDomain.CellLayout_PointCount
+
+def CellLayout_InitialiseCellPoints(*args):
+  return _StgDomain.CellLayout_InitialiseCellPoints(*args)
+CellLayout_InitialiseCellPoints = _StgDomain.CellLayout_InitialiseCellPoints
+
+def CellLayout_MapElementIdToCellId(*args):
+  return _StgDomain.CellLayout_MapElementIdToCellId(*args)
+CellLayout_MapElementIdToCellId = _StgDomain.CellLayout_MapElementIdToCellId
+
+def CellLayout_IsInCell(*args):
+  return _StgDomain.CellLayout_IsInCell(*args)
+CellLayout_IsInCell = _StgDomain.CellLayout_IsInCell
+
+def CellLayout_CellOf(*args):
+  return _StgDomain.CellLayout_CellOf(*args)
+CellLayout_CellOf = _StgDomain.CellLayout_CellOf
+
+def CellLayout_GetShadowInfo(*args):
+  return _StgDomain.CellLayout_GetShadowInfo(*args)
+CellLayout_GetShadowInfo = _StgDomain.CellLayout_GetShadowInfo
+class ElementCellLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ElementCellLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ElementCellLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.ElementCellLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.ElementCellLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.ElementCellLayout__sizeOfSelf_get, _StgDomain.ElementCellLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.ElementCellLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.ElementCellLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.ElementCellLayout__deleteSelf_get, _StgDomain.ElementCellLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.ElementCellLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.ElementCellLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.ElementCellLayout_type_get, _StgDomain.ElementCellLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.ElementCellLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.ElementCellLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.ElementCellLayout_nRefs_get, _StgDomain.ElementCellLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.ElementCellLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.ElementCellLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.ElementCellLayout__delete_get, _StgDomain.ElementCellLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.ElementCellLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.ElementCellLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.ElementCellLayout__print_get, _StgDomain.ElementCellLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.ElementCellLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.ElementCellLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.ElementCellLayout__copy_get, _StgDomain.ElementCellLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.ElementCellLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.ElementCellLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.ElementCellLayout_name_get, _StgDomain.ElementCellLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.ElementCellLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.ElementCellLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.ElementCellLayout_nameAllocationType_get, _StgDomain.ElementCellLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.ElementCellLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.ElementCellLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.ElementCellLayout__defaultConstructor_get, _StgDomain.ElementCellLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.ElementCellLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.ElementCellLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.ElementCellLayout__construct_get, _StgDomain.ElementCellLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.ElementCellLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.ElementCellLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.ElementCellLayout__build_get, _StgDomain.ElementCellLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.ElementCellLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.ElementCellLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.ElementCellLayout__initialise_get, _StgDomain.ElementCellLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.ElementCellLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.ElementCellLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.ElementCellLayout__execute_get, _StgDomain.ElementCellLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.ElementCellLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.ElementCellLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.ElementCellLayout__destroy_get, _StgDomain.ElementCellLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.ElementCellLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.ElementCellLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.ElementCellLayout_isConstructed_get, _StgDomain.ElementCellLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.ElementCellLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.ElementCellLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.ElementCellLayout_isBuilt_get, _StgDomain.ElementCellLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.ElementCellLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.ElementCellLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.ElementCellLayout_isInitialised_get, _StgDomain.ElementCellLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.ElementCellLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.ElementCellLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.ElementCellLayout_hasExecuted_get, _StgDomain.ElementCellLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.ElementCellLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.ElementCellLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.ElementCellLayout_isDestroyed_get, _StgDomain.ElementCellLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.ElementCellLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.ElementCellLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.ElementCellLayout_constructType_get, _StgDomain.ElementCellLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.ElementCellLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.ElementCellLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.ElementCellLayout_buildType_get, _StgDomain.ElementCellLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.ElementCellLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.ElementCellLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.ElementCellLayout_initialiseType_get, _StgDomain.ElementCellLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.ElementCellLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.ElementCellLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.ElementCellLayout_executeType_get, _StgDomain.ElementCellLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.ElementCellLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.ElementCellLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.ElementCellLayout_destroyType_get, _StgDomain.ElementCellLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.ElementCellLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.ElementCellLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.ElementCellLayout_context_get, _StgDomain.ElementCellLayout_context_set)
+    __swig_setmethods__["_cellLocalCount"] = _StgDomain.ElementCellLayout__cellLocalCount_set
+    __swig_getmethods__["_cellLocalCount"] = _StgDomain.ElementCellLayout__cellLocalCount_get
+    if _newclass:_cellLocalCount = _swig_property(_StgDomain.ElementCellLayout__cellLocalCount_get, _StgDomain.ElementCellLayout__cellLocalCount_set)
+    __swig_setmethods__["_cellShadowCount"] = _StgDomain.ElementCellLayout__cellShadowCount_set
+    __swig_getmethods__["_cellShadowCount"] = _StgDomain.ElementCellLayout__cellShadowCount_get
+    if _newclass:_cellShadowCount = _swig_property(_StgDomain.ElementCellLayout__cellShadowCount_get, _StgDomain.ElementCellLayout__cellShadowCount_set)
+    __swig_setmethods__["_pointCount"] = _StgDomain.ElementCellLayout__pointCount_set
+    __swig_getmethods__["_pointCount"] = _StgDomain.ElementCellLayout__pointCount_get
+    if _newclass:_pointCount = _swig_property(_StgDomain.ElementCellLayout__pointCount_get, _StgDomain.ElementCellLayout__pointCount_set)
+    __swig_setmethods__["_initialisePoints"] = _StgDomain.ElementCellLayout__initialisePoints_set
+    __swig_getmethods__["_initialisePoints"] = _StgDomain.ElementCellLayout__initialisePoints_get
+    if _newclass:_initialisePoints = _swig_property(_StgDomain.ElementCellLayout__initialisePoints_get, _StgDomain.ElementCellLayout__initialisePoints_set)
+    __swig_setmethods__["_mapElementIdToCellId"] = _StgDomain.ElementCellLayout__mapElementIdToCellId_set
+    __swig_getmethods__["_mapElementIdToCellId"] = _StgDomain.ElementCellLayout__mapElementIdToCellId_get
+    if _newclass:_mapElementIdToCellId = _swig_property(_StgDomain.ElementCellLayout__mapElementIdToCellId_get, _StgDomain.ElementCellLayout__mapElementIdToCellId_set)
+    __swig_setmethods__["_isInCell"] = _StgDomain.ElementCellLayout__isInCell_set
+    __swig_getmethods__["_isInCell"] = _StgDomain.ElementCellLayout__isInCell_get
+    if _newclass:_isInCell = _swig_property(_StgDomain.ElementCellLayout__isInCell_get, _StgDomain.ElementCellLayout__isInCell_set)
+    __swig_setmethods__["_cellOf"] = _StgDomain.ElementCellLayout__cellOf_set
+    __swig_getmethods__["_cellOf"] = _StgDomain.ElementCellLayout__cellOf_get
+    if _newclass:_cellOf = _swig_property(_StgDomain.ElementCellLayout__cellOf_get, _StgDomain.ElementCellLayout__cellOf_set)
+    __swig_setmethods__["_getShadowInfo"] = _StgDomain.ElementCellLayout__getShadowInfo_set
+    __swig_getmethods__["_getShadowInfo"] = _StgDomain.ElementCellLayout__getShadowInfo_get
+    if _newclass:_getShadowInfo = _swig_property(_StgDomain.ElementCellLayout__getShadowInfo_get, _StgDomain.ElementCellLayout__getShadowInfo_set)
+    __swig_setmethods__["mesh"] = _StgDomain.ElementCellLayout_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.ElementCellLayout_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.ElementCellLayout_mesh_get, _StgDomain.ElementCellLayout_mesh_set)
+    __swig_setmethods__["cellShadowInfo"] = _StgDomain.ElementCellLayout_cellShadowInfo_set
+    __swig_getmethods__["cellShadowInfo"] = _StgDomain.ElementCellLayout_cellShadowInfo_get
+    if _newclass:cellShadowInfo = _swig_property(_StgDomain.ElementCellLayout_cellShadowInfo_get, _StgDomain.ElementCellLayout_cellShadowInfo_set)
+    __swig_setmethods__["incArray"] = _StgDomain.ElementCellLayout_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.ElementCellLayout_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.ElementCellLayout_incArray_get, _StgDomain.ElementCellLayout_incArray_set)
+    def __init__(self): 
+        this = _StgDomain.new_ElementCellLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ElementCellLayout
+    __del__ = lambda self : None;
+ElementCellLayout_swigregister = _StgDomain.ElementCellLayout_swigregister
+ElementCellLayout_swigregister(ElementCellLayout)
+ElementCellLayout_Type = cvar.ElementCellLayout_Type
+
+
+def _ElementCellLayout_DefaultNew(*args):
+  return _StgDomain._ElementCellLayout_DefaultNew(*args)
+_ElementCellLayout_DefaultNew = _StgDomain._ElementCellLayout_DefaultNew
+
+def ElementCellLayout_New(*args):
+  return _StgDomain.ElementCellLayout_New(*args)
+ElementCellLayout_New = _StgDomain.ElementCellLayout_New
+
+def _ElementCellLayout_New(*args):
+  return _StgDomain._ElementCellLayout_New(*args)
+_ElementCellLayout_New = _StgDomain._ElementCellLayout_New
+
+def _ElementCellLayout_Init(*args):
+  return _StgDomain._ElementCellLayout_Init(*args)
+_ElementCellLayout_Init = _StgDomain._ElementCellLayout_Init
+
+def _ElementCellLayout_Delete(*args):
+  return _StgDomain._ElementCellLayout_Delete(*args)
+_ElementCellLayout_Delete = _StgDomain._ElementCellLayout_Delete
+
+def _ElementCellLayout_Print(*args):
+  return _StgDomain._ElementCellLayout_Print(*args)
+_ElementCellLayout_Print = _StgDomain._ElementCellLayout_Print
+
+def _ElementCellLayout_Copy(*args):
+  return _StgDomain._ElementCellLayout_Copy(*args)
+_ElementCellLayout_Copy = _StgDomain._ElementCellLayout_Copy
+
+def _ElementCellLayout_AssignFromXML(*args):
+  return _StgDomain._ElementCellLayout_AssignFromXML(*args)
+_ElementCellLayout_AssignFromXML = _StgDomain._ElementCellLayout_AssignFromXML
+
+def _ElementCellLayout_Build(*args):
+  return _StgDomain._ElementCellLayout_Build(*args)
+_ElementCellLayout_Build = _StgDomain._ElementCellLayout_Build
+
+def _ElementCellLayout_Initialise(*args):
+  return _StgDomain._ElementCellLayout_Initialise(*args)
+_ElementCellLayout_Initialise = _StgDomain._ElementCellLayout_Initialise
+
+def _ElementCellLayout_Execute(*args):
+  return _StgDomain._ElementCellLayout_Execute(*args)
+_ElementCellLayout_Execute = _StgDomain._ElementCellLayout_Execute
+
+def _ElementCellLayout_Destroy(*args):
+  return _StgDomain._ElementCellLayout_Destroy(*args)
+_ElementCellLayout_Destroy = _StgDomain._ElementCellLayout_Destroy
+
+def _ElementCellLayout_CellLocalCount(*args):
+  return _StgDomain._ElementCellLayout_CellLocalCount(*args)
+_ElementCellLayout_CellLocalCount = _StgDomain._ElementCellLayout_CellLocalCount
+
+def _ElementCellLayout_CellShadowCount(*args):
+  return _StgDomain._ElementCellLayout_CellShadowCount(*args)
+_ElementCellLayout_CellShadowCount = _StgDomain._ElementCellLayout_CellShadowCount
+
+def _ElementCellLayout_PointCount(*args):
+  return _StgDomain._ElementCellLayout_PointCount(*args)
+_ElementCellLayout_PointCount = _StgDomain._ElementCellLayout_PointCount
+
+def _ElementCellLayout_InitialisePoints(*args):
+  return _StgDomain._ElementCellLayout_InitialisePoints(*args)
+_ElementCellLayout_InitialisePoints = _StgDomain._ElementCellLayout_InitialisePoints
+
+def _ElementCellLayout_MapElementIdToCellId(*args):
+  return _StgDomain._ElementCellLayout_MapElementIdToCellId(*args)
+_ElementCellLayout_MapElementIdToCellId = _StgDomain._ElementCellLayout_MapElementIdToCellId
+
+def _ElementCellLayout_IsInCell(*args):
+  return _StgDomain._ElementCellLayout_IsInCell(*args)
+_ElementCellLayout_IsInCell = _StgDomain._ElementCellLayout_IsInCell
+
+def _ElementCellLayout_CellOf(*args):
+  return _StgDomain._ElementCellLayout_CellOf(*args)
+_ElementCellLayout_CellOf = _StgDomain._ElementCellLayout_CellOf
+
+def _ElementCellLayout_CellOf_Irregular(*args):
+  return _StgDomain._ElementCellLayout_CellOf_Irregular(*args)
+_ElementCellLayout_CellOf_Irregular = _StgDomain._ElementCellLayout_CellOf_Irregular
+
+def _ElementCellLayout_GetShadowInfo(*args):
+  return _StgDomain._ElementCellLayout_GetShadowInfo(*args)
+_ElementCellLayout_GetShadowInfo = _StgDomain._ElementCellLayout_GetShadowInfo
+
+def ElementCellLayout_BuildShadowInfo(*args):
+  return _StgDomain.ElementCellLayout_BuildShadowInfo(*args)
+ElementCellLayout_BuildShadowInfo = _StgDomain.ElementCellLayout_BuildShadowInfo
+
+def ElementCellLayout_DestroyShadowInfo(*args):
+  return _StgDomain.ElementCellLayout_DestroyShadowInfo(*args)
+ElementCellLayout_DestroyShadowInfo = _StgDomain.ElementCellLayout_DestroyShadowInfo
+class CLLCellLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, CLLCellLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, CLLCellLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.CLLCellLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.CLLCellLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.CLLCellLayout__sizeOfSelf_get, _StgDomain.CLLCellLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.CLLCellLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.CLLCellLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.CLLCellLayout__deleteSelf_get, _StgDomain.CLLCellLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.CLLCellLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.CLLCellLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.CLLCellLayout_type_get, _StgDomain.CLLCellLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.CLLCellLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.CLLCellLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.CLLCellLayout_nRefs_get, _StgDomain.CLLCellLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.CLLCellLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.CLLCellLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.CLLCellLayout__delete_get, _StgDomain.CLLCellLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.CLLCellLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.CLLCellLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.CLLCellLayout__print_get, _StgDomain.CLLCellLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.CLLCellLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.CLLCellLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.CLLCellLayout__copy_get, _StgDomain.CLLCellLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.CLLCellLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.CLLCellLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.CLLCellLayout_name_get, _StgDomain.CLLCellLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.CLLCellLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.CLLCellLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.CLLCellLayout_nameAllocationType_get, _StgDomain.CLLCellLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.CLLCellLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.CLLCellLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.CLLCellLayout__defaultConstructor_get, _StgDomain.CLLCellLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.CLLCellLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.CLLCellLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.CLLCellLayout__construct_get, _StgDomain.CLLCellLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.CLLCellLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.CLLCellLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.CLLCellLayout__build_get, _StgDomain.CLLCellLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.CLLCellLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.CLLCellLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.CLLCellLayout__initialise_get, _StgDomain.CLLCellLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.CLLCellLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.CLLCellLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.CLLCellLayout__execute_get, _StgDomain.CLLCellLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.CLLCellLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.CLLCellLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.CLLCellLayout__destroy_get, _StgDomain.CLLCellLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.CLLCellLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.CLLCellLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.CLLCellLayout_isConstructed_get, _StgDomain.CLLCellLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.CLLCellLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.CLLCellLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.CLLCellLayout_isBuilt_get, _StgDomain.CLLCellLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.CLLCellLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.CLLCellLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.CLLCellLayout_isInitialised_get, _StgDomain.CLLCellLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.CLLCellLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.CLLCellLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.CLLCellLayout_hasExecuted_get, _StgDomain.CLLCellLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.CLLCellLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.CLLCellLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.CLLCellLayout_isDestroyed_get, _StgDomain.CLLCellLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.CLLCellLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.CLLCellLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.CLLCellLayout_constructType_get, _StgDomain.CLLCellLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.CLLCellLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.CLLCellLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.CLLCellLayout_buildType_get, _StgDomain.CLLCellLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.CLLCellLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.CLLCellLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.CLLCellLayout_initialiseType_get, _StgDomain.CLLCellLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.CLLCellLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.CLLCellLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.CLLCellLayout_executeType_get, _StgDomain.CLLCellLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.CLLCellLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.CLLCellLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.CLLCellLayout_destroyType_get, _StgDomain.CLLCellLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.CLLCellLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.CLLCellLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.CLLCellLayout_context_get, _StgDomain.CLLCellLayout_context_set)
+    __swig_setmethods__["_cellLocalCount"] = _StgDomain.CLLCellLayout__cellLocalCount_set
+    __swig_getmethods__["_cellLocalCount"] = _StgDomain.CLLCellLayout__cellLocalCount_get
+    if _newclass:_cellLocalCount = _swig_property(_StgDomain.CLLCellLayout__cellLocalCount_get, _StgDomain.CLLCellLayout__cellLocalCount_set)
+    __swig_setmethods__["_cellShadowCount"] = _StgDomain.CLLCellLayout__cellShadowCount_set
+    __swig_getmethods__["_cellShadowCount"] = _StgDomain.CLLCellLayout__cellShadowCount_get
+    if _newclass:_cellShadowCount = _swig_property(_StgDomain.CLLCellLayout__cellShadowCount_get, _StgDomain.CLLCellLayout__cellShadowCount_set)
+    __swig_setmethods__["_pointCount"] = _StgDomain.CLLCellLayout__pointCount_set
+    __swig_getmethods__["_pointCount"] = _StgDomain.CLLCellLayout__pointCount_get
+    if _newclass:_pointCount = _swig_property(_StgDomain.CLLCellLayout__pointCount_get, _StgDomain.CLLCellLayout__pointCount_set)
+    __swig_setmethods__["_initialisePoints"] = _StgDomain.CLLCellLayout__initialisePoints_set
+    __swig_getmethods__["_initialisePoints"] = _StgDomain.CLLCellLayout__initialisePoints_get
+    if _newclass:_initialisePoints = _swig_property(_StgDomain.CLLCellLayout__initialisePoints_get, _StgDomain.CLLCellLayout__initialisePoints_set)
+    __swig_setmethods__["_mapElementIdToCellId"] = _StgDomain.CLLCellLayout__mapElementIdToCellId_set
+    __swig_getmethods__["_mapElementIdToCellId"] = _StgDomain.CLLCellLayout__mapElementIdToCellId_get
+    if _newclass:_mapElementIdToCellId = _swig_property(_StgDomain.CLLCellLayout__mapElementIdToCellId_get, _StgDomain.CLLCellLayout__mapElementIdToCellId_set)
+    __swig_setmethods__["_isInCell"] = _StgDomain.CLLCellLayout__isInCell_set
+    __swig_getmethods__["_isInCell"] = _StgDomain.CLLCellLayout__isInCell_get
+    if _newclass:_isInCell = _swig_property(_StgDomain.CLLCellLayout__isInCell_get, _StgDomain.CLLCellLayout__isInCell_set)
+    __swig_setmethods__["_cellOf"] = _StgDomain.CLLCellLayout__cellOf_set
+    __swig_getmethods__["_cellOf"] = _StgDomain.CLLCellLayout__cellOf_get
+    if _newclass:_cellOf = _swig_property(_StgDomain.CLLCellLayout__cellOf_get, _StgDomain.CLLCellLayout__cellOf_set)
+    __swig_setmethods__["_getShadowInfo"] = _StgDomain.CLLCellLayout__getShadowInfo_set
+    __swig_getmethods__["_getShadowInfo"] = _StgDomain.CLLCellLayout__getShadowInfo_get
+    if _newclass:_getShadowInfo = _swig_property(_StgDomain.CLLCellLayout__getShadowInfo_get, _StgDomain.CLLCellLayout__getShadowInfo_set)
+    __swig_setmethods__["mesh"] = _StgDomain.CLLCellLayout_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.CLLCellLayout_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.CLLCellLayout_mesh_get, _StgDomain.CLLCellLayout_mesh_set)
+    __swig_setmethods__["cellShadowInfo"] = _StgDomain.CLLCellLayout_cellShadowInfo_set
+    __swig_getmethods__["cellShadowInfo"] = _StgDomain.CLLCellLayout_cellShadowInfo_get
+    if _newclass:cellShadowInfo = _swig_property(_StgDomain.CLLCellLayout_cellShadowInfo_get, _StgDomain.CLLCellLayout_cellShadowInfo_set)
+    __swig_setmethods__["incArray"] = _StgDomain.CLLCellLayout_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.CLLCellLayout_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.CLLCellLayout_incArray_get, _StgDomain.CLLCellLayout_incArray_set)
+    __swig_setmethods__["geometryMesh"] = _StgDomain.CLLCellLayout_geometryMesh_set
+    __swig_getmethods__["geometryMesh"] = _StgDomain.CLLCellLayout_geometryMesh_get
+    if _newclass:geometryMesh = _swig_property(_StgDomain.CLLCellLayout_geometryMesh_get, _StgDomain.CLLCellLayout_geometryMesh_set)
+    __swig_setmethods__["cellSize"] = _StgDomain.CLLCellLayout_cellSize_set
+    __swig_getmethods__["cellSize"] = _StgDomain.CLLCellLayout_cellSize_get
+    if _newclass:cellSize = _swig_property(_StgDomain.CLLCellLayout_cellSize_get, _StgDomain.CLLCellLayout_cellSize_set)
+    __swig_setmethods__["meshDim"] = _StgDomain.CLLCellLayout_meshDim_set
+    __swig_getmethods__["meshDim"] = _StgDomain.CLLCellLayout_meshDim_get
+    if _newclass:meshDim = _swig_property(_StgDomain.CLLCellLayout_meshDim_get, _StgDomain.CLLCellLayout_meshDim_set)
+    __swig_setmethods__["parallelDecompose"] = _StgDomain.CLLCellLayout_parallelDecompose_set
+    __swig_getmethods__["parallelDecompose"] = _StgDomain.CLLCellLayout_parallelDecompose_get
+    if _newclass:parallelDecompose = _swig_property(_StgDomain.CLLCellLayout_parallelDecompose_get, _StgDomain.CLLCellLayout_parallelDecompose_set)
+    __swig_setmethods__["expandFactor"] = _StgDomain.CLLCellLayout_expandFactor_set
+    __swig_getmethods__["expandFactor"] = _StgDomain.CLLCellLayout_expandFactor_get
+    if _newclass:expandFactor = _swig_property(_StgDomain.CLLCellLayout_expandFactor_get, _StgDomain.CLLCellLayout_expandFactor_set)
+    def __init__(self): 
+        this = _StgDomain.new_CLLCellLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_CLLCellLayout
+    __del__ = lambda self : None;
+CLLCellLayout_swigregister = _StgDomain.CLLCellLayout_swigregister
+CLLCellLayout_swigregister(CLLCellLayout)
+CLLCellLayout_Type = cvar.CLLCellLayout_Type
+
+
+def _CLLCellLayout_DefaultNew(*args):
+  return _StgDomain._CLLCellLayout_DefaultNew(*args)
+_CLLCellLayout_DefaultNew = _StgDomain._CLLCellLayout_DefaultNew
+
+def CLLCellLayout_New(*args):
+  return _StgDomain.CLLCellLayout_New(*args)
+CLLCellLayout_New = _StgDomain.CLLCellLayout_New
+
+def _CLLCellLayout_New(*args):
+  return _StgDomain._CLLCellLayout_New(*args)
+_CLLCellLayout_New = _StgDomain._CLLCellLayout_New
+
+def _CLLCellLayout_Init(*args):
+  return _StgDomain._CLLCellLayout_Init(*args)
+_CLLCellLayout_Init = _StgDomain._CLLCellLayout_Init
+
+def _CLLCellLayout_AssignFromXML(*args):
+  return _StgDomain._CLLCellLayout_AssignFromXML(*args)
+_CLLCellLayout_AssignFromXML = _StgDomain._CLLCellLayout_AssignFromXML
+
+def _CLLCellLayout_Build(*args):
+  return _StgDomain._CLLCellLayout_Build(*args)
+_CLLCellLayout_Build = _StgDomain._CLLCellLayout_Build
+
+def _CLLCellLayout_Initialise(*args):
+  return _StgDomain._CLLCellLayout_Initialise(*args)
+_CLLCellLayout_Initialise = _StgDomain._CLLCellLayout_Initialise
+
+def _CLLCellLayout_Destroy(*args):
+  return _StgDomain._CLLCellLayout_Destroy(*args)
+_CLLCellLayout_Destroy = _StgDomain._CLLCellLayout_Destroy
+class LineParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, LineParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, LineParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.LineParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.LineParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.LineParticleLayout__sizeOfSelf_get, _StgDomain.LineParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.LineParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.LineParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.LineParticleLayout__deleteSelf_get, _StgDomain.LineParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.LineParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.LineParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.LineParticleLayout_type_get, _StgDomain.LineParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.LineParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.LineParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.LineParticleLayout_nRefs_get, _StgDomain.LineParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.LineParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.LineParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.LineParticleLayout__delete_get, _StgDomain.LineParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.LineParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.LineParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.LineParticleLayout__print_get, _StgDomain.LineParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.LineParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.LineParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.LineParticleLayout__copy_get, _StgDomain.LineParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.LineParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.LineParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.LineParticleLayout_name_get, _StgDomain.LineParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.LineParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.LineParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.LineParticleLayout_nameAllocationType_get, _StgDomain.LineParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.LineParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.LineParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.LineParticleLayout__defaultConstructor_get, _StgDomain.LineParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.LineParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.LineParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.LineParticleLayout__construct_get, _StgDomain.LineParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.LineParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.LineParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.LineParticleLayout__build_get, _StgDomain.LineParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.LineParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.LineParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.LineParticleLayout__initialise_get, _StgDomain.LineParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.LineParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.LineParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.LineParticleLayout__execute_get, _StgDomain.LineParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.LineParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.LineParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.LineParticleLayout__destroy_get, _StgDomain.LineParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.LineParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.LineParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.LineParticleLayout_isConstructed_get, _StgDomain.LineParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.LineParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.LineParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.LineParticleLayout_isBuilt_get, _StgDomain.LineParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.LineParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.LineParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.LineParticleLayout_isInitialised_get, _StgDomain.LineParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.LineParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.LineParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.LineParticleLayout_hasExecuted_get, _StgDomain.LineParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.LineParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.LineParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.LineParticleLayout_isDestroyed_get, _StgDomain.LineParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.LineParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.LineParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.LineParticleLayout_constructType_get, _StgDomain.LineParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.LineParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.LineParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.LineParticleLayout_buildType_get, _StgDomain.LineParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.LineParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.LineParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.LineParticleLayout_initialiseType_get, _StgDomain.LineParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.LineParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.LineParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.LineParticleLayout_executeType_get, _StgDomain.LineParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.LineParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.LineParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.LineParticleLayout_destroyType_get, _StgDomain.LineParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.LineParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.LineParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.LineParticleLayout_context_get, _StgDomain.LineParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.LineParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.LineParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.LineParticleLayout__setInitialCounts_get, _StgDomain.LineParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.LineParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.LineParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.LineParticleLayout__initialiseParticles_get, _StgDomain.LineParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.LineParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.LineParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.LineParticleLayout_debug_get, _StgDomain.LineParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.LineParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.LineParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.LineParticleLayout_coordSystem_get, _StgDomain.LineParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.LineParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.LineParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.LineParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.LineParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialiseParticle"] = _StgDomain.LineParticleLayout__initialiseParticle_set
+    __swig_getmethods__["_initialiseParticle"] = _StgDomain.LineParticleLayout__initialiseParticle_get
+    if _newclass:_initialiseParticle = _swig_property(_StgDomain.LineParticleLayout__initialiseParticle_get, _StgDomain.LineParticleLayout__initialiseParticle_set)
+    __swig_setmethods__["totalInitialParticles"] = _StgDomain.LineParticleLayout_totalInitialParticles_set
+    __swig_getmethods__["totalInitialParticles"] = _StgDomain.LineParticleLayout_totalInitialParticles_get
+    if _newclass:totalInitialParticles = _swig_property(_StgDomain.LineParticleLayout_totalInitialParticles_get, _StgDomain.LineParticleLayout_totalInitialParticles_set)
+    __swig_setmethods__["averageInitialParticlesPerCell"] = _StgDomain.LineParticleLayout_averageInitialParticlesPerCell_set
+    __swig_getmethods__["averageInitialParticlesPerCell"] = _StgDomain.LineParticleLayout_averageInitialParticlesPerCell_get
+    if _newclass:averageInitialParticlesPerCell = _swig_property(_StgDomain.LineParticleLayout_averageInitialParticlesPerCell_get, _StgDomain.LineParticleLayout_averageInitialParticlesPerCell_set)
+    __swig_setmethods__["mustUseAllParticles"] = _StgDomain.LineParticleLayout_mustUseAllParticles_set
+    __swig_getmethods__["mustUseAllParticles"] = _StgDomain.LineParticleLayout_mustUseAllParticles_get
+    if _newclass:mustUseAllParticles = _swig_property(_StgDomain.LineParticleLayout_mustUseAllParticles_get, _StgDomain.LineParticleLayout_mustUseAllParticles_set)
+    __swig_setmethods__["dim"] = _StgDomain.LineParticleLayout_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.LineParticleLayout_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.LineParticleLayout_dim_get, _StgDomain.LineParticleLayout_dim_set)
+    __swig_setmethods__["vertexCount"] = _StgDomain.LineParticleLayout_vertexCount_set
+    __swig_getmethods__["vertexCount"] = _StgDomain.LineParticleLayout_vertexCount_get
+    if _newclass:vertexCount = _swig_property(_StgDomain.LineParticleLayout_vertexCount_get, _StgDomain.LineParticleLayout_vertexCount_set)
+    __swig_setmethods__["vertexList"] = _StgDomain.LineParticleLayout_vertexList_set
+    __swig_getmethods__["vertexList"] = _StgDomain.LineParticleLayout_vertexList_get
+    if _newclass:vertexList = _swig_property(_StgDomain.LineParticleLayout_vertexList_get, _StgDomain.LineParticleLayout_vertexList_set)
+    __swig_setmethods__["segmentLengthList"] = _StgDomain.LineParticleLayout_segmentLengthList_set
+    __swig_getmethods__["segmentLengthList"] = _StgDomain.LineParticleLayout_segmentLengthList_get
+    if _newclass:segmentLengthList = _swig_property(_StgDomain.LineParticleLayout_segmentLengthList_get, _StgDomain.LineParticleLayout_segmentLengthList_set)
+    __swig_setmethods__["dx"] = _StgDomain.LineParticleLayout_dx_set
+    __swig_getmethods__["dx"] = _StgDomain.LineParticleLayout_dx_get
+    if _newclass:dx = _swig_property(_StgDomain.LineParticleLayout_dx_get, _StgDomain.LineParticleLayout_dx_set)
+    def __init__(self): 
+        this = _StgDomain.new_LineParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_LineParticleLayout
+    __del__ = lambda self : None;
+LineParticleLayout_swigregister = _StgDomain.LineParticleLayout_swigregister
+LineParticleLayout_swigregister(LineParticleLayout)
+LineParticleLayout_Type = cvar.LineParticleLayout_Type
+
+
+def LineParticleLayout_New(*args):
+  return _StgDomain.LineParticleLayout_New(*args)
+LineParticleLayout_New = _StgDomain.LineParticleLayout_New
+
+def _LineParticleLayout_New(*args):
+  return _StgDomain._LineParticleLayout_New(*args)
+_LineParticleLayout_New = _StgDomain._LineParticleLayout_New
+
+def _LineParticleLayout_Init(*args):
+  return _StgDomain._LineParticleLayout_Init(*args)
+_LineParticleLayout_Init = _StgDomain._LineParticleLayout_Init
+
+def _LineParticleLayout_Delete(*args):
+  return _StgDomain._LineParticleLayout_Delete(*args)
+_LineParticleLayout_Delete = _StgDomain._LineParticleLayout_Delete
+
+def _LineParticleLayout_Print(*args):
+  return _StgDomain._LineParticleLayout_Print(*args)
+_LineParticleLayout_Print = _StgDomain._LineParticleLayout_Print
+
+def _LineParticleLayout_Copy(*args):
+  return _StgDomain._LineParticleLayout_Copy(*args)
+_LineParticleLayout_Copy = _StgDomain._LineParticleLayout_Copy
+
+def _LineParticleLayout_DefaultNew(*args):
+  return _StgDomain._LineParticleLayout_DefaultNew(*args)
+_LineParticleLayout_DefaultNew = _StgDomain._LineParticleLayout_DefaultNew
+
+def _LineParticleLayout_AssignFromXML(*args):
+  return _StgDomain._LineParticleLayout_AssignFromXML(*args)
+_LineParticleLayout_AssignFromXML = _StgDomain._LineParticleLayout_AssignFromXML
+
+def _LineParticleLayout_Build(*args):
+  return _StgDomain._LineParticleLayout_Build(*args)
+_LineParticleLayout_Build = _StgDomain._LineParticleLayout_Build
+
+def _LineParticleLayout_Initialise(*args):
+  return _StgDomain._LineParticleLayout_Initialise(*args)
+_LineParticleLayout_Initialise = _StgDomain._LineParticleLayout_Initialise
+
+def _LineParticleLayout_Execute(*args):
+  return _StgDomain._LineParticleLayout_Execute(*args)
+_LineParticleLayout_Execute = _StgDomain._LineParticleLayout_Execute
+
+def _LineParticleLayout_Destroy(*args):
+  return _StgDomain._LineParticleLayout_Destroy(*args)
+_LineParticleLayout_Destroy = _StgDomain._LineParticleLayout_Destroy
+
+def _LineParticleLayout_InitialiseParticle(*args):
+  return _StgDomain._LineParticleLayout_InitialiseParticle(*args)
+_LineParticleLayout_InitialiseParticle = _StgDomain._LineParticleLayout_InitialiseParticle
+class ManualParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ManualParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ManualParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.ManualParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.ManualParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.ManualParticleLayout__sizeOfSelf_get, _StgDomain.ManualParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.ManualParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.ManualParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.ManualParticleLayout__deleteSelf_get, _StgDomain.ManualParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.ManualParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.ManualParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.ManualParticleLayout_type_get, _StgDomain.ManualParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.ManualParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.ManualParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.ManualParticleLayout_nRefs_get, _StgDomain.ManualParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.ManualParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.ManualParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.ManualParticleLayout__delete_get, _StgDomain.ManualParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.ManualParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.ManualParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.ManualParticleLayout__print_get, _StgDomain.ManualParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.ManualParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.ManualParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.ManualParticleLayout__copy_get, _StgDomain.ManualParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.ManualParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.ManualParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.ManualParticleLayout_name_get, _StgDomain.ManualParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.ManualParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.ManualParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.ManualParticleLayout_nameAllocationType_get, _StgDomain.ManualParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.ManualParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.ManualParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.ManualParticleLayout__defaultConstructor_get, _StgDomain.ManualParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.ManualParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.ManualParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.ManualParticleLayout__construct_get, _StgDomain.ManualParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.ManualParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.ManualParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.ManualParticleLayout__build_get, _StgDomain.ManualParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.ManualParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.ManualParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.ManualParticleLayout__initialise_get, _StgDomain.ManualParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.ManualParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.ManualParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.ManualParticleLayout__execute_get, _StgDomain.ManualParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.ManualParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.ManualParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.ManualParticleLayout__destroy_get, _StgDomain.ManualParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.ManualParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.ManualParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.ManualParticleLayout_isConstructed_get, _StgDomain.ManualParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.ManualParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.ManualParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.ManualParticleLayout_isBuilt_get, _StgDomain.ManualParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.ManualParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.ManualParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.ManualParticleLayout_isInitialised_get, _StgDomain.ManualParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.ManualParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.ManualParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.ManualParticleLayout_hasExecuted_get, _StgDomain.ManualParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.ManualParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.ManualParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.ManualParticleLayout_isDestroyed_get, _StgDomain.ManualParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.ManualParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.ManualParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.ManualParticleLayout_constructType_get, _StgDomain.ManualParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.ManualParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.ManualParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.ManualParticleLayout_buildType_get, _StgDomain.ManualParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.ManualParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.ManualParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.ManualParticleLayout_initialiseType_get, _StgDomain.ManualParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.ManualParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.ManualParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.ManualParticleLayout_executeType_get, _StgDomain.ManualParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.ManualParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.ManualParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.ManualParticleLayout_destroyType_get, _StgDomain.ManualParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.ManualParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.ManualParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.ManualParticleLayout_context_get, _StgDomain.ManualParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.ManualParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.ManualParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.ManualParticleLayout__setInitialCounts_get, _StgDomain.ManualParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.ManualParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.ManualParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.ManualParticleLayout__initialiseParticles_get, _StgDomain.ManualParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.ManualParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.ManualParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.ManualParticleLayout_debug_get, _StgDomain.ManualParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.ManualParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.ManualParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.ManualParticleLayout_coordSystem_get, _StgDomain.ManualParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.ManualParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.ManualParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.ManualParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.ManualParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialiseParticle"] = _StgDomain.ManualParticleLayout__initialiseParticle_set
+    __swig_getmethods__["_initialiseParticle"] = _StgDomain.ManualParticleLayout__initialiseParticle_get
+    if _newclass:_initialiseParticle = _swig_property(_StgDomain.ManualParticleLayout__initialiseParticle_get, _StgDomain.ManualParticleLayout__initialiseParticle_set)
+    __swig_setmethods__["totalInitialParticles"] = _StgDomain.ManualParticleLayout_totalInitialParticles_set
+    __swig_getmethods__["totalInitialParticles"] = _StgDomain.ManualParticleLayout_totalInitialParticles_get
+    if _newclass:totalInitialParticles = _swig_property(_StgDomain.ManualParticleLayout_totalInitialParticles_get, _StgDomain.ManualParticleLayout_totalInitialParticles_set)
+    __swig_setmethods__["averageInitialParticlesPerCell"] = _StgDomain.ManualParticleLayout_averageInitialParticlesPerCell_set
+    __swig_getmethods__["averageInitialParticlesPerCell"] = _StgDomain.ManualParticleLayout_averageInitialParticlesPerCell_get
+    if _newclass:averageInitialParticlesPerCell = _swig_property(_StgDomain.ManualParticleLayout_averageInitialParticlesPerCell_get, _StgDomain.ManualParticleLayout_averageInitialParticlesPerCell_set)
+    __swig_setmethods__["mustUseAllParticles"] = _StgDomain.ManualParticleLayout_mustUseAllParticles_set
+    __swig_getmethods__["mustUseAllParticles"] = _StgDomain.ManualParticleLayout_mustUseAllParticles_get
+    if _newclass:mustUseAllParticles = _swig_property(_StgDomain.ManualParticleLayout_mustUseAllParticles_get, _StgDomain.ManualParticleLayout_mustUseAllParticles_set)
+    __swig_setmethods__["dictionary"] = _StgDomain.ManualParticleLayout_dictionary_set
+    __swig_getmethods__["dictionary"] = _StgDomain.ManualParticleLayout_dictionary_get
+    if _newclass:dictionary = _swig_property(_StgDomain.ManualParticleLayout_dictionary_get, _StgDomain.ManualParticleLayout_dictionary_set)
+    def __init__(self): 
+        this = _StgDomain.new_ManualParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ManualParticleLayout
+    __del__ = lambda self : None;
+ManualParticleLayout_swigregister = _StgDomain.ManualParticleLayout_swigregister
+ManualParticleLayout_swigregister(ManualParticleLayout)
+ManualParticleLayout_Type = cvar.ManualParticleLayout_Type
+ManualParticleLayout_Invalid = cvar.ManualParticleLayout_Invalid
+
+
+def ManualParticleLayout_New(*args):
+  return _StgDomain.ManualParticleLayout_New(*args)
+ManualParticleLayout_New = _StgDomain.ManualParticleLayout_New
+
+def _ManualParticleLayout_New(*args):
+  return _StgDomain._ManualParticleLayout_New(*args)
+_ManualParticleLayout_New = _StgDomain._ManualParticleLayout_New
+
+def _ManualParticleLayout_Init(*args):
+  return _StgDomain._ManualParticleLayout_Init(*args)
+_ManualParticleLayout_Init = _StgDomain._ManualParticleLayout_Init
+
+def _ManualParticleLayout_Delete(*args):
+  return _StgDomain._ManualParticleLayout_Delete(*args)
+_ManualParticleLayout_Delete = _StgDomain._ManualParticleLayout_Delete
+
+def _ManualParticleLayout_Print(*args):
+  return _StgDomain._ManualParticleLayout_Print(*args)
+_ManualParticleLayout_Print = _StgDomain._ManualParticleLayout_Print
+
+def _ManualParticleLayout_Copy(*args):
+  return _StgDomain._ManualParticleLayout_Copy(*args)
+_ManualParticleLayout_Copy = _StgDomain._ManualParticleLayout_Copy
+
+def _ManualParticleLayout_DefaultNew(*args):
+  return _StgDomain._ManualParticleLayout_DefaultNew(*args)
+_ManualParticleLayout_DefaultNew = _StgDomain._ManualParticleLayout_DefaultNew
+
+def _ManualParticleLayout_AssignFromXML(*args):
+  return _StgDomain._ManualParticleLayout_AssignFromXML(*args)
+_ManualParticleLayout_AssignFromXML = _StgDomain._ManualParticleLayout_AssignFromXML
+
+def _ManualParticleLayout_Build(*args):
+  return _StgDomain._ManualParticleLayout_Build(*args)
+_ManualParticleLayout_Build = _StgDomain._ManualParticleLayout_Build
+
+def _ManualParticleLayout_Initialise(*args):
+  return _StgDomain._ManualParticleLayout_Initialise(*args)
+_ManualParticleLayout_Initialise = _StgDomain._ManualParticleLayout_Initialise
+
+def _ManualParticleLayout_Execute(*args):
+  return _StgDomain._ManualParticleLayout_Execute(*args)
+_ManualParticleLayout_Execute = _StgDomain._ManualParticleLayout_Execute
+
+def _ManualParticleLayout_Destroy(*args):
+  return _StgDomain._ManualParticleLayout_Destroy(*args)
+_ManualParticleLayout_Destroy = _StgDomain._ManualParticleLayout_Destroy
+
+def _ManualParticleLayout_InitialiseParticle(*args):
+  return _StgDomain._ManualParticleLayout_InitialiseParticle(*args)
+_ManualParticleLayout_InitialiseParticle = _StgDomain._ManualParticleLayout_InitialiseParticle
+class PerCellParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, PerCellParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, PerCellParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.PerCellParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.PerCellParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.PerCellParticleLayout__sizeOfSelf_get, _StgDomain.PerCellParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.PerCellParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.PerCellParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.PerCellParticleLayout__deleteSelf_get, _StgDomain.PerCellParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.PerCellParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.PerCellParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.PerCellParticleLayout_type_get, _StgDomain.PerCellParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.PerCellParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.PerCellParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.PerCellParticleLayout_nRefs_get, _StgDomain.PerCellParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.PerCellParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.PerCellParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.PerCellParticleLayout__delete_get, _StgDomain.PerCellParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.PerCellParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.PerCellParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.PerCellParticleLayout__print_get, _StgDomain.PerCellParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.PerCellParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.PerCellParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.PerCellParticleLayout__copy_get, _StgDomain.PerCellParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.PerCellParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.PerCellParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.PerCellParticleLayout_name_get, _StgDomain.PerCellParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.PerCellParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.PerCellParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.PerCellParticleLayout_nameAllocationType_get, _StgDomain.PerCellParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.PerCellParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.PerCellParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.PerCellParticleLayout__defaultConstructor_get, _StgDomain.PerCellParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.PerCellParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.PerCellParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.PerCellParticleLayout__construct_get, _StgDomain.PerCellParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.PerCellParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.PerCellParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.PerCellParticleLayout__build_get, _StgDomain.PerCellParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.PerCellParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.PerCellParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.PerCellParticleLayout__initialise_get, _StgDomain.PerCellParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.PerCellParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.PerCellParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.PerCellParticleLayout__execute_get, _StgDomain.PerCellParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.PerCellParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.PerCellParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.PerCellParticleLayout__destroy_get, _StgDomain.PerCellParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.PerCellParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.PerCellParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.PerCellParticleLayout_isConstructed_get, _StgDomain.PerCellParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.PerCellParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.PerCellParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.PerCellParticleLayout_isBuilt_get, _StgDomain.PerCellParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.PerCellParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.PerCellParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.PerCellParticleLayout_isInitialised_get, _StgDomain.PerCellParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.PerCellParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.PerCellParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.PerCellParticleLayout_hasExecuted_get, _StgDomain.PerCellParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.PerCellParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.PerCellParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.PerCellParticleLayout_isDestroyed_get, _StgDomain.PerCellParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.PerCellParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.PerCellParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.PerCellParticleLayout_constructType_get, _StgDomain.PerCellParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.PerCellParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.PerCellParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.PerCellParticleLayout_buildType_get, _StgDomain.PerCellParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.PerCellParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.PerCellParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.PerCellParticleLayout_initialiseType_get, _StgDomain.PerCellParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.PerCellParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.PerCellParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.PerCellParticleLayout_executeType_get, _StgDomain.PerCellParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.PerCellParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.PerCellParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.PerCellParticleLayout_destroyType_get, _StgDomain.PerCellParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.PerCellParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.PerCellParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.PerCellParticleLayout_context_get, _StgDomain.PerCellParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.PerCellParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.PerCellParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.PerCellParticleLayout__setInitialCounts_get, _StgDomain.PerCellParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.PerCellParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.PerCellParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.PerCellParticleLayout__initialiseParticles_get, _StgDomain.PerCellParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.PerCellParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.PerCellParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.PerCellParticleLayout_debug_get, _StgDomain.PerCellParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.PerCellParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.PerCellParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.PerCellParticleLayout_coordSystem_get, _StgDomain.PerCellParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.PerCellParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.PerCellParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.PerCellParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.PerCellParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialCount"] = _StgDomain.PerCellParticleLayout__initialCount_set
+    __swig_getmethods__["_initialCount"] = _StgDomain.PerCellParticleLayout__initialCount_get
+    if _newclass:_initialCount = _swig_property(_StgDomain.PerCellParticleLayout__initialCount_get, _StgDomain.PerCellParticleLayout__initialCount_set)
+    __swig_setmethods__["_initialiseParticlesOfCell"] = _StgDomain.PerCellParticleLayout__initialiseParticlesOfCell_set
+    __swig_getmethods__["_initialiseParticlesOfCell"] = _StgDomain.PerCellParticleLayout__initialiseParticlesOfCell_get
+    if _newclass:_initialiseParticlesOfCell = _swig_property(_StgDomain.PerCellParticleLayout__initialiseParticlesOfCell_get, _StgDomain.PerCellParticleLayout__initialiseParticlesOfCell_set)
+    def __init__(self): 
+        this = _StgDomain.new_PerCellParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_PerCellParticleLayout
+    __del__ = lambda self : None;
+PerCellParticleLayout_swigregister = _StgDomain.PerCellParticleLayout_swigregister
+PerCellParticleLayout_swigregister(PerCellParticleLayout)
+PerCellParticleLayout_Type = cvar.PerCellParticleLayout_Type
+
+
+def _PerCellParticleLayout_New(*args):
+  return _StgDomain._PerCellParticleLayout_New(*args)
+_PerCellParticleLayout_New = _StgDomain._PerCellParticleLayout_New
+
+def _PerCellParticleLayout_Init(*args):
+  return _StgDomain._PerCellParticleLayout_Init(*args)
+_PerCellParticleLayout_Init = _StgDomain._PerCellParticleLayout_Init
+
+def _PerCellParticleLayout_Delete(*args):
+  return _StgDomain._PerCellParticleLayout_Delete(*args)
+_PerCellParticleLayout_Delete = _StgDomain._PerCellParticleLayout_Delete
+
+def _PerCellParticleLayout_Print(*args):
+  return _StgDomain._PerCellParticleLayout_Print(*args)
+_PerCellParticleLayout_Print = _StgDomain._PerCellParticleLayout_Print
+
+def _PerCellParticleLayout_Copy(*args):
+  return _StgDomain._PerCellParticleLayout_Copy(*args)
+_PerCellParticleLayout_Copy = _StgDomain._PerCellParticleLayout_Copy
+
+def _PerCellParticleLayout_Destroy(*args):
+  return _StgDomain._PerCellParticleLayout_Destroy(*args)
+_PerCellParticleLayout_Destroy = _StgDomain._PerCellParticleLayout_Destroy
+
+def _PerCellParticleLayout_AssignFromXML(*args):
+  return _StgDomain._PerCellParticleLayout_AssignFromXML(*args)
+_PerCellParticleLayout_AssignFromXML = _StgDomain._PerCellParticleLayout_AssignFromXML
+
+def _PerCellParticleLayout_SetInitialCounts(*args):
+  return _StgDomain._PerCellParticleLayout_SetInitialCounts(*args)
+_PerCellParticleLayout_SetInitialCounts = _StgDomain._PerCellParticleLayout_SetInitialCounts
+
+def _PerCellParticleLayout_InitialiseParticles(*args):
+  return _StgDomain._PerCellParticleLayout_InitialiseParticles(*args)
+_PerCellParticleLayout_InitialiseParticles = _StgDomain._PerCellParticleLayout_InitialiseParticles
+
+def PerCellParticleLayout_InitialiseParticlesOfCell(*args):
+  return _StgDomain.PerCellParticleLayout_InitialiseParticlesOfCell(*args)
+PerCellParticleLayout_InitialiseParticlesOfCell = _StgDomain.PerCellParticleLayout_InitialiseParticlesOfCell
+
+def PerCellParticleLayout_InitialCount(*args):
+  return _StgDomain.PerCellParticleLayout_InitialCount(*args)
+PerCellParticleLayout_InitialCount = _StgDomain.PerCellParticleLayout_InitialCount
+class MeshParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MeshParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MeshParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.MeshParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.MeshParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.MeshParticleLayout__sizeOfSelf_get, _StgDomain.MeshParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.MeshParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.MeshParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.MeshParticleLayout__deleteSelf_get, _StgDomain.MeshParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.MeshParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.MeshParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.MeshParticleLayout_type_get, _StgDomain.MeshParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.MeshParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.MeshParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.MeshParticleLayout_nRefs_get, _StgDomain.MeshParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.MeshParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.MeshParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.MeshParticleLayout__delete_get, _StgDomain.MeshParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.MeshParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.MeshParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.MeshParticleLayout__print_get, _StgDomain.MeshParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.MeshParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.MeshParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.MeshParticleLayout__copy_get, _StgDomain.MeshParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.MeshParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.MeshParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.MeshParticleLayout_name_get, _StgDomain.MeshParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.MeshParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.MeshParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.MeshParticleLayout_nameAllocationType_get, _StgDomain.MeshParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.MeshParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.MeshParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.MeshParticleLayout__defaultConstructor_get, _StgDomain.MeshParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.MeshParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.MeshParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.MeshParticleLayout__construct_get, _StgDomain.MeshParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.MeshParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.MeshParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.MeshParticleLayout__build_get, _StgDomain.MeshParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.MeshParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.MeshParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.MeshParticleLayout__initialise_get, _StgDomain.MeshParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.MeshParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.MeshParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.MeshParticleLayout__execute_get, _StgDomain.MeshParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.MeshParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.MeshParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.MeshParticleLayout__destroy_get, _StgDomain.MeshParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.MeshParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.MeshParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.MeshParticleLayout_isConstructed_get, _StgDomain.MeshParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.MeshParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.MeshParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.MeshParticleLayout_isBuilt_get, _StgDomain.MeshParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.MeshParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.MeshParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.MeshParticleLayout_isInitialised_get, _StgDomain.MeshParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.MeshParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.MeshParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.MeshParticleLayout_hasExecuted_get, _StgDomain.MeshParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.MeshParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.MeshParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.MeshParticleLayout_isDestroyed_get, _StgDomain.MeshParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.MeshParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.MeshParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.MeshParticleLayout_constructType_get, _StgDomain.MeshParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.MeshParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.MeshParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.MeshParticleLayout_buildType_get, _StgDomain.MeshParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.MeshParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.MeshParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.MeshParticleLayout_initialiseType_get, _StgDomain.MeshParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.MeshParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.MeshParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.MeshParticleLayout_executeType_get, _StgDomain.MeshParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.MeshParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.MeshParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.MeshParticleLayout_destroyType_get, _StgDomain.MeshParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.MeshParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.MeshParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.MeshParticleLayout_context_get, _StgDomain.MeshParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.MeshParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.MeshParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.MeshParticleLayout__setInitialCounts_get, _StgDomain.MeshParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.MeshParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.MeshParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.MeshParticleLayout__initialiseParticles_get, _StgDomain.MeshParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.MeshParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.MeshParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.MeshParticleLayout_debug_get, _StgDomain.MeshParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.MeshParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.MeshParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.MeshParticleLayout_coordSystem_get, _StgDomain.MeshParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.MeshParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.MeshParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.MeshParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.MeshParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialCount"] = _StgDomain.MeshParticleLayout__initialCount_set
+    __swig_getmethods__["_initialCount"] = _StgDomain.MeshParticleLayout__initialCount_get
+    if _newclass:_initialCount = _swig_property(_StgDomain.MeshParticleLayout__initialCount_get, _StgDomain.MeshParticleLayout__initialCount_set)
+    __swig_setmethods__["_initialiseParticlesOfCell"] = _StgDomain.MeshParticleLayout__initialiseParticlesOfCell_set
+    __swig_getmethods__["_initialiseParticlesOfCell"] = _StgDomain.MeshParticleLayout__initialiseParticlesOfCell_get
+    if _newclass:_initialiseParticlesOfCell = _swig_property(_StgDomain.MeshParticleLayout__initialiseParticlesOfCell_get, _StgDomain.MeshParticleLayout__initialiseParticlesOfCell_set)
+    __swig_setmethods__["mesh"] = _StgDomain.MeshParticleLayout_mesh_set
+    __swig_getmethods__["mesh"] = _StgDomain.MeshParticleLayout_mesh_get
+    if _newclass:mesh = _swig_property(_StgDomain.MeshParticleLayout_mesh_get, _StgDomain.MeshParticleLayout_mesh_set)
+    __swig_setmethods__["cellParticleCount"] = _StgDomain.MeshParticleLayout_cellParticleCount_set
+    __swig_getmethods__["cellParticleCount"] = _StgDomain.MeshParticleLayout_cellParticleCount_get
+    if _newclass:cellParticleCount = _swig_property(_StgDomain.MeshParticleLayout_cellParticleCount_get, _StgDomain.MeshParticleLayout_cellParticleCount_set)
+    __swig_setmethods__["seed"] = _StgDomain.MeshParticleLayout_seed_set
+    __swig_getmethods__["seed"] = _StgDomain.MeshParticleLayout_seed_get
+    if _newclass:seed = _swig_property(_StgDomain.MeshParticleLayout_seed_get, _StgDomain.MeshParticleLayout_seed_set)
+    def __init__(self): 
+        this = _StgDomain.new_MeshParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_MeshParticleLayout
+    __del__ = lambda self : None;
+MeshParticleLayout_swigregister = _StgDomain.MeshParticleLayout_swigregister
+MeshParticleLayout_swigregister(MeshParticleLayout)
+MeshParticleLayout_Type = cvar.MeshParticleLayout_Type
+
+
+def MeshParticleLayout_New(*args):
+  return _StgDomain.MeshParticleLayout_New(*args)
+MeshParticleLayout_New = _StgDomain.MeshParticleLayout_New
+
+def _MeshParticleLayout_New(*args):
+  return _StgDomain._MeshParticleLayout_New(*args)
+_MeshParticleLayout_New = _StgDomain._MeshParticleLayout_New
+
+def _MeshParticleLayout_Init(*args):
+  return _StgDomain._MeshParticleLayout_Init(*args)
+_MeshParticleLayout_Init = _StgDomain._MeshParticleLayout_Init
+
+def _MeshParticleLayout_Delete(*args):
+  return _StgDomain._MeshParticleLayout_Delete(*args)
+_MeshParticleLayout_Delete = _StgDomain._MeshParticleLayout_Delete
+
+def _MeshParticleLayout_Print(*args):
+  return _StgDomain._MeshParticleLayout_Print(*args)
+_MeshParticleLayout_Print = _StgDomain._MeshParticleLayout_Print
+
+def _MeshParticleLayout_Copy(*args):
+  return _StgDomain._MeshParticleLayout_Copy(*args)
+_MeshParticleLayout_Copy = _StgDomain._MeshParticleLayout_Copy
+
+def _MeshParticleLayout_DefaultNew(*args):
+  return _StgDomain._MeshParticleLayout_DefaultNew(*args)
+_MeshParticleLayout_DefaultNew = _StgDomain._MeshParticleLayout_DefaultNew
+
+def _MeshParticleLayout_AssignFromXML(*args):
+  return _StgDomain._MeshParticleLayout_AssignFromXML(*args)
+_MeshParticleLayout_AssignFromXML = _StgDomain._MeshParticleLayout_AssignFromXML
+
+def _MeshParticleLayout_Build(*args):
+  return _StgDomain._MeshParticleLayout_Build(*args)
+_MeshParticleLayout_Build = _StgDomain._MeshParticleLayout_Build
+
+def _MeshParticleLayout_Initialise(*args):
+  return _StgDomain._MeshParticleLayout_Initialise(*args)
+_MeshParticleLayout_Initialise = _StgDomain._MeshParticleLayout_Initialise
+
+def _MeshParticleLayout_Execute(*args):
+  return _StgDomain._MeshParticleLayout_Execute(*args)
+_MeshParticleLayout_Execute = _StgDomain._MeshParticleLayout_Execute
+
+def _MeshParticleLayout_Destroy(*args):
+  return _StgDomain._MeshParticleLayout_Destroy(*args)
+_MeshParticleLayout_Destroy = _StgDomain._MeshParticleLayout_Destroy
+
+def _MeshParticleLayout_InitialCount(*args):
+  return _StgDomain._MeshParticleLayout_InitialCount(*args)
+_MeshParticleLayout_InitialCount = _StgDomain._MeshParticleLayout_InitialCount
+
+def _MeshParticleLayout_InitialiseParticlesOfCell(*args):
+  return _StgDomain._MeshParticleLayout_InitialiseParticlesOfCell(*args)
+_MeshParticleLayout_InitialiseParticlesOfCell = _StgDomain._MeshParticleLayout_InitialiseParticlesOfCell
+MAX_DOF = _StgDomain.MAX_DOF
+class OperatorSwarmVariable(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, OperatorSwarmVariable, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, OperatorSwarmVariable, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.OperatorSwarmVariable__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.OperatorSwarmVariable__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.OperatorSwarmVariable__sizeOfSelf_get, _StgDomain.OperatorSwarmVariable__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.OperatorSwarmVariable__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.OperatorSwarmVariable__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.OperatorSwarmVariable__deleteSelf_get, _StgDomain.OperatorSwarmVariable__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.OperatorSwarmVariable_type_set
+    __swig_getmethods__["type"] = _StgDomain.OperatorSwarmVariable_type_get
+    if _newclass:type = _swig_property(_StgDomain.OperatorSwarmVariable_type_get, _StgDomain.OperatorSwarmVariable_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.OperatorSwarmVariable_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.OperatorSwarmVariable_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.OperatorSwarmVariable_nRefs_get, _StgDomain.OperatorSwarmVariable_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.OperatorSwarmVariable__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.OperatorSwarmVariable__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.OperatorSwarmVariable__delete_get, _StgDomain.OperatorSwarmVariable__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.OperatorSwarmVariable__print_set
+    __swig_getmethods__["_print"] = _StgDomain.OperatorSwarmVariable__print_get
+    if _newclass:_print = _swig_property(_StgDomain.OperatorSwarmVariable__print_get, _StgDomain.OperatorSwarmVariable__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.OperatorSwarmVariable__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.OperatorSwarmVariable__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.OperatorSwarmVariable__copy_get, _StgDomain.OperatorSwarmVariable__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.OperatorSwarmVariable_name_set
+    __swig_getmethods__["name"] = _StgDomain.OperatorSwarmVariable_name_get
+    if _newclass:name = _swig_property(_StgDomain.OperatorSwarmVariable_name_get, _StgDomain.OperatorSwarmVariable_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.OperatorSwarmVariable_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.OperatorSwarmVariable_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.OperatorSwarmVariable_nameAllocationType_get, _StgDomain.OperatorSwarmVariable_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.OperatorSwarmVariable__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.OperatorSwarmVariable__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.OperatorSwarmVariable__defaultConstructor_get, _StgDomain.OperatorSwarmVariable__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.OperatorSwarmVariable__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.OperatorSwarmVariable__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.OperatorSwarmVariable__construct_get, _StgDomain.OperatorSwarmVariable__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.OperatorSwarmVariable__build_set
+    __swig_getmethods__["_build"] = _StgDomain.OperatorSwarmVariable__build_get
+    if _newclass:_build = _swig_property(_StgDomain.OperatorSwarmVariable__build_get, _StgDomain.OperatorSwarmVariable__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.OperatorSwarmVariable__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.OperatorSwarmVariable__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.OperatorSwarmVariable__initialise_get, _StgDomain.OperatorSwarmVariable__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.OperatorSwarmVariable__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.OperatorSwarmVariable__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.OperatorSwarmVariable__execute_get, _StgDomain.OperatorSwarmVariable__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.OperatorSwarmVariable__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.OperatorSwarmVariable__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.OperatorSwarmVariable__destroy_get, _StgDomain.OperatorSwarmVariable__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.OperatorSwarmVariable_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.OperatorSwarmVariable_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.OperatorSwarmVariable_isConstructed_get, _StgDomain.OperatorSwarmVariable_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.OperatorSwarmVariable_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.OperatorSwarmVariable_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.OperatorSwarmVariable_isBuilt_get, _StgDomain.OperatorSwarmVariable_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.OperatorSwarmVariable_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.OperatorSwarmVariable_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.OperatorSwarmVariable_isInitialised_get, _StgDomain.OperatorSwarmVariable_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.OperatorSwarmVariable_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.OperatorSwarmVariable_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.OperatorSwarmVariable_hasExecuted_get, _StgDomain.OperatorSwarmVariable_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.OperatorSwarmVariable_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.OperatorSwarmVariable_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.OperatorSwarmVariable_isDestroyed_get, _StgDomain.OperatorSwarmVariable_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.OperatorSwarmVariable_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.OperatorSwarmVariable_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.OperatorSwarmVariable_constructType_get, _StgDomain.OperatorSwarmVariable_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.OperatorSwarmVariable_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.OperatorSwarmVariable_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.OperatorSwarmVariable_buildType_get, _StgDomain.OperatorSwarmVariable_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.OperatorSwarmVariable_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.OperatorSwarmVariable_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.OperatorSwarmVariable_initialiseType_get, _StgDomain.OperatorSwarmVariable_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.OperatorSwarmVariable_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.OperatorSwarmVariable_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.OperatorSwarmVariable_executeType_get, _StgDomain.OperatorSwarmVariable_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.OperatorSwarmVariable_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.OperatorSwarmVariable_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.OperatorSwarmVariable_destroyType_get, _StgDomain.OperatorSwarmVariable_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.OperatorSwarmVariable_context_set
+    __swig_getmethods__["context"] = _StgDomain.OperatorSwarmVariable_context_get
+    if _newclass:context = _swig_property(_StgDomain.OperatorSwarmVariable_context_get, _StgDomain.OperatorSwarmVariable_context_set)
+    __swig_setmethods__["_valueAt"] = _StgDomain.OperatorSwarmVariable__valueAt_set
+    __swig_getmethods__["_valueAt"] = _StgDomain.OperatorSwarmVariable__valueAt_get
+    if _newclass:_valueAt = _swig_property(_StgDomain.OperatorSwarmVariable__valueAt_get, _StgDomain.OperatorSwarmVariable__valueAt_set)
+    __swig_setmethods__["_getMinGlobalMagnitude"] = _StgDomain.OperatorSwarmVariable__getMinGlobalMagnitude_set
+    __swig_getmethods__["_getMinGlobalMagnitude"] = _StgDomain.OperatorSwarmVariable__getMinGlobalMagnitude_get
+    if _newclass:_getMinGlobalMagnitude = _swig_property(_StgDomain.OperatorSwarmVariable__getMinGlobalMagnitude_get, _StgDomain.OperatorSwarmVariable__getMinGlobalMagnitude_set)
+    __swig_setmethods__["_getMaxGlobalMagnitude"] = _StgDomain.OperatorSwarmVariable__getMaxGlobalMagnitude_set
+    __swig_getmethods__["_getMaxGlobalMagnitude"] = _StgDomain.OperatorSwarmVariable__getMaxGlobalMagnitude_get
+    if _newclass:_getMaxGlobalMagnitude = _swig_property(_StgDomain.OperatorSwarmVariable__getMaxGlobalMagnitude_get, _StgDomain.OperatorSwarmVariable__getMaxGlobalMagnitude_set)
+    __swig_setmethods__["swarm"] = _StgDomain.OperatorSwarmVariable_swarm_set
+    __swig_getmethods__["swarm"] = _StgDomain.OperatorSwarmVariable_swarm_get
+    if _newclass:swarm = _swig_property(_StgDomain.OperatorSwarmVariable_swarm_get, _StgDomain.OperatorSwarmVariable_swarm_set)
+    __swig_setmethods__["variable"] = _StgDomain.OperatorSwarmVariable_variable_set
+    __swig_getmethods__["variable"] = _StgDomain.OperatorSwarmVariable_variable_get
+    if _newclass:variable = _swig_property(_StgDomain.OperatorSwarmVariable_variable_get, _StgDomain.OperatorSwarmVariable_variable_set)
+    __swig_setmethods__["dofCount"] = _StgDomain.OperatorSwarmVariable_dofCount_set
+    __swig_getmethods__["dofCount"] = _StgDomain.OperatorSwarmVariable_dofCount_get
+    if _newclass:dofCount = _swig_property(_StgDomain.OperatorSwarmVariable_dofCount_get, _StgDomain.OperatorSwarmVariable_dofCount_set)
+    __swig_setmethods__["dim"] = _StgDomain.OperatorSwarmVariable_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.OperatorSwarmVariable_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.OperatorSwarmVariable_dim_get, _StgDomain.OperatorSwarmVariable_dim_set)
+    __swig_setmethods__["swarmVariable_Register"] = _StgDomain.OperatorSwarmVariable_swarmVariable_Register_set
+    __swig_getmethods__["swarmVariable_Register"] = _StgDomain.OperatorSwarmVariable_swarmVariable_Register_get
+    if _newclass:swarmVariable_Register = _swig_property(_StgDomain.OperatorSwarmVariable_swarmVariable_Register_get, _StgDomain.OperatorSwarmVariable_swarmVariable_Register_set)
+    __swig_setmethods__["isCheckpointedAndReloaded"] = _StgDomain.OperatorSwarmVariable_isCheckpointedAndReloaded_set
+    __swig_getmethods__["isCheckpointedAndReloaded"] = _StgDomain.OperatorSwarmVariable_isCheckpointedAndReloaded_get
+    if _newclass:isCheckpointedAndReloaded = _swig_property(_StgDomain.OperatorSwarmVariable_isCheckpointedAndReloaded_get, _StgDomain.OperatorSwarmVariable_isCheckpointedAndReloaded_set)
+    __swig_setmethods__["cachedTimestep"] = _StgDomain.OperatorSwarmVariable_cachedTimestep_set
+    __swig_getmethods__["cachedTimestep"] = _StgDomain.OperatorSwarmVariable_cachedTimestep_get
+    if _newclass:cachedTimestep = _swig_property(_StgDomain.OperatorSwarmVariable_cachedTimestep_get, _StgDomain.OperatorSwarmVariable_cachedTimestep_set)
+    __swig_setmethods__["magnitudeMin"] = _StgDomain.OperatorSwarmVariable_magnitudeMin_set
+    __swig_getmethods__["magnitudeMin"] = _StgDomain.OperatorSwarmVariable_magnitudeMin_get
+    if _newclass:magnitudeMin = _swig_property(_StgDomain.OperatorSwarmVariable_magnitudeMin_get, _StgDomain.OperatorSwarmVariable_magnitudeMin_set)
+    __swig_setmethods__["magnitudeMax"] = _StgDomain.OperatorSwarmVariable_magnitudeMax_set
+    __swig_getmethods__["magnitudeMax"] = _StgDomain.OperatorSwarmVariable_magnitudeMax_get
+    if _newclass:magnitudeMax = _swig_property(_StgDomain.OperatorSwarmVariable_magnitudeMax_get, _StgDomain.OperatorSwarmVariable_magnitudeMax_set)
+    __swig_setmethods__["useCacheMaxMin"] = _StgDomain.OperatorSwarmVariable_useCacheMaxMin_set
+    __swig_getmethods__["useCacheMaxMin"] = _StgDomain.OperatorSwarmVariable_useCacheMaxMin_get
+    if _newclass:useCacheMaxMin = _swig_property(_StgDomain.OperatorSwarmVariable_useCacheMaxMin_get, _StgDomain.OperatorSwarmVariable_useCacheMaxMin_set)
+    __swig_setmethods__["addToSwarmParticleExtension"] = _StgDomain.OperatorSwarmVariable_addToSwarmParticleExtension_set
+    __swig_getmethods__["addToSwarmParticleExtension"] = _StgDomain.OperatorSwarmVariable_addToSwarmParticleExtension_get
+    if _newclass:addToSwarmParticleExtension = _swig_property(_StgDomain.OperatorSwarmVariable_addToSwarmParticleExtension_get, _StgDomain.OperatorSwarmVariable_addToSwarmParticleExtension_set)
+    __swig_setmethods__["_operator"] = _StgDomain.OperatorSwarmVariable__operator_set
+    __swig_getmethods__["_operator"] = _StgDomain.OperatorSwarmVariable__operator_get
+    if _newclass:_operator = _swig_property(_StgDomain.OperatorSwarmVariable__operator_get, _StgDomain.OperatorSwarmVariable__operator_set)
+    __swig_setmethods__["swarmVariableCount"] = _StgDomain.OperatorSwarmVariable_swarmVariableCount_set
+    __swig_getmethods__["swarmVariableCount"] = _StgDomain.OperatorSwarmVariable_swarmVariableCount_get
+    if _newclass:swarmVariableCount = _swig_property(_StgDomain.OperatorSwarmVariable_swarmVariableCount_get, _StgDomain.OperatorSwarmVariable_swarmVariableCount_set)
+    __swig_setmethods__["swarmVariableList"] = _StgDomain.OperatorSwarmVariable_swarmVariableList_set
+    __swig_getmethods__["swarmVariableList"] = _StgDomain.OperatorSwarmVariable_swarmVariableList_get
+    if _newclass:swarmVariableList = _swig_property(_StgDomain.OperatorSwarmVariable_swarmVariableList_get, _StgDomain.OperatorSwarmVariable_swarmVariableList_set)
+    def __init__(self): 
+        this = _StgDomain.new_OperatorSwarmVariable()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_OperatorSwarmVariable
+    __del__ = lambda self : None;
+OperatorSwarmVariable_swigregister = _StgDomain.OperatorSwarmVariable_swigregister
+OperatorSwarmVariable_swigregister(OperatorSwarmVariable)
+OperatorSwarmVariable_Type = cvar.OperatorSwarmVariable_Type
+
+
+def OperatorSwarmVariable_NewUnary(*args):
+  return _StgDomain.OperatorSwarmVariable_NewUnary(*args)
+OperatorSwarmVariable_NewUnary = _StgDomain.OperatorSwarmVariable_NewUnary
+
+def OperatorSwarmVariable_NewBinary(*args):
+  return _StgDomain.OperatorSwarmVariable_NewBinary(*args)
+OperatorSwarmVariable_NewBinary = _StgDomain.OperatorSwarmVariable_NewBinary
+
+def _OperatorSwarmVariable_DefaultNew(*args):
+  return _StgDomain._OperatorSwarmVariable_DefaultNew(*args)
+_OperatorSwarmVariable_DefaultNew = _StgDomain._OperatorSwarmVariable_DefaultNew
+
+def OperatorSwarmVariable_New(*args):
+  return _StgDomain.OperatorSwarmVariable_New(*args)
+OperatorSwarmVariable_New = _StgDomain.OperatorSwarmVariable_New
+
+def _OperatorSwarmVariable_New(*args):
+  return _StgDomain._OperatorSwarmVariable_New(*args)
+_OperatorSwarmVariable_New = _StgDomain._OperatorSwarmVariable_New
+
+def _OperatorSwarmVariable_Init(*args):
+  return _StgDomain._OperatorSwarmVariable_Init(*args)
+_OperatorSwarmVariable_Init = _StgDomain._OperatorSwarmVariable_Init
+
+def _OperatorSwarmVariable_Delete(*args):
+  return _StgDomain._OperatorSwarmVariable_Delete(*args)
+_OperatorSwarmVariable_Delete = _StgDomain._OperatorSwarmVariable_Delete
+
+def _OperatorSwarmVariable_Print(*args):
+  return _StgDomain._OperatorSwarmVariable_Print(*args)
+_OperatorSwarmVariable_Print = _StgDomain._OperatorSwarmVariable_Print
+
+def _OperatorSwarmVariable_Copy(*args):
+  return _StgDomain._OperatorSwarmVariable_Copy(*args)
+_OperatorSwarmVariable_Copy = _StgDomain._OperatorSwarmVariable_Copy
+
+def _OperatorSwarmVariable_AssignFromXML(*args):
+  return _StgDomain._OperatorSwarmVariable_AssignFromXML(*args)
+_OperatorSwarmVariable_AssignFromXML = _StgDomain._OperatorSwarmVariable_AssignFromXML
+
+def _OperatorSwarmVariable_Build(*args):
+  return _StgDomain._OperatorSwarmVariable_Build(*args)
+_OperatorSwarmVariable_Build = _StgDomain._OperatorSwarmVariable_Build
+
+def _OperatorSwarmVariable_Execute(*args):
+  return _StgDomain._OperatorSwarmVariable_Execute(*args)
+_OperatorSwarmVariable_Execute = _StgDomain._OperatorSwarmVariable_Execute
+
+def _OperatorSwarmVariable_Destroy(*args):
+  return _StgDomain._OperatorSwarmVariable_Destroy(*args)
+_OperatorSwarmVariable_Destroy = _StgDomain._OperatorSwarmVariable_Destroy
+
+def _OperatorSwarmVariable_Initialise(*args):
+  return _StgDomain._OperatorSwarmVariable_Initialise(*args)
+_OperatorSwarmVariable_Initialise = _StgDomain._OperatorSwarmVariable_Initialise
+
+def _OperatorSwarmVariable_ValueAt(*args):
+  return _StgDomain._OperatorSwarmVariable_ValueAt(*args)
+_OperatorSwarmVariable_ValueAt = _StgDomain._OperatorSwarmVariable_ValueAt
+
+def _OperatorSwarmVariable_GetMinGlobalMagnitude(*args):
+  return _StgDomain._OperatorSwarmVariable_GetMinGlobalMagnitude(*args)
+_OperatorSwarmVariable_GetMinGlobalMagnitude = _StgDomain._OperatorSwarmVariable_GetMinGlobalMagnitude
+
+def _OperatorSwarmVariable_GetMaxGlobalMagnitude(*args):
+  return _StgDomain._OperatorSwarmVariable_GetMaxGlobalMagnitude(*args)
+_OperatorSwarmVariable_GetMaxGlobalMagnitude = _StgDomain._OperatorSwarmVariable_GetMaxGlobalMagnitude
+
+def _OperatorSwarmVariable_UnaryValueAt(*args):
+  return _StgDomain._OperatorSwarmVariable_UnaryValueAt(*args)
+_OperatorSwarmVariable_UnaryValueAt = _StgDomain._OperatorSwarmVariable_UnaryValueAt
+
+def _OperatorSwarmVariable_BinaryValueAt(*args):
+  return _StgDomain._OperatorSwarmVariable_BinaryValueAt(*args)
+_OperatorSwarmVariable_BinaryValueAt = _StgDomain._OperatorSwarmVariable_BinaryValueAt
+class ParticleCommHandler(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ParticleCommHandler, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ParticleCommHandler, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.ParticleCommHandler__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.ParticleCommHandler__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.ParticleCommHandler__sizeOfSelf_get, _StgDomain.ParticleCommHandler__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.ParticleCommHandler__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.ParticleCommHandler__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.ParticleCommHandler__deleteSelf_get, _StgDomain.ParticleCommHandler__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.ParticleCommHandler_type_set
+    __swig_getmethods__["type"] = _StgDomain.ParticleCommHandler_type_get
+    if _newclass:type = _swig_property(_StgDomain.ParticleCommHandler_type_get, _StgDomain.ParticleCommHandler_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.ParticleCommHandler_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.ParticleCommHandler_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.ParticleCommHandler_nRefs_get, _StgDomain.ParticleCommHandler_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.ParticleCommHandler__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.ParticleCommHandler__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.ParticleCommHandler__delete_get, _StgDomain.ParticleCommHandler__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.ParticleCommHandler__print_set
+    __swig_getmethods__["_print"] = _StgDomain.ParticleCommHandler__print_get
+    if _newclass:_print = _swig_property(_StgDomain.ParticleCommHandler__print_get, _StgDomain.ParticleCommHandler__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.ParticleCommHandler__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.ParticleCommHandler__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.ParticleCommHandler__copy_get, _StgDomain.ParticleCommHandler__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.ParticleCommHandler_name_set
+    __swig_getmethods__["name"] = _StgDomain.ParticleCommHandler_name_get
+    if _newclass:name = _swig_property(_StgDomain.ParticleCommHandler_name_get, _StgDomain.ParticleCommHandler_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.ParticleCommHandler_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.ParticleCommHandler_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.ParticleCommHandler_nameAllocationType_get, _StgDomain.ParticleCommHandler_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.ParticleCommHandler__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.ParticleCommHandler__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.ParticleCommHandler__defaultConstructor_get, _StgDomain.ParticleCommHandler__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.ParticleCommHandler__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.ParticleCommHandler__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.ParticleCommHandler__construct_get, _StgDomain.ParticleCommHandler__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.ParticleCommHandler__build_set
+    __swig_getmethods__["_build"] = _StgDomain.ParticleCommHandler__build_get
+    if _newclass:_build = _swig_property(_StgDomain.ParticleCommHandler__build_get, _StgDomain.ParticleCommHandler__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.ParticleCommHandler__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.ParticleCommHandler__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.ParticleCommHandler__initialise_get, _StgDomain.ParticleCommHandler__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.ParticleCommHandler__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.ParticleCommHandler__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.ParticleCommHandler__execute_get, _StgDomain.ParticleCommHandler__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.ParticleCommHandler__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.ParticleCommHandler__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.ParticleCommHandler__destroy_get, _StgDomain.ParticleCommHandler__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.ParticleCommHandler_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.ParticleCommHandler_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.ParticleCommHandler_isConstructed_get, _StgDomain.ParticleCommHandler_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.ParticleCommHandler_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.ParticleCommHandler_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.ParticleCommHandler_isBuilt_get, _StgDomain.ParticleCommHandler_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.ParticleCommHandler_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.ParticleCommHandler_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.ParticleCommHandler_isInitialised_get, _StgDomain.ParticleCommHandler_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.ParticleCommHandler_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.ParticleCommHandler_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.ParticleCommHandler_hasExecuted_get, _StgDomain.ParticleCommHandler_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.ParticleCommHandler_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.ParticleCommHandler_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.ParticleCommHandler_isDestroyed_get, _StgDomain.ParticleCommHandler_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.ParticleCommHandler_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.ParticleCommHandler_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.ParticleCommHandler_constructType_get, _StgDomain.ParticleCommHandler_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.ParticleCommHandler_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.ParticleCommHandler_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.ParticleCommHandler_buildType_get, _StgDomain.ParticleCommHandler_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.ParticleCommHandler_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.ParticleCommHandler_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.ParticleCommHandler_initialiseType_get, _StgDomain.ParticleCommHandler_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.ParticleCommHandler_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.ParticleCommHandler_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.ParticleCommHandler_executeType_get, _StgDomain.ParticleCommHandler_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.ParticleCommHandler_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.ParticleCommHandler_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.ParticleCommHandler_destroyType_get, _StgDomain.ParticleCommHandler_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.ParticleCommHandler_context_set
+    __swig_getmethods__["context"] = _StgDomain.ParticleCommHandler_context_get
+    if _newclass:context = _swig_property(_StgDomain.ParticleCommHandler_context_get, _StgDomain.ParticleCommHandler_context_set)
+    __swig_setmethods__["allocateOutgoingCountArrays"] = _StgDomain.ParticleCommHandler_allocateOutgoingCountArrays_set
+    __swig_getmethods__["allocateOutgoingCountArrays"] = _StgDomain.ParticleCommHandler_allocateOutgoingCountArrays_get
+    if _newclass:allocateOutgoingCountArrays = _swig_property(_StgDomain.ParticleCommHandler_allocateOutgoingCountArrays_get, _StgDomain.ParticleCommHandler_allocateOutgoingCountArrays_set)
+    __swig_setmethods__["allocateOutgoingParticleArrays"] = _StgDomain.ParticleCommHandler_allocateOutgoingParticleArrays_set
+    __swig_getmethods__["allocateOutgoingParticleArrays"] = _StgDomain.ParticleCommHandler_allocateOutgoingParticleArrays_get
+    if _newclass:allocateOutgoingParticleArrays = _swig_property(_StgDomain.ParticleCommHandler_allocateOutgoingParticleArrays_get, _StgDomain.ParticleCommHandler_allocateOutgoingParticleArrays_set)
+    __swig_setmethods__["freeOutgoingArrays"] = _StgDomain.ParticleCommHandler_freeOutgoingArrays_set
+    __swig_getmethods__["freeOutgoingArrays"] = _StgDomain.ParticleCommHandler_freeOutgoingArrays_get
+    if _newclass:freeOutgoingArrays = _swig_property(_StgDomain.ParticleCommHandler_freeOutgoingArrays_get, _StgDomain.ParticleCommHandler_freeOutgoingArrays_set)
+    __swig_setmethods__["allocateIncomingCountArrays"] = _StgDomain.ParticleCommHandler_allocateIncomingCountArrays_set
+    __swig_getmethods__["allocateIncomingCountArrays"] = _StgDomain.ParticleCommHandler_allocateIncomingCountArrays_get
+    if _newclass:allocateIncomingCountArrays = _swig_property(_StgDomain.ParticleCommHandler_allocateIncomingCountArrays_get, _StgDomain.ParticleCommHandler_allocateIncomingCountArrays_set)
+    __swig_setmethods__["allocateIncomingParticleArrays"] = _StgDomain.ParticleCommHandler_allocateIncomingParticleArrays_set
+    __swig_getmethods__["allocateIncomingParticleArrays"] = _StgDomain.ParticleCommHandler_allocateIncomingParticleArrays_get
+    if _newclass:allocateIncomingParticleArrays = _swig_property(_StgDomain.ParticleCommHandler_allocateIncomingParticleArrays_get, _StgDomain.ParticleCommHandler_allocateIncomingParticleArrays_set)
+    __swig_setmethods__["freeIncomingArrays"] = _StgDomain.ParticleCommHandler_freeIncomingArrays_set
+    __swig_getmethods__["freeIncomingArrays"] = _StgDomain.ParticleCommHandler_freeIncomingArrays_get
+    if _newclass:freeIncomingArrays = _swig_property(_StgDomain.ParticleCommHandler_freeIncomingArrays_get, _StgDomain.ParticleCommHandler_freeIncomingArrays_set)
+    __swig_setmethods__["beginReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleCommHandler_beginReceiveOfIncomingParticleCounts_set
+    __swig_getmethods__["beginReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleCommHandler_beginReceiveOfIncomingParticleCounts_get
+    if _newclass:beginReceiveOfIncomingParticleCounts = _swig_property(_StgDomain.ParticleCommHandler_beginReceiveOfIncomingParticleCounts_get, _StgDomain.ParticleCommHandler_beginReceiveOfIncomingParticleCounts_set)
+    __swig_setmethods__["finishReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleCommHandler_finishReceiveOfIncomingParticleCounts_set
+    __swig_getmethods__["finishReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleCommHandler_finishReceiveOfIncomingParticleCounts_get
+    if _newclass:finishReceiveOfIncomingParticleCounts = _swig_property(_StgDomain.ParticleCommHandler_finishReceiveOfIncomingParticleCounts_get, _StgDomain.ParticleCommHandler_finishReceiveOfIncomingParticleCounts_set)
+    __swig_setmethods__["beginReceiveOfIncomingParticles"] = _StgDomain.ParticleCommHandler_beginReceiveOfIncomingParticles_set
+    __swig_getmethods__["beginReceiveOfIncomingParticles"] = _StgDomain.ParticleCommHandler_beginReceiveOfIncomingParticles_get
+    if _newclass:beginReceiveOfIncomingParticles = _swig_property(_StgDomain.ParticleCommHandler_beginReceiveOfIncomingParticles_get, _StgDomain.ParticleCommHandler_beginReceiveOfIncomingParticles_set)
+    __swig_setmethods__["finishReceiveOfIncomingParticlesAndUpdateIndices"] = _StgDomain.ParticleCommHandler_finishReceiveOfIncomingParticlesAndUpdateIndices_set
+    __swig_getmethods__["finishReceiveOfIncomingParticlesAndUpdateIndices"] = _StgDomain.ParticleCommHandler_finishReceiveOfIncomingParticlesAndUpdateIndices_get
+    if _newclass:finishReceiveOfIncomingParticlesAndUpdateIndices = _swig_property(_StgDomain.ParticleCommHandler_finishReceiveOfIncomingParticlesAndUpdateIndices_get, _StgDomain.ParticleCommHandler_finishReceiveOfIncomingParticlesAndUpdateIndices_set)
+    __swig_setmethods__["sendOutgoingParticleCounts"] = _StgDomain.ParticleCommHandler_sendOutgoingParticleCounts_set
+    __swig_getmethods__["sendOutgoingParticleCounts"] = _StgDomain.ParticleCommHandler_sendOutgoingParticleCounts_get
+    if _newclass:sendOutgoingParticleCounts = _swig_property(_StgDomain.ParticleCommHandler_sendOutgoingParticleCounts_get, _StgDomain.ParticleCommHandler_sendOutgoingParticleCounts_set)
+    __swig_setmethods__["beginSendingParticles"] = _StgDomain.ParticleCommHandler_beginSendingParticles_set
+    __swig_getmethods__["beginSendingParticles"] = _StgDomain.ParticleCommHandler_beginSendingParticles_get
+    if _newclass:beginSendingParticles = _swig_property(_StgDomain.ParticleCommHandler_beginSendingParticles_get, _StgDomain.ParticleCommHandler_beginSendingParticles_set)
+    __swig_setmethods__["confirmOutgoingSendsCompleted"] = _StgDomain.ParticleCommHandler_confirmOutgoingSendsCompleted_set
+    __swig_getmethods__["confirmOutgoingSendsCompleted"] = _StgDomain.ParticleCommHandler_confirmOutgoingSendsCompleted_get
+    if _newclass:confirmOutgoingSendsCompleted = _swig_property(_StgDomain.ParticleCommHandler_confirmOutgoingSendsCompleted_get, _StgDomain.ParticleCommHandler_confirmOutgoingSendsCompleted_set)
+    __swig_setmethods__["_commFunction"] = _StgDomain.ParticleCommHandler__commFunction_set
+    __swig_getmethods__["_commFunction"] = _StgDomain.ParticleCommHandler__commFunction_get
+    if _newclass:_commFunction = _swig_property(_StgDomain.ParticleCommHandler__commFunction_get, _StgDomain.ParticleCommHandler__commFunction_set)
+    __swig_setmethods__["debug"] = _StgDomain.ParticleCommHandler_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.ParticleCommHandler_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.ParticleCommHandler_debug_get, _StgDomain.ParticleCommHandler_debug_set)
+    __swig_setmethods__["swarm"] = _StgDomain.ParticleCommHandler_swarm_set
+    __swig_getmethods__["swarm"] = _StgDomain.ParticleCommHandler_swarm_get
+    if _newclass:swarm = _swig_property(_StgDomain.ParticleCommHandler_swarm_get, _StgDomain.ParticleCommHandler_swarm_set)
+    __swig_setmethods__["shadowParticlesLeavingMeIndices"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeIndices_set
+    __swig_getmethods__["shadowParticlesLeavingMeIndices"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeIndices_get
+    if _newclass:shadowParticlesLeavingMeIndices = _swig_property(_StgDomain.ParticleCommHandler_shadowParticlesLeavingMeIndices_get, _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeIndices_set)
+    __swig_setmethods__["shadowParticlesLeavingMeTotalCount"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeTotalCount_set
+    __swig_getmethods__["shadowParticlesLeavingMeTotalCount"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeTotalCount_get
+    if _newclass:shadowParticlesLeavingMeTotalCount = _swig_property(_StgDomain.ParticleCommHandler_shadowParticlesLeavingMeTotalCount_get, _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeTotalCount_set)
+    __swig_setmethods__["shadowParticlesLeavingMeUnfilledCount"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeUnfilledCount_set
+    __swig_getmethods__["shadowParticlesLeavingMeUnfilledCount"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeUnfilledCount_get
+    if _newclass:shadowParticlesLeavingMeUnfilledCount = _swig_property(_StgDomain.ParticleCommHandler_shadowParticlesLeavingMeUnfilledCount_get, _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeUnfilledCount_set)
+    __swig_setmethods__["currShadowParticleLeavingMeIndex"] = _StgDomain.ParticleCommHandler_currShadowParticleLeavingMeIndex_set
+    __swig_getmethods__["currShadowParticleLeavingMeIndex"] = _StgDomain.ParticleCommHandler_currShadowParticleLeavingMeIndex_get
+    if _newclass:currShadowParticleLeavingMeIndex = _swig_property(_StgDomain.ParticleCommHandler_currShadowParticleLeavingMeIndex_get, _StgDomain.ParticleCommHandler_currShadowParticleLeavingMeIndex_set)
+    __swig_setmethods__["currParticleLeavingMyDomainIndex"] = _StgDomain.ParticleCommHandler_currParticleLeavingMyDomainIndex_set
+    __swig_getmethods__["currParticleLeavingMyDomainIndex"] = _StgDomain.ParticleCommHandler_currParticleLeavingMyDomainIndex_get
+    if _newclass:currParticleLeavingMyDomainIndex = _swig_property(_StgDomain.ParticleCommHandler_currParticleLeavingMyDomainIndex_get, _StgDomain.ParticleCommHandler_currParticleLeavingMyDomainIndex_set)
+    __swig_setmethods__["particlesOutsideDomainIndices"] = _StgDomain.ParticleCommHandler_particlesOutsideDomainIndices_set
+    __swig_getmethods__["particlesOutsideDomainIndices"] = _StgDomain.ParticleCommHandler_particlesOutsideDomainIndices_get
+    if _newclass:particlesOutsideDomainIndices = _swig_property(_StgDomain.ParticleCommHandler_particlesOutsideDomainIndices_get, _StgDomain.ParticleCommHandler_particlesOutsideDomainIndices_set)
+    __swig_setmethods__["particlesOutsideDomainTotalCount"] = _StgDomain.ParticleCommHandler_particlesOutsideDomainTotalCount_set
+    __swig_getmethods__["particlesOutsideDomainTotalCount"] = _StgDomain.ParticleCommHandler_particlesOutsideDomainTotalCount_get
+    if _newclass:particlesOutsideDomainTotalCount = _swig_property(_StgDomain.ParticleCommHandler_particlesOutsideDomainTotalCount_get, _StgDomain.ParticleCommHandler_particlesOutsideDomainTotalCount_set)
+    __swig_setmethods__["particlesOutsideDomainUnfilledCount"] = _StgDomain.ParticleCommHandler_particlesOutsideDomainUnfilledCount_set
+    __swig_getmethods__["particlesOutsideDomainUnfilledCount"] = _StgDomain.ParticleCommHandler_particlesOutsideDomainUnfilledCount_get
+    if _newclass:particlesOutsideDomainUnfilledCount = _swig_property(_StgDomain.ParticleCommHandler_particlesOutsideDomainUnfilledCount_get, _StgDomain.ParticleCommHandler_particlesOutsideDomainUnfilledCount_set)
+    __swig_setmethods__["shadowParticlesLeavingMeCountsPerCell"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeCountsPerCell_set
+    __swig_getmethods__["shadowParticlesLeavingMeCountsPerCell"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeCountsPerCell_get
+    if _newclass:shadowParticlesLeavingMeCountsPerCell = _swig_property(_StgDomain.ParticleCommHandler_shadowParticlesLeavingMeCountsPerCell_get, _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeCountsPerCell_set)
+    __swig_setmethods__["shadowParticlesLeavingMeTotalCounts"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeTotalCounts_set
+    __swig_getmethods__["shadowParticlesLeavingMeTotalCounts"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeTotalCounts_get
+    if _newclass:shadowParticlesLeavingMeTotalCounts = _swig_property(_StgDomain.ParticleCommHandler_shadowParticlesLeavingMeTotalCounts_get, _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeTotalCounts_set)
+    __swig_setmethods__["shadowParticlesLeavingMe"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMe_set
+    __swig_getmethods__["shadowParticlesLeavingMe"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMe_get
+    if _newclass:shadowParticlesLeavingMe = _swig_property(_StgDomain.ParticleCommHandler_shadowParticlesLeavingMe_get, _StgDomain.ParticleCommHandler_shadowParticlesLeavingMe_set)
+    __swig_setmethods__["shadowParticlesLeavingMeHandles"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeHandles_set
+    __swig_getmethods__["shadowParticlesLeavingMeHandles"] = _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeHandles_get
+    if _newclass:shadowParticlesLeavingMeHandles = _swig_property(_StgDomain.ParticleCommHandler_shadowParticlesLeavingMeHandles_get, _StgDomain.ParticleCommHandler_shadowParticlesLeavingMeHandles_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellCounts"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellCounts_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellCounts"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellCounts_get
+    if _newclass:particlesArrivingFromNbrShadowCellCounts = _swig_property(_StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellCounts_get, _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellCounts_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellCountsHandles"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellCountsHandles_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellCountsHandles"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellCountsHandles_get
+    if _newclass:particlesArrivingFromNbrShadowCellCountsHandles = _swig_property(_StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellCountsHandles_get, _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellCountsHandles_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellsTotalCounts"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellsTotalCounts_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellsTotalCounts"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellsTotalCounts_get
+    if _newclass:particlesArrivingFromNbrShadowCellsTotalCounts = _swig_property(_StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellsTotalCounts_get, _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellsTotalCounts_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCells"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCells_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCells"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCells_get
+    if _newclass:particlesArrivingFromNbrShadowCells = _swig_property(_StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCells_get, _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCells_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellsHandles"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellsHandles_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellsHandles"] = _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellsHandles_get
+    if _newclass:particlesArrivingFromNbrShadowCellsHandles = _swig_property(_StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellsHandles_get, _StgDomain.ParticleCommHandler_particlesArrivingFromNbrShadowCellsHandles_set)
+    def __init__(self): 
+        this = _StgDomain.new_ParticleCommHandler()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ParticleCommHandler
+    __del__ = lambda self : None;
+ParticleCommHandler_swigregister = _StgDomain.ParticleCommHandler_swigregister
+ParticleCommHandler_swigregister(ParticleCommHandler)
+ParticleCommHandler_Type = cvar.ParticleCommHandler_Type
+
+
+def _ParticleCommHandler_New(*args):
+  return _StgDomain._ParticleCommHandler_New(*args)
+_ParticleCommHandler_New = _StgDomain._ParticleCommHandler_New
+
+def _ParticleCommHandler_Init(*args):
+  return _StgDomain._ParticleCommHandler_Init(*args)
+_ParticleCommHandler_Init = _StgDomain._ParticleCommHandler_Init
+
+def _ParticleCommHandler_Print(*args):
+  return _StgDomain._ParticleCommHandler_Print(*args)
+_ParticleCommHandler_Print = _StgDomain._ParticleCommHandler_Print
+
+def _ParticleCommHandler_AssignFromXML(*args):
+  return _StgDomain._ParticleCommHandler_AssignFromXML(*args)
+_ParticleCommHandler_AssignFromXML = _StgDomain._ParticleCommHandler_AssignFromXML
+
+def _ParticleCommHandler_Build(*args):
+  return _StgDomain._ParticleCommHandler_Build(*args)
+_ParticleCommHandler_Build = _StgDomain._ParticleCommHandler_Build
+
+def _ParticleCommHandler_Initialise(*args):
+  return _StgDomain._ParticleCommHandler_Initialise(*args)
+_ParticleCommHandler_Initialise = _StgDomain._ParticleCommHandler_Initialise
+
+def _ParticleCommHandler_Execute(*args):
+  return _StgDomain._ParticleCommHandler_Execute(*args)
+_ParticleCommHandler_Execute = _StgDomain._ParticleCommHandler_Execute
+
+def _ParticleCommHandler_Destroy(*args):
+  return _StgDomain._ParticleCommHandler_Destroy(*args)
+_ParticleCommHandler_Destroy = _StgDomain._ParticleCommHandler_Destroy
+
+def _ParticleCommHandler_Copy(*args):
+  return _StgDomain._ParticleCommHandler_Copy(*args)
+_ParticleCommHandler_Copy = _StgDomain._ParticleCommHandler_Copy
+
+def _ParticleCommHandler_Delete(*args):
+  return _StgDomain._ParticleCommHandler_Delete(*args)
+_ParticleCommHandler_Delete = _StgDomain._ParticleCommHandler_Delete
+
+def _ParticleCommHandler_AllocateOutgoingCountArrays(*args):
+  return _StgDomain._ParticleCommHandler_AllocateOutgoingCountArrays(*args)
+_ParticleCommHandler_AllocateOutgoingCountArrays = _StgDomain._ParticleCommHandler_AllocateOutgoingCountArrays
+
+def _ParticleCommHandler_AllocateOutgoingParticlesArrays(*args):
+  return _StgDomain._ParticleCommHandler_AllocateOutgoingParticlesArrays(*args)
+_ParticleCommHandler_AllocateOutgoingParticlesArrays = _StgDomain._ParticleCommHandler_AllocateOutgoingParticlesArrays
+
+def _ParticleCommHandler_FreeOutgoingArrays(*args):
+  return _StgDomain._ParticleCommHandler_FreeOutgoingArrays(*args)
+_ParticleCommHandler_FreeOutgoingArrays = _StgDomain._ParticleCommHandler_FreeOutgoingArrays
+
+def _ParticleCommHandler_AllocateIncomingCountArrays(*args):
+  return _StgDomain._ParticleCommHandler_AllocateIncomingCountArrays(*args)
+_ParticleCommHandler_AllocateIncomingCountArrays = _StgDomain._ParticleCommHandler_AllocateIncomingCountArrays
+
+def _ParticleCommHandler_AllocateIncomingParticlesArrays(*args):
+  return _StgDomain._ParticleCommHandler_AllocateIncomingParticlesArrays(*args)
+_ParticleCommHandler_AllocateIncomingParticlesArrays = _StgDomain._ParticleCommHandler_AllocateIncomingParticlesArrays
+
+def _ParticleCommHandler_FreeIncomingArrays(*args):
+  return _StgDomain._ParticleCommHandler_FreeIncomingArrays(*args)
+_ParticleCommHandler_FreeIncomingArrays = _StgDomain._ParticleCommHandler_FreeIncomingArrays
+
+def _ParticleCommHandler_BeginReceiveOfIncomingParticleCounts(*args):
+  return _StgDomain._ParticleCommHandler_BeginReceiveOfIncomingParticleCounts(*args)
+_ParticleCommHandler_BeginReceiveOfIncomingParticleCounts = _StgDomain._ParticleCommHandler_BeginReceiveOfIncomingParticleCounts
+
+def _ParticleCommHandler_FinishReceiveOfIncomingParticleCounts(*args):
+  return _StgDomain._ParticleCommHandler_FinishReceiveOfIncomingParticleCounts(*args)
+_ParticleCommHandler_FinishReceiveOfIncomingParticleCounts = _StgDomain._ParticleCommHandler_FinishReceiveOfIncomingParticleCounts
+
+def _ParticleCommHandler_BeginReceiveOfIncomingParticles(*args):
+  return _StgDomain._ParticleCommHandler_BeginReceiveOfIncomingParticles(*args)
+_ParticleCommHandler_BeginReceiveOfIncomingParticles = _StgDomain._ParticleCommHandler_BeginReceiveOfIncomingParticles
+
+def _ParticleCommHandler_SendParticleTotalsInShadowCellsToNbrs(*args):
+  return _StgDomain._ParticleCommHandler_SendParticleTotalsInShadowCellsToNbrs(*args)
+_ParticleCommHandler_SendParticleTotalsInShadowCellsToNbrs = _StgDomain._ParticleCommHandler_SendParticleTotalsInShadowCellsToNbrs
+
+def _ParticleCommHandler_BeginSendingParticlesInShadowCellsToNbrs(*args):
+  return _StgDomain._ParticleCommHandler_BeginSendingParticlesInShadowCellsToNbrs(*args)
+_ParticleCommHandler_BeginSendingParticlesInShadowCellsToNbrs = _StgDomain._ParticleCommHandler_BeginSendingParticlesInShadowCellsToNbrs
+
+def _ParticleCommHandler_ConfirmOutgoingSendsCompleted(*args):
+  return _StgDomain._ParticleCommHandler_ConfirmOutgoingSendsCompleted(*args)
+_ParticleCommHandler_ConfirmOutgoingSendsCompleted = _StgDomain._ParticleCommHandler_ConfirmOutgoingSendsCompleted
+
+def _ParticleCommHandler_ZeroShadowCommStrategyCounters(*args):
+  return _StgDomain._ParticleCommHandler_ZeroShadowCommStrategyCounters(*args)
+_ParticleCommHandler_ZeroShadowCommStrategyCounters = _StgDomain._ParticleCommHandler_ZeroShadowCommStrategyCounters
+
+def _ParticleCommHandler_PrintCommunicationVolumeStats(*args):
+  return _StgDomain._ParticleCommHandler_PrintCommunicationVolumeStats(*args)
+_ParticleCommHandler_PrintCommunicationVolumeStats = _StgDomain._ParticleCommHandler_PrintCommunicationVolumeStats
+class ParticleMovementHandler(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ParticleMovementHandler, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ParticleMovementHandler, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.ParticleMovementHandler__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.ParticleMovementHandler__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.ParticleMovementHandler__sizeOfSelf_get, _StgDomain.ParticleMovementHandler__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.ParticleMovementHandler__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.ParticleMovementHandler__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.ParticleMovementHandler__deleteSelf_get, _StgDomain.ParticleMovementHandler__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.ParticleMovementHandler_type_set
+    __swig_getmethods__["type"] = _StgDomain.ParticleMovementHandler_type_get
+    if _newclass:type = _swig_property(_StgDomain.ParticleMovementHandler_type_get, _StgDomain.ParticleMovementHandler_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.ParticleMovementHandler_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.ParticleMovementHandler_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.ParticleMovementHandler_nRefs_get, _StgDomain.ParticleMovementHandler_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.ParticleMovementHandler__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.ParticleMovementHandler__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.ParticleMovementHandler__delete_get, _StgDomain.ParticleMovementHandler__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.ParticleMovementHandler__print_set
+    __swig_getmethods__["_print"] = _StgDomain.ParticleMovementHandler__print_get
+    if _newclass:_print = _swig_property(_StgDomain.ParticleMovementHandler__print_get, _StgDomain.ParticleMovementHandler__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.ParticleMovementHandler__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.ParticleMovementHandler__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.ParticleMovementHandler__copy_get, _StgDomain.ParticleMovementHandler__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.ParticleMovementHandler_name_set
+    __swig_getmethods__["name"] = _StgDomain.ParticleMovementHandler_name_get
+    if _newclass:name = _swig_property(_StgDomain.ParticleMovementHandler_name_get, _StgDomain.ParticleMovementHandler_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.ParticleMovementHandler_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.ParticleMovementHandler_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.ParticleMovementHandler_nameAllocationType_get, _StgDomain.ParticleMovementHandler_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.ParticleMovementHandler__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.ParticleMovementHandler__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.ParticleMovementHandler__defaultConstructor_get, _StgDomain.ParticleMovementHandler__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.ParticleMovementHandler__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.ParticleMovementHandler__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.ParticleMovementHandler__construct_get, _StgDomain.ParticleMovementHandler__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.ParticleMovementHandler__build_set
+    __swig_getmethods__["_build"] = _StgDomain.ParticleMovementHandler__build_get
+    if _newclass:_build = _swig_property(_StgDomain.ParticleMovementHandler__build_get, _StgDomain.ParticleMovementHandler__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.ParticleMovementHandler__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.ParticleMovementHandler__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.ParticleMovementHandler__initialise_get, _StgDomain.ParticleMovementHandler__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.ParticleMovementHandler__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.ParticleMovementHandler__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.ParticleMovementHandler__execute_get, _StgDomain.ParticleMovementHandler__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.ParticleMovementHandler__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.ParticleMovementHandler__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.ParticleMovementHandler__destroy_get, _StgDomain.ParticleMovementHandler__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.ParticleMovementHandler_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.ParticleMovementHandler_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.ParticleMovementHandler_isConstructed_get, _StgDomain.ParticleMovementHandler_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.ParticleMovementHandler_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.ParticleMovementHandler_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.ParticleMovementHandler_isBuilt_get, _StgDomain.ParticleMovementHandler_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.ParticleMovementHandler_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.ParticleMovementHandler_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.ParticleMovementHandler_isInitialised_get, _StgDomain.ParticleMovementHandler_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.ParticleMovementHandler_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.ParticleMovementHandler_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.ParticleMovementHandler_hasExecuted_get, _StgDomain.ParticleMovementHandler_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.ParticleMovementHandler_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.ParticleMovementHandler_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.ParticleMovementHandler_isDestroyed_get, _StgDomain.ParticleMovementHandler_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.ParticleMovementHandler_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.ParticleMovementHandler_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.ParticleMovementHandler_constructType_get, _StgDomain.ParticleMovementHandler_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.ParticleMovementHandler_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.ParticleMovementHandler_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.ParticleMovementHandler_buildType_get, _StgDomain.ParticleMovementHandler_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.ParticleMovementHandler_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.ParticleMovementHandler_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.ParticleMovementHandler_initialiseType_get, _StgDomain.ParticleMovementHandler_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.ParticleMovementHandler_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.ParticleMovementHandler_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.ParticleMovementHandler_executeType_get, _StgDomain.ParticleMovementHandler_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.ParticleMovementHandler_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.ParticleMovementHandler_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.ParticleMovementHandler_destroyType_get, _StgDomain.ParticleMovementHandler_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.ParticleMovementHandler_context_set
+    __swig_getmethods__["context"] = _StgDomain.ParticleMovementHandler_context_get
+    if _newclass:context = _swig_property(_StgDomain.ParticleMovementHandler_context_get, _StgDomain.ParticleMovementHandler_context_set)
+    __swig_setmethods__["allocateOutgoingCountArrays"] = _StgDomain.ParticleMovementHandler_allocateOutgoingCountArrays_set
+    __swig_getmethods__["allocateOutgoingCountArrays"] = _StgDomain.ParticleMovementHandler_allocateOutgoingCountArrays_get
+    if _newclass:allocateOutgoingCountArrays = _swig_property(_StgDomain.ParticleMovementHandler_allocateOutgoingCountArrays_get, _StgDomain.ParticleMovementHandler_allocateOutgoingCountArrays_set)
+    __swig_setmethods__["allocateOutgoingParticleArrays"] = _StgDomain.ParticleMovementHandler_allocateOutgoingParticleArrays_set
+    __swig_getmethods__["allocateOutgoingParticleArrays"] = _StgDomain.ParticleMovementHandler_allocateOutgoingParticleArrays_get
+    if _newclass:allocateOutgoingParticleArrays = _swig_property(_StgDomain.ParticleMovementHandler_allocateOutgoingParticleArrays_get, _StgDomain.ParticleMovementHandler_allocateOutgoingParticleArrays_set)
+    __swig_setmethods__["freeOutgoingArrays"] = _StgDomain.ParticleMovementHandler_freeOutgoingArrays_set
+    __swig_getmethods__["freeOutgoingArrays"] = _StgDomain.ParticleMovementHandler_freeOutgoingArrays_get
+    if _newclass:freeOutgoingArrays = _swig_property(_StgDomain.ParticleMovementHandler_freeOutgoingArrays_get, _StgDomain.ParticleMovementHandler_freeOutgoingArrays_set)
+    __swig_setmethods__["allocateIncomingCountArrays"] = _StgDomain.ParticleMovementHandler_allocateIncomingCountArrays_set
+    __swig_getmethods__["allocateIncomingCountArrays"] = _StgDomain.ParticleMovementHandler_allocateIncomingCountArrays_get
+    if _newclass:allocateIncomingCountArrays = _swig_property(_StgDomain.ParticleMovementHandler_allocateIncomingCountArrays_get, _StgDomain.ParticleMovementHandler_allocateIncomingCountArrays_set)
+    __swig_setmethods__["allocateIncomingParticleArrays"] = _StgDomain.ParticleMovementHandler_allocateIncomingParticleArrays_set
+    __swig_getmethods__["allocateIncomingParticleArrays"] = _StgDomain.ParticleMovementHandler_allocateIncomingParticleArrays_get
+    if _newclass:allocateIncomingParticleArrays = _swig_property(_StgDomain.ParticleMovementHandler_allocateIncomingParticleArrays_get, _StgDomain.ParticleMovementHandler_allocateIncomingParticleArrays_set)
+    __swig_setmethods__["freeIncomingArrays"] = _StgDomain.ParticleMovementHandler_freeIncomingArrays_set
+    __swig_getmethods__["freeIncomingArrays"] = _StgDomain.ParticleMovementHandler_freeIncomingArrays_get
+    if _newclass:freeIncomingArrays = _swig_property(_StgDomain.ParticleMovementHandler_freeIncomingArrays_get, _StgDomain.ParticleMovementHandler_freeIncomingArrays_set)
+    __swig_setmethods__["beginReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleMovementHandler_beginReceiveOfIncomingParticleCounts_set
+    __swig_getmethods__["beginReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleMovementHandler_beginReceiveOfIncomingParticleCounts_get
+    if _newclass:beginReceiveOfIncomingParticleCounts = _swig_property(_StgDomain.ParticleMovementHandler_beginReceiveOfIncomingParticleCounts_get, _StgDomain.ParticleMovementHandler_beginReceiveOfIncomingParticleCounts_set)
+    __swig_setmethods__["finishReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleMovementHandler_finishReceiveOfIncomingParticleCounts_set
+    __swig_getmethods__["finishReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleMovementHandler_finishReceiveOfIncomingParticleCounts_get
+    if _newclass:finishReceiveOfIncomingParticleCounts = _swig_property(_StgDomain.ParticleMovementHandler_finishReceiveOfIncomingParticleCounts_get, _StgDomain.ParticleMovementHandler_finishReceiveOfIncomingParticleCounts_set)
+    __swig_setmethods__["beginReceiveOfIncomingParticles"] = _StgDomain.ParticleMovementHandler_beginReceiveOfIncomingParticles_set
+    __swig_getmethods__["beginReceiveOfIncomingParticles"] = _StgDomain.ParticleMovementHandler_beginReceiveOfIncomingParticles_get
+    if _newclass:beginReceiveOfIncomingParticles = _swig_property(_StgDomain.ParticleMovementHandler_beginReceiveOfIncomingParticles_get, _StgDomain.ParticleMovementHandler_beginReceiveOfIncomingParticles_set)
+    __swig_setmethods__["finishReceiveOfIncomingParticlesAndUpdateIndices"] = _StgDomain.ParticleMovementHandler_finishReceiveOfIncomingParticlesAndUpdateIndices_set
+    __swig_getmethods__["finishReceiveOfIncomingParticlesAndUpdateIndices"] = _StgDomain.ParticleMovementHandler_finishReceiveOfIncomingParticlesAndUpdateIndices_get
+    if _newclass:finishReceiveOfIncomingParticlesAndUpdateIndices = _swig_property(_StgDomain.ParticleMovementHandler_finishReceiveOfIncomingParticlesAndUpdateIndices_get, _StgDomain.ParticleMovementHandler_finishReceiveOfIncomingParticlesAndUpdateIndices_set)
+    __swig_setmethods__["sendOutgoingParticleCounts"] = _StgDomain.ParticleMovementHandler_sendOutgoingParticleCounts_set
+    __swig_getmethods__["sendOutgoingParticleCounts"] = _StgDomain.ParticleMovementHandler_sendOutgoingParticleCounts_get
+    if _newclass:sendOutgoingParticleCounts = _swig_property(_StgDomain.ParticleMovementHandler_sendOutgoingParticleCounts_get, _StgDomain.ParticleMovementHandler_sendOutgoingParticleCounts_set)
+    __swig_setmethods__["beginSendingParticles"] = _StgDomain.ParticleMovementHandler_beginSendingParticles_set
+    __swig_getmethods__["beginSendingParticles"] = _StgDomain.ParticleMovementHandler_beginSendingParticles_get
+    if _newclass:beginSendingParticles = _swig_property(_StgDomain.ParticleMovementHandler_beginSendingParticles_get, _StgDomain.ParticleMovementHandler_beginSendingParticles_set)
+    __swig_setmethods__["confirmOutgoingSendsCompleted"] = _StgDomain.ParticleMovementHandler_confirmOutgoingSendsCompleted_set
+    __swig_getmethods__["confirmOutgoingSendsCompleted"] = _StgDomain.ParticleMovementHandler_confirmOutgoingSendsCompleted_get
+    if _newclass:confirmOutgoingSendsCompleted = _swig_property(_StgDomain.ParticleMovementHandler_confirmOutgoingSendsCompleted_get, _StgDomain.ParticleMovementHandler_confirmOutgoingSendsCompleted_set)
+    __swig_setmethods__["_commFunction"] = _StgDomain.ParticleMovementHandler__commFunction_set
+    __swig_getmethods__["_commFunction"] = _StgDomain.ParticleMovementHandler__commFunction_get
+    if _newclass:_commFunction = _swig_property(_StgDomain.ParticleMovementHandler__commFunction_get, _StgDomain.ParticleMovementHandler__commFunction_set)
+    __swig_setmethods__["debug"] = _StgDomain.ParticleMovementHandler_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.ParticleMovementHandler_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.ParticleMovementHandler_debug_get, _StgDomain.ParticleMovementHandler_debug_set)
+    __swig_setmethods__["swarm"] = _StgDomain.ParticleMovementHandler_swarm_set
+    __swig_getmethods__["swarm"] = _StgDomain.ParticleMovementHandler_swarm_get
+    if _newclass:swarm = _swig_property(_StgDomain.ParticleMovementHandler_swarm_get, _StgDomain.ParticleMovementHandler_swarm_set)
+    __swig_setmethods__["shadowParticlesLeavingMeIndices"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeIndices_set
+    __swig_getmethods__["shadowParticlesLeavingMeIndices"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeIndices_get
+    if _newclass:shadowParticlesLeavingMeIndices = _swig_property(_StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeIndices_get, _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeIndices_set)
+    __swig_setmethods__["shadowParticlesLeavingMeTotalCount"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeTotalCount_set
+    __swig_getmethods__["shadowParticlesLeavingMeTotalCount"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeTotalCount_get
+    if _newclass:shadowParticlesLeavingMeTotalCount = _swig_property(_StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeTotalCount_get, _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeTotalCount_set)
+    __swig_setmethods__["shadowParticlesLeavingMeUnfilledCount"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeUnfilledCount_set
+    __swig_getmethods__["shadowParticlesLeavingMeUnfilledCount"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeUnfilledCount_get
+    if _newclass:shadowParticlesLeavingMeUnfilledCount = _swig_property(_StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeUnfilledCount_get, _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeUnfilledCount_set)
+    __swig_setmethods__["currShadowParticleLeavingMeIndex"] = _StgDomain.ParticleMovementHandler_currShadowParticleLeavingMeIndex_set
+    __swig_getmethods__["currShadowParticleLeavingMeIndex"] = _StgDomain.ParticleMovementHandler_currShadowParticleLeavingMeIndex_get
+    if _newclass:currShadowParticleLeavingMeIndex = _swig_property(_StgDomain.ParticleMovementHandler_currShadowParticleLeavingMeIndex_get, _StgDomain.ParticleMovementHandler_currShadowParticleLeavingMeIndex_set)
+    __swig_setmethods__["currParticleLeavingMyDomainIndex"] = _StgDomain.ParticleMovementHandler_currParticleLeavingMyDomainIndex_set
+    __swig_getmethods__["currParticleLeavingMyDomainIndex"] = _StgDomain.ParticleMovementHandler_currParticleLeavingMyDomainIndex_get
+    if _newclass:currParticleLeavingMyDomainIndex = _swig_property(_StgDomain.ParticleMovementHandler_currParticleLeavingMyDomainIndex_get, _StgDomain.ParticleMovementHandler_currParticleLeavingMyDomainIndex_set)
+    __swig_setmethods__["particlesOutsideDomainIndices"] = _StgDomain.ParticleMovementHandler_particlesOutsideDomainIndices_set
+    __swig_getmethods__["particlesOutsideDomainIndices"] = _StgDomain.ParticleMovementHandler_particlesOutsideDomainIndices_get
+    if _newclass:particlesOutsideDomainIndices = _swig_property(_StgDomain.ParticleMovementHandler_particlesOutsideDomainIndices_get, _StgDomain.ParticleMovementHandler_particlesOutsideDomainIndices_set)
+    __swig_setmethods__["particlesOutsideDomainTotalCount"] = _StgDomain.ParticleMovementHandler_particlesOutsideDomainTotalCount_set
+    __swig_getmethods__["particlesOutsideDomainTotalCount"] = _StgDomain.ParticleMovementHandler_particlesOutsideDomainTotalCount_get
+    if _newclass:particlesOutsideDomainTotalCount = _swig_property(_StgDomain.ParticleMovementHandler_particlesOutsideDomainTotalCount_get, _StgDomain.ParticleMovementHandler_particlesOutsideDomainTotalCount_set)
+    __swig_setmethods__["particlesOutsideDomainUnfilledCount"] = _StgDomain.ParticleMovementHandler_particlesOutsideDomainUnfilledCount_set
+    __swig_getmethods__["particlesOutsideDomainUnfilledCount"] = _StgDomain.ParticleMovementHandler_particlesOutsideDomainUnfilledCount_get
+    if _newclass:particlesOutsideDomainUnfilledCount = _swig_property(_StgDomain.ParticleMovementHandler_particlesOutsideDomainUnfilledCount_get, _StgDomain.ParticleMovementHandler_particlesOutsideDomainUnfilledCount_set)
+    __swig_setmethods__["shadowParticlesLeavingMeCountsPerCell"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeCountsPerCell_set
+    __swig_getmethods__["shadowParticlesLeavingMeCountsPerCell"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeCountsPerCell_get
+    if _newclass:shadowParticlesLeavingMeCountsPerCell = _swig_property(_StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeCountsPerCell_get, _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeCountsPerCell_set)
+    __swig_setmethods__["shadowParticlesLeavingMeTotalCounts"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeTotalCounts_set
+    __swig_getmethods__["shadowParticlesLeavingMeTotalCounts"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeTotalCounts_get
+    if _newclass:shadowParticlesLeavingMeTotalCounts = _swig_property(_StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeTotalCounts_get, _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeTotalCounts_set)
+    __swig_setmethods__["shadowParticlesLeavingMe"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMe_set
+    __swig_getmethods__["shadowParticlesLeavingMe"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMe_get
+    if _newclass:shadowParticlesLeavingMe = _swig_property(_StgDomain.ParticleMovementHandler_shadowParticlesLeavingMe_get, _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMe_set)
+    __swig_setmethods__["shadowParticlesLeavingMeHandles"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeHandles_set
+    __swig_getmethods__["shadowParticlesLeavingMeHandles"] = _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeHandles_get
+    if _newclass:shadowParticlesLeavingMeHandles = _swig_property(_StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeHandles_get, _StgDomain.ParticleMovementHandler_shadowParticlesLeavingMeHandles_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellCounts"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellCounts_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellCounts"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellCounts_get
+    if _newclass:particlesArrivingFromNbrShadowCellCounts = _swig_property(_StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellCounts_get, _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellCounts_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellCountsHandles"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellCountsHandles_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellCountsHandles"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellCountsHandles_get
+    if _newclass:particlesArrivingFromNbrShadowCellCountsHandles = _swig_property(_StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellCountsHandles_get, _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellCountsHandles_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellsTotalCounts"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellsTotalCounts_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellsTotalCounts"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellsTotalCounts_get
+    if _newclass:particlesArrivingFromNbrShadowCellsTotalCounts = _swig_property(_StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellsTotalCounts_get, _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellsTotalCounts_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCells"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCells_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCells"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCells_get
+    if _newclass:particlesArrivingFromNbrShadowCells = _swig_property(_StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCells_get, _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCells_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellsHandles"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellsHandles_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellsHandles"] = _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellsHandles_get
+    if _newclass:particlesArrivingFromNbrShadowCellsHandles = _swig_property(_StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellsHandles_get, _StgDomain.ParticleMovementHandler_particlesArrivingFromNbrShadowCellsHandles_set)
+    __swig_setmethods__["globalParticlesArrivingMyDomainCount"] = _StgDomain.ParticleMovementHandler_globalParticlesArrivingMyDomainCount_set
+    __swig_getmethods__["globalParticlesArrivingMyDomainCount"] = _StgDomain.ParticleMovementHandler_globalParticlesArrivingMyDomainCount_get
+    if _newclass:globalParticlesArrivingMyDomainCount = _swig_property(_StgDomain.ParticleMovementHandler_globalParticlesArrivingMyDomainCount_get, _StgDomain.ParticleMovementHandler_globalParticlesArrivingMyDomainCount_set)
+    __swig_setmethods__["globalParticlesOutsideDomainTotal"] = _StgDomain.ParticleMovementHandler_globalParticlesOutsideDomainTotal_set
+    __swig_getmethods__["globalParticlesOutsideDomainTotal"] = _StgDomain.ParticleMovementHandler_globalParticlesOutsideDomainTotal_get
+    if _newclass:globalParticlesOutsideDomainTotal = _swig_property(_StgDomain.ParticleMovementHandler_globalParticlesOutsideDomainTotal_get, _StgDomain.ParticleMovementHandler_globalParticlesOutsideDomainTotal_set)
+    __swig_setmethods__["useGlobalFallbackCommStrategy"] = _StgDomain.ParticleMovementHandler_useGlobalFallbackCommStrategy_set
+    __swig_getmethods__["useGlobalFallbackCommStrategy"] = _StgDomain.ParticleMovementHandler_useGlobalFallbackCommStrategy_get
+    if _newclass:useGlobalFallbackCommStrategy = _swig_property(_StgDomain.ParticleMovementHandler_useGlobalFallbackCommStrategy_get, _StgDomain.ParticleMovementHandler_useGlobalFallbackCommStrategy_set)
+    __swig_setmethods__["defensive"] = _StgDomain.ParticleMovementHandler_defensive_set
+    __swig_getmethods__["defensive"] = _StgDomain.ParticleMovementHandler_defensive_get
+    if _newclass:defensive = _swig_property(_StgDomain.ParticleMovementHandler_defensive_get, _StgDomain.ParticleMovementHandler_defensive_set)
+    def __init__(self): 
+        this = _StgDomain.new_ParticleMovementHandler()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ParticleMovementHandler
+    __del__ = lambda self : None;
+ParticleMovementHandler_swigregister = _StgDomain.ParticleMovementHandler_swigregister
+ParticleMovementHandler_swigregister(ParticleMovementHandler)
+ParticleMovementHandler_Type = cvar.ParticleMovementHandler_Type
+
+
+def ParticleMovementHandler_DefaultNew(*args):
+  return _StgDomain.ParticleMovementHandler_DefaultNew(*args)
+ParticleMovementHandler_DefaultNew = _StgDomain.ParticleMovementHandler_DefaultNew
+
+def ParticleMovementHandler_New(*args):
+  return _StgDomain.ParticleMovementHandler_New(*args)
+ParticleMovementHandler_New = _StgDomain.ParticleMovementHandler_New
+
+def _ParticleMovementHandler_New(*args):
+  return _StgDomain._ParticleMovementHandler_New(*args)
+_ParticleMovementHandler_New = _StgDomain._ParticleMovementHandler_New
+
+def _ParticleMovementHandler_Init(*args):
+  return _StgDomain._ParticleMovementHandler_Init(*args)
+_ParticleMovementHandler_Init = _StgDomain._ParticleMovementHandler_Init
+
+def _ParticleMovementHandler_Print(*args):
+  return _StgDomain._ParticleMovementHandler_Print(*args)
+_ParticleMovementHandler_Print = _StgDomain._ParticleMovementHandler_Print
+
+def _ParticleMovementHandler_AssignFromXML(*args):
+  return _StgDomain._ParticleMovementHandler_AssignFromXML(*args)
+_ParticleMovementHandler_AssignFromXML = _StgDomain._ParticleMovementHandler_AssignFromXML
+
+def _ParticleMovementHandler_Build(*args):
+  return _StgDomain._ParticleMovementHandler_Build(*args)
+_ParticleMovementHandler_Build = _StgDomain._ParticleMovementHandler_Build
+
+def _ParticleMovementHandler_Initialise(*args):
+  return _StgDomain._ParticleMovementHandler_Initialise(*args)
+_ParticleMovementHandler_Initialise = _StgDomain._ParticleMovementHandler_Initialise
+
+def _ParticleMovementHandler_Execute(*args):
+  return _StgDomain._ParticleMovementHandler_Execute(*args)
+_ParticleMovementHandler_Execute = _StgDomain._ParticleMovementHandler_Execute
+
+def _ParticleMovementHandler_Destroy(*args):
+  return _StgDomain._ParticleMovementHandler_Destroy(*args)
+_ParticleMovementHandler_Destroy = _StgDomain._ParticleMovementHandler_Destroy
+
+def _ParticleMovementHandler_CopyFunc(*args):
+  return _StgDomain._ParticleMovementHandler_CopyFunc(*args)
+_ParticleMovementHandler_CopyFunc = _StgDomain._ParticleMovementHandler_CopyFunc
+
+def _ParticleMovementHandler_Delete(*args):
+  return _StgDomain._ParticleMovementHandler_Delete(*args)
+_ParticleMovementHandler_Delete = _StgDomain._ParticleMovementHandler_Delete
+
+def ParticleMovementHandler_HandleParticleMovementBetweenProcs(*args):
+  return _StgDomain.ParticleMovementHandler_HandleParticleMovementBetweenProcs(*args)
+ParticleMovementHandler_HandleParticleMovementBetweenProcs = _StgDomain.ParticleMovementHandler_HandleParticleMovementBetweenProcs
+
+def ParticleMovementHandler_DoGlobalFallbackCommunication(*args):
+  return _StgDomain.ParticleMovementHandler_DoGlobalFallbackCommunication(*args)
+ParticleMovementHandler_DoGlobalFallbackCommunication = _StgDomain.ParticleMovementHandler_DoGlobalFallbackCommunication
+
+def ParticleMovementHandler_FindParticlesThatHaveMovedOutsideMyDomain(*args):
+  return _StgDomain.ParticleMovementHandler_FindParticlesThatHaveMovedOutsideMyDomain(*args)
+ParticleMovementHandler_FindParticlesThatHaveMovedOutsideMyDomain = _StgDomain.ParticleMovementHandler_FindParticlesThatHaveMovedOutsideMyDomain
+
+def ParticleMovementHandler_GetCountOfParticlesOutsideDomainPerProcessor(*args):
+  return _StgDomain.ParticleMovementHandler_GetCountOfParticlesOutsideDomainPerProcessor(*args)
+ParticleMovementHandler_GetCountOfParticlesOutsideDomainPerProcessor = _StgDomain.ParticleMovementHandler_GetCountOfParticlesOutsideDomainPerProcessor
+
+def ParticleMovementHandler_ShareAndUpdateParticlesThatHaveMovedOutsideDomains(*args):
+  return _StgDomain.ParticleMovementHandler_ShareAndUpdateParticlesThatHaveMovedOutsideDomains(*args)
+ParticleMovementHandler_ShareAndUpdateParticlesThatHaveMovedOutsideDomains = _StgDomain.ParticleMovementHandler_ShareAndUpdateParticlesThatHaveMovedOutsideDomains
+
+def ParticleMovementHandler_EnsureParticleCountLeavingDomainsEqualsCountEnteringGlobally(*args):
+  return _StgDomain.ParticleMovementHandler_EnsureParticleCountLeavingDomainsEqualsCountEnteringGlobally(*args)
+ParticleMovementHandler_EnsureParticleCountLeavingDomainsEqualsCountEnteringGlobally = _StgDomain.ParticleMovementHandler_EnsureParticleCountLeavingDomainsEqualsCountEnteringGlobally
+
+def ParticleMovementHandler_ZeroGlobalCommStrategyCounters(*args):
+  return _StgDomain.ParticleMovementHandler_ZeroGlobalCommStrategyCounters(*args)
+ParticleMovementHandler_ZeroGlobalCommStrategyCounters = _StgDomain.ParticleMovementHandler_ZeroGlobalCommStrategyCounters
+
+def ParticleMovementHandler_FindFreeSlotAndPrepareForInsertion(*args):
+  return _StgDomain.ParticleMovementHandler_FindFreeSlotAndPrepareForInsertion(*args)
+ParticleMovementHandler_FindFreeSlotAndPrepareForInsertion = _StgDomain.ParticleMovementHandler_FindFreeSlotAndPrepareForInsertion
+
+def ParticleMovementHandler_FillRemainingHolesInLocalParticlesArray(*args):
+  return _StgDomain.ParticleMovementHandler_FillRemainingHolesInLocalParticlesArray(*args)
+ParticleMovementHandler_FillRemainingHolesInLocalParticlesArray = _StgDomain.ParticleMovementHandler_FillRemainingHolesInLocalParticlesArray
+
+def ParticleMovementHandler_MergeListsOfUnfilledParticleSlots(*args):
+  return _StgDomain.ParticleMovementHandler_MergeListsOfUnfilledParticleSlots(*args)
+ParticleMovementHandler_MergeListsOfUnfilledParticleSlots = _StgDomain.ParticleMovementHandler_MergeListsOfUnfilledParticleSlots
+
+def ParticleMovementHandler_PrintParticleSlotsYetToFill(*args):
+  return _StgDomain.ParticleMovementHandler_PrintParticleSlotsYetToFill(*args)
+ParticleMovementHandler_PrintParticleSlotsYetToFill = _StgDomain.ParticleMovementHandler_PrintParticleSlotsYetToFill
+
+def ParticleMovementHandler_FinishReceiveAndUpdateShadowParticlesEnteringMyDomain(*args):
+  return _StgDomain.ParticleMovementHandler_FinishReceiveAndUpdateShadowParticlesEnteringMyDomain(*args)
+ParticleMovementHandler_FinishReceiveAndUpdateShadowParticlesEnteringMyDomain = _StgDomain.ParticleMovementHandler_FinishReceiveAndUpdateShadowParticlesEnteringMyDomain
+class ParticleShadowSync(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ParticleShadowSync, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ParticleShadowSync, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.ParticleShadowSync__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.ParticleShadowSync__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.ParticleShadowSync__sizeOfSelf_get, _StgDomain.ParticleShadowSync__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.ParticleShadowSync__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.ParticleShadowSync__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.ParticleShadowSync__deleteSelf_get, _StgDomain.ParticleShadowSync__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.ParticleShadowSync_type_set
+    __swig_getmethods__["type"] = _StgDomain.ParticleShadowSync_type_get
+    if _newclass:type = _swig_property(_StgDomain.ParticleShadowSync_type_get, _StgDomain.ParticleShadowSync_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.ParticleShadowSync_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.ParticleShadowSync_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.ParticleShadowSync_nRefs_get, _StgDomain.ParticleShadowSync_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.ParticleShadowSync__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.ParticleShadowSync__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.ParticleShadowSync__delete_get, _StgDomain.ParticleShadowSync__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.ParticleShadowSync__print_set
+    __swig_getmethods__["_print"] = _StgDomain.ParticleShadowSync__print_get
+    if _newclass:_print = _swig_property(_StgDomain.ParticleShadowSync__print_get, _StgDomain.ParticleShadowSync__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.ParticleShadowSync__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.ParticleShadowSync__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.ParticleShadowSync__copy_get, _StgDomain.ParticleShadowSync__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.ParticleShadowSync_name_set
+    __swig_getmethods__["name"] = _StgDomain.ParticleShadowSync_name_get
+    if _newclass:name = _swig_property(_StgDomain.ParticleShadowSync_name_get, _StgDomain.ParticleShadowSync_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.ParticleShadowSync_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.ParticleShadowSync_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.ParticleShadowSync_nameAllocationType_get, _StgDomain.ParticleShadowSync_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.ParticleShadowSync__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.ParticleShadowSync__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.ParticleShadowSync__defaultConstructor_get, _StgDomain.ParticleShadowSync__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.ParticleShadowSync__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.ParticleShadowSync__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.ParticleShadowSync__construct_get, _StgDomain.ParticleShadowSync__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.ParticleShadowSync__build_set
+    __swig_getmethods__["_build"] = _StgDomain.ParticleShadowSync__build_get
+    if _newclass:_build = _swig_property(_StgDomain.ParticleShadowSync__build_get, _StgDomain.ParticleShadowSync__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.ParticleShadowSync__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.ParticleShadowSync__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.ParticleShadowSync__initialise_get, _StgDomain.ParticleShadowSync__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.ParticleShadowSync__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.ParticleShadowSync__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.ParticleShadowSync__execute_get, _StgDomain.ParticleShadowSync__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.ParticleShadowSync__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.ParticleShadowSync__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.ParticleShadowSync__destroy_get, _StgDomain.ParticleShadowSync__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.ParticleShadowSync_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.ParticleShadowSync_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.ParticleShadowSync_isConstructed_get, _StgDomain.ParticleShadowSync_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.ParticleShadowSync_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.ParticleShadowSync_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.ParticleShadowSync_isBuilt_get, _StgDomain.ParticleShadowSync_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.ParticleShadowSync_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.ParticleShadowSync_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.ParticleShadowSync_isInitialised_get, _StgDomain.ParticleShadowSync_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.ParticleShadowSync_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.ParticleShadowSync_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.ParticleShadowSync_hasExecuted_get, _StgDomain.ParticleShadowSync_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.ParticleShadowSync_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.ParticleShadowSync_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.ParticleShadowSync_isDestroyed_get, _StgDomain.ParticleShadowSync_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.ParticleShadowSync_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.ParticleShadowSync_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.ParticleShadowSync_constructType_get, _StgDomain.ParticleShadowSync_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.ParticleShadowSync_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.ParticleShadowSync_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.ParticleShadowSync_buildType_get, _StgDomain.ParticleShadowSync_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.ParticleShadowSync_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.ParticleShadowSync_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.ParticleShadowSync_initialiseType_get, _StgDomain.ParticleShadowSync_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.ParticleShadowSync_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.ParticleShadowSync_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.ParticleShadowSync_executeType_get, _StgDomain.ParticleShadowSync_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.ParticleShadowSync_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.ParticleShadowSync_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.ParticleShadowSync_destroyType_get, _StgDomain.ParticleShadowSync_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.ParticleShadowSync_context_set
+    __swig_getmethods__["context"] = _StgDomain.ParticleShadowSync_context_get
+    if _newclass:context = _swig_property(_StgDomain.ParticleShadowSync_context_get, _StgDomain.ParticleShadowSync_context_set)
+    __swig_setmethods__["allocateOutgoingCountArrays"] = _StgDomain.ParticleShadowSync_allocateOutgoingCountArrays_set
+    __swig_getmethods__["allocateOutgoingCountArrays"] = _StgDomain.ParticleShadowSync_allocateOutgoingCountArrays_get
+    if _newclass:allocateOutgoingCountArrays = _swig_property(_StgDomain.ParticleShadowSync_allocateOutgoingCountArrays_get, _StgDomain.ParticleShadowSync_allocateOutgoingCountArrays_set)
+    __swig_setmethods__["allocateOutgoingParticleArrays"] = _StgDomain.ParticleShadowSync_allocateOutgoingParticleArrays_set
+    __swig_getmethods__["allocateOutgoingParticleArrays"] = _StgDomain.ParticleShadowSync_allocateOutgoingParticleArrays_get
+    if _newclass:allocateOutgoingParticleArrays = _swig_property(_StgDomain.ParticleShadowSync_allocateOutgoingParticleArrays_get, _StgDomain.ParticleShadowSync_allocateOutgoingParticleArrays_set)
+    __swig_setmethods__["freeOutgoingArrays"] = _StgDomain.ParticleShadowSync_freeOutgoingArrays_set
+    __swig_getmethods__["freeOutgoingArrays"] = _StgDomain.ParticleShadowSync_freeOutgoingArrays_get
+    if _newclass:freeOutgoingArrays = _swig_property(_StgDomain.ParticleShadowSync_freeOutgoingArrays_get, _StgDomain.ParticleShadowSync_freeOutgoingArrays_set)
+    __swig_setmethods__["allocateIncomingCountArrays"] = _StgDomain.ParticleShadowSync_allocateIncomingCountArrays_set
+    __swig_getmethods__["allocateIncomingCountArrays"] = _StgDomain.ParticleShadowSync_allocateIncomingCountArrays_get
+    if _newclass:allocateIncomingCountArrays = _swig_property(_StgDomain.ParticleShadowSync_allocateIncomingCountArrays_get, _StgDomain.ParticleShadowSync_allocateIncomingCountArrays_set)
+    __swig_setmethods__["allocateIncomingParticleArrays"] = _StgDomain.ParticleShadowSync_allocateIncomingParticleArrays_set
+    __swig_getmethods__["allocateIncomingParticleArrays"] = _StgDomain.ParticleShadowSync_allocateIncomingParticleArrays_get
+    if _newclass:allocateIncomingParticleArrays = _swig_property(_StgDomain.ParticleShadowSync_allocateIncomingParticleArrays_get, _StgDomain.ParticleShadowSync_allocateIncomingParticleArrays_set)
+    __swig_setmethods__["freeIncomingArrays"] = _StgDomain.ParticleShadowSync_freeIncomingArrays_set
+    __swig_getmethods__["freeIncomingArrays"] = _StgDomain.ParticleShadowSync_freeIncomingArrays_get
+    if _newclass:freeIncomingArrays = _swig_property(_StgDomain.ParticleShadowSync_freeIncomingArrays_get, _StgDomain.ParticleShadowSync_freeIncomingArrays_set)
+    __swig_setmethods__["beginReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleShadowSync_beginReceiveOfIncomingParticleCounts_set
+    __swig_getmethods__["beginReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleShadowSync_beginReceiveOfIncomingParticleCounts_get
+    if _newclass:beginReceiveOfIncomingParticleCounts = _swig_property(_StgDomain.ParticleShadowSync_beginReceiveOfIncomingParticleCounts_get, _StgDomain.ParticleShadowSync_beginReceiveOfIncomingParticleCounts_set)
+    __swig_setmethods__["finishReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleShadowSync_finishReceiveOfIncomingParticleCounts_set
+    __swig_getmethods__["finishReceiveOfIncomingParticleCounts"] = _StgDomain.ParticleShadowSync_finishReceiveOfIncomingParticleCounts_get
+    if _newclass:finishReceiveOfIncomingParticleCounts = _swig_property(_StgDomain.ParticleShadowSync_finishReceiveOfIncomingParticleCounts_get, _StgDomain.ParticleShadowSync_finishReceiveOfIncomingParticleCounts_set)
+    __swig_setmethods__["beginReceiveOfIncomingParticles"] = _StgDomain.ParticleShadowSync_beginReceiveOfIncomingParticles_set
+    __swig_getmethods__["beginReceiveOfIncomingParticles"] = _StgDomain.ParticleShadowSync_beginReceiveOfIncomingParticles_get
+    if _newclass:beginReceiveOfIncomingParticles = _swig_property(_StgDomain.ParticleShadowSync_beginReceiveOfIncomingParticles_get, _StgDomain.ParticleShadowSync_beginReceiveOfIncomingParticles_set)
+    __swig_setmethods__["finishReceiveOfIncomingParticlesAndUpdateIndices"] = _StgDomain.ParticleShadowSync_finishReceiveOfIncomingParticlesAndUpdateIndices_set
+    __swig_getmethods__["finishReceiveOfIncomingParticlesAndUpdateIndices"] = _StgDomain.ParticleShadowSync_finishReceiveOfIncomingParticlesAndUpdateIndices_get
+    if _newclass:finishReceiveOfIncomingParticlesAndUpdateIndices = _swig_property(_StgDomain.ParticleShadowSync_finishReceiveOfIncomingParticlesAndUpdateIndices_get, _StgDomain.ParticleShadowSync_finishReceiveOfIncomingParticlesAndUpdateIndices_set)
+    __swig_setmethods__["sendOutgoingParticleCounts"] = _StgDomain.ParticleShadowSync_sendOutgoingParticleCounts_set
+    __swig_getmethods__["sendOutgoingParticleCounts"] = _StgDomain.ParticleShadowSync_sendOutgoingParticleCounts_get
+    if _newclass:sendOutgoingParticleCounts = _swig_property(_StgDomain.ParticleShadowSync_sendOutgoingParticleCounts_get, _StgDomain.ParticleShadowSync_sendOutgoingParticleCounts_set)
+    __swig_setmethods__["beginSendingParticles"] = _StgDomain.ParticleShadowSync_beginSendingParticles_set
+    __swig_getmethods__["beginSendingParticles"] = _StgDomain.ParticleShadowSync_beginSendingParticles_get
+    if _newclass:beginSendingParticles = _swig_property(_StgDomain.ParticleShadowSync_beginSendingParticles_get, _StgDomain.ParticleShadowSync_beginSendingParticles_set)
+    __swig_setmethods__["confirmOutgoingSendsCompleted"] = _StgDomain.ParticleShadowSync_confirmOutgoingSendsCompleted_set
+    __swig_getmethods__["confirmOutgoingSendsCompleted"] = _StgDomain.ParticleShadowSync_confirmOutgoingSendsCompleted_get
+    if _newclass:confirmOutgoingSendsCompleted = _swig_property(_StgDomain.ParticleShadowSync_confirmOutgoingSendsCompleted_get, _StgDomain.ParticleShadowSync_confirmOutgoingSendsCompleted_set)
+    __swig_setmethods__["_commFunction"] = _StgDomain.ParticleShadowSync__commFunction_set
+    __swig_getmethods__["_commFunction"] = _StgDomain.ParticleShadowSync__commFunction_get
+    if _newclass:_commFunction = _swig_property(_StgDomain.ParticleShadowSync__commFunction_get, _StgDomain.ParticleShadowSync__commFunction_set)
+    __swig_setmethods__["debug"] = _StgDomain.ParticleShadowSync_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.ParticleShadowSync_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.ParticleShadowSync_debug_get, _StgDomain.ParticleShadowSync_debug_set)
+    __swig_setmethods__["swarm"] = _StgDomain.ParticleShadowSync_swarm_set
+    __swig_getmethods__["swarm"] = _StgDomain.ParticleShadowSync_swarm_get
+    if _newclass:swarm = _swig_property(_StgDomain.ParticleShadowSync_swarm_get, _StgDomain.ParticleShadowSync_swarm_set)
+    __swig_setmethods__["shadowParticlesLeavingMeIndices"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeIndices_set
+    __swig_getmethods__["shadowParticlesLeavingMeIndices"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeIndices_get
+    if _newclass:shadowParticlesLeavingMeIndices = _swig_property(_StgDomain.ParticleShadowSync_shadowParticlesLeavingMeIndices_get, _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeIndices_set)
+    __swig_setmethods__["shadowParticlesLeavingMeTotalCount"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeTotalCount_set
+    __swig_getmethods__["shadowParticlesLeavingMeTotalCount"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeTotalCount_get
+    if _newclass:shadowParticlesLeavingMeTotalCount = _swig_property(_StgDomain.ParticleShadowSync_shadowParticlesLeavingMeTotalCount_get, _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeTotalCount_set)
+    __swig_setmethods__["shadowParticlesLeavingMeUnfilledCount"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeUnfilledCount_set
+    __swig_getmethods__["shadowParticlesLeavingMeUnfilledCount"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeUnfilledCount_get
+    if _newclass:shadowParticlesLeavingMeUnfilledCount = _swig_property(_StgDomain.ParticleShadowSync_shadowParticlesLeavingMeUnfilledCount_get, _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeUnfilledCount_set)
+    __swig_setmethods__["currShadowParticleLeavingMeIndex"] = _StgDomain.ParticleShadowSync_currShadowParticleLeavingMeIndex_set
+    __swig_getmethods__["currShadowParticleLeavingMeIndex"] = _StgDomain.ParticleShadowSync_currShadowParticleLeavingMeIndex_get
+    if _newclass:currShadowParticleLeavingMeIndex = _swig_property(_StgDomain.ParticleShadowSync_currShadowParticleLeavingMeIndex_get, _StgDomain.ParticleShadowSync_currShadowParticleLeavingMeIndex_set)
+    __swig_setmethods__["currParticleLeavingMyDomainIndex"] = _StgDomain.ParticleShadowSync_currParticleLeavingMyDomainIndex_set
+    __swig_getmethods__["currParticleLeavingMyDomainIndex"] = _StgDomain.ParticleShadowSync_currParticleLeavingMyDomainIndex_get
+    if _newclass:currParticleLeavingMyDomainIndex = _swig_property(_StgDomain.ParticleShadowSync_currParticleLeavingMyDomainIndex_get, _StgDomain.ParticleShadowSync_currParticleLeavingMyDomainIndex_set)
+    __swig_setmethods__["particlesOutsideDomainIndices"] = _StgDomain.ParticleShadowSync_particlesOutsideDomainIndices_set
+    __swig_getmethods__["particlesOutsideDomainIndices"] = _StgDomain.ParticleShadowSync_particlesOutsideDomainIndices_get
+    if _newclass:particlesOutsideDomainIndices = _swig_property(_StgDomain.ParticleShadowSync_particlesOutsideDomainIndices_get, _StgDomain.ParticleShadowSync_particlesOutsideDomainIndices_set)
+    __swig_setmethods__["particlesOutsideDomainTotalCount"] = _StgDomain.ParticleShadowSync_particlesOutsideDomainTotalCount_set
+    __swig_getmethods__["particlesOutsideDomainTotalCount"] = _StgDomain.ParticleShadowSync_particlesOutsideDomainTotalCount_get
+    if _newclass:particlesOutsideDomainTotalCount = _swig_property(_StgDomain.ParticleShadowSync_particlesOutsideDomainTotalCount_get, _StgDomain.ParticleShadowSync_particlesOutsideDomainTotalCount_set)
+    __swig_setmethods__["particlesOutsideDomainUnfilledCount"] = _StgDomain.ParticleShadowSync_particlesOutsideDomainUnfilledCount_set
+    __swig_getmethods__["particlesOutsideDomainUnfilledCount"] = _StgDomain.ParticleShadowSync_particlesOutsideDomainUnfilledCount_get
+    if _newclass:particlesOutsideDomainUnfilledCount = _swig_property(_StgDomain.ParticleShadowSync_particlesOutsideDomainUnfilledCount_get, _StgDomain.ParticleShadowSync_particlesOutsideDomainUnfilledCount_set)
+    __swig_setmethods__["shadowParticlesLeavingMeCountsPerCell"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeCountsPerCell_set
+    __swig_getmethods__["shadowParticlesLeavingMeCountsPerCell"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeCountsPerCell_get
+    if _newclass:shadowParticlesLeavingMeCountsPerCell = _swig_property(_StgDomain.ParticleShadowSync_shadowParticlesLeavingMeCountsPerCell_get, _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeCountsPerCell_set)
+    __swig_setmethods__["shadowParticlesLeavingMeTotalCounts"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeTotalCounts_set
+    __swig_getmethods__["shadowParticlesLeavingMeTotalCounts"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeTotalCounts_get
+    if _newclass:shadowParticlesLeavingMeTotalCounts = _swig_property(_StgDomain.ParticleShadowSync_shadowParticlesLeavingMeTotalCounts_get, _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeTotalCounts_set)
+    __swig_setmethods__["shadowParticlesLeavingMe"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMe_set
+    __swig_getmethods__["shadowParticlesLeavingMe"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMe_get
+    if _newclass:shadowParticlesLeavingMe = _swig_property(_StgDomain.ParticleShadowSync_shadowParticlesLeavingMe_get, _StgDomain.ParticleShadowSync_shadowParticlesLeavingMe_set)
+    __swig_setmethods__["shadowParticlesLeavingMeHandles"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeHandles_set
+    __swig_getmethods__["shadowParticlesLeavingMeHandles"] = _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeHandles_get
+    if _newclass:shadowParticlesLeavingMeHandles = _swig_property(_StgDomain.ParticleShadowSync_shadowParticlesLeavingMeHandles_get, _StgDomain.ParticleShadowSync_shadowParticlesLeavingMeHandles_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellCounts"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellCounts_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellCounts"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellCounts_get
+    if _newclass:particlesArrivingFromNbrShadowCellCounts = _swig_property(_StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellCounts_get, _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellCounts_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellCountsHandles"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellCountsHandles_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellCountsHandles"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellCountsHandles_get
+    if _newclass:particlesArrivingFromNbrShadowCellCountsHandles = _swig_property(_StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellCountsHandles_get, _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellCountsHandles_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellsTotalCounts"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellsTotalCounts_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellsTotalCounts"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellsTotalCounts_get
+    if _newclass:particlesArrivingFromNbrShadowCellsTotalCounts = _swig_property(_StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellsTotalCounts_get, _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellsTotalCounts_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCells"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCells_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCells"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCells_get
+    if _newclass:particlesArrivingFromNbrShadowCells = _swig_property(_StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCells_get, _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCells_set)
+    __swig_setmethods__["particlesArrivingFromNbrShadowCellsHandles"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellsHandles_set
+    __swig_getmethods__["particlesArrivingFromNbrShadowCellsHandles"] = _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellsHandles_get
+    if _newclass:particlesArrivingFromNbrShadowCellsHandles = _swig_property(_StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellsHandles_get, _StgDomain.ParticleShadowSync_particlesArrivingFromNbrShadowCellsHandles_set)
+    def __init__(self): 
+        this = _StgDomain.new_ParticleShadowSync()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ParticleShadowSync
+    __del__ = lambda self : None;
+ParticleShadowSync_swigregister = _StgDomain.ParticleShadowSync_swigregister
+ParticleShadowSync_swigregister(ParticleShadowSync)
+ParticleShadowSync_Type = cvar.ParticleShadowSync_Type
+
+
+def ParticleShadowSync_DefaultNew(*args):
+  return _StgDomain.ParticleShadowSync_DefaultNew(*args)
+ParticleShadowSync_DefaultNew = _StgDomain.ParticleShadowSync_DefaultNew
+
+def ParticleShadowSync_New(*args):
+  return _StgDomain.ParticleShadowSync_New(*args)
+ParticleShadowSync_New = _StgDomain.ParticleShadowSync_New
+
+def _ParticleShadowSync_New(*args):
+  return _StgDomain._ParticleShadowSync_New(*args)
+_ParticleShadowSync_New = _StgDomain._ParticleShadowSync_New
+
+def _ParticleShadowSync_Init(*args):
+  return _StgDomain._ParticleShadowSync_Init(*args)
+_ParticleShadowSync_Init = _StgDomain._ParticleShadowSync_Init
+
+def _ParticleShadowSync_Print(*args):
+  return _StgDomain._ParticleShadowSync_Print(*args)
+_ParticleShadowSync_Print = _StgDomain._ParticleShadowSync_Print
+
+def _ParticleShadowSync_AssignFromXML(*args):
+  return _StgDomain._ParticleShadowSync_AssignFromXML(*args)
+_ParticleShadowSync_AssignFromXML = _StgDomain._ParticleShadowSync_AssignFromXML
+
+def _ParticleShadowSync_Build(*args):
+  return _StgDomain._ParticleShadowSync_Build(*args)
+_ParticleShadowSync_Build = _StgDomain._ParticleShadowSync_Build
+
+def _ParticleShadowSync_Initialise(*args):
+  return _StgDomain._ParticleShadowSync_Initialise(*args)
+_ParticleShadowSync_Initialise = _StgDomain._ParticleShadowSync_Initialise
+
+def _ParticleShadowSync_Execute(*args):
+  return _StgDomain._ParticleShadowSync_Execute(*args)
+_ParticleShadowSync_Execute = _StgDomain._ParticleShadowSync_Execute
+
+def _ParticleShadowSync_Destroy(*args):
+  return _StgDomain._ParticleShadowSync_Destroy(*args)
+_ParticleShadowSync_Destroy = _StgDomain._ParticleShadowSync_Destroy
+
+def _ParticleShadowSync_CopyFunc(*args):
+  return _StgDomain._ParticleShadowSync_CopyFunc(*args)
+_ParticleShadowSync_CopyFunc = _StgDomain._ParticleShadowSync_CopyFunc
+
+def _ParticleShadowSync_Delete(*args):
+  return _StgDomain._ParticleShadowSync_Delete(*args)
+_ParticleShadowSync_Delete = _StgDomain._ParticleShadowSync_Delete
+
+def ParticleShadowSync_HandleParticleMovementBetweenProcs(*args):
+  return _StgDomain.ParticleShadowSync_HandleParticleMovementBetweenProcs(*args)
+ParticleShadowSync_HandleParticleMovementBetweenProcs = _StgDomain.ParticleShadowSync_HandleParticleMovementBetweenProcs
+
+def ParticleShadowSync_FindParticlesThatHaveMovedOutsideMyDomain(*args):
+  return _StgDomain.ParticleShadowSync_FindParticlesThatHaveMovedOutsideMyDomain(*args)
+ParticleShadowSync_FindParticlesThatHaveMovedOutsideMyDomain = _StgDomain.ParticleShadowSync_FindParticlesThatHaveMovedOutsideMyDomain
+
+def ParticleShadowSync_GetCountOfParticlesOutsideDomainPerProcessor(*args):
+  return _StgDomain.ParticleShadowSync_GetCountOfParticlesOutsideDomainPerProcessor(*args)
+ParticleShadowSync_GetCountOfParticlesOutsideDomainPerProcessor = _StgDomain.ParticleShadowSync_GetCountOfParticlesOutsideDomainPerProcessor
+
+def _ParticleShadowSync_FinishReceiveOfIncomingParticleCounts(*args):
+  return _StgDomain._ParticleShadowSync_FinishReceiveOfIncomingParticleCounts(*args)
+_ParticleShadowSync_FinishReceiveOfIncomingParticleCounts = _StgDomain._ParticleShadowSync_FinishReceiveOfIncomingParticleCounts
+
+def _ParticleShadowSync_BeginReceiveOfIncomingParticles(*args):
+  return _StgDomain._ParticleShadowSync_BeginReceiveOfIncomingParticles(*args)
+_ParticleShadowSync_BeginReceiveOfIncomingParticles = _StgDomain._ParticleShadowSync_BeginReceiveOfIncomingParticles
+
+def _ParticleShadowSync_SendParticleTotalsInShadowCellsToNbrs(*args):
+  return _StgDomain._ParticleShadowSync_SendParticleTotalsInShadowCellsToNbrs(*args)
+_ParticleShadowSync_SendParticleTotalsInShadowCellsToNbrs = _StgDomain._ParticleShadowSync_SendParticleTotalsInShadowCellsToNbrs
+
+def _ParticleShadowSync_SendShadowParticles(*args):
+  return _StgDomain._ParticleShadowSync_SendShadowParticles(*args)
+_ParticleShadowSync_SendShadowParticles = _StgDomain._ParticleShadowSync_SendShadowParticles
+
+def _ParticleShadowSync_FinishReceiveOfIncomingParticles(*args):
+  return _StgDomain._ParticleShadowSync_FinishReceiveOfIncomingParticles(*args)
+_ParticleShadowSync_FinishReceiveOfIncomingParticles = _StgDomain._ParticleShadowSync_FinishReceiveOfIncomingParticles
+class RandomParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, RandomParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, RandomParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.RandomParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.RandomParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.RandomParticleLayout__sizeOfSelf_get, _StgDomain.RandomParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.RandomParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.RandomParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.RandomParticleLayout__deleteSelf_get, _StgDomain.RandomParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.RandomParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.RandomParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.RandomParticleLayout_type_get, _StgDomain.RandomParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.RandomParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.RandomParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.RandomParticleLayout_nRefs_get, _StgDomain.RandomParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.RandomParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.RandomParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.RandomParticleLayout__delete_get, _StgDomain.RandomParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.RandomParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.RandomParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.RandomParticleLayout__print_get, _StgDomain.RandomParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.RandomParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.RandomParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.RandomParticleLayout__copy_get, _StgDomain.RandomParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.RandomParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.RandomParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.RandomParticleLayout_name_get, _StgDomain.RandomParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.RandomParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.RandomParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.RandomParticleLayout_nameAllocationType_get, _StgDomain.RandomParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.RandomParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.RandomParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.RandomParticleLayout__defaultConstructor_get, _StgDomain.RandomParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.RandomParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.RandomParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.RandomParticleLayout__construct_get, _StgDomain.RandomParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.RandomParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.RandomParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.RandomParticleLayout__build_get, _StgDomain.RandomParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.RandomParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.RandomParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.RandomParticleLayout__initialise_get, _StgDomain.RandomParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.RandomParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.RandomParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.RandomParticleLayout__execute_get, _StgDomain.RandomParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.RandomParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.RandomParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.RandomParticleLayout__destroy_get, _StgDomain.RandomParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.RandomParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.RandomParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.RandomParticleLayout_isConstructed_get, _StgDomain.RandomParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.RandomParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.RandomParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.RandomParticleLayout_isBuilt_get, _StgDomain.RandomParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.RandomParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.RandomParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.RandomParticleLayout_isInitialised_get, _StgDomain.RandomParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.RandomParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.RandomParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.RandomParticleLayout_hasExecuted_get, _StgDomain.RandomParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.RandomParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.RandomParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.RandomParticleLayout_isDestroyed_get, _StgDomain.RandomParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.RandomParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.RandomParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.RandomParticleLayout_constructType_get, _StgDomain.RandomParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.RandomParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.RandomParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.RandomParticleLayout_buildType_get, _StgDomain.RandomParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.RandomParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.RandomParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.RandomParticleLayout_initialiseType_get, _StgDomain.RandomParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.RandomParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.RandomParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.RandomParticleLayout_executeType_get, _StgDomain.RandomParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.RandomParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.RandomParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.RandomParticleLayout_destroyType_get, _StgDomain.RandomParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.RandomParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.RandomParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.RandomParticleLayout_context_get, _StgDomain.RandomParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.RandomParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.RandomParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.RandomParticleLayout__setInitialCounts_get, _StgDomain.RandomParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.RandomParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.RandomParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.RandomParticleLayout__initialiseParticles_get, _StgDomain.RandomParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.RandomParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.RandomParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.RandomParticleLayout_debug_get, _StgDomain.RandomParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.RandomParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.RandomParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.RandomParticleLayout_coordSystem_get, _StgDomain.RandomParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.RandomParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.RandomParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.RandomParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.RandomParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialCount"] = _StgDomain.RandomParticleLayout__initialCount_set
+    __swig_getmethods__["_initialCount"] = _StgDomain.RandomParticleLayout__initialCount_get
+    if _newclass:_initialCount = _swig_property(_StgDomain.RandomParticleLayout__initialCount_get, _StgDomain.RandomParticleLayout__initialCount_set)
+    __swig_setmethods__["_initialiseParticlesOfCell"] = _StgDomain.RandomParticleLayout__initialiseParticlesOfCell_set
+    __swig_getmethods__["_initialiseParticlesOfCell"] = _StgDomain.RandomParticleLayout__initialiseParticlesOfCell_get
+    if _newclass:_initialiseParticlesOfCell = _swig_property(_StgDomain.RandomParticleLayout__initialiseParticlesOfCell_get, _StgDomain.RandomParticleLayout__initialiseParticlesOfCell_set)
+    __swig_setmethods__["cellParticleCount"] = _StgDomain.RandomParticleLayout_cellParticleCount_set
+    __swig_getmethods__["cellParticleCount"] = _StgDomain.RandomParticleLayout_cellParticleCount_get
+    if _newclass:cellParticleCount = _swig_property(_StgDomain.RandomParticleLayout_cellParticleCount_get, _StgDomain.RandomParticleLayout_cellParticleCount_set)
+    __swig_setmethods__["seed"] = _StgDomain.RandomParticleLayout_seed_set
+    __swig_getmethods__["seed"] = _StgDomain.RandomParticleLayout_seed_get
+    if _newclass:seed = _swig_property(_StgDomain.RandomParticleLayout_seed_get, _StgDomain.RandomParticleLayout_seed_set)
+    def __init__(self): 
+        this = _StgDomain.new_RandomParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_RandomParticleLayout
+    __del__ = lambda self : None;
+RandomParticleLayout_swigregister = _StgDomain.RandomParticleLayout_swigregister
+RandomParticleLayout_swigregister(RandomParticleLayout)
+RandomParticleLayout_Type = cvar.RandomParticleLayout_Type
+
+
+def RandomParticleLayout_New(*args):
+  return _StgDomain.RandomParticleLayout_New(*args)
+RandomParticleLayout_New = _StgDomain.RandomParticleLayout_New
+
+def _RandomParticleLayout_New(*args):
+  return _StgDomain._RandomParticleLayout_New(*args)
+_RandomParticleLayout_New = _StgDomain._RandomParticleLayout_New
+
+def _RandomParticleLayout_Init(*args):
+  return _StgDomain._RandomParticleLayout_Init(*args)
+_RandomParticleLayout_Init = _StgDomain._RandomParticleLayout_Init
+
+def _RandomParticleLayout_Delete(*args):
+  return _StgDomain._RandomParticleLayout_Delete(*args)
+_RandomParticleLayout_Delete = _StgDomain._RandomParticleLayout_Delete
+
+def _RandomParticleLayout_Print(*args):
+  return _StgDomain._RandomParticleLayout_Print(*args)
+_RandomParticleLayout_Print = _StgDomain._RandomParticleLayout_Print
+
+def _RandomParticleLayout_Copy(*args):
+  return _StgDomain._RandomParticleLayout_Copy(*args)
+_RandomParticleLayout_Copy = _StgDomain._RandomParticleLayout_Copy
+
+def _RandomParticleLayout_DefaultNew(*args):
+  return _StgDomain._RandomParticleLayout_DefaultNew(*args)
+_RandomParticleLayout_DefaultNew = _StgDomain._RandomParticleLayout_DefaultNew
+
+def _RandomParticleLayout_AssignFromXML(*args):
+  return _StgDomain._RandomParticleLayout_AssignFromXML(*args)
+_RandomParticleLayout_AssignFromXML = _StgDomain._RandomParticleLayout_AssignFromXML
+
+def _RandomParticleLayout_Build(*args):
+  return _StgDomain._RandomParticleLayout_Build(*args)
+_RandomParticleLayout_Build = _StgDomain._RandomParticleLayout_Build
+
+def _RandomParticleLayout_Initialise(*args):
+  return _StgDomain._RandomParticleLayout_Initialise(*args)
+_RandomParticleLayout_Initialise = _StgDomain._RandomParticleLayout_Initialise
+
+def _RandomParticleLayout_Execute(*args):
+  return _StgDomain._RandomParticleLayout_Execute(*args)
+_RandomParticleLayout_Execute = _StgDomain._RandomParticleLayout_Execute
+
+def _RandomParticleLayout_Destroy(*args):
+  return _StgDomain._RandomParticleLayout_Destroy(*args)
+_RandomParticleLayout_Destroy = _StgDomain._RandomParticleLayout_Destroy
+
+def _RandomParticleLayout_InitialCount(*args):
+  return _StgDomain._RandomParticleLayout_InitialCount(*args)
+_RandomParticleLayout_InitialCount = _StgDomain._RandomParticleLayout_InitialCount
+
+def _RandomParticleLayout_InitialiseParticlesOfCell(*args):
+  return _StgDomain._RandomParticleLayout_InitialiseParticlesOfCell(*args)
+_RandomParticleLayout_InitialiseParticlesOfCell = _StgDomain._RandomParticleLayout_InitialiseParticlesOfCell
+class ProcNbrInfo(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ProcNbrInfo, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ProcNbrInfo, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["procNbrCnt"] = _StgDomain.ProcNbrInfo_procNbrCnt_set
+    __swig_getmethods__["procNbrCnt"] = _StgDomain.ProcNbrInfo_procNbrCnt_get
+    if _newclass:procNbrCnt = _swig_property(_StgDomain.ProcNbrInfo_procNbrCnt_get, _StgDomain.ProcNbrInfo_procNbrCnt_set)
+    __swig_setmethods__["procNbrTbl"] = _StgDomain.ProcNbrInfo_procNbrTbl_set
+    __swig_getmethods__["procNbrTbl"] = _StgDomain.ProcNbrInfo_procNbrTbl_get
+    if _newclass:procNbrTbl = _swig_property(_StgDomain.ProcNbrInfo_procNbrTbl_get, _StgDomain.ProcNbrInfo_procNbrTbl_set)
+    def __init__(self): 
+        this = _StgDomain.new_ProcNbrInfo()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ProcNbrInfo
+    __del__ = lambda self : None;
+ProcNbrInfo_swigregister = _StgDomain.ProcNbrInfo_swigregister
+ProcNbrInfo_swigregister(ProcNbrInfo)
+
+class ShadowInfo(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ShadowInfo, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ShadowInfo, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["procNbrInfo"] = _StgDomain.ShadowInfo_procNbrInfo_set
+    __swig_getmethods__["procNbrInfo"] = _StgDomain.ShadowInfo_procNbrInfo_get
+    if _newclass:procNbrInfo = _swig_property(_StgDomain.ShadowInfo_procNbrInfo_get, _StgDomain.ShadowInfo_procNbrInfo_set)
+    __swig_setmethods__["procShadowedCnt"] = _StgDomain.ShadowInfo_procShadowedCnt_set
+    __swig_getmethods__["procShadowedCnt"] = _StgDomain.ShadowInfo_procShadowedCnt_get
+    if _newclass:procShadowedCnt = _swig_property(_StgDomain.ShadowInfo_procShadowedCnt_get, _StgDomain.ShadowInfo_procShadowedCnt_set)
+    __swig_setmethods__["procShadowedTbl"] = _StgDomain.ShadowInfo_procShadowedTbl_set
+    __swig_getmethods__["procShadowedTbl"] = _StgDomain.ShadowInfo_procShadowedTbl_get
+    if _newclass:procShadowedTbl = _swig_property(_StgDomain.ShadowInfo_procShadowedTbl_get, _StgDomain.ShadowInfo_procShadowedTbl_set)
+    __swig_setmethods__["procShadowCnt"] = _StgDomain.ShadowInfo_procShadowCnt_set
+    __swig_getmethods__["procShadowCnt"] = _StgDomain.ShadowInfo_procShadowCnt_get
+    if _newclass:procShadowCnt = _swig_property(_StgDomain.ShadowInfo_procShadowCnt_get, _StgDomain.ShadowInfo_procShadowCnt_set)
+    __swig_setmethods__["procShadowTbl"] = _StgDomain.ShadowInfo_procShadowTbl_set
+    __swig_getmethods__["procShadowTbl"] = _StgDomain.ShadowInfo_procShadowTbl_get
+    if _newclass:procShadowTbl = _swig_property(_StgDomain.ShadowInfo_procShadowTbl_get, _StgDomain.ShadowInfo_procShadowTbl_set)
+    def __init__(self): 
+        this = _StgDomain.new_ShadowInfo()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_ShadowInfo
+    __del__ = lambda self : None;
+ShadowInfo_swigregister = _StgDomain.ShadowInfo_swigregister
+ShadowInfo_swigregister(ShadowInfo)
+
+class SingleCellLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SingleCellLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SingleCellLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.SingleCellLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.SingleCellLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.SingleCellLayout__sizeOfSelf_get, _StgDomain.SingleCellLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.SingleCellLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.SingleCellLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.SingleCellLayout__deleteSelf_get, _StgDomain.SingleCellLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.SingleCellLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.SingleCellLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.SingleCellLayout_type_get, _StgDomain.SingleCellLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.SingleCellLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.SingleCellLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.SingleCellLayout_nRefs_get, _StgDomain.SingleCellLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.SingleCellLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.SingleCellLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.SingleCellLayout__delete_get, _StgDomain.SingleCellLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.SingleCellLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.SingleCellLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.SingleCellLayout__print_get, _StgDomain.SingleCellLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.SingleCellLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.SingleCellLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.SingleCellLayout__copy_get, _StgDomain.SingleCellLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.SingleCellLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.SingleCellLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.SingleCellLayout_name_get, _StgDomain.SingleCellLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.SingleCellLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.SingleCellLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.SingleCellLayout_nameAllocationType_get, _StgDomain.SingleCellLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.SingleCellLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.SingleCellLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.SingleCellLayout__defaultConstructor_get, _StgDomain.SingleCellLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.SingleCellLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.SingleCellLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.SingleCellLayout__construct_get, _StgDomain.SingleCellLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.SingleCellLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.SingleCellLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.SingleCellLayout__build_get, _StgDomain.SingleCellLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.SingleCellLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.SingleCellLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.SingleCellLayout__initialise_get, _StgDomain.SingleCellLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.SingleCellLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.SingleCellLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.SingleCellLayout__execute_get, _StgDomain.SingleCellLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.SingleCellLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.SingleCellLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.SingleCellLayout__destroy_get, _StgDomain.SingleCellLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.SingleCellLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.SingleCellLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.SingleCellLayout_isConstructed_get, _StgDomain.SingleCellLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.SingleCellLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.SingleCellLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.SingleCellLayout_isBuilt_get, _StgDomain.SingleCellLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.SingleCellLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.SingleCellLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.SingleCellLayout_isInitialised_get, _StgDomain.SingleCellLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.SingleCellLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.SingleCellLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.SingleCellLayout_hasExecuted_get, _StgDomain.SingleCellLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.SingleCellLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.SingleCellLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.SingleCellLayout_isDestroyed_get, _StgDomain.SingleCellLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.SingleCellLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.SingleCellLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.SingleCellLayout_constructType_get, _StgDomain.SingleCellLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.SingleCellLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.SingleCellLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.SingleCellLayout_buildType_get, _StgDomain.SingleCellLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.SingleCellLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.SingleCellLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.SingleCellLayout_initialiseType_get, _StgDomain.SingleCellLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.SingleCellLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.SingleCellLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.SingleCellLayout_executeType_get, _StgDomain.SingleCellLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.SingleCellLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.SingleCellLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.SingleCellLayout_destroyType_get, _StgDomain.SingleCellLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.SingleCellLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.SingleCellLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.SingleCellLayout_context_get, _StgDomain.SingleCellLayout_context_set)
+    __swig_setmethods__["_cellLocalCount"] = _StgDomain.SingleCellLayout__cellLocalCount_set
+    __swig_getmethods__["_cellLocalCount"] = _StgDomain.SingleCellLayout__cellLocalCount_get
+    if _newclass:_cellLocalCount = _swig_property(_StgDomain.SingleCellLayout__cellLocalCount_get, _StgDomain.SingleCellLayout__cellLocalCount_set)
+    __swig_setmethods__["_cellShadowCount"] = _StgDomain.SingleCellLayout__cellShadowCount_set
+    __swig_getmethods__["_cellShadowCount"] = _StgDomain.SingleCellLayout__cellShadowCount_get
+    if _newclass:_cellShadowCount = _swig_property(_StgDomain.SingleCellLayout__cellShadowCount_get, _StgDomain.SingleCellLayout__cellShadowCount_set)
+    __swig_setmethods__["_pointCount"] = _StgDomain.SingleCellLayout__pointCount_set
+    __swig_getmethods__["_pointCount"] = _StgDomain.SingleCellLayout__pointCount_get
+    if _newclass:_pointCount = _swig_property(_StgDomain.SingleCellLayout__pointCount_get, _StgDomain.SingleCellLayout__pointCount_set)
+    __swig_setmethods__["_initialisePoints"] = _StgDomain.SingleCellLayout__initialisePoints_set
+    __swig_getmethods__["_initialisePoints"] = _StgDomain.SingleCellLayout__initialisePoints_get
+    if _newclass:_initialisePoints = _swig_property(_StgDomain.SingleCellLayout__initialisePoints_get, _StgDomain.SingleCellLayout__initialisePoints_set)
+    __swig_setmethods__["_mapElementIdToCellId"] = _StgDomain.SingleCellLayout__mapElementIdToCellId_set
+    __swig_getmethods__["_mapElementIdToCellId"] = _StgDomain.SingleCellLayout__mapElementIdToCellId_get
+    if _newclass:_mapElementIdToCellId = _swig_property(_StgDomain.SingleCellLayout__mapElementIdToCellId_get, _StgDomain.SingleCellLayout__mapElementIdToCellId_set)
+    __swig_setmethods__["_isInCell"] = _StgDomain.SingleCellLayout__isInCell_set
+    __swig_getmethods__["_isInCell"] = _StgDomain.SingleCellLayout__isInCell_get
+    if _newclass:_isInCell = _swig_property(_StgDomain.SingleCellLayout__isInCell_get, _StgDomain.SingleCellLayout__isInCell_set)
+    __swig_setmethods__["_cellOf"] = _StgDomain.SingleCellLayout__cellOf_set
+    __swig_getmethods__["_cellOf"] = _StgDomain.SingleCellLayout__cellOf_get
+    if _newclass:_cellOf = _swig_property(_StgDomain.SingleCellLayout__cellOf_get, _StgDomain.SingleCellLayout__cellOf_set)
+    __swig_setmethods__["_getShadowInfo"] = _StgDomain.SingleCellLayout__getShadowInfo_set
+    __swig_getmethods__["_getShadowInfo"] = _StgDomain.SingleCellLayout__getShadowInfo_get
+    if _newclass:_getShadowInfo = _swig_property(_StgDomain.SingleCellLayout__getShadowInfo_get, _StgDomain.SingleCellLayout__getShadowInfo_set)
+    __swig_setmethods__["dimExists"] = _StgDomain.SingleCellLayout_dimExists_set
+    __swig_getmethods__["dimExists"] = _StgDomain.SingleCellLayout_dimExists_get
+    if _newclass:dimExists = _swig_property(_StgDomain.SingleCellLayout_dimExists_get, _StgDomain.SingleCellLayout_dimExists_set)
+    __swig_setmethods__["min"] = _StgDomain.SingleCellLayout_min_set
+    __swig_getmethods__["min"] = _StgDomain.SingleCellLayout_min_get
+    if _newclass:min = _swig_property(_StgDomain.SingleCellLayout_min_get, _StgDomain.SingleCellLayout_min_set)
+    __swig_setmethods__["max"] = _StgDomain.SingleCellLayout_max_set
+    __swig_getmethods__["max"] = _StgDomain.SingleCellLayout_max_get
+    if _newclass:max = _swig_property(_StgDomain.SingleCellLayout_max_get, _StgDomain.SingleCellLayout_max_set)
+    __swig_setmethods__["cellPointCoords"] = _StgDomain.SingleCellLayout_cellPointCoords_set
+    __swig_getmethods__["cellPointCoords"] = _StgDomain.SingleCellLayout_cellPointCoords_get
+    if _newclass:cellPointCoords = _swig_property(_StgDomain.SingleCellLayout_cellPointCoords_get, _StgDomain.SingleCellLayout_cellPointCoords_set)
+    __swig_setmethods__["pointCount"] = _StgDomain.SingleCellLayout_pointCount_set
+    __swig_getmethods__["pointCount"] = _StgDomain.SingleCellLayout_pointCount_get
+    if _newclass:pointCount = _swig_property(_StgDomain.SingleCellLayout_pointCount_get, _StgDomain.SingleCellLayout_pointCount_set)
+    def __init__(self): 
+        this = _StgDomain.new_SingleCellLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SingleCellLayout
+    __del__ = lambda self : None;
+SingleCellLayout_swigregister = _StgDomain.SingleCellLayout_swigregister
+SingleCellLayout_swigregister(SingleCellLayout)
+SingleCellLayout_Type = cvar.SingleCellLayout_Type
+
+
+def SingleCellLayout_New(*args):
+  return _StgDomain.SingleCellLayout_New(*args)
+SingleCellLayout_New = _StgDomain.SingleCellLayout_New
+
+def _SingleCellLayout_New(*args):
+  return _StgDomain._SingleCellLayout_New(*args)
+_SingleCellLayout_New = _StgDomain._SingleCellLayout_New
+
+def _SingleCellLayout_Init(*args):
+  return _StgDomain._SingleCellLayout_Init(*args)
+_SingleCellLayout_Init = _StgDomain._SingleCellLayout_Init
+
+def _SingleCellLayout_Delete(*args):
+  return _StgDomain._SingleCellLayout_Delete(*args)
+_SingleCellLayout_Delete = _StgDomain._SingleCellLayout_Delete
+
+def _SingleCellLayout_Print(*args):
+  return _StgDomain._SingleCellLayout_Print(*args)
+_SingleCellLayout_Print = _StgDomain._SingleCellLayout_Print
+
+def _SingleCellLayout_Copy(*args):
+  return _StgDomain._SingleCellLayout_Copy(*args)
+_SingleCellLayout_Copy = _StgDomain._SingleCellLayout_Copy
+
+def _SingleCellLayout_DefaultNew(*args):
+  return _StgDomain._SingleCellLayout_DefaultNew(*args)
+_SingleCellLayout_DefaultNew = _StgDomain._SingleCellLayout_DefaultNew
+
+def _SingleCellLayout_AssignFromXML(*args):
+  return _StgDomain._SingleCellLayout_AssignFromXML(*args)
+_SingleCellLayout_AssignFromXML = _StgDomain._SingleCellLayout_AssignFromXML
+
+def _SingleCellLayout_Build(*args):
+  return _StgDomain._SingleCellLayout_Build(*args)
+_SingleCellLayout_Build = _StgDomain._SingleCellLayout_Build
+
+def _SingleCellLayout_Initialise(*args):
+  return _StgDomain._SingleCellLayout_Initialise(*args)
+_SingleCellLayout_Initialise = _StgDomain._SingleCellLayout_Initialise
+
+def _SingleCellLayout_Execute(*args):
+  return _StgDomain._SingleCellLayout_Execute(*args)
+_SingleCellLayout_Execute = _StgDomain._SingleCellLayout_Execute
+
+def _SingleCellLayout_Destroy(*args):
+  return _StgDomain._SingleCellLayout_Destroy(*args)
+_SingleCellLayout_Destroy = _StgDomain._SingleCellLayout_Destroy
+
+def _SingleCellLayout_CellLocalCount(*args):
+  return _StgDomain._SingleCellLayout_CellLocalCount(*args)
+_SingleCellLayout_CellLocalCount = _StgDomain._SingleCellLayout_CellLocalCount
+
+def _SingleCellLayout_CellShadowCount(*args):
+  return _StgDomain._SingleCellLayout_CellShadowCount(*args)
+_SingleCellLayout_CellShadowCount = _StgDomain._SingleCellLayout_CellShadowCount
+
+def _SingleCellLayout_PointCount(*args):
+  return _StgDomain._SingleCellLayout_PointCount(*args)
+_SingleCellLayout_PointCount = _StgDomain._SingleCellLayout_PointCount
+
+def _SingleCellLayout_InitialisePoints(*args):
+  return _StgDomain._SingleCellLayout_InitialisePoints(*args)
+_SingleCellLayout_InitialisePoints = _StgDomain._SingleCellLayout_InitialisePoints
+
+def _SingleCellLayout_MapElementIdToCellId(*args):
+  return _StgDomain._SingleCellLayout_MapElementIdToCellId(*args)
+_SingleCellLayout_MapElementIdToCellId = _StgDomain._SingleCellLayout_MapElementIdToCellId
+
+def _SingleCellLayout_IsInCell(*args):
+  return _StgDomain._SingleCellLayout_IsInCell(*args)
+_SingleCellLayout_IsInCell = _StgDomain._SingleCellLayout_IsInCell
+
+def _SingleCellLayout_CellOf(*args):
+  return _StgDomain._SingleCellLayout_CellOf(*args)
+_SingleCellLayout_CellOf = _StgDomain._SingleCellLayout_CellOf
+
+def _SingleCellLayout_GetShadowInfo(*args):
+  return _StgDomain._SingleCellLayout_GetShadowInfo(*args)
+_SingleCellLayout_GetShadowInfo = _StgDomain._SingleCellLayout_GetShadowInfo
+
+def _SingleCellLayout_CalculateGlobalPointCount(*args):
+  return _StgDomain._SingleCellLayout_CalculateGlobalPointCount(*args)
+_SingleCellLayout_CalculateGlobalPointCount = _StgDomain._SingleCellLayout_CalculateGlobalPointCount
+
+def _SingleCellLayout_InitialiseGlobalCellPointPositions(*args):
+  return _StgDomain._SingleCellLayout_InitialiseGlobalCellPointPositions(*args)
+_SingleCellLayout_InitialiseGlobalCellPointPositions = _StgDomain._SingleCellLayout_InitialiseGlobalCellPointPositions
+class SpaceFillerParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SpaceFillerParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SpaceFillerParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.SpaceFillerParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.SpaceFillerParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.SpaceFillerParticleLayout__sizeOfSelf_get, _StgDomain.SpaceFillerParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.SpaceFillerParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.SpaceFillerParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.SpaceFillerParticleLayout__deleteSelf_get, _StgDomain.SpaceFillerParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.SpaceFillerParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.SpaceFillerParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.SpaceFillerParticleLayout_type_get, _StgDomain.SpaceFillerParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.SpaceFillerParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.SpaceFillerParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.SpaceFillerParticleLayout_nRefs_get, _StgDomain.SpaceFillerParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.SpaceFillerParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.SpaceFillerParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.SpaceFillerParticleLayout__delete_get, _StgDomain.SpaceFillerParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.SpaceFillerParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.SpaceFillerParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.SpaceFillerParticleLayout__print_get, _StgDomain.SpaceFillerParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.SpaceFillerParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.SpaceFillerParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.SpaceFillerParticleLayout__copy_get, _StgDomain.SpaceFillerParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.SpaceFillerParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.SpaceFillerParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.SpaceFillerParticleLayout_name_get, _StgDomain.SpaceFillerParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.SpaceFillerParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.SpaceFillerParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.SpaceFillerParticleLayout_nameAllocationType_get, _StgDomain.SpaceFillerParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.SpaceFillerParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.SpaceFillerParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.SpaceFillerParticleLayout__defaultConstructor_get, _StgDomain.SpaceFillerParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.SpaceFillerParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.SpaceFillerParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.SpaceFillerParticleLayout__construct_get, _StgDomain.SpaceFillerParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.SpaceFillerParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.SpaceFillerParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.SpaceFillerParticleLayout__build_get, _StgDomain.SpaceFillerParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.SpaceFillerParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.SpaceFillerParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.SpaceFillerParticleLayout__initialise_get, _StgDomain.SpaceFillerParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.SpaceFillerParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.SpaceFillerParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.SpaceFillerParticleLayout__execute_get, _StgDomain.SpaceFillerParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.SpaceFillerParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.SpaceFillerParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.SpaceFillerParticleLayout__destroy_get, _StgDomain.SpaceFillerParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.SpaceFillerParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.SpaceFillerParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.SpaceFillerParticleLayout_isConstructed_get, _StgDomain.SpaceFillerParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.SpaceFillerParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.SpaceFillerParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.SpaceFillerParticleLayout_isBuilt_get, _StgDomain.SpaceFillerParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.SpaceFillerParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.SpaceFillerParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.SpaceFillerParticleLayout_isInitialised_get, _StgDomain.SpaceFillerParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.SpaceFillerParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.SpaceFillerParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.SpaceFillerParticleLayout_hasExecuted_get, _StgDomain.SpaceFillerParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.SpaceFillerParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.SpaceFillerParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.SpaceFillerParticleLayout_isDestroyed_get, _StgDomain.SpaceFillerParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.SpaceFillerParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.SpaceFillerParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.SpaceFillerParticleLayout_constructType_get, _StgDomain.SpaceFillerParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.SpaceFillerParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.SpaceFillerParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.SpaceFillerParticleLayout_buildType_get, _StgDomain.SpaceFillerParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.SpaceFillerParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.SpaceFillerParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.SpaceFillerParticleLayout_initialiseType_get, _StgDomain.SpaceFillerParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.SpaceFillerParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.SpaceFillerParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.SpaceFillerParticleLayout_executeType_get, _StgDomain.SpaceFillerParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.SpaceFillerParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.SpaceFillerParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.SpaceFillerParticleLayout_destroyType_get, _StgDomain.SpaceFillerParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.SpaceFillerParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.SpaceFillerParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.SpaceFillerParticleLayout_context_get, _StgDomain.SpaceFillerParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.SpaceFillerParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.SpaceFillerParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.SpaceFillerParticleLayout__setInitialCounts_get, _StgDomain.SpaceFillerParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.SpaceFillerParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.SpaceFillerParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.SpaceFillerParticleLayout__initialiseParticles_get, _StgDomain.SpaceFillerParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.SpaceFillerParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.SpaceFillerParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.SpaceFillerParticleLayout_debug_get, _StgDomain.SpaceFillerParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.SpaceFillerParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.SpaceFillerParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.SpaceFillerParticleLayout_coordSystem_get, _StgDomain.SpaceFillerParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.SpaceFillerParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.SpaceFillerParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.SpaceFillerParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.SpaceFillerParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialiseParticle"] = _StgDomain.SpaceFillerParticleLayout__initialiseParticle_set
+    __swig_getmethods__["_initialiseParticle"] = _StgDomain.SpaceFillerParticleLayout__initialiseParticle_get
+    if _newclass:_initialiseParticle = _swig_property(_StgDomain.SpaceFillerParticleLayout__initialiseParticle_get, _StgDomain.SpaceFillerParticleLayout__initialiseParticle_set)
+    __swig_setmethods__["totalInitialParticles"] = _StgDomain.SpaceFillerParticleLayout_totalInitialParticles_set
+    __swig_getmethods__["totalInitialParticles"] = _StgDomain.SpaceFillerParticleLayout_totalInitialParticles_get
+    if _newclass:totalInitialParticles = _swig_property(_StgDomain.SpaceFillerParticleLayout_totalInitialParticles_get, _StgDomain.SpaceFillerParticleLayout_totalInitialParticles_set)
+    __swig_setmethods__["averageInitialParticlesPerCell"] = _StgDomain.SpaceFillerParticleLayout_averageInitialParticlesPerCell_set
+    __swig_getmethods__["averageInitialParticlesPerCell"] = _StgDomain.SpaceFillerParticleLayout_averageInitialParticlesPerCell_get
+    if _newclass:averageInitialParticlesPerCell = _swig_property(_StgDomain.SpaceFillerParticleLayout_averageInitialParticlesPerCell_get, _StgDomain.SpaceFillerParticleLayout_averageInitialParticlesPerCell_set)
+    __swig_setmethods__["mustUseAllParticles"] = _StgDomain.SpaceFillerParticleLayout_mustUseAllParticles_set
+    __swig_getmethods__["mustUseAllParticles"] = _StgDomain.SpaceFillerParticleLayout_mustUseAllParticles_get
+    if _newclass:mustUseAllParticles = _swig_property(_StgDomain.SpaceFillerParticleLayout_mustUseAllParticles_get, _StgDomain.SpaceFillerParticleLayout_mustUseAllParticles_set)
+    __swig_setmethods__["dim"] = _StgDomain.SpaceFillerParticleLayout_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.SpaceFillerParticleLayout_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.SpaceFillerParticleLayout_dim_get, _StgDomain.SpaceFillerParticleLayout_dim_set)
+    __swig_setmethods__["sobolGenerator"] = _StgDomain.SpaceFillerParticleLayout_sobolGenerator_set
+    __swig_getmethods__["sobolGenerator"] = _StgDomain.SpaceFillerParticleLayout_sobolGenerator_get
+    if _newclass:sobolGenerator = _swig_property(_StgDomain.SpaceFillerParticleLayout_sobolGenerator_get, _StgDomain.SpaceFillerParticleLayout_sobolGenerator_set)
+    def __init__(self): 
+        this = _StgDomain.new_SpaceFillerParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SpaceFillerParticleLayout
+    __del__ = lambda self : None;
+SpaceFillerParticleLayout_swigregister = _StgDomain.SpaceFillerParticleLayout_swigregister
+SpaceFillerParticleLayout_swigregister(SpaceFillerParticleLayout)
+SpaceFillerParticleLayout_Type = cvar.SpaceFillerParticleLayout_Type
+SpaceFillerParticleLayout_Invalid = cvar.SpaceFillerParticleLayout_Invalid
+
+
+def SpaceFillerParticleLayout_New(*args):
+  return _StgDomain.SpaceFillerParticleLayout_New(*args)
+SpaceFillerParticleLayout_New = _StgDomain.SpaceFillerParticleLayout_New
+
+def _SpaceFillerParticleLayout_New(*args):
+  return _StgDomain._SpaceFillerParticleLayout_New(*args)
+_SpaceFillerParticleLayout_New = _StgDomain._SpaceFillerParticleLayout_New
+
+def _SpaceFillerParticleLayout_Init(*args):
+  return _StgDomain._SpaceFillerParticleLayout_Init(*args)
+_SpaceFillerParticleLayout_Init = _StgDomain._SpaceFillerParticleLayout_Init
+
+def _SpaceFillerParticleLayout_Delete(*args):
+  return _StgDomain._SpaceFillerParticleLayout_Delete(*args)
+_SpaceFillerParticleLayout_Delete = _StgDomain._SpaceFillerParticleLayout_Delete
+
+def _SpaceFillerParticleLayout_Print(*args):
+  return _StgDomain._SpaceFillerParticleLayout_Print(*args)
+_SpaceFillerParticleLayout_Print = _StgDomain._SpaceFillerParticleLayout_Print
+
+def _SpaceFillerParticleLayout_Copy(*args):
+  return _StgDomain._SpaceFillerParticleLayout_Copy(*args)
+_SpaceFillerParticleLayout_Copy = _StgDomain._SpaceFillerParticleLayout_Copy
+
+def _SpaceFillerParticleLayout_DefaultNew(*args):
+  return _StgDomain._SpaceFillerParticleLayout_DefaultNew(*args)
+_SpaceFillerParticleLayout_DefaultNew = _StgDomain._SpaceFillerParticleLayout_DefaultNew
+
+def _SpaceFillerParticleLayout_AssignFromXML(*args):
+  return _StgDomain._SpaceFillerParticleLayout_AssignFromXML(*args)
+_SpaceFillerParticleLayout_AssignFromXML = _StgDomain._SpaceFillerParticleLayout_AssignFromXML
+
+def _SpaceFillerParticleLayout_Build(*args):
+  return _StgDomain._SpaceFillerParticleLayout_Build(*args)
+_SpaceFillerParticleLayout_Build = _StgDomain._SpaceFillerParticleLayout_Build
+
+def _SpaceFillerParticleLayout_Initialise(*args):
+  return _StgDomain._SpaceFillerParticleLayout_Initialise(*args)
+_SpaceFillerParticleLayout_Initialise = _StgDomain._SpaceFillerParticleLayout_Initialise
+
+def _SpaceFillerParticleLayout_Execute(*args):
+  return _StgDomain._SpaceFillerParticleLayout_Execute(*args)
+_SpaceFillerParticleLayout_Execute = _StgDomain._SpaceFillerParticleLayout_Execute
+
+def _SpaceFillerParticleLayout_Destroy(*args):
+  return _StgDomain._SpaceFillerParticleLayout_Destroy(*args)
+_SpaceFillerParticleLayout_Destroy = _StgDomain._SpaceFillerParticleLayout_Destroy
+
+def _SpaceFillerParticleLayout_InitialiseParticles(*args):
+  return _StgDomain._SpaceFillerParticleLayout_InitialiseParticles(*args)
+_SpaceFillerParticleLayout_InitialiseParticles = _StgDomain._SpaceFillerParticleLayout_InitialiseParticles
+
+def _SpaceFillerParticleLayout_InitialiseParticle(*args):
+  return _StgDomain._SpaceFillerParticleLayout_InitialiseParticle(*args)
+_SpaceFillerParticleLayout_InitialiseParticle = _StgDomain._SpaceFillerParticleLayout_InitialiseParticle
+class BaseParticle(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BaseParticle, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, BaseParticle, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["owningCell"] = _StgDomain.BaseParticle_owningCell_set
+    __swig_getmethods__["owningCell"] = _StgDomain.BaseParticle_owningCell_get
+    if _newclass:owningCell = _swig_property(_StgDomain.BaseParticle_owningCell_get, _StgDomain.BaseParticle_owningCell_set)
+    def __init__(self): 
+        this = _StgDomain.new_BaseParticle()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_BaseParticle
+    __del__ = lambda self : None;
+BaseParticle_swigregister = _StgDomain.BaseParticle_swigregister
+BaseParticle_swigregister(BaseParticle)
+StandardParticle_Type = cvar.StandardParticle_Type
+LocalParticle_Type = cvar.LocalParticle_Type
+GlobalParticle_Type = cvar.GlobalParticle_Type
+
+class StandardParticle(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, StandardParticle, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, StandardParticle, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["owningCell"] = _StgDomain.StandardParticle_owningCell_set
+    __swig_getmethods__["owningCell"] = _StgDomain.StandardParticle_owningCell_get
+    if _newclass:owningCell = _swig_property(_StgDomain.StandardParticle_owningCell_get, _StgDomain.StandardParticle_owningCell_set)
+    def __init__(self): 
+        this = _StgDomain.new_StandardParticle()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_StandardParticle
+    __del__ = lambda self : None;
+StandardParticle_swigregister = _StgDomain.StandardParticle_swigregister
+StandardParticle_swigregister(StandardParticle)
+
+class LocalParticle(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, LocalParticle, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, LocalParticle, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["owningCell"] = _StgDomain.LocalParticle_owningCell_set
+    __swig_getmethods__["owningCell"] = _StgDomain.LocalParticle_owningCell_get
+    if _newclass:owningCell = _swig_property(_StgDomain.LocalParticle_owningCell_get, _StgDomain.LocalParticle_owningCell_set)
+    __swig_setmethods__["xi"] = _StgDomain.LocalParticle_xi_set
+    __swig_getmethods__["xi"] = _StgDomain.LocalParticle_xi_get
+    if _newclass:xi = _swig_property(_StgDomain.LocalParticle_xi_get, _StgDomain.LocalParticle_xi_set)
+    def __init__(self): 
+        this = _StgDomain.new_LocalParticle()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_LocalParticle
+    __del__ = lambda self : None;
+LocalParticle_swigregister = _StgDomain.LocalParticle_swigregister
+LocalParticle_swigregister(LocalParticle)
+
+class GlobalParticle(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, GlobalParticle, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, GlobalParticle, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["owningCell"] = _StgDomain.GlobalParticle_owningCell_set
+    __swig_getmethods__["owningCell"] = _StgDomain.GlobalParticle_owningCell_get
+    if _newclass:owningCell = _swig_property(_StgDomain.GlobalParticle_owningCell_get, _StgDomain.GlobalParticle_owningCell_set)
+    __swig_setmethods__["coord"] = _StgDomain.GlobalParticle_coord_set
+    __swig_getmethods__["coord"] = _StgDomain.GlobalParticle_coord_get
+    if _newclass:coord = _swig_property(_StgDomain.GlobalParticle_coord_get, _StgDomain.GlobalParticle_coord_set)
+    def __init__(self): 
+        this = _StgDomain.new_GlobalParticle()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_GlobalParticle
+    __del__ = lambda self : None;
+GlobalParticle_swigregister = _StgDomain.GlobalParticle_swigregister
+GlobalParticle_swigregister(GlobalParticle)
+
+class Swarm_Register(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Swarm_Register, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Swarm_Register, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Swarm_Register__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Swarm_Register__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Swarm_Register__sizeOfSelf_get, _StgDomain.Swarm_Register__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Swarm_Register__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Swarm_Register__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Swarm_Register__deleteSelf_get, _StgDomain.Swarm_Register__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Swarm_Register_type_set
+    __swig_getmethods__["type"] = _StgDomain.Swarm_Register_type_get
+    if _newclass:type = _swig_property(_StgDomain.Swarm_Register_type_get, _StgDomain.Swarm_Register_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Swarm_Register_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Swarm_Register_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Swarm_Register_nRefs_get, _StgDomain.Swarm_Register_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Swarm_Register__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Swarm_Register__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Swarm_Register__delete_get, _StgDomain.Swarm_Register__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Swarm_Register__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Swarm_Register__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Swarm_Register__print_get, _StgDomain.Swarm_Register__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Swarm_Register__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Swarm_Register__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Swarm_Register__copy_get, _StgDomain.Swarm_Register__copy_set)
+    __swig_setmethods__["swarmList"] = _StgDomain.Swarm_Register_swarmList_set
+    __swig_getmethods__["swarmList"] = _StgDomain.Swarm_Register_swarmList_get
+    if _newclass:swarmList = _swig_property(_StgDomain.Swarm_Register_swarmList_get, _StgDomain.Swarm_Register_swarmList_set)
+    def __init__(self): 
+        this = _StgDomain.new_Swarm_Register()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Swarm_Register
+    __del__ = lambda self : None;
+Swarm_Register_swigregister = _StgDomain.Swarm_Register_swigregister
+Swarm_Register_swigregister(Swarm_Register)
+Swarm_Register_Type = cvar.Swarm_Register_Type
+
+
+def _Swarm_Register_New(*args):
+  return _StgDomain._Swarm_Register_New(*args)
+_Swarm_Register_New = _StgDomain._Swarm_Register_New
+
+def Swarm_Register_New():
+  return _StgDomain.Swarm_Register_New()
+Swarm_Register_New = _StgDomain.Swarm_Register_New
+
+def _Swarm_Register_Init(*args):
+  return _StgDomain._Swarm_Register_Init(*args)
+_Swarm_Register_Init = _StgDomain._Swarm_Register_Init
+
+def Swarm_Register_Init(*args):
+  return _StgDomain.Swarm_Register_Init(*args)
+Swarm_Register_Init = _StgDomain.Swarm_Register_Init
+
+def _Swarm_Register_Delete(*args):
+  return _StgDomain._Swarm_Register_Delete(*args)
+_Swarm_Register_Delete = _StgDomain._Swarm_Register_Delete
+
+def _Swarm_Register_Print(*args):
+  return _StgDomain._Swarm_Register_Print(*args)
+_Swarm_Register_Print = _StgDomain._Swarm_Register_Print
+
+def Swarm_Register_Add(*args):
+  return _StgDomain.Swarm_Register_Add(*args)
+Swarm_Register_Add = _StgDomain.Swarm_Register_Add
+
+def Swarm_Register_RemoveIndex(*args):
+  return _StgDomain.Swarm_Register_RemoveIndex(*args)
+Swarm_Register_RemoveIndex = _StgDomain.Swarm_Register_RemoveIndex
+
+def Swarm_Register_Get(*args):
+  return _StgDomain.Swarm_Register_Get(*args)
+Swarm_Register_Get = _StgDomain.Swarm_Register_Get
+
+def Swarm_Register_At(*args):
+  return _StgDomain.Swarm_Register_At(*args)
+Swarm_Register_At = _StgDomain.Swarm_Register_At
+
+def Swarm_Register_GetCount(*args):
+  return _StgDomain.Swarm_Register_GetCount(*args)
+Swarm_Register_GetCount = _StgDomain.Swarm_Register_GetCount
+
+def Swarm_Register_GetIndexFromPointer(*args):
+  return _StgDomain.Swarm_Register_GetIndexFromPointer(*args)
+Swarm_Register_GetIndexFromPointer = _StgDomain.Swarm_Register_GetIndexFromPointer
+
+def Swarm_Register_GetSwarm_Register():
+  return _StgDomain.Swarm_Register_GetSwarm_Register()
+Swarm_Register_GetSwarm_Register = _StgDomain.Swarm_Register_GetSwarm_Register
+
+def Swarm_Register_SaveAllRegisteredSwarms(*args):
+  return _StgDomain.Swarm_Register_SaveAllRegisteredSwarms(*args)
+Swarm_Register_SaveAllRegisteredSwarms = _StgDomain.Swarm_Register_SaveAllRegisteredSwarms
+class Swarm(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Swarm, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Swarm, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.Swarm__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.Swarm__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.Swarm__sizeOfSelf_get, _StgDomain.Swarm__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.Swarm__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.Swarm__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.Swarm__deleteSelf_get, _StgDomain.Swarm__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.Swarm_type_set
+    __swig_getmethods__["type"] = _StgDomain.Swarm_type_get
+    if _newclass:type = _swig_property(_StgDomain.Swarm_type_get, _StgDomain.Swarm_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.Swarm_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.Swarm_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.Swarm_nRefs_get, _StgDomain.Swarm_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.Swarm__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.Swarm__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.Swarm__delete_get, _StgDomain.Swarm__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.Swarm__print_set
+    __swig_getmethods__["_print"] = _StgDomain.Swarm__print_get
+    if _newclass:_print = _swig_property(_StgDomain.Swarm__print_get, _StgDomain.Swarm__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.Swarm__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.Swarm__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.Swarm__copy_get, _StgDomain.Swarm__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.Swarm_name_set
+    __swig_getmethods__["name"] = _StgDomain.Swarm_name_get
+    if _newclass:name = _swig_property(_StgDomain.Swarm_name_get, _StgDomain.Swarm_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.Swarm_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.Swarm_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.Swarm_nameAllocationType_get, _StgDomain.Swarm_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.Swarm__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.Swarm__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.Swarm__defaultConstructor_get, _StgDomain.Swarm__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.Swarm__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.Swarm__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.Swarm__construct_get, _StgDomain.Swarm__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.Swarm__build_set
+    __swig_getmethods__["_build"] = _StgDomain.Swarm__build_get
+    if _newclass:_build = _swig_property(_StgDomain.Swarm__build_get, _StgDomain.Swarm__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.Swarm__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.Swarm__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.Swarm__initialise_get, _StgDomain.Swarm__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.Swarm__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.Swarm__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.Swarm__execute_get, _StgDomain.Swarm__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.Swarm__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.Swarm__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.Swarm__destroy_get, _StgDomain.Swarm__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.Swarm_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.Swarm_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.Swarm_isConstructed_get, _StgDomain.Swarm_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.Swarm_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.Swarm_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.Swarm_isBuilt_get, _StgDomain.Swarm_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.Swarm_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.Swarm_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.Swarm_isInitialised_get, _StgDomain.Swarm_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.Swarm_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.Swarm_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.Swarm_hasExecuted_get, _StgDomain.Swarm_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.Swarm_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.Swarm_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.Swarm_isDestroyed_get, _StgDomain.Swarm_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.Swarm_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.Swarm_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.Swarm_constructType_get, _StgDomain.Swarm_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.Swarm_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.Swarm_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.Swarm_buildType_get, _StgDomain.Swarm_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.Swarm_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.Swarm_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.Swarm_initialiseType_get, _StgDomain.Swarm_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.Swarm_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.Swarm_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.Swarm_executeType_get, _StgDomain.Swarm_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.Swarm_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.Swarm_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.Swarm_destroyType_get, _StgDomain.Swarm_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.Swarm_context_set
+    __swig_getmethods__["context"] = _StgDomain.Swarm_context_get
+    if _newclass:context = _swig_property(_StgDomain.Swarm_context_get, _StgDomain.Swarm_context_set)
+    __swig_setmethods__["cellLayout"] = _StgDomain.Swarm_cellLayout_set
+    __swig_getmethods__["cellLayout"] = _StgDomain.Swarm_cellLayout_get
+    if _newclass:cellLayout = _swig_property(_StgDomain.Swarm_cellLayout_get, _StgDomain.Swarm_cellLayout_set)
+    __swig_setmethods__["particleLayout"] = _StgDomain.Swarm_particleLayout_set
+    __swig_getmethods__["particleLayout"] = _StgDomain.Swarm_particleLayout_get
+    if _newclass:particleLayout = _swig_property(_StgDomain.Swarm_particleLayout_get, _StgDomain.Swarm_particleLayout_set)
+    __swig_setmethods__["dim"] = _StgDomain.Swarm_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.Swarm_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.Swarm_dim_get, _StgDomain.Swarm_dim_set)
+    __swig_setmethods__["extension_Register"] = _StgDomain.Swarm_extension_Register_set
+    __swig_getmethods__["extension_Register"] = _StgDomain.Swarm_extension_Register_get
+    if _newclass:extension_Register = _swig_property(_StgDomain.Swarm_extension_Register_get, _StgDomain.Swarm_extension_Register_set)
+    __swig_setmethods__["debug"] = _StgDomain.Swarm_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.Swarm_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.Swarm_debug_get, _StgDomain.Swarm_debug_set)
+    __swig_setmethods__["myRank"] = _StgDomain.Swarm_myRank_set
+    __swig_getmethods__["myRank"] = _StgDomain.Swarm_myRank_get
+    if _newclass:myRank = _swig_property(_StgDomain.Swarm_myRank_get, _StgDomain.Swarm_myRank_set)
+    __swig_setmethods__["nProc"] = _StgDomain.Swarm_nProc_set
+    __swig_getmethods__["nProc"] = _StgDomain.Swarm_nProc_get
+    if _newclass:nProc = _swig_property(_StgDomain.Swarm_nProc_get, _StgDomain.Swarm_nProc_set)
+    __swig_setmethods__["comm"] = _StgDomain.Swarm_comm_set
+    __swig_getmethods__["comm"] = _StgDomain.Swarm_comm_get
+    if _newclass:comm = _swig_property(_StgDomain.Swarm_comm_get, _StgDomain.Swarm_comm_set)
+    __swig_setmethods__["stillDoingInitialisation"] = _StgDomain.Swarm_stillDoingInitialisation_set
+    __swig_getmethods__["stillDoingInitialisation"] = _StgDomain.Swarm_stillDoingInitialisation_get
+    if _newclass:stillDoingInitialisation = _swig_property(_StgDomain.Swarm_stillDoingInitialisation_get, _StgDomain.Swarm_stillDoingInitialisation_set)
+    __swig_setmethods__["isSwarmTypeToCheckPointAndReload"] = _StgDomain.Swarm_isSwarmTypeToCheckPointAndReload_set
+    __swig_getmethods__["isSwarmTypeToCheckPointAndReload"] = _StgDomain.Swarm_isSwarmTypeToCheckPointAndReload_get
+    if _newclass:isSwarmTypeToCheckPointAndReload = _swig_property(_StgDomain.Swarm_isSwarmTypeToCheckPointAndReload_get, _StgDomain.Swarm_isSwarmTypeToCheckPointAndReload_set)
+    __swig_setmethods__["cellLocalCount"] = _StgDomain.Swarm_cellLocalCount_set
+    __swig_getmethods__["cellLocalCount"] = _StgDomain.Swarm_cellLocalCount_get
+    if _newclass:cellLocalCount = _swig_property(_StgDomain.Swarm_cellLocalCount_get, _StgDomain.Swarm_cellLocalCount_set)
+    __swig_setmethods__["cellDomainCount"] = _StgDomain.Swarm_cellDomainCount_set
+    __swig_getmethods__["cellDomainCount"] = _StgDomain.Swarm_cellDomainCount_get
+    if _newclass:cellDomainCount = _swig_property(_StgDomain.Swarm_cellDomainCount_get, _StgDomain.Swarm_cellDomainCount_set)
+    __swig_setmethods__["cellShadowCount"] = _StgDomain.Swarm_cellShadowCount_set
+    __swig_getmethods__["cellShadowCount"] = _StgDomain.Swarm_cellShadowCount_get
+    if _newclass:cellShadowCount = _swig_property(_StgDomain.Swarm_cellShadowCount_get, _StgDomain.Swarm_cellShadowCount_set)
+    __swig_setmethods__["cellPointTbl"] = _StgDomain.Swarm_cellPointTbl_set
+    __swig_getmethods__["cellPointTbl"] = _StgDomain.Swarm_cellPointTbl_get
+    if _newclass:cellPointTbl = _swig_property(_StgDomain.Swarm_cellPointTbl_get, _StgDomain.Swarm_cellPointTbl_set)
+    __swig_setmethods__["cellPointCountTbl"] = _StgDomain.Swarm_cellPointCountTbl_set
+    __swig_getmethods__["cellPointCountTbl"] = _StgDomain.Swarm_cellPointCountTbl_get
+    if _newclass:cellPointCountTbl = _swig_property(_StgDomain.Swarm_cellPointCountTbl_get, _StgDomain.Swarm_cellPointCountTbl_set)
+    __swig_setmethods__["cellParticleTbl"] = _StgDomain.Swarm_cellParticleTbl_set
+    __swig_getmethods__["cellParticleTbl"] = _StgDomain.Swarm_cellParticleTbl_get
+    if _newclass:cellParticleTbl = _swig_property(_StgDomain.Swarm_cellParticleTbl_get, _StgDomain.Swarm_cellParticleTbl_set)
+    __swig_setmethods__["cellParticleCountTbl"] = _StgDomain.Swarm_cellParticleCountTbl_set
+    __swig_getmethods__["cellParticleCountTbl"] = _StgDomain.Swarm_cellParticleCountTbl_get
+    if _newclass:cellParticleCountTbl = _swig_property(_StgDomain.Swarm_cellParticleCountTbl_get, _StgDomain.Swarm_cellParticleCountTbl_set)
+    __swig_setmethods__["cellParticleSizeTbl"] = _StgDomain.Swarm_cellParticleSizeTbl_set
+    __swig_getmethods__["cellParticleSizeTbl"] = _StgDomain.Swarm_cellParticleSizeTbl_get
+    if _newclass:cellParticleSizeTbl = _swig_property(_StgDomain.Swarm_cellParticleSizeTbl_get, _StgDomain.Swarm_cellParticleSizeTbl_set)
+    __swig_setmethods__["cellParticleTblDelta"] = _StgDomain.Swarm_cellParticleTblDelta_set
+    __swig_getmethods__["cellParticleTblDelta"] = _StgDomain.Swarm_cellParticleTblDelta_get
+    if _newclass:cellParticleTblDelta = _swig_property(_StgDomain.Swarm_cellParticleTblDelta_get, _StgDomain.Swarm_cellParticleTblDelta_set)
+    __swig_setmethods__["particles"] = _StgDomain.Swarm_particles_set
+    __swig_getmethods__["particles"] = _StgDomain.Swarm_particles_get
+    if _newclass:particles = _swig_property(_StgDomain.Swarm_particles_get, _StgDomain.Swarm_particles_set)
+    __swig_setmethods__["particleSize"] = _StgDomain.Swarm_particleSize_set
+    __swig_getmethods__["particleSize"] = _StgDomain.Swarm_particleSize_get
+    if _newclass:particleSize = _swig_property(_StgDomain.Swarm_particleSize_get, _StgDomain.Swarm_particleSize_set)
+    __swig_setmethods__["particleLocalCount"] = _StgDomain.Swarm_particleLocalCount_set
+    __swig_getmethods__["particleLocalCount"] = _StgDomain.Swarm_particleLocalCount_get
+    if _newclass:particleLocalCount = _swig_property(_StgDomain.Swarm_particleLocalCount_get, _StgDomain.Swarm_particleLocalCount_set)
+    __swig_setmethods__["particlesArraySize"] = _StgDomain.Swarm_particlesArraySize_set
+    __swig_getmethods__["particlesArraySize"] = _StgDomain.Swarm_particlesArraySize_get
+    if _newclass:particlesArraySize = _swig_property(_StgDomain.Swarm_particlesArraySize_get, _StgDomain.Swarm_particlesArraySize_set)
+    __swig_setmethods__["particlesArrayDelta"] = _StgDomain.Swarm_particlesArrayDelta_set
+    __swig_getmethods__["particlesArrayDelta"] = _StgDomain.Swarm_particlesArrayDelta_get
+    if _newclass:particlesArrayDelta = _swig_property(_StgDomain.Swarm_particlesArrayDelta_get, _StgDomain.Swarm_particlesArrayDelta_set)
+    __swig_setmethods__["extraParticlesFactor"] = _StgDomain.Swarm_extraParticlesFactor_set
+    __swig_getmethods__["extraParticlesFactor"] = _StgDomain.Swarm_extraParticlesFactor_get
+    if _newclass:extraParticlesFactor = _swig_property(_StgDomain.Swarm_extraParticlesFactor_get, _StgDomain.Swarm_extraParticlesFactor_set)
+    __swig_setmethods__["shadowTablesBuilt"] = _StgDomain.Swarm_shadowTablesBuilt_set
+    __swig_getmethods__["shadowTablesBuilt"] = _StgDomain.Swarm_shadowTablesBuilt_get
+    if _newclass:shadowTablesBuilt = _swig_property(_StgDomain.Swarm_shadowTablesBuilt_get, _StgDomain.Swarm_shadowTablesBuilt_set)
+    __swig_setmethods__["shadowCellParticleTbl"] = _StgDomain.Swarm_shadowCellParticleTbl_set
+    __swig_getmethods__["shadowCellParticleTbl"] = _StgDomain.Swarm_shadowCellParticleTbl_get
+    if _newclass:shadowCellParticleTbl = _swig_property(_StgDomain.Swarm_shadowCellParticleTbl_get, _StgDomain.Swarm_shadowCellParticleTbl_set)
+    __swig_setmethods__["shadowCellParticleCountTbl"] = _StgDomain.Swarm_shadowCellParticleCountTbl_set
+    __swig_getmethods__["shadowCellParticleCountTbl"] = _StgDomain.Swarm_shadowCellParticleCountTbl_get
+    if _newclass:shadowCellParticleCountTbl = _swig_property(_StgDomain.Swarm_shadowCellParticleCountTbl_get, _StgDomain.Swarm_shadowCellParticleCountTbl_set)
+    __swig_setmethods__["shadowParticles"] = _StgDomain.Swarm_shadowParticles_set
+    __swig_getmethods__["shadowParticles"] = _StgDomain.Swarm_shadowParticles_get
+    if _newclass:shadowParticles = _swig_property(_StgDomain.Swarm_shadowParticles_get, _StgDomain.Swarm_shadowParticles_set)
+    __swig_setmethods__["shadowParticleCount"] = _StgDomain.Swarm_shadowParticleCount_set
+    __swig_getmethods__["shadowParticleCount"] = _StgDomain.Swarm_shadowParticleCount_get
+    if _newclass:shadowParticleCount = _swig_property(_StgDomain.Swarm_shadowParticleCount_get, _StgDomain.Swarm_shadowParticleCount_set)
+    __swig_setmethods__["swarmVariable_Register"] = _StgDomain.Swarm_swarmVariable_Register_set
+    __swig_getmethods__["swarmVariable_Register"] = _StgDomain.Swarm_swarmVariable_Register_get
+    if _newclass:swarmVariable_Register = _swig_property(_StgDomain.Swarm_swarmVariable_Register_get, _StgDomain.Swarm_swarmVariable_Register_set)
+    __swig_setmethods__["owningCellVariable"] = _StgDomain.Swarm_owningCellVariable_set
+    __swig_getmethods__["owningCellVariable"] = _StgDomain.Swarm_owningCellVariable_get
+    if _newclass:owningCellVariable = _swig_property(_StgDomain.Swarm_owningCellVariable_get, _StgDomain.Swarm_owningCellVariable_set)
+    __swig_setmethods__["globalIdVariable"] = _StgDomain.Swarm_globalIdVariable_set
+    __swig_getmethods__["globalIdVariable"] = _StgDomain.Swarm_globalIdVariable_get
+    if _newclass:globalIdVariable = _swig_property(_StgDomain.Swarm_globalIdVariable_get, _StgDomain.Swarm_globalIdVariable_set)
+    __swig_setmethods__["gidExtHandle"] = _StgDomain.Swarm_gidExtHandle_set
+    __swig_getmethods__["gidExtHandle"] = _StgDomain.Swarm_gidExtHandle_get
+    if _newclass:gidExtHandle = _swig_property(_StgDomain.Swarm_gidExtHandle_get, _StgDomain.Swarm_gidExtHandle_set)
+    __swig_setmethods__["particleExtensionMgr"] = _StgDomain.Swarm_particleExtensionMgr_set
+    __swig_getmethods__["particleExtensionMgr"] = _StgDomain.Swarm_particleExtensionMgr_get
+    if _newclass:particleExtensionMgr = _swig_property(_StgDomain.Swarm_particleExtensionMgr_get, _StgDomain.Swarm_particleExtensionMgr_set)
+    __swig_setmethods__["commHandlerList"] = _StgDomain.Swarm_commHandlerList_set
+    __swig_getmethods__["commHandlerList"] = _StgDomain.Swarm_commHandlerList_get
+    if _newclass:commHandlerList = _swig_property(_StgDomain.Swarm_commHandlerList_get, _StgDomain.Swarm_commHandlerList_set)
+    __swig_setmethods__["nSwarmVars"] = _StgDomain.Swarm_nSwarmVars_set
+    __swig_getmethods__["nSwarmVars"] = _StgDomain.Swarm_nSwarmVars_get
+    if _newclass:nSwarmVars = _swig_property(_StgDomain.Swarm_nSwarmVars_get, _StgDomain.Swarm_nSwarmVars_set)
+    __swig_setmethods__["swarmVars"] = _StgDomain.Swarm_swarmVars_set
+    __swig_getmethods__["swarmVars"] = _StgDomain.Swarm_swarmVars_get
+    if _newclass:swarmVars = _swig_property(_StgDomain.Swarm_swarmVars_get, _StgDomain.Swarm_swarmVars_set)
+    __swig_setmethods__["ics"] = _StgDomain.Swarm_ics_set
+    __swig_getmethods__["ics"] = _StgDomain.Swarm_ics_get
+    if _newclass:ics = _swig_property(_StgDomain.Swarm_ics_get, _StgDomain.Swarm_ics_set)
+    __swig_setmethods__["swarmReg_I"] = _StgDomain.Swarm_swarmReg_I_set
+    __swig_getmethods__["swarmReg_I"] = _StgDomain.Swarm_swarmReg_I_get
+    if _newclass:swarmReg_I = _swig_property(_StgDomain.Swarm_swarmReg_I_get, _StgDomain.Swarm_swarmReg_I_set)
+    __swig_setmethods__["incArray"] = _StgDomain.Swarm_incArray_set
+    __swig_getmethods__["incArray"] = _StgDomain.Swarm_incArray_get
+    if _newclass:incArray = _swig_property(_StgDomain.Swarm_incArray_get, _StgDomain.Swarm_incArray_set)
+    __swig_setmethods__["expanding"] = _StgDomain.Swarm_expanding_set
+    __swig_getmethods__["expanding"] = _StgDomain.Swarm_expanding_get
+    if _newclass:expanding = _swig_property(_StgDomain.Swarm_expanding_get, _StgDomain.Swarm_expanding_set)
+    __swig_setmethods__["isAdvecting"] = _StgDomain.Swarm_isAdvecting_set
+    __swig_getmethods__["isAdvecting"] = _StgDomain.Swarm_isAdvecting_get
+    if _newclass:isAdvecting = _swig_property(_StgDomain.Swarm_isAdvecting_get, _StgDomain.Swarm_isAdvecting_set)
+    def __init__(self): 
+        this = _StgDomain.new_Swarm()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_Swarm
+    __del__ = lambda self : None;
+Swarm_swigregister = _StgDomain.Swarm_swigregister
+Swarm_swigregister(Swarm)
+Swarm_Type = cvar.Swarm_Type
+DEFAULT_EXTRA_PARTICLES_FACTOR = cvar.DEFAULT_EXTRA_PARTICLES_FACTOR
+MINIMUM_PARTICLES_ARRAY_DELTA = cvar.MINIMUM_PARTICLES_ARRAY_DELTA
+DEFAULT_CELL_PARTICLE_TBL_DELTA = cvar.DEFAULT_CELL_PARTICLE_TBL_DELTA
+
+
+def Swarm_New(*args):
+  return _StgDomain.Swarm_New(*args)
+Swarm_New = _StgDomain.Swarm_New
+
+def _Swarm_New(*args):
+  return _StgDomain._Swarm_New(*args)
+_Swarm_New = _StgDomain._Swarm_New
+
+def _Swarm_Init(*args):
+  return _StgDomain._Swarm_Init(*args)
+_Swarm_Init = _StgDomain._Swarm_Init
+
+def _Swarm_ParticleInCellAt(*args):
+  return _StgDomain._Swarm_ParticleInCellAt(*args)
+_Swarm_ParticleInCellAt = _StgDomain._Swarm_ParticleInCellAt
+
+def _Swarm_ParticleAt(*args):
+  return _StgDomain._Swarm_ParticleAt(*args)
+_Swarm_ParticleAt = _StgDomain._Swarm_ParticleAt
+
+def _Swarm_Delete(*args):
+  return _StgDomain._Swarm_Delete(*args)
+_Swarm_Delete = _StgDomain._Swarm_Delete
+
+def _Swarm_Print(*args):
+  return _StgDomain._Swarm_Print(*args)
+_Swarm_Print = _StgDomain._Swarm_Print
+
+def _Swarm_Copy(*args):
+  return _StgDomain._Swarm_Copy(*args)
+_Swarm_Copy = _StgDomain._Swarm_Copy
+
+def _Swarm_DefaultNew(*args):
+  return _StgDomain._Swarm_DefaultNew(*args)
+_Swarm_DefaultNew = _StgDomain._Swarm_DefaultNew
+
+def _Swarm_AssignFromXML(*args):
+  return _StgDomain._Swarm_AssignFromXML(*args)
+_Swarm_AssignFromXML = _StgDomain._Swarm_AssignFromXML
+
+def _Swarm_Build(*args):
+  return _StgDomain._Swarm_Build(*args)
+_Swarm_Build = _StgDomain._Swarm_Build
+
+def _Swarm_Initialise(*args):
+  return _StgDomain._Swarm_Initialise(*args)
+_Swarm_Initialise = _StgDomain._Swarm_Initialise
+
+def _Swarm_Execute(*args):
+  return _StgDomain._Swarm_Execute(*args)
+_Swarm_Execute = _StgDomain._Swarm_Execute
+
+def _Swarm_Destroy(*args):
+  return _StgDomain._Swarm_Destroy(*args)
+_Swarm_Destroy = _StgDomain._Swarm_Destroy
+
+def Swarm_UpdateAllParticleOwners(*args):
+  return _StgDomain.Swarm_UpdateAllParticleOwners(*args)
+Swarm_UpdateAllParticleOwners = _StgDomain.Swarm_UpdateAllParticleOwners
+
+def Swarm_UpdateParticleOwner(*args):
+  return _StgDomain.Swarm_UpdateParticleOwner(*args)
+Swarm_UpdateParticleOwner = _StgDomain.Swarm_UpdateParticleOwner
+
+def Swarm_RemoveParticleFromCell(*args):
+  return _StgDomain.Swarm_RemoveParticleFromCell(*args)
+Swarm_RemoveParticleFromCell = _StgDomain.Swarm_RemoveParticleFromCell
+
+def Swarm_DeleteParticle(*args):
+  return _StgDomain.Swarm_DeleteParticle(*args)
+Swarm_DeleteParticle = _StgDomain.Swarm_DeleteParticle
+
+def Swarm_DeleteParticleAndReplaceWithNew(*args):
+  return _StgDomain.Swarm_DeleteParticleAndReplaceWithNew(*args)
+Swarm_DeleteParticleAndReplaceWithNew = _StgDomain.Swarm_DeleteParticleAndReplaceWithNew
+
+def Swarm_AddParticleToCell(*args):
+  return _StgDomain.Swarm_AddParticleToCell(*args)
+Swarm_AddParticleToCell = _StgDomain.Swarm_AddParticleToCell
+
+def Swarm_AddShadowParticleToShadowCell(*args):
+  return _StgDomain.Swarm_AddShadowParticleToShadowCell(*args)
+Swarm_AddShadowParticleToShadowCell = _StgDomain.Swarm_AddShadowParticleToShadowCell
+
+def Swarm_GetParticleIndexWithinCell(*args):
+  return _StgDomain.Swarm_GetParticleIndexWithinCell(*args)
+Swarm_GetParticleIndexWithinCell = _StgDomain.Swarm_GetParticleIndexWithinCell
+
+def Swarm_FindClosestParticle(*args):
+  return _StgDomain.Swarm_FindClosestParticle(*args)
+Swarm_FindClosestParticle = _StgDomain.Swarm_FindClosestParticle
+
+def Swarm_FindClosestParticleInCell(*args):
+  return _StgDomain.Swarm_FindClosestParticleInCell(*args)
+Swarm_FindClosestParticleInCell = _StgDomain.Swarm_FindClosestParticleInCell
+
+def Swarm_PrintParticleCoords(*args):
+  return _StgDomain.Swarm_PrintParticleCoords(*args)
+Swarm_PrintParticleCoords = _StgDomain.Swarm_PrintParticleCoords
+
+def Swarm_PrintParticleCoords_ByCell(*args):
+  return _StgDomain.Swarm_PrintParticleCoords_ByCell(*args)
+Swarm_PrintParticleCoords_ByCell = _StgDomain.Swarm_PrintParticleCoords_ByCell
+
+def Swarm_GetCellMinMaxCoords(*args):
+  return _StgDomain.Swarm_GetCellMinMaxCoords(*args)
+Swarm_GetCellMinMaxCoords = _StgDomain.Swarm_GetCellMinMaxCoords
+
+def Swarm_NewScalarVariable(*args):
+  return _StgDomain.Swarm_NewScalarVariable(*args)
+Swarm_NewScalarVariable = _StgDomain.Swarm_NewScalarVariable
+
+def Swarm_NewVectorVariable(*args):
+  return _StgDomain.Swarm_NewVectorVariable(*args)
+Swarm_NewVectorVariable = _StgDomain.Swarm_NewVectorVariable
+
+def Swarm_Realloc(*args):
+  return _StgDomain.Swarm_Realloc(*args)
+Swarm_Realloc = _StgDomain.Swarm_Realloc
+
+def Swarm_CheckCoordsAreFinite(*args):
+  return _StgDomain.Swarm_CheckCoordsAreFinite(*args)
+Swarm_CheckCoordsAreFinite = _StgDomain.Swarm_CheckCoordsAreFinite
+
+def Swarm_AssignIndexWithinShape(*args):
+  return _StgDomain.Swarm_AssignIndexWithinShape(*args)
+Swarm_AssignIndexWithinShape = _StgDomain.Swarm_AssignIndexWithinShape
+
+def _Swarm_BuildCells(*args):
+  return _StgDomain._Swarm_BuildCells(*args)
+_Swarm_BuildCells = _StgDomain._Swarm_BuildCells
+
+def _Swarm_BuildParticles(*args):
+  return _StgDomain._Swarm_BuildParticles(*args)
+_Swarm_BuildParticles = _StgDomain._Swarm_BuildParticles
+
+def _Swarm_BuildShadowParticles(*args):
+  return _StgDomain._Swarm_BuildShadowParticles(*args)
+_Swarm_BuildShadowParticles = _StgDomain._Swarm_BuildShadowParticles
+
+def _Swarm_InitialiseCells(*args):
+  return _StgDomain._Swarm_InitialiseCells(*args)
+_Swarm_InitialiseCells = _StgDomain._Swarm_InitialiseCells
+
+def _Swarm_InitialiseParticles(*args):
+  return _StgDomain._Swarm_InitialiseParticles(*args)
+_Swarm_InitialiseParticles = _StgDomain._Swarm_InitialiseParticles
+
+def Swarm_CreateNewParticle(*args):
+  return _StgDomain.Swarm_CreateNewParticle(*args)
+Swarm_CreateNewParticle = _StgDomain.Swarm_CreateNewParticle
+
+def Swarm_ReplaceCurrentParticleLayoutWithFileParticleLayout(*args):
+  return _StgDomain.Swarm_ReplaceCurrentParticleLayoutWithFileParticleLayout(*args)
+Swarm_ReplaceCurrentParticleLayoutWithFileParticleLayout = _StgDomain.Swarm_ReplaceCurrentParticleLayoutWithFileParticleLayout
+
+def Swarm_AddCommHandler(*args):
+  return _StgDomain.Swarm_AddCommHandler(*args)
+Swarm_AddCommHandler = _StgDomain.Swarm_AddCommHandler
+
+def Swarm_AddVariable(*args):
+  return _StgDomain.Swarm_AddVariable(*args)
+Swarm_AddVariable = _StgDomain.Swarm_AddVariable
+class SwarmDump(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SwarmDump, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SwarmDump, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.SwarmDump__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.SwarmDump__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.SwarmDump__sizeOfSelf_get, _StgDomain.SwarmDump__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.SwarmDump__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.SwarmDump__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.SwarmDump__deleteSelf_get, _StgDomain.SwarmDump__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.SwarmDump_type_set
+    __swig_getmethods__["type"] = _StgDomain.SwarmDump_type_get
+    if _newclass:type = _swig_property(_StgDomain.SwarmDump_type_get, _StgDomain.SwarmDump_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.SwarmDump_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.SwarmDump_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.SwarmDump_nRefs_get, _StgDomain.SwarmDump_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.SwarmDump__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.SwarmDump__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.SwarmDump__delete_get, _StgDomain.SwarmDump__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.SwarmDump__print_set
+    __swig_getmethods__["_print"] = _StgDomain.SwarmDump__print_get
+    if _newclass:_print = _swig_property(_StgDomain.SwarmDump__print_get, _StgDomain.SwarmDump__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.SwarmDump__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.SwarmDump__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.SwarmDump__copy_get, _StgDomain.SwarmDump__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.SwarmDump_name_set
+    __swig_getmethods__["name"] = _StgDomain.SwarmDump_name_get
+    if _newclass:name = _swig_property(_StgDomain.SwarmDump_name_get, _StgDomain.SwarmDump_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.SwarmDump_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.SwarmDump_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.SwarmDump_nameAllocationType_get, _StgDomain.SwarmDump_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.SwarmDump__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.SwarmDump__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.SwarmDump__defaultConstructor_get, _StgDomain.SwarmDump__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.SwarmDump__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.SwarmDump__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.SwarmDump__construct_get, _StgDomain.SwarmDump__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.SwarmDump__build_set
+    __swig_getmethods__["_build"] = _StgDomain.SwarmDump__build_get
+    if _newclass:_build = _swig_property(_StgDomain.SwarmDump__build_get, _StgDomain.SwarmDump__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.SwarmDump__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.SwarmDump__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.SwarmDump__initialise_get, _StgDomain.SwarmDump__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.SwarmDump__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.SwarmDump__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.SwarmDump__execute_get, _StgDomain.SwarmDump__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.SwarmDump__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.SwarmDump__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.SwarmDump__destroy_get, _StgDomain.SwarmDump__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.SwarmDump_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.SwarmDump_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.SwarmDump_isConstructed_get, _StgDomain.SwarmDump_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.SwarmDump_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.SwarmDump_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.SwarmDump_isBuilt_get, _StgDomain.SwarmDump_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.SwarmDump_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.SwarmDump_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.SwarmDump_isInitialised_get, _StgDomain.SwarmDump_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.SwarmDump_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.SwarmDump_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.SwarmDump_hasExecuted_get, _StgDomain.SwarmDump_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.SwarmDump_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.SwarmDump_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.SwarmDump_isDestroyed_get, _StgDomain.SwarmDump_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.SwarmDump_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.SwarmDump_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.SwarmDump_constructType_get, _StgDomain.SwarmDump_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.SwarmDump_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.SwarmDump_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.SwarmDump_buildType_get, _StgDomain.SwarmDump_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.SwarmDump_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.SwarmDump_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.SwarmDump_initialiseType_get, _StgDomain.SwarmDump_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.SwarmDump_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.SwarmDump_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.SwarmDump_executeType_get, _StgDomain.SwarmDump_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.SwarmDump_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.SwarmDump_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.SwarmDump_destroyType_get, _StgDomain.SwarmDump_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.SwarmDump_context_set
+    __swig_getmethods__["context"] = _StgDomain.SwarmDump_context_get
+    if _newclass:context = _swig_property(_StgDomain.SwarmDump_context_get, _StgDomain.SwarmDump_context_set)
+    __swig_setmethods__["swarmList"] = _StgDomain.SwarmDump_swarmList_set
+    __swig_getmethods__["swarmList"] = _StgDomain.SwarmDump_swarmList_get
+    if _newclass:swarmList = _swig_property(_StgDomain.SwarmDump_swarmList_get, _StgDomain.SwarmDump_swarmList_set)
+    __swig_setmethods__["swarmCount"] = _StgDomain.SwarmDump_swarmCount_set
+    __swig_getmethods__["swarmCount"] = _StgDomain.SwarmDump_swarmCount_get
+    if _newclass:swarmCount = _swig_property(_StgDomain.SwarmDump_swarmCount_get, _StgDomain.SwarmDump_swarmCount_set)
+    __swig_setmethods__["newFileEachTime"] = _StgDomain.SwarmDump_newFileEachTime_set
+    __swig_getmethods__["newFileEachTime"] = _StgDomain.SwarmDump_newFileEachTime_get
+    if _newclass:newFileEachTime = _swig_property(_StgDomain.SwarmDump_newFileEachTime_get, _StgDomain.SwarmDump_newFileEachTime_set)
+    def __init__(self): 
+        this = _StgDomain.new_SwarmDump()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SwarmDump
+    __del__ = lambda self : None;
+SwarmDump_swigregister = _StgDomain.SwarmDump_swigregister
+SwarmDump_swigregister(SwarmDump)
+SwarmDump_Type = cvar.SwarmDump_Type
+
+
+def SwarmDump_New(*args):
+  return _StgDomain.SwarmDump_New(*args)
+SwarmDump_New = _StgDomain.SwarmDump_New
+
+def _SwarmDump_New(*args):
+  return _StgDomain._SwarmDump_New(*args)
+_SwarmDump_New = _StgDomain._SwarmDump_New
+
+def _SwarmDump_Init(*args):
+  return _StgDomain._SwarmDump_Init(*args)
+_SwarmDump_Init = _StgDomain._SwarmDump_Init
+
+def _SwarmDump_Delete(*args):
+  return _StgDomain._SwarmDump_Delete(*args)
+_SwarmDump_Delete = _StgDomain._SwarmDump_Delete
+
+def _SwarmDump_Print(*args):
+  return _StgDomain._SwarmDump_Print(*args)
+_SwarmDump_Print = _StgDomain._SwarmDump_Print
+
+def _SwarmDump_Copy(*args):
+  return _StgDomain._SwarmDump_Copy(*args)
+_SwarmDump_Copy = _StgDomain._SwarmDump_Copy
+
+def _SwarmDump_DefaultNew(*args):
+  return _StgDomain._SwarmDump_DefaultNew(*args)
+_SwarmDump_DefaultNew = _StgDomain._SwarmDump_DefaultNew
+
+def _SwarmDump_AssignFromXML(*args):
+  return _StgDomain._SwarmDump_AssignFromXML(*args)
+_SwarmDump_AssignFromXML = _StgDomain._SwarmDump_AssignFromXML
+
+def _SwarmDump_Build(*args):
+  return _StgDomain._SwarmDump_Build(*args)
+_SwarmDump_Build = _StgDomain._SwarmDump_Build
+
+def _SwarmDump_Initialise(*args):
+  return _StgDomain._SwarmDump_Initialise(*args)
+_SwarmDump_Initialise = _StgDomain._SwarmDump_Initialise
+
+def _SwarmDump_Execute(*args):
+  return _StgDomain._SwarmDump_Execute(*args)
+_SwarmDump_Execute = _StgDomain._SwarmDump_Execute
+
+def _SwarmDump_Destroy(*args):
+  return _StgDomain._SwarmDump_Destroy(*args)
+_SwarmDump_Destroy = _StgDomain._SwarmDump_Destroy
+
+def SwarmDump_Execute(*args):
+  return _StgDomain.SwarmDump_Execute(*args)
+SwarmDump_Execute = _StgDomain.SwarmDump_Execute
+
+def SwarmDump_DumpToHDF5(*args):
+  return _StgDomain.SwarmDump_DumpToHDF5(*args)
+SwarmDump_DumpToHDF5 = _StgDomain.SwarmDump_DumpToHDF5
+class SwarmOutput(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SwarmOutput, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SwarmOutput, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.SwarmOutput__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.SwarmOutput__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.SwarmOutput__sizeOfSelf_get, _StgDomain.SwarmOutput__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.SwarmOutput__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.SwarmOutput__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.SwarmOutput__deleteSelf_get, _StgDomain.SwarmOutput__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.SwarmOutput_type_set
+    __swig_getmethods__["type"] = _StgDomain.SwarmOutput_type_get
+    if _newclass:type = _swig_property(_StgDomain.SwarmOutput_type_get, _StgDomain.SwarmOutput_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.SwarmOutput_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.SwarmOutput_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.SwarmOutput_nRefs_get, _StgDomain.SwarmOutput_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.SwarmOutput__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.SwarmOutput__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.SwarmOutput__delete_get, _StgDomain.SwarmOutput__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.SwarmOutput__print_set
+    __swig_getmethods__["_print"] = _StgDomain.SwarmOutput__print_get
+    if _newclass:_print = _swig_property(_StgDomain.SwarmOutput__print_get, _StgDomain.SwarmOutput__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.SwarmOutput__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.SwarmOutput__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.SwarmOutput__copy_get, _StgDomain.SwarmOutput__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.SwarmOutput_name_set
+    __swig_getmethods__["name"] = _StgDomain.SwarmOutput_name_get
+    if _newclass:name = _swig_property(_StgDomain.SwarmOutput_name_get, _StgDomain.SwarmOutput_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.SwarmOutput_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.SwarmOutput_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.SwarmOutput_nameAllocationType_get, _StgDomain.SwarmOutput_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.SwarmOutput__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.SwarmOutput__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.SwarmOutput__defaultConstructor_get, _StgDomain.SwarmOutput__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.SwarmOutput__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.SwarmOutput__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.SwarmOutput__construct_get, _StgDomain.SwarmOutput__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.SwarmOutput__build_set
+    __swig_getmethods__["_build"] = _StgDomain.SwarmOutput__build_get
+    if _newclass:_build = _swig_property(_StgDomain.SwarmOutput__build_get, _StgDomain.SwarmOutput__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.SwarmOutput__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.SwarmOutput__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.SwarmOutput__initialise_get, _StgDomain.SwarmOutput__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.SwarmOutput__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.SwarmOutput__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.SwarmOutput__execute_get, _StgDomain.SwarmOutput__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.SwarmOutput__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.SwarmOutput__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.SwarmOutput__destroy_get, _StgDomain.SwarmOutput__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.SwarmOutput_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.SwarmOutput_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.SwarmOutput_isConstructed_get, _StgDomain.SwarmOutput_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.SwarmOutput_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.SwarmOutput_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.SwarmOutput_isBuilt_get, _StgDomain.SwarmOutput_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.SwarmOutput_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.SwarmOutput_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.SwarmOutput_isInitialised_get, _StgDomain.SwarmOutput_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.SwarmOutput_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.SwarmOutput_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.SwarmOutput_hasExecuted_get, _StgDomain.SwarmOutput_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.SwarmOutput_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.SwarmOutput_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.SwarmOutput_isDestroyed_get, _StgDomain.SwarmOutput_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.SwarmOutput_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.SwarmOutput_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.SwarmOutput_constructType_get, _StgDomain.SwarmOutput_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.SwarmOutput_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.SwarmOutput_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.SwarmOutput_buildType_get, _StgDomain.SwarmOutput_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.SwarmOutput_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.SwarmOutput_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.SwarmOutput_initialiseType_get, _StgDomain.SwarmOutput_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.SwarmOutput_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.SwarmOutput_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.SwarmOutput_executeType_get, _StgDomain.SwarmOutput_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.SwarmOutput_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.SwarmOutput_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.SwarmOutput_destroyType_get, _StgDomain.SwarmOutput_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.SwarmOutput_context_set
+    __swig_getmethods__["context"] = _StgDomain.SwarmOutput_context_get
+    if _newclass:context = _swig_property(_StgDomain.SwarmOutput_context_get, _StgDomain.SwarmOutput_context_set)
+    __swig_setmethods__["_printHeader"] = _StgDomain.SwarmOutput__printHeader_set
+    __swig_getmethods__["_printHeader"] = _StgDomain.SwarmOutput__printHeader_get
+    if _newclass:_printHeader = _swig_property(_StgDomain.SwarmOutput__printHeader_get, _StgDomain.SwarmOutput__printHeader_set)
+    __swig_setmethods__["_printData"] = _StgDomain.SwarmOutput__printData_set
+    __swig_getmethods__["_printData"] = _StgDomain.SwarmOutput__printData_get
+    if _newclass:_printData = _swig_property(_StgDomain.SwarmOutput__printData_get, _StgDomain.SwarmOutput__printData_set)
+    __swig_setmethods__["swarm"] = _StgDomain.SwarmOutput_swarm_set
+    __swig_getmethods__["swarm"] = _StgDomain.SwarmOutput_swarm_get
+    if _newclass:swarm = _swig_property(_StgDomain.SwarmOutput_swarm_get, _StgDomain.SwarmOutput_swarm_set)
+    __swig_setmethods__["baseFilename"] = _StgDomain.SwarmOutput_baseFilename_set
+    __swig_getmethods__["baseFilename"] = _StgDomain.SwarmOutput_baseFilename_get
+    if _newclass:baseFilename = _swig_property(_StgDomain.SwarmOutput_baseFilename_get, _StgDomain.SwarmOutput_baseFilename_set)
+    __swig_setmethods__["handle"] = _StgDomain.SwarmOutput_handle_set
+    __swig_getmethods__["handle"] = _StgDomain.SwarmOutput_handle_get
+    if _newclass:handle = _swig_property(_StgDomain.SwarmOutput_handle_get, _StgDomain.SwarmOutput_handle_set)
+    __swig_setmethods__["globalIndexVariable"] = _StgDomain.SwarmOutput_globalIndexVariable_set
+    __swig_getmethods__["globalIndexVariable"] = _StgDomain.SwarmOutput_globalIndexVariable_get
+    if _newclass:globalIndexVariable = _swig_property(_StgDomain.SwarmOutput_globalIndexVariable_get, _StgDomain.SwarmOutput_globalIndexVariable_set)
+    __swig_setmethods__["columnWidth"] = _StgDomain.SwarmOutput_columnWidth_set
+    __swig_getmethods__["columnWidth"] = _StgDomain.SwarmOutput_columnWidth_get
+    if _newclass:columnWidth = _swig_property(_StgDomain.SwarmOutput_columnWidth_get, _StgDomain.SwarmOutput_columnWidth_set)
+    __swig_setmethods__["borderString"] = _StgDomain.SwarmOutput_borderString_set
+    __swig_getmethods__["borderString"] = _StgDomain.SwarmOutput_borderString_get
+    if _newclass:borderString = _swig_property(_StgDomain.SwarmOutput_borderString_get, _StgDomain.SwarmOutput_borderString_set)
+    __swig_setmethods__["doubleFormatString"] = _StgDomain.SwarmOutput_doubleFormatString_set
+    __swig_getmethods__["doubleFormatString"] = _StgDomain.SwarmOutput_doubleFormatString_get
+    if _newclass:doubleFormatString = _swig_property(_StgDomain.SwarmOutput_doubleFormatString_get, _StgDomain.SwarmOutput_doubleFormatString_set)
+    def __init__(self): 
+        this = _StgDomain.new_SwarmOutput()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SwarmOutput
+    __del__ = lambda self : None;
+SwarmOutput_swigregister = _StgDomain.SwarmOutput_swigregister
+SwarmOutput_swigregister(SwarmOutput)
+SwarmOutput_Type = cvar.SwarmOutput_Type
+
+
+def SwarmOutput_New(*args):
+  return _StgDomain.SwarmOutput_New(*args)
+SwarmOutput_New = _StgDomain.SwarmOutput_New
+
+def _SwarmOutput_New(*args):
+  return _StgDomain._SwarmOutput_New(*args)
+_SwarmOutput_New = _StgDomain._SwarmOutput_New
+
+def _SwarmOutput_Init(*args):
+  return _StgDomain._SwarmOutput_Init(*args)
+_SwarmOutput_Init = _StgDomain._SwarmOutput_Init
+
+def _SwarmOutput_Delete(*args):
+  return _StgDomain._SwarmOutput_Delete(*args)
+_SwarmOutput_Delete = _StgDomain._SwarmOutput_Delete
+
+def _SwarmOutput_Print(*args):
+  return _StgDomain._SwarmOutput_Print(*args)
+_SwarmOutput_Print = _StgDomain._SwarmOutput_Print
+
+def _SwarmOutput_Copy(*args):
+  return _StgDomain._SwarmOutput_Copy(*args)
+_SwarmOutput_Copy = _StgDomain._SwarmOutput_Copy
+
+def _SwarmOutput_DefaultNew(*args):
+  return _StgDomain._SwarmOutput_DefaultNew(*args)
+_SwarmOutput_DefaultNew = _StgDomain._SwarmOutput_DefaultNew
+
+def _SwarmOutput_AssignFromXML(*args):
+  return _StgDomain._SwarmOutput_AssignFromXML(*args)
+_SwarmOutput_AssignFromXML = _StgDomain._SwarmOutput_AssignFromXML
+
+def _SwarmOutput_Build(*args):
+  return _StgDomain._SwarmOutput_Build(*args)
+_SwarmOutput_Build = _StgDomain._SwarmOutput_Build
+
+def _SwarmOutput_Initialise(*args):
+  return _StgDomain._SwarmOutput_Initialise(*args)
+_SwarmOutput_Initialise = _StgDomain._SwarmOutput_Initialise
+
+def _SwarmOutput_Execute(*args):
+  return _StgDomain._SwarmOutput_Execute(*args)
+_SwarmOutput_Execute = _StgDomain._SwarmOutput_Execute
+
+def _SwarmOutput_Destroy(*args):
+  return _StgDomain._SwarmOutput_Destroy(*args)
+_SwarmOutput_Destroy = _StgDomain._SwarmOutput_Destroy
+
+def _SwarmOutput_PrintHeader(*args):
+  return _StgDomain._SwarmOutput_PrintHeader(*args)
+_SwarmOutput_PrintHeader = _StgDomain._SwarmOutput_PrintHeader
+
+def _SwarmOutput_PrintData(*args):
+  return _StgDomain._SwarmOutput_PrintData(*args)
+_SwarmOutput_PrintData = _StgDomain._SwarmOutput_PrintData
+
+def SwarmOutput_Execute(*args):
+  return _StgDomain.SwarmOutput_Execute(*args)
+SwarmOutput_Execute = _StgDomain.SwarmOutput_Execute
+
+def SwarmOutput_PrintHeader(*args):
+  return _StgDomain.SwarmOutput_PrintHeader(*args)
+SwarmOutput_PrintHeader = _StgDomain.SwarmOutput_PrintHeader
+
+def SwarmOutput_PrintData(*args):
+  return _StgDomain.SwarmOutput_PrintData(*args)
+SwarmOutput_PrintData = _StgDomain.SwarmOutput_PrintData
+
+def _SwarmOutput_SetGlobalIndicies(*args):
+  return _StgDomain._SwarmOutput_SetGlobalIndicies(*args)
+_SwarmOutput_SetGlobalIndicies = _StgDomain._SwarmOutput_SetGlobalIndicies
+
+def SwarmOutput_PrintString(*args):
+  return _StgDomain.SwarmOutput_PrintString(*args)
+SwarmOutput_PrintString = _StgDomain.SwarmOutput_PrintString
+
+def SwarmOutput_PrintDouble(*args):
+  return _StgDomain.SwarmOutput_PrintDouble(*args)
+SwarmOutput_PrintDouble = _StgDomain.SwarmOutput_PrintDouble
+
+def SwarmOutput_PrintTuple(*args):
+  return _StgDomain.SwarmOutput_PrintTuple(*args)
+SwarmOutput_PrintTuple = _StgDomain.SwarmOutput_PrintTuple
+class SwarmVariable_Register(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SwarmVariable_Register, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SwarmVariable_Register, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.SwarmVariable_Register__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.SwarmVariable_Register__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.SwarmVariable_Register__sizeOfSelf_get, _StgDomain.SwarmVariable_Register__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.SwarmVariable_Register__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.SwarmVariable_Register__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.SwarmVariable_Register__deleteSelf_get, _StgDomain.SwarmVariable_Register__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.SwarmVariable_Register_type_set
+    __swig_getmethods__["type"] = _StgDomain.SwarmVariable_Register_type_get
+    if _newclass:type = _swig_property(_StgDomain.SwarmVariable_Register_type_get, _StgDomain.SwarmVariable_Register_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.SwarmVariable_Register_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.SwarmVariable_Register_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.SwarmVariable_Register_nRefs_get, _StgDomain.SwarmVariable_Register_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.SwarmVariable_Register__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.SwarmVariable_Register__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.SwarmVariable_Register__delete_get, _StgDomain.SwarmVariable_Register__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.SwarmVariable_Register__print_set
+    __swig_getmethods__["_print"] = _StgDomain.SwarmVariable_Register__print_get
+    if _newclass:_print = _swig_property(_StgDomain.SwarmVariable_Register__print_get, _StgDomain.SwarmVariable_Register__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.SwarmVariable_Register__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.SwarmVariable_Register__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.SwarmVariable_Register__copy_get, _StgDomain.SwarmVariable_Register__copy_set)
+    __swig_setmethods__["objects"] = _StgDomain.SwarmVariable_Register_objects_set
+    __swig_getmethods__["objects"] = _StgDomain.SwarmVariable_Register_objects_get
+    if _newclass:objects = _swig_property(_StgDomain.SwarmVariable_Register_objects_get, _StgDomain.SwarmVariable_Register_objects_set)
+    __swig_setmethods__["variable_Register"] = _StgDomain.SwarmVariable_Register_variable_Register_set
+    __swig_getmethods__["variable_Register"] = _StgDomain.SwarmVariable_Register_variable_Register_get
+    if _newclass:variable_Register = _swig_property(_StgDomain.SwarmVariable_Register_variable_Register_get, _StgDomain.SwarmVariable_Register_variable_Register_set)
+    def __init__(self): 
+        this = _StgDomain.new_SwarmVariable_Register()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_SwarmVariable_Register
+    __del__ = lambda self : None;
+SwarmVariable_Register_swigregister = _StgDomain.SwarmVariable_Register_swigregister
+SwarmVariable_Register_swigregister(SwarmVariable_Register)
+SwarmVariable_Register_Type = cvar.SwarmVariable_Register_Type
+
+
+def SwarmVariable_Register_New(*args):
+  return _StgDomain.SwarmVariable_Register_New(*args)
+SwarmVariable_Register_New = _StgDomain.SwarmVariable_Register_New
+class TriGaussParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, TriGaussParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, TriGaussParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.TriGaussParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.TriGaussParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.TriGaussParticleLayout__sizeOfSelf_get, _StgDomain.TriGaussParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.TriGaussParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.TriGaussParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.TriGaussParticleLayout__deleteSelf_get, _StgDomain.TriGaussParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.TriGaussParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.TriGaussParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.TriGaussParticleLayout_type_get, _StgDomain.TriGaussParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.TriGaussParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.TriGaussParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.TriGaussParticleLayout_nRefs_get, _StgDomain.TriGaussParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.TriGaussParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.TriGaussParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.TriGaussParticleLayout__delete_get, _StgDomain.TriGaussParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.TriGaussParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.TriGaussParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.TriGaussParticleLayout__print_get, _StgDomain.TriGaussParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.TriGaussParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.TriGaussParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.TriGaussParticleLayout__copy_get, _StgDomain.TriGaussParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.TriGaussParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.TriGaussParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.TriGaussParticleLayout_name_get, _StgDomain.TriGaussParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.TriGaussParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.TriGaussParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.TriGaussParticleLayout_nameAllocationType_get, _StgDomain.TriGaussParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.TriGaussParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.TriGaussParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.TriGaussParticleLayout__defaultConstructor_get, _StgDomain.TriGaussParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.TriGaussParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.TriGaussParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.TriGaussParticleLayout__construct_get, _StgDomain.TriGaussParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.TriGaussParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.TriGaussParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.TriGaussParticleLayout__build_get, _StgDomain.TriGaussParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.TriGaussParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.TriGaussParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.TriGaussParticleLayout__initialise_get, _StgDomain.TriGaussParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.TriGaussParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.TriGaussParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.TriGaussParticleLayout__execute_get, _StgDomain.TriGaussParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.TriGaussParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.TriGaussParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.TriGaussParticleLayout__destroy_get, _StgDomain.TriGaussParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.TriGaussParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.TriGaussParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.TriGaussParticleLayout_isConstructed_get, _StgDomain.TriGaussParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.TriGaussParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.TriGaussParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.TriGaussParticleLayout_isBuilt_get, _StgDomain.TriGaussParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.TriGaussParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.TriGaussParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.TriGaussParticleLayout_isInitialised_get, _StgDomain.TriGaussParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.TriGaussParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.TriGaussParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.TriGaussParticleLayout_hasExecuted_get, _StgDomain.TriGaussParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.TriGaussParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.TriGaussParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.TriGaussParticleLayout_isDestroyed_get, _StgDomain.TriGaussParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.TriGaussParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.TriGaussParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.TriGaussParticleLayout_constructType_get, _StgDomain.TriGaussParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.TriGaussParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.TriGaussParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.TriGaussParticleLayout_buildType_get, _StgDomain.TriGaussParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.TriGaussParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.TriGaussParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.TriGaussParticleLayout_initialiseType_get, _StgDomain.TriGaussParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.TriGaussParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.TriGaussParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.TriGaussParticleLayout_executeType_get, _StgDomain.TriGaussParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.TriGaussParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.TriGaussParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.TriGaussParticleLayout_destroyType_get, _StgDomain.TriGaussParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.TriGaussParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.TriGaussParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.TriGaussParticleLayout_context_get, _StgDomain.TriGaussParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.TriGaussParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.TriGaussParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.TriGaussParticleLayout__setInitialCounts_get, _StgDomain.TriGaussParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.TriGaussParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.TriGaussParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.TriGaussParticleLayout__initialiseParticles_get, _StgDomain.TriGaussParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.TriGaussParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.TriGaussParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.TriGaussParticleLayout_debug_get, _StgDomain.TriGaussParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.TriGaussParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.TriGaussParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.TriGaussParticleLayout_coordSystem_get, _StgDomain.TriGaussParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.TriGaussParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.TriGaussParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.TriGaussParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.TriGaussParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialCount"] = _StgDomain.TriGaussParticleLayout__initialCount_set
+    __swig_getmethods__["_initialCount"] = _StgDomain.TriGaussParticleLayout__initialCount_get
+    if _newclass:_initialCount = _swig_property(_StgDomain.TriGaussParticleLayout__initialCount_get, _StgDomain.TriGaussParticleLayout__initialCount_set)
+    __swig_setmethods__["_initialiseParticlesOfCell"] = _StgDomain.TriGaussParticleLayout__initialiseParticlesOfCell_set
+    __swig_getmethods__["_initialiseParticlesOfCell"] = _StgDomain.TriGaussParticleLayout__initialiseParticlesOfCell_get
+    if _newclass:_initialiseParticlesOfCell = _swig_property(_StgDomain.TriGaussParticleLayout__initialiseParticlesOfCell_get, _StgDomain.TriGaussParticleLayout__initialiseParticlesOfCell_set)
+    __swig_setmethods__["dim"] = _StgDomain.TriGaussParticleLayout_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.TriGaussParticleLayout_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.TriGaussParticleLayout_dim_get, _StgDomain.TriGaussParticleLayout_dim_set)
+    __swig_setmethods__["particlesPerCell"] = _StgDomain.TriGaussParticleLayout_particlesPerCell_set
+    __swig_getmethods__["particlesPerCell"] = _StgDomain.TriGaussParticleLayout_particlesPerCell_get
+    if _newclass:particlesPerCell = _swig_property(_StgDomain.TriGaussParticleLayout_particlesPerCell_get, _StgDomain.TriGaussParticleLayout_particlesPerCell_set)
+    def __init__(self): 
+        this = _StgDomain.new_TriGaussParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_TriGaussParticleLayout
+    __del__ = lambda self : None;
+TriGaussParticleLayout_swigregister = _StgDomain.TriGaussParticleLayout_swigregister
+TriGaussParticleLayout_swigregister(TriGaussParticleLayout)
+TriGaussParticleLayout_Type = cvar.TriGaussParticleLayout_Type
+
+
+def TriGaussParticleLayout_New(*args):
+  return _StgDomain.TriGaussParticleLayout_New(*args)
+TriGaussParticleLayout_New = _StgDomain.TriGaussParticleLayout_New
+
+def _TriGaussParticleLayout_New(*args):
+  return _StgDomain._TriGaussParticleLayout_New(*args)
+_TriGaussParticleLayout_New = _StgDomain._TriGaussParticleLayout_New
+
+def _TriGaussParticleLayout_Init(*args):
+  return _StgDomain._TriGaussParticleLayout_Init(*args)
+_TriGaussParticleLayout_Init = _StgDomain._TriGaussParticleLayout_Init
+
+def _TriGaussParticleLayout_Delete(*args):
+  return _StgDomain._TriGaussParticleLayout_Delete(*args)
+_TriGaussParticleLayout_Delete = _StgDomain._TriGaussParticleLayout_Delete
+
+def _TriGaussParticleLayout_Print(*args):
+  return _StgDomain._TriGaussParticleLayout_Print(*args)
+_TriGaussParticleLayout_Print = _StgDomain._TriGaussParticleLayout_Print
+
+def _TriGaussParticleLayout_Copy(*args):
+  return _StgDomain._TriGaussParticleLayout_Copy(*args)
+_TriGaussParticleLayout_Copy = _StgDomain._TriGaussParticleLayout_Copy
+
+def _TriGaussParticleLayout_DefaultNew(*args):
+  return _StgDomain._TriGaussParticleLayout_DefaultNew(*args)
+_TriGaussParticleLayout_DefaultNew = _StgDomain._TriGaussParticleLayout_DefaultNew
+
+def _TriGaussParticleLayout_AssignFromXML(*args):
+  return _StgDomain._TriGaussParticleLayout_AssignFromXML(*args)
+_TriGaussParticleLayout_AssignFromXML = _StgDomain._TriGaussParticleLayout_AssignFromXML
+
+def _TriGaussParticleLayout_Build(*args):
+  return _StgDomain._TriGaussParticleLayout_Build(*args)
+_TriGaussParticleLayout_Build = _StgDomain._TriGaussParticleLayout_Build
+
+def _TriGaussParticleLayout_Initialise(*args):
+  return _StgDomain._TriGaussParticleLayout_Initialise(*args)
+_TriGaussParticleLayout_Initialise = _StgDomain._TriGaussParticleLayout_Initialise
+
+def _TriGaussParticleLayout_Execute(*args):
+  return _StgDomain._TriGaussParticleLayout_Execute(*args)
+_TriGaussParticleLayout_Execute = _StgDomain._TriGaussParticleLayout_Execute
+
+def _TriGaussParticleLayout_Destroy(*args):
+  return _StgDomain._TriGaussParticleLayout_Destroy(*args)
+_TriGaussParticleLayout_Destroy = _StgDomain._TriGaussParticleLayout_Destroy
+
+def _TriGaussParticleLayout_InitialCount(*args):
+  return _StgDomain._TriGaussParticleLayout_InitialCount(*args)
+_TriGaussParticleLayout_InitialCount = _StgDomain._TriGaussParticleLayout_InitialCount
+
+def _TriGaussParticleLayout_InitialiseParticlesOfCell(*args):
+  return _StgDomain._TriGaussParticleLayout_InitialiseParticlesOfCell(*args)
+_TriGaussParticleLayout_InitialiseParticlesOfCell = _StgDomain._TriGaussParticleLayout_InitialiseParticlesOfCell
+class TriSingleCellLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, TriSingleCellLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, TriSingleCellLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.TriSingleCellLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.TriSingleCellLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.TriSingleCellLayout__sizeOfSelf_get, _StgDomain.TriSingleCellLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.TriSingleCellLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.TriSingleCellLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.TriSingleCellLayout__deleteSelf_get, _StgDomain.TriSingleCellLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.TriSingleCellLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.TriSingleCellLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.TriSingleCellLayout_type_get, _StgDomain.TriSingleCellLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.TriSingleCellLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.TriSingleCellLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.TriSingleCellLayout_nRefs_get, _StgDomain.TriSingleCellLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.TriSingleCellLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.TriSingleCellLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.TriSingleCellLayout__delete_get, _StgDomain.TriSingleCellLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.TriSingleCellLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.TriSingleCellLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.TriSingleCellLayout__print_get, _StgDomain.TriSingleCellLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.TriSingleCellLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.TriSingleCellLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.TriSingleCellLayout__copy_get, _StgDomain.TriSingleCellLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.TriSingleCellLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.TriSingleCellLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.TriSingleCellLayout_name_get, _StgDomain.TriSingleCellLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.TriSingleCellLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.TriSingleCellLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.TriSingleCellLayout_nameAllocationType_get, _StgDomain.TriSingleCellLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.TriSingleCellLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.TriSingleCellLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.TriSingleCellLayout__defaultConstructor_get, _StgDomain.TriSingleCellLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.TriSingleCellLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.TriSingleCellLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.TriSingleCellLayout__construct_get, _StgDomain.TriSingleCellLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.TriSingleCellLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.TriSingleCellLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.TriSingleCellLayout__build_get, _StgDomain.TriSingleCellLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.TriSingleCellLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.TriSingleCellLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.TriSingleCellLayout__initialise_get, _StgDomain.TriSingleCellLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.TriSingleCellLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.TriSingleCellLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.TriSingleCellLayout__execute_get, _StgDomain.TriSingleCellLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.TriSingleCellLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.TriSingleCellLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.TriSingleCellLayout__destroy_get, _StgDomain.TriSingleCellLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.TriSingleCellLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.TriSingleCellLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.TriSingleCellLayout_isConstructed_get, _StgDomain.TriSingleCellLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.TriSingleCellLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.TriSingleCellLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.TriSingleCellLayout_isBuilt_get, _StgDomain.TriSingleCellLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.TriSingleCellLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.TriSingleCellLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.TriSingleCellLayout_isInitialised_get, _StgDomain.TriSingleCellLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.TriSingleCellLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.TriSingleCellLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.TriSingleCellLayout_hasExecuted_get, _StgDomain.TriSingleCellLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.TriSingleCellLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.TriSingleCellLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.TriSingleCellLayout_isDestroyed_get, _StgDomain.TriSingleCellLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.TriSingleCellLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.TriSingleCellLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.TriSingleCellLayout_constructType_get, _StgDomain.TriSingleCellLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.TriSingleCellLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.TriSingleCellLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.TriSingleCellLayout_buildType_get, _StgDomain.TriSingleCellLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.TriSingleCellLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.TriSingleCellLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.TriSingleCellLayout_initialiseType_get, _StgDomain.TriSingleCellLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.TriSingleCellLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.TriSingleCellLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.TriSingleCellLayout_executeType_get, _StgDomain.TriSingleCellLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.TriSingleCellLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.TriSingleCellLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.TriSingleCellLayout_destroyType_get, _StgDomain.TriSingleCellLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.TriSingleCellLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.TriSingleCellLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.TriSingleCellLayout_context_get, _StgDomain.TriSingleCellLayout_context_set)
+    __swig_setmethods__["_cellLocalCount"] = _StgDomain.TriSingleCellLayout__cellLocalCount_set
+    __swig_getmethods__["_cellLocalCount"] = _StgDomain.TriSingleCellLayout__cellLocalCount_get
+    if _newclass:_cellLocalCount = _swig_property(_StgDomain.TriSingleCellLayout__cellLocalCount_get, _StgDomain.TriSingleCellLayout__cellLocalCount_set)
+    __swig_setmethods__["_cellShadowCount"] = _StgDomain.TriSingleCellLayout__cellShadowCount_set
+    __swig_getmethods__["_cellShadowCount"] = _StgDomain.TriSingleCellLayout__cellShadowCount_get
+    if _newclass:_cellShadowCount = _swig_property(_StgDomain.TriSingleCellLayout__cellShadowCount_get, _StgDomain.TriSingleCellLayout__cellShadowCount_set)
+    __swig_setmethods__["_pointCount"] = _StgDomain.TriSingleCellLayout__pointCount_set
+    __swig_getmethods__["_pointCount"] = _StgDomain.TriSingleCellLayout__pointCount_get
+    if _newclass:_pointCount = _swig_property(_StgDomain.TriSingleCellLayout__pointCount_get, _StgDomain.TriSingleCellLayout__pointCount_set)
+    __swig_setmethods__["_initialisePoints"] = _StgDomain.TriSingleCellLayout__initialisePoints_set
+    __swig_getmethods__["_initialisePoints"] = _StgDomain.TriSingleCellLayout__initialisePoints_get
+    if _newclass:_initialisePoints = _swig_property(_StgDomain.TriSingleCellLayout__initialisePoints_get, _StgDomain.TriSingleCellLayout__initialisePoints_set)
+    __swig_setmethods__["_mapElementIdToCellId"] = _StgDomain.TriSingleCellLayout__mapElementIdToCellId_set
+    __swig_getmethods__["_mapElementIdToCellId"] = _StgDomain.TriSingleCellLayout__mapElementIdToCellId_get
+    if _newclass:_mapElementIdToCellId = _swig_property(_StgDomain.TriSingleCellLayout__mapElementIdToCellId_get, _StgDomain.TriSingleCellLayout__mapElementIdToCellId_set)
+    __swig_setmethods__["_isInCell"] = _StgDomain.TriSingleCellLayout__isInCell_set
+    __swig_getmethods__["_isInCell"] = _StgDomain.TriSingleCellLayout__isInCell_get
+    if _newclass:_isInCell = _swig_property(_StgDomain.TriSingleCellLayout__isInCell_get, _StgDomain.TriSingleCellLayout__isInCell_set)
+    __swig_setmethods__["_cellOf"] = _StgDomain.TriSingleCellLayout__cellOf_set
+    __swig_getmethods__["_cellOf"] = _StgDomain.TriSingleCellLayout__cellOf_get
+    if _newclass:_cellOf = _swig_property(_StgDomain.TriSingleCellLayout__cellOf_get, _StgDomain.TriSingleCellLayout__cellOf_set)
+    __swig_setmethods__["_getShadowInfo"] = _StgDomain.TriSingleCellLayout__getShadowInfo_set
+    __swig_getmethods__["_getShadowInfo"] = _StgDomain.TriSingleCellLayout__getShadowInfo_get
+    if _newclass:_getShadowInfo = _swig_property(_StgDomain.TriSingleCellLayout__getShadowInfo_get, _StgDomain.TriSingleCellLayout__getShadowInfo_set)
+    __swig_setmethods__["dictionary"] = _StgDomain.TriSingleCellLayout_dictionary_set
+    __swig_getmethods__["dictionary"] = _StgDomain.TriSingleCellLayout_dictionary_get
+    if _newclass:dictionary = _swig_property(_StgDomain.TriSingleCellLayout_dictionary_get, _StgDomain.TriSingleCellLayout_dictionary_set)
+    __swig_setmethods__["dim"] = _StgDomain.TriSingleCellLayout_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.TriSingleCellLayout_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.TriSingleCellLayout_dim_get, _StgDomain.TriSingleCellLayout_dim_set)
+    def __init__(self): 
+        this = _StgDomain.new_TriSingleCellLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_TriSingleCellLayout
+    __del__ = lambda self : None;
+TriSingleCellLayout_swigregister = _StgDomain.TriSingleCellLayout_swigregister
+TriSingleCellLayout_swigregister(TriSingleCellLayout)
+TriSingleCellLayout_Type = cvar.TriSingleCellLayout_Type
+
+
+def _TriSingleCellLayout_DefaultNew(*args):
+  return _StgDomain._TriSingleCellLayout_DefaultNew(*args)
+_TriSingleCellLayout_DefaultNew = _StgDomain._TriSingleCellLayout_DefaultNew
+
+def TriSingleCellLayout_New(*args):
+  return _StgDomain.TriSingleCellLayout_New(*args)
+TriSingleCellLayout_New = _StgDomain.TriSingleCellLayout_New
+
+def _TriSingleCellLayout_New(*args):
+  return _StgDomain._TriSingleCellLayout_New(*args)
+_TriSingleCellLayout_New = _StgDomain._TriSingleCellLayout_New
+
+def _TriSingleCellLayout_Delete(*args):
+  return _StgDomain._TriSingleCellLayout_Delete(*args)
+_TriSingleCellLayout_Delete = _StgDomain._TriSingleCellLayout_Delete
+
+def _TriSingleCellLayout_Print(*args):
+  return _StgDomain._TriSingleCellLayout_Print(*args)
+_TriSingleCellLayout_Print = _StgDomain._TriSingleCellLayout_Print
+
+def _TriSingleCellLayout_Copy(*args):
+  return _StgDomain._TriSingleCellLayout_Copy(*args)
+_TriSingleCellLayout_Copy = _StgDomain._TriSingleCellLayout_Copy
+
+def _TriSingleCellLayout_AssignFromXML(*args):
+  return _StgDomain._TriSingleCellLayout_AssignFromXML(*args)
+_TriSingleCellLayout_AssignFromXML = _StgDomain._TriSingleCellLayout_AssignFromXML
+
+def _TriSingleCellLayout_Build(*args):
+  return _StgDomain._TriSingleCellLayout_Build(*args)
+_TriSingleCellLayout_Build = _StgDomain._TriSingleCellLayout_Build
+
+def _TriSingleCellLayout_Initialise(*args):
+  return _StgDomain._TriSingleCellLayout_Initialise(*args)
+_TriSingleCellLayout_Initialise = _StgDomain._TriSingleCellLayout_Initialise
+
+def _TriSingleCellLayout_Execute(*args):
+  return _StgDomain._TriSingleCellLayout_Execute(*args)
+_TriSingleCellLayout_Execute = _StgDomain._TriSingleCellLayout_Execute
+
+def _TriSingleCellLayout_Destroy(*args):
+  return _StgDomain._TriSingleCellLayout_Destroy(*args)
+_TriSingleCellLayout_Destroy = _StgDomain._TriSingleCellLayout_Destroy
+
+def _TriSingleCellLayout_CellLocalCount(*args):
+  return _StgDomain._TriSingleCellLayout_CellLocalCount(*args)
+_TriSingleCellLayout_CellLocalCount = _StgDomain._TriSingleCellLayout_CellLocalCount
+
+def _TriSingleCellLayout_CellShadowCount(*args):
+  return _StgDomain._TriSingleCellLayout_CellShadowCount(*args)
+_TriSingleCellLayout_CellShadowCount = _StgDomain._TriSingleCellLayout_CellShadowCount
+
+def _TriSingleCellLayout_PointCount(*args):
+  return _StgDomain._TriSingleCellLayout_PointCount(*args)
+_TriSingleCellLayout_PointCount = _StgDomain._TriSingleCellLayout_PointCount
+
+def _TriSingleCellLayout_InitialisePoints(*args):
+  return _StgDomain._TriSingleCellLayout_InitialisePoints(*args)
+_TriSingleCellLayout_InitialisePoints = _StgDomain._TriSingleCellLayout_InitialisePoints
+
+def _TriSingleCellLayout_MapElementIdToCellId(*args):
+  return _StgDomain._TriSingleCellLayout_MapElementIdToCellId(*args)
+_TriSingleCellLayout_MapElementIdToCellId = _StgDomain._TriSingleCellLayout_MapElementIdToCellId
+
+def _TriSingleCellLayout_IsInCell(*args):
+  return _StgDomain._TriSingleCellLayout_IsInCell(*args)
+_TriSingleCellLayout_IsInCell = _StgDomain._TriSingleCellLayout_IsInCell
+
+def _TriSingleCellLayout_CellOf(*args):
+  return _StgDomain._TriSingleCellLayout_CellOf(*args)
+_TriSingleCellLayout_CellOf = _StgDomain._TriSingleCellLayout_CellOf
+
+def _TriSingleCellLayout_GetShadowInfo(*args):
+  return _StgDomain._TriSingleCellLayout_GetShadowInfo(*args)
+_TriSingleCellLayout_GetShadowInfo = _StgDomain._TriSingleCellLayout_GetShadowInfo
+LocalCoordSystem = _StgDomain.LocalCoordSystem
+GlobalCoordSystem = _StgDomain.GlobalCoordSystem
+class UnionParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, UnionParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, UnionParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.UnionParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.UnionParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.UnionParticleLayout__sizeOfSelf_get, _StgDomain.UnionParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.UnionParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.UnionParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.UnionParticleLayout__deleteSelf_get, _StgDomain.UnionParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.UnionParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.UnionParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.UnionParticleLayout_type_get, _StgDomain.UnionParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.UnionParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.UnionParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.UnionParticleLayout_nRefs_get, _StgDomain.UnionParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.UnionParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.UnionParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.UnionParticleLayout__delete_get, _StgDomain.UnionParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.UnionParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.UnionParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.UnionParticleLayout__print_get, _StgDomain.UnionParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.UnionParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.UnionParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.UnionParticleLayout__copy_get, _StgDomain.UnionParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.UnionParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.UnionParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.UnionParticleLayout_name_get, _StgDomain.UnionParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.UnionParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.UnionParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.UnionParticleLayout_nameAllocationType_get, _StgDomain.UnionParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.UnionParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.UnionParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.UnionParticleLayout__defaultConstructor_get, _StgDomain.UnionParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.UnionParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.UnionParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.UnionParticleLayout__construct_get, _StgDomain.UnionParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.UnionParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.UnionParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.UnionParticleLayout__build_get, _StgDomain.UnionParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.UnionParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.UnionParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.UnionParticleLayout__initialise_get, _StgDomain.UnionParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.UnionParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.UnionParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.UnionParticleLayout__execute_get, _StgDomain.UnionParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.UnionParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.UnionParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.UnionParticleLayout__destroy_get, _StgDomain.UnionParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.UnionParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.UnionParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.UnionParticleLayout_isConstructed_get, _StgDomain.UnionParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.UnionParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.UnionParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.UnionParticleLayout_isBuilt_get, _StgDomain.UnionParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.UnionParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.UnionParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.UnionParticleLayout_isInitialised_get, _StgDomain.UnionParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.UnionParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.UnionParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.UnionParticleLayout_hasExecuted_get, _StgDomain.UnionParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.UnionParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.UnionParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.UnionParticleLayout_isDestroyed_get, _StgDomain.UnionParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.UnionParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.UnionParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.UnionParticleLayout_constructType_get, _StgDomain.UnionParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.UnionParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.UnionParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.UnionParticleLayout_buildType_get, _StgDomain.UnionParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.UnionParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.UnionParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.UnionParticleLayout_initialiseType_get, _StgDomain.UnionParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.UnionParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.UnionParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.UnionParticleLayout_executeType_get, _StgDomain.UnionParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.UnionParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.UnionParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.UnionParticleLayout_destroyType_get, _StgDomain.UnionParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.UnionParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.UnionParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.UnionParticleLayout_context_get, _StgDomain.UnionParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.UnionParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.UnionParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.UnionParticleLayout__setInitialCounts_get, _StgDomain.UnionParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.UnionParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.UnionParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.UnionParticleLayout__initialiseParticles_get, _StgDomain.UnionParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.UnionParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.UnionParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.UnionParticleLayout_debug_get, _StgDomain.UnionParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.UnionParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.UnionParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.UnionParticleLayout_coordSystem_get, _StgDomain.UnionParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.UnionParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.UnionParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.UnionParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.UnionParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialiseParticle"] = _StgDomain.UnionParticleLayout__initialiseParticle_set
+    __swig_getmethods__["_initialiseParticle"] = _StgDomain.UnionParticleLayout__initialiseParticle_get
+    if _newclass:_initialiseParticle = _swig_property(_StgDomain.UnionParticleLayout__initialiseParticle_get, _StgDomain.UnionParticleLayout__initialiseParticle_set)
+    __swig_setmethods__["totalInitialParticles"] = _StgDomain.UnionParticleLayout_totalInitialParticles_set
+    __swig_getmethods__["totalInitialParticles"] = _StgDomain.UnionParticleLayout_totalInitialParticles_get
+    if _newclass:totalInitialParticles = _swig_property(_StgDomain.UnionParticleLayout_totalInitialParticles_get, _StgDomain.UnionParticleLayout_totalInitialParticles_set)
+    __swig_setmethods__["averageInitialParticlesPerCell"] = _StgDomain.UnionParticleLayout_averageInitialParticlesPerCell_set
+    __swig_getmethods__["averageInitialParticlesPerCell"] = _StgDomain.UnionParticleLayout_averageInitialParticlesPerCell_get
+    if _newclass:averageInitialParticlesPerCell = _swig_property(_StgDomain.UnionParticleLayout_averageInitialParticlesPerCell_get, _StgDomain.UnionParticleLayout_averageInitialParticlesPerCell_set)
+    __swig_setmethods__["mustUseAllParticles"] = _StgDomain.UnionParticleLayout_mustUseAllParticles_set
+    __swig_getmethods__["mustUseAllParticles"] = _StgDomain.UnionParticleLayout_mustUseAllParticles_get
+    if _newclass:mustUseAllParticles = _swig_property(_StgDomain.UnionParticleLayout_mustUseAllParticles_get, _StgDomain.UnionParticleLayout_mustUseAllParticles_set)
+    __swig_setmethods__["particleLayoutList"] = _StgDomain.UnionParticleLayout_particleLayoutList_set
+    __swig_getmethods__["particleLayoutList"] = _StgDomain.UnionParticleLayout_particleLayoutList_get
+    if _newclass:particleLayoutList = _swig_property(_StgDomain.UnionParticleLayout_particleLayoutList_get, _StgDomain.UnionParticleLayout_particleLayoutList_set)
+    __swig_setmethods__["particleLayoutCount"] = _StgDomain.UnionParticleLayout_particleLayoutCount_set
+    __swig_getmethods__["particleLayoutCount"] = _StgDomain.UnionParticleLayout_particleLayoutCount_get
+    if _newclass:particleLayoutCount = _swig_property(_StgDomain.UnionParticleLayout_particleLayoutCount_get, _StgDomain.UnionParticleLayout_particleLayoutCount_set)
+    def __init__(self): 
+        this = _StgDomain.new_UnionParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_UnionParticleLayout
+    __del__ = lambda self : None;
+UnionParticleLayout_swigregister = _StgDomain.UnionParticleLayout_swigregister
+UnionParticleLayout_swigregister(UnionParticleLayout)
+UnionParticleLayout_Type = cvar.UnionParticleLayout_Type
+
+
+def UnionParticleLayout_New(*args):
+  return _StgDomain.UnionParticleLayout_New(*args)
+UnionParticleLayout_New = _StgDomain.UnionParticleLayout_New
+
+def _UnionParticleLayout_New(*args):
+  return _StgDomain._UnionParticleLayout_New(*args)
+_UnionParticleLayout_New = _StgDomain._UnionParticleLayout_New
+
+def _UnionParticleLayout_Init(*args):
+  return _StgDomain._UnionParticleLayout_Init(*args)
+_UnionParticleLayout_Init = _StgDomain._UnionParticleLayout_Init
+
+def _UnionParticleLayout_Delete(*args):
+  return _StgDomain._UnionParticleLayout_Delete(*args)
+_UnionParticleLayout_Delete = _StgDomain._UnionParticleLayout_Delete
+
+def _UnionParticleLayout_Print(*args):
+  return _StgDomain._UnionParticleLayout_Print(*args)
+_UnionParticleLayout_Print = _StgDomain._UnionParticleLayout_Print
+
+def _UnionParticleLayout_Copy(*args):
+  return _StgDomain._UnionParticleLayout_Copy(*args)
+_UnionParticleLayout_Copy = _StgDomain._UnionParticleLayout_Copy
+
+def _UnionParticleLayout_DefaultNew(*args):
+  return _StgDomain._UnionParticleLayout_DefaultNew(*args)
+_UnionParticleLayout_DefaultNew = _StgDomain._UnionParticleLayout_DefaultNew
+
+def _UnionParticleLayout_AssignFromXML(*args):
+  return _StgDomain._UnionParticleLayout_AssignFromXML(*args)
+_UnionParticleLayout_AssignFromXML = _StgDomain._UnionParticleLayout_AssignFromXML
+
+def _UnionParticleLayout_Build(*args):
+  return _StgDomain._UnionParticleLayout_Build(*args)
+_UnionParticleLayout_Build = _StgDomain._UnionParticleLayout_Build
+
+def _UnionParticleLayout_Initialise(*args):
+  return _StgDomain._UnionParticleLayout_Initialise(*args)
+_UnionParticleLayout_Initialise = _StgDomain._UnionParticleLayout_Initialise
+
+def _UnionParticleLayout_Execute(*args):
+  return _StgDomain._UnionParticleLayout_Execute(*args)
+_UnionParticleLayout_Execute = _StgDomain._UnionParticleLayout_Execute
+
+def _UnionParticleLayout_Destroy(*args):
+  return _StgDomain._UnionParticleLayout_Destroy(*args)
+_UnionParticleLayout_Destroy = _StgDomain._UnionParticleLayout_Destroy
+
+def _UnionParticleLayout_SetInitialCounts(*args):
+  return _StgDomain._UnionParticleLayout_SetInitialCounts(*args)
+_UnionParticleLayout_SetInitialCounts = _StgDomain._UnionParticleLayout_SetInitialCounts
+
+def _UnionParticleLayout_InitialiseParticles(*args):
+  return _StgDomain._UnionParticleLayout_InitialiseParticles(*args)
+_UnionParticleLayout_InitialiseParticles = _StgDomain._UnionParticleLayout_InitialiseParticles
+
+def _UnionParticleLayout_InitialiseParticle(*args):
+  return _StgDomain._UnionParticleLayout_InitialiseParticle(*args)
+_UnionParticleLayout_InitialiseParticle = _StgDomain._UnionParticleLayout_InitialiseParticle
+class WithinShapeParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, WithinShapeParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, WithinShapeParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.WithinShapeParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.WithinShapeParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.WithinShapeParticleLayout__sizeOfSelf_get, _StgDomain.WithinShapeParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.WithinShapeParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.WithinShapeParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.WithinShapeParticleLayout__deleteSelf_get, _StgDomain.WithinShapeParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.WithinShapeParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.WithinShapeParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.WithinShapeParticleLayout_type_get, _StgDomain.WithinShapeParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.WithinShapeParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.WithinShapeParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.WithinShapeParticleLayout_nRefs_get, _StgDomain.WithinShapeParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.WithinShapeParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.WithinShapeParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.WithinShapeParticleLayout__delete_get, _StgDomain.WithinShapeParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.WithinShapeParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.WithinShapeParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.WithinShapeParticleLayout__print_get, _StgDomain.WithinShapeParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.WithinShapeParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.WithinShapeParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.WithinShapeParticleLayout__copy_get, _StgDomain.WithinShapeParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.WithinShapeParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.WithinShapeParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.WithinShapeParticleLayout_name_get, _StgDomain.WithinShapeParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.WithinShapeParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.WithinShapeParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.WithinShapeParticleLayout_nameAllocationType_get, _StgDomain.WithinShapeParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.WithinShapeParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.WithinShapeParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.WithinShapeParticleLayout__defaultConstructor_get, _StgDomain.WithinShapeParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.WithinShapeParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.WithinShapeParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.WithinShapeParticleLayout__construct_get, _StgDomain.WithinShapeParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.WithinShapeParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.WithinShapeParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.WithinShapeParticleLayout__build_get, _StgDomain.WithinShapeParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.WithinShapeParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.WithinShapeParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.WithinShapeParticleLayout__initialise_get, _StgDomain.WithinShapeParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.WithinShapeParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.WithinShapeParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.WithinShapeParticleLayout__execute_get, _StgDomain.WithinShapeParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.WithinShapeParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.WithinShapeParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.WithinShapeParticleLayout__destroy_get, _StgDomain.WithinShapeParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.WithinShapeParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.WithinShapeParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.WithinShapeParticleLayout_isConstructed_get, _StgDomain.WithinShapeParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.WithinShapeParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.WithinShapeParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.WithinShapeParticleLayout_isBuilt_get, _StgDomain.WithinShapeParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.WithinShapeParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.WithinShapeParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.WithinShapeParticleLayout_isInitialised_get, _StgDomain.WithinShapeParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.WithinShapeParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.WithinShapeParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.WithinShapeParticleLayout_hasExecuted_get, _StgDomain.WithinShapeParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.WithinShapeParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.WithinShapeParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.WithinShapeParticleLayout_isDestroyed_get, _StgDomain.WithinShapeParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.WithinShapeParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.WithinShapeParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.WithinShapeParticleLayout_constructType_get, _StgDomain.WithinShapeParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.WithinShapeParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.WithinShapeParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.WithinShapeParticleLayout_buildType_get, _StgDomain.WithinShapeParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.WithinShapeParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.WithinShapeParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.WithinShapeParticleLayout_initialiseType_get, _StgDomain.WithinShapeParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.WithinShapeParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.WithinShapeParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.WithinShapeParticleLayout_executeType_get, _StgDomain.WithinShapeParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.WithinShapeParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.WithinShapeParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.WithinShapeParticleLayout_destroyType_get, _StgDomain.WithinShapeParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.WithinShapeParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.WithinShapeParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.WithinShapeParticleLayout_context_get, _StgDomain.WithinShapeParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.WithinShapeParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.WithinShapeParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.WithinShapeParticleLayout__setInitialCounts_get, _StgDomain.WithinShapeParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.WithinShapeParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.WithinShapeParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.WithinShapeParticleLayout__initialiseParticles_get, _StgDomain.WithinShapeParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.WithinShapeParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.WithinShapeParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.WithinShapeParticleLayout_debug_get, _StgDomain.WithinShapeParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.WithinShapeParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.WithinShapeParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.WithinShapeParticleLayout_coordSystem_get, _StgDomain.WithinShapeParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.WithinShapeParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.WithinShapeParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.WithinShapeParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.WithinShapeParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialiseParticle"] = _StgDomain.WithinShapeParticleLayout__initialiseParticle_set
+    __swig_getmethods__["_initialiseParticle"] = _StgDomain.WithinShapeParticleLayout__initialiseParticle_get
+    if _newclass:_initialiseParticle = _swig_property(_StgDomain.WithinShapeParticleLayout__initialiseParticle_get, _StgDomain.WithinShapeParticleLayout__initialiseParticle_set)
+    __swig_setmethods__["totalInitialParticles"] = _StgDomain.WithinShapeParticleLayout_totalInitialParticles_set
+    __swig_getmethods__["totalInitialParticles"] = _StgDomain.WithinShapeParticleLayout_totalInitialParticles_get
+    if _newclass:totalInitialParticles = _swig_property(_StgDomain.WithinShapeParticleLayout_totalInitialParticles_get, _StgDomain.WithinShapeParticleLayout_totalInitialParticles_set)
+    __swig_setmethods__["averageInitialParticlesPerCell"] = _StgDomain.WithinShapeParticleLayout_averageInitialParticlesPerCell_set
+    __swig_getmethods__["averageInitialParticlesPerCell"] = _StgDomain.WithinShapeParticleLayout_averageInitialParticlesPerCell_get
+    if _newclass:averageInitialParticlesPerCell = _swig_property(_StgDomain.WithinShapeParticleLayout_averageInitialParticlesPerCell_get, _StgDomain.WithinShapeParticleLayout_averageInitialParticlesPerCell_set)
+    __swig_setmethods__["mustUseAllParticles"] = _StgDomain.WithinShapeParticleLayout_mustUseAllParticles_set
+    __swig_getmethods__["mustUseAllParticles"] = _StgDomain.WithinShapeParticleLayout_mustUseAllParticles_get
+    if _newclass:mustUseAllParticles = _swig_property(_StgDomain.WithinShapeParticleLayout_mustUseAllParticles_get, _StgDomain.WithinShapeParticleLayout_mustUseAllParticles_set)
+    __swig_setmethods__["dim"] = _StgDomain.WithinShapeParticleLayout_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.WithinShapeParticleLayout_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.WithinShapeParticleLayout_dim_get, _StgDomain.WithinShapeParticleLayout_dim_set)
+    __swig_setmethods__["sobolGenerator"] = _StgDomain.WithinShapeParticleLayout_sobolGenerator_set
+    __swig_getmethods__["sobolGenerator"] = _StgDomain.WithinShapeParticleLayout_sobolGenerator_get
+    if _newclass:sobolGenerator = _swig_property(_StgDomain.WithinShapeParticleLayout_sobolGenerator_get, _StgDomain.WithinShapeParticleLayout_sobolGenerator_set)
+    __swig_setmethods__["shape"] = _StgDomain.WithinShapeParticleLayout_shape_set
+    __swig_getmethods__["shape"] = _StgDomain.WithinShapeParticleLayout_shape_get
+    if _newclass:shape = _swig_property(_StgDomain.WithinShapeParticleLayout_shape_get, _StgDomain.WithinShapeParticleLayout_shape_set)
+    def __init__(self): 
+        this = _StgDomain.new_WithinShapeParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_WithinShapeParticleLayout
+    __del__ = lambda self : None;
+WithinShapeParticleLayout_swigregister = _StgDomain.WithinShapeParticleLayout_swigregister
+WithinShapeParticleLayout_swigregister(WithinShapeParticleLayout)
+WithinShapeParticleLayout_Type = cvar.WithinShapeParticleLayout_Type
+WithinShapeParticleLayout_Invalid = cvar.WithinShapeParticleLayout_Invalid
+
+
+def WithinShapeParticleLayout_New(*args):
+  return _StgDomain.WithinShapeParticleLayout_New(*args)
+WithinShapeParticleLayout_New = _StgDomain.WithinShapeParticleLayout_New
+
+def _WithinShapeParticleLayout_New(*args):
+  return _StgDomain._WithinShapeParticleLayout_New(*args)
+_WithinShapeParticleLayout_New = _StgDomain._WithinShapeParticleLayout_New
+
+def _WithinShapeParticleLayout_Init(*args):
+  return _StgDomain._WithinShapeParticleLayout_Init(*args)
+_WithinShapeParticleLayout_Init = _StgDomain._WithinShapeParticleLayout_Init
+
+def _WithinShapeParticleLayout_Delete(*args):
+  return _StgDomain._WithinShapeParticleLayout_Delete(*args)
+_WithinShapeParticleLayout_Delete = _StgDomain._WithinShapeParticleLayout_Delete
+
+def _WithinShapeParticleLayout_Print(*args):
+  return _StgDomain._WithinShapeParticleLayout_Print(*args)
+_WithinShapeParticleLayout_Print = _StgDomain._WithinShapeParticleLayout_Print
+
+def _WithinShapeParticleLayout_Copy(*args):
+  return _StgDomain._WithinShapeParticleLayout_Copy(*args)
+_WithinShapeParticleLayout_Copy = _StgDomain._WithinShapeParticleLayout_Copy
+
+def _WithinShapeParticleLayout_DefaultNew(*args):
+  return _StgDomain._WithinShapeParticleLayout_DefaultNew(*args)
+_WithinShapeParticleLayout_DefaultNew = _StgDomain._WithinShapeParticleLayout_DefaultNew
+
+def _WithinShapeParticleLayout_AssignFromXML(*args):
+  return _StgDomain._WithinShapeParticleLayout_AssignFromXML(*args)
+_WithinShapeParticleLayout_AssignFromXML = _StgDomain._WithinShapeParticleLayout_AssignFromXML
+
+def _WithinShapeParticleLayout_Build(*args):
+  return _StgDomain._WithinShapeParticleLayout_Build(*args)
+_WithinShapeParticleLayout_Build = _StgDomain._WithinShapeParticleLayout_Build
+
+def _WithinShapeParticleLayout_Initialise(*args):
+  return _StgDomain._WithinShapeParticleLayout_Initialise(*args)
+_WithinShapeParticleLayout_Initialise = _StgDomain._WithinShapeParticleLayout_Initialise
+
+def _WithinShapeParticleLayout_Execute(*args):
+  return _StgDomain._WithinShapeParticleLayout_Execute(*args)
+_WithinShapeParticleLayout_Execute = _StgDomain._WithinShapeParticleLayout_Execute
+
+def _WithinShapeParticleLayout_Destroy(*args):
+  return _StgDomain._WithinShapeParticleLayout_Destroy(*args)
+_WithinShapeParticleLayout_Destroy = _StgDomain._WithinShapeParticleLayout_Destroy
+
+def _WithinShapeParticleLayout_InitialiseParticle(*args):
+  return _StgDomain._WithinShapeParticleLayout_InitialiseParticle(*args)
+_WithinShapeParticleLayout_InitialiseParticle = _StgDomain._WithinShapeParticleLayout_InitialiseParticle
+class GaussParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, GaussParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, GaussParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.GaussParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.GaussParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.GaussParticleLayout__sizeOfSelf_get, _StgDomain.GaussParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.GaussParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.GaussParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.GaussParticleLayout__deleteSelf_get, _StgDomain.GaussParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.GaussParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.GaussParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.GaussParticleLayout_type_get, _StgDomain.GaussParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.GaussParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.GaussParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.GaussParticleLayout_nRefs_get, _StgDomain.GaussParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.GaussParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.GaussParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.GaussParticleLayout__delete_get, _StgDomain.GaussParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.GaussParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.GaussParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.GaussParticleLayout__print_get, _StgDomain.GaussParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.GaussParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.GaussParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.GaussParticleLayout__copy_get, _StgDomain.GaussParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.GaussParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.GaussParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.GaussParticleLayout_name_get, _StgDomain.GaussParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.GaussParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.GaussParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.GaussParticleLayout_nameAllocationType_get, _StgDomain.GaussParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.GaussParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.GaussParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.GaussParticleLayout__defaultConstructor_get, _StgDomain.GaussParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.GaussParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.GaussParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.GaussParticleLayout__construct_get, _StgDomain.GaussParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.GaussParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.GaussParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.GaussParticleLayout__build_get, _StgDomain.GaussParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.GaussParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.GaussParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.GaussParticleLayout__initialise_get, _StgDomain.GaussParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.GaussParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.GaussParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.GaussParticleLayout__execute_get, _StgDomain.GaussParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.GaussParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.GaussParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.GaussParticleLayout__destroy_get, _StgDomain.GaussParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.GaussParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.GaussParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.GaussParticleLayout_isConstructed_get, _StgDomain.GaussParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.GaussParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.GaussParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.GaussParticleLayout_isBuilt_get, _StgDomain.GaussParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.GaussParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.GaussParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.GaussParticleLayout_isInitialised_get, _StgDomain.GaussParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.GaussParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.GaussParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.GaussParticleLayout_hasExecuted_get, _StgDomain.GaussParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.GaussParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.GaussParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.GaussParticleLayout_isDestroyed_get, _StgDomain.GaussParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.GaussParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.GaussParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.GaussParticleLayout_constructType_get, _StgDomain.GaussParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.GaussParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.GaussParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.GaussParticleLayout_buildType_get, _StgDomain.GaussParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.GaussParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.GaussParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.GaussParticleLayout_initialiseType_get, _StgDomain.GaussParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.GaussParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.GaussParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.GaussParticleLayout_executeType_get, _StgDomain.GaussParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.GaussParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.GaussParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.GaussParticleLayout_destroyType_get, _StgDomain.GaussParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.GaussParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.GaussParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.GaussParticleLayout_context_get, _StgDomain.GaussParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.GaussParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.GaussParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.GaussParticleLayout__setInitialCounts_get, _StgDomain.GaussParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.GaussParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.GaussParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.GaussParticleLayout__initialiseParticles_get, _StgDomain.GaussParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.GaussParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.GaussParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.GaussParticleLayout_debug_get, _StgDomain.GaussParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.GaussParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.GaussParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.GaussParticleLayout_coordSystem_get, _StgDomain.GaussParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.GaussParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.GaussParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.GaussParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.GaussParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialCount"] = _StgDomain.GaussParticleLayout__initialCount_set
+    __swig_getmethods__["_initialCount"] = _StgDomain.GaussParticleLayout__initialCount_get
+    if _newclass:_initialCount = _swig_property(_StgDomain.GaussParticleLayout__initialCount_get, _StgDomain.GaussParticleLayout__initialCount_set)
+    __swig_setmethods__["_initialiseParticlesOfCell"] = _StgDomain.GaussParticleLayout__initialiseParticlesOfCell_set
+    __swig_getmethods__["_initialiseParticlesOfCell"] = _StgDomain.GaussParticleLayout__initialiseParticlesOfCell_get
+    if _newclass:_initialiseParticlesOfCell = _swig_property(_StgDomain.GaussParticleLayout__initialiseParticlesOfCell_get, _StgDomain.GaussParticleLayout__initialiseParticlesOfCell_set)
+    __swig_setmethods__["dim"] = _StgDomain.GaussParticleLayout_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.GaussParticleLayout_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.GaussParticleLayout_dim_get, _StgDomain.GaussParticleLayout_dim_set)
+    __swig_setmethods__["particlesPerDim"] = _StgDomain.GaussParticleLayout_particlesPerDim_set
+    __swig_getmethods__["particlesPerDim"] = _StgDomain.GaussParticleLayout_particlesPerDim_get
+    if _newclass:particlesPerDim = _swig_property(_StgDomain.GaussParticleLayout_particlesPerDim_get, _StgDomain.GaussParticleLayout_particlesPerDim_set)
+    def __init__(self): 
+        this = _StgDomain.new_GaussParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_GaussParticleLayout
+    __del__ = lambda self : None;
+GaussParticleLayout_swigregister = _StgDomain.GaussParticleLayout_swigregister
+GaussParticleLayout_swigregister(GaussParticleLayout)
+GaussParticleLayout_Type = cvar.GaussParticleLayout_Type
+
+
+def GaussParticleLayout_New(*args):
+  return _StgDomain.GaussParticleLayout_New(*args)
+GaussParticleLayout_New = _StgDomain.GaussParticleLayout_New
+
+def _GaussParticleLayout_New(*args):
+  return _StgDomain._GaussParticleLayout_New(*args)
+_GaussParticleLayout_New = _StgDomain._GaussParticleLayout_New
+
+def _GaussParticleLayout_Init(*args):
+  return _StgDomain._GaussParticleLayout_Init(*args)
+_GaussParticleLayout_Init = _StgDomain._GaussParticleLayout_Init
+
+def _GaussParticleLayout_Delete(*args):
+  return _StgDomain._GaussParticleLayout_Delete(*args)
+_GaussParticleLayout_Delete = _StgDomain._GaussParticleLayout_Delete
+
+def _GaussParticleLayout_Print(*args):
+  return _StgDomain._GaussParticleLayout_Print(*args)
+_GaussParticleLayout_Print = _StgDomain._GaussParticleLayout_Print
+
+def _GaussParticleLayout_Copy(*args):
+  return _StgDomain._GaussParticleLayout_Copy(*args)
+_GaussParticleLayout_Copy = _StgDomain._GaussParticleLayout_Copy
+
+def _GaussParticleLayout_DefaultNew(*args):
+  return _StgDomain._GaussParticleLayout_DefaultNew(*args)
+_GaussParticleLayout_DefaultNew = _StgDomain._GaussParticleLayout_DefaultNew
+
+def _GaussParticleLayout_AssignFromXML(*args):
+  return _StgDomain._GaussParticleLayout_AssignFromXML(*args)
+_GaussParticleLayout_AssignFromXML = _StgDomain._GaussParticleLayout_AssignFromXML
+
+def _GaussParticleLayout_Build(*args):
+  return _StgDomain._GaussParticleLayout_Build(*args)
+_GaussParticleLayout_Build = _StgDomain._GaussParticleLayout_Build
+
+def _GaussParticleLayout_Initialise(*args):
+  return _StgDomain._GaussParticleLayout_Initialise(*args)
+_GaussParticleLayout_Initialise = _StgDomain._GaussParticleLayout_Initialise
+
+def _GaussParticleLayout_Execute(*args):
+  return _StgDomain._GaussParticleLayout_Execute(*args)
+_GaussParticleLayout_Execute = _StgDomain._GaussParticleLayout_Execute
+
+def _GaussParticleLayout_Destroy(*args):
+  return _StgDomain._GaussParticleLayout_Destroy(*args)
+_GaussParticleLayout_Destroy = _StgDomain._GaussParticleLayout_Destroy
+
+def _GaussParticleLayout_InitialCount(*args):
+  return _StgDomain._GaussParticleLayout_InitialCount(*args)
+_GaussParticleLayout_InitialCount = _StgDomain._GaussParticleLayout_InitialCount
+
+def _GaussParticleLayout_InitialiseParticlesOfCell(*args):
+  return _StgDomain._GaussParticleLayout_InitialiseParticlesOfCell(*args)
+_GaussParticleLayout_InitialiseParticlesOfCell = _StgDomain._GaussParticleLayout_InitialiseParticlesOfCell
+
+def GaussParticleLayout_GetAbscissaAndWeights1D(*args):
+  return _StgDomain.GaussParticleLayout_GetAbscissaAndWeights1D(*args)
+GaussParticleLayout_GetAbscissaAndWeights1D = _StgDomain.GaussParticleLayout_GetAbscissaAndWeights1D
+class GaussBorderParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, GaussBorderParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, GaussBorderParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.GaussBorderParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.GaussBorderParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.GaussBorderParticleLayout__sizeOfSelf_get, _StgDomain.GaussBorderParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.GaussBorderParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.GaussBorderParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.GaussBorderParticleLayout__deleteSelf_get, _StgDomain.GaussBorderParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.GaussBorderParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.GaussBorderParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.GaussBorderParticleLayout_type_get, _StgDomain.GaussBorderParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.GaussBorderParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.GaussBorderParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.GaussBorderParticleLayout_nRefs_get, _StgDomain.GaussBorderParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.GaussBorderParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.GaussBorderParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.GaussBorderParticleLayout__delete_get, _StgDomain.GaussBorderParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.GaussBorderParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.GaussBorderParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.GaussBorderParticleLayout__print_get, _StgDomain.GaussBorderParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.GaussBorderParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.GaussBorderParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.GaussBorderParticleLayout__copy_get, _StgDomain.GaussBorderParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.GaussBorderParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.GaussBorderParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.GaussBorderParticleLayout_name_get, _StgDomain.GaussBorderParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.GaussBorderParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.GaussBorderParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.GaussBorderParticleLayout_nameAllocationType_get, _StgDomain.GaussBorderParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.GaussBorderParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.GaussBorderParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.GaussBorderParticleLayout__defaultConstructor_get, _StgDomain.GaussBorderParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.GaussBorderParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.GaussBorderParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.GaussBorderParticleLayout__construct_get, _StgDomain.GaussBorderParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.GaussBorderParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.GaussBorderParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.GaussBorderParticleLayout__build_get, _StgDomain.GaussBorderParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.GaussBorderParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.GaussBorderParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.GaussBorderParticleLayout__initialise_get, _StgDomain.GaussBorderParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.GaussBorderParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.GaussBorderParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.GaussBorderParticleLayout__execute_get, _StgDomain.GaussBorderParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.GaussBorderParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.GaussBorderParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.GaussBorderParticleLayout__destroy_get, _StgDomain.GaussBorderParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.GaussBorderParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.GaussBorderParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.GaussBorderParticleLayout_isConstructed_get, _StgDomain.GaussBorderParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.GaussBorderParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.GaussBorderParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.GaussBorderParticleLayout_isBuilt_get, _StgDomain.GaussBorderParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.GaussBorderParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.GaussBorderParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.GaussBorderParticleLayout_isInitialised_get, _StgDomain.GaussBorderParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.GaussBorderParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.GaussBorderParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.GaussBorderParticleLayout_hasExecuted_get, _StgDomain.GaussBorderParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.GaussBorderParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.GaussBorderParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.GaussBorderParticleLayout_isDestroyed_get, _StgDomain.GaussBorderParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.GaussBorderParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.GaussBorderParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.GaussBorderParticleLayout_constructType_get, _StgDomain.GaussBorderParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.GaussBorderParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.GaussBorderParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.GaussBorderParticleLayout_buildType_get, _StgDomain.GaussBorderParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.GaussBorderParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.GaussBorderParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.GaussBorderParticleLayout_initialiseType_get, _StgDomain.GaussBorderParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.GaussBorderParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.GaussBorderParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.GaussBorderParticleLayout_executeType_get, _StgDomain.GaussBorderParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.GaussBorderParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.GaussBorderParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.GaussBorderParticleLayout_destroyType_get, _StgDomain.GaussBorderParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.GaussBorderParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.GaussBorderParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.GaussBorderParticleLayout_context_get, _StgDomain.GaussBorderParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.GaussBorderParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.GaussBorderParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.GaussBorderParticleLayout__setInitialCounts_get, _StgDomain.GaussBorderParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.GaussBorderParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.GaussBorderParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.GaussBorderParticleLayout__initialiseParticles_get, _StgDomain.GaussBorderParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.GaussBorderParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.GaussBorderParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.GaussBorderParticleLayout_debug_get, _StgDomain.GaussBorderParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.GaussBorderParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.GaussBorderParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.GaussBorderParticleLayout_coordSystem_get, _StgDomain.GaussBorderParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.GaussBorderParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.GaussBorderParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.GaussBorderParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.GaussBorderParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialCount"] = _StgDomain.GaussBorderParticleLayout__initialCount_set
+    __swig_getmethods__["_initialCount"] = _StgDomain.GaussBorderParticleLayout__initialCount_get
+    if _newclass:_initialCount = _swig_property(_StgDomain.GaussBorderParticleLayout__initialCount_get, _StgDomain.GaussBorderParticleLayout__initialCount_set)
+    __swig_setmethods__["_initialiseParticlesOfCell"] = _StgDomain.GaussBorderParticleLayout__initialiseParticlesOfCell_set
+    __swig_getmethods__["_initialiseParticlesOfCell"] = _StgDomain.GaussBorderParticleLayout__initialiseParticlesOfCell_get
+    if _newclass:_initialiseParticlesOfCell = _swig_property(_StgDomain.GaussBorderParticleLayout__initialiseParticlesOfCell_get, _StgDomain.GaussBorderParticleLayout__initialiseParticlesOfCell_set)
+    __swig_setmethods__["dim"] = _StgDomain.GaussBorderParticleLayout_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.GaussBorderParticleLayout_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.GaussBorderParticleLayout_dim_get, _StgDomain.GaussBorderParticleLayout_dim_set)
+    __swig_setmethods__["particlesPerDim"] = _StgDomain.GaussBorderParticleLayout_particlesPerDim_set
+    __swig_getmethods__["particlesPerDim"] = _StgDomain.GaussBorderParticleLayout_particlesPerDim_get
+    if _newclass:particlesPerDim = _swig_property(_StgDomain.GaussBorderParticleLayout_particlesPerDim_get, _StgDomain.GaussBorderParticleLayout_particlesPerDim_set)
+    __swig_setmethods__["particlesPerFace"] = _StgDomain.GaussBorderParticleLayout_particlesPerFace_set
+    __swig_getmethods__["particlesPerFace"] = _StgDomain.GaussBorderParticleLayout_particlesPerFace_get
+    if _newclass:particlesPerFace = _swig_property(_StgDomain.GaussBorderParticleLayout_particlesPerFace_get, _StgDomain.GaussBorderParticleLayout_particlesPerFace_set)
+    def __init__(self): 
+        this = _StgDomain.new_GaussBorderParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_GaussBorderParticleLayout
+    __del__ = lambda self : None;
+GaussBorderParticleLayout_swigregister = _StgDomain.GaussBorderParticleLayout_swigregister
+GaussBorderParticleLayout_swigregister(GaussBorderParticleLayout)
+GaussBorderParticleLayout_Type = cvar.GaussBorderParticleLayout_Type
+
+
+def GaussBorderParticleLayout_New(*args):
+  return _StgDomain.GaussBorderParticleLayout_New(*args)
+GaussBorderParticleLayout_New = _StgDomain.GaussBorderParticleLayout_New
+
+def _GaussBorderParticleLayout_New(*args):
+  return _StgDomain._GaussBorderParticleLayout_New(*args)
+_GaussBorderParticleLayout_New = _StgDomain._GaussBorderParticleLayout_New
+
+def _GaussBorderParticleLayout_Init(*args):
+  return _StgDomain._GaussBorderParticleLayout_Init(*args)
+_GaussBorderParticleLayout_Init = _StgDomain._GaussBorderParticleLayout_Init
+
+def _GaussBorderParticleLayout_Delete(*args):
+  return _StgDomain._GaussBorderParticleLayout_Delete(*args)
+_GaussBorderParticleLayout_Delete = _StgDomain._GaussBorderParticleLayout_Delete
+
+def _GaussBorderParticleLayout_Print(*args):
+  return _StgDomain._GaussBorderParticleLayout_Print(*args)
+_GaussBorderParticleLayout_Print = _StgDomain._GaussBorderParticleLayout_Print
+
+def _GaussBorderParticleLayout_Copy(*args):
+  return _StgDomain._GaussBorderParticleLayout_Copy(*args)
+_GaussBorderParticleLayout_Copy = _StgDomain._GaussBorderParticleLayout_Copy
+
+def _GaussBorderParticleLayout_DefaultNew(*args):
+  return _StgDomain._GaussBorderParticleLayout_DefaultNew(*args)
+_GaussBorderParticleLayout_DefaultNew = _StgDomain._GaussBorderParticleLayout_DefaultNew
+
+def _GaussBorderParticleLayout_AssignFromXML(*args):
+  return _StgDomain._GaussBorderParticleLayout_AssignFromXML(*args)
+_GaussBorderParticleLayout_AssignFromXML = _StgDomain._GaussBorderParticleLayout_AssignFromXML
+
+def _GaussBorderParticleLayout_Build(*args):
+  return _StgDomain._GaussBorderParticleLayout_Build(*args)
+_GaussBorderParticleLayout_Build = _StgDomain._GaussBorderParticleLayout_Build
+
+def _GaussBorderParticleLayout_Initialise(*args):
+  return _StgDomain._GaussBorderParticleLayout_Initialise(*args)
+_GaussBorderParticleLayout_Initialise = _StgDomain._GaussBorderParticleLayout_Initialise
+
+def _GaussBorderParticleLayout_Execute(*args):
+  return _StgDomain._GaussBorderParticleLayout_Execute(*args)
+_GaussBorderParticleLayout_Execute = _StgDomain._GaussBorderParticleLayout_Execute
+
+def _GaussBorderParticleLayout_Destroy(*args):
+  return _StgDomain._GaussBorderParticleLayout_Destroy(*args)
+_GaussBorderParticleLayout_Destroy = _StgDomain._GaussBorderParticleLayout_Destroy
+
+def _GaussBorderParticleLayout_InitialCount(*args):
+  return _StgDomain._GaussBorderParticleLayout_InitialCount(*args)
+_GaussBorderParticleLayout_InitialCount = _StgDomain._GaussBorderParticleLayout_InitialCount
+
+def _GaussBorderParticleLayout_InitialiseParticlesOfCell(*args):
+  return _StgDomain._GaussBorderParticleLayout_InitialiseParticlesOfCell(*args)
+_GaussBorderParticleLayout_InitialiseParticlesOfCell = _StgDomain._GaussBorderParticleLayout_InitialiseParticlesOfCell
+
+def GaussBorderParticleLayout_GetFaceAxis(*args):
+  return _StgDomain.GaussBorderParticleLayout_GetFaceAxis(*args)
+GaussBorderParticleLayout_GetFaceAxis = _StgDomain.GaussBorderParticleLayout_GetFaceAxis
+
+def GaussBorderParticleLayout_ParticleInCellIndexToFaceIndex(*args):
+  return _StgDomain.GaussBorderParticleLayout_ParticleInCellIndexToFaceIndex(*args)
+GaussBorderParticleLayout_ParticleInCellIndexToFaceIndex = _StgDomain.GaussBorderParticleLayout_ParticleInCellIndexToFaceIndex
+
+def _GaussBorderParticleLayout_InitialiseParticlesPerFace(*args):
+  return _StgDomain._GaussBorderParticleLayout_InitialiseParticlesPerFace(*args)
+_GaussBorderParticleLayout_InitialiseParticlesPerFace = _StgDomain._GaussBorderParticleLayout_InitialiseParticlesPerFace
+class IntegrationPoint(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, IntegrationPoint, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, IntegrationPoint, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["owningCell"] = _StgDomain.IntegrationPoint_owningCell_set
+    __swig_getmethods__["owningCell"] = _StgDomain.IntegrationPoint_owningCell_get
+    if _newclass:owningCell = _swig_property(_StgDomain.IntegrationPoint_owningCell_get, _StgDomain.IntegrationPoint_owningCell_set)
+    __swig_setmethods__["xi"] = _StgDomain.IntegrationPoint_xi_set
+    __swig_getmethods__["xi"] = _StgDomain.IntegrationPoint_xi_get
+    if _newclass:xi = _swig_property(_StgDomain.IntegrationPoint_xi_get, _StgDomain.IntegrationPoint_xi_set)
+    __swig_setmethods__["weight"] = _StgDomain.IntegrationPoint_weight_set
+    __swig_getmethods__["weight"] = _StgDomain.IntegrationPoint_weight_get
+    if _newclass:weight = _swig_property(_StgDomain.IntegrationPoint_weight_get, _StgDomain.IntegrationPoint_weight_set)
+    def __init__(self): 
+        this = _StgDomain.new_IntegrationPoint()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_IntegrationPoint
+    __del__ = lambda self : None;
+IntegrationPoint_swigregister = _StgDomain.IntegrationPoint_swigregister
+IntegrationPoint_swigregister(IntegrationPoint)
+IntegrationPoint_Type = cvar.IntegrationPoint_Type
+
+class PlaneParticleLayout(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, PlaneParticleLayout, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, PlaneParticleLayout, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgDomain.PlaneParticleLayout__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgDomain.PlaneParticleLayout__sizeOfSelf_get
+    if _newclass:_sizeOfSelf = _swig_property(_StgDomain.PlaneParticleLayout__sizeOfSelf_get, _StgDomain.PlaneParticleLayout__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgDomain.PlaneParticleLayout__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgDomain.PlaneParticleLayout__deleteSelf_get
+    if _newclass:_deleteSelf = _swig_property(_StgDomain.PlaneParticleLayout__deleteSelf_get, _StgDomain.PlaneParticleLayout__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgDomain.PlaneParticleLayout_type_set
+    __swig_getmethods__["type"] = _StgDomain.PlaneParticleLayout_type_get
+    if _newclass:type = _swig_property(_StgDomain.PlaneParticleLayout_type_get, _StgDomain.PlaneParticleLayout_type_set)
+    __swig_setmethods__["nRefs"] = _StgDomain.PlaneParticleLayout_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgDomain.PlaneParticleLayout_nRefs_get
+    if _newclass:nRefs = _swig_property(_StgDomain.PlaneParticleLayout_nRefs_get, _StgDomain.PlaneParticleLayout_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgDomain.PlaneParticleLayout__delete_set
+    __swig_getmethods__["_delete"] = _StgDomain.PlaneParticleLayout__delete_get
+    if _newclass:_delete = _swig_property(_StgDomain.PlaneParticleLayout__delete_get, _StgDomain.PlaneParticleLayout__delete_set)
+    __swig_setmethods__["_print"] = _StgDomain.PlaneParticleLayout__print_set
+    __swig_getmethods__["_print"] = _StgDomain.PlaneParticleLayout__print_get
+    if _newclass:_print = _swig_property(_StgDomain.PlaneParticleLayout__print_get, _StgDomain.PlaneParticleLayout__print_set)
+    __swig_setmethods__["_copy"] = _StgDomain.PlaneParticleLayout__copy_set
+    __swig_getmethods__["_copy"] = _StgDomain.PlaneParticleLayout__copy_get
+    if _newclass:_copy = _swig_property(_StgDomain.PlaneParticleLayout__copy_get, _StgDomain.PlaneParticleLayout__copy_set)
+    __swig_setmethods__["name"] = _StgDomain.PlaneParticleLayout_name_set
+    __swig_getmethods__["name"] = _StgDomain.PlaneParticleLayout_name_get
+    if _newclass:name = _swig_property(_StgDomain.PlaneParticleLayout_name_get, _StgDomain.PlaneParticleLayout_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgDomain.PlaneParticleLayout_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgDomain.PlaneParticleLayout_nameAllocationType_get
+    if _newclass:nameAllocationType = _swig_property(_StgDomain.PlaneParticleLayout_nameAllocationType_get, _StgDomain.PlaneParticleLayout_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgDomain.PlaneParticleLayout__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgDomain.PlaneParticleLayout__defaultConstructor_get
+    if _newclass:_defaultConstructor = _swig_property(_StgDomain.PlaneParticleLayout__defaultConstructor_get, _StgDomain.PlaneParticleLayout__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgDomain.PlaneParticleLayout__construct_set
+    __swig_getmethods__["_construct"] = _StgDomain.PlaneParticleLayout__construct_get
+    if _newclass:_construct = _swig_property(_StgDomain.PlaneParticleLayout__construct_get, _StgDomain.PlaneParticleLayout__construct_set)
+    __swig_setmethods__["_build"] = _StgDomain.PlaneParticleLayout__build_set
+    __swig_getmethods__["_build"] = _StgDomain.PlaneParticleLayout__build_get
+    if _newclass:_build = _swig_property(_StgDomain.PlaneParticleLayout__build_get, _StgDomain.PlaneParticleLayout__build_set)
+    __swig_setmethods__["_initialise"] = _StgDomain.PlaneParticleLayout__initialise_set
+    __swig_getmethods__["_initialise"] = _StgDomain.PlaneParticleLayout__initialise_get
+    if _newclass:_initialise = _swig_property(_StgDomain.PlaneParticleLayout__initialise_get, _StgDomain.PlaneParticleLayout__initialise_set)
+    __swig_setmethods__["_execute"] = _StgDomain.PlaneParticleLayout__execute_set
+    __swig_getmethods__["_execute"] = _StgDomain.PlaneParticleLayout__execute_get
+    if _newclass:_execute = _swig_property(_StgDomain.PlaneParticleLayout__execute_get, _StgDomain.PlaneParticleLayout__execute_set)
+    __swig_setmethods__["_destroy"] = _StgDomain.PlaneParticleLayout__destroy_set
+    __swig_getmethods__["_destroy"] = _StgDomain.PlaneParticleLayout__destroy_get
+    if _newclass:_destroy = _swig_property(_StgDomain.PlaneParticleLayout__destroy_get, _StgDomain.PlaneParticleLayout__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgDomain.PlaneParticleLayout_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgDomain.PlaneParticleLayout_isConstructed_get
+    if _newclass:isConstructed = _swig_property(_StgDomain.PlaneParticleLayout_isConstructed_get, _StgDomain.PlaneParticleLayout_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgDomain.PlaneParticleLayout_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgDomain.PlaneParticleLayout_isBuilt_get
+    if _newclass:isBuilt = _swig_property(_StgDomain.PlaneParticleLayout_isBuilt_get, _StgDomain.PlaneParticleLayout_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgDomain.PlaneParticleLayout_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgDomain.PlaneParticleLayout_isInitialised_get
+    if _newclass:isInitialised = _swig_property(_StgDomain.PlaneParticleLayout_isInitialised_get, _StgDomain.PlaneParticleLayout_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgDomain.PlaneParticleLayout_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgDomain.PlaneParticleLayout_hasExecuted_get
+    if _newclass:hasExecuted = _swig_property(_StgDomain.PlaneParticleLayout_hasExecuted_get, _StgDomain.PlaneParticleLayout_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgDomain.PlaneParticleLayout_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgDomain.PlaneParticleLayout_isDestroyed_get
+    if _newclass:isDestroyed = _swig_property(_StgDomain.PlaneParticleLayout_isDestroyed_get, _StgDomain.PlaneParticleLayout_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgDomain.PlaneParticleLayout_constructType_set
+    __swig_getmethods__["constructType"] = _StgDomain.PlaneParticleLayout_constructType_get
+    if _newclass:constructType = _swig_property(_StgDomain.PlaneParticleLayout_constructType_get, _StgDomain.PlaneParticleLayout_constructType_set)
+    __swig_setmethods__["buildType"] = _StgDomain.PlaneParticleLayout_buildType_set
+    __swig_getmethods__["buildType"] = _StgDomain.PlaneParticleLayout_buildType_get
+    if _newclass:buildType = _swig_property(_StgDomain.PlaneParticleLayout_buildType_get, _StgDomain.PlaneParticleLayout_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgDomain.PlaneParticleLayout_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgDomain.PlaneParticleLayout_initialiseType_get
+    if _newclass:initialiseType = _swig_property(_StgDomain.PlaneParticleLayout_initialiseType_get, _StgDomain.PlaneParticleLayout_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgDomain.PlaneParticleLayout_executeType_set
+    __swig_getmethods__["executeType"] = _StgDomain.PlaneParticleLayout_executeType_get
+    if _newclass:executeType = _swig_property(_StgDomain.PlaneParticleLayout_executeType_get, _StgDomain.PlaneParticleLayout_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgDomain.PlaneParticleLayout_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgDomain.PlaneParticleLayout_destroyType_get
+    if _newclass:destroyType = _swig_property(_StgDomain.PlaneParticleLayout_destroyType_get, _StgDomain.PlaneParticleLayout_destroyType_set)
+    __swig_setmethods__["context"] = _StgDomain.PlaneParticleLayout_context_set
+    __swig_getmethods__["context"] = _StgDomain.PlaneParticleLayout_context_get
+    if _newclass:context = _swig_property(_StgDomain.PlaneParticleLayout_context_get, _StgDomain.PlaneParticleLayout_context_set)
+    __swig_setmethods__["_setInitialCounts"] = _StgDomain.PlaneParticleLayout__setInitialCounts_set
+    __swig_getmethods__["_setInitialCounts"] = _StgDomain.PlaneParticleLayout__setInitialCounts_get
+    if _newclass:_setInitialCounts = _swig_property(_StgDomain.PlaneParticleLayout__setInitialCounts_get, _StgDomain.PlaneParticleLayout__setInitialCounts_set)
+    __swig_setmethods__["_initialiseParticles"] = _StgDomain.PlaneParticleLayout__initialiseParticles_set
+    __swig_getmethods__["_initialiseParticles"] = _StgDomain.PlaneParticleLayout__initialiseParticles_get
+    if _newclass:_initialiseParticles = _swig_property(_StgDomain.PlaneParticleLayout__initialiseParticles_get, _StgDomain.PlaneParticleLayout__initialiseParticles_set)
+    __swig_setmethods__["debug"] = _StgDomain.PlaneParticleLayout_debug_set
+    __swig_getmethods__["debug"] = _StgDomain.PlaneParticleLayout_debug_get
+    if _newclass:debug = _swig_property(_StgDomain.PlaneParticleLayout_debug_get, _StgDomain.PlaneParticleLayout_debug_set)
+    __swig_setmethods__["coordSystem"] = _StgDomain.PlaneParticleLayout_coordSystem_set
+    __swig_getmethods__["coordSystem"] = _StgDomain.PlaneParticleLayout_coordSystem_get
+    if _newclass:coordSystem = _swig_property(_StgDomain.PlaneParticleLayout_coordSystem_get, _StgDomain.PlaneParticleLayout_coordSystem_set)
+    __swig_setmethods__["weightsInitialisedAtStartup"] = _StgDomain.PlaneParticleLayout_weightsInitialisedAtStartup_set
+    __swig_getmethods__["weightsInitialisedAtStartup"] = _StgDomain.PlaneParticleLayout_weightsInitialisedAtStartup_get
+    if _newclass:weightsInitialisedAtStartup = _swig_property(_StgDomain.PlaneParticleLayout_weightsInitialisedAtStartup_get, _StgDomain.PlaneParticleLayout_weightsInitialisedAtStartup_set)
+    __swig_setmethods__["_initialiseParticle"] = _StgDomain.PlaneParticleLayout__initialiseParticle_set
+    __swig_getmethods__["_initialiseParticle"] = _StgDomain.PlaneParticleLayout__initialiseParticle_get
+    if _newclass:_initialiseParticle = _swig_property(_StgDomain.PlaneParticleLayout__initialiseParticle_get, _StgDomain.PlaneParticleLayout__initialiseParticle_set)
+    __swig_setmethods__["totalInitialParticles"] = _StgDomain.PlaneParticleLayout_totalInitialParticles_set
+    __swig_getmethods__["totalInitialParticles"] = _StgDomain.PlaneParticleLayout_totalInitialParticles_get
+    if _newclass:totalInitialParticles = _swig_property(_StgDomain.PlaneParticleLayout_totalInitialParticles_get, _StgDomain.PlaneParticleLayout_totalInitialParticles_set)
+    __swig_setmethods__["averageInitialParticlesPerCell"] = _StgDomain.PlaneParticleLayout_averageInitialParticlesPerCell_set
+    __swig_getmethods__["averageInitialParticlesPerCell"] = _StgDomain.PlaneParticleLayout_averageInitialParticlesPerCell_get
+    if _newclass:averageInitialParticlesPerCell = _swig_property(_StgDomain.PlaneParticleLayout_averageInitialParticlesPerCell_get, _StgDomain.PlaneParticleLayout_averageInitialParticlesPerCell_set)
+    __swig_setmethods__["mustUseAllParticles"] = _StgDomain.PlaneParticleLayout_mustUseAllParticles_set
+    __swig_getmethods__["mustUseAllParticles"] = _StgDomain.PlaneParticleLayout_mustUseAllParticles_get
+    if _newclass:mustUseAllParticles = _swig_property(_StgDomain.PlaneParticleLayout_mustUseAllParticles_get, _StgDomain.PlaneParticleLayout_mustUseAllParticles_set)
+    __swig_setmethods__["dim"] = _StgDomain.PlaneParticleLayout_dim_set
+    __swig_getmethods__["dim"] = _StgDomain.PlaneParticleLayout_dim_get
+    if _newclass:dim = _swig_property(_StgDomain.PlaneParticleLayout_dim_get, _StgDomain.PlaneParticleLayout_dim_set)
+    __swig_setmethods__["sobolGenerator"] = _StgDomain.PlaneParticleLayout_sobolGenerator_set
+    __swig_getmethods__["sobolGenerator"] = _StgDomain.PlaneParticleLayout_sobolGenerator_get
+    if _newclass:sobolGenerator = _swig_property(_StgDomain.PlaneParticleLayout_sobolGenerator_get, _StgDomain.PlaneParticleLayout_sobolGenerator_set)
+    __swig_setmethods__["planeAxis"] = _StgDomain.PlaneParticleLayout_planeAxis_set
+    __swig_getmethods__["planeAxis"] = _StgDomain.PlaneParticleLayout_planeAxis_get
+    if _newclass:planeAxis = _swig_property(_StgDomain.PlaneParticleLayout_planeAxis_get, _StgDomain.PlaneParticleLayout_planeAxis_set)
+    __swig_setmethods__["planeCoord"] = _StgDomain.PlaneParticleLayout_planeCoord_set
+    __swig_getmethods__["planeCoord"] = _StgDomain.PlaneParticleLayout_planeCoord_get
+    if _newclass:planeCoord = _swig_property(_StgDomain.PlaneParticleLayout_planeCoord_get, _StgDomain.PlaneParticleLayout_planeCoord_set)
+    def __init__(self): 
+        this = _StgDomain.new_PlaneParticleLayout()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _StgDomain.delete_PlaneParticleLayout
+    __del__ = lambda self : None;
+PlaneParticleLayout_swigregister = _StgDomain.PlaneParticleLayout_swigregister
+PlaneParticleLayout_swigregister(PlaneParticleLayout)
+PlaneParticleLayout_Type = cvar.PlaneParticleLayout_Type
+PlaneParticleLayout_Invalid = cvar.PlaneParticleLayout_Invalid
+
+
+def PlaneParticleLayout_New(*args):
+  return _StgDomain.PlaneParticleLayout_New(*args)
+PlaneParticleLayout_New = _StgDomain.PlaneParticleLayout_New
+
+def _PlaneParticleLayout_New(*args):
+  return _StgDomain._PlaneParticleLayout_New(*args)
+_PlaneParticleLayout_New = _StgDomain._PlaneParticleLayout_New
+
+def _PlaneParticleLayout_Init(*args):
+  return _StgDomain._PlaneParticleLayout_Init(*args)
+_PlaneParticleLayout_Init = _StgDomain._PlaneParticleLayout_Init
+
+def _PlaneParticleLayout_Delete(*args):
+  return _StgDomain._PlaneParticleLayout_Delete(*args)
+_PlaneParticleLayout_Delete = _StgDomain._PlaneParticleLayout_Delete
+
+def _PlaneParticleLayout_Print(*args):
+  return _StgDomain._PlaneParticleLayout_Print(*args)
+_PlaneParticleLayout_Print = _StgDomain._PlaneParticleLayout_Print
+
+def _PlaneParticleLayout_Copy(*args):
+  return _StgDomain._PlaneParticleLayout_Copy(*args)
+_PlaneParticleLayout_Copy = _StgDomain._PlaneParticleLayout_Copy
+
+def _PlaneParticleLayout_DefaultNew(*args):
+  return _StgDomain._PlaneParticleLayout_DefaultNew(*args)
+_PlaneParticleLayout_DefaultNew = _StgDomain._PlaneParticleLayout_DefaultNew
+
+def _PlaneParticleLayout_AssignFromXML(*args):
+  return _StgDomain._PlaneParticleLayout_AssignFromXML(*args)
+_PlaneParticleLayout_AssignFromXML = _StgDomain._PlaneParticleLayout_AssignFromXML
+
+def _PlaneParticleLayout_Build(*args):
+  return _StgDomain._PlaneParticleLayout_Build(*args)
+_PlaneParticleLayout_Build = _StgDomain._PlaneParticleLayout_Build
+
+def _PlaneParticleLayout_Initialise(*args):
+  return _StgDomain._PlaneParticleLayout_Initialise(*args)
+_PlaneParticleLayout_Initialise = _StgDomain._PlaneParticleLayout_Initialise
+
+def _PlaneParticleLayout_Execute(*args):
+  return _StgDomain._PlaneParticleLayout_Execute(*args)
+_PlaneParticleLayout_Execute = _StgDomain._PlaneParticleLayout_Execute
+
+def _PlaneParticleLayout_Destroy(*args):
+  return _StgDomain._PlaneParticleLayout_Destroy(*args)
+_PlaneParticleLayout_Destroy = _StgDomain._PlaneParticleLayout_Destroy
+
+def _PlaneParticleLayout_InitialiseParticle(*args):
+  return _StgDomain._PlaneParticleLayout_InitialiseParticle(*args)
+_PlaneParticleLayout_InitialiseParticle = _StgDomain._PlaneParticleLayout_InitialiseParticle
 class _WallVC_Entry(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, _WallVC_Entry, name, value)
@@ -395,7 +13145,6 @@ class _WallVC_Entry(_object):
     __del__ = lambda self : None;
 _WallVC_Entry_swigregister = _StgDomain._WallVC_Entry_swigregister
 _WallVC_Entry_swigregister(_WallVC_Entry)
-cvar = _StgDomain.cvar
 WallVC_Type = cvar.WallVC_Type
 
 class WallVC(_object):
