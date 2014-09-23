@@ -1,5 +1,8 @@
 import os, sys, subprocess
 
+from runipy.notebook_runner import NotebookRunner, NotebookError
+from IPython.nbformat.current import read
+
 # create the test directory if needed
 dir = "./testDir/"
 try:
@@ -7,44 +10,52 @@ try:
 except:
    os.mkdir(dir)
 
-# turn all ipython notebooks into python scripts under ./testDir/
-command = "ipython nbconvert --to python --stdout "
+command = "runipy -q "
+try:
+  subprocess.check_call(command.split())
+except:
+  print "\nCould execute test because I can't execute 'runipy'"
+  print "Make sure 'runipy' is installed"
+  print "$ pip install runipy\n\n"
 
-for f in os.listdir('.'):
-  if f.endswith(".ipynb"):
-      outfile = dir + f[:-6] + ".py"
-      exe = command.split() # make command a list
-      exe.append(f)         # append filename
-      print exe
-      with open(outfile, "w") as outfile:
-         retCode = subprocess.call(exe, stdout=outfile)
-      if retCode != 0:
-         print "WTF nbconvert can't convert " + f + " ... exiting"
-         sys.exit(1)
-
-# change directory to ./testDir
-os.chdir(dir)
 
 nfails=0
 list_fails=[]
-logFile = open("testing.log", "w")
+logFile = open(dir+"testing.log", "w") # create test log file
 
-# run each .py and record it error code. If nonzero assume failure
 for f in os.listdir('.'):
-   if f.endswith(".py"):
-      logFile.write("\n\n\n ***********\nEXECUTION of " + f+"\n"); logFile.flush()
+  if f.endswith(".ipynb"):
 
-      retCode = subprocess.call(['python', f], stdout=logFile, stderr=logFile )
+    fname = f             # file name
 
-      if retCode != 0:
-        logFile.write(" **** ERROR: " + f +" \n"); logFile.flush()
+    exe = command.split() # make command a list
+    exe.append(f)         # append filename
 
-        nfails = nfails + 1
-        list_fails.append(f)
-   
+    outfile = dir + f
+    exe.append(outfile)   # append output
 
-print "Number of fails " + str(nfails)  
+    logFile.write("EXECUTION of " + fname); logFile.flush()
+
+# try run runipy on given notebook
+    try:
+      subprocess.check_call( exe )
+    except subprocess.CalledProcessError:
+      logFile.write(" .... ERROR (see "+outfile+")\n\n"); logFile.flush()
+      nfails = nfails+1
+      list_fails.append(fname)
+    else:
+      logFile.write(" .... PASS \n\n"); logFile.flush()
+       
+
+# Report in testing.log
+logFile.write("Number of fails " + str(nfails) +":\n"); logFile.flush()
+logFile.write(str(list_fails)); logFile.flush()
+
+# Report to stdout
+print "\n\n Total: Number of fails " + str(nfails)  
 print list_fails
+
+logFile.close()
 
 if nfails > 0:
    sys.exit( nfails )
