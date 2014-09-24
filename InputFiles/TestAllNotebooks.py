@@ -10,14 +10,17 @@ try:
 except:
    os.mkdir(dir)
 
-command = "runipy -q "
+command = "runipy -h"
 try:
   subprocess.check_call(command.split())
 except:
   print "\nCould execute test because I can't execute 'runipy'"
   print "Make sure 'runipy' is installed"
   print "$ pip install runipy\n\n"
+  sys.exit(1)
 
+
+command = "runipy -q"
 
 nfails=0
 list_fails=[]
