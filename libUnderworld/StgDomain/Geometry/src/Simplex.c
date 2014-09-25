@@ -33,6 +33,10 @@
 #include <assert.h>
 #include <mpi.h>
 
+#include <StGermain/StGermain.h>
+#include <StgDomain/StgDomain.h>
+#include "Geometry.h"
+
 #include "Simplex.h"
 
 Bool Simplex_Search3D( Mesh* mesh, unsigned* inc,

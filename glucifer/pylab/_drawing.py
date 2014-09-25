@@ -1,68 +1,41 @@
 import underworld
+from underworld import initializer
 import underworld._stgermain as _stgermain
 import numpy as np
 
 class Drawing(_stgermain.StgCompoundComponent):
+    def __new__(cls, objectDict, *args, **kwargs):
+        
+        if not isinstance(objectDict, dict):
+            raise TypeError("objectDict passed in must be of python type 'dict' or subclass")
+        
+        if "dr" not in objectDict:
+            raise ValueError("objectDict passed in from child must contain an object with key 'dr' mapping to a value which defines the StGermain object type.")
+        
+        # also add colourmap object
+        objectDict["cm"] = "lucColourMap"
+
+        return super(Drawing,cls).__new__(cls, objectDict, *args, **kwargs)
+    
     def __init__(self, num=None, colours="Purple Blue Green Yellow Orange Red".split(), opacity=-1, **kwargs):
-        if num and not isinstance(num,(str,int,NoneType)):
-            raise TypeError("'num' object passed in must be of python type 'str' or 'int'")
-        if num and isinstance(num,str) and (" " in num):
-            raise ValueError("'num' object passed in must not contain any spaces.")
-        self._num = num
-
-        if not isinstance(colours,(str,list)):
-            raise TypeError("'colours' object passed in must be of python type 'str' or 'list'")
-        if isinstance(colours,(str)):
-            self._colours = colours.split()
-        else:
-            self._colours = colours
-
-        if not isinstance(opacity,(int,float)):
-            raise TypeError("'opacity' object passed in must be of python type 'int' or 'float'")
-        if float(opacity) > 1. or float(opacity) < -1.:
-            raise ValueError("'opacity' object must takes values from 0. to 1., while a value of -1 explicitly disables opacity.")
-        self._opacity = opacity
-
+        self.num = num
+        self.colours = colours
+        self.opacity = opacity
+        
         # build parent
-        super(Drawing,self).__init__(**kwargs)
-
-    @property
-    def num(self):
-        """    num (str,int): integer or string identifier. Must not contain spaces. optional, default: none
-            """
-        return self._num
-
-    @property
-    def colours(self):
-        """    colours (list): list of colours to use to draw object.  Should be provided as a list or a string.
-        """
-        return self._colours
-
-    @property
-    def opacity(self):
-        """    opacity (float): Opacity of drawing object.  Takes values from 0. to 1., while a value of -1 explicitly disables opacity.
-        """
-        return self._opacity
-
-    def _getStgPtr(self):
-        """ This function should return the required underlying StGermain object ptr. It may be overwritten by the child class if necessary. """
-        return self.componentPointerDictionary[self._localNames["dr"]]
+        super(Drawing,self).__init__()
 
     def _addToStgDict(self):
         # call parents method
         super(Drawing,self)._addToStgDict()
-
-        self._localNames["cm"] = "cm_" + self._getUniqueName(prefix=self.num)
-        self._localNames["dr"] = "dr_" + self._getUniqueName(prefix=self.num)
-
-        self.componentDictionary[self._localNames["cm"]] = {
-            "Type"          :"lucColourMap",
+        
+        self.componentDictionary[self._clib_cm.name] = {
             "colours"       :" ".join(self.colours),
             "dynamicRange"  :True
         }
-        # add an empty(ish) drawing object.  children should fill it out. in particular they need to set 'Type'
-        self.componentDictionary[self._localNames["dr"]] = {
-            "ColourMap"     :self._localNames["cm"],
+        # add an empty(ish) drawing object.  children should fill it out.
+        self.componentDictionary[self._clib_dr.name] = {
+            "ColourMap"     :self._clib_cm.name,
             "opacity"       :self.opacity
         }
 
@@ -70,9 +43,63 @@ class Drawing(_stgermain.StgCompoundComponent):
         super(Drawing,self).__del__()
 
 
+    @property
+    def num(self):
+        """    num (str,int): integer or string identifier. Must not contain spaces. optional, default: none
+        """
+        return self._num
+    @num.setter
+    def num(self, num):
+        self._setterAssertNotConstructed()
+        if num and not isinstance(num,(str,int,NoneType)):
+            raise TypeError("'num' object passed in must be of python type 'str' or 'int'")
+        if num and isinstance(num,str) and (" " in num):
+            raise ValueError("'num' object passed in must not contain any spaces.")
+        self._num = num
+
+    @property
+    def colours(self):
+        """    colours (list): list of colours to use to draw object.  Should be provided as a list or a string.
+        """
+        return self._colours
+    @colours.setter
+    def colours(self,colours):
+        self._setterAssertNotConstructed()
+        if not isinstance(colours,(str,list)):
+            raise TypeError("'colours' object passed in must be of python type 'str' or 'list'")
+        if isinstance(colours,(str)):
+            self._colours = colours.split()
+        else:
+            self._colours = colours
+
+    @property
+    def opacity(self):
+        """    opacity (float): Opacity of drawing object.  Takes values from 0. to 1., while a value of -1 explicitly disables opacity.
+        """
+        return self._opacity
+    @opacity.setter
+    def opacity(self,opacity):
+        self._setterAssertNotConstructed()
+        if not isinstance(opacity,(int,float)):
+            raise TypeError("'opacity' object passed in must be of python type 'int' or 'float'")
+        if float(opacity) > 1. or float(opacity) < -1.:
+            raise ValueError("'opacity' object must takes values from 0. to 1., while a value of -1 explicitly disables opacity.")
+        self._opacity = opacity
+
 class Surface(Drawing):
     """  This drawing object class draws a surface using the provided scalar field.
     """
+    def __new__(cls, objectDict={}, *args, **kwargs):
+        
+        if not isinstance(objectDict, dict):
+            raise TypeError("objectDict passed in must be of python type 'dict' or subclass")
+        
+        # note we check if it already exists incase a child object has set it
+        if "dr" not in objectDict:
+            objectDict["dr"] = "lucScalarField"
+        
+        return super(Surface,cls).__new__(cls, objectDict, *args, **kwargs)
+
     def __init__(self, field=None, ndarray=None, drawSides="xyzXYZ",*args, **kwargs):
         if not((field==None) or (ndarray==None)):
             raise ValueError("Either an Underworld field or a numpy array must be set as arguments when initialising a Surface object, but not both.")
@@ -100,6 +127,24 @@ class Surface(Drawing):
         # build parent
         super(Surface,self).__init__(**kwargs)
 
+    def _addToStgDict(self):
+        # lets build up component dictionary
+        # append random string to provided name to ensure unique component names
+        # call parents method
+        
+        super(Surface,self)._addToStgDict()
+        
+        drdict = self.componentDictionary[self._clib_dr.name]
+        drdict["drawSides"] = self.drawSides
+        if self.field:
+            drdict["FieldVariable"] = self.field
+        else:
+            drdict["FieldVariable"] = self._nvf._clib_nvf.name
+
+    def __del__(self):
+        super(Surface,self).__del__()
+
+
     @property
     def field(self):
         """    field (str): name of live underworld field for which surfaces should be rendered.  Must be a scalar field.
@@ -118,29 +163,21 @@ class Surface(Drawing):
         """
         return self._drawSides
 
-    def _addToStgDict(self):
-        # lets build up component dictionary
-        # append random string to provided name to ensure unique component names
-        # call parents method
-
-        super(Surface,self)._addToStgDict()
-        
-        drdict = self.componentDictionary[self._localNames["dr"]]
-        drdict["Type"] = "lucScalarField"
-        drdict["drawSides"] = self.drawSides
-        if self.field:
-            drdict["FieldVariable"] = self.field
-        else:
-            drdict["FieldVariable"] = self._nvf._localNames["nvf"]
-    
-    def __del__(self):
-        super(Surface,self).__del__()
-
-
 
 class Points(Drawing):
     """  This drawing object class draws a swarm of points.
     """
+    def __new__(cls, objectDict={}, *args, **kwargs):
+        
+        if not isinstance(objectDict, dict):
+            raise TypeError("objectDict passed in must be of python type 'dict' or subclass")
+        
+        # note we check if it already exists incase a child object has set it
+        if "dr" not in objectDict:
+            objectDict["dr"] = "lucSwarmViewer"
+        
+        return super(Points,cls).__new__(cls, objectDict, *args, **kwargs)
+
     def __init__(self, swarm, colourVariable=None, sizeVariable=None, opacityVariable=None, pointSize=1.0, **kwargs):
         if not isinstance(swarm,(str)):
             raise TypeError("'swarm' object passed in must be of python type 'str'")
@@ -185,6 +222,7 @@ class Points(Drawing):
 
         if not isinstance(pointSize,(float,int)):
             raise TypeError("'pointSize' object passed in must be of python type 'float'")
+
         self._swarm = swarm
         self._colourVariable = colourVariable
         self._sizeVariable = sizeVariable
@@ -193,7 +231,24 @@ class Points(Drawing):
 
         # build parent
         super(Points,self).__init__(**kwargs)
-    
+
+    def _addToStgDict(self):
+        # lets build up component dictionary
+        
+        # call parents method
+        super(Points,self)._addToStgDict()
+        
+        drdict = self.componentDictionary[self._clib_dr.name]
+        drdict[          "Swarm"] = self.swarm
+        drdict[ "ColourVariable"] = self.colourVariable
+        drdict[   "SizeVariable"] = self.sizeVariable
+        drdict["opacityVariable"] = self.opacityVariable
+        drdict[      "pointSize"] = self.pointSize
+
+
+    def __del__(self):
+        super(Points,self).__del__()
+
     @property
     def swarm(self):
         """    swarm (str): name of live underworld swarm for which points will be rendered.
@@ -220,29 +275,24 @@ class Points(Drawing):
         """    pointSize (float): size of points
         """
         return self._pointSize
-    
-    def _addToStgDict(self):
-        # lets build up component dictionary
-
-        # call parents method
-        super(Points,self)._addToStgDict()
-
-        drdict = self.componentDictionary[self._localNames["dr"]]
-        drdict[           "Type"] = "lucSwarmViewer"
-        drdict[          "Swarm"] = self.swarm
-        drdict[ "ColourVariable"] = self.colourVariable
-        drdict[   "SizeVariable"] = self.sizeVariable
-        drdict["opacityVariable"] = self.opacityVariable
-        drdict[      "pointSize"] = self.pointSize
-    
-
-    def __del__(self):
-        super(Points,self).__del__()
 
 
 class VectorArrows(Drawing):
     """  This drawing object class draws vector arrows corresponding to the provided vector field.
     """
+    
+    def __new__(cls, objectDict={}, *args, **kwargs):
+        
+        if not isinstance(objectDict, dict):
+            raise TypeError("objectDict passed in must be of python type 'dict' or subclass")
+        
+        # note we check if it already exists incase a child object has set it
+        if "dr" not in objectDict:
+            objectDict["dr"] = "lucVectorArrows"
+        
+        return super(VectorArrows,cls).__new__(cls, objectDict, *args, **kwargs)
+
+
     def __init__(self, field, resolutionX=16, resolutionY=16, resolutionZ=16, arrowHeadSize=0.3, lengthScale=0.3,glyphs=3, **kwargs):
         if not isinstance(field,(str)):
             raise TypeError("'field' object passed in must be of python type 'str'")
@@ -285,7 +335,27 @@ class VectorArrows(Drawing):
 
         # build parent
         super(VectorArrows,self).__init__(**kwargs)
-    
+
+    def _addToStgDict(self):
+        # lets build up component dictionary
+        
+        # call parents method
+        super(VectorArrows,self)._addToStgDict()
+        
+        drdict = self.componentDictionary[self._clib_dr.name]
+        drdict[  "FieldVariable"] = self.field
+        drdict[    "resolutionX"] = self.resolutionX
+        drdict[    "resolutionY"] = self.resolutionY
+        drdict[    "resolutionZ"] = self.resolutionZ
+        drdict[  "arrowHeadSize"] = self.arrowHeadSize
+        drdict[    "lengthScale"] = self.lengthScale
+        drdict[         "glyphs"] = self.glyphs
+
+
+    def __del__(self):
+        super(VectorArrows,self).__del__()
+
+
     @property
     def field(self):
         """    field (str): name of live underworld vector field for which vector arrows will be rendered.
@@ -321,23 +391,3 @@ class VectorArrows(Drawing):
         """    glyphs (int): Type of glyph to render for vector arrow.
         """
         return self._glyphs
-    
-    def _addToStgDict(self):
-        # lets build up component dictionary
-
-        # call parents method
-        super(VectorArrows,self)._addToStgDict()
-
-        drdict = self.componentDictionary[self._localNames["dr"]]
-        drdict[           "Type"] = "lucVectorArrows"
-        drdict[  "FieldVariable"] = self.field
-        drdict[    "resolutionX"] = self.resolutionX
-        drdict[    "resolutionY"] = self.resolutionY
-        drdict[    "resolutionZ"] = self.resolutionZ
-        drdict[  "arrowHeadSize"] = self.arrowHeadSize
-        drdict[    "lengthScale"] = self.lengthScale
-        drdict[         "glyphs"] = self.glyphs
-    
-
-    def __del__(self):
-        super(VectorArrows,self).__del__()

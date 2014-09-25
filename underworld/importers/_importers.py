@@ -7,6 +7,16 @@ class VoxelDataHandler_ndarray(_stgermain.StgCompoundComponent):
     This Class wraps the VoxelDataHandler_ndarray StGermain class.
     This can be used to view multidimensional numpy arrays as voxel datasets within Underworld.
     """
+    def __new__(cls, objectDict={}, *args, **kwargs):
+        
+        if not isinstance(objectDict, dict):
+            raise TypeError("objectDict passed in must be of python type 'dict' or subclass")
+        
+        if "vdh_nd" not in objectDict:
+            objectDict["vdh_nd"] = "VoxelDataHandler_ndarray"
+
+        return super(VoxelDataHandler_ndarray,cls).__new__(cls, objectDict, *args, **kwargs)
+
     def __init__(self, ndarray, minTup=(0.,0.,0.), maxTup=(1.,1.,1.), **kwargs):
         if not isinstance(ndarray,(np.ndarray)):
             raise TypeError("'ndarray' object passed in must be of type 'ndarray'")
@@ -35,6 +45,62 @@ class VoxelDataHandler_ndarray(_stgermain.StgCompoundComponent):
         # build parent
         super(VoxelDataHandler_ndarray,self).__init__(**kwargs)
 
+    def _addToStgDict(self):
+        # call parents method
+        super(VoxelDataHandler_ndarray,self)._addToStgDict()
+        
+        if len(self.ndarray.shape) == 2:
+            numcellsk = 1
+        else:
+            numcellsk = self.ndarray.shape[2]
+        
+        if len(self.minTup) == 2:
+            startK = 0
+        else:
+            startK = self.minTup[2]
+        
+        if len(self.maxTup) == 2:
+            finK = 1
+        else:
+            finK = self.maxTup[2]
+        
+        cellSizeI = float(self.maxTup[0] - self.minTup[0])/float(self.ndarray.shape[0])
+        cellSizeJ = float(self.maxTup[1] - self.minTup[1])/float(self.ndarray.shape[1])
+        cellSizeK = float(finK - startK)/float(numcellsk)
+        
+        if   np.issubdtype(self.ndarray.dtype,np.int8):
+            nptype = "char"
+        elif np.issubdtype(self.ndarray.dtype,np.int32):
+            nptype = "int"
+        elif np.issubdtype(self.ndarray.dtype,np.float32):
+            nptype = "float"
+        elif np.issubdtype(self.ndarray.dtype,np.float64):
+            nptype = "double"
+        else:
+            raise ValueError("Provided numpy array does not appear to be of a supported type.\n"+\
+                             "Type is "+str(self.ndarray.dtype)+" while supported types are 'int8', 'int32', 'float32' and 'float64'")
+    
+        self.componentDictionary[self._clib_vdh_nd.name] = {
+            "ndPointer"         :hex(self.ndarray.__array_interface__['data'][0]),  # note we convert the pointer to ndarray data to a string here
+            "NumCellsI"         :self.ndarray.shape[0],
+            "NumCellsJ"         :self.ndarray.shape[1],
+            "NumCellsK"         :numcellsk,
+            "StartCoordI"       :self.minTup[0]+0.5*cellSizeI,
+            "StartCoordJ"       :self.minTup[1]+0.5*cellSizeJ,
+            "StartCoordK"       :startK+0.5*cellSizeK,
+            "CellSizeI"         :cellSizeI,
+            "CellSizeJ"         :cellSizeJ,
+            "CellSizeK"         :cellSizeK,
+            "DataType"          :nptype,
+            "mapIAxisToStgAxis" :"X",
+            "mapJAxisToStgAxis" :"Y",
+            "mapKAxisToStgAxis" :"Z"
+        }
+
+    def __del__(self):
+        super(VoxelDataHandler_ndarray,self).__del__()
+
+
     @property
     def ndarray(self):
         """    ndarray (ndarray): numpy array for VoxelDataHandler_ndarray to utilise
@@ -52,91 +118,37 @@ class VoxelDataHandler_ndarray(_stgermain.StgCompoundComponent):
         """
         return self._maxTup
 
-    def _addToStgDict(self):
-        # call parents method
-        super(VoxelDataHandler_ndarray,self)._addToStgDict()
-
-        self._localNames["vdh_np"] = "vdh_np_" + self._getUniqueName()
-
-        if len(self.ndarray.shape) == 2:
-            numcellsk = 1
-        else:
-            numcellsk = self.ndarray.shape[2]
-
-        if len(self.minTup) == 2:
-            startK = 0
-        else:
-            startK = self.minTup[2]
-
-        if len(self.maxTup) == 2:
-            finK = 1
-        else:
-            finK = self.maxTup[2]
-
-        cellSizeI = float(self.maxTup[0] - self.minTup[0])/float(self.ndarray.shape[0])
-        cellSizeJ = float(self.maxTup[1] - self.minTup[1])/float(self.ndarray.shape[1])
-        cellSizeK = float(finK - startK)/float(numcellsk)
-
-        if   np.issubdtype(self.ndarray.dtype,np.int8):
-            nptype = "char"
-        elif np.issubdtype(self.ndarray.dtype,np.int32):
-            nptype = "int"
-        elif np.issubdtype(self.ndarray.dtype,np.float32):
-            nptype = "float"
-        elif np.issubdtype(self.ndarray.dtype,np.float64):
-            nptype = "double"
-        else:
-            raise ValueError("Provided numpy array does not appear to be of a supported type.\n"+\
-                             "Type is "+str(self.ndarray.dtype)+" while supported types are 'int8', 'int32', 'float32' and 'float64'")
-
-        self.componentDictionary[self._localNames["vdh_np"]] = {
-            "Type"              :"VoxelDataHandler_ndarray",
-            "ndPointer"         :hex(self.ndarray.__array_interface__['data'][0]),  # note we convert the pointer to ndarray data to a string here
-            "NumCellsI"         :self.ndarray.shape[0],
-            "NumCellsJ"         :self.ndarray.shape[1],
-            "NumCellsK"         :numcellsk,
-            "StartCoordI"       :self.minTup[0]+0.5*cellSizeI,
-            "StartCoordJ"       :self.minTup[1]+0.5*cellSizeJ,
-            "StartCoordK"       :startK+0.5*cellSizeK,
-            "CellSizeI"         :cellSizeI,
-            "CellSizeJ"         :cellSizeJ,
-            "CellSizeK"         :cellSizeK,
-            "DataType"          :nptype,
-            "mapIAxisToStgAxis" :"X",
-            "mapJAxisToStgAxis" :"Y",
-            "mapKAxisToStgAxis" :"Z"
-        }
-        super(VoxelDataHandler_ndarray,self)._addToStgDict()
-
-    def __del__(self):
-        super(VoxelDataHandler_ndarray,self).__del__()
-
 
 class NumpyVoxelField(_stgermain.StgCompoundComponent):
     """
     This Class takes a numpy multidimensional array, and makes it available as an Underworld Field.
     """
     __doc__ += VoxelDataHandler_ndarray.__doc__  # this adds docstring info from VoxelDataHandler_ndarray class
+    def __new__(cls, objectDict={}, *args, **kwargs):
+        if not isinstance(objectDict, dict):
+            raise TypeError("objectDict passed in must be of python type 'dict' or subclass")
+        
+        objectDict["nvf"] = "VoxelFieldVariable"
+        
+        return super(NumpyVoxelField,cls).__new__(cls, objectDict, *args, **kwargs)
+
     def __init__(self, *args, **kwargs):
     
-        self.vdh_np = VoxelDataHandler_ndarray(*args, **kwargs)
+        self.vdh_nd = VoxelDataHandler_ndarray(*args, **kwargs)
         
         # build parent
-        super(NumpyVoxelField,self).__init__(**kwargs)
+        super(NumpyVoxelField,self).__init__()
 
 
     def _addToStgDict(self):
         # call parents method
         super(NumpyVoxelField,self)._addToStgDict()
 
-        self._localNames["nvf"] = "nvf" + self._getUniqueName()
-
-        self.componentDictionary[self._localNames["nvf"]] = {
-            "Type"                      :"VoxelFieldVariable",
-            "VoxelDataHandler"          :self.vdh_np._localNames["vdh_np"],
+        self.componentDictionary[self._clib_nvf.name] = {
+            "VoxelDataHandler"          :self.vdh_nd._clib_vdh_nd.name,
             "UseNearestCellIfOutside"   :True,
             "fieldComponentCount"       :1,
-            "dim"                       :len(self.vdh_np.ndarray.shape) # get the numpy shape for the dimensionality
+            "dim"                       :len(self.vdh_nd.ndarray.shape) # get the numpy shape for the dimensionality
         }
 
     def __del__(self):

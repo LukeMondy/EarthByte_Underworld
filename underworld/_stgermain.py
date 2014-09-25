@@ -22,7 +22,43 @@ class StgCompoundComponent(object):
     __metaclass__ = abc.ABCMeta
     
     _livingInstances = []
-    def __init__(self, modulesList = None, **kwargs):
+    
+    def __new__(cls, objectDict, *args, **kwargs):
+        """
+        New function. Creates stgermain instances of underlying objects.
+        
+        Args:
+            objectDict (dict)   : Objects dictionary to be provided by child.  Specifies object name (key) and object type (value).
+
+        Returns:
+            New created instance of child class.
+        
+        """
+        if not isinstance(objectDict, dict):
+            raise TypeError("object passed in must be of python type 'dict' or subclass")
+
+        # lets go ahead and create the python instance of this object
+        self = object.__new__(cls, *args, **kwargs)
+
+        import string
+        import random
+        self._id = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+
+        # ok, create stgermain objects
+        # first rearrange to create stg compatible dictionary
+        newObjDict = {}
+        for compName, compType in objectDict.iteritems():
+            newObjDict[self._id + "_" + compName] = { "Type": compType }
+        fullDictionary = {"components": newObjDict}
+        # create
+        pointerDict = StgCreateInstances(fullDictionary)
+        for objName, objPointer in pointerDict.iteritems():
+            # note here we strip out the id part to make it user friendly
+            setattr(self, objName.replace(self._id,"_clib"), objPointer)
+                
+        return self
+
+    def __init__(self, modulesList = None):
         """ 
         Initialisation function.  All components in provided dictionary are constructed, build & initialised here.
         
@@ -34,12 +70,11 @@ class StgCompoundComponent(object):
                 raise TypeError("object passed in must be of python type 'list' or subclass")
             LoadModules( {"import":modulesList} )
     
-        self._localNames = {}
         self.componentDictionary = _collections.OrderedDict()
         # ok... let child classes fill dictionary.
         self._addToStgDict()
         self.fullDictionary = {"components": self.componentDictionary}
-        self.componentPointerDictionary = StgConstruct(self.fullDictionary)
+        StgConstruct(self.fullDictionary)
         StgBuild(self.fullDictionary)
         StgInitialise(self.fullDictionary)
         self._isAlive = True
@@ -73,19 +108,10 @@ class StgCompoundComponent(object):
                 None
         """
 
-    def _getUniqueName(self, prefix=None):
-        """ This function concatenates an random string of characters with a provided prefix. 
+    def _setterAssertNotConstructed(self):
+        if hasattr(self,"_isAlive"):
+            raise RuntimeError("This object attribute can only be set via the object constructor.")
 
-            Args:
-            prefix (str,int,other) : Object to use as prefix. It is converted to a string first. Default is None.
-            numChars (int)         : Number of characters to use for the random string.  Default is 8.
-            
-        """
-        if not hasattr(self,"_uniqueNameValue"):
-            import string
-            import random
-            self._uniqueNameValue = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
-        return str(prefix)+"_"+self._uniqueNameValue
 
 
 
@@ -255,10 +281,10 @@ def LoadModules( pyUWDict ):
        Loads any Toolboxes found within provided dictionary.
 
        Args:
-       pyUWDict (dict): Python version of underworld root dictionary.
+           pyUWDict (dict): Python version of underworld root dictionary.
 
        Returns:
-       Nothing.
+           Nothing.
     """
     _AssertInitStateIs(True)
     stgRootDict = StGermain.Dictionary_New()
@@ -272,15 +298,15 @@ def StgInit( args=[] ):
        Calls the StGermain Init function with provided arguments.
 
        Args:
-       args (list): List of arguments to pass to Init stage.  Usually command line like arguments.  Default none.
+           args (list): List of arguments to pass to Init stage.  Usually command line like arguments.  Default none.
 
        Returns:
-       Nothing.
+           Nothing.
     """
+    
     if getData():
         StgFinalise()
     setData( StGermain_Tools.StgInit( args ) )
-    return
 
 
 def WriteFlattenedFile( uwdict, timestamp=None ):
@@ -302,23 +328,65 @@ def WriteFlattenedFile( uwdict, timestamp=None ):
     StGermain.stgGenerateFlattenedXML( stgDict, None, None )
     StGermain.Stg_Class_Delete(stgDict)
 
-
-def StgConstruct( pyUWDict, setAsRootDict=False ):
+def StgCreateInstances( pyUWDict ):
     """
-       Calls the construct phase for all components & plugins found in provided dictionary.
-
-       Args:
-         pyUWDict (dict): Underworld root type dictionary containing components and plugins.
-         setAsRootDict (bool):  If true, retains generated stg_componentfactory and stg root dictionary. Default false.
-
-       Returns:
-         pointerDict (dict): Dictionary mapping component names to stg pointer.
+        Creates instances for all components within pyUWDict.
+        
+        Args:
+        pyUWDict (dict): Underworld root type dictionary containing components and plugins.
+        
+        Returns:
+        pointerDict (dict): Dictionary mapping component names to stg pointer.
     """
     _AssertInitStateIs(True)
     if not isinstance(pyUWDict, dict):
         raise TypeError("object passed in must be of python type 'dict' or subclass")
 
     LoadModules(pyUWDict)
+
+    stgRootDict = StGermain.Dictionary_New()
+    SetStgDictionaryFromPyDict( pyUWDict, stgRootDict )
+
+    stgCompDict = StGermain.Dictionary_Entry_Value_AsDictionary( StGermain.Dictionary_Get( stgRootDict, "components" ) )
+
+    cf = StGermain.Stg_ComponentFactory_New( stgRootDict, stgCompDict )
+
+    # lets create instances of components
+    StGermain.Stg_ComponentFactory_CreateComponents( cf )
+
+    StGermain.Stg_Class_Delete(cf)
+    StGermain.Stg_Class_Delete(stgRootDict)
+
+    pointerDict = {}
+    # lets go ahead and construct component
+    if "components" in pyUWDict:
+        for compName, compDict in pyUWDict["components"].iteritems():
+            compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
+            pointerDict[compName] = compPointer
+# disable this as its broken because i believe the context creates the plugins during assignfromxml
+#    if "plugins" in pyUWDict:
+#        for guy in pyUWDict["plugins"]:
+#            print guy["Type"]
+#            compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), guy["Type"] )
+#            pointerDict[guy["Type"]] = compPointer
+
+    return pointerDict
+
+
+def StgConstruct( pyUWDict, setAsRootDict=False):
+    """
+       Calls the construct phase for all components & plugins found in provided dictionary.
+
+       Args:
+         pyUWDict (dict): Underworld root type dictionary containing components and plugins.
+         setAsRootDict   (bool):  If true, retains generated stg_componentfactory and stg root dictionary. Default false.
+
+       Returns:
+         Nothing
+    """
+    _AssertInitStateIs(True)
+    if not isinstance(pyUWDict, dict):
+        raise TypeError("object passed in must be of python type 'dict' or subclass")
 
     stgRootDict = StGermain.Dictionary_New()
     SetStgDictionaryFromPyDict( pyUWDict, stgRootDict )
@@ -329,15 +397,10 @@ def StgConstruct( pyUWDict, setAsRootDict=False ):
 
     cf = StGermain.Stg_ComponentFactory_New( stgRootDict, stgCompDict )
 
-    # lets create instances of components
-    StGermain.Stg_ComponentFactory_CreateComponents( cf )
-
-    pointerDict = {}
     # lets go ahead and construct component
     if "components" in pyUWDict:
         for compName, compDict in pyUWDict["components"].iteritems():
             compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
-            pointerDict[compName] = compPointer
             StGermain.Stg_Component_AssignFromXML( compPointer, cf, None, False )
     if "plugins" in pyUWDict:
         for guy in pyUWDict["plugins"]:
@@ -355,8 +418,6 @@ def StgConstruct( pyUWDict, setAsRootDict=False ):
     else:
         StGermain.Stg_Class_Delete(cf)
         StGermain.Stg_Class_Delete(stgRootDict)
-
-    return pointerDict
 
 
 def StgBuild( pyUWDict=None ):

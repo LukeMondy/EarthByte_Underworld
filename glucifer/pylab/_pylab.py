@@ -28,6 +28,18 @@ class Figure(_stgermain.StgCompoundComponent):
             
          Currently, the Surface, Points & VectorArrows are the supported drawing objects.  See help() on these objects for their respective options.
     """
+    def __new__(cls, objectDict={}, *args, **kwargs):
+        
+        if not isinstance(objectDict, dict):
+            raise TypeError("objectDict passed in must be of python type 'dict' or subclass")
+ 
+        objectDict[ "db"] = "lucDatabase"
+        objectDict["win"] = "lucWindow"
+        objectDict[ "vp"] = "lucViewport"
+        objectDict["cam"] = "lucCamera"
+
+        return super(Figure,cls).__new__(cls, objectDict, *args, **kwargs)
+
     def __init__(self, num=None, figsize=(640,480), facecolour="white", edgecolour="white", title=None, axis=False, **kwargs):
         """ The initialiser takes as arguments 'num', 'figsize', 'facecolour', 'edgecolour', 'title' and 'axis'.   See help(Figure) for full details on these options.
         """
@@ -68,38 +80,27 @@ class Figure(_stgermain.StgCompoundComponent):
         # call parents method
         super(Figure,self)._addToStgDict()
 
-        uniqueid = self._getUniqueName(prefix=self.num)
-        self._localNames[ "db"] = "db_"  + uniqueid
-        self._localNames["win"] = "win_" + uniqueid
-        self._localNames[ "vp"] = "vp_"  + uniqueid
-        self._localNames["cam"] = "cam_" + uniqueid
-
-
-        self.componentDictionary[self._localNames["db"]] = {
-                            "Type"              :"lucDatabase",
-                            "filename"          :"gluciferDB"+uniqueid,
+        self.componentDictionary[self._clib_db.name] = {
+                            "filename"          :"gluciferDB"+self._id,
                             "blocking"          :True,
                             "dbPath"            :tmpdir
         }
-        self.componentDictionary[self._localNames["win"]] = {
-                            "Type"              :"lucWindow",
-                            "Database"          :self._localNames[ "db"],
-                            "Viewport"          :[self._localNames["vp"]],
+        self.componentDictionary[self._clib_win.name] = {
+                            "Database"          :self._clib_db.name,
+                            "Viewport"          :[self._clib_vp.name],
                             "width"             :self.figsize[0],
                             "height"            :self.figsize[1],
                             "backgroundColour"  :self.facecolour,
                             "useModelBounds"    :False
         }
-        self.componentDictionary[self._localNames["vp"]] = {
-                            "Type"              :"lucViewport",
-                            "Camera"            :self._localNames["cam"],
+        self.componentDictionary[self._clib_vp.name] = {
+                            "Camera"            :self._clib_cam.name,
                             "borderColour"      :self.edgecolour,
                             "border"            :1,
                             "title"             :self.title,
                             "axis"              :self.axis
         }
-        self.componentDictionary[self._localNames["cam"]] = {
-                            "Type"              :"lucCamera",
+        self.componentDictionary[self._clib_cam.name] = {
                             "useBoundingBox"    : True
         }
 
@@ -169,7 +170,7 @@ class Figure(_stgermain.StgCompoundComponent):
         # lets determine what we are outputting (jpg,png)
         foundFile = None
         for extension in ("jpg", "jpeg", "png"):
-            fname = os.path.join(tmpdir,self._localNames["win"]+".00000."+extension)
+            fname = os.path.join(tmpdir,self._clib_win.name+".00000."+extension)
             if os.path.isfile(fname):
                 foundFile = fname
                 break
@@ -180,7 +181,7 @@ class Figure(_stgermain.StgCompoundComponent):
         return os.path.abspath(foundFile)
 
     def _findGeneratedDB(self):
-        fname = os.path.join(tmpdir,"gluciferDB"+self._getUniqueName(prefix=self.num)+".gldb")
+        fname = os.path.join(tmpdir,"gluciferDB"+self._id+".gldb")
         if not os.path.isfile(fname):
             raise RuntimeError("The database does not appear to have been created. Please contact developers.")
         
@@ -225,30 +226,24 @@ class Figure(_stgermain.StgCompoundComponent):
 
 
     def _generateDB(self):
-        vp  = self.componentPointerDictionary[self._localNames[ "vp"]]
-        db  = self.componentPointerDictionary[self._localNames[ "db"]]
-        win = self.componentPointerDictionary[self._localNames["win"]]
-        
         # remove any existing
-        for ii in range(vp.drawingObject_Register.objects.count,0,-1):
-            _stgermain.StGermain._Stg_ObjectList_RemoveByIndex(vp.drawingObject_Register.objects,ii-1, _stgermain.StGermain.KEEP)
+        for ii in range(self._clib_vp.drawingObject_Register.objects.count,0,-1):
+            _stgermain.StGermain._Stg_ObjectList_RemoveByIndex(self._clib_vp.drawingObject_Register.objects,ii-1, _stgermain.StGermain.KEEP)
         # first add drawing objects to viewport
         if len(self.drawingObjects) == 0:
             raise RuntimeError("There appears to be no drawing objects to render.")
         for object in self.drawingObjects:
-            objectPtr = object._getStgPtr()
-            objectPtr.id = 0
-            _stgermain.StGermain.Stg_ObjectList_Append(vp.drawingObject_Register.objects,objectPtr)
+            object._clib_dr.id = 0
+            _stgermain.StGermain.Stg_ObjectList_Append(self._clib_vp.drawingObject_Register.objects,object._clib_dr)
         # go ahead and fill db
-        _stgermain.gLucifer.lucDatabase_DeleteWindows(db)
-        _stgermain.gLucifer.lucDatabase_OutputWindow(db, win)
-        _stgermain.gLucifer._lucDatabase_Execute(db,None)
-        _stgermain.gLucifer._lucWindow_Execute(win,None)
+        _stgermain.gLucifer.lucDatabase_DeleteWindows(self._clib_db)
+        _stgermain.gLucifer.lucDatabase_OutputWindow(self._clib_db, self._clib_win)
+        _stgermain.gLucifer._lucDatabase_Execute(self._clib_db,None)
+        _stgermain.gLucifer._lucWindow_Execute(self._clib_win,None)
 
     def _generateImage(self):
-        db  = self.componentPointerDictionary[self._localNames[ "db"]]
         # go ahead and draw
-        _stgermain.gLucifer.lucDatabase_Dump(db)
+        _stgermain.gLucifer.lucDatabase_Dump(self._clib_db)
 
     def clear(self):
         """    Clears all the figure's drawing objects 

@@ -61,6 +61,7 @@ def Construct( buildNow=True ):
 
     globalDict = dictionary.GetDictionary()
 
+    _stgermain.StgCreateInstances(globalDict)
     _stgermain.StgConstruct(globalDict, setAsRootDict=True)
     _setConstructFlag(True)
     _stgermain.WriteFlattenedFile(globalDict)
