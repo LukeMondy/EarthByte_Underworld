@@ -27,6 +27,9 @@ class Drawing(_stgermain.StgCompoundComponent):
 
     def _addToStgDict(self):
         
+        # call parents method
+        super(Drawing,self)._addToStgDict()
+
         self.componentDictionary[self._clib_cm.name] = {
             "colours"       :" ".join(self.colours),
             "dynamicRange"  :True
@@ -37,8 +40,6 @@ class Drawing(_stgermain.StgCompoundComponent):
             "opacity"       :self.opacity
         }
 
-        # call parents method
-        super(Drawing,self)._addToStgDict()
 
     def __del__(self):
         super(Drawing,self).__del__()
@@ -133,6 +134,8 @@ class Surface(Drawing):
         # append random string to provided name to ensure unique component names
         # call parents method
         
+        super(Surface,self)._addToStgDict()
+
         drdict = self.componentDictionary[self._clib_dr.name]
         drdict["drawSides"] = self.drawSides
         if self.field:
@@ -140,7 +143,6 @@ class Surface(Drawing):
         else:
             drdict["FieldVariable"] = self._nvf._clib_nvf.name
 
-        super(Surface,self)._addToStgDict()
 
     def __del__(self):
         super(Surface,self).__del__()
