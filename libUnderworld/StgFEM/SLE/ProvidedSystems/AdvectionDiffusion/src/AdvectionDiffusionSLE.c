@@ -491,7 +491,7 @@ void _AdvectionDiffusionSLE_Initialise( void* sle, void* data ) {
 /* 	Stream* stream = Journal_Register( Info_Type, (Name)self->type  ); */
 /* 	FeVariable_PrintLocalDiscreteValues( self->phiDotField, stream ); */
 	
-	if ( False == context->loadFieldsFromCheckpoint ) {
+	if ( False == self->context->loadFieldsFromCheckpoint ) {
 		DofLayout_SetAllToZero( self->phiDotField->dofLayout );
 	}
 
