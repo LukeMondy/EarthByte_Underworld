@@ -26,9 +26,10 @@ class Drawing(_stgermain.StgCompoundComponent):
         super(Drawing,self).__init__()
 
     def _addToStgDict(self):
+        
         # call parents method
         super(Drawing,self)._addToStgDict()
-        
+
         self.componentDictionary[self._clib_cm.name] = {
             "colours"       :" ".join(self.colours),
             "dynamicRange"  :True
@@ -38,6 +39,7 @@ class Drawing(_stgermain.StgCompoundComponent):
             "ColourMap"     :self._clib_cm.name,
             "opacity"       :self.opacity
         }
+
 
     def __del__(self):
         super(Drawing,self).__del__()
@@ -133,13 +135,14 @@ class Surface(Drawing):
         # call parents method
         
         super(Surface,self)._addToStgDict()
-        
+
         drdict = self.componentDictionary[self._clib_dr.name]
         drdict["drawSides"] = self.drawSides
         if self.field:
             drdict["FieldVariable"] = self.field
         else:
             drdict["FieldVariable"] = self._nvf._clib_nvf.name
+
 
     def __del__(self):
         super(Surface,self).__del__()

@@ -151,6 +151,7 @@ void _IrregularMeshParticleLayout_InitialiseParticles( void* particleLayout, voi
 {
 	IrregularMeshParticleLayout*	self = (IrregularMeshParticleLayout*)particleLayout;
 	Swarm*			swarm = (Swarm*)_swarm;
+	StandardParticle*	particle = NULL;
 	Cell_Index		cell_I;
 	Particle_InCellIndex	cellParticle_I;
 	
@@ -169,10 +170,11 @@ void _IrregularMeshParticleLayout_InitialiseParticles( void* particleLayout, voi
 		
 		for( cellParticle_I = 0; cellParticle_I < count; cellParticle_I++ ) {
 			swarm->cellParticleTbl[cell_I][cellParticle_I] = swarm->particleLocalCount; // add the local particle to cell
-
-			Swarm_AddParticleToCell( swarm, cell_I, swarm->particleLocalCount );
+			//Swarm_AddParticleToCell( swarm, cell_I, swarm->particleLocalCount );
+			particle = Swarm_ParticleInCellAt( swarm, cell_I, cellParticle_I );
+                        particle->owningCell = cell_I;
 			swarm->particleLocalCount++;
-			Swarm_Realloc( swarm ); // realloc for safety even though it was done above
+			//Swarm_Realloc( swarm ); // realloc for safety even though it was done above
 		}	
 
 		_IrregularMeshParticleLayout_InitialiseParticlesOfCell( self, swarm, cell_I );

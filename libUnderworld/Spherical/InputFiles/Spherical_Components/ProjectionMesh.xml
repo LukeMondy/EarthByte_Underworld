@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+<!-- A StGermain input file -->
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+   <struct name="components" mergeType="merge">
+      <!-- create the p0 mesh -->
+      <struct name="constantMesh">
+        <param name="Type">SphericalFeMesh</param>
+        <param name="elementType">constant</param>
+      </struct>
+      <struct name="constantMeshGenerator">
+        <param name="Type">C0SphericalGenerator</param>
+        <param name="mesh">constantMesh</param>
+        <param name="elementMesh">elementMesh</param>
+      </struct>
+
+      <!-- create the q1 mesh -->
+      <struct name="linearMesh">
+         <param name="Type">SphericalFeMesh</param>
+         <param name="elementType">linear</param>
+      </struct>
+      <struct name="linearMeshGenerator">
+         <param name="Type">ProjectionGenerator</param>
+         <param name="mesh">linearMesh</param>
+         <param name="dims">dim</param>
+         <param name="regular">false</param>
+         <param name="shadowDepth">shadowDepth</param>
+         <list name="size">
+            <param>elementResI</param>
+            <param>elementResJ</param>
+            <param>elementResK</param>
+         </list>
+         <list name="minCoord">
+            <param>minX</param>
+            <param>minY</param>
+            <param>minZ</param>
+         </list>
+         <list name="maxCoord">
+            <param>maxX</param>
+            <param>maxY</param>
+            <param>maxZ</param>
+         </list>
+      </struct>
+   </struct>
+
+</StGermainData>

@@ -159,46 +159,50 @@ hook_found=False
 pos=-1
 lineCount=0
 # first look if hook already exists
-hgrc = open("../.hg/hgrc", "r+")
-line=hgrc.readline()
-while line:
-  if line.find("pre-commit=\"./libUnderworld/script/precommit.py\"",0) == 0:
-    print "Found precommit hook declaration"
-    hook_found=True
+try:
+   hgrc = open("../.hg/hgrc", "r+")
+except IOError:
+   pass
+else:
+   line=hgrc.readline()
+   while line:
+     if line.find("pre-commit=\"./libUnderworld/script/precommit.py\"",0) == 0:
+       print "Found precommit hook declaration"
+       hook_found=True
 
-  # if hooks specified find the position in file
-  if line.find("[hooks]",0) == 0:
-    pos = lineCount 
-    
-  lineCount=lineCount+1
-  line=hgrc.readline() # iterate
+     # if hooks specified find the position in file
+     if line.find("[hooks]",0) == 0:
+       pos = lineCount 
+       
+     lineCount=lineCount+1
+     line=hgrc.readline() # iterate
 
-hgrc.close()
+   hgrc.close()
 
-adding=""
+   adding=""
 # if hook not found, add the magic in the .hg/hgrc
-if hook_found == False:
-  print "Adding magic precommit hook delaration in .hg/hgrc"
+   if hook_found == False:
+     print "Adding magic precommit hook delaration in .hg/hgrc"
 
-  # read in contents of hgrc
-  hgrc = open("../.hg/hgrc", "r")
-  contents=hgrc.readlines()
-  hgrc.close()
+     # read in contents of hgrc
+     hgrc = open("../.hg/hgrc", "r")
+     contents=hgrc.readlines()
+     hgrc.close()
 
-  # find place to add and create directive
-  if pos == -1:
-    pos=len(contents)
-    adding = "\n[hooks]\n"
+     # find place to add and create directive
+     if pos == -1:
+       pos=len(contents)
+       adding = "\n[hooks]\n"
 
-  adding += "pre-commit=\"./libUnderworld/script/precommit.py\"\n"
-  # insert directive
-  contents.insert(pos+1, adding)
+     adding += "pre-commit=\"./libUnderworld/script/precommit.py\"\n"
+     # insert directive
+     contents.insert(pos+1, adding)
 
-  # replace new contents with old
-  hgrc=open("../.hg/hgrc","w")
-  contents = "".join(contents)
-  hgrc.write(contents)
-  hgrc.close()
+     # replace new contents with old
+     hgrc=open("../.hg/hgrc","w")
+     contents = "".join(contents)
+     hgrc.write(contents)
+     hgrc.close()
 
 ############################
 # Finished hg precommit hook
