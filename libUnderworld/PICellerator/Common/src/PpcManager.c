@@ -55,8 +55,20 @@ void _PpcManager_Init( void* _self, PICelleratorContext* context, Stg_ComponentF
       }
       if ( self->tagList[tag_I].storeOnParticles )
          storeAnyOnParticles = True;
-      if ( self->tagList[tag_I].storeOnMesh )
+      if ( self->tagList[tag_I].storeOnMesh ) {
+         char *meshVarName=NULL;
          storeAnyOnMesh = True;
+         Stg_asprintf( &meshVarName, "%s-mesh", self->tagList[tag_I].name );
+         /* if so create a new PpcFeVariable */
+         self->tagList[tag_I].ppcFeVar = PpcFeVariable_New( meshVarName,
+                                                 (DomainContext*)self->integrationSwarm->context,
+                                                 self->mesh,
+                                                 self->integrationSwarm,
+                                                 False, /* no accumulation */
+                                                 self,
+                                                 tag_I );
+         Memory_Free( meshVarName );
+      }
    }
    /* Sanity checks */
    if ( storeAnyPrevious )
@@ -346,18 +358,7 @@ void _PpcManager_Build( void* _self, void* data )
       /* Do we store in on the mesh */
       if ( self->tagList[tag_I].storeOnMesh  )
       {
-         char *meshVarName=NULL;
-         Stg_asprintf( &meshVarName, "%s-mesh", self->tagList[tag_I].name );
-         /* if so create a new PpcFeVariable */
-         self->tagList[tag_I].ppcFeVar = PpcFeVariable_New( meshVarName,
-                                                 (DomainContext*)self->integrationSwarm->context,
-                                                 self->mesh,
-                                                 self->integrationSwarm,
-                                                 False, /* no accumulation */
-                                                 self,
-                                                 tag_I );
          Stg_Component_Build( self->tagList[tag_I].ppcFeVar, NULL, False );
-         Memory_Free( meshVarName );
       }
    }
 
