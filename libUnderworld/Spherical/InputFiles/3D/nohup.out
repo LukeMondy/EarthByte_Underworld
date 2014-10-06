@@ -1,0 +1,13 @@
+Waiting for client...
+Connection URL: cs://cloudjules:11111
+Accepting connection(s): cloudjules:11111
+Client connected.
+XDMF Error in /home/julian/utils/ParaView-v4.1.0/VTK/ThirdParty/xdmf2/vtkxdmf2/libsrc/XdmfGrid.cxx line 769 (Grid has 0 children. Index 0 is out of range)
+Waiting for client...
+Connection URL: cs://cloudjules:11111
+Accepting connection(s): cloudjules:11111
+Client connected.
+Waiting for client...
+Connection URL: cs://cloudjules:11111
+Accepting connection(s): cloudjules:11111
+Client connected.

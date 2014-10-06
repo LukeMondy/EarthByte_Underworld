@@ -1,0 +1,466 @@
+StGermain Framework. Copyright (C) 2003-2005 VPAC.
+Toolbox "Underworld" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Underworld_Toolboxmodule.so
+Toolbox "StgDomain" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgDomain_Toolboxmodule.so
+StgDomain (Domain Library). Copyright (C) 2003-2007 VPAC.
+Toolbox "StgFEM" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgFEM_Toolboxmodule.so
+StgFEM (Finite Element Framework). Copyright (C) 2003-2005 VPAC.
+Toolbox "PICellerator" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/PICellerator_Toolboxmodule.so
+PICellerator (Particle-In-Cell Framework). Copyright (C) 2005-2010 VPAC & Monash University.
+Underworld (Geodynamics Framework). Copyright (C) 2005-2010 Monash University.
+Toolbox "Spherical" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Spherical_Toolboxmodule.so
+Spherical (Bleeding Edge Geodynamics framework). Copyright (C) 2005 Monash University.
+Toolbox "Solvers" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Solvers_Toolboxmodule.so
+Matrix System Solvers. Copyright (C) 2012 Monash University.
+
+Creating Stg_Components from the component-list
+
+	Instantiating UnderworldContext as context
+	Instantiating FeMesh as constantMesh
+	Instantiating C0Generator as constantMeshGenerator
+	Instantiating FeMesh as linearMesh
+	Instantiating SphericalGenerator as linearMeshGenerator
+	Instantiating MeshVariable as velocity
+	Instantiating CompositeVC as velocityBCs
+	Instantiating CompositeVC as velocityICs
+	Instantiating DofLayout as velocityDofLayout
+	Instantiating FeVariable as VelocityField
+	Instantiating OperatorFeVariable as VelocityMagnitudeField
+	Instantiating OperatorFeVariable as VelocityGradientsField
+	Instantiating OperatorFeVariable as VelocityGradientsInvariantField
+	Instantiating OperatorFeVariable as VelocityXXField
+	Instantiating OperatorFeVariable as VelocityYYField
+	Instantiating OperatorFeVariable as StrainRateField
+	Instantiating OperatorFeVariable as VorticityField
+	Instantiating OperatorFeVariable as StrainRateInvariantField
+	Instantiating OperatorFeVariable as StrainRateXXField
+	Instantiating OperatorFeVariable as StrainRateYYField
+	Instantiating MeshVariable as pressure
+	Instantiating CompositeVC as pressureBCs
+	Instantiating CompositeVC as pressureICs
+	Instantiating DofLayout as pressureDofLayout
+	Instantiating FeVariable as PressureField
+	Instantiating SingleCellLayout as cellLayout
+	Instantiating GaussParticleLayout as particleLayout
+	Instantiating IntegrationPointsSwarm as gaussSwarm
+	Instantiating TimeIntegrator as timeIntegrator
+	Instantiating ElementCellLayout as elementCellLayout
+	Instantiating PCDVC as weights
+	Instantiating MappedParticleLayout as localLayout
+	Instantiating IntegrationPointsSwarm as picIntegrationPoints
+	Instantiating CoincidentMapper as mapper
+	Instantiating IrregularMeshParticleLayout as materialSwarmParticleLayout
+	Instantiating ParticleMovementHandler as pMovementHandler
+	Instantiating ParticleShadowSync as pShadowSync
+	Instantiating MaterialPointsSwarm as materialSwarm
+	Instantiating SwarmAdvector as materialSwarmAdvector
+	Instantiating EscapedRoutine as escapedRoutine
+	Instantiating SolutionVector as solutionVelocity
+	Instantiating SolutionVector as solutionPressure
+	Instantiating SphericalForceVector as mom_force
+	Instantiating ForceVector as cont_force
+	Instantiating SphericalStiffnessMatrix as k_matrix
+	Instantiating ConstitutiveMatrixCartesian as constitutiveMatrix
+	Instantiating SphericalStiffnessMatrix as g_matrix
+	Instantiating GradientStiffnessMatrixTerm as gradientStiffnessMatrixTerm
+	Instantiating SphericalStiffnessMatrix as preconditioner
+	Instantiating UzawaPreconditionerTerm as preconditionerTerm
+	Instantiating Stokes_SLE_UzawaSolver as uzawa
+	Instantiating Stokes_SLE as stokesEqn
+	Instantiating SphericalStiffnessMatrix as div_matrix
+	Instantiating DivergenceMatrixTerm as divergenceDofTerm
+	Instantiating Everywhere as everywhere
+	Instantiating RheologyMaterial as background
+	Instantiating MaterialViscosity as viscosity
+
+Constructing Stg_Components from the live-component register
+
+	Constructing context..
+Plugin "StgFEM_StandardConditionFunctions" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgFEM_StandardConditionFunctionsmodule.so
+Plugin "StgFEM_FrequentOutput" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgFEM_FrequentOutputmodule.so
+Plugin "Spherical_SphericalAlgorithms" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Spherical_SphericalAlgorithmsmodule.so
+		constitutiveMatrix has not been constructed yet. Constructing now.
+			Constructing constitutiveMatrix..
+				k_matrix has not been constructed yet. Constructing now.
+					Constructing k_matrix..
+						VelocityField has not been constructed yet. Constructing now.
+							Constructing VelocityField..
+								linearMesh has not been constructed yet. Constructing now.
+									Constructing linearMesh..
+								velocityDofLayout has not been constructed yet. Constructing now.
+									Constructing velocityDofLayout..
+										velocity has not been constructed yet. Constructing now.
+											Constructing velocity..
+								velocityICs has not been constructed yet. Constructing now.
+									Constructing velocityICs..
+								velocityBCs has not been constructed yet. Constructing now.
+									Constructing velocityBCs..
+						mom_force has not been constructed yet. Constructing now.
+							Constructing mom_force..
+				picIntegrationPoints has not been constructed yet. Constructing now.
+					Constructing picIntegrationPoints..
+						elementCellLayout has not been constructed yet. Constructing now.
+							Constructing elementCellLayout..
+						localLayout has not been constructed yet. Constructing now.
+							Constructing localLayout..
+						timeIntegrator has not been constructed yet. Constructing now.
+							Constructing timeIntegrator..
+						weights has not been constructed yet. Constructing now.
+							Constructing weights..
+								materialSwarm has not been constructed yet. Constructing now.
+									Constructing materialSwarm..
+										materialSwarmParticleLayout has not been constructed yet. Constructing now.
+											Constructing materialSwarmParticleLayout..
+											pMovementHandler has not been constructed yet. Constructing now.
+												Constructing pMovementHandler..
+											pShadowSync has not been constructed yet. Constructing now.
+												Constructing pShadowSync..
+										escapedRoutine has not been constructed yet. Constructing now.
+											Constructing escapedRoutine..
+						mapper has not been constructed yet. Constructing now.
+							Constructing mapper..
+	Constructing constantMesh..
+	Constructing constantMeshGenerator..
+	Constructing linearMeshGenerator..
+	Constructing VelocityMagnitudeField..
+	Constructing VelocityGradientsField..
+	Constructing VelocityGradientsInvariantField..
+	Constructing VelocityXXField..
+	Constructing VelocityYYField..
+	Constructing StrainRateField..
+	Constructing VorticityField..
+	Constructing StrainRateInvariantField..
+	Constructing StrainRateXXField..
+	Constructing StrainRateYYField..
+	Constructing pressure..
+	Constructing pressureBCs..
+	Constructing pressureICs..
+	Constructing pressureDofLayout..
+	Constructing PressureField..
+	Constructing cellLayout..
+	Constructing particleLayout..
+	Constructing gaussSwarm..
+	Constructing materialSwarmAdvector..
+	Constructing solutionVelocity..
+	Constructing solutionPressure..
+	Constructing cont_force..
+	Constructing g_matrix..
+	Constructing gradientStiffnessMatrixTerm..
+	Constructing preconditioner..
+	Constructing preconditionerTerm..
+	Constructing uzawa..
+	Constructing stokesEqn..
+		div_matrix has not been constructed yet. Constructing now.
+			Constructing div_matrix..
+	Constructing divergenceDofTerm..
+	Constructing everywhere..
+	Constructing background..
+			viscosity has not been constructed yet. Constructing now.
+				Constructing viscosity..
+	Constructing StgFEM_StandardConditionFunctions..
+	Constructing StgFEM_FrequentOutput..
+	Constructing SphericalAlgorithms..
+
+Building Stg_Components from the live-component register
+
+Cartesian generator: 'linearMeshGenerator'
+	Target mesh: 'linearMesh'
+	Global element size: 3x5x5
+	Local offset of rank 0: 0x0x0
+	Local range of rank 0: 3x5x5
+	Generating vertices...
+		... done.
+	Generating elements...
+		... done.
+	Generating edges...
+		... done.
+	Generating faces...
+		... done.
+	Generating element-vertex incidence...
+		... done.
+	Generating edge-vertex incidence...
+		... done.
+	Generating face-vertex incidence...
+		... done.
+	Generating vertex neighbours...
+		... done.
+	Generating geometry...
+		... done.
+	Generating element types...
+		... element types are 'Mesh_HexType',
+		... mesh algorithm type is 'Mesh_SphericalAlgorithms',
+		... done.
+	Assigning FeMesh element types...
+		... FE element types are 'TrilinearElementType',
+		... done.
+Stiffness matrix: 'k_matrix'
+	Calculating number of nonzero entries...
+		Found 9120 nonzero entries.
+		Done.
+	Assigning FeMesh element types...
+		... FE element types are 'ConstantElementType',
+		... done.
+FeEquationNumber: 'defaultFeVariableFeEqName'
+	Generating equation numbers...
+		BCs set to be removed.
+		Assigned 75 global equation numbers.
+		[0] Assigned 75 local equation numbers, within range 0 to 75.
+	... Completed in 7.60555e-05 [min] / 7.60555e-05 [max] seconds.
+Stiffness matrix: 'g_matrix'
+	Calculating number of nonzero entries...
+		Found 1200 nonzero entries.
+		Done.
+Stiffness matrix: 'div_matrix'
+	Calculating number of nonzero entries...
+		Found 1200 nonzero entries.
+		Done.
+Stiffness matrix: 'preconditioner'
+	Calculating number of nonzero entries...
+		Found 75 nonzero entries.
+		Done.
+Linking materials and ppc... 
+done
+
+Initialising Stg_Components from the live-component register
+
+Run until simulation has stepped forward 5 timeSteps
+Laying out material 'background' within Everywhere 'everywhere':
+In func Materials_Register_AssignParticleProperties(): for swarm "materialSwarm"
+	Assigning initial particle properties to the 1500 global particles
+		done 10% (150 particles)...
+		done 20% (300 particles)...
+		done 30% (450 particles)...
+		done 40% (600 particles)...
+		done 50% (750 particles)...
+		done 60% (900 particles)...
+		done 70% (1050 particles)...
+		done 80% (1200 particles)...
+		done 90% (1350 particles)...
+		done 100% (1500 particles)...
+Materials_Register_AssignParticleProperties(): finished setup of material properties for swarm "materialSwarm"
+	took 0.00157094 [min] / 0.00157094 [max] secs
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 75 global cells
+		done 10% (8 cells)...
+		done 20% (15 cells)...
+		done 30% (23 cells)...
+		done 40% (30 cells)...
+		done 50% (38 cells)...
+		done 60% (45 cells)...
+		done 70% (53 cells)...
+		done 80% (60 cells)...
+		done 90% (68 cells)...
+		done 100% (75 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+TimeStep = 0, Start time = 0, prev timeStep dt = 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0022 , Uzawa residual = 4.4921675718808e-06
+  |G^T u|/|u|               = 4.54079779e-04
+  |f - K u - G p|/|f|       = 6.52234715e-08
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.80512624e+00 , u_rms = 8.06497088e-01
+  |p|_{\infty} = 9.59417088e+00 , p_rms = 5.07811120e+00
+  min/max(u) = -1.80512624e+00 [86] / 1.67587400e+00 [67]
+  min/max(p) = -9.59417088e+00 [31] / 1.20372824e+00 [43]
+  \sum_i p_i = -3.14708871e+02 
+Linear solver (stokesEqn-execute), solution time 1.340580e-02 (secs)
+I have subtracted the null space from VelocityField - n*sol is -1.08247e-14
+In Swarm_Register_SaveAllRegisteredSwarms(): about to save the swarms to disk:
+	(found 1 swarms that need to be checkpointed)
+Proc 0: beginning Swarm binary checkpoint in _SwarmDump_Execute():
+	Proc 0: for swarm "materialSwarm", dumping its 1499 particles of size 40 bytes each (= 59960 bytes total) to file expected/LidDrivenPIC-referenceTest/materialSwarm.00000.h5
+Proc 0: finished Swarm binary checkpoint.
+Swarm_Register_SaveAllRegisteredSwarms: saving of swarms completed.
+In _FiniteElementContext_SaveMesh(): about to save the mesh to disk:
+_FiniteElementContext_SaveMesh: saving of mesh completed.
+Time Integration
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0145 [min] /    0.0145 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0089 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0009 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 75 global cells
+		done 10% (8 cells)...
+		done 20% (15 cells)...
+		done 30% (23 cells)...
+		done 40% (30 cells)...
+		done 50% (38 cells)...
+		done 60% (45 cells)...
+		done 70% (53 cells)...
+		done 80% (60 cells)...
+		done 90% (68 cells)...
+		done 100% (75 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0205 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.04526 [min] / 0.04526 [max] (secs)
+Time Integration - 0.04533 [min] / 0.04533 [max] (secs)
+TimeStep = 1, Start time = 0.0373316, prev timeStep dt = 0.0373316
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0019 , Uzawa residual = 9.2938652218037e-06
+  |G^T u|/|u|               = 5.54358863e-04
+  |f - K u - G p|/|f|       = 5.95675338e-08
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.80626362e+00 , u_rms = 8.06802828e-01
+  |p|_{\infty} = 7.71412866e+00 , p_rms = 3.68735525e+00
+  min/max(u) = -1.80626362e+00 [128] / 1.67018201e+00 [67]
+  min/max(p) = -3.08118709e+00 [31] / 7.71412866e+00 [43]
+  \sum_i p_i = 1.74577558e+02 
+Linear solver (stokesEqn-execute), solution time 1.107597e-02 (secs)
+I have subtracted the null space from VelocityField - n*sol is -1.77358e-14
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0151 [min] /    0.0151 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0102 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0009 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 75 global cells
+		done 10% (8 cells)...
+		done 20% (15 cells)...
+		done 30% (23 cells)...
+		done 40% (30 cells)...
+		done 50% (38 cells)...
+		done 60% (45 cells)...
+		done 70% (53 cells)...
+		done 80% (60 cells)...
+		done 90% (68 cells)...
+		done 100% (75 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0209 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.04746 [min] / 0.04746 [max] (secs)
+TimeStep = 2, Start time = 0.0746631, prev timeStep dt = 0.0373316
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0019 , Uzawa residual = 5.7349529929012e-06
+  |G^T u|/|u|               = 6.16569610e-04
+  |f - K u - G p|/|f|       = 6.13300494e-08
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.80560206e+00 , u_rms = 8.07082792e-01
+  |p|_{\infty} = 9.96900641e+00 , p_rms = 5.39333413e+00
+  min/max(u) = -1.80560206e+00 [128] / 1.68611799e+00 [67]
+  min/max(p) = -9.96900641e+00 [31] / 8.36165833e-01 [43]
+  \sum_i p_i = -3.42881499e+02 
+Linear solver (stokesEqn-execute), solution time 1.131916e-02 (secs)
+I have subtracted the null space from VelocityField - n*sol is -6.05072e-15
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0130 [min] /    0.0130 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0082 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0009 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 75 global cells
+		done 10% (8 cells)...
+		done 20% (15 cells)...
+		done 30% (23 cells)...
+		done 40% (30 cells)...
+		done 50% (38 cells)...
+		done 60% (45 cells)...
+		done 70% (53 cells)...
+		done 80% (60 cells)...
+		done 90% (68 cells)...
+		done 100% (75 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0208 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.04323 [min] / 0.04323 [max] (secs)
+TimeStep = 3, Start time = 0.111995, prev timeStep dt = 0.0373316
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0019 , Uzawa residual = 8.2770960511833e-06
+  |G^T u|/|u|               = 5.86322952e-04
+  |f - K u - G p|/|f|       = 6.13011659e-08
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.80699390e+00 , u_rms = 8.06855681e-01
+  |p|_{\infty} = 1.39229502e+01 , p_rms = 8.99165794e+00
+  min/max(u) = -1.80699390e+00 [94] / 1.66740601e+00 [67]
+  min/max(p) = -1.39229502e+01 [31] / -3.09111808e+00 [43]
+  \sum_i p_i = -6.39301889e+02 
+Linear solver (stokesEqn-execute), solution time 1.131296e-02 (secs)
+I have subtracted the null space from VelocityField - n*sol is -1.62093e-14
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0138 [min] /    0.0138 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0086 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0009 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 75 global cells
+		done 10% (8 cells)...
+		done 20% (15 cells)...
+		done 30% (23 cells)...
+		done 40% (30 cells)...
+		done 50% (38 cells)...
+		done 60% (45 cells)...
+		done 70% (53 cells)...
+		done 80% (60 cells)...
+		done 90% (68 cells)...
+		done 100% (75 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0204 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.04409 [min] / 0.04409 [max] (secs)
+TimeStep = 4, Start time = 0.149326, prev timeStep dt = 0.0373316
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0019 , Uzawa residual = 7.9573722675467e-06
+  |G^T u|/|u|               = 7.67989884e-04
+  |f - K u - G p|/|f|       = 5.99245091e-08
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.82083756e+00 , u_rms = 8.07202282e-01
+  |p|_{\infty} = 1.84759625e+01 , p_rms = 1.33604213e+01
+  min/max(u) = -1.82083756e+00 [128] / 1.64361025e+00 [109]
+  min/max(p) = -1.84759625e+01 [31] / -7.60290394e+00 [43]
+  \sum_i p_i = -9.78750121e+02 
+Linear solver (stokesEqn-execute), solution time 1.125717e-02 (secs)
+I have subtracted the null space from VelocityField - n*sol is -1.21847e-14
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.0128 [min] /    0.0128 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.0079 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0009 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 75 global cells
+		done 10% (8 cells)...
+		done 20% (15 cells)...
+		done 30% (23 cells)...
+		done 40% (30 cells)...
+		done 50% (38 cells)...
+		done 60% (45 cells)...
+		done 70% (53 cells)...
+		done 80% (60 cells)...
+		done 90% (68 cells)...
+		done 100% (75 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.0208 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 0.04273 [min] / 0.04273 [max] (secs)
+TimeStep = 5, Start time = 0.186658, prev timeStep dt = 0.0373316
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0020 , Uzawa residual = 3.1113612996111e-06
+  |G^T u|/|u|               = 1.07495784e-03
+  |f - K u - G p|/|f|       = 6.02958836e-08
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.84846327e+00 , u_rms = 8.07171339e-01
+  |p|_{\infty} = 2.48371751e+01 , p_rms = 1.96153986e+01
+  min/max(u) = -1.84846327e+00 [128] / 1.68084079e+00 [75]
+  min/max(p) = -2.48371751e+01 [31] / -1.39260388e+01 [43]
+  \sum_i p_i = -1.45539381e+03 
+Linear solver (stokesEqn-execute), solution time 1.167297e-02 (secs)
+I have subtracted the null space from VelocityField - n*sol is -1.80966e-14
+In Swarm_Register_SaveAllRegisteredSwarms(): about to save the swarms to disk:
+	(found 1 swarms that need to be checkpointed)
+Proc 0: beginning Swarm binary checkpoint in _SwarmDump_Execute():
+	Proc 0: for swarm "materialSwarm", dumping its 1452 particles of size 40 bytes each (= 58080 bytes total) to file expected/LidDrivenPIC-referenceTest/materialSwarm.00005.h5
+Proc 0: finished Swarm binary checkpoint.
+Swarm_Register_SaveAllRegisteredSwarms: saving of swarms completed.
+In _FiniteElementContext_SaveMesh(): about to save the mesh to disk:
+_FiniteElementContext_SaveMesh: saving of mesh completed.
+Finalised: Solvers Toolbox.
+Finalised: Spherical Toolbox.
+Finalised: Underworld (Geodynamics Framework).
+Finalised: PICellerator (Particle-In-Cell Framework).
+Finalised: StgFEM (Finite Element Framework).
+Finalised: StgDomain (Domain Library).

@@ -1,0 +1,312 @@
+StGermain Framework. Copyright (C) 2003-2005 VPAC.
+Toolbox "StgDomain" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgDomain_Toolboxmodule.so
+StgDomain (Domain Library). Copyright (C) 2003-2007 VPAC.
+Toolbox "StgFEM" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgFEM_Toolboxmodule.so
+StgFEM (Finite Element Framework). Copyright (C) 2003-2005 VPAC.
+Toolbox "PICellerator" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/PICellerator_Toolboxmodule.so
+PICellerator (Particle-In-Cell Framework). Copyright (C) 2005-2010 VPAC & Monash University.
+Toolbox "Underworld" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Underworld_Toolboxmodule.so
+Underworld (Geodynamics Framework). Copyright (C) 2005-2010 Monash University.
+Toolbox "gLucifer" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/gLucifer_Toolboxmodule.so
+gLucifer (Visualisation Framework). Copyright (C) 2005-2010 Monash University.
+Toolbox "ImportersToolbox" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/ImportersToolbox_Toolboxmodule.so
+ImportersToolbox. Copyright (C) 2012 Monash University.
+Finalised: ImportersToolbox Toolbox.
+Finalised: gLucifer (Visualisation Framework).
+Finalised: Underworld (Geodynamics Framework).
+Finalised: PICellerator (Particle-In-Cell Framework).
+Finalised: StgFEM (Finite Element Framework).
+Finalised: StgDomain (Domain Library).
+StGermain Framework. Copyright (C) 2003-2005 VPAC.
+Toolbox "StgDomain" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgDomain_Toolboxmodule.so
+StgDomain (Domain Library). Copyright (C) 2003-2007 VPAC.
+Toolbox "StgFEM" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgFEM_Toolboxmodule.so
+StgFEM (Finite Element Framework). Copyright (C) 2003-2005 VPAC.
+Toolbox "PICellerator" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/PICellerator_Toolboxmodule.so
+PICellerator (Particle-In-Cell Framework). Copyright (C) 2005-2010 VPAC & Monash University.
+Toolbox "Underworld" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Underworld_Toolboxmodule.so
+Underworld (Geodynamics Framework). Copyright (C) 2005-2010 Monash University.
+Toolbox "gLucifer" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/gLucifer_Toolboxmodule.so
+gLucifer (Visualisation Framework). Copyright (C) 2005-2010 Monash University.
+Toolbox "ImportersToolbox" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/ImportersToolbox_Toolboxmodule.so
+ImportersToolbox. Copyright (C) 2012 Monash University.
+Toolbox "Spherical" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Spherical_Toolboxmodule.so
+Spherical (Bleeding Edge Geodynamics framework). Copyright (C) 2005 Monash University.
+
+Creating Stg_Components from the component-list
+
+	Instantiating UnderworldContext as context
+	Instantiating FeMesh as constantMesh
+	Instantiating C0Generator as constantMeshGenerator
+	Instantiating FeMesh as linearMesh
+	Instantiating SphericalGenerator as linearMeshGenerator
+	Instantiating MeshVariable as velocity
+	Instantiating CompositeVC as velocityBCs
+	Instantiating CompositeVC as velocityICs
+	Instantiating DofLayout as velocityDofLayout
+	Instantiating FeVariable as VelocityField
+	Instantiating OperatorFeVariable as VelocityMagnitudeField
+	Instantiating OperatorFeVariable as VelocityGradientsField
+	Instantiating OperatorFeVariable as VelocityGradientsInvariantField
+	Instantiating OperatorFeVariable as VelocityXXField
+	Instantiating OperatorFeVariable as VelocityYYField
+	Instantiating OperatorFeVariable as StrainRateField
+	Instantiating OperatorFeVariable as VorticityField
+	Instantiating OperatorFeVariable as StrainRateInvariantField
+	Instantiating OperatorFeVariable as StrainRateXXField
+	Instantiating OperatorFeVariable as StrainRateYYField
+	Instantiating MeshVariable as pressure
+	Instantiating CompositeVC as pressureBCs
+	Instantiating CompositeVC as pressureICs
+	Instantiating DofLayout as pressureDofLayout
+	Instantiating FeVariable as PressureField
+	Instantiating SingleCellLayout as cellLayout
+	Instantiating GaussParticleLayout as particleLayout
+	Instantiating IntegrationPointsSwarm as gaussSwarm
+	Instantiating GaussMapper as gaussMapper
+	Instantiating BackgroundParticleLayout as backgroundLayout
+	Instantiating ParticleMovementHandler as gaussMSwarmMovementHandler
+	Instantiating MaterialPointsSwarm as gaussMaterialSwarm
+	Instantiating TimeIntegrator as timeIntegrator
+	Instantiating MeshVariable as temperature
+	Instantiating CompositeVC as temperatureBCs
+	Instantiating CompositeVC as temperatureICs
+	Instantiating DofLayout as temperatureDofLayout
+	Instantiating FeVariable as TemperatureField
+	Instantiating OperatorFeVariable as TemperatureGradientsField
+	Instantiating ForceVector as residual
+	Instantiating ForceVector as massMatrix
+	Instantiating AdvDiffMulticorrector as predictorMulticorrector
+	Instantiating AdvectionDiffusionSLE as EnergyEqn
+	Instantiating LumpedMassMatrixForceTerm as lumpedMassMatrixForceTerm
+	Instantiating AdvDiffResidualForceTerm as defaultResidualForceTerm
+	Instantiating SolutionVector as solutionVelocity
+	Instantiating SolutionVector as solutionPressure
+	Instantiating SphericalForceVector as mom_force
+	Instantiating ForceVector as cont_force
+	Instantiating SphericalStiffnessMatrix as k_matrix
+	Instantiating ConstitutiveMatrixCartesian as constitutiveMatrix
+	Instantiating SphericalStiffnessMatrix as g_matrix
+	Instantiating GradientStiffnessMatrixTerm as gradientStiffnessMatrixTerm
+	Instantiating SphericalStiffnessMatrix as preconditioner
+	Instantiating UzawaPreconditionerTerm as preconditionerTerm
+	Instantiating Stokes_SLE_UzawaSolver as uzawa
+	Instantiating Stokes_SLE as stokesEqn
+	Instantiating SphericalStiffnessMatrix as div_matrix
+	Instantiating DivergenceMatrixTerm as divergenceDofTerm
+	Instantiating Scaling as default_scaling
+	Instantiating PpcManager as default_ppcManager
+	Instantiating Everywhere as everywhere
+	Instantiating RheologyMaterial as background
+	Instantiating PpcRheology as numericalRheology
+	Instantiating Ppc_Exponential as viscosity
+	Instantiating Ppc_Operation as tempDep_exp
+	Instantiating VectorAssemblyTerm_NA__F as buoyancyForceTerm
+	Instantiating VectorAssemblyTerm_NA__F as sourceTerm
+	Instantiating Ppc_Constant as sourceTerm_thermalEqn
+	Instantiating Ppc_Variable as tempPpc
+	Instantiating Ppc_Operation as BA
+	Instantiating Ppc_Constant as ppcRa
+	Instantiating Ppc_PointGravity as bodyForce
+	Instantiating IrregularMeshParticleLayout as materialSwarmParticleLayout
+Constructing constantMesh..
+	context has not been constructed yet. Constructing now.
+		Constructing context..
+Plugin "StgFEM_StandardConditionFunctions" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgFEM_StandardConditionFunctionsmodule.so
+Plugin "StgFEM_FrequentOutput" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgFEM_FrequentOutputmodule.so
+Plugin "StgFEM_CPUTime" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/StgFEM_CPUTimemodule.so
+Plugin "Underworld_AverageTemperature" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Underworld_AverageTemperaturemodule.so
+Plugin "Spherical_SimpleSteadyStateTest" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Spherical_SimpleSteadyStateTestmodule.so
+Plugin "Spherical_SphericalVrms" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Spherical_SphericalVrmsmodule.so
+Plugin "Spherical_SphericalNusselt" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Spherical_SphericalNusseltmodule.so
+Plugin "Spherical_SphericalAlgorithms" found using /mnt/scratch/uw2_spherical/libUnderworld/build/lib/Spherical_SphericalAlgorithmsmodule.so
+			default_scaling has not been constructed yet. Constructing now.
+				Constructing default_scaling..
+			default_ppcManager has not been constructed yet. Constructing now.
+				Constructing default_ppcManager..
+					linearMesh has not been constructed yet. Constructing now.
+						Constructing linearMesh..
+					gaussSwarm has not been constructed yet. Constructing now.
+						Constructing gaussSwarm..
+							cellLayout has not been constructed yet. Constructing now.
+								Constructing cellLayout..
+							particleLayout has not been constructed yet. Constructing now.
+								Constructing particleLayout..
+							timeIntegrator has not been constructed yet. Constructing now.
+								Constructing timeIntegrator..
+							gaussMapper has not been constructed yet. Constructing now.
+								Constructing gaussMapper..
+									gaussMaterialSwarm has not been constructed yet. Constructing now.
+										Constructing gaussMaterialSwarm..
+											backgroundLayout has not been constructed yet. Constructing now.
+												Constructing backgroundLayout..
+												gaussMSwarmMovementHandler has not been constructed yet. Constructing now.
+													Constructing gaussMSwarmMovementHandler..
+Constructing constantMeshGenerator..
+Constructing linearMeshGenerator..
+Constructing velocity..
+Constructing velocityBCs..
+Constructing velocityICs..
+Constructing velocityDofLayout..
+Constructing VelocityField..
+Constructing VelocityMagnitudeField..
+Constructing VelocityGradientsField..
+Constructing VelocityGradientsInvariantField..
+Constructing VelocityXXField..
+Constructing VelocityYYField..
+Constructing StrainRateField..
+Constructing VorticityField..
+Constructing StrainRateInvariantField..
+Constructing StrainRateXXField..
+Constructing StrainRateYYField..
+Constructing pressure..
+Constructing pressureBCs..
+Constructing pressureICs..
+Constructing pressureDofLayout..
+Constructing PressureField..
+Constructing temperature..
+Constructing temperatureBCs..
+Constructing temperatureICs..
+Constructing temperatureDofLayout..
+Constructing TemperatureField..
+Constructing TemperatureGradientsField..
+Constructing residual..
+Constructing massMatrix..
+Constructing predictorMulticorrector..
+Constructing EnergyEqn..
+Constructing lumpedMassMatrixForceTerm..
+Constructing defaultResidualForceTerm..
+Constructing solutionVelocity..
+Constructing solutionPressure..
+Constructing mom_force..
+Constructing cont_force..
+Constructing k_matrix..
+Constructing constitutiveMatrix..
+Constructing g_matrix..
+Constructing gradientStiffnessMatrixTerm..
+Constructing preconditioner..
+Constructing preconditionerTerm..
+Constructing uzawa..
+Constructing stokesEqn..
+	div_matrix has not been constructed yet. Constructing now.
+		Constructing div_matrix..
+Constructing divergenceDofTerm..
+Constructing everywhere..
+Constructing background..
+		numericalRheology has not been constructed yet. Constructing now.
+			Constructing numericalRheology..
+Creating Ppc '1-solePpcNumber002' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Constructing viscosity..
+Creating Ppc 'viscosity' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+	tempDep_exp has not been constructed yet. Constructing now.
+		Constructing tempDep_exp..
+Creating Ppc 'tempDep_exp' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+			tempPpc has not been constructed yet. Constructing now.
+				Constructing tempPpc..
+Creating Ppc 'tempPpc' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Creating Ppc 'TemperatureField' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Creating Ppc '-6.9078-solePpcNumber007' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Constructing buoyancyForceTerm..
+	bodyForce has not been constructed yet. Constructing now.
+		Constructing bodyForce..
+Creating Ppc 'bodyForce' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+			BA has not been constructed yet. Constructing now.
+				Constructing BA..
+Creating Ppc 'BA' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+					ppcRa has not been constructed yet. Constructing now.
+						Constructing ppcRa..
+Creating Ppc 'ppcRa' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Found Ppc 'tempPpc' in the 'default_ppcManager' Properties list.
+Constructing sourceTerm..
+	sourceTerm_thermalEqn has not been constructed yet. Constructing now.
+		Constructing sourceTerm_thermalEqn..
+Creating Ppc 'sourceTerm_thermalEqn' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Constructing materialSwarmParticleLayout..
+StgFEM_StandardConditionFunctions
+Constructing StgFEM_StandardConditionFunctions..
+StgFEM_FrequentOutput
+Constructing StgFEM_FrequentOutput..
+StgFEM_CPUTime
+Constructing StgFEM_CPUTime..
+Underworld_AverageTemperature
+Constructing Underworld_AverageTemperature..
+Spherical_SimpleSteadyStateTest
+Constructing Spherical_SimpleSteadyStateTest..
+Spherical_SphericalVrms
+Constructing Spherical_SphericalVrms..
+Spherical_SphericalNusselt
+Constructing Spherical_SphericalNusselt..
+Spherical_SphericalAlgorithms
+Constructing Spherical_SphericalAlgorithms..
+Cartesian generator: 'linearMeshGenerator'
+	Target mesh: 'linearMesh'
+	Global element size: 80x865
+	Local offset of rank 0: 0x0
+	Local range of rank 0: 80x865
+	Generating vertices...
+		... done.
+	Generating elements...
+		... done.
+	Generating edges...
+		... done.
+	Generating element-vertex incidence...
+		... done.
+	Generating face-edge incidence...
+		... done.
+	Generating edge-vertex incidence...
+		... done.
+	Generating vertex neighbours...
+		... done.
+	Generating geometry...
+		... done.
+	Generating element types...
+		... element types are 'Mesh_HexType',
+		... mesh algorithm type is 'Mesh_SphericalAlgorithms',
+		... done.
+	Assigning FeMesh element types...
+		... FE element types are 'BilinearElementType',
+		... done.
+	Assigning FeMesh element types...
+		... FE element types are 'ConstantElementType',
+		... done.
+FeEquationNumber: 'defaultFeVariableFeEqName'
+	Generating equation numbers...
+		BCs set to be removed.
+		Assigned 69200 global equation numbers.
+		[0] Assigned 69200 local equation numbers, within range 0 to 69200.
+	... Completed in 0.106305 [min] / 0.106305 [max] seconds.
+Stiffness matrix: 'k_matrix'
+	Calculating number of nonzero entries...
+		Found 2440240 nonzero entries.
+		Done.
+Stiffness matrix: 'g_matrix'
+	Calculating number of nonzero entries...
+		Found 546680 nonzero entries.
+		Done.
+Stiffness matrix: 'preconditioner'
+	Calculating number of nonzero entries...
+		Found 69200 nonzero entries.
+		Done.
+Stiffness matrix: 'div_matrix'
+	Calculating number of nonzero entries...
+		Found 546680 nonzero entries.
+		Done.
+Linking materials and ppc... 
+
+Physical properties for material background:
+
+Physical properties for material background:
+done
+Laying out material 'background' within Everywhere 'everywhere':
+In func Materials_Register_AssignParticleProperties(): for swarm "gaussMaterialSwarm"
+	Assigning initial particle properties to the 1 global particles
+		done 100% (1 particles)...
+Materials_Register_AssignParticleProperties(): finished setup of material properties for swarm "gaussMaterialSwarm"
+	took 3.09944e-05 [min] / 3.09944e-05 [max] secs
+
+
+=====================================================================================
+Error running Underworld - Signal 11 'SIGSEGV' (Segmentation Fault).
+This is probably caused by an illegal access of memory.
+We recommend running the code in a debugger to work out where the problem is (e.g. 'gdb')
+and also to contact the developers.

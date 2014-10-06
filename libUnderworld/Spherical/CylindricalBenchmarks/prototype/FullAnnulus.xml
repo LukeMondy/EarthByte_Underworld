@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<!-- A StGermain input file -->
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+<!-- Load the plugin that sets up the app, plus any others you require -->
+  <list name="import">
+    <param>Underworld</param>
+    <param>Spherical</param>
+  </list>
+
+  <list name="plugins" mergeType="merge">
+    <struct>
+      <param name="Type">StgFEM_StandardConditionFunctions</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">StgFEM_FrequentOutput</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">Underworld_AverageTemperature</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">Spherical_SimpleSteadyStateTest</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">Spherical_SphericalVrms</param>
+      <param name="Context">context</param>
+      <param name="GaussSwarm">gaussSwarm</param>
+      <param name="VelocityField">VelocityField</param>
+    </struct>
+    <struct>
+      <param name="Type">StgFEM_CPUTime</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">Spherical_SphericalNusselt</param>
+      <param name="Context">context</param>
+      <param name="GaussSwarm">gaussSwarm</param>
+      <param name="VelocityField">VelocityField</param>
+      <param name="Ra">Ra</param>
+   </struct>
+  </list>
+
+  <include>StgFEM/ConstantMesh.xml</include>
+  <include>Spherical/SphericalMesh.xml</include>
+  <include>StgFEM/VelocityField.xml</include>
+  <include>StgFEM/PressureField.xml</include>
+  <include>Underworld/GaussSwarmWithGaussMaterialSwarm.xml</include>
+  <include>StgFEM/TemperatureField.xml</include>
+  <include>StgFEM/TempAdvDiff.xml</include>
+  <include>Spherical/StokesFlowUzawa.xml</include>
+
+  <struct name="components" mergeType="merge">
+    <struct name="context">
+      <param name="Type">UnderworldContext</param>
+    </struct>
+    <struct name="default_scaling">
+      <param name="Type">Scaling</param>
+      <param name="spaceCoefficient_meters"> 1.0 </param>
+      <param name="timeCoefficient_seconds"> 1.0 </param>
+      <param name="massCoefficient_kilograms"> 1.0 </param>
+      <param name="temperatureCoefficient_kelvin"> 1.0 </param>
+    </struct>
+    <struct name="default_ppcManager">
+      <param name="Type">PpcManager</param>
+      <param name="MaterialSwarm"> gaussMaterialSwarm </param>
+      <param name="IntegrationSwarm"> gaussSwarm </param>
+      <param name="Mesh"> linearMesh </param>
+      <param name="Gravity"> 1 </param>
+      <list name="Properties">
+        <struct>
+          <param name="PropertyName"> DensityLabel </param>
+          <param name="StoreOnParticles"> false </param>
+          <param name="StoreOnMesh"> false </param>
+        </struct>
+      </list>
+    </struct>
+    <struct name="linearMeshGenerator" mergeType="merge">
+      <param name="Type" mergeType="replace">SphericalGenerator</param>
+      <param name="regular" mergeType="replace">false</param>
+      <param name="FullAnnulus" mergeType="replace">True</param>
+    </struct>
+    <struct name="everywhere">
+      <param name="Type">Everywhere</param>
+    </struct>
+    <struct name="numericalRheology">
+      <param name="Type">PpcRheology</param>
+      <param name="functionLabel">1</param>
+    </struct>
+    <struct name="background">
+      <param name="Type">RheologyMaterial</param>
+      <param name="Shape">everywhere</param>
+      <param name="Rheology">numericalRheology</param>
+      <param name="DensityLabel">BA</param>
+    </struct>
+    <struct name="viscosity">
+      <param name="Type">Ppc_Exponential</param>
+      <param name="Exponent">tempDep_exp</param>
+    </struct>
+    <struct name="tempDep_exp">
+      <param name="Type">Ppc_Operation</param>
+      <param name="Operation"> * </param>
+      <list name="Properties">
+        <param>tempPpc</param>
+        <param>-6.9078</param>
+      </list>
+    </struct>
+<!-- Density and gravity based on ppc -->
+    <struct type="struct" name="buoyancyForceTerm">
+      <param name="Type">VectorAssemblyTerm_NA__F</param>
+      <param name="functionLabel">bodyForce</param>
+      <param name="ForceVector">mom_force</param>
+      <param name="Swarm">gaussSwarm</param>
+    </struct>
+    <struct name="tempPpc">
+      <param name="Type">Ppc_Variable</param>
+      <param name="FieldVariable">TemperatureField</param>
+    </struct>
+    <struct name="BA">
+      <param name="Type">Ppc_Operation</param>
+      <param name="Operation"> * </param>
+      <list name="Properties">
+        <param>ppcRa</param>
+        <param>tempPpc</param>
+      </list>
+    </struct>
+    <struct name="ppcRa">
+      <param name="Type">Ppc_Constant</param>
+      <param name="Value">Ra</param>
+    </struct>
+    <struct name="bodyForce">
+      <param name="Type">Ppc_PointGravity</param>
+      <param name="Alpha">BA</param>
+      <param name="xcoord">0.0</param>
+      <param name="ycoord">0.0</param>
+    </struct>
+    <struct name="materialSwarmParticleLayout" mergeType="merge">
+      <param name="Type" mergeType="replace">IrregularMeshParticleLayout</param>
+      <param name="cellParticleCount">20</param>
+      <param name="FeMesh">linearMesh</param>
+    </struct>
+  </struct>
+
+  <param name="Ra"> 1e4 </param>
+  <param name="defaultDiffusivity"> 1 </param>
+<!-- Simulation control -->
+  <param name="maxTimeSteps"> 3 </param>
+  <param name="outputEvery"> 1 </param>
+  <param name="dumpEvery"> 1 </param>
+  <param name="checkpointEvery"> 2 </param>
+  <param name="outputPath"> ./annulus </param>
+<!-- Geometry & Mesh setup -->
+  <param name="velocityMesh">linearMesh</param>
+  <param name="pressureMesh">constantMesh</param>
+  <param name="elementMesh">linearMesh</param>
+  <param name="dim"> 2 </param>
+  <param name="shadowDepth"> 1 </param>
+
+  <param name="minX"> 1.22 </param> <param name="maxX"> 2.22 </param>
+  <param name="elementResI"> 70 </param>
+
+  <param name="minY"> 0.0 </param> <param name="maxY"> 1.57079632679</param>
+  <param name="elementResJ"> 756 </param>
+
+  <param name="minZ"> 0.0f </param> <param name="maxZ"> 1.0f </param>
+  <param name="elementResK"> 1000 </param>
+
+<!-- material points swarm parameters -->
+  <param name="gaussParticlesX"> 2 </param>
+  <param name="gaussParticlesY"> 2 </param>
+  <param name="gaussParticlesZ"> 2 </param>
+<!-- Set up BCs -->
+  <searchPath>/home/julian/code/spherical_working/Spherical/CylindricalBenchmarks/</searchPath>
+  <include> vcs/temperatureBCs.xml </include>
+  <include> vcs/annulus.Periodic.noSlip.xml </include>
+<!--
+	<include> ./freeSlipBCs.xml </include>
+	<include> ./noSlipBCs.xml </include>
+	<include> ./lidDrivenBCs.xml </include>
+	-->
+<!--
+	<include>./TempVP.xml</include>
+	<include>../VelMagVP.xml</include>
+	<include>gLucifer/window.xml</include>
+	<struct name="components" mergeType="merge">
+		<struct name="window" mergeType="merge">
+			<param name="Viewport">VelocityMagnitudeVP </param>
+		</struct>
+	</struct>
+	-->
+</StGermainData>
