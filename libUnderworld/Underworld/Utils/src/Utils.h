@@ -59,6 +59,7 @@
    #include "SUPGAdvDiffTermPpc.h"
    #include "AdiabaticHeatingTermPpc.h"
    #include "ViscousHeatingTermPpc.h"
+   #include "Ppc_VD.h"
    #include "BuoyancyForceTermPpc.h"
 
    #include "VectorAssemblyTerm_NA__F.h"

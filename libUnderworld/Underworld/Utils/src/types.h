@@ -58,6 +58,7 @@
    typedef struct SUPGAdvDiffTermPpc         SUPGAdvDiffTermPpc;
    typedef struct AdiabaticHeatingTermPpc    AdiabaticHeatingTermPpc;
    typedef struct ViscousHeatingTermPpc      ViscousHeatingTermPpc;
+   typedef struct Ppc_VD      Ppc_VD;
    typedef struct BuoyancyForceTermPpc       BuoyancyForceTermPpc;
 
    typedef struct VectorAssemblyTerm_NA__F VectorAssemblyTerm_NA__F;
