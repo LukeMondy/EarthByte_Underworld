@@ -50,6 +50,8 @@ void SphericalAlgorithms_SetAlgorithms( SphericalAlgorithms* self )
    self->sle = (Stokes_SLE*)LiveComponentRegister_Get( LiveComponentRegister_GetLiveComponentRegister(), "stokesEqn" );
    self->sle->_updateSolutionOntoNodes = _SphericalSystemLinearEquations_UpdateSolutionOntoNodes;
 
+   context = (FiniteElementContext*)self->velvar->context;
+
    /* Set the velocity feVariable's calibration function for re-rotating boundary dofs post solve */
    self->velvar->_calibrateBCValues = Spherical_FeVariable_NonAABCsCalibration;
 
@@ -74,6 +76,14 @@ void SphericalAlgorithms_SetAlgorithms( SphericalAlgorithms* self )
             swarm = Swarm_Register_At( sr, s_i );
             if( Stg_Class_IsInstance( swarm, MaterialPointsSwarm_Type ) && swarm->isAdvecting )
             {
+               // if there is no periodic boundaries manager creat it now
+               if( ((MaterialPointsSwarm*)swarm)->swarmAdvector->periodicBCsManager == NULL ) {
+                  ((MaterialPointsSwarm*)swarm)->swarmAdvector->periodicBCsManager = PeriodicBoundariesManager_New( 
+                                             "periodicBCsManager", 
+                                             (PICelleratorContext*)context, 
+                                             (Mesh*)self->mesh, 
+                                             (Swarm*)swarm, NULL );
+               }
                ((MaterialPointsSwarm*)swarm)->swarmAdvector->periodicBCsManager->_build = _SphericalPeriodicBoundariesManager_Build;
                ((MaterialPointsSwarm*)swarm)->swarmAdvector->periodicBCsManager->_updateParticle = _SphericalPeriodicBoundariesManager_UpdateParticle;
             }
@@ -108,7 +118,6 @@ void SphericalAlgorithms_SetAlgorithms( SphericalAlgorithms* self )
       Spherical_Get_RotationMatrixIJK = &Spherical_GetRotationMatrixIJK_ProjectionNodes;
    }
 
-   context = (FiniteElementContext*)self->velvar->context;
    if( context->maxTimeSteps == -1 ) {
       EntryPoint_PrependClassHook_AlwaysFirst( AbstractContext_GetEntryPoint( context, AbstractContext_EP_DumpClass ), "CalibrateVelocity", _SphericalAlgorithms_CalibrateVelocity, context->type, self->velvar );
    }

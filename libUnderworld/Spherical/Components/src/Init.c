@@ -64,9 +64,6 @@ Bool Spherical_Components_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( compReg, Ppc_AdiabaticHeating_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_AdiabaticHeating_DefaultNew );
    RegisterParent( Ppc_AdiabaticHeating_Type, Ppc_Type );
 
-   Stg_ComponentRegister_Add( compReg, Ppc_VD_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_VD_DefaultNew );
-   RegisterParent( Ppc_VD_Type, Ppc_Type );
-
    Stg_ComponentRegister_Add( compReg, MatAssembly_NA__Fi__NB_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_MatAssembly_NA__Fi__NB_DefaultNew );
    RegisterParent( MatAssembly_NA__Fi__NB_Type, StiffnessMatrixTerm_Type );
 

@@ -171,10 +171,11 @@
 	<param name="dim"> 2 </param>
 	<param name="shadowDepth"> 1 </param>
 
-		<param name="minX"> 0.40 </param> <param name="maxX"> 1.2</param> 
+
+	<param name="minX"> 3 </param> <param name="maxX"> 6 </param>
 	<param name="elementResI"> 30 </param>
 
-	<param name="minY"> 3 </param> <param name="maxY"> 6 </param>
+		<param name="minY"> 10 </param> <param name="maxY"> 100</param> 
 	<param name="elementResJ"> 30 </param>
 
 	<param name="minZ"> 0.0f </param> <param name="maxZ"> 1.0f </param>
@@ -190,11 +191,11 @@
 	<param name="defaultDiffusivity"> 1e-3 </param>
 	
 	<!-- Set up BCs -->
-	<include> ./temperatureBCs.xml </include>
+	<include> Spherical/VCs/temperatureBCs.xml </include>
 	<!--
 	<include> ./temperatureIC.xml </include>
 	-->
-	<include> ./BCs/annulus.Periodic.xml </include>
+	<include> Spherical/VCs/annulus.Periodic.xml </include>
 	<!--
 	<include> ./freeSlipBCs.xml </include>
 	<include> ./noSlipBCs.xml </include>
@@ -205,7 +206,7 @@
 	<!--
 	<include>./TempVP.xml</include>
 	-->
-	<include>./VelMagVP.xml</include>
+	<include>Spherical/Viewports/VelMagVP.xml</include>
 	<include>gLucifer/window.xml</include>
 	<struct name="components" mergeType="merge">
 		<struct name="window" mergeType="merge">

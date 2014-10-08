@@ -24,7 +24,7 @@ underworld.Init(model_input_files)
 stgdict = underworld.dictionary.GetDictionary()
 
 # now make changes before run time
-radial_elementRes=80
+radial_elementRes=20
 Ra = 1e4
 stgdict["Ra"]=Ra
 stgdict["outputPath"]=home+"/short/cylindrical_benchmarks/1.1_"+str(radial_elementRes)
@@ -38,8 +38,8 @@ stgdict["outputPath"]=home+"/short/cylindrical_benchmarks/1.1_"+str(radial_eleme
 stgdict["elementResI"]=radial_elementRes
 stgdict["elementResJ"]=round(10.807*radial_elementRes)
 
-stgdict["maxTimeSteps"]=-2
-stgdict["checkpointEvery"]=100
+stgdict["maxTimeSteps"]=5
+stgdict["checkpointEvery"]=1
 
 stgdict["pauseToAttachDebugger"]=0
 

@@ -139,6 +139,8 @@ env.PCUTest('tests/testSpherical',
 #
 
 env.Install('lib/StGermain/Spherical/', Glob('InputFiles/Spherical_Components/*.xml'))
+env.Install('lib/StGermain/Spherical/Viewports', Glob('InputFiles/Spherical_Components/Viewports/*.xml'))
+env.Install('lib/StGermain/Spherical/VCs', Glob('InputFiles/Spherical_Components/VCs/*.xml'))
 
 env.Alias("install", env.Install(env['prefix'] + '/share/Spherical/', env.GetLaunchDir() + '/Spherical/InputFiles' ) ) 
 
