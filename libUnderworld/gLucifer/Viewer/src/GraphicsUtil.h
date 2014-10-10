@@ -160,13 +160,18 @@ typedef union {
 } Colour;
 
 
-typedef struct  //Texture TGA image data
+class TextureData  //Texture TGA image data
 {
+  public:
   GLuint   bpp;      // Image Color Depth In Bits Per Pixel.
   GLuint   width;    // Image Width
   GLuint   height;   // Image Height
+  GLuint   depth;    // Image Depth
   GLuint   id;       // Texture ID Used To Select A Texture
-} TextureData;   
+
+  TextureData() : bpp(0), width(0), height(0), depth(0) {glGenTextures(1, &id);}
+  ~TextureData() {glDeleteTextures(1, &id);}
+};   
 
 //Class for handling filenames/paths
 class FilePath
@@ -908,9 +913,11 @@ int LoadTexturePPM(TextureData *texture, const char *filename, bool mipmaps, GLe
 int LoadTexturePNG(TextureData *texture, const char *filename, bool mipmaps, GLenum mode);
 int BuildTexture(TextureData *texture, GLubyte* imageData , bool mipmaps, GLenum format, GLenum mode);
 
+void writeImage(GLubyte *image, int width, int height, const char* basename, bool transparent);
+
 #ifdef HAVE_LIBPNG
 //PNG utils
-void write_png(std::ostream& stream, bool alpha, int width, int height, void* data);
+void write_png(std::ostream& stream, int bpp, int width, int height, void* data);
 void* read_png(std::istream& stream, GLuint& bpp, GLuint& width, GLuint& height);
 #else
 #define read_png(stream, bpp, width, height) NULL

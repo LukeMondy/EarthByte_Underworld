@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="styles.css">
 <script type="text/javascript" src="gl-matrix-min.js"></script>
-<script type="text/javascript" src="lib.js"></script>
+<script type="text/javascript" src="OK-min.js"></script>
 <script type="text/javascript" src="draw.js"></script>
 <script type="text/javascript" src="server.js"></script>
 
@@ -110,6 +110,7 @@ varying vec3 vNormal;
 varying vec3 vPosEye;
 varying vec2 vTexCoord;
 varying float vObjectID;
+varying vec3 vert;
 
 uniform int uCullFace[64];
 //uniform sampler2D Texture;
@@ -306,7 +307,7 @@ void main(void)
     <input name="export" id="export" type="button" value="Export" onclick="viewer.exportFile();"><input name="file" id="fileupload" type="file" onchange="fileSelected(this.files)">
   </div>
   <input type="button" value="Objects" onclick="objectlist.toggle();">
-  <input type="button" value="Console" onClick="debug = true; messages.toggle();">
+  <input type="button" value="Console" onClick="OK.debug_on = true; messages.toggle();">
   <input id="sort" type="button" value="Sort" onClick="document.body.style.cursor = 'wait'; this.style.display = 'none'; viewer.draw(); document.body.style.cursor = 'default';" style="display: none; float: right;">
 
 </div>
@@ -325,7 +326,7 @@ void main(void)
 <div class="toolbox" id="messages"><div>
   <div class="toolclose" onclick="window.messages.hide();">&times;</div>
   <h3>Log</h3>
-  <input type="button" class="right" value="Clear" onClick="consoleClear()">
+  <input type="button" class="right" value="Clear" onClick="OK.clear()">
   <div id="console" class="scroll">
   </div>
 </div></div>
@@ -371,27 +372,6 @@ void main(void)
   <hr>
   <input type="button" class="right client" value="Apply" onClick="viewer.updateProperties(); viewer">
 </div></div>
-    
-
-  <!-- Colour picker -->
-  <div id="picker" style="display: none">
-    <div id="pickCURBG" class="checkerboard"><div id="pickCUR"></div></div>
-    <div id="pickRGB" onclick="colours.picker.updateString()">R: 255 G: 255 B: 255</div>
-    <div id="pickCLOSE">X</div>
-    <div id="pickOK">OK</div><br>
-    <div id="SV">
-     <div id="SVslide"></div>
-    </div>
-    <div id="H" class="slider">
-     <div id="Hmodel" class="sliderBG"></div>
-     <div id="Hslide" class="sliderControl"></div>
-    </div>
-    <div id="O" class="slider checkerboard">
-     <div id="Omodel" class="sliderBG"></div>
-     <div id="Oslide" class="sliderControl"></div>
-    </div>
-  </div>
-
 </body>
 
 </html>

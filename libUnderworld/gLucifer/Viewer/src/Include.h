@@ -1,4 +1,5 @@
 //Global includes file for gLucifer Viewer
+//
 #ifndef Include__
 #define Include__
 
@@ -38,6 +39,9 @@
 #include <pthread.h>
 
 //#define PDF_CAPTURE
+
+//Utils
+#include "jpeg/jpge.h"
 
 #ifndef _WIN32
 #include <sys/poll.h>
@@ -147,6 +151,7 @@ extern PFNGLUNIFORM1FPROC glUniform1f;
 extern PFNGLUNIFORM1IPROC glUniform1i;
 extern PFNGLUNIFORM2FPROC glUniform2f;
 extern PFNGLUNIFORM2FVPROC glUniform2fv;
+extern PFNGLUNIFORM3FVPROC glUniform3fv;
 extern PFNGLUNIFORM4FVPROC glUniform4fv;
 extern PFNGLUNIFORMMATRIX4FVPROC glUniformMatrix4fv;
 extern PFNGLGETATTRIBLOCATIONPROC glGetAttribLocation;

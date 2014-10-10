@@ -4,14 +4,14 @@
 ** Redistribution and use in source and binary forms, with or without modification,
 ** are permitted provided that the following conditions are met:
 **
-** 		* Redistributions of source code must retain the above copyright notice,
-** 			this list of conditions and the following disclaimer.
-** 		* Redistributions in binary form must reproduce the above copyright
-**			notice, this list of conditions and the following disclaimer in the
-**			documentation and/or other materials provided with the distribution.
-** 		* Neither the name of the Monash University nor the names of its contributors
-**			may be used to endorse or promote products derived from this software
-**			without specific prior written permission.
+**       * Redistributions of source code must retain the above copyright notice,
+**          this list of conditions and the following disclaimer.
+**       * Redistributions in binary form must reproduce the above copyright
+**         notice, this list of conditions and the following disclaimer in the
+**         documentation and/or other materials provided with the distribution.
+**       * Neither the name of the Monash University nor the names of its contributors
+**         may be used to endorse or promote products derived from this software
+**         without specific prior written permission.
 **
 ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -33,6 +33,7 @@
 **
 **~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+#include "CrossSection.h"
 
 #ifndef __lucFieldSampler_h__
 #define __lucFieldSampler_h__
@@ -40,29 +41,17 @@
 /** Textual name of this class - This is a global pointer which is used for times when you need to refer to class and not a particular instance of a class */
 extern const Type lucFieldSampler_Type;
 
-typedef struct {
-   float pos[3];
-   float value;
-} Sample;
-
 /** Class contents - this is defined as a macro so that sub-classes of this class can use this macro at the start of the definition of their struct */
 #define __lucFieldSampler \
-		/* Macro defining parent goes here - This means you can cast this class as its parent */ \
-		__lucDrawingObject \
-		/* Virtual functions go here */ \
-		/* Other info */\
-		FieldVariable*                sampleField;      \
-		IJK                           resolution;       \
-		Bool                          sampleGlobal;     \
-		/* Calculated Values */ \
-      float                         scaling;          \
-      Sample*                       samples;          \
-		Index                         count;            \
+      /* Macro defining parent goes here - This means you can cast this class as its parent */ \
+      __lucCrossSection \
+      /* Virtual functions go here */ \
+      /* Other info */\
+      IJK                           resolution;       \
+      /* Calculated Values */ \
+      Index                         total;            \
       Index                         elementRes[3];    \
       Coord                         cell;             \
-		Index                         nx;               \
-		Index                         ny;               \
-		Index                         nz;               \
 
 struct lucFieldSampler
 {
@@ -76,10 +65,10 @@ struct lucFieldSampler
 #endif
 
 #define LUCFIELDSAMPLER_DEFARGS \
-                LUCDRAWINGOBJECT_DEFARGS
+                LUCCROSSSECTION_DEFARGS
 
 #define LUCFIELDSAMPLER_PASSARGS \
-                LUCDRAWINGOBJECT_PASSARGS
+                LUCCROSSSECTION_PASSARGS
 
 lucFieldSampler* _lucFieldSampler_New(  LUCFIELDSAMPLER_DEFARGS  );
 
@@ -95,7 +84,6 @@ void _lucFieldSampler_Execute( void* drawingObject, void* data );
 void _lucFieldSampler_Destroy( void* drawingObject, void* data ) ;
 
 /* Drawing Object Implementations */
-void _lucFieldSampler_Setup( void* drawingObject, lucDatabase* database, void* _context ) ;
 void _lucFieldSampler_Draw( void* drawingObject, lucDatabase* database, void* _context ) ;
 #endif
 

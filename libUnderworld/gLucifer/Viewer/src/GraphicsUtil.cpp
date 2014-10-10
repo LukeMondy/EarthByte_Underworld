@@ -1169,7 +1169,6 @@ int BuildTexture(TextureData *texture, GLubyte* imageData , bool mipmaps, GLenum
 {
    // Build A Texture From The Data
    glActiveTexture(GL_TEXTURE0);
-   glGenTextures(1, &texture->id);
    glBindTexture(GL_TEXTURE_2D, texture->id);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -1226,6 +1225,28 @@ void abort_program(const char * s, ...)
    debug_print("\n");
    va_end(args);
    abort();
+}
+
+void writeImage(GLubyte *image, int width, int height, const char* basename, bool transparent)
+{
+   char path[256];
+#ifdef HAVE_LIBPNG
+   //Write data to image file
+   sprintf(path, "%s.png", basename);
+   std::ofstream file(path, std::ios::binary);
+   write_png(file, transparent ? 4 : 3, width, height, image);
+#else
+   //JPEG support with built in encoder
+   sprintf(path, "%s.jpg", basename);
+
+   // Fill in the compression parameter structure.
+   jpge::params params;
+   params.m_quality = 95;
+   params.m_subsampling = jpge::H2V1;   //H2V2/H2V1/H1V1-none/0-grayscale
+
+   if (!compress_image_to_jpeg_file(path, width, height, 3, image, params))
+      abort_program("[write_jpeg] File %s could not be saved\n", path);
+#endif
 }
 
 #ifdef HAVE_LIBPNG
@@ -1325,7 +1346,7 @@ void* read_png(std::istream& stream, GLuint& bpp, GLuint& width, GLuint& height)
    return pixels;
 }
 
-void write_png(std::ostream& stream, bool alpha, int width, int height, void* data)
+void write_png(std::ostream& stream, int bpp, int width, int height, void* data)
 {
    int colour_type;
    png_bytep      pixels       = (png_bytep) data;
@@ -1340,15 +1361,20 @@ void write_png(std::ostream& stream, bool alpha, int width, int height, void* da
    if (!pngWrite) {debug_print("[write_png_file] create PNG write struct failed"); return;}
 
    //Setup for different write modes
-   if (alpha)
+   if (bpp > 3)
    {
       colour_type = PNG_COLOR_TYPE_RGB_ALPHA;
       rowStride = width * 4;
    }
-   else
+   else if (bpp == 3)
    {
       colour_type = PNG_COLOR_TYPE_RGB;
       rowStride = width * 3;  // Don't need to pad lines! pack alignment is set to 1
+   }
+   else
+   {
+      colour_type = PNG_COLOR_TYPE_GRAY;
+      rowStride = width;
    }
 
    // Set pointers to start of each scanline

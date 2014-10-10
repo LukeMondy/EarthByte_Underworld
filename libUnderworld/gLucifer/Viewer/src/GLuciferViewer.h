@@ -77,7 +77,7 @@ class GLuciferViewer : public ViewerApp
    bool recording;
    bool loop;
 
-   bool filters[8];
+   bool filters[lucMaxType];
    bool output;
    int view;
 
@@ -95,12 +95,14 @@ class GLuciferViewer : public ViewerApp
    TriSurfaces* triSurfaces;
    Lines* lines;
    Shapes* shapes;
+   Volumes* volumes;
 
    GLuciferViewer(std::vector<std::string> args, OpenGLViewer* viewer, int width=0, int height=0);
    virtual ~GLuciferViewer();
 
    void run(bool persist=false);
 
+   void readScriptFile(FilePath& fn);
    void readHeightMap(FilePath& fn);
    void createDemoModel();
    void newModel(std::string name, int w, int h, int bg, float mmin[3], float mmax[3]);
@@ -211,6 +213,7 @@ Hold [shift] and use the scroll wheel to move the clip plane in and out.\n\
 [d]          Draw quad surfaces as triangle strips ON/OFF\n\
 [f]          Frame box mode ON/FILLED/OFF\n\
 [g]          Colour map log scales override DEFAULT/ON/OFF\n\
+[i]          Take screen-shot and save as png/jpeg image file\n\
 [j]          Experimental: localise colour scales, minimum and maximum calibrated to each object drawn\n\
 [J]          Restore original colour scale min & max\n\
 [k]          Lock colour scale calibrations to current values ON/OFF\n\
@@ -219,7 +222,6 @@ Hold [shift] and use the scroll wheel to move the clip plane in and out.\n\
 [n]          Recalculate surface normals\n\
 [o]          Print list of object names with id numbers.\n\
 [r]          Reset camera viewpoint\n\
-[s]          Take screen-shot and save as png/ppm image file\n\
 [q] or [ESC] Quit program\n\
 [u]          Backface Culling ON/OFF\n\
 [w]          Wireframe ON/OFF\n\
@@ -230,8 +232,8 @@ Hold [shift] and use the scroll wheel to move the clip plane in and out.\n\
 [T]          Reduce tracer size scaling\n\
 [p]          Increase particle size scaling\n\
 [P]          Reduce particle size scaling\n\
-[h]          Increase shape size scaling\n\
-[H]          Reduce shape size scaling\n\
+[s]          Increase shape size scaling\n\
+[S]          Reduce shape size scaling\n\
 \n\
 [p] [ENTER]  hide/show all particle swarms\n\
 [v] [ENTER]  hide/show all vector arrow fields\n\

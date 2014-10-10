@@ -77,9 +77,19 @@ GLuciferViewer::GLuciferViewer(std::vector<std::string> args, OpenGLViewer* view
    awin = NULL;
    amodel = NULL;
 
-   filters[0] = filters[1] = filters[2] = filters[3] = filters[4] = filters[5] = filters[6] = filters[7] = true;
+   filters[0] = filters[1] = filters[2] = filters[3] = filters[4] = filters[5] = filters[6] = filters[7] = filters[8] = true;
 
    last_message[0] = '\0';
+
+   //A set of default arguments can be stored in a file...
+   std::ifstream argfile("gLucifer_args.cfg");
+   if (argfile) //Found a config file, load arguments
+   {
+      std::string line;
+      while (std::getline(argfile, line))
+         args.push_back(line);
+      argfile.close();
+   }
 
    //Interaction command prompt
    entry = "";
@@ -124,6 +134,9 @@ GLuciferViewer::GLuciferViewer(std::vector<std::string> args, OpenGLViewer* view
             break;
          case 'H':
             filters[lucShapeType] = false;
+            break;
+         case 'O':
+            filters[lucVolumeType] = false;
             break;
          case 'N':
             noload = true;
@@ -229,6 +242,7 @@ GLuciferViewer::GLuciferViewer(std::vector<std::string> args, OpenGLViewer* view
    geometry[lucVectorType] = vectors = new Vectors(hideall);
    geometry[lucTracerType] = tracers = new Tracers(hideall);
    geometry[lucGridType] = quadSurfaces = new QuadSurfaces(hideall);
+   geometry[lucVolumeType] = volumes = new Volumes(hideall);
    geometry[lucTriangleType] = triSurfaces = new TriSurfaces(hideall);
    geometry[lucLineType] = lines = new Lines(hideall);
    geometry[lucShapeType] = shapes = new Shapes(hideall);
@@ -340,6 +354,12 @@ void GLuciferViewer::run(bool persist)
       viewer->pollInput();
       viewer->display();
    }
+}
+
+void GLuciferViewer::readScriptFile(FilePath& fn)
+{
+   if (fn.ext == "script")
+      parseCommands("script " + fn.full);
 }
 
 void GLuciferViewer::readHeightMap(FilePath& fn)
@@ -461,7 +481,7 @@ void GLuciferViewer::readHeightMap(FilePath& fn)
    obj = newObject(fn.base, true, 0, colourMap, 1.0, props);
    //Sea level surf
    //sea = newObject("Sea level", true, 0xffffff00, NULL, 0.5, "cullface=1\n");
-   sea = newObject("Sea level", true, 0xffffcc00, NULL, 0.5, "cullface=1\n");
+   sea = newObject("Sea level", true, 0xffffcc00, NULL, 0.5, "cullface=0\n");
 
    int gridx = ceil(sx / (float)subsample);
    int gridz = ceil(sz / (float)subsample);
@@ -708,6 +728,13 @@ void GLuciferViewer::open(int width, int height)
       TriSurfaces::prog->loadUniforms(tUniforms, 4);
       QuadSurfaces::prog = TriSurfaces::prog;
    }
+
+   //Volume ray marching shaders
+   Volumes::prog = new Shader("volumeShader.vert", "volumeShader.frag");
+   const char* vUniforms[21] = {"uPMatrix", "uMVMatrix", "uNMatrix", "uVolume", "uTransferFunction", "uBBMin", "uBBMax", "uResolution", "uEnableColour", "uBrightness", "uContrast", "uPower", "uFocalLength", "uWindowSize", "uSamples", "uDensityFactor", "uIsoValue", "uIsoColour", "uIsoSmooth", "uIsoWalls", "uFilter"};
+   Volumes::prog->loadUniforms(vUniforms, 21);
+   const char* vAttribs[2] = {"aVertexPosition"};
+   Volumes::prog->loadAttribs(pAttribs, 2);
 }
 
 void GLuciferViewer::resize(int new_width, int new_height)
@@ -887,8 +914,6 @@ void GLuciferViewer::display(void)
 {
    clock_t t1 = clock();
 
-   if (!viewer->mouseState && sort_on_rotate && aview->rotated)
-      aview->sort = true;
    //if (viewer->mouseState)
    //   sort = 0;
 
@@ -897,7 +922,11 @@ void GLuciferViewer::display(void)
 
    //Always redraw the active view, others only if flag set
    if (aview)
+   {
       aview->redraw = true;
+      if (!viewer->mouseState && sort_on_rotate && aview->rotated)
+         aview->sort = true;
+   }
 
    //Turn filtering of objects on/off
    if (awin->views.size() > 1 || windows.size() > 1)
@@ -953,6 +982,11 @@ void GLuciferViewer::displayCurrentView()
    GL_Error_Check;
    viewSelect(view);
    GL_Error_Check;
+
+#ifdef USE_OMEGALIB
+   drawSceneBlended();
+   return;
+#endif
 
    if (viewPorts)
       //Set viewport based on window size
@@ -1048,7 +1082,7 @@ void GLuciferViewer::displayCurrentView()
       // Restore full-colour 
       glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE); 
    }
-   else 
+   else
    {
       // Default non-stereo render
    GL_Error_Check;
@@ -1070,11 +1104,9 @@ void GLuciferViewer::displayCurrentView()
 
 void GLuciferViewer::displayObjectList()
 {
-   //Print available objects by id
-   //for (unsigned int i=0; i < awin->views.size(); i++)
-   //   awin->views[i]->getObjects(objlist);
-   //Active viewport only
+   //Print available objects by id to screen and stderr
    int offset = 0;
+   std::cerr << "------------------------------------------" << std::endl;
    for (unsigned int i=0; i < amodel->objects.size(); i++)
    {
       if (amodel->objects[i])
@@ -1083,26 +1115,26 @@ void GLuciferViewer::displayObjectList()
          ss << std::setw(5) << amodel->objects[i]->id << " : " << amodel->objects[i]->name;
          if (amodel->objects[i]->skip)
          {
+            std::cerr << "[ no data  ]" << ss.str() << std::endl;
             displayText(ss.str(), ++offset, 0xff222288);
-            //std::cerr << "[ no data ]" << ss.str() << std::endl;
          }
-         else if (amodel->objects[i]->visible && (viewAll || aview->hasObject(amodel->objects[i])))
+         else if (amodel->objects[i]->visible)
          {
+            std::cerr << "[          ]" << ss.str() << std::endl;
             //Use object colour if provided, unless matches background
             int colour = 0;
             if (amodel->objects[i]->colour.value != viewer->background.value)
                colour = amodel->objects[i]->colour.value;
             displayText(ss.str(), ++offset, colour);
-            //std::cerr << "[  hidden  ]" << ss.str() << std::endl;
          }
          else
          {
+            std::cerr << "[  hidden  ]" << ss.str() << std::endl;
             displayText(ss.str(), ++offset, 0xff888888);
-            //std::cerr << "[          ]" << ss.str() << std::endl;
          }
       }
    }
-   //viewer->swap();  //Immediate display
+   std::cerr << "------------------------------------------" << std::endl;
 }
 
 void GLuciferViewer::printMessage(const char *fmt, ...)
@@ -1225,6 +1257,7 @@ void GLuciferViewer::drawScene()
 
    triSurfaces->draw();
    quadSurfaces->draw();
+   volumes->draw();
    points->draw();
    vectors->draw();
    tracers->draw();
@@ -1345,6 +1378,10 @@ bool GLuciferViewer::loadWindow(int window_idx, int at_timestep, bool autozoom)
 
    //Update the views
    resetViews(autozoom);
+
+   //Script files?
+   for (unsigned int m=0; m < files.size(); m++)
+      readScriptFile(files[m]);
 
    return true;
 }
@@ -1834,7 +1871,7 @@ void GLuciferViewer::jsonWrite(std::ostream& json, unsigned int id, bool objdata
       {
          //std::string names[] = {"Labels", "Points", "Grid", "Triangles", "Vectors", "Tracers", "Lines", "Shapes"};
          //Only able to dump point/triangle based objects currently:
-         std::string names[] = {"", "points", "triangles", "triangles", "", "", "", ""};
+         std::string names[] = {"", "points", "triangles", "triangles", "", "", "", "", "volume"};
          bool first = true;
          for (int type=lucMinType; type<lucMaxType; type++)
          {

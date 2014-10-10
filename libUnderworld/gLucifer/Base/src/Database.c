@@ -303,10 +303,13 @@ void _lucDatabase_Execute( void* database, void* data )
             lucDatabase_OutputDrawingObject(self, NULL, object);
          }
       }
+   }
 
-      /* Call setup on drawing objects (if any) */
-      lucDrawingObject_Register_SetupAll( self->drawingObject_Register, database );
+   /* Call setup on drawing objects (if any) !This must be called on all procs! */
+   lucDrawingObject_Register_SetupAll( self->drawingObject_Register, database );
 
+   if (self->context->rank == 0)
+   {
       /* Multi-file database setup */
       if (!self->singleFile)
       {
@@ -440,6 +443,16 @@ void lucDatabase_Wait(lucDatabase* self)
       waitpid(self->dump_pid, &childExitStatus, 0);
       self->dump_pid = 0;
    }
+}
+
+void lucDatabase_DeleteWindows(lucDatabase* self)
+{
+   /* Delete any existing window->viewport->object structure information */
+   lucDatabase_IssueSQL(self->db, "delete from window;");
+   lucDatabase_IssueSQL(self->db, "delete from window_viewport;");
+   lucDatabase_IssueSQL(self->db, "delete from viewport;");
+   lucDatabase_IssueSQL(self->db, "delete from object;");
+   lucDatabase_IssueSQL(self->db, "delete from viewport_object;");
 }
 
 void lucDatabase_OutputWindow(lucDatabase* self, lucWindow* window)
@@ -835,20 +848,15 @@ void lucDatabase_AddGridVertex(lucDatabase* self, int width, int height, float* 
 
 void lucDatabase_AddVertices(lucDatabase* self, int n, lucGeometryType type, float* data)
 {
-   //Detects bounding box by checking each vertex
+   //Detects bounding box by checking each vertex x,y,z
    float* min = self->data[type][lucVertexData]->min;
    float* max = self->data[type][lucVertexData]->max;
-   float* coord;
    int p;
-   for (p=0; p < n; p += 3)
+   for (p=0; p < n*3; p++)
    {
-      coord = data + p;
-      if (coord[0] > max[0]) max[0] = coord[0];
-      if (coord[0] < min[0]) min[0] = coord[0];
-      if (coord[1] > max[1]) max[1] = coord[1];
-      if (coord[1] < min[1]) min[1] = coord[1];
-      if (coord[2] > max[2]) max[2] = coord[2];
-      if (coord[2] < min[2]) min[2] = coord[2];
+      int d = p % 3;
+      if (data[p] > max[d]) max[d] = data[p];
+      if (data[p] < min[d]) min[d] = data[p];
    }
 
    lucGeometryData_Read(self->data[type][lucVertexData], n, data);
@@ -900,6 +908,16 @@ void lucDatabase_AddValues(lucDatabase* self, int n, lucGeometryType type, lucGe
    } 
    /* Set colour map parameters */
    lucGeometryData_Setup(self->data[type][data_type], colourMap->minimum, colourMap->maximum, dimCoeff, units);
+}
+
+
+void lucDatabase_AddVolumeSlice(lucDatabase* self, int width, int height, float* corners, lucColourMap* colourMap, float* data)
+{
+   /* Output corner vertices */
+   lucDatabase_AddVertices(self, 2, lucVolumeType, corners);
+   self->data[lucVolumeType][lucVertexData]->width = width;
+   self->data[lucVolumeType][lucVertexData]->height = height;
+   lucDatabase_AddValues(self, width*height, lucVolumeType, lucColourValueData, colourMap, data);
 }
 
 void lucDatabase_AddIndex(lucDatabase* self, lucGeometryType type, unsigned int index)

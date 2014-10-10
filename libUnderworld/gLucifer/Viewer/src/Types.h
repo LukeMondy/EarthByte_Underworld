@@ -13,6 +13,7 @@ typedef enum
    lucTracerType,
    lucLineType,
    lucShapeType,
+   lucVolumeType,
    lucMaxType
 } lucGeometryType;
 

@@ -55,6 +55,7 @@ Bool lucDrawingObjects_Init()
    Stg_ComponentRegister_Add( componentRegister, lucColourBar_Type, (Name)"0", _lucColourBar_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, lucFieldVariableBorder_Type, (Name)"0", _lucFieldVariableBorder_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, lucFieldSampler_Type, (Name)"0", _lucFieldSampler_DefaultNew  );
+   Stg_ComponentRegister_Add( componentRegister, lucMeshSampler_Type, (Name)"0", _lucMeshSampler_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, lucIsosurface_Type, (Name)"0", _lucIsosurface_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, lucIsosurfaceCrossSection_Type, (Name)"0", _lucIsosurfaceCrossSection_DefaultNew  );
    Stg_ComponentRegister_Add( componentRegister, lucCrossSection_Type, (Name)"0", _lucCrossSection_DefaultNew );
@@ -105,7 +106,8 @@ Bool lucDrawingObjects_Init()
    RegisterParent( lucCapture_Type,                         lucDrawingObject_Type );
    RegisterParent( lucColourBar_Type,                       lucDrawingObject_Type );
    RegisterParent( lucFieldVariableBorder_Type,             lucDrawingObject_Type );
-   RegisterParent( lucFieldSampler_Type,                    lucDrawingObject_Type );
+   RegisterParent( lucFieldSampler_Type,                    lucCrossSection_Type );
+   RegisterParent( lucMeshSampler_Type,                     lucMeshCrossSection_Type );
    RegisterParent( lucIsosurface_Type,                      lucDrawingObject_Type );
    RegisterParent( lucTextureMap_Type,                      lucDrawingObject_Type );
    RegisterParent( lucFeVariableSurface_Type,               lucMeshCrossSection_Type );

@@ -4,7 +4,7 @@
 
 function keyPressCommand(event, el) {
   if (event.keyCode == 13) {
-    //consoleWrite("PRESS Code: " + event.keyCode + " Char: " + charc);
+    //debug("PRESS Code: " + event.keyCode + " Char: " + charc);
     var cmd = el.value.trim();
     if (cmd.length == 0) cmd = "repeat";
     requestData('/command=' + cmd);
@@ -34,7 +34,7 @@ function keyPress(event) {
     else if (code == 35) key = 23;
     else key = code; 
 
-  //consoleWrite("PRESS Code: " + event.keyCode + " Char: " + charc);
+  //debug("PRESS Code: " + event.keyCode + " Char: " + charc);
   requestData('/key=' + key + ',modifiers=' + getModifiers(event) + ",x=" + defaultMouse.x + ",y=" + defaultMouse.y);
 }
 
@@ -139,9 +139,9 @@ function requestData(data, callback, sync) {
         if (callback)
           callback(http.responseText);
         else
-          consoleWrite(http.responseText);
+          debug(http.responseText);
       } else  
-        consoleWrite("Ajax Request Error: " + url + ", returned status code " + http.status + " " + http.statusText);
+        debug("Ajax Request Error: " + url + ", returned status code " + http.status + " " + http.statusText);
   } 
 
   //Add date to url to prevent caching
@@ -170,7 +170,7 @@ function requestImage() {
       //if (imgtimer) clearTimeout(imgtimer);
       //imgtimer = setTimeout(requestImage, 100);
     } else  
-      consoleWrite("Ajax Request Error: " + url + ", returned status code " + http.status + " " + http.statusText);
+      debug("Ajax Request Error: " + url + ", returned status code " + http.status + " " + http.statusText);
   } 
 
   http.open("GET", url, true); 

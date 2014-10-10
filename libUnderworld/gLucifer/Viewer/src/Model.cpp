@@ -600,7 +600,8 @@ int Model::nearestTimeStep(int requested, int current)
 {
    //Find closest matching timestep to requested but != current
    int idx;
-   if (timesteps.size() == 0 && loadTimeSteps() == 0) return -1;
+   //if (timesteps.size() == 0 && loadTimeSteps() == 0) return -1;
+   if (loadTimeSteps() == 0) return -1;
    //if (timesteps.size() == 1 && current >= 0 && ) return -1;  //Single timestep
 
    for (idx=0; idx < timesteps.size(); idx++)

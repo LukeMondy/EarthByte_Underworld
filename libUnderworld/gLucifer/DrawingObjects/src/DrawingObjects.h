@@ -43,6 +43,7 @@
 #include "ColourBar.h"
 #include "FieldVariableBorder.h"
 #include "FieldSampler.h"
+#include "MeshSampler.h"
 #include "Isosurface.h"
 #include "CrossSection.h"
 #include "MeshCrossSection.h"

@@ -36,8 +36,6 @@
 //OpenGLViewer class
 #include "OpenGLViewer.h"
 
-#include "jpeg/jpge.h"
-
 //Timer increment in ms
 #define TIMER_INC 100
 
@@ -404,31 +402,17 @@ void OpenGLViewer::snapshot(const char* name, int number, bool transparent)
    }
    display();
 
-   GLubyte *image = new GLubyte[width * height * pixel];
-
-#ifdef HAVE_LIBPNG
    // Read the pixels
+   GLubyte *image = new GLubyte[width * height * pixel];
+#ifdef HAVE_LIBPNG
    pixels(image, transparent);
-
-   //Write data to image file
-   sprintf(path, "%s%s.%05d.png", output_path, name, number);
-   std::ofstream file(path, std::ios::binary);
-   write_png(file, transparent, width, height, image);
 #else
-   // Read the pixels (flipped)
    pixels(image, false, true);
-
-   //JPEG support with built in encoder
-   sprintf(path, "%s%s.%05d.jpg", output_path, name, number);
-
-   // Fill in the compression parameter structure.
-   jpge::params params;
-   params.m_quality = 95;
-   params.m_subsampling = jpge::H2V1;   //H2V2/H2V1/H1V1-none/0-grayscale
-
-   if (!compress_image_to_jpeg_file(path, width, height, 3, image, params))
-      abort_program("[write_jpeg] File %s could not be saved\n", path);
 #endif
+   //Write PNG or JPEG
+   sprintf(path, "%s%s.%05d", output_path, name, number);
+   writeImage(image, width, height, path, transparent);
+
    delete[] image;
 
    blend_mode = BLEND_NORMAL;

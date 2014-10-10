@@ -125,7 +125,6 @@ class View
    Quaternion rotation;
    Quaternion rotation_lag;
 
-   float fov;                 // Field of view
    float focal_length;        // Stereo zero parallex distance
    float eye_sep_ratio;       // Eye separation ratio to focal length
    float scene_shift;         // Stereo projection shift (calculated from eye sep)
@@ -135,7 +134,7 @@ class View
 
  public:
    std::vector<DrawingObject*> objects;     // Contains these objects
-   float modelView[16]; //Saved copy of model view matrix
+   float fov;                 // Field of view
    bool is3d;
    bool use_inertia;
 

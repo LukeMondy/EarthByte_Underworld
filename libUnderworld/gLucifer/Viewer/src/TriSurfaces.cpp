@@ -580,9 +580,9 @@ void TriSurfaces::depthSort()
 
    //Calculate min/max distances from view plane
    float maxdist, mindist; 
-   //float modelView[16];
-   //glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
-   Geometry::getMinMaxDistance(view->modelView, &mindist, &maxdist);
+   float modelView[16];
+   glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
+   Geometry::getMinMaxDistance(modelView, &mindist, &maxdist);
    //printMatrix(modelView);
    //printf("MINDIST %f MAXDIST %f\n", mindist, maxdist);
 
@@ -596,7 +596,7 @@ void TriSurfaces::depthSort()
       if (tidx[i].distance < 65535) 
       //if (tidx[i].distance > 0) 
       {
-         tidx[i].fdistance = eyeDistance(view->modelView, tidx[i].centroid);
+         tidx[i].fdistance = eyeDistance(modelView, tidx[i].centroid);
          tidx[i].distance = (int)(multiplier * (tidx[i].fdistance - mindist));
          assert(tidx[i].distance >= 0 && tidx[i].distance <= 65534);
              //Shift by id hack
@@ -716,7 +716,7 @@ void TriSurfaces::draw()
    glDisable(GL_CULL_FACE);
 
    double time = ((clock()-t1)/(double)CLOCKS_PER_SEC);
-   if (time > 0.001)
+   if (time > 0.05)
      debug_print("  %.4lf seconds to draw triangles\n", time);
    GL_Error_Check;
 }

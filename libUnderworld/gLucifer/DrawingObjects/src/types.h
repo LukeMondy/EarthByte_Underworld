@@ -40,6 +40,7 @@
 typedef struct lucCapture                        lucCapture;
 typedef struct lucFieldVariableBorder            lucFieldVariableBorder;
 typedef struct lucFieldSampler                   lucFieldSampler;
+typedef struct lucMeshSampler                    lucMeshSampler;
 typedef struct lucCrossSection                   lucCrossSection;
 typedef struct lucMeshCrossSection               lucMeshCrossSection;
 typedef struct lucContourCrossSection            lucContourCrossSection;

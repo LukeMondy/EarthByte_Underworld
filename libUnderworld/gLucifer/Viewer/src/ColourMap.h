@@ -65,6 +65,7 @@ public:
    bool log, discrete;
    float centre;
    bool calibrated;
+   TextureData texture;
 
    float dimCoeff;
    std::string units;
@@ -93,6 +94,7 @@ public:
    Colour getFromScaled(float scaledValue);
    void draw(PropertyParser& props, int startx, int starty, int length, int height, Colour& printColour);
    void setComponent(int component_index);
+   void loadTexture();
 
    static bool lock;
    static int logscales;

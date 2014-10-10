@@ -512,10 +512,6 @@ void View::apply()
    else
       glFrontFace(GL_CW);
    GL_Error_Check;
-
-   glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
-   //printMatrix(modelView);
-   GL_Error_Check;
 }
 
 bool View::scaleSwitch()
