@@ -63,6 +63,8 @@ Divergence detected when
   rnorm > dtol * rnorm_0
 
 */
+#undef __FUNCT__
+#define __FUNCT__ "KSPRelativeRhsConverged"
 PetscErrorCode KSPRelativeRhsConverged(KSP ksp,PetscInt n,PetscReal rnorm,KSPConvergedReason *reason,void *dummy)
 {
 	PetscErrorCode ierr;
@@ -121,7 +123,8 @@ PetscErrorCode KSPRelativeRhsConverged(KSP ksp,PetscInt n,PetscReal rnorm,KSPCon
 	PetscFunctionReturn(0);
 }
 
-
+#undef __FUNCT__
+#define __FUNCT__ "KSPSetRelativeRhsConvergenceTest"
 PetscErrorCode KSPSetRelativeRhsConvergenceTest( KSP ksp )
 {
 	PetscErrorCode ierr;

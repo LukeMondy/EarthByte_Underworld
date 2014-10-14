@@ -11,28 +11,23 @@
 
 # The schur-complement options; see 'options-scr.opt' for details.
 
--scr_ksp_type fgmres
+#-scr_ksp_type fgmres
 
 # outer iteration tolerance (pressure)
--scr_ksp_rtol 1.0e-7     
+#-scr_ksp_rtol 1.0e-7     
 
 # inner iteration tolerance (search velocity)    		
--A11_ksp_rtol 1.0e-7  
+#-A11_ksp_rtol 1.0e-7  
 
 # back solver tolerance (velocity)       	
--scr_vel_back_solve_rtol 1.0e-7
--backsolveA11_ksp_type fgmres   
--backsolveA11_ksp_rtol 1.0e-7
-
--Xscr_use_previous_guess
--XA11_ksp_type fgmres
--Q22_pc_type uw
-# -no_scale
+#-scr_vel_back_solve_rtol 1.0e-7
+#-backsolveA11_ksp_type fgmres   
+#-backsolveA11_ksp_rtol 1.0e-6
 
 # -pc_mg_monitor 
 
 #-mg_coarse_ksp_type cg
--A11_mg_coarse_ksp_max_it 10
+-A11_mg_coarse_ksp_max_it 3
 #-A11_mg_coarse_ksp_rtol 1.0e-7
 #-mg_coarse_pc_type sor
 #-mg_coarse_sub_pc_type cholesky
@@ -42,11 +37,11 @@
 
 # These more aggressive options give a pretty robust / efficient solve
 
--A11_pc_mg_smoothup 10
--A11_pc_mg smoothdown 10
+-A11_pc_mg_smoothup 1
+-A11_pc_mg smoothdown 1
 
--A11_mg_levels_ksp_type minres
+#-A11_mg_levels_ksp_type minres
 -A11_mg_levels_ksp_max_its 3
--A11_mg_levels_pc_type sor
--A11_mg_levels_pc_sub_type cholesky
+#-A11_mg_levels_pc_type sor
+#-A11_mg_levels_pc_sub_type cholesky
 -A11_mg_levels_ksp_convergence_test skip

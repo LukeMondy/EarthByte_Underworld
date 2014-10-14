@@ -784,7 +784,7 @@ Mat SROpGenerator_SimpleFinestLevel( SROpGenerator *self ) {
    PetscInt sr,er, sc,ec, row_idx;
    Vec vec_o_nnz, vec_d_nnz;
    PetscScalar *v;
-   PetscTruth is_seq;
+   PetscTruth is_seq, is_q1/* test to see if NOT a Q1 mesh, if not then assume it is Q2 */;
    PetscInt p, proc_owner, *rranges,*cranges;
    MPI_Comm comm;
    PetscMPIInt nproc,rank;  
@@ -805,6 +805,12 @@ Mat SROpGenerator_SimpleFinestLevel( SROpGenerator *self ) {
    nDofsPerNode = self->fineVar->dofLayout->dofCounts[0]; /* ASSUME */
    elGrid = *Mesh_GetExtension( mesh, Grid**,  mesh->elGridId );
    vertGrid = *Mesh_GetExtension( mesh, Grid**,  mesh->vertGridId );
+   is_q1 = PETSC_FALSE;
+   /* test to see if NOT a Q1 mesh, if not then assume it is Q2 */
+   if( elGrid->sizes[0] + 1 == vertGrid->sizes[0] ){
+     is_q1 = PETSC_TRUE;
+     /* test some more here? */
+   }
    nGlobalNodes[0] = nGlobalNodes[1] = 1;
    for( ii = 0; ii < nDims; ii++ ) {
       sideSizes[1][ii] = elGrid->sizes[ii];
@@ -814,7 +820,14 @@ Mat SROpGenerator_SimpleFinestLevel( SROpGenerator *self ) {
          printf( "            Please modify mesh size or reduce number of levels.\n" );
          exit( 1 );
       }
-      sideSizes[1][ii]++; sideSizes[0][ii]++;
+      /* Need to check for Q2 vs Q1 Mesh here */
+      if( is_q1 ){
+        sideSizes[1][ii]++; sideSizes[0][ii]++;
+      }else{/* assume Q2 elements */
+        sideSizes[1][ii] *= 2;
+        sideSizes[0][ii] *= 2;
+        sideSizes[1][ii]++; sideSizes[0][ii]++;
+      }
       nGlobalNodes[1] *= sideSizes[1][ii];
       nGlobalNodes[0] *= sideSizes[0][ii];
    }
@@ -1096,6 +1109,7 @@ Mat SROpGenerator_SimpleCoarserLevel( SROpGenerator *self, int level ) {
    PetscInt p, proc_owner, *row_ranges, *col_ranges;
    MPI_Comm comm;
    PetscMPIInt nproc;
+   PetscTruth is_q1/* test to see if NOT a Q1 mesh, if not then assume it is Q2 */;
 
    /* Calculate depth fraction. */
    ifrac = 1;
@@ -1118,6 +1132,12 @@ Mat SROpGenerator_SimpleCoarserLevel( SROpGenerator *self, int level ) {
    nDofsPerNode = self->fineVar->dofLayout->dofCounts[0]; /* ASSUME */
    elGrid = *Mesh_GetExtension( mesh, Grid**,  mesh->elGridId );
    vertGrid = *Mesh_GetExtension( mesh, Grid**,  mesh->vertGridId );
+   is_q1 = PETSC_FALSE;
+   /* test to see if NOT a Q1 mesh, if not then assume it is Q2 */
+   if( elGrid->sizes[0] + 1 == vertGrid->sizes[0] ){
+     is_q1 = PETSC_TRUE;
+     /* test some more here? */
+   }
    nGlobalNodes[0] = nGlobalNodes[1] = 1;
    for( ii = 0; ii < nDims; ii++ ) {
       sideSizes[1][ii] = elGrid->sizes[ii] / ifrac;
@@ -1129,7 +1149,14 @@ Mat SROpGenerator_SimpleCoarserLevel( SROpGenerator *self, int level ) {
          printf( "            Please modify mesh size or reduce number of levels.\n" );
          exit( 1 );
       }
-      sideSizes[1][ii]++; sideSizes[0][ii]++;
+      /* Need to check for Q2 vs Q1 Mesh here */
+      if( is_q1 ){
+        sideSizes[1][ii]++; sideSizes[0][ii]++;
+      }else{/* assume Q2 elements */
+        sideSizes[1][ii] *= 2;
+        sideSizes[0][ii] *= 2;
+        sideSizes[1][ii]++; sideSizes[0][ii]++;
+      }
       nGlobalNodes[1] *= sideSizes[1][ii];
       nGlobalNodes[0] *= sideSizes[0][ii];
    }

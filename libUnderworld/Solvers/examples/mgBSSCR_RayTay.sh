@@ -34,12 +34,12 @@ $UWEXEC $UWPATH/Underworld/InputFiles/RayleighTaylorBenchmark.xml \
   		--outputPath="./$OUT" \
   		--components.stokesEqn.isNonLinear=False \
   		--saveDataEvery=5 --checkpointEvery=5 --checkpointWritePath="./$OUT/Checkpoints" --checkpointReadPath="./$OUT/Checkpoints" --checkpointAppendStep=1 \
-  		-ksp_type bsscr -pc_type none -ksp_k2_type DGMGD -augmented_lagrangian --penaltyNumber=0.1 \
-  		-Q22_pc_type uw \
+  		-ksp_type bsscr -pc_type none -ksp_k2_type GMG -augmented_lagrangian 1 --penaltyNumber=0.1 \
+  		-Q22_pc_type gkgdiag \
   		-XQ22_pc_type gtkg -Xrestore_K -no_scale \
                 -Xscr_pc_gtkg_ksp_view -Xscr_pc_gtkg_ksp_monitor -Xscr_pc_gtkg_ksp_rtol 1e-6 -Xscr_pc_gtkg_ksp_type cg \
-  		-Xbuild_cb_pressure_nullspace \
-  		-build_const_pressure_nullspace \
+  		-remove_checkerboard_pressure_null_space 0 \
+  		-remove_constant_pressure_null_space 1 \
   		--mgLevels=5 \
   		-Xscr_ksp_max_it 1000 \
                 -scr_ksp_type minres \

@@ -39,9 +39,9 @@ export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
-for VC in 6 9
+for VC in 2 4 8
 do
-for SC in 0 1
+for SC in 0
 do
 for UW in gkgdiag
 do
@@ -49,15 +49,15 @@ for SCR in fgmres
 do
 for A11 in fgmres
 do
-for SCRTOL in 1e-10
+for SCRTOL in 1e-4
 do
-for A11TOL in 1e-9
+for A11TOL in 1e-4
 do
 echo "|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----|" | tee -a var.txt
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
-for PEN in 0.0 4.0
+for PEN in 4.0
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 PEN=`echo "0.25*$PEN" | bc -l`
@@ -74,7 +74,7 @@ SCRP="default"
 
 #MG=boomeramg
 #MG="ml"
-MG=gmg
+MG=lu
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
@@ -104,7 +104,11 @@ MGOP=" "
     fi
 
 ID=$SCR$A11
-RES=48
+RES=$1
+if [ $RES = "" ]
+then
+  $RES=17
+fi
 RESX=$RES
 RESY=$RES
 PP=40
@@ -139,7 +143,7 @@ PCRES=15
 #                --components.weights.resolutionX=$PCRES --components.weights.resolutionY=$PCRES --components.weights.resolutionZ=$PCRES \
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
-NAME="q2p1xsolkxGMG_conditionNumber"
+NAME="q2p1kxsolkxGMG_conditionNumber"
 DIR="${NAME}_${RESX}x${RESY}"
 OUT="$DIR/kx_10e${VC}_${SCALETEXT}"
 mkdir $DIR >& /dev/null
@@ -195,7 +199,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolKxQ2P1Gauss.xml \
                 -backsolveA11_ksp_type fgmres -backsolveA11_ksp_monitor \
                 -backsolveA11_ksp_rtol 1.0e-6 \
   		--elementResI=$RES --elementResJ=$RES \
-  		--maxTimeSteps=0 -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_kx_" \
+  		--maxTimeSteps=0 -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_kx_" -matdumpdir $OUT -solutiondumpdir $OUT \
     > "./$OUT/output.txt" 2>&1
 
 ./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt

@@ -37,10 +37,10 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
-export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
+#export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | MG LEVELS |" | tee var.txt
-for VC in 3
+for VC in 6
 do
 for SC in 0
 do
@@ -77,7 +77,7 @@ SCRP="default"
 
 #MG=boomeramg
 #MG="ml"
-MG=gmg
+MG=lu
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
@@ -108,7 +108,11 @@ MGOP=" "
     fi
 
 ID=$SCR$A11
-RES=64
+RES=$1
+if [$RES = "" ]
+    then
+      $RES=17
+fi
 RESX=$RES
 RESY=$RES
 PP=40
@@ -143,8 +147,8 @@ PCRES=15
 #                --components.weights.resolutionX=$PCRES --components.weights.resolutionY=$PCRES --components.weights.resolutionZ=$PCRES \
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
-NAME="xsolkxGMG_conditionNumber"
-NAME="kxTest"
+NAME="xsolkxGMG_conditionNumber" # this is name used by slepc scripts.
+#NAME="kxTest"
 DIR="${NAME}_${RESX}x${RESY}"
 OUT="$DIR/kx_10e${VC}_${SCALETEXT}"
 mkdir $DIR >& /dev/null
@@ -200,7 +204,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolKx.xml \
                 -backsolveA11_ksp_type fgmres -backsolveA11_ksp_monitor \
                 -backsolveA11_ksp_rtol 1.0e-6 \
   		--elementResI=$RES --elementResJ=$RES \
-  		--maxTimeSteps=0 -Xdump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_kx_" \
+  		--maxTimeSteps=0 -dump_matvec -mat_ascii_output_large -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_kx_"  -matdumpdir $OUT -solutiondumpdir $OUT \
    --components.stokesblockkspinterface.OptionsString="-A11_ksp_type fgmres -A11_ksp_rtol 1e-3 -A11_ksp_monitor -backsolveA11_ksp_type fgmres -log_summary" \
 
 

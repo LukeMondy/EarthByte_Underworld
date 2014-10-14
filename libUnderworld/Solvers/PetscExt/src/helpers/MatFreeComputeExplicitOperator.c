@@ -57,6 +57,8 @@
 
 #include "petscext_helpers.h"
 
+#undef __FUNCT__
+#define __FUNCT__ "MatFreeComputeExplicitOperator"
 PetscErrorCode MatFreeComputeExplicitOperator( Mat mf, MatType type, PetscReal tol, Mat *_A)
 {
 	PetscErrorCode ierr;

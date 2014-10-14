@@ -32,7 +32,7 @@
 # --penaltyNumber=$PEN // using XML to pass the penalty in via the SLE currently.
 
 count=0
-PROCS=8
+PROCS=1
 
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
@@ -40,7 +40,7 @@ export UWEXEC="$UWPATH/build/bin/Underworld"
 #export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
-for VC in 3
+for VC in 9
 do
 for SC in 0
 do
@@ -61,12 +61,12 @@ echo "|-------+-------+------------+----------+------+------+------+------+-----
 #for PEN in 0.0 10.0 100.0 1000.0 10000.0
 #10.0 100.0 1000.0
 #for PENEXP in -4 -1 0 1 2 3 4 5
-for PENEXP in 0
+for PENEXP in 7
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 #PEN=`echo "0.25*$PEN" | bc -l`
 PEN=`echo "10^($PENEXP)" | bc -l`
-PEN=0.0
+#PEN=0.0
 #SCRP="unpreconditioned"
 SCRP="default"
 #SCRP="unpreconditioned"
@@ -83,7 +83,7 @@ MG=gmg
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
-	    #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-accelerating.opt "
+	    #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg.opt "
 	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml "
     fi
     if [ "$MG" = "boomeramg" ]                                            
@@ -179,7 +179,7 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
   	-remove_constant_pressure_null_space 1 \
   	--mgLevels=5 \
   	-Xscr_ksp_max_it 1000 \
-    -scr_ksp_type $SCR \
+    -Xscr_ksp_type $SCR \
     -Xscr_ksp_view \
     $SCRNORMTYPE \
     -Xscr_ksp_left_pc \
@@ -195,10 +195,9 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     -XA11_use_norm_inf_stopping_condition \
     -XA11_ksp_monitor_true_residual \
   	--elementResI=$RES --elementResJ=$RES \
-  	--maxTimeSteps=3 -XA11_ksp_view -XA11_mg_levels_ksp_view \
-    -Xdump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -matdumpdir $OUT -solutiondumpdir $OUT \
-   --components.stokesblockkspinterface.OptionsString="-A11_ksp_type fgmres -A11_ksp_rtol 1e-3 -A11_ksp_monitor -backsolveA11_ksp_type fgmres -log_summary " \
-   -log_summary -on_error_attach_debugger cgdb \
+  	--maxTimeSteps=0 -XA11_ksp_view -XA11_mg_levels_ksp_view \
+    -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -matdumpdir $OUT -solutiondumpdir $OUT \
+   --components.stokesblockkspinterface.OptionsString="-help -A11_ksp_monitor -A11_ksp_view -backsolveA11_ksp_type preonly -backsolveA11_pc_type lu " \
 #
 
 #    > "./$OUT/output.txt" 2>&1

@@ -64,9 +64,10 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     AugLagStokes_SLE *    stokesSLE = (AugLagStokes_SLE*)bsscrp_self->st_sle;
     PetscTruth uzawastyle, KisJustK=PETSC_TRUE, restorek, changeA11prefix;
     PetscTruth usePreviousGuess, useNormInfStoppingConditions, useNormInfMonitor, found, forcecorrection;
+    PetscTruth change_backsolve;
     PetscErrorCode ierr;
     PetscInt monitor_index,max_it,min_it;
-    KSP ksp_inner, ksp_S;
+    KSP ksp_inner, ksp_S, backsolve_ksp, presolve_ksp;
     PC pc_S, pcInner;
     Mat K,G,D,C, S, K2;// Korig;
     Vec u,p,f,f2,f3=0,h, h_hat,t;
@@ -383,10 +384,17 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /*******   VELOCITY SOLVE   ************************************************************************************/
-    KSPSetOptionsPrefix( ksp_inner, "backsolveA11_" );
-    KSPSetFromOptions( ksp_inner ); /* make sure we are setting up our solver how we want it. I think the schur compliment block set-up sets this to fgmres without asking. */
-    KSPSolve( ksp_inner, t, u );         /* Solve, then restore default tolerance and initial guess */          
-
+    /** Easier to just create a new KSP here if we want to do backsolve diffferently. (getting petsc errors now when switching from fgmres) */
+    change_backsolve=PETSC_FALSE;
+    PetscOptionsGetTruth( PETSC_NULL, "-change_backsolve", &change_backsolve, &found );
+    if(change_backsolve){
+      Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
+      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix(ksp_inner, "backsolveA11_");
+      KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
+    }
+    KSPSolve(ksp_inner, t, u);         /* Solve, then restore default tolerance and initial guess */
     a11SingleSolveTime = MPI_Wtime() - a11SingleSolveTime;              /* ------------------ Final V Solve */
 
     flg=0;
@@ -423,7 +431,9 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     Stg_KSPDestroy(&ksp_inner );// pcInner == pc_MG and is destroyed when ksp_inner is 
     Stg_VecDestroy(&h_hat );
     Stg_MatDestroy(&S );
-
+//    if(change_backsolve){
+//      Stg_KSPDestroy(&backsolve_ksp);
+//    }
     MatBlockRestoreSubMatrices( stokes_A );
     VecBlockRestoreSubVectors( stokes_b );
     VecBlockRestoreSubVectors( stokes_x );

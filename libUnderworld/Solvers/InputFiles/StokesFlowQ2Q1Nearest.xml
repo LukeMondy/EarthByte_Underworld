@@ -52,15 +52,13 @@
       <param name="IntegrationPointMapper">mapper</param>
     </struct>
     <struct name="mapper">
-      <param name="Type">GaussCoincidentMapper</param>
+      <param name="Type">NearestNeighbourMapper</param>
       <param name="IntegrationPointsSwarm">picIntegrationPoints</param>
       <param name="MaterialPointsSwarm">materialSwarm</param>
     </struct>
     <struct name="materialSwarmParticleLayout">
-      <param name="Type">GaussParticleLayout</param>
-      <param name="gaussParticlesX">gaussParticlesX</param>
-      <param name="gaussParticlesY">gaussParticlesY</param>
-      <param name="gaussParticlesZ">gaussParticlesZ</param>
+      <param name="Type">SpaceFillerParticleLayout</param>
+      <param name="averageInitialParticlesPerCell">particlesPerCell</param>
     </struct>
     <struct name="pMovementHandler"> 
       <param name="Type">ParticleMovementHandler</param>
@@ -74,14 +72,24 @@
       <param name="ParticleLayout">materialSwarmParticleLayout</param>
       <param name="FeMesh">elementMesh</param>
       <list name="ParticleCommHandlers">
-	<param>pMovementHandler</param>
-	<param>pShadowSync</param>
+	    <param>pMovementHandler</param>
+	    <param>pShadowSync</param>
       </list>
     </struct>
+	<struct name="materialSwarmAdvector">
+	  <param name="Type">SwarmAdvector</param>
+	  <param name="Swarm">materialSwarm</param>
+	  <param name="TimeIntegrator">timeIntegrator</param>
+	  <param name="VelocityField">VelocityField</param>
+	  <param name="PeriodicBCsManager">periodicBCsManager</param>
+	  <!-- For moving mesh or problems involving outflow, need the following
+		   enabled -->
+	  <param name="allowFallbackToFirstOrder">True</param>
+	</struct>
   </struct>
 
   <param name="gaussParticlesX">4</param>
   <param name="gaussParticlesY">4</param>
   <param name="gaussParticlesZ">4</param>
-
+  <param name="particlesPerCell">40</param>
 </StGermainData>
