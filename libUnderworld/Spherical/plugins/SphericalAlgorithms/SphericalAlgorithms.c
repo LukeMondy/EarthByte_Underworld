@@ -17,6 +17,7 @@
 typedef struct
 {
    __Codelet
+   Bool asbr; // allow solid body rotation, i.e. keep the null space in.
    Mesh *mesh;
    FeVariable *velvar;
    TimeIntegrator *timeIntegrator;
@@ -91,8 +92,11 @@ void SphericalAlgorithms_SetAlgorithms( SphericalAlgorithms* self )
       }
       Spherical_Get_RotationMatrixIJK = &Spherical_GetRotationMatrixIJK_SphericalNodes;
 
-      // hackish way of getting the Stokes_SLE. We need it to put the NULL space vector on it
-      self->sle->_initialise = _Spherical_RTP_StokesSLE_Initialise;
+      // add removal of null space unless we allow it
+      if( !self->asbr ) {
+         // hackish way of getting the Stokes_SLE. We need it to put the NULL space vector on it
+         self->sle->_initialise = _Spherical_RTP_StokesSLE_Initialise;
+      }
    }
    if( Stg_Class_IsInstance( self->mesh->generator, ProjectionGenerator_Type ) ||
          Stg_Class_IsInstance( self->mesh->generator, Q2ProjectionGenerator_Type ) || 
@@ -179,6 +183,11 @@ void _Spherical_RTP_StokesSLE_Initialise( void* component, void* data ) {
    // call the original initialise function
    _SystemLinearEquations_Initialise(component, data );
 
+
+   /**************************************
+     Following code builds the 2D annulus
+     null vector, n = (-pos_y,pos_x)
+     ************************************/
    velField = self->uSolnVec->feVariable;
    eq_num = velField->eqNum;
    mesh = velField->feMesh;
@@ -234,7 +243,7 @@ void _SphericalAlgorithms_Initialise(void* component, void* data)
       Swarm* swarm=NULL;
       if( self->timeIntegrator )
       {
-         //self->timeIntegrator->_execute = _TimeIntegrator_ExecuteRK2Spherical;
+         self->timeIntegrator->_execute = _TimeIntegrator_ExecuteRK2Spherical;
       }
 
       // get number of swarms
@@ -264,6 +273,8 @@ void _SphericalAlgorithms_AssignFromXML( void* component, Stg_ComponentFactory* 
    self->mesh = (Mesh*)Stg_ComponentFactory_ConstructByName( cf, (Name)"elementMesh", Mesh, True, data  );
    self->velvar = (FeVariable*)Stg_ComponentFactory_ConstructByName( cf, (Name)"VelocityField", FeVariable, True, data  );
    self->timeIntegrator = (TimeIntegrator*)Stg_ComponentFactory_ConstructByName( cf, (Name)"timeIntegrator", TimeIntegrator, False, data  );
+   // allow solid body rotation - asbr
+   self->asbr = Stg_ComponentFactory_GetRootDictBool( cf, (Name)"AllowSolidBodyRotation", False  );
 
    self->sle = NULL;
 
@@ -350,6 +361,8 @@ void _SphericalPeriodicBoundariesManager_UpdateParticle( void* periodicBCsManage
 
    Spherical_XYZ2RTP2D( particle->coord, rtp );
 
+   int newOwningCell = CellLayout_CellOf( self->swarm->cellLayout, particle );
+
    if( rtp[1] < bInfo->minWall )
    {
       // calculate how much particle is outside by
@@ -359,6 +372,7 @@ void _SphericalPeriodicBoundariesManager_UpdateParticle( void* periodicBCsManage
       rtp[1] = bInfo->maxWall - difference;
       Spherical_RTP2XYZ(rtp, particle->coord );
 
+      //particle->owningCell = CellLayout_CellOf( self->swarm->cellLayout, particle );
       bInfo->particlesUpdatedMinEndCount++; //is it needed?
    }
    else if (rtp[1] > bInfo->maxWall )
@@ -370,6 +384,7 @@ void _SphericalPeriodicBoundariesManager_UpdateParticle( void* periodicBCsManage
       rtp[1] = bInfo->minWall + difference;
       Spherical_RTP2XYZ(rtp, particle->coord );
 
+      //particle->owningCell = CellLayout_CellOf( self->swarm->cellLayout, particle );
       bInfo->particlesUpdatedMaxEndCount++;
    }
 
