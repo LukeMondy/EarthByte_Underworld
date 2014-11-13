@@ -2,7 +2,8 @@
 
 //void Spherical_GetRotationMatrixIJK( Mesh* mesh, int dNodeID, double* rot );
 
-void Spherical_GetRotationMatrixIJK_ProjectionNodes( Mesh* mesh, int dNodeID, double* rot );
+void Spherical_GetRotationMatrixIJK_RSNodes( Mesh* mesh, int dNodeID, double* rot );
+void Spherical_GetRotationMatrixIJK_FSNodes( Mesh* mesh, int dNodeID, double* rot );
 void Spherical_GetRotationMatrixIJK_SphericalNodes( Mesh* mesh, int dNodeID, double* rot );
 void Spherical_FeVariable_NonAABCsCalibration( void *fe );
 

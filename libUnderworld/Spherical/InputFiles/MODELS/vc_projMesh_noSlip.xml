@@ -6,95 +6,42 @@
 
 	<!-- Velocity BCs -->
 	<struct name="velocityBCs">
-		<param name="type">CompositeVC</param>
-		<list name="vcList">
-			<struct>
-				<param name="type"> WallVC </param>
-				<param name="wall"> bottom </param>
-				<list name="variables">
-					<struct>
-						<param name="name">vx</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-					
-					<struct>
-						<param name="name">vy</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-				</list>
-			</struct>
+             <param name="type">SphericalCompositeVC</param>
+             <list name="vcList">
+               <struct>
+                       <param name="type"> WallVC </param>
+                       <param name="wall"> inner </param>
+                       <list name="variables">
+                               <struct>
+                                       <param name="name">vx</param>
+                                       <param name="type">double</param>
+                                       <param name="value"> 0 </param>
+                               </struct>
+                               
+                               <struct>
+                                       <param name="name">vy</param>
+                                       <param name="type">double</param>
+                                       <param name="value"> 0 </param>
+                               </struct>
+                       </list>
+               </struct>
 
-			<struct>
-				<param name="type"> WallVC </param>
-				<param name="wall"> left </param>
-				<list name="variables">
-					<struct>
-						<param name="name">vx</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-					<struct>
-						<param name="name">vy</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-				</list>
-			</struct>
-			<struct>
-				<param name="type"> WallVC </param>
-				<param name="wall"> right </param>
-				<list name="variables">
-					<struct>
-						<param name="name">vx</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-					<struct>
-						<param name="name">vy</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-				</list>
-			</struct>
-			<struct>
-				<param name="type"> WallVC </param>
-				<param name="wall"> top </param>
-				<list name="variables">
-					<struct>
-						<param name="name">vx</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-					<struct>
-						<param name="name">vy</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-				</list>
-			</struct>
-	
-			<struct>
-				<param name="type"> MeshShapeVC </param>
-				<param name="Shape"> coreShape </param>
-				<list name="variables">
-					<struct>
-						<param name="name">vx</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-					<struct>
-						<param name="name">vy</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-				</list>
-			</struct>
-			<!--
-			-->
-
-			
+               <struct>
+                       <param name="type"> WallVC </param>
+                       <param name="wall"> outer </param>
+                       <list name="variables">
+                               <struct>
+                                       <param name="name">vx</param>
+                                       <param name="type">double</param>
+                                       <param name="value"> 0 </param>
+                               </struct>
+                               <struct>
+                                       <param name="name">vy</param>
+                                       <param name="type">double</param>
+                                       <param name="value"> 0 </param>
+                               </struct>
+                       </list>
+               </struct>
 	</list>
 	</struct>
 </StGermainData>

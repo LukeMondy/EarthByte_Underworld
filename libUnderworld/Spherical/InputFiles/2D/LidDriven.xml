@@ -28,6 +28,7 @@
 	<include>StgFEM/VelocityField.xml</include>
 	<include>StgFEM/PressureField.xml</include>
 	<include>Underworld/GaussSwarm.xml</include>
+	<include>Underworld/GaussSwarmWithGaussMaterialSwarm.xml</include>
 	<include>Spherical/StokesFlowUzawa.xml</include>
 	
 	<struct name="components" mergeType="merge">

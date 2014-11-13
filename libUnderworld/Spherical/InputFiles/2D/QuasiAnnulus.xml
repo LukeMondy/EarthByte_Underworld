@@ -67,8 +67,8 @@
 		</struct>
 		<struct name="sphere">
 			<param name="Type">Sphere</param>
-			<param name="CentreX">1.9134</param>
-			<param name="CentreY">4.6194</param>
+			<param name="CentreX">-4.6194</param>
+			<param name="CentreY">1.9134</param>
 			<param name="CentreZ">0</param>
 			<param name="radius">1</param>
 		</struct>
@@ -93,8 +93,8 @@
 			<struct type="struct" name="buoyancyForceTerm">
 				<param name="Type">VectorAssemblyTerm_NA__F</param>
 				<param name="functionLabel">0</param>
-				<!--
 				<param name="functionLabel">bodyForce</param>
+				<!--
 				-->
 				<param name="ForceVector">mom_force</param>
 				<param name="Swarm">picIntegrationPoints</param>
@@ -130,7 +130,7 @@
 
 			<struct name="materialSwarmParticleLayout" mergeType="merge">
 				<param name="Type" mergeType="replace">IrregularMeshParticleLayout</param>
-				<param name="cellParticleCount">20</param>
+				<param name="cellParticleCount">10</param>
 				<param name="FeMesh">linearMesh</param>
 			</struct>
 	</struct>
@@ -150,17 +150,17 @@
 	<param name="shadowDepth"> 1 </param>
 
 	<param name="minX"> 3.0 </param> <param name="maxX"> 6</param> 
-	<param name="elementResI"> 20 </param>
+	<param name="elementResI"> 3 </param>
 
 	<param name="minY"> -10 </param> <param name="maxY"> 170 </param>
-	<param name="elementResJ"> 72 </param>
+	<param name="elementResJ"> 4 </param>
 
 	<param name="minZ"> 0.0f </param> <param name="maxZ"> 1.0f </param>
 	<param name="elementResK"> 1000 </param>
 
 	<!-- material points swarm parameters -->
   <param name="particleLayoutType">random</param>
-  <param name="particlesPerCell">20</param>
+  <param name="particlesPerCell">4</param>
   <param name="seed">13</param>
 	<param name="gaussParticlesX"> 2 </param>
 	<param name="gaussParticlesY"> 2 </param>
@@ -168,7 +168,7 @@
 	<param name="defaultDiffusivity"> 1e-3 </param>
 	
 	<!-- Set up BCs -->
-	<include> ./BCs/annulus.Periodic.xml </include>
+	<include> Spherical/VCs/annulus.Periodic.xml </include>
 
 
 	<!--
