@@ -49,7 +49,8 @@ void SphericalAlgorithms_SetAlgorithms( SphericalAlgorithms* self )
    unsigned int s_i, nSwarms=0;
 
    self->sle = (Stokes_SLE*)LiveComponentRegister_Get( LiveComponentRegister_GetLiveComponentRegister(), "stokesEqn" );
-   self->sle->_updateSolutionOntoNodes = _SphericalSystemLinearEquations_UpdateSolutionOntoNodes;
+   if( self->sle ) 
+      self->sle->_updateSolutionOntoNodes = _SphericalSystemLinearEquations_UpdateSolutionOntoNodes;
 
    context = (FiniteElementContext*)self->velvar->context;
 
@@ -93,7 +94,7 @@ void SphericalAlgorithms_SetAlgorithms( SphericalAlgorithms* self )
       Spherical_Get_RotationMatrixIJK = &Spherical_GetRotationMatrixIJK_SphericalNodes;
 
       // add removal of null space unless we allow it
-      if( !self->asbr ) {
+      if( !self->asbr && self->sle ) {
          // hackish way of getting the Stokes_SLE. We need it to put the NULL space vector on it
          self->sle->_initialise = _Spherical_RTP_StokesSLE_Initialise;
       }
@@ -119,7 +120,12 @@ void SphericalAlgorithms_SetAlgorithms( SphericalAlgorithms* self )
             ((MaterialPointsSwarm*)swarm)->swarmAdvector->_calculateTimeDeriv = _SwarmAdvector_TimeDeriv_Quicker4IrregularMesh;
          }
       }
-      Spherical_Get_RotationMatrixIJK = &Spherical_GetRotationMatrixIJK_ProjectionNodes;
+      Spherical_Get_RotationMatrixIJK = &Spherical_GetRotationMatrixIJK_FSNodes;
+
+      // if RS mesh then use this trasformation instead
+      if( Stg_Class_IsInstance( self->mesh->generator, RSGenerator_Type ) ) {
+         Spherical_Get_RotationMatrixIJK = &Spherical_GetRotationMatrixIJK_RSNodes;
+      }
    }
 
    if( context->maxTimeSteps == -1 ) {
@@ -241,7 +247,7 @@ void _SphericalAlgorithms_Initialise(void* component, void* data)
       Swarm_Register* sr = Swarm_Register_GetSwarm_Register();
       int nSwarms, s_i;
       Swarm* swarm=NULL;
-      if( self->timeIntegrator )
+      if( self->timeIntegrator && ((SphericalGenerator*)self->mesh->generator)->elGrid->nDims==2 )
       {
          self->timeIntegrator->_execute = _TimeIntegrator_ExecuteRK2Spherical;
       }
