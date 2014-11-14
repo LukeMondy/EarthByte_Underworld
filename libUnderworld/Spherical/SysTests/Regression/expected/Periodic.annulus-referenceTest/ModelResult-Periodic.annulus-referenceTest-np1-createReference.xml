@@ -1,0 +1,25 @@
+<StgModelResult>
+  <modelName>Periodic.annulus-referenceTest-np1-createReference</modelName>
+  <outputPath>/mnt/scratch/clean_uw/libUnderworld/Spherical/SysTests/Regression/expected/Periodic.annulus-referenceTest</outputPath>
+  <jobMetaInfo>
+    <runType>MPI</runType>
+    <simtime>0.0</simtime>
+    <submitTime>2014-11-14 14:10:23.856467</submitTime>
+    <platformInfo>
+      <release>3.13.0-24-generic</release>
+      <machine>x86_64</machine>
+      <version>#47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014</version>
+      <node>cloudjules</node>
+      <system>Linux</system>
+    </platformInfo>
+    <performanceInfo>
+      <profilerInfo profType="UnixTimeCmd">
+        <avgMem_KB>0.0</avgMem_KB>
+        <pageFaults>0.0</pageFaults>
+        <maxMem_KB>24308.0</maxMem_KB>
+        <walltime>2.12</walltime>
+      </profilerInfo>
+    </performanceInfo>
+    <runCommand>mpiexec -np 1 /home/julian/scratch/clean_uw/libUnderworld/build/bin/StGermain Periodic.annulus.xml /mnt/scratch/clean_uw/libUnderworld/Spherical/SysTests/Regression/expected/Periodic.annulus-referenceTest/credo-analysis.xml </runCommand>
+  </jobMetaInfo>
+</StgModelResult>
