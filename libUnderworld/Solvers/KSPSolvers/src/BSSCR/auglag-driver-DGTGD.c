@@ -62,7 +62,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
                                           MatStokesBlockScaling BA, PetscTruth sym, KSP_BSSCR * bsscrp_self )
 {
     AugLagStokes_SLE *    stokesSLE = (AugLagStokes_SLE*)bsscrp_self->st_sle;
-    PetscTruth uzawastyle, KisJustK=PETSC_TRUE, restorek, changeA11prefix;
+    PetscTruth uzawastyle, KisJustK=PETSC_TRUE, restorek, change_A11rhspresolve;
     PetscTruth usePreviousGuess, useNormInfStoppingConditions, useNormInfMonitor, found, forcecorrection;
     PetscTruth change_backsolve;
     PetscErrorCode ierr;
@@ -133,7 +133,11 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
         }
 
         K2=bsscrp_self->K2;
+        scrSolveTime = MPI_Wtime();
         ierr=MatAXPY(K,penaltyNumber,K2,DIFFERENT_NONZERO_PATTERN);CHKERRQ(ierr);/* Computes K = penaltyNumber*K2 + K */
+        scrSolveTime =  MPI_Wtime() - scrSolveTime;
+        PetscPrintf( PETSC_COMM_WORLD, "\n\t* K+p*K2 in time: %lf seconds\n\n", scrSolveTime);
+
         //ierr=MatAYPX(K2,penaltyNumber,K,DIFFERENT_NONZERO_PATTERN);CHKERRQ(ierr);/* Computes K2 = penaltyNumber*K2 + K */
         //Korig=K;
         //K=K2; /* we are doing K2=a*K2+K because K2s non-zero pattern is larger than Ks. The other way round is very slow due to extra memory allocation in K. */
@@ -229,24 +233,34 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /* If multigrid is enabled, set it now. */
-    changeA11prefix = PETSC_FALSE; 
-    PetscOptionsGetTruth( PETSC_NULL, "-change_A11_prefix", &changeA11prefix, &found );
+    change_A11rhspresolve = PETSC_FALSE; 
+    PetscOptionsGetTruth( PETSC_NULL, "-change_A11rhspresolve", &change_A11rhspresolve, &found );
 
-    if(bsscrp_self->mg && !changeA11prefix) { mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); }
+    if(bsscrp_self->mg && !change_A11rhspresolve) { mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); }
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /* create right hand side */
-    if(changeA11prefix){
-        KSPSetOptionsPrefix( ksp_inner, "RHSA11_" ); /* Want to configure this solve differently sometimes */
-        KSPSetFromOptions( ksp_inner );
+    if(change_A11rhspresolve){
+      Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
+      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix(ksp_inner, "rhsA11_");
+      MatSchurSetKSP( S, ksp_inner );
+      KSPGetPC( ksp_inner, &pcInner );
+      KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
     }
     MatGetVecs( S, PETSC_NULL, &h_hat );
     MatSchurApplyReductionToVecFromBlock( S, stokes_b, h_hat );/* A11 KSPSolve in here */
 
-    if(bsscrp_self->mg && changeA11prefix) { 
-        KSPSetOptionsPrefix( ksp_inner, "A11_" );
-        KSPSetFromOptions( ksp_inner );
-        mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); 
+    if(bsscrp_self->mg && change_A11rhspresolve) {
+      Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
+      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix( ksp_inner, "A11_" );
+      MatSchurSetKSP( S, ksp_inner );
+      KSPGetPC( ksp_inner, &pcInner );
+      KSPSetFromOptions( ksp_inner );
+      mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); 
     }
     /* create solver for S p = h_hat */
     KSPCreate( PETSC_COMM_WORLD, &ksp_S );

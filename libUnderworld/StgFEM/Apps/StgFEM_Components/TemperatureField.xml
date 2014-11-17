@@ -43,6 +43,6 @@
       </struct>
    </struct>
 
-   <param name="temperatureMesh">linearMesh</param>
+   <param name="temperatureMesh">velocityMesh</param>
 
 </StGermainData>

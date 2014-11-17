@@ -29,7 +29,7 @@
   <include>Underworld/StokesFlowUzawaPIC.xml</include>
 
   <param name="velocityMesh">quadraticMesh</param>
-  <param name="pressureMesh">linearMesh</param>
+  <param name="pressureMesh">linearInnerMesh</param>
   <param name="elementMesh">quadraticMesh</param>
 
   <struct name="components" mergeType="merge">

@@ -58,7 +58,7 @@ do
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
-for PEN in 4.0
+for PEN in 0.0
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 PEN=`echo "0.25*$PEN" | bc -l`
@@ -105,7 +105,7 @@ MGOP=" "
     fi
 
 ID=$SCR$A11
-RES=32
+RES=$1
 RESX=$RES
 RESY=$RES
 PP=40

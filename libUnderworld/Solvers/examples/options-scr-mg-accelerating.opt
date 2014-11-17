@@ -11,22 +11,22 @@
 
 # The schur-complement options; see 'options-scr.opt' for details.
 
--scr_ksp_type fgmres
+#-scr_ksp_type fgmres
 
 # outer iteration tolerance (pressure)
--scr_ksp_rtol 1.0e-5     
+#-scr_ksp_rtol 1.0e-5     
 
 # inner iteration tolerance (search velocity)    		
--A11_ksp_rtol 1.0e-6  
+#-A11_ksp_rtol 1.0e-6  
 
 # back solver tolerance (velocity)       	
--scr_vel_back_solve_rtol 1.0e-7
--backsolveA11_ksp_type fgmres   
--backsolve_A11_ksp_rtol 1.0e-7
+#-scr_vel_back_solve_rtol 1.0e-7
+#-backsolveA11_ksp_type fgmres   
+#-backsolve_A11_ksp_rtol 1.0e-7
 
--scr_use_previous_guess
--A11_ksp_type fgmres
--Q22_pc_type gkgdiag
+#-scr_use_previous_guess
+#-A11_ksp_type fgmres
+#-Q22_pc_type gkgdiag
 # -no_scale
 
 # -pc_mg_monitor 
@@ -44,13 +44,13 @@
 # 'multiplicative' by default, not entirely sure why this is preferable to
 # 'additive'.
 
--A11_pc_mg_type multiplicative
--A11_pc_mg_type additive
+#-A11_pc_mg_type multiplicative
+#-A11_pc_mg_type additive
 
 # Select either a V-cycle, 'v', or a W-cycle 'w'. By default we use a V-cycle
 # as it is usually enough.
 
--A11_pc_mg_cycle_type w
+#-A11_pc_mg_cycle_type w
 # -pc_mg_cycle_type v 
 
 # Select the number of cycles to perform per MG precondition. For particularly
@@ -82,7 +82,7 @@
 #-A11_mg_levels_ksp_type minres
 -A11_mg_levels_ksp_max_its 6
 -A11_mg_levels_ksp_convergence_test skip
--A11_mg_levels_ksp_type fgmres
+#-A11_mg_levels_ksp_type fgmres
 -A11_mg_levels_pc_type sor
 -A11_mg_levels_pc_sub_type cholesky
 
