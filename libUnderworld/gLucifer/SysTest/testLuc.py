@@ -18,7 +18,6 @@ images2d.append("windowMultiViewports.00010.png");
 # Tests where images is checked for every timestep
 img2DCompsMulti = [ "windowContours",
    "windowEigenvectors",
-   "windowFieldSampler",
    "windowFeVariableSurface",
    "windowHistoricalSwarmTrajectory",
    "windowIsosurface",
@@ -76,22 +75,6 @@ for np in [1, 2]:
     testSuite.addStdTest(ImageReferenceTest, ["testDrawingObjects3d.xml"],
         imagesToTest=images3d, defImageTol=(0.1, 0.05), 
         runSteps=steps, compareEvery=compareStep, nproc=np, expPathPrefix="expected")
-
-# Test for image stack (not implemented for parallel)
-# Disabled for now, image stack output will have to be implemented
-# as a gLucifer Viewer export feature
-"""
-images = []
-samples = 10;
-for t in range(samples+1):
-   images.append("StrainRateInvariantField-%03d.00001.png" % t)
-   images.append("StrainRateInvariantField-%03d.00002.png" % t)
-   images.append("StrainRateInvariantField-%03d.00003.png" % t)
-
-testSuite.addStdTest(ImageReferenceTest, ["lucFieldSamplerImageStackTest.xml"],
-        imagesToTest=images, defImageTol=(0.1, 0.05), 
-        runSteps=3, compareEvery=1, nproc=1, expPathPrefix="expected")
-"""
 
 # Set timeout 
 testSuite.setAllTimeouts(minutes=10)
