@@ -461,6 +461,7 @@ void ColourMap::setComponent(int component_index)
 
 void ColourMap::loadTexture()
 {
+   if (!texture) texture = new TextureData();
    #define PALSIZE 4096
    calibrate(0, PALSIZE);
    unsigned char paletteData[4*PALSIZE];
@@ -476,7 +477,7 @@ void ColourMap::loadTexture()
    }
 
    glActiveTexture(GL_TEXTURE0);
-   glBindTexture(GL_TEXTURE_2D, texture.id);
+   glBindTexture(GL_TEXTURE_2D, texture->id);
    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, PALSIZE, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, paletteData);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);

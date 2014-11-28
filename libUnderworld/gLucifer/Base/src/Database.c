@@ -409,17 +409,6 @@ void _lucDatabase_Execute( void* database, void* data )
 
 void _lucDatabase_Destroy( void* database, void* data ) { }
 
-void lucDatabase_DeleteWindows(lucDatabase* self)
-{
-   /* Delete any existing window->viewport->object structure information */
-   lucDatabase_IssueSQL(self->db, "delete from window;");
-   lucDatabase_IssueSQL(self->db, "delete from window_viewport;");
-   lucDatabase_IssueSQL(self->db, "delete from viewport;");
-   lucDatabase_IssueSQL(self->db, "delete from object;");
-   lucDatabase_IssueSQL(self->db, "delete from object_colourmap;");
-   lucDatabase_IssueSQL(self->db, "delete from viewport_object;");
-}
-
 void lucDatabase_Dump(void* database)
 {
    lucDatabase* self = (lucDatabase*)database;
