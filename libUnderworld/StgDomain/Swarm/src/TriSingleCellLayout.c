@@ -215,16 +215,16 @@ void _TriSingleCellLayout_InitialisePoints(
 		case 1:
 			assert( 0 );
 		case 2:
-			*points[0] = Memory_Alloc_Array( double, self->dim, "points[0]" );
-			*points[1] = Memory_Alloc_Array( double, self->dim, "points[1]" );
-			*points[2] = Memory_Alloc_Array( double, self->dim, "points[2]" );
+			points[0] = Memory_Alloc_Array( double, self->dim, "points[0]" );
+			points[1] = Memory_Alloc_Array( double, self->dim, "points[1]" );
+			points[2] = Memory_Alloc_Array( double, self->dim, "points[2]" );
 			
-			(*points[0])[0] = 0.0f;
-			(*points[0])[1] = 0.0f;
-			(*points[1])[0] = 1.0f;
-			(*points[1])[1] = 0.0f;
-			(*points[2])[0] = 0.0f;
-			(*points[2])[1] = 1.0f;
+			(points[0])[0] = 0.0f;
+			(points[0])[1] = 0.0f;
+			(points[1])[0] = 1.0f;
+			(points[1])[1] = 0.0f;
+			(points[2])[0] = 0.0f;
+			(points[2])[1] = 1.0f;
 			break;
 		case 3:
 			assert( 0 );

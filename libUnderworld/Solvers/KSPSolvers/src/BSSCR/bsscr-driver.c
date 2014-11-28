@@ -5,7 +5,13 @@
 #include <petscvec.h>
 #include <petscksp.h>
 #include <petscpc.h>
-#include <private/kspimpl.h>
+
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include <petsc-private/kspimpl.h>
+#else
+  #include <private/kspimpl.h>
+#endif
 
 
 #include "common-driver-utils.h"
@@ -171,7 +177,7 @@ PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stoke
 
     KSPCreate( PETSC_COMM_WORLD, &ksp_S );
     KSPSetOptionsPrefix( ksp_S, "scr_");
-    KSPSetOperators( ksp_S, S,S, SAME_NONZERO_PATTERN );
+    Stg_KSPSetOperators( ksp_S, S,S, SAME_NONZERO_PATTERN );
     KSPSetType( ksp_S, "cg" );
         
     /* Build preconditioner for S */
@@ -182,7 +188,7 @@ PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stoke
 
     /* Set specific monitor test */
     KSPGetTolerances( ksp_S, PETSC_NULL, PETSC_NULL, PETSC_NULL, &max_it );
-    BSSCR_KSPLogSetMonitor( ksp_S, max_it, &monitor_index );
+    //BSSCR_KSPLogSetMonitor( ksp_S, max_it, &monitor_index );
         
     /* Pressure / Velocity Solve */   
     scrSolveTime = MPI_Wtime();
@@ -418,7 +424,7 @@ PetscErrorCode BSSCR_KSPPWConvergedCreate(void **ctx)
     KSPPWConvergedCtx         *cctx;
         
     PetscFunctionBegin;
-    ierr = PetscNew(KSPPWConvergedCtx,&cctx);CHKERRQ(ierr);
+    ierr = Stg_PetscNew(KSPPWConvergedCtx,&cctx);CHKERRQ(ierr);
     *ctx = cctx;
     PetscFunctionReturn(0);
 }
@@ -570,7 +576,7 @@ PetscErrorCode BSSCR_KSPNormInfConverged(KSP ksp,PetscInt n,PetscReal rnorm,KSPC
 PetscErrorCode BSSCR_KSPNormInfToNorm2Monitor(KSP ksp,PetscInt n,PetscReal rnorm, void *dummy)
 {
     PetscErrorCode          ierr;
-    PetscViewerASCIIMonitor viewer;
+    PetscViewerASCIIMonitor viewer  = dummy ? (PetscViewer) dummy : PETSC_VIEWER_STDOUT_(((PetscObject)ksp)->comm);
     PetscReal              R_normInf, R_norm2;
     PetscInt                     R_size;
     Vec                    R, work, w1, w2;
@@ -587,8 +593,7 @@ PetscErrorCode BSSCR_KSPNormInfToNorm2Monitor(KSP ksp,PetscInt n,PetscReal rnorm
     VecNorm( R, NORM_2,        &R_norm2 );
     VecGetSize( R, &R_size );
         
-    ierr = PetscViewerASCIIMonitorCreate(((PetscObject)ksp)->comm,"stdout",0,&viewer); 
-    CHKERRQ(ierr);
+    ierr = PetscViewerASCIIMonitorCreate(((PetscObject)ksp)->comm,"stdout",0,&viewer); CHKERRQ(ierr);
         
     if(R_norm2 == 0.0) {
         ierr = PetscViewerASCIIMonitorPrintf(viewer,"%3D KSP Residual Spikiness - INFINITY (%s) \n",

@@ -62,24 +62,24 @@ void Underworld_Multigrid_SolverSetup( void* _solver, void* _stokesSLE ) {
 	Journal_DPrintfL( solver->debug, 1, "Setting up MatrixSolver for the velocity eqn.\n" );
    self->mgSolver->mgData->matrixChanged = True;
 	//MatrixSolver_SetMatrix( self->velSolver, sle->kStiffMat->matrix );
-	//KSPSetOperators( self->velSolver, ((PETScMatrix*)sle->kStiffMat->matrix)->petscMat, 
+	//Stg_KSPSetOperators( self->velSolver, ((PETScMatrix*)sle->kStiffMat->matrix)->petscMat, 
 	//		((PETScMatrix*)sle->kStiffMat->matrix)->petscMat, DIFFERENT_NONZERO_PATTERN );
 
         self->mgSolver->mgData->matrix = sle->kStiffMat->matrix;
         PETScMGSolver_Setup( self->mgSolver, NULL, NULL );
         solver->velSolver = self->mgSolver->mgData->ksp;
-	KSPSetOperators( solver->velSolver, sle->kStiffMat->matrix, sle->kStiffMat->matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( solver->velSolver, sle->kStiffMat->matrix, sle->kStiffMat->matrix, DIFFERENT_NONZERO_PATTERN );
 /*
-	KSPSetOperators( solver->velSolver, sle->kStiffMat->matrix, sle->kStiffMat->matrix, DIFFERENT_NONZERO_PATTERN );
+	Stg_KSPSetOperators( solver->velSolver, sle->kStiffMat->matrix, sle->kStiffMat->matrix, DIFFERENT_NONZERO_PATTERN );
         KSPSetFromOptions( solver->velSolver );
 */
 
 	if( solver->pcSolver ) {
 		Journal_DPrintfL( solver->debug, 1, "Setting up MatrixSolver for the Preconditioner.\n" );
 		//MatrixSolver_SetMatrix( self->pcSolver, self->preconditioner->matrix );
-		//KSPSetOperators( self->pcSolver, ((PETScMatrix*)self->preconditioner->matrix)->petscMat, 
+		//Stg_KSPSetOperators( self->pcSolver, ((PETScMatrix*)self->preconditioner->matrix)->petscMat, 
 		//		((PETScMatrix*)self->preconditioner->matrix)->petscMat, DIFFERENT_NONZERO_PATTERN );
-		KSPSetOperators( solver->pcSolver, solver->preconditioner->matrix, solver->preconditioner->matrix, DIFFERENT_NONZERO_PATTERN );
+		Stg_KSPSetOperators( solver->pcSolver, solver->preconditioner->matrix, solver->preconditioner->matrix, DIFFERENT_NONZERO_PATTERN );
     KSPSetFromOptions( solver->pcSolver );
 	}
 

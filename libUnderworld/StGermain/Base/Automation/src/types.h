@@ -51,7 +51,6 @@ typedef struct Comm Comm;
    typedef struct LiveComponentRegister         LiveComponentRegister;
    typedef struct Stg_ComponentFactory          Stg_ComponentFactory;
    typedef struct DocumentationComponentFactory DocumentationComponentFactory;
-   typedef struct OneOffComponentFactory        OneOffComponentFactory;
 
    typedef struct HierarchyTable                HierarchyTable;
    typedef struct Stg_CallGraph                 Stg_CallGraph;

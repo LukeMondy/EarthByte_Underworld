@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<!-- A StGermain input file -->
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+<!-- Load the plugin that sets up the app, plus any others you require -->
+  <list name="import">
+    <param>Underworld</param>
+    <param>Spherical</param>
+    <param>Solvers</param>
+  </list>
+
+  <list name="plugins" mergeType="merge">
+    <struct>
+      <param name="Type">StgFEM_StandardConditionFunctions</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">StgFEM_FrequentOutput</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">Underworld_AverageTemperature</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">Spherical_SimpleSteadyStateTest</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">Spherical_SphericalVrms</param>
+      <param name="Context">context</param>
+      <param name="GaussSwarm">gaussSwarm</param>
+      <param name="VelocityField">VelocityField</param>
+    </struct>
+    <struct>
+      <param name="Type">StgFEM_CPUTime</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">Spherical_SphericalNusselt</param>
+      <param name="Context">context</param>
+      <param name="GaussSwarm">gaussSwarm</param>
+      <param name="VelocityField">VelocityField</param>
+      <param name="Ra">Ra</param>
+      <param name="volume_averaged_viscous_dissipation">volAvgVD</param>
+      <param name="volume_averaged_work_done">volAvgWorkDone</param>
+      <param name="volume">volume</param>
+    </struct>
+  </list>
+
+  <include>StgFEM/ConstantMesh.xml</include>
+  <include>Spherical/SphericalMesh.xml</include>
+  <include>StgFEM/VelocityField.xml</include>
+  <include>StgFEM/PressureField.xml</include>
+  <include>Underworld/GaussSwarmWithGaussMaterialSwarm.xml</include>
+  <include>StgFEM/TemperatureField.xml</include>
+  <include>StgFEM/TempAdvDiff.xml</include>
+  <include>Spherical/StokesFlowUzawa.xml</include>
+
+  <struct name="components" mergeType="merge">
+    <struct name="context">
+      <param name="Type">UnderworldContext</param>
+    </struct>
+    <struct name="default_scaling">
+      <param name="Type">Scaling</param>
+      <param name="spaceCoefficient_meters"> 1.0 </param>
+      <param name="timeCoefficient_seconds"> 1.0 </param>
+      <param name="massCoefficient_kilograms"> 1.0 </param>
+      <param name="temperatureCoefficient_kelvin"> 1.0 </param>
+    </struct>
+    <struct name="default_ppcManager">
+      <param name="Type">PpcManager</param>
+      <param name="MaterialSwarm"> gaussMaterialSwarm </param>
+      <param name="IntegrationSwarm"> gaussSwarm </param>
+      <param name="Mesh"> linearMesh </param>
+      <param name="Gravity"> 1 </param>
+      <list name="Properties">
+        <struct>
+          <param name="PropertyName"> DensityLabel </param>
+          <param name="StoreOnParticles"> false </param>
+          <param name="StoreOnMesh"> True </param>
+        </struct>
+        <struct>
+          <param name="PropertyName"> ViscousDisLabel </param>
+          <param name="StoreOnParticles"> false </param>
+          <param name="StoreOnMesh"> True </param>
+        </struct>
+        <struct>
+          <param name="PropertyName"> AdibaticHeatingLabel </param>
+          <param name="StoreOnParticles"> false </param>
+          <param name="StoreOnMesh"> True </param>
+        </struct>
+      </list>
+    </struct>
+    <struct name="linearMeshGenerator" mergeType="merge">
+      <param name="Type" mergeType="replace">SphericalGenerator</param>
+      <param name="regular" mergeType="replace">false</param>
+      <param name="FullAnnulus" mergeType="replace">True</param>
+    </struct>
+    <struct name="everywhere">
+      <param name="Type">Everywhere</param>
+    </struct>
+    <struct name="numericalRheology">
+      <param name="Type">PpcRheology</param>
+      <param name="functionLabel">viscosity</param>
+    </struct>
+    <struct name="background">
+      <param name="Type">RheologyMaterial</param>
+      <param name="Shape">everywhere</param>
+      <param name="Rheology">numericalRheology</param>
+      <param name="DensityLabel">referenceDensity</param>
+      <param name="AdibaticHeatingLabel">adiabaticHeating</param>
+      <param name="ViscousDisLabel">viscousHeating</param>
+    </struct>
+
+    <!-- ppc for depth -->
+    <struct name="depth">
+      <param name="Type">Ppc_SphericalDepth</param>
+      <param name="ReferenceHeight">2.22</param>
+    </struct>
+
+    <struct name="referenceDensity">
+      <param name="Type">Ppc_Exponential</param>
+      <param name="exponent_input">depth</param>
+      <!--
+      <param name="Type">Ppc_Constant</param>
+      <param name="Value">1</param>
+      -->
+    </struct>
+
+    <struct name="drho_dr">
+      <param name="Type">Ppc_Operation</param>
+      <param name="Operation"> * </param>
+      <list name="Properties">
+        <param>referenceDensity</param>
+        <param>1</param>
+      </list>
+    </struct>
+
+    <struct name="compressibleMatTerm">
+      <param name="Type">MatAssembly_NA__Fi__NB</param>
+      <param name="StiffnessMatrix">div_matrix</param>
+      <param name="Swarm">gaussSwarm</param>
+      <param name="grad_rho"> drho_dr </param>
+      <param name="rho"> referenceDensity </param>
+    </struct>
+
+    <struct name="viscosity">
+      <param name="Type">Ppc_Constant</param>
+      <param name="Value">1</param>
+<!--
+      <param name="Type">Ppc_Exponential</param>
+      <param name="exponent_input">tempDep_exp</param>
+-->
+    </struct>
+    <struct name="tempDep_exp">
+      <param name="Type">Ppc_Operation</param>
+      <param name="Operation"> * </param>
+      <list name="Properties">
+        <param>tempPpc</param>
+        <param>-6.9078</param>
+      </list>
+    </struct>
+<!-- Density and gravity based on ppc -->
+    <struct type="struct" name="buoyancyForceTerm">
+      <param name="Type">VectorAssemblyTerm_NA__F</param>
+      <param name="functionLabel">bodyForce</param>
+      <param name="ForceVector">mom_force</param>
+      <param name="Swarm">gaussSwarm</param>
+    </struct>
+    <struct type="struct" name="sourceTerm" mergeType="replace">
+      <param name="Type">VectorAssemblyTerm_NA__F</param>
+      <param name="ForceVector">residual</param>
+      <param name="functionLabel">sourceTerm_thermalEqn</param>
+      <param name="Swarm">gaussSwarm</param>
+      <param name="Manager">default_ppcManager</param>
+    </struct>
+    <struct name="sourceTerm_thermalEqn" mergeType="replace">
+      <param name="Type">Ppc_Operation</param>
+      <param name="Operation"> + </param>
+      <list name="Properties">
+         <param>viscousHeating</param>
+         <param>adiabaticHeating</param>
+      </list>
+    </struct>
+    <struct name="tempPpc">
+      <param name="Type">Ppc_Variable</param>
+      <param name="FieldVariable">TemperatureField</param>
+    </struct>
+    <struct name="adiabaticHeating">
+      <param name="Type">Ppc_AdiabaticHeating</param>
+      <param name="Velocity">VelocityField</param>
+      <param name="Temperature">tempPpc</param>
+      <param name="coeff">ppcDi</param>
+      <param name="Gravity">simpleGravityVector</param>
+      <param name="ReferenceTemperature">0.091</param>
+    </struct>
+    <struct name="strainRateFieldPpc">
+      <param name="Type">Ppc_Variable</param>
+      <param name="FieldVariable">StrainRateField</param>
+    </struct>
+    <struct name="2ndInvariant">
+      <param name="Type">Ppc_2ndInvariant</param>
+      <param name="Tensor">strainRateFieldPpc</param>
+    </struct>
+    <struct name="vd">
+      <param name="Type">Ppc_VD</param>
+      <param name="StrainRate">strainRateFieldPpc</param>
+      <param name="Viscosity">viscosity</param>
+    </struct>
+    <struct name="viscousHeating_num">
+      <param name="Type">Ppc_Operation</param>
+      <param name="Operation"> * </param>
+      <list name="Properties">
+        <param>ppcDi</param>
+        <param>vd</param>
+<!--
+        <param>2</param>
+        <param>viscosity</param>
+        <param>2ndInvariant</param>
+        <param>2ndInvariant</param>
+-->
+      </list>
+    </struct>
+    <struct name="ppcDi">
+      <param name="Type">Ppc_Constant</param>
+      <param name="Value">Di</param>
+    </struct>
+    <struct name="ppcRa">
+      <param name="Type">Ppc_Constant</param>
+      <param name="Value">Ra</param>
+    </struct>
+    <struct name="viscousHeating">
+      <param name="Type">Ppc_Operation</param>
+      <param name="Operation"> / </param>
+      <list name="Properties">
+        <param>viscousHeating_num</param>
+        <param>ppcRa</param>
+      </list>
+    </struct>
+    <struct name="BA">
+      <param name="Type">Ppc_Operation</param>
+      <param name="Operation"> * </param>
+      <list name="Properties">
+        <param>ppcRa</param>
+        <!--
+        <param>referenceDensity</param>
+        -->
+        <param>1</param>
+        <param>tempPpc</param>
+      </list>
+    </struct>
+    <struct name="bodyForce">
+      <param name="Type">Ppc_PointGravity</param>
+      <param name="Alpha">BA</param>
+      <param name="xcoord">0.0</param>
+      <param name="ycoord">0.0</param>
+    </struct>
+    <struct name="simpleGravityVector">
+      <param name="Type">Ppc_PointGravity</param>
+      <param name="Alpha">-1</param>
+      <param name="xcoord">0.0</param>
+      <param name="ycoord">0.0</param>
+    </struct>
+    <struct name="volume">
+      <param name="Type">PpcIntegral</param>
+      <param name="functionLabel">1</param>
+    </struct>
+    <struct name="volAvgVD">
+      <param name="Type">PpcIntegral</param>
+      <param name="functionLabel">viscousHeating</param>
+    </struct>
+    <struct name="volAvgWorkDone">
+      <param name="Type">PpcIntegral</param>
+      <param name="functionLabel">adiabaticHeating</param>
+    </struct>
+  </struct>
+
+  <param name="Ra"> 1e4 </param>
+  <param name="Di"> 0.25 </param>
+  <param name="defaultDiffusivity"> 1 </param>
+<!-- Simulation control -->
+  <param name="maxTimeSteps"> 3 </param>
+  <param name="outputEvery"> 1 </param>
+  <param name="dumpEvery"> 1 </param>
+  <param name="checkpointEvery"> 2 </param>
+  <param name="outputPath"> ./annulus </param>
+<!-- Geometry & Mesh setup -->
+  <param name="velocityMesh">linearMesh</param>
+  <param name="pressureMesh">constantMesh</param>
+  <param name="elementMesh">linearMesh</param>
+  <param name="dim"> 2 </param>
+  <param name="shadowDepth"> 1 </param>
+
+  <param name="minX"> 1.22 </param> <param name="maxX"> 2.22 </param>
+  <param name="elementResI"> 70 </param>
+
+  <param name="minY"> 0.0 </param> <param name="maxY"> 1.57079632679</param>
+  <param name="elementResJ"> 756 </param>
+
+  <param name="minZ"> 0.0f </param> <param name="maxZ"> 1.0f </param>
+  <param name="elementResK"> 1000 </param>
+
+<!-- material points swarm parameters -->
+  <param name="gaussParticlesX"> 2 </param>
+  <param name="gaussParticlesY"> 2 </param>
+  <param name="gaussParticlesZ"> 2 </param>
+<!-- Set up BCs -->
+  <searchPath>/home/julian/code/spherical_working/Spherical/CylindricalBenchmarks/</searchPath>
+<!--
+	<include> ./freeSlipBCs.xml </include>
+	<include> ./noSlipBCs.xml </include>
+	<include> ./lidDrivenBCs.xml </include>
+	-->
+<!--
+	<include>./TempVP.xml</include>
+	<include>../VelMagVP.xml</include>
+	<include>gLucifer/window.xml</include>
+	<struct name="components" mergeType="merge">
+		<struct name="window" mergeType="merge">
+			<param name="Viewport">VelocityMagnitudeVP </param>
+		</struct>
+	</struct>
+	-->
+</StGermainData>

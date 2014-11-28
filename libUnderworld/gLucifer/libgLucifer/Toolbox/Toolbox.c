@@ -72,7 +72,7 @@ void gLucifer_Toolbox_Finalise( ToolboxesManager* toolboxesManager ) {
    
    Journal_RPrintf(
       Journal_Register( Info_Type, (Name)gLucifer_Toolbox_Type  ),
-         "Finalised: gLucifer (Visualisation Framework) Revision %s.\n", VERSION );
+         "Finalised: gLucifer (Visualisation Framework).\n" );
 }
 
 Index gLucifer_Toolbox_Register( ToolboxesManager* toolboxesManager ) {

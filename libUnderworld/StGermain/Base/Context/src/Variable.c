@@ -836,7 +836,6 @@ void _Variable_AssignFromXML( void* variable, Stg_ComponentFactory* cf, void* da
 	Name					countName = NULL;
 	unsigned int*		count = NULL;
 	void*					variableRegister = NULL;
-	void*					pointerRegister = NULL;
 	Name*					names = NULL;
 	Stream*				error = Journal_Register( Error_Type, self->type );
 	AbstractContext*	context;	
@@ -855,15 +854,11 @@ void _Variable_AssignFromXML( void* variable, Stg_ComponentFactory* cf, void* da
 	/* Grab Registers */
 	variableRegister = context->variable_Register; 
 	assert( variableRegister );
-	pointerRegister = context->pointer_Register;
-	assert( pointerRegister );
 	
 	Stg_ComponentFactory_ConstructByKey( cf, self->name, "Dependency", Stg_Component, False, data );
 			
 	/* Get Pointer to number of elements in array */
 	countName = Dictionary_GetString( thisComponentDict, "Count" );
-	count = (unsigned int*)Stg_ObjectList_Get( pointerRegister, countName );
-	//assert( count );
 	
 	/* Get Type of Variable */
 	dataTypeName = Dictionary_GetString( thisComponentDict, "DataType" );

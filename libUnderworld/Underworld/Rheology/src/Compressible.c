@@ -162,6 +162,13 @@ void _Compressible_AssignFromXML( void* compressible, Stg_ComponentFactory* cf, 
    materials_Register = context->materials_Register;
    assert( materials_Register );
 
+   /* The PpcManager */
+   self->ppcManager = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Manager", PpcManager, False, data );
+   if( !self->ppcManager  )
+      self->ppcManager = Stg_ComponentFactory_ConstructByName( cf, (Name)"default_ppcManager", PpcManager, True, data  );
+
+   self->compressibleTag = PpcManager_GetPpcFromDict( self->ppcManager, cf, self->name, (Dictionary_Entry_Key)"compressibility", "" );
+
    _Compressible_Init(
          self,
          geometryMesh,
@@ -263,13 +270,18 @@ void _Compressible_AssembleElement(
          oneOnLambda /= ((double)ref->numParticles);
       }
       else {
-         material = (RheologyMaterial*)IntegrationPointsSwarm_GetMaterialAt( swarm, lParticle_I );
 
-         /* Only make contribution to the compressibility matrix if this material is compressible */
-         if ( !material->compressible ) 
-            continue;
+         if( self->compressibleTag != -1 ) // use ppc or old style
+            PpcManager_Get( self->ppcManager, lElement_I, particle, self->compressibleTag, &oneOnLambda );
+         else {
+            material = (RheologyMaterial*)IntegrationPointsSwarm_GetMaterialAt( swarm, lParticle_I );
 
-         oneOnLambda = material->compressible->oneOnLambda;
+            /* Only make contribution to the compressibility matrix if this material is compressible */
+            if ( !material->compressible ) 
+               continue;
+
+            oneOnLambda = material->compressible->oneOnLambda;
+         }
       }
 
       /* Calculate Determinant of Jacobian and Shape Functions */

@@ -58,7 +58,6 @@ Bool StgDomainMesh_Init( int* argc, char** argv[] ) {
 	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister( ), CartesianGenerator_Type, "0", (Stg_Component_DefaultConstructorFunction*)_CartesianGenerator_DefaultNew );
 	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister(), Mesh_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)Mesh_New );
 	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister( ), SurfaceAdaptor_Type, "0", (Stg_Component_DefaultConstructorFunction*)SurfaceAdaptor_New );
-	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister( ), GALESurfaceAdaptor_Type, "0", (Stg_Component_DefaultConstructorFunction*)GALESurfaceAdaptor_New );
 	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister(), CompressionAdaptor_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)CompressionAdaptor_New );
 	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister( ), LinearSpaceAdaptor_Type, "0", (Stg_Component_DefaultConstructorFunction*)LinearSpaceAdaptor_New );
 	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister( ), NodeBunching_Type, "0", (Stg_Component_DefaultConstructorFunction*)NodeBunching_New );
@@ -78,7 +77,6 @@ Bool StgDomainMesh_Init( int* argc, char** argv[] ) {
 	RegisterParent( CartesianGenerator_Type, MeshGenerator_Type );
 	RegisterParent( MeshAdaptor_Type, MeshGenerator_Type );
 	RegisterParent( SurfaceAdaptor_Type, MeshAdaptor_Type );
-	RegisterParent( GALESurfaceAdaptor_Type, MeshAdaptor_Type );
 	RegisterParent( CompressionAdaptor_Type, MeshAdaptor_Type );
 	RegisterParent( LinearSpaceAdaptor_Type, MeshAdaptor_Type );
 	RegisterParent( NodeBunching_Type, MeshAdaptor_Type );

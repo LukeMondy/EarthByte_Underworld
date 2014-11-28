@@ -14,7 +14,12 @@
 #include <petscext_pc.h>
 #endif
 
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
+#else
+  #include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#endif
 
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>

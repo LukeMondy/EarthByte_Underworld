@@ -149,7 +149,7 @@ void lucScalarFieldCrossSection_DrawCrossSection( void* drawingObject, lucDataba
    if (self->colourMap)
       lucColourMap_CalibrateFromFieldVariable(self->colourMap, self->fieldVariable);
 
-   if (self->context->rank == 0)
+   if (self->rank == 0)
    {
       int d;
       int count = self->resolutionA * self->resolutionB;

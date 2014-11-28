@@ -19,11 +19,20 @@
 #include <petscksp.h>
 #include <petscsnes.h>
 
-#include "private/vecimpl.h"
-#include "private/kspimpl.h"
-#include "private/pcimpl.h"
-#include "private/kspimpl.h"
-#include "private/snesimpl.h"
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/vecimpl.h"
+  #include "petsc-private/matimpl.h"
+  #include "petsc-private/pcimpl.h"
+  #include "petsc-private/kspimpl.h"
+  #include "petsc-private/snesimpl.h"
+#else
+  #include "private/vecimpl.h"
+  #include "private/matimpl.h"
+  #include "private/pcimpl.h"
+  #include "private/kspimpl.h"
+  #include "private/snesimpl.h"
+#endif
 
 #include "petscext.h"
 #include "petscext_vec.h"

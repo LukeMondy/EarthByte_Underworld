@@ -48,17 +48,14 @@ class OSMesaViewer  : public OpenGLViewer
   public:
    GLubyte* pixelBuffer;
    OSMesaContext osMesaContext;
-   int timer;
 
    OSMesaViewer();
    ~OSMesaViewer();
    
    //Function implementations
    void open(int width, int height);
-   void show();
+   void setsize(int width, int height);
    void display();
-   void execute();
-   void animate(int msec);
 };
 
 #endif //OSMesaViewer__

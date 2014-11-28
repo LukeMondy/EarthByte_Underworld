@@ -59,11 +59,13 @@
    #include "SUPGAdvDiffTermPpc.h"
    #include "AdiabaticHeatingTermPpc.h"
    #include "ViscousHeatingTermPpc.h"
+   #include "Ppc_VD.h"
    #include "BuoyancyForceTermPpc.h"
 
    #include "VectorAssemblyTerm_NA__F.h"
    #include "VectorAssemblyTerm_NA_i__Fi.h"
    #include "MatrixAssemblyTerm_NA_i__NB_i__F.h"
+   #include "MatrixAssemblyTerm_NA_i__NB_i__Cij.h"
    #include "MatrixAssemblyTerm_NA__NB__F.h"
    #include "VectorSurfaceAssemblyTerm_NA__Fi__ni.h"
 

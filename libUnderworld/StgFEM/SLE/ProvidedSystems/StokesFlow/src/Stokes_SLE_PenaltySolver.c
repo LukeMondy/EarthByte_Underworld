@@ -243,6 +243,9 @@ void _Stokes_SLE_PenaltySolver_Solve( void* solver,void* stokesSLE ) {
         MatCreate( sle->comm, &GTrans );
         MatSetSizes( GTrans, size[0], size[1], PETSC_DECIDE, PETSC_DECIDE );
         MatSetType( GTrans, type );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp(GTrans);
+#endif
         MatCopy( sle->dStiffMat->matrix, GTrans, DIFFERENT_NONZERO_PATTERN );
         divMat = GTrans;
 
@@ -300,7 +303,7 @@ void _Stokes_SLE_PenaltySolver_Solve( void* solver,void* stokesSLE ) {
 	
     /* Setup solver context and make sure that it uses a direct solver */
     KSPCreate( sle->comm, &ksp_v );
-    KSPSetOperators( ksp_v, kMatrix, kMatrix, DIFFERENT_NONZERO_PATTERN );
+    Stg_KSPSetOperators( ksp_v, kMatrix, kMatrix, DIFFERENT_NONZERO_PATTERN );
     KSPSetType( ksp_v, KSPPREONLY );
     KSPGetPC( ksp_v, &pc );
     PCSetType( pc, PCLU );

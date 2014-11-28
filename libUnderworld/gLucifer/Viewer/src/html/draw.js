@@ -647,7 +647,7 @@ function radix(nbyte, source, dest, N)
 function radix_sort(source, swap, bytes)
 {
    //assert(bytes % 2 == 0);
-   //debug_print("Radix X sort: %d items %d bytes. Byte: ", N, size);
+   //OK.debug("Radix X sort: %d items %d bytes. Byte: ", N, size);
    // Sort bytes from least to most significant 
    var N = source.length;
    for (var x = 0; x < bytes; x += 2) 
@@ -1343,7 +1343,7 @@ function minMaxDist()
 function Viewer(canvas) {
   this.canvas = canvas;
   try {
-    this.webgl = new WebGL(this.canvas);
+    this.webgl = new WebGL(this.canvas, {antialias: true, premultipliedAlpha: false});
     this.gl = this.webgl.gl;
     this.ext = (
       this.gl.getExtension('OES_element_index_uint') ||
@@ -1398,6 +1398,8 @@ function Viewer(canvas) {
 }
 
 Viewer.prototype.loadFile = function(source) {
+  //Skip update to rotate/translate etc if in process of updating
+  if (document.mouse.isdown) return;
   var start = new Date();
   var updated = true;
   try {
@@ -1415,6 +1417,7 @@ Viewer.prototype.loadFile = function(source) {
   OK.debug(time + " seconds to parse data");
 
   if (source.exported) {
+    if (!vis.options) {OK.debug("Exported settings require loaded model"); return;}
     var old = this.toString();
     //Copy, overwriting if exists in source
     if (source.options.rotate) vis.options.rotate = source.options.rotate;
@@ -1429,6 +1432,10 @@ Viewer.prototype.loadFile = function(source) {
     //Replace
     vis = source;
   }
+
+  //Always set a bounding box
+  if (!source.options.min) source.options.min = [0, 0, 0];
+  if (!source.options.max) source.options.max = [1, 1, 1];
 
   //Load some user options...
   loadColourMaps();
@@ -1450,6 +1457,7 @@ Viewer.prototype.loadFile = function(source) {
     document.getElementById("border").checked = this.showBorder;
     document.getElementById("pointType").value = this.pointType;
   }
+
   this.updateDims(vis.options);
   //boundingBox(vis.options.min, vis.options.max);
 
@@ -1679,13 +1687,14 @@ function setObjPointType(val) {
 }
 
 function setColour() {
-  var colourSet = function(hsv) { 
-    var col = new Colour(0);
-    col.setHSV(hsv);
-    if (server)
+  var el = $('colour_set');
+  if (server) {
+    el.onchange = function() { 
+      var col = new Colour(this.style.backgroundColor);
       requestData("/command=colour " + vis.objects[properties.id].id + " " + col.hex());
+    }
   }
-  viewer.gradient.edit($('colour_set'));
+  viewer.gradient.edit(el);
 }
 
 function setColourMap(id, noserver) {
@@ -1817,7 +1826,7 @@ function removeChildren(element) {
 
 paletteUpdate = function(obj) {
   //Load colourmap change
-  if (!vis.colourmaps) return;
+  if (!vis.colourmaps || !viewer.gradient.mapid) return;
   var canvas = $('palette');
   var context = canvas.getContext('2d');  
   if (!context) alert("getContext failed");
@@ -1859,8 +1868,14 @@ Viewer.prototype.drawFrame = function(borderOnly) {
   
   //Show screenshot while interacting or if using server
   //if (server || borderOnly)
-  if (server)
+  if (server) {
     $("frame").style.display = 'block';
+    var frame = document.getElementById('frame');
+    this.width = frame.offsetWidth;
+    this.height = frame.offsetHeight;
+    this.canvas.style.width = this.width + "px";
+    this.canvas.style.height = this.height + "px";
+  }
   else
     $("frame").style.display = 'none';
   
@@ -1992,9 +2007,9 @@ Viewer.prototype.reset = function() {
   }
 
   if (server) {
-    requestData('/command=' + this.getRotationString());
-    requestData('/command=' + this.getTranslationString());
-    //requestData('/command=reset');
+    //requestData('/command=' + this.getRotationString());
+    //requestData('/command=' + this.getTranslationString());
+    requestData('/command=reset');
   }
 }
 
@@ -2143,6 +2158,9 @@ function resizeToWindow() {
   //var canvas = document.getElementById('canvas');
   //if (canvas.width < window.innerWidth || canvas.height < window.innerHeight)
     requestData('/command=resize ' + window.innerWidth + " " + window.innerHeight);
+  var frame = document.getElementById('frame');
+  canvas.style.width = frame.style.width = "100%";
+  canvas.style.height = frame.style.height = "100%";
 }
 
 

@@ -18,7 +18,7 @@
     <!-- <include>PICellerator/StokesFlowUzawa.xml</include> -->
     <!-- <include>Underworld/StokesFlowUzawaPIC.xml </include> -->
 
-    <include>../InputFiles/StokesFlowQ2P1Gauss.xml </include>
+    <include>../InputFiles/StokesFlowQ2Q1Gauss.xml </include>
         <include>StgFEM/ConstantMesh.xml</include>
         <include>StgFEM/LinearMesh.xml</include>
         <include>StgFEM/TemperatureField.xml         </include>

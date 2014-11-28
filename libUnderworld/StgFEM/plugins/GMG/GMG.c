@@ -93,7 +93,7 @@ void StgFEM_GMG_SolverSetup( void* _solver, void* _stokesSLE ) {
     }
     
 
-    KSPSetOperators( ksp, sle->kStiffMat->matrix, sle->kStiffMat->matrix,
+    Stg_KSPSetOperators( ksp, sle->kStiffMat->matrix, sle->kStiffMat->matrix,
                      DIFFERENT_NONZERO_PATTERN );
     KSPSetFromOptions( ksp );
 
@@ -102,7 +102,7 @@ void StgFEM_GMG_SolverSetup( void* _solver, void* _stokesSLE ) {
         Journal_DPrintfL( solver->debug, 1,
                           "Setting up MatrixSolver for the "
                           "Preconditioner.\n" );
-        KSPSetOperators( solver->pcSolver, solver->preconditioner->matrix,
+        Stg_KSPSetOperators( solver->pcSolver, solver->preconditioner->matrix,
                          solver->preconditioner->matrix,
                          DIFFERENT_NONZERO_PATTERN );
         KSPSetFromOptions( solver->pcSolver );

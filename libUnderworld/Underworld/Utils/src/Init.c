@@ -110,6 +110,9 @@ Bool Underworld_Utils_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( componentRegister, ViscousHeatingTermPpc_Type, (Name)"0", _ViscousHeatingTermPpc_DefaultNew  );
    RegisterParent( ViscousHeatingTermPpc_Type,      ForceTerm_Type );
 
+   Stg_ComponentRegister_Add( componentRegister, Ppc_VD_Type, (Name)"0", _Ppc_VD_DefaultNew  );
+   RegisterParent( Ppc_VD_Type,      ForceTerm_Type );
+
    Stg_ComponentRegister_Add( componentRegister, AdiabaticHeatingTermPpc_Type, (Name)"0", _AdiabaticHeatingTermPpc_DefaultNew  );
    RegisterParent( AdiabaticHeatingTermPpc_Type,      ForceTerm_Type );
 
@@ -121,6 +124,9 @@ Bool Underworld_Utils_Init( int* argc, char** argv[] ) {
 
    Stg_ComponentRegister_Add( componentRegister, MatrixAssemblyTerm_NA_i__NB_i__F_Type, (Name)"0", _MatrixAssemblyTerm_NA_i__NB_i__F_DefaultNew  );
 	RegisterParent( MatrixAssemblyTerm_NA_i__NB_i__F_Type, StiffnessMatrixTerm_Type );
+
+   Stg_ComponentRegister_Add( componentRegister, MatrixAssemblyTerm_NA_i__NB_i__Cij_Type, (Name)"0", _MatrixAssemblyTerm_NA_i__NB_i__Cij_DefaultNew  );
+   RegisterParent( MatrixAssemblyTerm_NA_i__NB_i__Cij_Type, StiffnessMatrixTerm_Type );
 
    Stg_ComponentRegister_Add( componentRegister, MatrixAssemblyTerm_NA__NB__F_Type, (Name)"0", _MatrixAssemblyTerm_NA__NB__F_DefaultNew  );
 	RegisterParent( MatrixAssemblyTerm_NA__NB__F_Type, StiffnessMatrixTerm_Type );

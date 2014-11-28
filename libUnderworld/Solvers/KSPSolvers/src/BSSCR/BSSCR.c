@@ -14,7 +14,12 @@
 #include <petscext.h>
 #include <petscext_pc.h>
 
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
+#else
+  #include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#endif
 
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
@@ -66,7 +71,7 @@ PetscErrorCode BSSCR_KSPSetConvergenceMinIts(KSP ksp, PetscInt n, KSP_BSSCR * bs
       bsscr->min_it = n; /* set minimum its */
 
 #if(PETSC_VERSION_MAJOR == 3)
-      ierr = PetscNew(BSSCR_KSPConverged_Ctx,&ctx);CHKERRQ(ierr);
+      ierr = Stg_PetscNew(BSSCR_KSPConverged_Ctx,&ctx);CHKERRQ(ierr);
       ierr = KSPDefaultConvergedCreate(&ctx->ctx);CHKERRQ(ierr);
       ctx->bsscr=bsscr;
       ierr = KSPSetConvergenceTest(ksp,BSSCR_KSPConverged,ctx,BSSCR_KSPConverged_Destroy);CHKERRQ(ierr);
@@ -126,7 +131,7 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPRegisterBSSCR(const char path[])
     PetscErrorCode ierr;
 
     PetscFunctionBegin;
-    ierr = KSPRegister(KSPBSSCR, path, "KSPCreate_BSSCR", KSPCreate_BSSCR );CHKERRQ(ierr);
+    ierr = Stg_KSPRegister(KSPBSSCR, path, "KSPCreate_BSSCR", KSPCreate_BSSCR );CHKERRQ(ierr);
     PetscFunctionReturn(0);
 }
 
@@ -150,7 +155,7 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     PetscFunctionBegin;
     PetscPrintf( PETSC_COMM_WORLD, "**** BSSCR -- Block Stokes Schur Compliment Reduction Solver **** \n");
     /** Get the stokes Block matrix and its preconditioner matrix */
-    ierr = PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
+    ierr = Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
     /** In Petsc proper, KSP's ksp->data is usually set in KSPCreate_XXX function. 
         Here it is set in the _StokesBlockKSPInterface_Solve function instead so that we can ensure that the solver
         has everything it needs */
@@ -182,7 +187,7 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     sym = bsscr->DIsSym;
 
     KSPCreate(PETSC_COMM_WORLD, &A11_ksp);
-    KSPSetOperators(A11_ksp, K, K, DIFFERENT_NONZERO_PATTERN);
+    Stg_KSPSetOperators(A11_ksp, K, K, DIFFERENT_NONZERO_PATTERN);
 
     MatBlockGetSubMatrix( Amat, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
 
@@ -367,10 +372,17 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_BSSCR(KSP ksp)
     KSP_BSSCR  *bsscr;
     PetscErrorCode ierr;
     PetscFunctionBegin;
-    ierr = PetscNew(KSP_BSSCR,&bsscr);CHKERRQ(ierr);
+    ierr = Stg_PetscNew(KSP_BSSCR,&bsscr);CHKERRQ(ierr);
     ierr = PetscLogObjectMemory(ksp,sizeof(KSP_BSSCR));CHKERRQ(ierr);
     //ierr = PetscNewLog(ksp,KSP_BSSCR,&bsscr);CHKERRQ(ierr);
     ksp->data                              = (void*)bsscr;
+    
+    #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 2 ) )
+    ierr = KSPSetSupportedNorm(ksp,KSP_NORM_PRECONDITIONED,PC_LEFT,0);CHKERRQ(ierr);
+    ierr = KSPSetSupportedNorm(ksp,KSP_NORM_UNPRECONDITIONED,PC_LEFT,1);CHKERRQ(ierr);
+    ierr = KSPSetSupportedNorm(ksp,KSP_NORM_NATURAL,PC_LEFT,0);CHKERRQ(ierr);
+    ierr = KSPSetSupportedNorm(ksp,KSP_NORM_NONE,PC_LEFT,1);CHKERRQ(ierr);
+    #endif
     /*
        Sets the functions that are associated with this data structure 
        (in C++ this is the same as defining virtual functions)
@@ -384,15 +396,15 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_BSSCR(KSP ksp)
     ksp->ops->buildresidual        = KSPDefaultBuildResidual;
 
 //    bsscr->k2type=K2_GMG;
-    bsscr->k2type      = PETSC_NULL;
+    bsscr->k2type      = 0;
     bsscr->do_scaling  = PETSC_FALSE;
     bsscr->scaled      = PETSC_FALSE;
     bsscr->K2built     = PETSC_FALSE;
     bsscr->check_cb_pressureNS     = PETSC_FALSE;/* checker board nullspace */
     bsscr->check_const_pressureNS  = PETSC_FALSE;/* constant nullspace */
     bsscr->check_pressureNS        = PETSC_FALSE;/* is true if either of above two are true */
-    bsscr->t           = PETSC_NULL;/* null space vectors for pressure */
-    bsscr->v           = PETSC_NULL;
+    bsscr->t           = NULL;/* null space vectors for pressure */
+    bsscr->v           = NULL;
     bsscr->nstol       = 1e-7;/* null space detection tolerance */
     PetscFunctionReturn(0);
 }

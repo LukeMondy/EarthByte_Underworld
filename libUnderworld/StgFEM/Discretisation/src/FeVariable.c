@@ -2136,7 +2136,6 @@ void FeVariable_ImportExportInfo_Delete( void* ptr ) {
 void FeVariable_SaveToFile( void* feVariable, const char* filename, Bool saveCoords ) {
    FeVariable*       self = (FeVariable*)feVariable;
    Node_LocalIndex   lNode_I;
-   Node_GlobalIndex  gNode_I;
    double*           coord;
    Dof_Index         dof_I;
    Dof_Index         dofAtEachNodeCount;
@@ -2168,7 +2167,7 @@ void FeVariable_SaveToFile( void* feVariable, const char* filename, Bool saveCoo
       dimCoeff = Scaling_ParseDimCoeff( theScaling, self->o_units );
 #endif
 
-   lNode_I = 0; gNode_I = 0;
+   lNode_I = 0;
 
    MPI_Comm_size( comm, (int*)&nProcs );
    MPI_Comm_rank( comm, (int*)&myRank );
@@ -2340,6 +2339,8 @@ void FeVariable_SaveToFile( void* feVariable, const char* filename, Bool saveCoo
    
    for( lNode_I = 0; lNode_I < FeMesh_GetNodeLocalSize( self->feMesh ); lNode_I++ ) {
 
+      int offset = 0; // offset into buffer
+
       /* If required, add coords to array */
       if( saveCoords ) {
          coord = Mesh_GetVertex( self->feMesh, lNode_I );
@@ -2348,16 +2349,28 @@ void FeVariable_SaveToFile( void* feVariable, const char* filename, Bool saveCoo
 
          if( self->dim == 3 )
             buf[2] = coord[2]; 
+
+         offset = self->dim; // make non zero offset
       }
       
       /* Add field value at current node to array */
       FeVariable_GetValueAtNode( self, lNode_I, variableValues );
-      for( dof_I = 0; dof_I < dofAtEachNodeCount; dof_I++ ) {
-         if( saveCoords )
-            buf[dof_I + self->dim] = dimCoeff*variableValues[dof_I];
-         else
-            buf[dof_I] = dimCoeff*variableValues[dof_I];   
-      }   
+      if( dofAtEachNodeCount == 6 && self->dim == 3 ) {
+         /* perform a special write for 3D symmetric tensors
+            uw is      xx,yy,zz,xy,xz,yx
+            storage is xx,xy,xz,yy,yz,zz
+         */
+         buf[0+offset] = variableValues[0]; 
+         buf[1+offset] = variableValues[3];
+         buf[2+offset] = variableValues[4];
+         buf[3+offset] = variableValues[1];
+         buf[4+offset] = variableValues[5];
+         buf[5+offset] = variableValues[2];
+      } else {
+         for( dof_I = 0; dof_I < dofAtEachNodeCount; dof_I++ ) {
+            buf[dof_I+offset] = dimCoeff*variableValues[dof_I];   
+         }   
+      }
 
       /* select the region of dataspace to write to  */
       start[0] = FeMesh_NodeDomainToGlobal( self->feMesh, lNode_I );
@@ -2404,7 +2417,7 @@ void FeVariable_SaveToFile( void* feVariable, const char* filename, Bool saveCoo
       filename );
       
    for( lNode_I = 0; lNode_I < FeMesh_GetNodeLocalSize( self->feMesh ); lNode_I++ ) {
-      gNode_I = FeMesh_NodeDomainToGlobal( self->feMesh, lNode_I );
+      Node_GlobalIndex gNode_I = FeMesh_NodeDomainToGlobal( self->feMesh, lNode_I );
       fprintf( outputFile, "%u ", gNode_I );
       
       /* If required, write the node coords to file */      
@@ -2443,7 +2456,6 @@ void FeVariable_ReadFromFile( void* feVariable, const char* filename ) {
    Dof_Index               dof_I;
    Dof_Index               dofAtEachNodeCount;
    double                  variableVal;
-   Processor_Index         proc_I;
    MPI_Comm                comm = Comm_GetMPIComm( Mesh_GetCommTopology( self->feMesh, MT_VERTEX ) );
    unsigned                rank;
    unsigned                nRanks;
@@ -2468,13 +2480,13 @@ void FeVariable_ReadFromFile( void* feVariable, const char* filename ) {
    char                    lineString[MAX_LINE_LENGTH_DEFINE];
    const unsigned int      MAX_LINE_LENGTH = MAX_LINE_LENGTH_DEFINE;
    int                     offset, n;
+   Processor_Index         proc_I=0;
 #endif      
 
    MPI_Comm_rank( comm, (int*)&rank );
    MPI_Comm_size( comm, (int*)&nRanks );
    
    dofAtEachNodeCount = self->fieldComponentCount;
-   proc_I = 0;
    nDims = 0;
    
 #ifdef READ_HDF5   
@@ -2688,14 +2700,32 @@ void FeVariable_ReadFromFile( void* feVariable, const char* filename ) {
       if( Mesh_GlobalToDomain( self->feMesh, MT_VERTEX, gNode_I, &lNode_I ) && 
          lNode_I < Mesh_GetLocalSize( self->feMesh, MT_VERTEX ) )
       {
-         for( dof_I = 0; dof_I < dofAtEachNodeCount; dof_I++ ) {
-            if( savedCoords )
-               variableVal = buf[dof_I + self->dim + noffset ];
-            else
-               variableVal = buf[dof_I + noffset ];
+         if( nDims == 3 && dofAtEachNodeCount == 6 && !savedCoords ) {
+            /* perform a special read for 3D symmetric tensors
+               storage is xx,xy,xz,yy,yz,zz
+               uw is      xx,yy,zz,xy,xz,yx
+            */
+            double tensor[6];
 
-            DofLayout_SetValueDouble( self->dofLayout, lNode_I, dof_I, variableVal );
-         }  
+            tensor[0] = buf[0];
+            tensor[1] = buf[3];
+            tensor[2] = buf[5];
+            tensor[3] = buf[1];
+            tensor[4] = buf[2];
+            tensor[5] = buf[4];
+
+            FeVariable_SetValueAtNode( self, lNode_I, tensor );
+
+         } else {
+            for( dof_I = 0; dof_I < dofAtEachNodeCount; dof_I++ ) {
+               if( savedCoords )
+                  variableVal = buf[dof_I + self->dim + noffset ];
+               else
+                  variableVal = buf[dof_I + noffset ];
+
+               DofLayout_SetValueDouble( self->dofLayout, lNode_I, dof_I, variableVal );
+            }  
+         }
       }
    }   
    Memory_Free( buf );

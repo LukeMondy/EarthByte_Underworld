@@ -91,9 +91,9 @@ class Model
 {
    //Geometry cache
    std::deque<GeomCache*> cache;
+  public:
    std::vector<TimeStep> timesteps;
 
-  public:
    bool readonly;
    FilePath file;
    int attached;

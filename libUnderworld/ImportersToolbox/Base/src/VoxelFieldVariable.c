@@ -32,6 +32,7 @@
 
 #include "types.h"
 #include "VoxelDataHandler_Abstract.h"
+#include "VoxelDataHandler_ndarray.h"
 #include "VoxelFieldVariable.h"
 
 #include <assert.h>
@@ -107,6 +108,14 @@ void _VoxelFieldVariable_AssignFromXML( void* _VoxelFieldVariable, Stg_Component
 
    self->errorStream       = Journal_Register( Error_Type, (Name)self->type  );
    self->dataType          = self->voxelDataHandler->dataType;
+
+   /* if using ndarray, need to set this flag as memory is allocated within numpy */
+   if (Stg_Class_CompareType( self->voxelDataHandler, VoxelDataHandler_ndarray_Type)){
+      self->useExternalArray = True;
+   }
+
+   self->fieldComponentCount = 1;
+
 }
 
 void _VoxelFieldVariable_Build( void* _VoxelFieldVariable, void* data ) {
@@ -123,9 +132,6 @@ void _VoxelFieldVariable_Build( void* _VoxelFieldVariable, void* data ) {
 void _VoxelFieldVariable_Initialise( void* _VoxelFieldVariable, void* data ) {
    VoxelFieldVariable* self = (VoxelFieldVariable*)_VoxelFieldVariable;
    int voxelCount;
-   int vox_i;
-   Progress* prog;
-   char* titleString;
 
    /** initialise parent */
    _FieldVariable_Initialise( _VoxelFieldVariable, data );
@@ -143,33 +149,39 @@ void _VoxelFieldVariable_Initialise( void* _VoxelFieldVariable, void* data ) {
    /** initialise voxel data handler */
    VoxelDataHandler_GotoVoxelDataTop( self->voxelDataHandler );
 
-   /* Use a progress meter. */
-   prog = Progress_New();
-   Progress_SetStream( prog, Journal_MyStream( Info_Type, self ) );
-   Stg_asprintf( &titleString, "%s - Parsing Voxel Data File (%s)", self->type, self->voxelDataHandler->filename );
-   Progress_SetTitle( prog, titleString );
-   Progress_SetRange( prog, 0, voxelCount );
+   if( !self->useExternalArray ){
+      int vox_i;
+      Progress* prog;
+      char* titleString;
 
-   for(vox_i=0; vox_i<voxelCount; vox_i++){
-      Coord coord;
-      VoxelDataHandler_GetCurrentVoxelCoord( (void*)self->voxelDataHandler, (double*)&coord );
-      
-      self->_setArrayValue( (void*)self, (double*)&coord );
+      /* Use a progress meter. */
+      prog = Progress_New();
+      Progress_SetStream( prog, Journal_MyStream( Info_Type, self ) );
+      Stg_asprintf( &titleString, "%s - Parsing Voxel Data File (%s)", self->type, self->voxelDataHandler->filename );
+      Progress_SetTitle( prog, titleString );
+      Progress_SetRange( prog, 0, voxelCount );
 
-      /** increment voxel data cursor */
-      Progress_Increment( prog );
-      VoxelDataHandler_IncrementVoxelIndex( self->voxelDataHandler );
+      for(vox_i=0; vox_i<voxelCount; vox_i++){
+         Coord coord;
+         VoxelDataHandler_GetCurrentVoxelCoord( (void*)self->voxelDataHandler, (double*)&coord );
+         
+         self->_setArrayValue( (void*)self, (double*)&coord );
+
+         /** increment voxel data cursor */
+         Progress_Increment( prog );
+         VoxelDataHandler_IncrementVoxelIndex( self->voxelDataHandler );
+      }
+      /** if required, perform any tests to ensure correct initialisation of data */
+      self->_testDataArray( _VoxelFieldVariable );
+
+      /** force re-cache of min and max */
+      self->minMaxCached = False;
+      _VoxelFieldVariable_GetMinGlobalFieldMagnitude( self );
+
+      Memory_Free( titleString );
+      /* Delete progress meter. */
+      Stg_Class_Delete( prog );
    }
-   /** if required, perform any tests to ensure correct initialisation of data */
-   self->_testDataArray( _VoxelFieldVariable );
-
-   /** force re-cache of min and max */
-   self->minMaxCached = False;
-   _VoxelFieldVariable_GetMinGlobalFieldMagnitude( self );
-
-   Memory_Free( titleString );
-   /* Delete progress meter. */
-   Stg_Class_Delete( prog );
 
 }
 
@@ -195,6 +207,22 @@ double _VoxelFieldVariable_GetMaxGlobalFieldMagnitude( void* voxelFieldVariable 
 void _VoxelFieldVariable_CacheMinMaxGlobalFieldMagnitude( void* voxelFieldVariable ) {
    VoxelFieldVariable* self = (VoxelFieldVariable*) voxelFieldVariable;
    if(self->minMaxCached == False){
+      int ii;
+      for(ii=0; ii<self->arraySize[0]*self->arraySize[1]*self->arraySize[2]; ii++) {
+         double value;
+         switch ( self->dataType )
+         {
+            case Variable_DataType_Char   :  value = (double) *(signed char*)(self->voxelDataArray + ii*sizeof(signed char));   break;
+            case Variable_DataType_Int    :  value = (double) *(        int*)(self->voxelDataArray + ii*sizeof(        int));   break;
+            case Variable_DataType_Float  :  value = (double) *(      float*)(self->voxelDataArray + ii*sizeof(      float));   break;
+            case Variable_DataType_Double :  value = (double) *(     double*)(self->voxelDataArray + ii*sizeof(     double));   break;
+         }
+
+         if( value > self->localMax) self->localMax = value;
+         if( value < self->localMin) self->localMin = value;
+
+      }
+
       MPI_Comm comm = MPI_COMM_WORLD;
       if (self->context) comm = self->context->communicator;
       /** Find upper and lower bounds on all processors */
@@ -220,8 +248,11 @@ void _VoxelFieldVariable_GetMinAndMaxGlobalCoords( void* voxelFieldVariable, dou
    if (self->context) comm = self->context->communicator;
 
    /** Find upper and lower bounds on all processors */
-   (void)MPI_Allreduce( &self->localCrdMin, &min, 1, MPI_DOUBLE, MPI_MIN, comm);
-   (void)MPI_Allreduce( &self->localCrdMax, &max, 1, MPI_DOUBLE, MPI_MAX, comm);
+   int ii;
+   for(ii=0; ii<self->dim; ii++){
+      (void)MPI_Allreduce( &self->localCrdMin[ii], &min[ii], 1, MPI_DOUBLE, MPI_MIN, comm);
+      (void)MPI_Allreduce( &self->localCrdMax[ii], &max[ii], 1, MPI_DOUBLE, MPI_MAX, comm);
+   }
 }
 
 InterpolationResult _VoxelFieldVariable_InterpolateValueAt( void* voxelFieldVariable, double* globalCoord, double* value ) {
@@ -241,12 +272,14 @@ InterpolationResult _VoxelFieldVariable_InterpolateValueAt( void* voxelFieldVari
    local = self->_getArrayIndexIJK( (void*)self, coord, (int*)&indexIJK);
 
    if(local){
+      int posy = indexIJK[0] + self->arraySize[0]*indexIJK[1] + self->arraySize[0]*self->arraySize[1]*indexIJK[2];
+
       switch ( self->dataType )
       {
-         case Variable_DataType_Char   :  *value = (double) ((signed char***)self->voxelDataArray)[indexIJK[0]][indexIJK[1]][indexIJK[2]];   break;
-         case Variable_DataType_Int    :  *value = (double) ((        int***)self->voxelDataArray)[indexIJK[0]][indexIJK[1]][indexIJK[2]];   break;
-         case Variable_DataType_Float  :  *value = (double) ((      float***)self->voxelDataArray)[indexIJK[0]][indexIJK[1]][indexIJK[2]];   break;
-         case Variable_DataType_Double :  *value = (double) ((     double***)self->voxelDataArray)[indexIJK[0]][indexIJK[1]][indexIJK[2]];   break;
+         case Variable_DataType_Char   :  *value = (double) *(signed char*)( self->voxelDataArray + posy*sizeof(signed char) );   break;
+         case Variable_DataType_Int    :  *value = (double) *(        int*)( self->voxelDataArray + posy*sizeof(        int) );   break;
+         case Variable_DataType_Float  :  *value = (double) *(      float*)( self->voxelDataArray + posy*sizeof(      float) );   break;
+         case Variable_DataType_Double :  *value = (double) *(     double*)( self->voxelDataArray + posy*sizeof(     double) );   break;
       }
       retValue = LOCAL;
    }
@@ -302,17 +335,22 @@ void _VoxelFieldVariable_SetupDataArray( void* voxelFieldVariable ){
       }
    }
 
-   if( self->voxelDataArray != NULL )
-      Memory_Free( self->voxelDataArray );
+   if (!self->useExternalArray) {
+      if( self->voxelDataArray != NULL )
+         Memory_Free( self->voxelDataArray );
 
-   /** allocate memory */
-   switch ( self->dataType )
-   {
-      case Variable_DataType_Char   : self->voxelDataArray = Memory_Alloc_3DArray( signed char, self->arraySize[0], self->arraySize[1], self->arraySize[2], (Name)"voxelfield array" );   break;
-      case Variable_DataType_Int    : self->voxelDataArray = Memory_Alloc_3DArray(         int, self->arraySize[0], self->arraySize[1], self->arraySize[2], (Name)"voxelfield array" );   break;
-      case Variable_DataType_Float  : self->voxelDataArray = Memory_Alloc_3DArray(       float, self->arraySize[0], self->arraySize[1], self->arraySize[2], (Name)"voxelfield array" );   break;
-      case Variable_DataType_Double : self->voxelDataArray = Memory_Alloc_3DArray(      double, self->arraySize[0], self->arraySize[1], self->arraySize[2], (Name)"voxelfield array" );   break;
-      default                       : Journal_Firewall( NULL, self->errorStream, "\n\nError in %s for %s '%s' - Datatype not know or not supported.\n\n",__func__,self->type,self->name );  break;
+      int totCells=self->arraySize[0]*self->arraySize[1]*self->arraySize[2];
+      /** allocate memory */
+      switch ( self->dataType )
+      {
+         case Variable_DataType_Char   : self->voxelDataArray = Memory_Alloc_Bytes_Unnamed( sizeof(signed char)*totCells, (Name)"voxelfield array" );   break;
+         case Variable_DataType_Int    : self->voxelDataArray = Memory_Alloc_Bytes_Unnamed( sizeof(        int)*totCells, (Name)"voxelfield array" );   break;
+         case Variable_DataType_Float  : self->voxelDataArray = Memory_Alloc_Bytes_Unnamed( sizeof(      float)*totCells, (Name)"voxelfield array" );   break;
+         case Variable_DataType_Double : self->voxelDataArray = Memory_Alloc_Bytes_Unnamed( sizeof(     double)*totCells, (Name)"voxelfield array" );   break;
+         default                       : Journal_Firewall( NULL, self->errorStream, "\n\nError in %s for %s '%s' - Datatype not know or not supported.\n\n",__func__,self->type,self->name );  break;
+      }
+   } else {
+      self->voxelDataArray = (void*)((VoxelDataHandler_ndarray*)self->voxelDataHandler)->ndPointer;
    }
    
 }
@@ -330,12 +368,14 @@ void _VoxelFieldVariable_SetArrayValue( void* voxelFieldVariable, double* coord 
       void* voxelData = Memory_Alloc_Bytes_Unnamed( sizeof(double), "double" );
       VoxelDataHandler_GetCurrentVoxelData( self->voxelDataHandler, voxelData, self->dataType );
 
+      int posy = indexIJK[0] + self->arraySize[0]*indexIJK[1] + self->arraySize[0]*self->arraySize[1]*indexIJK[2];
+
       switch ( self->dataType )
       {
-         case Variable_DataType_Char   :  (( signed char***)self->voxelDataArray)[indexIJK[0]][indexIJK[1]][indexIJK[2]] = *((signed char*)voxelData);  doubleData = (double)*((signed char*)voxelData);  break;
-         case Variable_DataType_Int    :  ((         int***)self->voxelDataArray)[indexIJK[0]][indexIJK[1]][indexIJK[2]] =         *((int*)voxelData);  doubleData = (double)*((        int*)voxelData);  break;
-         case Variable_DataType_Float  :  ((       float***)self->voxelDataArray)[indexIJK[0]][indexIJK[1]][indexIJK[2]] =       *((float*)voxelData);  doubleData = (double)*((      float*)voxelData);  break;
-         case Variable_DataType_Double :  ((      double***)self->voxelDataArray)[indexIJK[0]][indexIJK[1]][indexIJK[2]] =      *((double*)voxelData);  doubleData = (double)*((     double*)voxelData);  break;
+         case Variable_DataType_Char   :  *(( signed char*)( self->voxelDataArray + posy*sizeof(signed char) )) = *((signed char*)voxelData);  doubleData = (double)*((signed char*)voxelData);  break;
+         case Variable_DataType_Int    :  *((         int*)( self->voxelDataArray + posy*sizeof(        int) )) =         *((int*)voxelData);  doubleData = (double)*((        int*)voxelData);  break;
+         case Variable_DataType_Float  :  *((       float*)( self->voxelDataArray + posy*sizeof(      float) )) =       *((float*)voxelData);  doubleData = (double)*((      float*)voxelData);  break;
+         case Variable_DataType_Double :  *((      double*)( self->voxelDataArray + posy*sizeof(     double) )) =      *((double*)voxelData);  doubleData = (double)*((     double*)voxelData);  break;
       }
 
       if( doubleData > self->localMax) self->localMax = doubleData;

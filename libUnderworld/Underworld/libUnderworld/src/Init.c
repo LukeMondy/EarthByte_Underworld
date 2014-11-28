@@ -80,6 +80,7 @@ Bool Underworld_Init( int* argc, char** argv[] ) {
       if( useSignalHandler ) {
          signal( SIGSEGV, Underworld_SignalHandler );
          signal( SIGTERM, Underworld_SignalHandler );
+         signal( SIGINT,  Underworld_SignalHandler );
       }
 
       Underworld_Rheology_Init( argc, argv );
@@ -93,13 +94,7 @@ Bool Underworld_Init( int* argc, char** argv[] ) {
       /* DO NOT CHANGE OR REMOVE */
       Journal_Printf( 
          Journal_Register( InfoStream_Type, (Name)"Context" ), 
-         "Underworld (Geodynamics Framework) Revision %s. Copyright (C) 2005-2010 Monash University.\n",
-         VERSION );
-
-      /* Add repo indentity info in the repo dictionary. */
-      Dictionary_Add( versionDict, "Underworld", Dictionary_Entry_Value_FromString( VERSION ) );
-      Dictionary_Add( branchDict, "Underworld", Dictionary_Entry_Value_FromString( BRANCH ) );
-      Dictionary_Add( pathDict, "Underworld", Dictionary_Entry_Value_FromString( PATH ) );
+         "Underworld (Geodynamics Framework). Copyright (C) 2005-2010 Monash University.\n");
 
       Stream_Flush( Journal_Register( InfoStream_Type, (Name)"Context" ) );
       Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context" ), tmp );
@@ -131,8 +126,7 @@ void Underworld_SignalHandler( int signal ) {
    fprintf(
       stderr, 
       "\n\n=====================================================================================\n"
-      "Error running Underworld (Revision %s) - Signal %d ",
-      VERSION,
+      "Error running Underworld - Signal %d ",
       signal );
 
    switch( signal ) {
@@ -152,6 +146,12 @@ void Underworld_SignalHandler( int signal ) {
             "This could have happened by a queueing system (e.g. if the code has run longer than allowed),\n"
             "the code might have been killed on another processor or it may have been killed by the user.\n" );
          break;
+      case SIGINT:
+        fprintf(
+          stderr, 
+          "'SIGINT' (Termination Request).\n"
+          "Isn't it wonderbubble to have CTRL-C?\n" );
+        break;
    }
    exit( EXIT_FAILURE );
 }

@@ -112,7 +112,7 @@
 	void _REP_Algorithm_CommunicateBoundaries( REP_Algorithm* self );
 
 
-	void dgesv_( int* N, int* NRHS, double* AT, int* LDA, int* IPIV, double* bVec, int* LDB, int* info);
+	//void dgesv_( int* N, int* NRHS, double* AT, int* LDA, int* IPIV, double* bVec, int* LDB, int* info);
 
 #endif
 

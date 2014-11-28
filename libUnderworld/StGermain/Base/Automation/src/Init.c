@@ -55,7 +55,6 @@ Bool BaseAutomation_Init( int* argc, char** argv[] )
 	/** Register Parents for All Classes */
 	RegisterParent( Stg_ComponentFactory_Type,           Stg_Class_Type );
 	RegisterParent( DocumentationComponentFactory_Type,  Stg_Class_Type );
-	RegisterParent( OneOffComponentFactory_Type,         Stg_Class_Type );
 	RegisterParent( Stg_ComponentRegister_Type,          Stg_Class_Type );
 	RegisterParent( Stg_Component_Type,                  Stg_Object_Type );
 	RegisterParent( HierarchyTable_Type,             HashTable_Type );

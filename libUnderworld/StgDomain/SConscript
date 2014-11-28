@@ -34,17 +34,6 @@ suites = []
 tst_exp = []
 tst_input = []
 
-# Get the revision definition.
-revision = "UNKNOWN"
-path = "UNKNOWN"
-branch = "UNKNOWN"
-for entry in env['IDDEFINES']:
-    if entry[0] == 'STGDOMAIN':
-        revision = entry[1]
-        path = entry[2]
-        branch = entry[3]
-        break
-
 #
 # Process each directory uniformly.
 #
@@ -54,11 +43,8 @@ for d in dirs:
 
     # Need the module name, which is just the directory.
     mod_name = env['ESCAPE']('"' + ''.join(d.split('/')) + '"')
-    version_name = 'STGDOMAIN_VERSION'
-    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) + \
-               [('VERSION', revision)] + [('PATH', path)] + \
-               [('BRANCH', branch)]
-
+    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) 
+ 
     # Setup where to look for files.
     src_dir = d + '/src'
     inc_dir = 'include/StgDomain/' + d
@@ -104,9 +90,7 @@ for d in pluginDirs:
 
     name = 'StgDomain_' + d.split('/')[-1] + 'module'
     mod_name = env['ESCAPE']('"' + ''.join(d.split('/')) + '"')
-    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) + \
-               [('VERSION', revision)] + [('PATH', path)] + \
-               [('BRANCH', branch)]
+    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) 
 
     env.Install('include/StgDomain/' + d.split('/')[-1], Glob(d + '/*.h'))
 

@@ -89,4 +89,7 @@ Bool BaseExtensibility_Init( int* argc, char** argv[] ) {
 	return True;
 }
 
+ToolboxesManager* GetToolboxManagerInstance(){ return stgToolboxesManager;}
+
+
 

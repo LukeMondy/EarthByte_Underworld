@@ -160,7 +160,7 @@ void _VoxelDataHandler_Abstract_AssignFromXML( void* voxelDataHandler, Stg_Compo
 
    context = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Context", AbstractContext, False, data );
    if( !context  )
-      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, data  );
+      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, False, data  );
 
    /** The name of the file containing the voxel data */
    filename = StG_Strdup(Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"filename", NULL ));

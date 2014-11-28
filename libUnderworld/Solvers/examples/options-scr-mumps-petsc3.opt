@@ -13,13 +13,13 @@
 
 # The schur-compliment options; see 'options-scr-lu.opt' for details.
 
--scr_ksp_type bcgs
+#-scr_ksp_type bcgs
 #-scr_ksp_type preonly
 #-scr_pc_type lu
 
 #-Q22_pc_type uwscale
 
--scr_ksp_converged_reason
+#-scr_ksp_converged_reason
 -A11_ksp_converged_reason
 -A11_ksp_type preonly
 -A11_pc_type lu

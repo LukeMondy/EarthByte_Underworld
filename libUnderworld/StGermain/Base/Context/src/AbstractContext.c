@@ -90,11 +90,6 @@ const Type AbstractContext_Dict_Components = "components";
 const Type AbstractContext_Type = "Context";
 const Type AbstractContext_Type_Verbose = "Context-verbose";
 
-/* Global dictionary for storing repo identity information. */
-Dictionary* versionDict = NULL;
-Dictionary* branchDict = NULL;
-Dictionary* pathDict = NULL;
-
 AbstractContext* _AbstractContext_New( ABSTRACTCONTEXT_DEFARGS ) {
    AbstractContext* self;
    
@@ -159,7 +154,6 @@ void _AbstractContext_Init( AbstractContext* self ) {
    self->variable_Register = Variable_Register_New();
    self->extensionMgr = ExtensionManager_New_OfExistingObject( self->type, self );
    ExtensionManager_Register_Add( extensionMgr_Register, self->extensionMgr );
-   self->pointer_Register = Stg_ObjectList_New();
    self->plugins = PluginsManager_New();
    
    /* Build the entryPoint table */
@@ -229,6 +223,19 @@ void _AbstractContext_Init( AbstractContext* self ) {
 
 void _AbstractContext_Delete( void* abstractContext ) {
    AbstractContext* self = (AbstractContext*)abstractContext;
+
+   Stg_Class_Delete( self->entryPoint_Register );
+
+   /* Remove the self->extensionMgr of this context from the extensionMgr_Register. */
+   ExtensionManager_Register_Remove( extensionMgr_Register, self->extensionMgr );
+   Stg_Class_Delete( self->extensionMgr );
+   Stg_Class_Delete( self->dictionary );
+
+   Memory_Free( self->experimentName );
+   Memory_Free( self->outputPath );
+   Memory_Free( self->checkpointReadPath );
+   Memory_Free( self->checkpointWritePath );
+   Memory_Free( self->timeStamp );
 
    Stg_Class_Delete( self->variable_Register );
 
@@ -348,13 +355,15 @@ void _AbstractContext_AssignFromXML( void* context, Stg_ComponentFactory* cf, vo
 
    Journal_Printf( self->debug, "In: %s\n", __func__ );
 
-   /* 
+   self->dictionary = Stg_Class_Copy( cf->rootDict, NULL, True, NULL, NULL );
+
+   /*
     * The following just pauses at this point to allow time to attach a debugger.
     * Useful for mpi debugging.
     */
    sleep( Dictionary_Entry_Value_AsUnsignedInt(
-      Dictionary_GetDefault( self->dictionary, "pauseToAttachDebugger", Dictionary_Entry_Value_FromUnsignedInt( 0 ) ) ) ); 
-      
+                                               Dictionary_GetDefault( self->dictionary, "pauseToAttachDebugger", Dictionary_Entry_Value_FromUnsignedInt( 0 ) ) ) );
+   
    /* Check if we have been provided a constant to multiply our calculated dt values by. */
    self->dtFactor = Dictionary_GetDouble_WithDefault( self->dictionary, (Dictionary_Entry_Key)"timestepFactor", 1.0 );
 
@@ -486,7 +495,6 @@ void _AbstractContext_AssignFromXML( void* context, Stg_ComponentFactory* cf, vo
       self->loadSwarmsFromCheckpoint = Dictionary_Entry_Value_AsBool( 
          Dictionary_GetDefault( self->dictionary, "loadSwarmsFromCheckpoint", Dictionary_Entry_Value_FromBool( True ) ) );
       self->timeStep = self->restartTimestep;
-      self->nextCheckpointTime += self->currentTime;
    }
    else {
       self->loadFromCheckPoint = False;
@@ -567,8 +575,7 @@ void _AbstractContext_Initialise( void* context, void* data ) {
    if( self->rank == 0 ) { 
       Stream* stream=Journal_Register( InfoStream_Type, (Name)"EP info"  );
       Bool fileOpened = False;
-      if( (self->loadFromCheckPoint == False) &&
-         (Dictionary_GetBool_WithDefault( self->dictionary, (Dictionary_Entry_Key)"visualOnly", False ) == False )  ) {
+      if( self->loadFromCheckPoint == False ) {
          /* Always overwrite the file if starting a new run. */
          fileOpened = Stream_RedirectFile_WithPrependedPath( stream, self->outputPath, "EP.info" );
       }
@@ -642,6 +649,8 @@ void _AbstractContext_Initialise( void* context, void* data ) {
       _AbstractContext_LoadTimeInfoFromCheckPoint( (void*)self, self->restartTimestep, &dtLoadedFromFile );
       self->_setDt( self, dtLoadedFromFile );
 
+      self->nextCheckpointTime += self->currentTime;
+
       if( self->maxTimeSteps == -1 ){
          self->gracefulQuit = True;
       } else if ( self->maxTimeSteps == 0 ){
@@ -689,20 +698,6 @@ void _AbstractContext_Destroy( void* context, void* data ) {
    KeyCall( self, self->destroyExtensionsK, EntryPoint_VoidPtr_CallCast* )( KeyHandle(self,self->destroyExtensionsK), self );
    KeyCall( self, self->destroyK, EntryPoint_VoidPtr_CallCast* )( KeyHandle(self,self->destroyK), self );
 
-   Stg_Class_Delete( self->entryPoint_Register );
-   Stg_ObjectList_DeleteAllObjects( self->pointer_Register );
-   Stg_Class_Delete( self->pointer_Register );
-
-   /* Remove the self->extensionMgr of this context from the extensionMgr_Register. */
-   ExtensionManager_Register_Remove( extensionMgr_Register, self->extensionMgr );
-   Stg_Class_Delete( self->extensionMgr );
-   Stg_Class_Delete( self->dictionary );   
-
-   Memory_Free( self->experimentName );
-   Memory_Free( self->outputPath );
-   Memory_Free( self->checkpointReadPath );
-   Memory_Free( self->checkpointWritePath );
-   Memory_Free( self->timeStamp );
 }
 
 /* Context public stuff ***********************************************************************************************************/

@@ -17,7 +17,14 @@
 #include <petscpc.h>
 #include <petscsnes.h>
 
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include <petsc-private/kspimpl.h>   /*I "petscksp.h" I*/
+  #include <petsc-private/snesimpl.h>
+#else
+  #include <private/kspimpl.h>   /*I "petscksp.h" I*/
+  #include <private/snesimpl.h>    /*I  "petscsnes.h"  I*/
+#endif
 
 //#include "ksptypes.h"
 #include "ksp-register.h"
@@ -252,7 +259,11 @@ void SFMSNES_InsertSubMatinMat(Mat K, Mat Asub, int k, Mat *A){
 	for(j=0;j<ncols;j++){ idxn[j]=cols[j]+colOffset; }
 	idxm = i + rowOffset;
 	MatSetValues(*A,1,&idxm,ncols,idxn,vals,INSERT_VALUES);
-	MatRestoreArray(Asub,&vals);
+    #if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=4)) || (PETSC_VERSION_MAJOR>3) )
+      MatSeqAIJRestoreArray(Asub,&vals);
+    #else
+      MatRestoreArray(Asub,&vals);
+    #endif
 	PetscFree(idxn);
     }
 }
@@ -320,6 +331,9 @@ void SFMSNES_FormMatrixOperator(	Mat A11, Mat A12, Mat A21, Mat A22, Mat* A )
 	/* note: kn=km=gm */
 	MatSetSizes( *A, PETSC_DECIDE, PETSC_DECIDE, kn+gn, kn+gn );
 	MatSetType( *A, MATMPIAIJ );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp(*A);
+#endif
 	MatAssemblyBegin(*A,MAT_FINAL_ASSEMBLY);
 	MatAssemblyEnd(*A,MAT_FINAL_ASSEMBLY);
     }
@@ -458,7 +472,6 @@ PetscErrorCode SFMSNES_Check(Mat M, Vec V, const char *f, char* Mname, char* Vna
     }
     return 0;
 }
-#include <private/snesimpl.h>    /*I  "petscsnes.h"  I*/
 
 #undef __FUNCT__  
 #define __FUNCT__ "SFMSSNES_FDComputeJacobian"
@@ -860,7 +873,7 @@ PetscErrorCode SFMSNES_DumpMat(KSP ksp,PetscInt n,PetscReal rnorm, void *dummy)
       PetscFunctionBegin;
       
       sprintf(name,"%s","A");
-      ierr = PCGetOperators(ksp->pc,&A,PETSC_NULL,PETSC_NULL);CHKERRQ(ierr);
+      ierr = Stg_PCGetOperators(ksp->pc,&A,PETSC_NULL,PETSC_NULL);CHKERRQ(ierr);
       ierr = MatComputeExplicitOperator(A,&B);CHKERRQ(ierr);
       PetscObjectSetName((PetscObject)B,name);
 
@@ -918,7 +931,7 @@ void _StokesFullMatrixSNESInterface_Solve( void* solver, void* _stokesSLE ) {
 
 	SFMSNES_GetStokesOperators( stokesSLE, &K,&G,&D,&C, &Smat, &f,&h, &u,&p );
 	flg = PETSC_FALSE;
-	ierr = PetscOptionsGetBool(PETSC_NULL,"-snes_dump_suboperators2",&flg,PETSC_NULL);CHKERRQ(ierr);
+	ierr = PetscOptionsGetBool(PETSC_NULL,"-snes_dump_suboperators2",&flg,PETSC_NULL);CHKERRABORT(PETSC_COMM_WORLD,ierr);
 	if(flg){
 	    sfm_writeMat( K, "K", "Dumping K Matrix");
 	    sfm_writeMat( G, "G", "Dumping G Matrix");

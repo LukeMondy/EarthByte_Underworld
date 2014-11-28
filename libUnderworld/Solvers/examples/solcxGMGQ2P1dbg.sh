@@ -32,11 +32,12 @@
 # --penaltyNumber=$PEN // using XML to pass the penalty in via the SLE currently.
 
 count=0
-PROCS=1
+PROCS=4
 
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
+export UWEXEC="mpirun -n 4 $UWPATH/build/bin/Underworld"
 
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
 
@@ -54,7 +55,7 @@ do
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
-for PEN in 400.0
+for PEN in 0.0
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 PEN=`echo "0.25*$PEN" | bc -l`
@@ -71,11 +72,12 @@ SCRP="default"
 
 #MG=boomeramg
 #MG="ml"
-MG=lu
+MG=gmg
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
-	MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-accelerating.opt "
+	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-fixedsmooths.opt "
+        #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml "
     fi
     if [ "$MG" = "boomeramg" ]                                            
         then                                                                                                                                                                                          
@@ -101,7 +103,8 @@ MGOP=" "
     fi
 
 ID=$SCR$A11
-RES=96
+RES=$1
+
 RESX=$RES
 RESY=$RES
 PP=40
@@ -129,7 +132,7 @@ mkdir $OUT >& /dev/null
 
 #                --components.weights.resolutionX=$PCRES --components.weights.resolutionY=$PCRES --components.weights.resolutionZ=$PCRES \
 #                --particlesPerCell=$PP \
-
+#                --solCx_xc=0.50390625 \
 $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Gauss.xml \
     $UWPATH/Solvers/InputFiles/AugLagStokesSLE-GtMG.xml \
     $UWPATH/Solvers/InputFiles/VelocityMassMatrixSLE.xml \
@@ -143,7 +146,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Gauss.xml \
   		--saveDataEvery=1 --checkpointEvery=2 --checkpointWritePath="./$OUT/Checkpoints" --checkpointAppendStep=1 \
                 --components.FieldTest.normaliseByAnalyticSolution=False \
                 --solCx_etaA=$VV \
-                --solCx_xc=0.50390625 \
+                --solCx_xc=0.50 \
                 --solCx_etaB=$VB \
                 --solCx_n=2.0 \
                 --wavenumberY=2.0 \
@@ -159,7 +162,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Gauss.xml \
                 -Xscr_pc_gtkg_ksp_view -Xscr_pc_gtkg_ksp_monitor -scr_pc_gtkg_ksp_rtol 1e-6 -scr_pc_gtkg_ksp_type cg \
   		-remove_checkerboard_pressure_null_space 0 \
   		-remove_constant_pressure_null_space 1 \
-  		--mgLevels=3 \
+  		--mgLevels=2 \
   		-Xscr_ksp_max_it 1000 \
                 -scr_ksp_type $SCR \
                 -scr_ksp_view \
@@ -179,8 +182,9 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Gauss.xml \
                 -XA11_ksp_view \
                 -backsolveA11_ksp_type fgmres -backsolveA11_ksp_monitor \
                 -backsolveA11_ksp_rtol 1.0e-6 \
-  		--elementResI=$RES --elementResJ=$RES \
+  		--elementResI=$RESX --elementResJ=$RESY \
   		--maxTimeSteps=0 -Xdump_matvec -matsuffix "g$count" \
+   --components.stokesblockkspinterface.OptionsString="-Xhelp -A11_ksp_monitor -XA11_ksp_view -backsolveA11_ksp_type preonly -backsolveA11_pc_type lu " \
 
 #    > "./$OUT/output.txt" 2>&1
 

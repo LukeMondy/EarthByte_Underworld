@@ -442,7 +442,7 @@ Bool Sync_TryLocalToShared( const void* self, int local, int* shared ) {
    return IMap_TryMap( ((Sync*)self)->ls, local, shared );
 }
 
-void Sync_SyncArray( const void* _self, 
+void Sync_SyncArray( const void* _self,
 		     const void* local, size_t localStride, 
 		     const void* remote, size_t remoteStride, 
 		     size_t itmSize )

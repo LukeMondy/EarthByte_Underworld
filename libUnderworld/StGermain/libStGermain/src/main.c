@@ -66,6 +66,8 @@ void stgGenerateFlattenedXML( Dictionary* dictionary, Dictionary* sources, char*
    Stream_EnableSelfOnly( s, False );
 
    ioHandler = XML_IO_Handler_New();
+   if( sources == NULL )
+      ioHandler->writeSources = False;
    outputPath = StG_Strdup( Dictionary_Entry_Value_AsString( Dictionary_GetDefault( dictionary,
       (Dictionary_Entry_Key)"outputPath", Dictionary_Entry_Value_FromString( "./" ) ) ) );
    outputSlim = Dictionary_Entry_Value_AsBool( Dictionary_GetDefault( dictionary,
@@ -84,29 +86,28 @@ void stgGenerateFlattenedXML( Dictionary* dictionary, Dictionary* sources, char*
    /* Set file names. */
    Stg_asprintf( &flatFilename, "%s/%s", outputPath, "input.xml" );
 
+   IO_Handler_WriteAllToFile( ioHandler, flatFilename, dictionary, sources );
+
    /* Format; path/input-YYYY.MM.DD-HH.MM.SS.xml. */
-   Stg_asprintf( &flatFilenameStamped, "%s/%s-%s.%s",
-      outputPath, "input", timeStamp, "xml" );
+   if (timeStamp) {
+      Stg_asprintf( &flatFilenameStamped, "%s/%s-%s.%s",
+                   outputPath, "input", timeStamp, "xml" );
+      IO_Handler_WriteAllToFile( ioHandler, flatFilenameStamped, dictionary, sources );
+      Memory_Free( flatFilenameStamped );
+   }
 
-   IO_Handler_WriteAllToFile( ioHandler, flatFilename, dictionary,
-      sources, versionDict, branchDict, pathDict );
-
-   IO_Handler_WriteAllToFile( ioHandler, flatFilenameStamped, dictionary,
-      sources, versionDict, branchDict, pathDict );
-
-   if( outputSlim ) {
+   
+   if( outputSlim && timeStamp ) {
       ioHandler->writeSources = False;
       Stg_asprintf( &slimFilename, "%s/%s-%s.%s",
          outputPath, "input-basic", timeStamp, "xml" );
-      IO_Handler_WriteAllToFile( ioHandler, slimFilename, dictionary,
-         NULL, NULL, NULL, NULL );
+      IO_Handler_WriteAllToFile( ioHandler, slimFilename, dictionary, NULL);
    }
 
    Stream_EnableSelfOnly( s, isEnabled );
    Stg_Class_Delete( ioHandler );
 
    Memory_Free( flatFilename );
-   Memory_Free( flatFilenameStamped );
 }
 
 /* TODO: Need to find a way to add different communicators for different contexts. */
@@ -141,6 +142,10 @@ Stg_ComponentFactory* stgMainConstruct( Dictionary* dictionary, Dictionary* sour
       componentDict = Dictionary_New();
    
    CheckDictionaryKeys( componentDict, "Component dictionary must have unique names\n" );
+   /* lets go right ahead and delete the component register. */
+   /* this is mainly required for the pcu tests which pass through here a number of times
+      without calling StGermain_Finalise */
+   LiveComponentRegister_Delete();
    cf = Stg_ComponentFactory_New( dictionary, componentDict );
 
    if( _context ) {
@@ -260,8 +265,10 @@ void stgMainLoop( Stg_ComponentFactory* cf ) {
 void stgMainDestroy( Stg_ComponentFactory* cf ) {
    /* Destruct phase. */
 
-   /* This will call the LCRegister Delete func. */
-   Stg_Class_Delete( cf ); 
+   LiveComponentRegister_DestroyAll( LiveComponentRegister_GetLiveComponentRegister() );
+   LiveComponentRegister_DeleteAll( LiveComponentRegister_GetLiveComponentRegister() );
+   Stg_Class_Delete( cf );
+   LiveComponentRegister_Delete();
 }
 
 void stgImportToolbox( Dictionary* dictionary, char* toolboxName ) {

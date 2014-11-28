@@ -242,10 +242,14 @@ PetscErrorCode MG_inner_solver_pcmg_setup( KSP_BSSCR * bsscrp_self, MGContext *m
     PCSetType(pc_MG, PCMG);
     PCMGSetLevels(pc_MG, bsscrp_self->mg->nLevels, PETSC_NULL);
     PCMGSetType(pc_MG, PC_MG_MULTIPLICATIVE);
-    PCMGSetGalerkin(pc_MG);
+    #if ((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=2) )
+    PCMGSetGalerkin( pc_MG, PETSC_TRUE );
+    #else
+    PCMGSetGalerkin( pc_MG );
+    #endif
     PCSetFromOptions(pc_MG);
     
-    KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+    Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
     
     bsscrp_self->mg->mgData->ksp = ksp_inner;
 	
@@ -273,8 +277,8 @@ PetscErrorCode MG_inner_solver_pcmg_shutdown( PC pc_MG ) {
 PetscErrorCode KSPCycleEffectivenessMonitorAndAdjust(KSP ksp, PetscInt n, PetscReal rnorm, MGContext *mgctx )
 {
     PetscErrorCode          ierr;
-    PetscViewerASCIIMonitor viewer;
-			
+    //PetscViewerASCIIMonitor viewer;
+    PetscViewerASCIIMonitor viewer  = PETSC_VIEWER_STDOUT_(((PetscObject)ksp)->comm);			
     PetscFunctionBegin;
 	
     if(n==0) {
@@ -338,7 +342,7 @@ double setupMG( KSP_BSSCR * bsscrp_self, KSP ksp_inner, PC pc_MG, Mat K, MGConte
 /*     PCMGSetGalerkin(pc_MG); */
 /*     PCSetFromOptions(pc_MG); */
 
-/*     KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN); */
+/*     Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN); */
 
 /*     bsscrp_self->mg->mgData->ksp = ksp_inner; */
 /*     PETScMGSolver_UpdateOps(bsscrp_self->mg); */
@@ -363,7 +367,7 @@ double setupMG( KSP_BSSCR * bsscrp_self, KSP ksp_inner, PC pc_MG, Mat K, MGConte
 /* 	/\* Insert the shell PC. *\/ */
 /* 	PetscObjectReference( (PetscObject)pc_MG ); */
 /* 	KSPSetPC( ksp_inner, shellPC ); */
-/* 	KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN); */
+/* 	Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN); */
 /* 	/\* Setup the MG context. */
 /* 	   Default values, then values taken from the petsc options database *\/ */
 /* 	mgCtx.ksp = ksp_inner; */

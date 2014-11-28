@@ -101,7 +101,8 @@
 		unsigned*	vertRange;  /* Local node grid range for this processor */ \
                 int             contactDepth[3][2];                     \
                 double          contactGeom[3]; \
-		char*           initVtkFile; /* for reading Rozel's mesh JG - 22Oct2012 */
+		char*           initVtkFile; /* for reading Rozel's mesh JG - 22Oct2012 */ \
+		char*           initMeshFile;
 
 	struct CartesianGenerator { __CartesianGenerator };
 

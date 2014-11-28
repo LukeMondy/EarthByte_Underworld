@@ -41,7 +41,7 @@ extern const Type lucDrawingObject_Type;
 
 typedef void (lucDrawingObject_SetupFunction) ( void* object, lucDatabase* database, void* context );
 typedef void (lucDrawingObject_DrawFunction)  ( void* object, lucDatabase* database, void* context );
-typedef void (lucDrawingObject_CleanUpFunction)  ( void* object, void* context );
+typedef void (lucDrawingObject_CleanUpFunction)  ( void* object );
 
 /** Class contents - this is defined as a macro so that sub-classes of this class can use this macro at the start of the definition of their struct */
 #define __lucDrawingObject                           \
@@ -67,6 +67,9 @@ typedef void (lucDrawingObject_CleanUpFunction)  ( void* object, void* context )
       int                                                lineWidth;           \
       int                                                id;                  \
       char*                                              properties;          \
+      MPI_Comm                                           comm;                \
+      int                                                rank;                \
+      int                                                nproc;
 
 struct lucDrawingObject
 {
@@ -106,7 +109,7 @@ void _lucDrawingObject_Destroy( void* camera, void* data );
 /* +++ Public Functions +++ */
 void lucDrawingObject_Setup( void* drawingObject, lucDatabase* database, void* context ) ;
 void lucDrawingObject_Draw( void* drawingObject, lucDatabase* database, void* context ) ;
-void lucDrawingObject_CleanUp( void* drawingObject, void* context ) ;
+void lucDrawingObject_CleanUp( void* drawingObject ) ;
 
 typedef enum { GreaterThan, LessThan, EqualTo } lucDrawingObjectMask_Type;
 typedef struct

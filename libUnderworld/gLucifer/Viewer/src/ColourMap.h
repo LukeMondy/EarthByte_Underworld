@@ -65,7 +65,7 @@ public:
    bool log, discrete;
    float centre;
    bool calibrated;
-   TextureData texture;
+   TextureData* texture;
 
    float dimCoeff;
    std::string units;
@@ -78,7 +78,10 @@ public:
       else if (id > ColourMap::lastid)
          ColourMap::lastid = id;
       this->name = std::string(name);
+      texture = NULL;
    }
+
+   ~ColourMap() {if (texture) delete texture;}
 
    void add(unsigned int colour);
    void add(unsigned int* colours, int count);

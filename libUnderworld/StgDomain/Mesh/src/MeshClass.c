@@ -81,7 +81,7 @@ Mesh* _Mesh_New(  MESH_DEFARGS  ) {
 void _Mesh_Init( Mesh* self, AbstractContext* context ) {
    self->context = context;
 	self->topo = (MeshTopology*)IGraph_New( "" );
-	self->verts = NULL;
+	self->vertices = NULL;
 
 	self->vars = List_New();
 	List_SetItemSize( self->vars, sizeof(MeshVariable*) );
@@ -115,7 +115,7 @@ void _Mesh_Init( Mesh* self, AbstractContext* context ) {
 	self->emReg = NULL;
 
 	self->isCheckpointedAndReloaded = False;
-	self->requiresCheckpointing     = False;
+	self->isDeforming     = False;
 
 	self->isRegular = False;
 }
@@ -554,9 +554,9 @@ double* Mesh_GetVertex( void* mesh, unsigned domain ) {
 
 	assert( self );
 	assert( domain < Mesh_GetDomainSize( self, MT_VERTEX ) );
-	assert( self->verts );
+	assert( self->vertices );
 
-	return self->verts[domain];
+	return self->vertices + domain*Mesh_GetDimSize(self);
 }
 
 Bool Mesh_HasExtension( void* mesh, const char* name ) {
@@ -643,17 +643,26 @@ void Mesh_DeformationUpdate( void* mesh ) {
 	}
 }
 
+void Mesh_GenerateVertices( void* mesh, unsigned nVerts, unsigned nDims ){
+	Mesh* self = (Mesh*)mesh;
+    self->vertices = Memory_Alloc_Array( double, nDims*nVerts, "Mesh::verts" );
+}
+
+
+
 void Mesh_Sync( void* mesh ) {
 	Mesh*	self = (Mesh*)mesh;
 	const Sync* sync;
-	int nDims, nLocals;
+	int nDims, nLocals, nDomains;
 
 	assert( self );
 
 	sync = Mesh_GetSync( self, 0 );
 	nDims = Mesh_GetDimSize( self );
 	nLocals = Mesh_GetLocalSize( self, 0 );
-	Sync_SyncArray( sync, self->verts[0], nDims * sizeof(double), self->verts[nLocals], nDims * sizeof(double), nDims * sizeof(double) );
+	nDomains = Mesh_GetDomainSize( self, 0 );
+    if (nDomains > nLocals) // only perform this where where the domain size is greater than the local size... ie running in parallel
+        Sync_SyncArray( sync, Mesh_GetVertex( self, 0 ), nDims * sizeof(double), Mesh_GetVertex( self, nLocals ), nDims * sizeof(double), nDims * sizeof(double) );
 
 	/* TODO
 	if( self->dataSyncArrays ) {
@@ -681,7 +690,7 @@ void Mesh_Destruct( Mesh* self ) {
 	KillArray( self->elTypeMap );
 	self->nElTypes = 0;
 
-	KillArray( self->verts );
+	KillArray( self->vertices );
 
 	self->generator = NULL;
 	self->emReg = NULL;

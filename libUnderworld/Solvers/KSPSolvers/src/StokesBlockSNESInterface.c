@@ -18,7 +18,12 @@
 #include <petscext.h>
 #include <petscext_pc.h>
 
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
+#else
+  #include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#endif
 
 //#include "ksptypes.h"
 #include "ksp-register.h"
@@ -176,6 +181,12 @@ void SBSNES_FormBlockOperator(	Mat A11, Mat A12, Mat A21, Mat A22, Mat* A )
 	MatCreate( MPI_COMM_WORLD, A );
 	MatSetSizes( *A, 2, 2, 2, 2 );
 	MatSetType( *A, "block" );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp(*A);
+#endif
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+	MatSetSizes_Block( *A, 2, 2, 2, 2 );
+#endif
     }
 
     if( A11 ) MatBlockSetValue( *A, 0, 0, A11, SAME_NONZERO_PATTERN, INSERT_VALUES );
@@ -222,8 +233,14 @@ PetscErrorCode SBSNES_CreateStokesBlockOperators( MPI_Comm comm,
 {
     
     MatCreate( comm, A );
-    MatSetSizes( *A, 2,2, 2,2 );
     MatSetType( *A, "block" );
+    MatSetSizes( *A, 2,2, 2,2 );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+    MatSetUp(*A);
+#endif
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+    MatSetSizes_Block( *A, 2, 2, 2, 2 );
+#endif
     
     if(K) {MatBlockSetValue( *A, 0,0, K, SAME_NONZERO_PATTERN, INSERT_VALUES );}
     if(G) {MatBlockSetValue( *A, 0,1, G, SAME_NONZERO_PATTERN, INSERT_VALUES );}
@@ -384,17 +401,18 @@ void sb_writeVec(Vec V, char name[], char message[]){
     }
     }
 }
-PetscErrorCode SBSNES_FormResidual( SNES snes, Vec w, Vec F, StokesBlockSNESInterface* self )
+PetscErrorCode SBSNES_FormResidual( SNES snes, Vec w, Vec F, void* _self )
 {
-   Mat K, G, D, C, S;
-   Vec u, p, f, h, *subVecs;
-   Vec save_u, save_p;/* temporary vectors to hold current solution */
-   double wallTime, uNorm, pNorm, bNorm;
+   Mat K, G, D, C;
+   Vec u,p,f,h, *subVecs;
+   //Vec save_u, save_p;/* temporary vectors to hold current solution */
+   double wallTime;// uNorm, pNorm, bNorm;
    static double totTime=0.0;
    static int timesCalled=0;
-   PetscTruth useTimer, found, flg, uDiff=PETSC_FALSE;
+   PetscTruth useTimer, found, flg;// uDiff=PETSC_FALSE;
+   //PetscErrorCode          ierr;
+   StokesBlockSNESInterface* self = (StokesBlockSNESInterface*) _self;
    Stokes_SLE* SLE = (Stokes_SLE*)(self->st_sle);
-   PetscErrorCode          ierr;
 
    useTimer = PETSC_FALSE;
    PetscOptionsGetTruth( PETSC_NULL ,"-experimental_snes_use_timer", &useTimer, &found );
@@ -418,7 +436,13 @@ PetscErrorCode SBSNES_FormResidual( SNES snes, Vec w, Vec F, StokesBlockSNESInte
    VecBlockRestoreSubVectors( w );
    
    /* need to pass norms back down through assembly to rheology */
+#if !( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
    SNESGetFunctionNorm(snes, &(SLE->fnorm));
+#else
+   Vec vec_func;
+   SNESGetFunction(snes,&vec_func,0,0);
+   VecNorm(vec_func,NORM_2, &(SLE->fnorm) );
+#endif
    SLE->fnorm=sqrt(SLE->fnorm);/* more or less guessing what current norm might be -- snes->norm is the previous residual norm */
    MatNorm(K,NORM_1,&(SLE->knorm));
 
@@ -485,20 +509,25 @@ PetscErrorCode SBSNES_FormResidual( SNES snes, Vec w, Vec F, StokesBlockSNESInte
    return 0;
 }
 /* J and Jp get passed back to SNES and are used as the mat and pmat on the PC in the KSP */
+#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=5) )
 PetscErrorCode SBSNES_FormJacobian(
-   SNES snes, Vec x, Mat* J, Mat* Jp, MatStructure* flag,
-   StokesBlockSNESInterface* self )
+   SNES snes, Vec x, Mat J, Mat Jp, void* _self )
+#else
+PetscErrorCode SBSNES_FormJacobian(
+   SNES snes, Vec x, Mat* J, Mat* Jp, MatStructure* flag, void* _self )
+#endif
 {
-    Mat K, G, D, C, Gt, Shat;
+    Mat K, G, D, C, Gt;
     Vec u, p, *subVecs;
-    Vec save_u, save_p;/* temporary vectors to hold current solution */
+    //Vec save_u, save_p;/* temporary vectors to hold current solution */
     double wallTime;
     static double totTime=0.0;
     static int timesCalled=0;
-    PetscTruth useTimer, found, flg, uDiff=PETSC_FALSE;
-    PetscErrorCode          ierr;
-    PetscInt j,start,end;
-    PetscScalar val, amp, norm;
+    PetscTruth useTimer, found, flg;// uDiff=PETSC_FALSE;
+    //PetscErrorCode          ierr;
+    //PetscInt j,start,end;
+    //PetscScalar val, amp, norm;
+    StokesBlockSNESInterface* self = (StokesBlockSNESInterface*) _self;
     UnderworldContext*  context = (UnderworldContext*)self->ctx;
 
     //FiniteElementContext_CalcNewDt( context );
@@ -557,7 +586,7 @@ PetscErrorCode SBSNES_FormJacobian(
        sb_writeMat( C, "C", "Dumping C Matrix");
    }
 
-   SBSNES_FormBlockOperator( K,G,Gt,C, J );
+   SBSNES_FormBlockOperator( K,G,Gt,C, &J );
 
    if( !D ) { Stg_MatDestroy(&Gt ); }/* relinquish control of Gt from this function entirely to J matrix */
 
@@ -592,18 +621,16 @@ void _StokesBlockSNESInterface_Solve( void* solver, void* _stokesSLE ) {
 	Vec       f;
 	Vec       h;
 	Vec       F;
-
-	Stream*   errorStream = Journal_Register( Error_Type, (Name)StokesBlockSNESInterface_Type  );
-
-	Mat stokes_P;
+	//Stream*   errorStream = Journal_Register( Error_Type, (Name)StokesBlockSNESInterface_Type  );
+	//Mat stokes_P;
 	Mat stokes_A=0;
 	Vec stokes_x;
-	Vec stokes_b;
+	//Vec stokes_b;
 
 	SNES snes;
 	KSP stokes_ksp;
 	PC  stokes_pc;
-	char name[100];
+        //char name[100];
 	
 	PetscTruth sym, flg;
 	static int called=0;
@@ -638,8 +665,8 @@ void _StokesBlockSNESInterface_Solve( void* solver, void* _stokesSLE ) {
 	SBSNES_FormBlockSystem( K,G,Gt,C, u,p, f,h, &stokes_A, &stokes_x, &F );
 
 	SNESCreate( PETSC_COMM_WORLD, &snes );
-	SNESSetJacobian( snes, stokes_A, stokes_A, SBSNES_FormJacobian, self );
-	SNESSetFunction( snes, F, SBSNES_FormResidual, self );
+	SNESSetJacobian( snes, stokes_A, stokes_A, SBSNES_FormJacobian, (void*)self );
+	SNESSetFunction( snes, F, SBSNES_FormResidual, (void*)self );
 
 	SNESGetKSP( snes, &stokes_ksp );
 	KSPSetType( stokes_ksp, "bsscr" );/* i.e. making this the default solver : calls KSPCreate_XXX */

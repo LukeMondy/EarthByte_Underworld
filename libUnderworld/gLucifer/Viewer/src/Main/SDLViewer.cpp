@@ -96,7 +96,6 @@ SDLViewer::SDLViewer(bool stereo, bool fullscreen) : OpenGLViewer(stereo, fullsc
    saveheight = pSDLVideoInfo->current_h;
 
    resized = false;
-   timer = 0;
    screen = NULL;
 
    debug_print("SDL viewer created\n");
@@ -113,6 +112,12 @@ void SDLViewer::open(int width, int height)
    createWindow(width, height);
    //Call base class open
    OpenGLViewer::open(width, height);
+}
+
+void SDLViewer::setsize(int width, int height)
+{
+   close();
+   open(width, height);
 }
 
 void SDLViewer::animate(int msec)
@@ -193,6 +198,7 @@ void SDLViewer::execute()
    int x, y;
    SDL_Event event;
    int modifiers = 0;
+   static unsigned int stimer;
 
    //Ensure window visible for interaction
    show();
@@ -207,7 +213,7 @@ void SDLViewer::execute()
          // Resize window 
          if (resized) 
          {
-            if (timer < SDL_GetTicks()) 
+            if (stimer < SDL_GetTicks()) 
             {
                // Create in new dimensions 
                resized = false;
@@ -246,7 +252,7 @@ void SDLViewer::execute()
          resize(event.resize.w, event.resize.h);
          resized = true;
          //Start timer to wait for sizing events to cease before calling actual context resize
-         timer = SDL_GetTicks() + 200;
+         stimer = SDL_GetTicks() + 200;
          break;
       case SDL_KEYDOWN:
          //Pass keystrokes on KEYDOWN only, char info not provided by SDL on KEYUP

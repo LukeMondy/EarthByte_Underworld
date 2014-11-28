@@ -5,7 +5,13 @@
 #include <petscvec.h>
 #include <petscksp.h>
 #include <petscpc.h>
-#include <private/kspimpl.h>
+
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include <petsc-private/kspimpl.h>
+#else
+  #include <private/kspimpl.h>
+#endif
 
 
 //#include "common-driver-utils.h"
@@ -56,11 +62,12 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
                                           MatStokesBlockScaling BA, PetscTruth sym, KSP_BSSCR * bsscrp_self )
 {
     AugLagStokes_SLE *    stokesSLE = (AugLagStokes_SLE*)bsscrp_self->st_sle;
-    PetscTruth uzawastyle, KisJustK=PETSC_TRUE, restorek, changeA11prefix;
+    PetscTruth uzawastyle, KisJustK=PETSC_TRUE, restorek, change_A11rhspresolve;
     PetscTruth usePreviousGuess, useNormInfStoppingConditions, useNormInfMonitor, found, forcecorrection;
+    PetscTruth change_backsolve;
     PetscErrorCode ierr;
     PetscInt monitor_index,max_it,min_it;
-    KSP ksp_inner, ksp_S;
+    KSP ksp_inner, ksp_S, backsolve_ksp, presolve_ksp;
     PC pc_S, pcInner;
     Mat K,G,D,C, S, K2;// Korig;
     Vec u,p,f,f2,f3=0,h, h_hat,t;
@@ -126,7 +133,11 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
         }
 
         K2=bsscrp_self->K2;
+        scrSolveTime = MPI_Wtime();
         ierr=MatAXPY(K,penaltyNumber,K2,DIFFERENT_NONZERO_PATTERN);CHKERRQ(ierr);/* Computes K = penaltyNumber*K2 + K */
+        scrSolveTime =  MPI_Wtime() - scrSolveTime;
+        PetscPrintf( PETSC_COMM_WORLD, "\n\t* K+p*K2 in time: %lf seconds\n\n", scrSolveTime);
+
         //ierr=MatAYPX(K2,penaltyNumber,K,DIFFERENT_NONZERO_PATTERN);CHKERRQ(ierr);/* Computes K2 = penaltyNumber*K2 + K */
         //Korig=K;
         //K=K2; /* we are doing K2=a*K2+K because K2s non-zero pattern is larger than Ks. The other way round is very slow due to extra memory allocation in K. */
@@ -205,7 +216,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /*********    SET PREFIX FOR INNER/VELOCITY KSP    *************************************************************/
     KSPSetOptionsPrefix( ksp_inner, "A11_" );
     KSPSetFromOptions( ksp_inner );
-    KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+    Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
 
     useNormInfStoppingConditions = PETSC_FALSE;
     PetscOptionsGetTruth( PETSC_NULL ,"-A11_use_norm_inf_stopping_condition", &useNormInfStoppingConditions, &found );
@@ -222,24 +233,34 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /* If multigrid is enabled, set it now. */
-    changeA11prefix = PETSC_FALSE; 
-    PetscOptionsGetTruth( PETSC_NULL, "-change_A11_prefix", &changeA11prefix, &found );
+    change_A11rhspresolve = PETSC_FALSE; 
+    PetscOptionsGetTruth( PETSC_NULL, "-change_A11rhspresolve", &change_A11rhspresolve, &found );
 
-    if(bsscrp_self->mg && !changeA11prefix) { mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); }
+    if(bsscrp_self->mg && !change_A11rhspresolve) { mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); }
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /* create right hand side */
-    if(changeA11prefix){
-        KSPSetOptionsPrefix( ksp_inner, "RHSA11_" ); /* Want to configure this solve differently sometimes */
-        KSPSetFromOptions( ksp_inner );
+    if(change_A11rhspresolve){
+      Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
+      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix(ksp_inner, "rhsA11_");
+      MatSchurSetKSP( S, ksp_inner );
+      KSPGetPC( ksp_inner, &pcInner );
+      KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
     }
     MatGetVecs( S, PETSC_NULL, &h_hat );
     MatSchurApplyReductionToVecFromBlock( S, stokes_b, h_hat );/* A11 KSPSolve in here */
 
-    if(bsscrp_self->mg && changeA11prefix) { 
-        KSPSetOptionsPrefix( ksp_inner, "A11_" );
-        KSPSetFromOptions( ksp_inner );
-        mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); 
+    if(bsscrp_self->mg && change_A11rhspresolve) {
+      Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
+      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix( ksp_inner, "A11_" );
+      MatSchurSetKSP( S, ksp_inner );
+      KSPGetPC( ksp_inner, &pcInner );
+      KSPSetFromOptions( ksp_inner );
+      mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); 
     }
     /* create solver for S p = h_hat */
     KSPCreate( PETSC_COMM_WORLD, &ksp_S );
@@ -248,7 +269,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /* Note that if scaling is activated then the approxS matrix has been scaled already */
     /* so no need to rebuild in the case of scaling as we have been doing */
     if(!approxS){ PetscPrintf( PETSC_COMM_WORLD,  "WARNING approxS is NULL\n"); }
-    KSPSetOperators( ksp_S, S, S, SAME_NONZERO_PATTERN );
+    Stg_KSPSetOperators( ksp_S, S, S, SAME_NONZERO_PATTERN );
     KSPSetType( ksp_S, "cg" );
     KSPGetPC( ksp_S, &pc_S );
     BSSCR_BSSCR_StokesCreatePCSchur2( K,G,D,C,approxS, pc_S, sym, bsscrp_self );
@@ -258,7 +279,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     if(flg){
 	Mat Smat, Pmat;                                                                                                 
 	MatStructure mstruct;  
-	PCGetOperators( pc_S, &Smat, &Pmat, &mstruct );
+	Stg_PCGetOperators( pc_S, &Smat, &Pmat, &mstruct );
         sprintf(str,"%s/",name); sprintf(matname,"Pmat%s",suffix);
         bsscr_dirwriteMat( Pmat, matname,str, "Writing Pmat matrix in al Solver");
     }
@@ -279,7 +300,8 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     KSPSetFromOptions( ksp_S );
     /* Set specific monitor test */
     KSPGetTolerances( ksp_S, PETSC_NULL, PETSC_NULL, PETSC_NULL, &max_it );
-    BSSCR_KSPLogSetMonitor( ksp_S, max_it, &monitor_index );
+    // Weirdness with petsc 3.2 here...look at it later
+    //BSSCR_KSPLogSetMonitor( ksp_S, max_it, &monitor_index );
 
     /***************************************************************************************************************/
     /* Pressure / Velocity Solve */     
@@ -361,7 +383,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
             if(f3) { ierr=VecAXPY(f,penaltyNumber,f3); }/*  f <- f +a*f3 */
             ierr=MatAXPY(K,penaltyNumber,K2,DIFFERENT_NONZERO_PATTERN);CHKERRQ(ierr);/* Computes K = penaltyNumber*K2 + K */
             //K=Korig;
-            KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+            Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
             KisJustK=PETSC_TRUE;          
         }      
     }
@@ -376,10 +398,17 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /*******   VELOCITY SOLVE   ************************************************************************************/
-    KSPSetOptionsPrefix( ksp_inner, "backsolveA11_" );
-    KSPSetFromOptions( ksp_inner ); /* make sure we are setting up our solver how we want it. I think the schur compliment block set-up sets this to fgmres without asking. */
-    KSPSolve( ksp_inner, t, u );         /* Solve, then restore default tolerance and initial guess */          
-
+    /** Easier to just create a new KSP here if we want to do backsolve diffferently. (getting petsc errors now when switching from fgmres) */
+    change_backsolve=PETSC_FALSE;
+    PetscOptionsGetTruth( PETSC_NULL, "-change_backsolve", &change_backsolve, &found );
+    if(change_backsolve){
+      Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
+      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix(ksp_inner, "backsolveA11_");
+      KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
+    }
+    KSPSolve(ksp_inner, t, u);         /* Solve, then restore default tolerance and initial guess */
     a11SingleSolveTime = MPI_Wtime() - a11SingleSolveTime;              /* ------------------ Final V Solve */
 
     flg=0;
@@ -416,7 +445,9 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     Stg_KSPDestroy(&ksp_inner );// pcInner == pc_MG and is destroyed when ksp_inner is 
     Stg_VecDestroy(&h_hat );
     Stg_MatDestroy(&S );
-
+//    if(change_backsolve){
+//      Stg_KSPDestroy(&backsolve_ksp);
+//    }
     MatBlockRestoreSubMatrices( stokes_A );
     VecBlockRestoreSubVectors( stokes_b );
     VecBlockRestoreSubVectors( stokes_x );

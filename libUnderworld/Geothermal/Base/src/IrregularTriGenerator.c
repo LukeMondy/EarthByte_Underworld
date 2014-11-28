@@ -465,11 +465,11 @@ void IrregularTriGenerator_GenTopoAndGeom( IrregularTriGenerator* self, Mesh* me
 
 	/* generate the geometry for the nodes */
 	sync = (Sync*)IGraph_GetDomain( topo, 0 );
-	mesh->verts = AllocNamedArray2D( double, Sync_GetNumDomains( sync ), topo->nDims, "Mesh::verts" );
+    Mesh_GenerateVertices( mesh, Sync_GetNumDomains( sync ), topo->nDims );
 
 	for( i = 0; i < numNodes; i++ ) {
-		mesh->verts[i][0] = nodes[i][0];
-		mesh->verts[i][1] = nodes[i][1];
+		Mesh_GetVertex( mesh, i )[0] = nodes[i][0];
+		Mesh_GetVertex( mesh, i )[1] = nodes[i][1];
 	}
 	MPI_Barrier( self->mpiComm );
 
@@ -823,11 +823,11 @@ void IrregularTriGenerator_GenTopoAndGeom_Parallel( IrregularTriGenerator* self,
 
 	/* generate the geometry for the nodes */
 	sync = (Sync*)IGraph_GetDomain( topo, 0 );
-	mesh->verts = AllocNamedArray2D( double, Sync_GetNumDomains( sync ), topo->nDims, "Mesh::verts" );
+    Mesh_GenerateVertices( mesh, Sync_GetNumDomains( sync ), topo->nDims );
 
 	for( i = 0; i < numNodesLocal; i++ ) {
-		mesh->verts[i][0] = nodes[i][0];
-		mesh->verts[i][1] = nodes[i][1];
+		Mesh_GetVertex( mesh, i )[0] = nodes[i][0];
+		Mesh_GetVertex( mesh, i )[1] = nodes[i][1];
 	}
 	MPI_Barrier( self->mpiComm );
 
@@ -943,7 +943,7 @@ double IrregularTriGenerator_InterpolateWithinElement( void* generator, FeVariab
 		/* 1: evaluate the jacobian, J_ij = X_iA*(\del N_A(x)/\del x_j); where X is the global coord and x the local coord */
 		memset( J, 0, dim*dim*sizeof(double) );
 		for( node_j = 0; node_j < nInc; node_j++ ) {
-			nCoord = mesh->verts[inc[node_j]];
+			nCoord = Mesh_GetVertex( mesh, inc[node_j] );
 			J[0][0] += nCoord[0]*GN_xi[0][node_j];
 			J[0][1] += nCoord[0]*GN_xi[1][node_j];
 			J[1][0] += nCoord[1]*GN_xi[0][node_j];
@@ -953,7 +953,7 @@ double IrregularTriGenerator_InterpolateWithinElement( void* generator, FeVariab
 		/* 2: evaluate the residual, F_i(x) = X_iA*N_A(x) - X_i */
 		memset( rhs, 0, dim*sizeof(double) );
 		for( node_j = 0; node_j < nInc; node_j++ ) {
-			nCoord = mesh->verts[inc[node_j]];
+			nCoord = Mesh_GetVertex( mesh, inc[node_j] );
 			rhs[0] -= nCoord[0]*N_i[node_j];
 			rhs[1] -= nCoord[1]*N_i[node_j];
 		}
@@ -978,7 +978,7 @@ double IrregularTriGenerator_InterpolateWithinElement( void* generator, FeVariab
 double test[2] = {0.0,0.0};
 N_i[0] = N_0( lCoord );	N_i[1] = N_1( lCoord );	N_i[2] = N_2( lCoord );
 for( node_j = 0; node_j < nInc; node_j++ ) {
-  nCoord = mesh->verts[inc[node_j]];
+  nCoord = Mesh_GetVertex( mesh, inc[node_j] );
   test[0] += N_i[node_j]*nCoord[0];
   test[1] += N_i[node_j]*nCoord[1];
 }
@@ -1008,19 +1008,19 @@ Bool IrregularTriGenerator_ElementHasPoint( void* generator, Mesh* mesh, unsigne
 	nInc = IArray_GetSize( self->incVerts );
 	inc = IArray_GetPtr( self->incVerts );
 
-	v_ab[0] = mesh->verts[inc[1]][0] - mesh->verts[inc[0]][0];
-	v_ab[1] = mesh->verts[inc[1]][1] - mesh->verts[inc[0]][1];
-	v_bc[0] = mesh->verts[inc[2]][0] - mesh->verts[inc[1]][0];
-	v_bc[1] = mesh->verts[inc[2]][1] - mesh->verts[inc[1]][1];
-	v_ca[0] = mesh->verts[inc[0]][0] - mesh->verts[inc[2]][0];
-	v_ca[1] = mesh->verts[inc[0]][1] - mesh->verts[inc[2]][1];
+	v_ab[0] = Mesh_GetVertex( mesh, inc[1] )[0] - Mesh_GetVertex( mesh, inc[0] )[0];
+	v_ab[1] = Mesh_GetVertex( mesh, inc[1] )[1] - Mesh_GetVertex( mesh, inc[0] )[1];
+	v_bc[0] = Mesh_GetVertex( mesh, inc[2] )[0] - Mesh_GetVertex( mesh, inc[1] )[0];
+	v_bc[1] = Mesh_GetVertex( mesh, inc[2] )[1] - Mesh_GetVertex( mesh, inc[1] )[1];
+	v_ca[0] = Mesh_GetVertex( mesh, inc[0] )[0] - Mesh_GetVertex( mesh, inc[2] )[0];
+	v_ca[1] = Mesh_GetVertex( mesh, inc[0] )[1] - Mesh_GetVertex( mesh, inc[2] )[1];
 
-	v_ap[0] = point[0] - mesh->verts[inc[0]][0];
-	v_ap[1] = point[1] - mesh->verts[inc[0]][1];
-	v_bp[0] = point[0] - mesh->verts[inc[1]][0];
-	v_bp[1] = point[1] - mesh->verts[inc[1]][1];
-	v_cp[0] = point[0] - mesh->verts[inc[2]][0];
-	v_cp[1] = point[1] - mesh->verts[inc[2]][1];
+	v_ap[0] = point[0] - Mesh_GetVertex( mesh, inc[0] )[0];
+	v_ap[1] = point[1] - Mesh_GetVertex( mesh, inc[0] )[1];
+	v_bp[0] = point[0] - Mesh_GetVertex( mesh, inc[1] )[0];
+	v_bp[1] = point[1] - Mesh_GetVertex( mesh, inc[1] )[1];
+	v_cp[0] = point[0] - Mesh_GetVertex( mesh, inc[2] )[0];
+	v_cp[1] = point[1] - Mesh_GetVertex( mesh, inc[2] )[1];
 
 	if( ( v_ab[0]*v_ap[1] - v_ab[1]*v_ap[0] )*( v_ab[1]*v_ca[0] - v_ab[0]*v_ca[1] ) < 0 )
 		return False;

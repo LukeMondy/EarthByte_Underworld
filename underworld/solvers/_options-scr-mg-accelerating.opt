@@ -1,0 +1,166 @@
+#
+# Apply a multigrid preconditioner to the A11 block of a schur - complement
+# solve.
+#
+# NOTE: The number of multigrid levels needs to be added as an option to the
+# input XML file as follows:
+#
+#   <include>Experimental/MultigridForRegularSCR.xml</include>
+#   <param name="mgLevels">2</param>
+#
+
+# Schur complement solve
+
+-scrPCKSP_ksp_view 
+-ksp_type bsscr 
+-pc_type none  
+
+-rescale_equations 0 
+-k_scale_only 1
+#-log_summary 
+
+# The schur-complement options; see 'options-scr.opt' for details.
+
+-scr_ksp_type fgmres
+#-Q22_pc_type uwscale 
+
+#  Multigrid setup:        = 0.1409 secs
+#  Pressure Solve:         = 8.54 secs / 10 its
+#  Final V Solve:          = 1.239 secs / 7 its
+
+-Q22_pc_type gkgdiag 
+#  Multigrid setup:        = 0.1251 secs
+#  Pressure Solve:         = 3.525 secs / 5 its
+#  Final V Solve:          = 1.241 secs / 7 its
+
+#-Q22_pc_type uw 
+#  Multigrid setup:        = 0.1132 secs
+#  Pressure Solve:         = 10.75 secs / 19 its
+#  Final V Solve:          = 1.218 secs / 7 its
+
+
+-scr_use_previous_guess
+# -build_const_pressure_nullspace ## EVIL !!
+
+
+# outer iteration tolerance (pressure)
+-scr_ksp_rtol 1.0e-3  
+-scr_ksp_max_it 100  # This is just to keep things from wasting a load of time !
+-scr_ksp_set_min_it_converge 1
+
+
+# inner iteration tolerance (search velocity)    		
+-A11_ksp_rtol 1.0e-4
+
+# back solver tolerance (velocity)       	
+-scr_vel_back_solve_rtol 1.0e-4
+-backsolveA11_ksp_type fgmres   
+-backsolve_A11_ksp_rtol 1.0e-4
+
+-A11_ksp_type fgmres
+
+# Penalty options
+
+-uzawastyle 0 
+-ksp_k2_type GMG  
+-augmented_lagrangian 1 
+
+#-log_summary
+-scr_ksp_monitor
+#-scr_ksp_converged_reason
+-scr_ksp_solution_summary
+-A11_ksp_monitor
+-A11_ksp_converged_reason
+
+
+# Define the MG type, either as 'multiplicative' or 'additive'. We use
+# 'multiplicative' by default, not entirely sure why this is preferable to
+# 'additive'.
+
+-A11_pc_mg_type multiplicative
+
+# Select either a V-cycle, 'v', or a W-cycle 'w'. By default we use a V-cycle
+# as it is usually enough.
+
+-A11_pc_mg_cycle_type v
+# -pc_mg_cycle_type v 
+
+# Select the number of cycles to perform per MG precondition. For particularly
+# difficult problems this may need to be increased.
+
+-A11_pc_mg_multiplicative_cycles 1
+# -pc_mg_multiplicative_cycles 1
+
+# Optionally set the coarsest level's solve. By default we don't bother
+# specifying anything and let PETSc use a redundant direct solve.
+
+# -A11_mg_coarse_ksp_type cg
+# -A11_mg_coarse_ksp_max_it 100
+# -A11_mg_coarse_ksp_rtol 1e-6
+# -A11_mg_coarse_pc_type sor
+# -A11_mg_coarse_pc_sub_type cholesky
+
+# There are two ways to set information on finer levels. The first is to
+# specify a single option that translates to every level. The second is to
+# specify each level individually. These lines set all levels together.
+
+-A11_mg_levels_ksp_type minres
+-A11_mg_levels_ksp_max_its 3
+-A11_mg_levels_ksp_convergence_test skip
+-A11_mg_levels_ksp_type minres
+-A11_mg_levels_pc_type sor
+-A11_mg_levels_pc_sub_type cholesky
+#-A11_mg_levels_pc_sub_type ilu
+
+-A11_pc_mg_smoothup 5
+-A11_pc_mg_smoothdown 5
+
+# The accelerating MG is one of the best ways to kill off nasty problems effectively. Some tuning helps
+# because you can bracket low and high smoothing values if you have seen what works. But a wide range can
+# be very effective, so that's what we set by default.
+
+-mg_accelerating_smoothing true
+-mg_smoothing_adjust_on_convergence_rate false
+
+# Monitor (usual sort of thing)
+
+#####
+
+-mg_accelerating_smoothing_view true
+
+# Range of values for the up / down smooth and 
+# where to start at the beginning of each new iteration - if you have experience
+# that a particular solution needs a lot of iterations then you can help the 
+# algorithm out by suggesting it starts high.
+
+-mg_smooths_min 2 
+-mg_smooths_max 33
+-mg_smooths_to_start 3
+
+# The manner in which the smoothing cycles changes as the problem gets easier or harder. 
+# The specified acceleration is a factor which increases or decreases the number of cycles to smooths * or / acceleration
+# The specified increment increases or decreases the number of cycles to smooths + or - increment.
+# Should be a big number if a lot of variation is seen in the problem. 
+
+-mg_smoothing_acceleration 1.1
+-mg_smoothing_increment 1
+
+# And this is a target which says we'll try to get at least one order of magnitude reduction in 
+# residual over this number of V cycles with the fiddling about in smoothing, but not more than
+# two orders. This is to allow us to progress to smaller, cheaper operations when the calculation 
+# is easy
+
+-mg_target_cycles_10fold_reduction 5
+
+
+# The following lines show how to set each level individually, although only
+# level 1 is shown.
+
+#-A11_mg_levels_1_ksp_type richardson
+#-A11_mg_levels_1_ksp_max_it 1
+#-A11_mg_levels_1_pc_type bjacobi
+#-A11_mg_levels_1_pc_sub_type sor
+
+
+
+

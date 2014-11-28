@@ -55,11 +55,6 @@
 
 const Type ParticleFeVariable_Type = "ParticleFeVariable";
 
-#define _PFEVAR_MAX_NAMES 64
-char* ParticleFeVariable_names[_PFEVAR_MAX_NAMES];
-int ParticleFeVariable_nNames = 0;
-int ParticleFeVariable_curName = 0;
-
 ParticleFeVariable* _ParticleFeVariable_New(  PARTICLEFEVARIABLE_DEFARGS  ) {
 	ParticleFeVariable* self;
 	
@@ -110,9 +105,6 @@ void _ParticleFeVariable_Init( ParticleFeVariable* self, IntegrationPointsSwarm*
     * this component should work for other FE systems other than the Stokes solver */
 	EP_AppendClassHook( Context_GetEntryPoint( self->context, AbstractContext_EP_PostSolvePreUpdateClass ), self->_execute, self );
    
-   assert(ParticleFeVariable_nNames < _PFEVAR_MAX_NAMES);
-	ParticleFeVariable_names[ParticleFeVariable_nNames++] = self->name;
-
 	self->useDeriv = False;
 	self->GNx = NULL;
 }
@@ -213,11 +205,8 @@ void _ParticleFeVariable_Initialise( void* materialFeVariable, void* data ) {
 }
 
 void _ParticleFeVariable_Execute( void* materialFeVariable, void* _ctx ) {
-   AbstractContext* ctx = (AbstractContext*)_ctx;
 
-   if( ParticleFeVariable_curName >= ParticleFeVariable_nNames )
-      ParticleFeVariable_curName = 0;
-   ParticleFeVariable_Update( LiveComponentRegister_Get( ctx->CF->LCRegister, (Name)ParticleFeVariable_names[ParticleFeVariable_curName++] )  );
+   ParticleFeVariable_Update( materialFeVariable );
 }
 
 void _ParticleFeVariable_Destroy( void* materialFeVariable, void* data ) {

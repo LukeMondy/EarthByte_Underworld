@@ -40,7 +40,7 @@ export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
 
-for UW in uwscale
+for UW in gkgdiag 
 do
 for SCR in fgmres
 do
@@ -71,11 +71,11 @@ SCRP="default"
 
 #MG=boomeramg
 #MG="ml"
-MG=mumps
+MG=gmg
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
-	MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-accelerating.opt "
+	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml  "
     fi
     if [ "$MG" = "boomeramg" ]                                            
         then                                                                                                                                                                                          
@@ -115,7 +115,7 @@ SCALE="-rescale_equations 0"
 let "count+=1"
 VC=0
 VV=`echo "10^($VC)" | bc -l`
-VC=0
+VC=4
 VB=`echo "10^(-$VC)" | bc -l`
 PCRES=15
 
@@ -168,8 +168,8 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCx.xml \
   		-scr_ksp_rtol $SCRTOL \
                 -Xscr_ksp_monitor_true_residual \
               -XA11_pc_type hypre -XA11_pc_hypre_type boomeramg -XA11_pc_hypre_boomeramg_print_statistics \
-  		-A11_ksp_rtol $A11TOL \
-                -A11_ksp_type $A11 \
+  		-XA11_ksp_rtol $A11TOL \
+                -XA11_ksp_type $A11 \
               -XA11_pc_hypre_boomeramg_grid_sweeps_all 5 \
               -XA11_pc_hypre_boomeramg_tol 1e-3 \
                 -A11_ksp_converged_reason \
@@ -177,10 +177,11 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCx.xml \
                -XA11_use_norm_inf_stopping_condition \
                -XA11_ksp_monitor_true_residual \
                 -XA11_ksp_view \
-                -backsolveA11_ksp_type fgmres -backsolveA11_ksp_monitor \
-                -backsolveA11_ksp_rtol 1.0e-6 \
+                -XbacksolveA11_ksp_type fgmres -backsolveA11_ksp_monitor \
+                -XbacksolveA11_ksp_rtol 1.0e-6 \
   		--elementResI=$RES --elementResJ=$RES \
-  		--maxTimeSteps=0 -Xdump_matvec -Xmatsuffix "_${RES}x${RES}_${VV}_noscale_solcx" \
+  		--maxTimeSteps=1 -Xdump_matvec -Xmatsuffix "_${RES}x${RES}_${VV}_noscale_solcx" \
+   --components.stokesblockkspinterface.OptionsString="-A11_ksp_type fgmres -A11_ksp_rtol 1e-3 -A11_ksp_monitor -backsolveA11_ksp_type fgmres -log_summary " \
 
 #    > "./$OUT/output.txt" 2>&1
 

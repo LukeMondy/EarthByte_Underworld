@@ -334,10 +334,6 @@ void _lucColourMap_AssignFromXML( void* colourMap, Stg_ComponentFactory* cf, voi
    double centreValue, minimum, maximum;
    Bool centreOnFixedValue, dynamicRange, logScale, discrete;
 
-   self->context = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Context", AbstractContext, False, data );
-   if ( !self->context  )
-      self->context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, data  );
-
    dynamicRange = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"dynamicRange", False  );
    centreOnFixedValue = False;
    centreValue = 0;

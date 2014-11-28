@@ -43,7 +43,13 @@
 
 Bool StGermain_Finalise( void ) {
    /* DO NOT CHANGE OR REMOVE */
-   Journal_Printf( Journal_Register( DebugStream_Type, "Context" ), "In: %s\n", __func__ ); 
+   Journal_Printf( Journal_Register( DebugStream_Type, "Context" ), "In: %s\n", __func__ );
+
+   if( LiveComponentRegister_GetLiveComponentRegister() ) {
+      LiveComponentRegister_DestroyAll( LiveComponentRegister_GetLiveComponentRegister() );
+      LiveComponentRegister_DeleteAll( LiveComponentRegister_GetLiveComponentRegister() );
+      LiveComponentRegister_Delete();
+   }
    
    /* Delete the global objects : xmlSearchPaths and moduleDirectories */
    Stg_ObjectList_DeleteAllObjects( moduleDirectories );

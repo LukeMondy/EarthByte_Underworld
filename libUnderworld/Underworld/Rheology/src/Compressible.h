@@ -59,7 +59,9 @@
       /* Material Parameters */\
       double              oneOnLambda; \
       FeMesh*             geometryMesh; \
-      Materials_Register* materials_Register;
+      int                 compressibleTag; \
+      Materials_Register* materials_Register; \
+      PpcManager* ppcManager;
 
    struct Compressible { __Compressible };
    

@@ -39,9 +39,9 @@ export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
-for VC in 3 6 9
+for VC in 2 4 6 8
 do
-for SC in 0 1
+for SC in 0
 do
 for UW in gkgdiag
 do
@@ -134,14 +134,14 @@ PCRES=15
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
 #NAME="solcxGMG"
-NAME="q2p1sinkerGMG_conditionNumber"
+NAME="q2q1sinkerGMG_conditionNumber"
 #NAME="penTest"
 DIR="${NAME}_${RESX}x${RESY}"
 OUT="$DIR/sinker_10e${VC}_${SCALETEXT}"
 mkdir $DIR >& /dev/null
 mkdir $OUT >& /dev/null
 
-$UWEXEC $UWPATH/Solvers/InputFiles/sinkerq2p1.xml \
+$UWEXEC $UWPATH/Solvers/InputFiles/sinkerq2q1.xml \
     $UWPATH/Solvers/InputFiles/AugLagStokesSLE-GtMG.xml \
     $UWPATH/Solvers/InputFiles/VelocityMassMatrixSLE.xml \
     $UWPATH/Solvers/InputFiles/kspinterface.xml \
@@ -185,7 +185,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/sinkerq2p1.xml \
                 -backsolveA11_ksp_type fgmres \
                 -backsolveA11_ksp_rtol 1.0e-6 \
   		--elementResI=$RES --elementResJ=$RES \
-  		--maxTimeSteps=0 -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_sinker_" -NN $OUT \
+  		--maxTimeSteps=0 -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_sinker_" -matdumpdir $OUT -solutiondumpdir $OUT \
     > "./$OUT/output.txt" 2>&1
 
 ./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt

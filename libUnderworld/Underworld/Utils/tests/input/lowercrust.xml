@@ -7,6 +7,7 @@
       <list name="Rheology">
         <param> lowercrustViscosity </param>
       </list>
+      <param name="LatentHeatFusionLabel"> 0 </param>
       <param name="DensityLabel"> lowercrustDensity </param>
       <param name="CpLabel"> Cp </param>
       <param name="ThermalExpansivityLabel"> lowercrustAlpha </param>

@@ -77,7 +77,7 @@ int main( int argc, char* argv[] ) {
    /* Read input */
    ioHandler = XML_IO_Handler_New();
    IO_Handler_ReadAllFromCommandLine( ioHandler, argc, argv, dictionary, sources );
-   IO_Handler_WriteAllToFile( ioHandler, outputFilename, dictionary, sources, NULL, NULL, NULL );
+   IO_Handler_WriteAllToFile( ioHandler, outputFilename, dictionary, sources );
 
    Stg_Class_Delete( dictionary );
    Stg_Class_Delete( sources );

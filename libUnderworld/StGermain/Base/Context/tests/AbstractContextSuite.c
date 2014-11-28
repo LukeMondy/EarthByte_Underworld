@@ -199,6 +199,8 @@ void AbstractContextSuite_Setup( AbstractContextSuiteData* data ) {
 
 void AbstractContextSuite_Teardown( AbstractContextSuiteData* data ) {
 	_Stg_Component_Delete( data->ctx );
+   LiveComponentRegister_DestroyAll( LiveComponentRegister_GetLiveComponentRegister() );
+   LiveComponentRegister_Delete();
 }
 
 void AbstractContextSuite_TestDefaultEPs( AbstractContextSuiteData* data ) {

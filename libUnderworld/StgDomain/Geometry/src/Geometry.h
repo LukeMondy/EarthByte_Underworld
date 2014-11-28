@@ -54,8 +54,6 @@
 	#include "Line.h"
 	#include "RMatrix.h"
 	#include "QuadEdge.h"
-	#include "Delaunay.h"
-	#include "ParallelDelaunay.h"
 	#include "ComplexVectorMath.h"
 	#include "stg_lapack.h"
 	#include "TensorMultMath.h"

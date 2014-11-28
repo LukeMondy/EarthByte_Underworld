@@ -61,13 +61,7 @@ Bool gLucifer_Init( int* argc, char** argv[] ) {
       /* DO NOT CHANGE OR REMOVE */
       Journal_Printf( 
          Journal_Register( Info_Type, (Name)"Context" ),
-         "gLucifer (Visualisation Framework) Revision %s. Copyright (C) 2005-2010 Monash University.\n",
-         VERSION );
-
-      /* Add repo indentity info in the repo dictionary. */
-      Dictionary_Add( versionDict, "gLucifer", Dictionary_Entry_Value_FromString( VERSION ) );
-      Dictionary_Add( branchDict, "gLucifer", Dictionary_Entry_Value_FromString( BRANCH ) );
-      Dictionary_Add( pathDict, "gLucifer", Dictionary_Entry_Value_FromString( PATH ) );
+         "gLucifer (Visualisation Framework). Copyright (C) 2005-2010 Monash University.\n");
 
       Stream_Flush( Journal_Register( Info_Type, (Name)"Context" ) );
       Stream_SetPrintingRank( Journal_Register( Info_Type, (Name)"Context" ), tmp );

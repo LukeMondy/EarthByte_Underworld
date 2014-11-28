@@ -41,11 +41,6 @@
    
    /* Templates of virtual functions */
    typedef void (AbstractContext_SetDt) ( void* self, double dt );
-
-   /* Repository identity dictionary. */
-   extern Dictionary* versionDict;
-   extern Dictionary* branchDict;
-   extern Dictionary* pathDict;
    
    /* Context_CallInfo info */
    #define __StGermain_Base_Context_CallInfo \
@@ -175,7 +170,6 @@
       EntryPoint_Index       dataSaveClassK; \
       \
       Variable_Register*     variable_Register; \
-      Pointer_Register*      pointer_Register; \
       EntryPoint_Register*   entryPoint_Register; \
       ExtensionManager*      extensionMgr; \
       Stg_ComponentFactory*  CF; \

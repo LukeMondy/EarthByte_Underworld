@@ -37,11 +37,8 @@
 	
 typedef struct ThermalDataShape 		ThermalDataShape;
 typedef struct ThermalDataMaterial		ThermalDataMaterial;
-typedef struct ConductivityMaterialManager	ConductivityMaterialManager;
 typedef struct IrregularQuadGenerator		IrregularQuadGenerator;
 typedef struct IrregularTriGenerator		IrregularTriGenerator;
-typedef struct FieldVariableSurfaceAdaptor	FieldVariableSurfaceAdaptor;
-typedef struct FieldVariableSurfaceAdaptorSimple	FieldVariableSurfaceAdaptorSimple;
 typedef struct IrregularMeshGaussLayout		IrregularMeshGaussLayout;
 typedef struct DiscreetPointsVC			DiscreetPointsVC;
 typedef struct Mesh_SimplexType			Mesh_SimplexType;

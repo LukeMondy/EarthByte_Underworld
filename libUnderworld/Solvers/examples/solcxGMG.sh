@@ -37,9 +37,10 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
+#export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
-for VC in 3
+for VC in 9
 do
 for SC in 0
 do
@@ -47,7 +48,7 @@ for UW in gkgdiag
 do
 for SCR in fgmres
 do
-for A11 in preonly
+for A11 in fgmres
 do
 for SCRTOL in 1e-5
 do
@@ -60,11 +61,12 @@ echo "|-------+-------+------------+----------+------+------+------+------+-----
 #for PEN in 0.0 10.0 100.0 1000.0 10000.0
 #10.0 100.0 1000.0
 #for PENEXP in -4 -1 0 1 2 3 4 5
-for PENEXP in 0
+for PENEXP in 7
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 #PEN=`echo "0.25*$PEN" | bc -l`
 PEN=`echo "10^($PENEXP)" | bc -l`
+#PEN=0.0
 #SCRP="unpreconditioned"
 SCRP="default"
 #SCRP="unpreconditioned"
@@ -81,7 +83,7 @@ MG=gmg
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
-	    #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-accelerating.opt "
+	    #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg.opt "
 	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml "
     fi
     if [ "$MG" = "boomeramg" ]                                            
@@ -138,7 +140,7 @@ PCRES=15
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
 #NAME="solcxGMG"
-NAME="crunsSolCx_conditionNumberMatrices"
+NAME="crunsSolCx_conditionNumberMatrices_procs=${PROCS}"
 #NAME="penTest"
 DIR="${NAME}_${RESX}x${RESY}"
 OUT="$DIR/cx_10e${VC}_${SCALETEXT}"
@@ -152,53 +154,51 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     $UWPATH/Solvers/InputFiles/analyticVis.xml \
     $UWPATH/Solvers/InputFiles/quiet.xml  \
     $MGOP \
-                --particlesPerCell=$PP \
-                --components.weights.resolutionX=$PCRES --components.weights.resolutionY=$PCRES --components.weights.resolutionZ=$PCRES \
-  		--outputPath="./$OUT" \
-  		--components.stokesEqn.isNonLinear=False \
-       		--saveDataEvery=1 --checkpointEvery=2 --checkpointWritePath="./$OUT/Checkpoints" --checkpointAppendStep=1 \
-                --components.FieldTest.normaliseByAnalyticSolution=False \
-                --solCx_etaA=$VV \
-                --solCx_xc=0.5 \
-                --solCx_etaB=$VB \
-                --solCx_n=2.0 \
-                --wavenumberY=2.0 \
-                -scr_ksp_set_min_it_converge 1 \
-                -force_correction 1 -k_scale_only 1 \
-                -uzawastyle 0 \
-                -scrPCKSP_ksp_type fgmres \
-                -XscrPCKSP_ksp_converged_reason \
-                -XscrPCKSP_ksp_view \
-  		-ksp_type bsscr -pc_type none -ksp_k2_type GMG -augmented_lagrangian 1 --penaltyNumber=$PEN \
-  		-Q22_pc_type $UW \
-  		-XQ22_pc_type gtkg -Xrestore_K $SCALE \
-                -Xscr_pc_gtkg_ksp_view -Xscr_pc_gtkg_ksp_monitor -scr_pc_gtkg_ksp_rtol 1e-6 -scr_pc_gtkg_ksp_type cg \
-  		-remove_checkerboard_pressure_null_space 0 \
-  		-remove_constant_pressure_null_space 1 \
-  		--mgLevels=5 \
-  		-Xscr_ksp_max_it 1000 \
-                -scr_ksp_type $SCR \
-                -Xscr_ksp_view \
-                $SCRNORMTYPE \
-                -Xscr_ksp_left_pc \
-  		-scr_ksp_rtol $SCRTOL \
-                -Xscr_ksp_monitor_true_residual \
-              -XA11_pc_type hypre -XA11_pc_hypre_type boomeramg -XA11_pc_hypre_boomeramg_print_statistics \
-  		-A11_ksp_rtol $A11TOL \
-                -A11_ksp_type $A11 \
-              -XA11_pc_hypre_boomeramg_grid_sweeps_all 5 \
-              -XA11_pc_hypre_boomeramg_tol 1e-3 \
-                -A11_ksp_converged_reason \
-               -XA11_ksp_norm_inf_monitor \
-               -XA11_use_norm_inf_stopping_condition \
-               -XA11_ksp_monitor_true_residual \
-                -XA11_ksp_view \
-                -backsolveA11_ksp_type fgmres \
-                -backsolveA11_ksp_rtol 1.0e-6 \
-  		--elementResI=$RES --elementResJ=$RES \
-  		--maxTimeSteps=0 -A11_ksp_view -XA11_mg_levels_ksp_view \
+    --particlesPerCell=$PP \
+    --components.weights.resolutionX=$PCRES --components.weights.resolutionY=$PCRES --components.weights.resolutionZ=$PCRES \
+  	--outputPath="./$OUT" \
+  	--components.stokesEqn.isNonLinear=False \
+    --saveDataEvery=1 --checkpointEvery=2 --checkpointWritePath="./$OUT/Checkpoints" --checkpointAppendStep=1 \
+    --components.FieldTest.normaliseByAnalyticSolution=False \
+    --solCx_etaA=$VV \
+    --solCx_xc=0.5 \
+    --solCx_etaB=$VB \
+    --solCx_n=2.0 \
+    --wavenumberY=2.0 \
+    -scr_ksp_set_min_it_converge 1 \
+    -force_correction 1 -k_scale_only 1 \
+    -uzawastyle 0 \
+    -scrPCKSP_ksp_type fgmres \
+    -XscrPCKSP_ksp_converged_reason \
+    -XscrPCKSP_ksp_view \
+  	-ksp_type bsscr -pc_type none -ksp_k2_type GMG -augmented_lagrangian 1 --penaltyNumber=$PEN \
+  	-Q22_pc_type $UW \
+  	-XQ22_pc_type gtkg -Xrestore_K $SCALE \
+    -Xscr_pc_gtkg_ksp_view -Xscr_pc_gtkg_ksp_monitor -scr_pc_gtkg_ksp_rtol 1e-6 -scr_pc_gtkg_ksp_type cg \
+  	-remove_checkerboard_pressure_null_space 0 \
+  	-remove_constant_pressure_null_space 1 \
+  	--mgLevels=5 \
+  	-Xscr_ksp_max_it 1000 \
+    -Xscr_ksp_type $SCR \
+    -Xscr_ksp_view \
+    $SCRNORMTYPE \
+    -Xscr_ksp_left_pc \
+  	-scr_ksp_rtol $SCRTOL \
+    -Xscr_ksp_monitor_true_residual \
+    -XA11_pc_type hypre -XA11_pc_hypre_type boomeramg -XA11_pc_hypre_boomeramg_print_statistics \
+  	-XA11_ksp_rtol $A11TOL \
+    -XA11_ksp_type $A11 \
+    -XA11_pc_hypre_boomeramg_grid_sweeps_all 5 \
+    -XA11_pc_hypre_boomeramg_tol 1e-3 \
+    -A11_ksp_converged_reason \
+    -XA11_ksp_norm_inf_monitor \
+    -XA11_use_norm_inf_stopping_condition \
+    -XA11_ksp_monitor_true_residual \
+  	--elementResI=$RES --elementResJ=$RES \
+  	--maxTimeSteps=0 -XA11_ksp_view -XA11_mg_levels_ksp_view \
     -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -matdumpdir $OUT -solutiondumpdir $OUT \
-   --components.stokesblockkspinterface.OptionsString="-A11_ksp_type cg -A11_ksp_rtol 1e-3 -A11_ksp_monitor -backsolveA11_ksp_type cg -log_summary" \
+   --components.stokesblockkspinterface.OptionsString="-help -A11_ksp_monitor -A11_ksp_view -backsolveA11_ksp_type preonly -backsolveA11_pc_type lu " \
+#
 
 #    > "./$OUT/output.txt" 2>&1
 
@@ -288,4 +288,4 @@ cd ..
 }
 
 #makepng
-:q
+

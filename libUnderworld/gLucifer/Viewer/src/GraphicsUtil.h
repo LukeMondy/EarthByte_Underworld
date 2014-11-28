@@ -44,7 +44,7 @@
     GLenum error = GL_NO_ERROR; \
     while ((error = glGetError()) != GL_NO_ERROR) { \
       printf("OpenGL error [ %s : %d ] \"%s\".\n",  \
-            __FILE__, __LINE__, gluErrorString(error)); \
+            __FILE__, __LINE__, glErrorString(error)); \
     } \
   }
 
@@ -100,6 +100,10 @@
 #define eyeDistance(M,V) -(M[2] * V[0] + M[6] * V[1] + M[10] * V[2] + M[14]);
 
 #define printVertex(v) printf("%9f,%9f,%9f",v[0],v[1],v[2]);
+// Print out a matrix
+#ifndef M
+#define M(mat,row,col)  mat[col*4+row]
+#endif
 #define printMatrix(mat) {              \
         int r, p;                       \
         printf("--------- --------- --------- ---------\n"); \
@@ -475,6 +479,7 @@ Vec3d vectorNormalToPlane(float pos0[3], float pos1[3], float pos2[3]);
  */
 class Quaternion
 {
+   float matrix[16];
   public:
    float x;
    float y;
@@ -637,39 +642,50 @@ class Quaternion
    }
 
    // Convert to Matrix
-   void getMatrix(float matrix4[16]) const
+   float* getMatrix()
    {
-      float x2 = x * x;
-      float y2 = y * y;
-      float z2 = z * z;
-      float xy = x * y;
-      float xz = x * z;
-      float yz = y * z;
-      float wx = w * x;
-      float wy = w * y;
-      float wz = w * z;
-
       // This calculation would be a lot more complicated for non-unit length quaternions
       // Note: expects the matrix in column-major format like expected by OpenGL
-      matrix4[0] = 1.0f - 2.0f * (y2 + z2);
-      matrix4[1] = 2.0f * (xy - wz);
-      matrix4[2] = 2.0f * (xz + wy);
-      matrix4[3] = 0.0f;
+      float x2 = x + x;
+      float y2 = y + y;
+      float z2 = z + z;
 
-      matrix4[4] = 2.0f * (xy + wz);
-      matrix4[5] = 1.0f - 2.0f * (x2 + z2);
-      matrix4[6] = 2.0f * (yz - wx);
-      matrix4[7] = 0.0f;
+      float xx2 = x * x2;
+      float xy2 = x * y2;
+      float xz2 = x * z2;
+      float yy2 = y * y2;
+      float yz2 = y * z2;
+      float zz2 = z * z2;
+      float wx2 = w * x2;
+      float wy2 = w * y2;
+      float wz2 = w * z2;
 
-      matrix4[8] = 2.0f * (xz - wy);
-      matrix4[9] = 2.0f * (yz + wx);
-      matrix4[10] = 1.0f - 2.0f * (x2 + y2);
-      matrix4[11] = 0.0f;
+      matrix[0] = 1 - (yy2 + zz2);
+      matrix[1] = xy2 + wz2;
+      matrix[2] = xz2 - wy2;
+      matrix[3] = 0;
 
-      matrix4[12] = 0.0f;
-      matrix4[13] = 0.0f;
-      matrix4[14] = 0.0f;
-      matrix4[15] = 1.0f;
+      matrix[4] = xy2 - wz2;
+      matrix[5] = 1 - (xx2 + zz2);
+      matrix[6] = yz2 + wx2;
+      matrix[7] = 0;
+
+      matrix[8] = xz2 + wy2;
+      matrix[9] = yz2 - wx2;
+      matrix[10] = 1 - (xx2 + yy2);
+      matrix[11] = 0;
+
+      matrix[12] = 0;
+      matrix[13] = 0;
+      matrix[14] = 0;
+      matrix[15] = 1;
+
+      return matrix;
+   }
+
+   void apply()
+   {
+      glMultMatrixf(getMatrix());
    }
 
    void toEuler(float& bank, float& heading, float& attitude)
@@ -866,7 +882,9 @@ class PropertyParser
 
 };
 
-
+const char* glErrorString(GLenum errorCode);
+int gluProjectf(float objx, float objy, float objz, float *windowCoordinate);
+int gluProjectf(float objx, float objy, float objz, float* modelview, float*projection, int* viewport, float *windowCoordinate);
 
 void Viewport2d(int width, int height);
 

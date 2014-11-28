@@ -435,7 +435,7 @@ void _SystemLinearEquations_Build( void* sle, void* _context ) {
 	
 	/* lastly, the solver - if required */
 	if( self->solver )
-		Stg_Component_Build( self->solver, self, False );
+		Stg_Component_Build( self->solver, self, True );
 
 	Stream_UnIndentBranch( StgFEM_Debug );
 }

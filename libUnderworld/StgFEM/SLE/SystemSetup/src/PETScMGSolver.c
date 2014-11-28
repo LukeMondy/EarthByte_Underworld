@@ -281,13 +281,11 @@ void PETScMGSolver_Setup( void* matrixSolver, void* rhs, void* solution ) {
 	if( self->solversChanged || rebuildOps || self->opsChanged ) {
 		wallTime = MPI_Wtime();
 		PETScMGSolver_UpdateSolvers( self );
-        stg_profile_Func( "PETScMGSolver_UpdateSolvers", MPI_Wtime() - wallTime);
 	   	PetscPrintf( PETSC_COMM_WORLD, "PETScMGSolver_UpdateSolvers %g\n", MPI_Wtime() - wallTime);
 	}
 	if( rebuildOps ) {
 		wallTime = MPI_Wtime();
 		PETScMGSolver_UpdateOps( self );
-		stg_profile_Func( "PETScMGSolver_UpdateOps", MPI_Wtime() - wallTime);
 		PetscPrintf( PETSC_COMM_WORLD,  "PETScMGSolver_UpdateOps %g\n", MPI_Wtime() - wallTime);
 
 	}
@@ -296,7 +294,6 @@ void PETScMGSolver_Setup( void* matrixSolver, void* rhs, void* solution ) {
 		wallTime = MPI_Wtime();
 		PETScMGSolver_UpdateMatrices( self );
 		PETScMGSolver_UpdateWorkVectors( self );
-		stg_profile_Func( "PETScMGSolver_UpdateMats-WorkVecs", MPI_Wtime() - wallTime); 
 		PetscPrintf( PETSC_COMM_WORLD, "PETScMGSolver_UpdateMats-WorkVecs %g\n", MPI_Wtime() - wallTime); 
 	}
 
@@ -350,6 +347,7 @@ void PETScMGSolver_SetRestriction( void* matrixSolver, unsigned levelInd, void* 
 	PETScMGSolver*		self 	= (PETScMGSolver*)matrixSolver;
 	PETScMGSolver_Level*	level;
 	Mat			R	= (Mat)_R;
+    int equal=0;
 
 	assert( self && Stg_CheckType( self, PETScMGSolver ) );
 	assert( levelInd < self->nLevels && levelInd > 0 );
@@ -358,12 +356,14 @@ void PETScMGSolver_SetRestriction( void* matrixSolver, unsigned levelInd, void* 
 	level = self->levels + levelInd;
 	if( level->R != R )
 		self->opsChanged = True;
-	//if( R )
-	//	Stg_Class_AddRef( R );
-	//if( level->R )
-	//	Stg_Class_RemoveRef( level->R );
-	if( level->R != PETSC_NULL )
+
+    if(level->P == level->R) equal=1;/* need to test for equality first as petsc will set mat to PETSC_NULL on destroy */
+
+	if( level->R != PETSC_NULL ){
 		Stg_MatDestroy(&level->R );
+		if(equal)
+		    level->P = PETSC_NULL;
+    }
 	level->R = R;
 }
 
@@ -371,6 +371,7 @@ void PETScMGSolver_SetProlongation( void* matrixSolver, unsigned levelInd, void*
 	PETScMGSolver*		self 	= (PETScMGSolver*)matrixSolver;
 	PETScMGSolver_Level*	level;
 	Mat			P	= (Mat)_P;
+    int equal=0;
 
 	assert( self && Stg_CheckType( self, PETScMGSolver ) );
 	assert( levelInd < self->nLevels && levelInd > 0 );
@@ -379,13 +380,12 @@ void PETScMGSolver_SetProlongation( void* matrixSolver, unsigned levelInd, void*
 	level = self->levels + levelInd;
 	if( level->P != P )
 		self->opsChanged = True;
-	//if( P )
-	//	Stg_Class_AddRef( P );
-	//if( level->P )
-	//	Stg_Class_RemoveRef( level->P );
+
+    if(level->P == level->R) equal=1;/* need to test for equality first as petsc will set mat to PETSC_NULL on destroy */
+
 	if( level->P != PETSC_NULL ) {
 		Stg_MatDestroy(&level->P );
-		if(level->P == level->R)
+		if(equal)
 		    level->R = PETSC_NULL;
 	}
 	level->P = P;
@@ -530,8 +530,8 @@ void PETScMGSolver_UpdateMatrices( PETScMGSolver* self ) {
 
 		ec = PCMGGetSmootherDown( pc, l_i, &levelKSP );
 		CheckPETScError( ec );
-		//ec = KSPSetOperators( levelKSP, level->A->petscMat, level->A->petscMat, DIFFERENT_NONZERO_PATTERN );
-		ec = KSPSetOperators( levelKSP, level->A, level->A, DIFFERENT_NONZERO_PATTERN );
+		//ec = Stg_KSPSetOperators( levelKSP, level->A->petscMat, level->A->petscMat, DIFFERENT_NONZERO_PATTERN );
+		ec = Stg_KSPSetOperators( levelKSP, level->A, level->A, DIFFERENT_NONZERO_PATTERN );
 		CheckPETScError( ec );
 		//ec = PCMGSetResidual( pc, l_i, PCMGDefaultResidual, level->A->petscMat );
 		ec = PCMGSetResidual( pc, l_i, Stg_PCMGDefaultResidual, level->A );
@@ -539,8 +539,8 @@ void PETScMGSolver_UpdateMatrices( PETScMGSolver* self ) {
 
 		if( l_i > 0 ) {
 			PCMGGetSmootherUp( pc, l_i, &levelKSP );
-			//ec = KSPSetOperators( levelKSP, level->A->petscMat, level->A->petscMat, DIFFERENT_NONZERO_PATTERN );
-			ec = KSPSetOperators( levelKSP, level->A, level->A, DIFFERENT_NONZERO_PATTERN );
+			//ec = Stg_KSPSetOperators( levelKSP, level->A->petscMat, level->A->petscMat, DIFFERENT_NONZERO_PATTERN );
+			ec = Stg_KSPSetOperators( levelKSP, level->A, level->A, DIFFERENT_NONZERO_PATTERN );
 			CheckPETScError( ec );
 		}
 	}
@@ -730,30 +730,22 @@ void PETScMGSolver_DestructLevels( PETScMGSolver* self ) {
 	for( l_i = 0; l_i < self->nLevels; l_i++ ) {
 		PETScMGSolver_Level*	level = self->levels + l_i;
 
-		/*
-		if( level->R )
-			Stg_Class_RemoveRef( level->R );
-		if( level->P )
-			Stg_Class_RemoveRef( level->P );
-		if( level->A )
-			Stg_Class_RemoveRef( level->A );
-		*/
-		if( level->R != PETSC_NULL && level->R != level->P )
-                    Stg_MatDestroy(&level->R );
-		if( level->P != PETSC_NULL ) Stg_MatDestroy(&level->P );
-/*
-		if( level->A != PETSC_NULL ) Stg_MatDestroy(&level->A );
-*/
+        if(level->R == level->P){
+          if( level->R != PETSC_NULL ){
+            Stg_MatDestroy(&level->R );
+            level->P =  PETSC_NULL;
+          }
+        }else{/* not same so test individually */
+          if( level->R != PETSC_NULL ) Stg_MatDestroy(&level->R );
+          if( level->P != PETSC_NULL ) Stg_MatDestroy(&level->P );
+        }
 
-		//FreeObject( level->workRes );
-		//FreeObject( level->workSol );
-		//FreeObject( level->workRHS );
-                if( level->workRes )
-                    Stg_VecDestroy(&level->workRes );
-                if( level->workSol )
-                    Stg_VecDestroy(&level->workSol );
-                if( level->workRHS )
-                    Stg_VecDestroy(&level->workRHS );
+        if( level->workRes )
+          Stg_VecDestroy(&level->workRes );
+        if( level->workSol )
+          Stg_VecDestroy(&level->workSol );
+        if( level->workRHS )
+          Stg_VecDestroy(&level->workRHS );
 	}
 
 	KillArray( self->levels );

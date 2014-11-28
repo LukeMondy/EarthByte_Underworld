@@ -289,7 +289,7 @@ void LinearSpaceAdaptor_Generate( void* _self, void* _mesh, void* data ) {
   if( self->nSegmentsx > 0 ) {
     for( n_i = 0; n_i < Sync_GetNumDomains( sync ); n_i++ ) {
       /* get the x coord */
-      x = mesh->verts[n_i][I_AXIS];      
+      x = Mesh_GetVertex( mesh, n_i )[I_AXIS];
 
       if( x != self->minX && x != self->maxX ) {	      
 		  /* normalize the x coord*/
@@ -299,7 +299,7 @@ void LinearSpaceAdaptor_Generate( void* _self, void* _mesh, void* data ) {
 		  /* denormalize mapped point */
 		  x = (self->maxX - self->minX)*x + self->minX;
 		  /* move the node */
-		  mesh->verts[n_i][I_AXIS] = x;
+		  Mesh_GetVertex( mesh, n_i )[I_AXIS] = x;
       }
     }
   }
@@ -307,7 +307,7 @@ void LinearSpaceAdaptor_Generate( void* _self, void* _mesh, void* data ) {
   if( self->nSegmentsy > 0 ) {
     for( n_i = 0; n_i < Sync_GetNumDomains( sync ); n_i++ ) {
       /* get the y coord */
-      x = mesh->verts[n_i][J_AXIS];      
+      x = Mesh_GetVertex( mesh, n_i )[J_AXIS];
 
       if( x != self->minY && x != self->maxY ) {
 		  /* normalize the y coord*/
@@ -317,7 +317,7 @@ void LinearSpaceAdaptor_Generate( void* _self, void* _mesh, void* data ) {
 		  /* denormalize mapped point */
 		  x = (self->maxY - self->minY)*x + self->minY;
 		  /* move the node */
-		  mesh->verts[n_i][J_AXIS] = x;
+		  Mesh_GetVertex( mesh, n_i )[J_AXIS] = x;
       }
     }
   }  
@@ -325,7 +325,7 @@ void LinearSpaceAdaptor_Generate( void* _self, void* _mesh, void* data ) {
   if( self->nSegmentsz > 0 ) {
     for( n_i = 0; n_i < Sync_GetNumDomains( sync ); n_i++ ) {
       /* get the x coord */
-      x = mesh->verts[n_i][K_AXIS];
+      x = Mesh_GetVertex( mesh, n_i )[K_AXIS];
 
       if( x != self->minZ && x != self->maxZ ) {	      
 		  /* normalize the z coord*/
@@ -335,7 +335,7 @@ void LinearSpaceAdaptor_Generate( void* _self, void* _mesh, void* data ) {
 		  /* denormalize mapped point */
 		  x = (self->maxZ - self->minZ)*x + self->minZ;
 		  /* move the node */
-		  mesh->verts[n_i][K_AXIS] = x;
+		  Mesh_GetVertex( mesh, n_i )[K_AXIS] = x;
       }
     }
   }

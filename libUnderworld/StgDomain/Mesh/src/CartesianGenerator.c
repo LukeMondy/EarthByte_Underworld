@@ -129,6 +129,8 @@ CartesianGenerator* _CartesianGenerator_New(  CARTESIANGENERATOR_DEFARGS  ) {
 	self->genEdgeVertexIncFunc = genEdgeVertexIncFunc;
 	self->genElementTypesFunc = genElementTypesFunc;
   self->calcGeomFunc = calcGeomFunc; 
+  self->initVtkFile = NULL;
+  self->initMeshFile = NULL;
 
 
 	return self;
@@ -174,6 +176,7 @@ void _CartesianGenerator_Delete( void* meshGenerator ) {
 	CartesianGenerator*	self = (CartesianGenerator*)meshGenerator;
 
 	if( self->initVtkFile ) FreeArray( self->initVtkFile );
+	if( self->initMeshFile ) FreeArray( self->initMeshFile );
 
 	/* Delete the parent. */
 	_MeshGenerator_Delete( self );
@@ -340,9 +343,23 @@ void _CartesianGenerator_AssignFromXML( void* meshGenerator, Stg_ComponentFactor
 
          meshReadFileNamePart = Context_GetCheckPointReadPrefixString( context );
 
+         /*
+            The following is EVIL code. As we only checkpoint deforming meshes every timestep we need to query if the mesh is deforming.
+            Unfortunately the only way we can tell at the AssignFromXML phase of the code is by detecting if the Underworld_EulerDeform plugin
+            (the plugin responsible for deforming the mesh) is active.
+            So the following logic is:
+               if the Underworld_EulerDeform is loaded:
+                  read the mesh file at appropriate timestep
+               else:
+                  read the mesh file at timestep 0 
+         */
          /** assumption: that the generator only generates one mesh, or that the information in that mesh's checkpoint
          file is valid for all meshes being generated TODO: generalise **/
-         Stg_asprintf( &meshReadFileName, "%sMesh.%s.%.5u.h5", meshReadFileNamePart, self->meshes[0]->name, self->context->restartTimestep );
+         if( Stg_ObjectList_Get( context->plugins->modules, "Underworld_EulerDeform" ) ) {
+            Stg_asprintf( &meshReadFileName, "%sMesh.%s.%.5u.h5", meshReadFileNamePart, self->meshes[0]->name, self->context->restartTimestep );
+         } else {
+            Stg_asprintf( &meshReadFileName, "%sMesh.%s.%.5u.h5", meshReadFileNamePart, self->meshes[0]->name, 0 );
+         }
 	      
 	      /** Read in minimum coord. */
 	      file = H5Fopen( meshReadFileName, H5F_ACC_RDONLY, H5P_DEFAULT );
@@ -440,7 +457,12 @@ void _CartesianGenerator_AssignFromXML( void* meshGenerator, Stg_ComponentFactor
 
          meshReadFileNamePart = Context_GetCheckPointReadPrefixString( context );
 
-         Stg_asprintf( &meshReadFileName, "%sMesh.%s.%.5u.dat", meshReadFileNamePart, self->meshes[0]->name, self->context->restartTimestep );
+         // Evil plugin code to determine which mesh file to load
+         if( Stg_ObjectList_Get( context->plugins->modules, "Underworld_EulerDeform" ) ) {
+            Stg_asprintf( &meshReadFileName, "%sMesh.%s.%.5u.dat", meshReadFileNamePart, self->meshes[0]->name, self->context->restartTimestep );
+         } else {
+            Stg_asprintf( &meshReadFileName, "%sMesh.%s.%.5u.dat", meshReadFileNamePart, self->meshes[0]->name, 0 );
+         }
 	        
 			FILE* meshFile = fopen( meshReadFileName, "r" );	
 			/*Journal_Firewall( 
@@ -472,6 +494,7 @@ void _CartesianGenerator_AssignFromXML( void* meshGenerator, Stg_ComponentFactor
 			}
 #endif
 				
+                        self->initMeshFile=strdup( meshReadFileName );
 			Memory_Free( meshReadFileName );
 			Memory_Free( meshReadFileNamePart );
 
@@ -2188,9 +2211,7 @@ void CartesianGenerator_GenGeom( CartesianGenerator* self, Mesh* mesh, void* dat
 
     /* Allocate for coordinates. */
     sync = (Sync*)IGraph_GetDomain( (IGraph*)mesh->topo, 0 );
-    mesh->verts = AllocNamedArray2D( double, Sync_GetNumDomains( sync ), 
-				     mesh->topo->nDims, 
-				     "Mesh::verts" );
+    Mesh_GenerateVertices( mesh, Sync_GetNumDomains( sync ), mesh->topo->nDims );
 
 
 /* Below is the algorithm to choose method to generate node geometry
@@ -2211,21 +2232,16 @@ void CartesianGenerator_GenGeom( CartesianGenerator* self, Mesh* mesh, void* dat
 	    && context->timeStep == context->restartTimestep 
 	    && self->readFromFile) {
 
-	char*  meshReadFileName;
-	char*  meshReadFileNamePart;   
+	char*  meshReadFileName = strdup( self->initMeshFile );
 
-	meshReadFileNamePart = Context_GetCheckPointReadPrefixString( context );
 	#ifdef READ_HDF5
-	Stg_asprintf( &meshReadFileName, "%sMesh.%s.%.5u.h5", meshReadFileNamePart, self->meshes[0]->name, context->restartTimestep );
-	CartesianGenerator_ReadFromHDF5( self, mesh, meshReadFileName );
-	Journal_Printf( stream, "... loading from file %s.\n", meshReadFileName );
+        CartesianGenerator_ReadFromHDF5( self, mesh, meshReadFileName );
+        Journal_Printf( stream, "... loading from file %s.\n", meshReadFileName );
 	#else
-	Stg_asprintf( &meshReadFileName, "%sMesh.%s.%.5u.dat", meshReadFileNamePart, self->meshes[0]->name, context->restartTimestep );
 	Journal_Printf( stream, "... loading from file %s.\n", meshReadFileName );
 	CartesianGenerator_ReadFromASCII( self, mesh, meshReadFileName);      
 	#endif
 	Memory_Free( meshReadFileName );
-	Memory_Free( meshReadFileNamePart );
 	Mesh_Sync( mesh );
 
     } else { 
@@ -2271,17 +2287,17 @@ void CartesianGenerator_CalcGeom( void* _self, Mesh* mesh, Sync* sync, Grid* gri
 		/* Calculate coordinate. */
 		for( d_i = 0; d_i < mesh->topo->nDims; d_i++ ) {
                    if( inds[d_i] <= self->contactDepth[d_i][0] ) {
-                      mesh->verts[n_i][d_i] = self->crdMin[d_i];
+                      Mesh_GetVertex( mesh, n_i )[d_i] = self->crdMin[d_i];
                       if( self->contactDepth[d_i][0] ) {
-                         mesh->verts[n_i][d_i] +=
+                         Mesh_GetVertex( mesh, n_i )[d_i] +=
                             ((double)inds[d_i] / (double)self->contactDepth[d_i][0]) *
                             self->contactGeom[d_i];
                       }
                    }
                    else if( inds[d_i] >= grid->sizes[d_i] - self->contactDepth[d_i][1] - 1 ) {
-                      mesh->verts[n_i][d_i] = self->crdMax[d_i];
+                      Mesh_GetVertex( mesh, n_i )[d_i] = self->crdMax[d_i];
                       if( self->contactDepth[d_i][1] ) {
-                         mesh->verts[n_i][d_i] -=
+                         Mesh_GetVertex( mesh, n_i )[d_i] -=
                             ((double)(grid->sizes[d_i] - 1 - inds[d_i]) /
                              (double)self->contactDepth[d_i][1]) *
                             self->contactGeom[d_i];

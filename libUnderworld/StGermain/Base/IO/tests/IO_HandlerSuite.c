@@ -108,7 +108,7 @@ void IO_HandlerSuite_TestWriteReadNormalEntries( IO_HandlerSuiteData* data ) {
    DictionarySuite_PopulateDictWithTestValues( data->dict1, data->testDD );
 
    if (data->rank == 0) {
-      IO_Handler_WriteAllToFile( data->io_handler, xmlTestFilename, data->dict1, data->sources1, NULL, NULL, NULL );
+      IO_Handler_WriteAllToFile( data->io_handler, xmlTestFilename, data->dict1, data->sources1 );
    }
 
    for(rank_I =0; rank_I<data->nProcs;rank_I++) {
@@ -176,7 +176,7 @@ void IO_HandlerSuite_TestWriteReadEmpty( IO_HandlerSuiteData* data ) {
    Index          rank_I;
 
    if (data->rank == 0) {
-      IO_Handler_WriteAllToFile( data->io_handler, xmlTestFilename, data->dict1, data->sources1, NULL, NULL, NULL );
+      IO_Handler_WriteAllToFile( data->io_handler, xmlTestFilename, data->dict1, data->sources1 );
    }
 
    for (rank_I=0; rank_I<data->nProcs; rank_I++) {
@@ -220,7 +220,7 @@ void IO_HandlerSuite_TestWriteExplicitTypes( IO_HandlerSuiteData* data ) {
 
    XML_IO_Handler_SetWriteExplicitTypes( data->io_handler, True );
    if (data->rank == 0) {
-      IO_Handler_WriteAllToFile( data->io_handler, testFilename, data->dict1, data->sources1, NULL, NULL, NULL );
+      IO_Handler_WriteAllToFile( data->io_handler, testFilename, data->dict1, data->sources1 );
    }
 
    explicitTypesExpectedFilename = Memory_Alloc_Array_Unnamed( char, pcu_filename_expectedLen( "explicitTypesExpected.xml" ));

@@ -49,8 +49,6 @@ AGLViewer::AGLViewer() : OpenGLViewer(false, false)
 
 AGLViewer::~AGLViewer()
 {
-   animate(0);
-
    if (PixelBuffer)
       aglDestroyPBuffer(PixelBuffer);
    aglSetCurrentContext(0);
@@ -109,10 +107,15 @@ void AGLViewer::open(int width, int height)
    aglSetCurrentContext(graphicsContext); 
 
    debug_print("AGL viewer created\n");
-   timer = 0;
 
    //Call base class open
    OpenGLViewer::open(width, height);
+}
+
+void AGLViewer::setsize(int width, int height)
+{
+   close();
+   open(width, height);
 }
 
 void AGLViewer::show()
@@ -151,11 +154,6 @@ void AGLViewer::execute()
       if (postdisplay || OpenGLViewer::pollInput())
          display();
    }
-}
-
-void AGLViewer::animate(int msec)
-{
-   timer = msec;
 }
 
 #endif   //HAVE_AGL

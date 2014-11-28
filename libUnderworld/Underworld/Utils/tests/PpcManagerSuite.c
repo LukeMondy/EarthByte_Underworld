@@ -57,7 +57,7 @@ void PpcManagerSuite_Test( PpcManagerSuiteData* data ) {
       printf( "\n%d = %s", i, (mgr->tagList[i]).name );
    }
    ***************************************/
-   pcu_check_true( mgr->tagsCount == 27 );
+   pcu_check_true( mgr->tagsCount == 30 );
    
    tagID = PpcManager_SearchTagList( mgr, "DensityLabel" );
    ppctag = &(mgr->tagList[tagID]);

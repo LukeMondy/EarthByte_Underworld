@@ -97,9 +97,6 @@ void* Stg_ComponentA_NewDefault( Name name )
 void Stg_ComponentA_Delete( void* _class ) {
 	Stg_ComponentA* self = (Stg_ComponentA*)_class;
 	
-	Stg_Class_Delete( self->c );
-	Stg_Class_Delete( self->b );
-
 	_Stg_Component_Delete( self );
 }
 void Stg_ComponentA_Print( void* _class, Stream* s ) {
@@ -142,7 +139,6 @@ void Stg_ComponentA_Execute( void* component, void* data ) {
 
 }
 void Stg_ComponentA_Destroy( void* component, void* data ) {
-
 }
 
 #define __Stg_ComponentB \
@@ -246,8 +242,6 @@ void* Stg_ComponentC_NewDefault( Name name )
 void Stg_ComponentC_Delete( void* _class ) {
 	Stg_ComponentC* self = (Stg_ComponentC*)_class;
 	
-	Stg_Class_Delete( self->b );
-
 	_Stg_Component_Delete( self );
 }
 void Stg_ComponentC_Print( void* _class, Stream* s ) {
@@ -303,6 +297,11 @@ void ComponentCopySuite_Setup( ComponentCopySuiteData* data ) {
 
 void ComponentCopySuite_Teardown( ComponentCopySuiteData* data ) {
    Stg_Class_Delete( data->dict );
+   LiveComponentRegister_DestroyAll( LiveComponentRegister_GetLiveComponentRegister() );
+   Stg_Class_Delete( LiveComponentRegister_Get(LiveComponentRegister_GetLiveComponentRegister(), "a" ));
+   Stg_Class_Delete( LiveComponentRegister_Get(LiveComponentRegister_GetLiveComponentRegister(), "b" ));
+   Stg_Class_Delete( LiveComponentRegister_Get(LiveComponentRegister_GetLiveComponentRegister(), "c" ));
+   LiveComponentRegister_Delete();
 }
    
 

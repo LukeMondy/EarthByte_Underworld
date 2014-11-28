@@ -69,8 +69,6 @@ void Points::init()
    Geometry::init();
 }
 
-#define SEED_VAL 12345
-
 void Points::update()
 {
    Geometry::update();
@@ -139,7 +137,7 @@ void Points::loadVertices()
       if (glIsBuffer(vbo))
       {
          glBindBuffer(GL_ARRAY_BUFFER, vbo);
-         glBufferData(GL_ARRAY_BUFFER, total * datasize, NULL, GL_STATIC_DRAW);
+         glBufferData(GL_ARRAY_BUFFER, total * datasize, NULL, GL_STREAM_DRAW);
          debug_print("  %d byte VBO created, for %d vertices\n", (int)(total * datasize), total);
       }
       else 
@@ -276,6 +274,8 @@ void Points::depthSort()
 }
 
 //Reloads points into display list or VBO, required after data update and depth sort
+static uint32_t SEED_VAL = 123456789;
+#define SHR3 (SEED_VAL^=(SEED_VAL<<13), SEED_VAL^=(SEED_VAL>>17), SEED_VAL^=(SEED_VAL<<5))
 void Points::render()
 {
    clock_t t1,t2,tt;
@@ -311,7 +311,6 @@ void Points::render()
    GL_Error_Check;
 
    //Re-map vertex indices in sorted order
-   srand(SEED_VAL); //Seed the random number generator with a constant
    if (glIsBuffer(indexvbo))
    {
       t1 = clock();
@@ -324,7 +323,7 @@ void Points::render()
          if (pidx[i].hidden) continue;
          // If subSampling, use a pseudo random distribution to select which particles to draw
          // If we just draw every n'th particle, we end up with a whole bunch in one region / proc
-         if (subSample && rand() % subSample > 0) continue;
+         if (subSample > 1 && SHR3 % subSample > 0) continue;
          ptr[elements] = pidx[i].index;
          elements++;
             //printf("%d distance %d idx %d swarm %d vertex ", i, pidx[i].distance, pidx[i].id, pidx[i].geomid);
@@ -341,7 +340,7 @@ void Points::render()
 void Points::draw()
 {
    if (geom.size() == 0) return;
-   setState(0); //Set global draw state (using first object)
+   setState(0, prog); //Set global draw state (using first object)
 
    //Do redraw update here.. usually called in Geometry::draw but required before render()
    if (redraw) {update(); redraw = false;}
@@ -375,12 +374,12 @@ void Points::draw()
       GL_Error_Check;
       //Point size distance attenuation (disabled for 2d models)
       if (view->is3d && attenuate) //Adjust scaling by model size when using distance size attenuation 
-         prog->setUniform("pointScale", scale * view->model_size);
+         prog->setUniform("uPointScale", scale * view->model_size);
       else
-         prog->setUniform("pointScale", scale);
+         prog->setUniform("uPointScale", scale);
       prog->setUniform("uPointType", pointType);
       prog->setUniform("uOpacity", GeomData::opacity);
-      prog->setUniform("pointDist", (view->is3d && attenuate ? 1 : 0));
+      prog->setUniform("uPointDist", (view->is3d && attenuate ? 1 : 0));
 
       glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
       GL_Error_Check;

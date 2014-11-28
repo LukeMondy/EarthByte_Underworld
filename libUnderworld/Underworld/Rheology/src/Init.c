@@ -144,6 +144,9 @@ Bool Underworld_Rheology_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( componentRegister, PpcRheology_Type, (Name)"0", _PpcRheology_DefaultNew  );
    RegisterParent( PpcRheology_Type,     Rheology_Type );
 
+   Stg_ComponentRegister_Add( componentRegister, Ppc_VonMisesFlowRule_Type, (Name)"0", _Ppc_VonMisesFlowRule_DefaultNew  );
+   RegisterParent( Ppc_VonMisesFlowRule_Type,     Ppc_Type );
+
 	return True;
 }
 

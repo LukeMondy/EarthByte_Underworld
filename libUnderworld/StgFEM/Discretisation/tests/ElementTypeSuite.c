@@ -130,8 +130,8 @@ void ElementTypeSuite_TestLinear2D( ElementTypeSuiteData* data ) {
       memset( gCoord_fromLocal, 0, sizeof( double ) * dim );
 
       for( elNode_i = 0; elNode_i < elNodeCount; elNode_i++ ) {
-         gCoord_fromLocal[I_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][I_AXIS];
-         gCoord_fromLocal[J_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][J_AXIS];
+         gCoord_fromLocal[I_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[I_AXIS];
+         gCoord_fromLocal[J_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[J_AXIS];
       }
 
       vecNorm = sqrt( (gCoord[I_AXIS] - gCoord_fromLocal[I_AXIS])*(gCoord[I_AXIS] - gCoord_fromLocal[I_AXIS]) + 
@@ -178,9 +178,9 @@ void ElementTypeSuite_TestLinear3D( ElementTypeSuiteData* data ) {
       memset( gCoord_fromLocal, 0, sizeof( double ) * dim );
 
       for( elNode_i = 0; elNode_i < elNodeCount; elNode_i++ ) {
-         gCoord_fromLocal[I_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][I_AXIS];
-         gCoord_fromLocal[J_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][J_AXIS];
-         gCoord_fromLocal[K_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][K_AXIS];
+         gCoord_fromLocal[I_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[I_AXIS];
+         gCoord_fromLocal[J_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[J_AXIS];
+         gCoord_fromLocal[K_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[K_AXIS];
       }
 
       vecNorm = sqrt( (gCoord[I_AXIS] - gCoord_fromLocal[I_AXIS])*(gCoord[I_AXIS] - gCoord_fromLocal[I_AXIS]) + 
@@ -227,8 +227,8 @@ void ElementTypeSuite_TestQuadratic2D( ElementTypeSuiteData* data ) {
       memset( gCoord_fromLocal, 0, sizeof( double ) * dim );
 
       for( elNode_i = 0; elNode_i < elNodeCount; elNode_i++ ) {
-         gCoord_fromLocal[I_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][I_AXIS];
-         gCoord_fromLocal[J_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][J_AXIS];
+         gCoord_fromLocal[I_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[I_AXIS];
+         gCoord_fromLocal[J_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[J_AXIS];
       }
 
       vecNorm = sqrt( (gCoord[I_AXIS] - gCoord_fromLocal[I_AXIS])*(gCoord[I_AXIS] - gCoord_fromLocal[I_AXIS]) + 
@@ -275,9 +275,9 @@ void ElementTypeSuite_TestQuadratic3D( ElementTypeSuiteData* data ) {
       memset( gCoord_fromLocal, 0, sizeof( double ) * dim );
 
       for( elNode_i = 0; elNode_i < elNodeCount; elNode_i++ ) {
-         gCoord_fromLocal[I_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][I_AXIS];
-         gCoord_fromLocal[J_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][J_AXIS];
-         gCoord_fromLocal[K_AXIS] += Ni[elNode_i] * feMesh->verts[elNodes[elNode_i]][K_AXIS];
+         gCoord_fromLocal[I_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[I_AXIS];
+         gCoord_fromLocal[J_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[J_AXIS];
+         gCoord_fromLocal[K_AXIS] += Ni[elNode_i] * Mesh_GetVertex( feMesh, elNodes[elNode_i] )[K_AXIS];
       }
 
       vecNorm = sqrt( (gCoord[I_AXIS] - gCoord_fromLocal[I_AXIS])*(gCoord[I_AXIS] - gCoord_fromLocal[I_AXIS]) + 

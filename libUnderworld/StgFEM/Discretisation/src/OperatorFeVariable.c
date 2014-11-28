@@ -229,8 +229,6 @@ void _OperatorFeVariable_Init( void* feOperator, Name operatorName, Index operan
    self->operatorName = operatorName;
    self->_operator = ownOperator;
    self->dictionary = self->context->CF->componentDict;
-   self->myDict = Dictionary_Entry_Value_AsDictionary(
-      Dictionary_Get( self->dictionary, (Dictionary_Entry_Key)self->name ) );
 
    /* Add each operands to the operands list for this OperatorFeVariable. */
    for( operand_I = 0; operand_I < operandCount; operand_I++ ) {
@@ -419,16 +417,6 @@ void _OperatorFeVariable_Build( void* feOperator, void* data ) {
       self->fieldComponentCount = self->_operator->resultDofs;
    }
 
-   /* 
-    * Update the dictionary with the latest fieldComponentCount values. 
-    * Perhaps, a more elegant solution is for the dictionary to be updated based on any on the fly
-    * overwriting of parameters from the code itself. JR 09272011.
-    */
-   if( self->myDict ) {
-      Dictionary_Set( self->myDict, (Dictionary_Entry_Key)"fieldComponentCount",
-         Dictionary_Entry_Value_FromUnsignedInt( self->fieldComponentCount ) );
-   }
-      
    _OperatorFeVariable_SetFunctions( self );
 }
 

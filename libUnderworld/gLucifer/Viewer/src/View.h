@@ -46,21 +46,6 @@
 #define INERTIA_ON  0.1f
 #define INERTIA_OFF 0.0f
 
-// Print out a matrix
-#ifndef M
-#define M(mat,row,col)  mat[col*4+row]
-#endif
-
-#ifndef PrintMatrix
-#define PrintMatrix(mat) {              \
-        int r, p;                       \
-        for (r=0; r<4; r++) {           \
-            for (p=0; p<4; p++)         \
-                printf("%9f ", M(mat, r,p)); \
-            printf("\n");               \
-        } printf("--------- --------- --------- ---------\n"); }
-#endif
-
 //Coordinate systems
 #define RIGHT_HANDED 1
 #define LEFT_HANDED -1
@@ -137,6 +122,7 @@ class View
    float fov;                 // Field of view
    bool is3d;
    bool use_inertia;
+   float eye_shift;           // Stereo eye shift factor
 
    View(const char* titlestr = "", bool stereo_flag = false, 
         float xf = 0, float yf = 0, float nearc = 0.0f, float farc = 0.0f);
@@ -149,7 +135,7 @@ class View
    bool init(bool force=false, float* newmin=NULL, float* newmax=NULL);
    std::string rotateString();
    std::string translateString();
-   void getCamera(float rotate[3], float translate[3], float focus[3]);
+   void getCamera(float rotate[4], float translate[3], float focus[3]);
    std::string adjustStereo(float aperture, float focal_len, float eye_sep);
    void focus(float x, float y, float z, float aperture=0, bool setdefault=false);
    void translate(float x, float y, float z);

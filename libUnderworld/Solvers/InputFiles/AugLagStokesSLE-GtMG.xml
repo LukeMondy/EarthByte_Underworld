@@ -33,7 +33,7 @@
 	  <param name="Type">PressMassMatrixTerm</param>
           <param name="Swarm">gaussSwarm</param>
 	  <!-- Need GeometryMesh to to be able to calculate detJac in PressureMatrixTerm function -->
-          <param name="GeometryMesh">linearMesh</param>
+          <param name="GeometryMesh">velocityMesh</param>
           <param name="StiffnessMatrix">m_matrix</param>
         </struct>
 

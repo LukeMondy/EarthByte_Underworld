@@ -67,11 +67,6 @@ Bool Solvers_Init( int* argc, char** argv[] ) {
 			Journal_Register( InfoStream_Type, (Name)"Context"  ), 
 			"Matrix System Solvers. Copyright (C) 2012 Monash University.\n" );
 
-		/* Add repo indentity info in the repo dictionary. */
-		Dictionary_Add( versionDict, "Solvers", Dictionary_Entry_Value_FromString( VERSION ) );
-		Dictionary_Add( branchDict, "Solvers", Dictionary_Entry_Value_FromString( BRANCH ) );
-		Dictionary_Add( pathDict, "Solvers", Dictionary_Entry_Value_FromString( PATH ) );
-
 		/* Add the Solvers path to the global xml path dictionary */
 		directory = Memory_Alloc_Array( char, 200, "xmlDirectory" ) ;
 		sprintf(directory, "%s%s", LIB_DIR, "/StGermain" );

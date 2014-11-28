@@ -226,7 +226,6 @@ void _MeshParticleLayout_InitialiseParticlesOfCell( void* meshParticleLayout, vo
 	Coord			localCoord;
 	double			basis[8];
 	unsigned		nDims = Mesh_GetDimSize( self->mesh );
-	double**		nodeCoords = self->mesh->verts;
 	unsigned		nNodes, *incNodes;
 	Particle_InCellIndex	particlesThisCell = swarm->cellParticleCountTbl[cell_I];
 	Particle_InCellIndex	cParticle_I = 0;
@@ -271,7 +270,7 @@ void _MeshParticleLayout_InitialiseParticlesOfCell( void* meshParticleLayout, vo
 		memset( particle->coord, 0, sizeof(double) * nDims );
 		for( d_i = 0; d_i < nDims; d_i++ ) {
 			for( n_i = 0; n_i < nNodes; n_i++ ) {
-				particle->coord[d_i] += basis[n_i] * nodeCoords[incNodes[n_i]][d_i];
+				particle->coord[d_i] += basis[n_i] * Mesh_GetVertex( self->mesh, incNodes[n_i] )[d_i];
 			}
 		}
 	}

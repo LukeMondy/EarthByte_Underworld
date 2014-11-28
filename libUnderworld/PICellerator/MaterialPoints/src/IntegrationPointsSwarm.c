@@ -189,6 +189,8 @@ void _IntegrationPointsSwarm_AssignFromXML( void* integrationPoints, Stg_Compone
       Journal_Firewall (
          weights != NULL ||
          (weights == NULL && (Stg_Class_IsInstance( mapper, GaussMapper_Type ) ||
+          // swarm with GaussBorderParticleLayout does require weights as they staticly defined in 
+         (weights == NULL && self->particleLayout->weightsInitialisedAtStartup)  ||
          Stg_Class_IsInstance( mapper, GaussCoincidentMapper_Type) ||
          !strcmp( mapper->type, "PCDVCGaussMapper"))),
          Journal_MyStream( Error_Type, self ),
@@ -439,6 +441,8 @@ void IntegrationPointsSwarm_RemapIntegrationPointsAndRecalculateWeights( void* s
       Stream* errorStream = Journal_Register( Error_Type, (Name)self->type );
       Journal_Firewall( Stg_Class_IsInstance( self->mapper, GaussMapper_Type ) ||
          Stg_Class_IsInstance( self->mapper, GaussCoincidentMapper_Type ) ||
+          // swarm with GaussBorderParticleLayout does require weights as they staticly defined in 
+         (self->particleLayout->weightsInitialisedAtStartup)  ||
          !strcmp(self->mapper->type, "PCDVCGaussMapper"), errorStream,
          "Error - in %s(): for IntegrationPointSwarm \"%s\", no weights calculator provided "
          "and mapper is not a %s.\n", GaussMapper_Type );

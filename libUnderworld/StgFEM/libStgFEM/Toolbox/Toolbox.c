@@ -71,7 +71,7 @@ void StgFEM_Toolbox_Finalise( ToolboxesManager* toolboxesManager ) {
    
    Journal_RPrintf(
       Journal_Register( Info_Type, (Name)StgFEM_Toolbox_Type ),
-         "Finalised: StgFEM (Finite Element Framework) Revision %s.\n", VERSION );
+         "Finalised: StgFEM (Finite Element Framework).\n" );
 }
 
 Index StgFEM_Toolbox_Register( ToolboxesManager* toolboxesManager ) {

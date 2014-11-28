@@ -195,7 +195,7 @@ void CompressionAdaptor_Generate( void* adaptor, void* _mesh, void* data ) {
 		inds[d_i] = 0;
 	gNode = Grid_Project( grid, inds );
 	insist( Mesh_GlobalToDomain( mesh, MT_VERTEX, gNode, &gNode ), == True );
-	min = mesh->verts[gNode][1];
+	min = Mesh_GetVertex( mesh, gNode )[1];
 
 	/* Loop over domain nodes. */
 	sync = IGraph_GetDomain( mesh->topo, MT_VERTEX );
@@ -204,9 +204,9 @@ void CompressionAdaptor_Generate( void* adaptor, void* _mesh, void* data ) {
 		Grid_Lift( grid, gNode, inds );
 
 		/* Deform this node. */
-		x = mesh->verts[n_i][1] - min;
+		x = Mesh_GetVertex( mesh, n_i )[1] - min;
 		//a compressionfactor function, eg if compression factor = 3 then would be a cubed root function
-		mesh->verts[n_i][1] = b*(pow(x, (1.0/self->compressionfactor)));
+		Mesh_GetVertex( mesh, n_i )[1] = b*(pow(x, (1.0/self->compressionfactor)));
 	}
 
 	/* Free resources. */

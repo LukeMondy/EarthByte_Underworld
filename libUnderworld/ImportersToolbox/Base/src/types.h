@@ -44,6 +44,7 @@ typedef struct VoxelDataHandler_GocadMaterials VoxelDataHandler_GocadMaterials;
 typedef struct VoxelDataHandler_Geomodeller VoxelDataHandler_Geomodeller;
 typedef struct VoxelDataHandler_ASCII VoxelDataHandler_ASCII;
 typedef struct VoxelDataHandler_GMT VoxelDataHandler_GMT;
+typedef struct VoxelDataHandler_ndarray VoxelDataHandler_ndarray;
 typedef struct VoxelDataHandler_VTKStructuredPoints VoxelDataHandler_VTKStructuredPoints;
 typedef struct VoxelParticleLayout VoxelParticleLayout;
 typedef struct VoxelFieldVariable VoxelFieldVariable;

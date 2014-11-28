@@ -258,19 +258,19 @@ Bool Mesh_SimplexType_ElementHasPoint2D( Mesh_SimplexType* self, unsigned elInd,
    nInc = IArray_GetSize( self->incArray );
    inc = IArray_GetPtr( self->incArray );
 
-   v_ab[0] = mesh->verts[inc[1]][0] - mesh->verts[inc[0]][0];
-   v_ab[1] = mesh->verts[inc[1]][1] - mesh->verts[inc[0]][1];
-   v_bc[0] = mesh->verts[inc[2]][0] - mesh->verts[inc[1]][0];
-   v_bc[1] = mesh->verts[inc[2]][1] - mesh->verts[inc[1]][1];
-   v_ca[0] = mesh->verts[inc[0]][0] - mesh->verts[inc[2]][0];
-   v_ca[1] = mesh->verts[inc[0]][1] - mesh->verts[inc[2]][1];
+   v_ab[0] = Mesh_GetVertex( mesh, inc[1] )[0] - Mesh_GetVertex( mesh, inc[0] )[0];
+   v_ab[1] = Mesh_GetVertex( mesh, inc[1] )[1] - Mesh_GetVertex( mesh, inc[0] )[1];
+   v_bc[0] = Mesh_GetVertex( mesh, inc[2] )[0] - Mesh_GetVertex( mesh, inc[1] )[0];
+   v_bc[1] = Mesh_GetVertex( mesh, inc[2] )[1] - Mesh_GetVertex( mesh, inc[1] )[1];
+   v_ca[0] = Mesh_GetVertex( mesh, inc[0] )[0] - Mesh_GetVertex( mesh, inc[2] )[0];
+   v_ca[1] = Mesh_GetVertex( mesh, inc[0] )[1] - Mesh_GetVertex( mesh, inc[2] )[1];
 
-   v_ap[0] = point[0] - mesh->verts[inc[0]][0];
-   v_ap[1] = point[1] - mesh->verts[inc[0]][1];
-   v_bp[0] = point[0] - mesh->verts[inc[1]][0];
-   v_bp[1] = point[1] - mesh->verts[inc[1]][1];
-   v_cp[0] = point[0] - mesh->verts[inc[2]][0];
-   v_cp[1] = point[1] - mesh->verts[inc[2]][1];
+   v_ap[0] = point[0] - Mesh_GetVertex( mesh, inc[0] )[0];
+   v_ap[1] = point[1] - Mesh_GetVertex( mesh, inc[0] )[1];
+   v_bp[0] = point[0] - Mesh_GetVertex( mesh, inc[1] )[0];
+   v_bp[1] = point[1] - Mesh_GetVertex( mesh, inc[1] )[1];
+   v_cp[0] = point[0] - Mesh_GetVertex( mesh, inc[2] )[0];
+   v_cp[1] = point[1] - Mesh_GetVertex( mesh, inc[2] )[1];
 
    if( ( v_ab[0]*v_ap[1] - v_ab[1]*v_ap[0] )*( v_ab[1]*v_ca[0] - v_ab[0]*v_ca[1] ) < 0.0 )
       return False;

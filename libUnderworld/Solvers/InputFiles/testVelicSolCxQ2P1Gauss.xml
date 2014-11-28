@@ -10,7 +10,7 @@
 	<list name="plugins" mergeType="merge">
 		<struct>
 			<param name="Type">StgFEM_StandardConditionFunctions</param>
-			<param name="Contest">context</param>
+			<param name="Context">context</param>
 		</struct>
 		<struct>
     		<param name="Type">Underworld_Ra_Scaling</param>
@@ -20,9 +20,9 @@
 
 	<!-- Component Stuff -->
 	<include>../InputFiles/StokesFlowQ2P1Gauss.xml </include>
-        <include>StgFEM/ConstantMesh.xml</include>
-        <include>StgFEM/LinearMesh.xml</include>
-        <include>StgFEM/TemperatureField.xml         </include>
+	<include>StgFEM/ConstantMesh.xml</include>
+	<!-- <include>StgFEM/LinearMesh.xml</include> -->
+	<include>StgFEM/TemperatureField.xml         </include>
 	<include>StgFEM/TempAdvDiff.xml              </include>
 
 	<struct name="components" mergeType="merge">

@@ -79,8 +79,6 @@ GLuciferViewer::GLuciferViewer(std::vector<std::string> args, OpenGLViewer* view
 
    filters[0] = filters[1] = filters[2] = filters[3] = filters[4] = filters[5] = filters[6] = filters[7] = filters[8] = true;
 
-   last_message[0] = '\0';
-
    //A set of default arguments can be stored in a file...
    std::ifstream argfile("gLucifer_args.cfg");
    if (argfile) //Found a config file, load arguments
@@ -710,8 +708,8 @@ void GLuciferViewer::open(int width, int height)
 
    // Load shaders
    Points::prog = new Shader("pointShader.vert", "pointShader.frag");
-   const char* pUniforms[4] = {"pointScale", "uPointType", "uOpacity", "pointDist"};
-   Points::prog->loadUniforms(pUniforms, 4);
+   const char* pUniforms[6] = {"uPointScale", "uPointType", "uOpacity", "uPointDist", "uTextured", "uTexture"};
+   Points::prog->loadUniforms(pUniforms, 6);
    const char* pAttribs[2] = {"aSize", "aPointType"};
    Points::prog->loadAttribs(pAttribs, 2);
    if (strstr(typeid(*viewer).name(), "OSMesa"))
@@ -731,8 +729,8 @@ void GLuciferViewer::open(int width, int height)
 
    //Volume ray marching shaders
    Volumes::prog = new Shader("volumeShader.vert", "volumeShader.frag");
-   const char* vUniforms[21] = {"uPMatrix", "uMVMatrix", "uNMatrix", "uVolume", "uTransferFunction", "uBBMin", "uBBMax", "uResolution", "uEnableColour", "uBrightness", "uContrast", "uPower", "uFocalLength", "uWindowSize", "uSamples", "uDensityFactor", "uIsoValue", "uIsoColour", "uIsoSmooth", "uIsoWalls", "uFilter"};
-   Volumes::prog->loadUniforms(vUniforms, 21);
+   const char* vUniforms[22] = {"uPMatrix", "uMVMatrix", "uNMatrix", "uVolume", "uTransferFunction", "uBBMin", "uBBMax", "uResolution", "uEnableColour", "uBrightness", "uContrast", "uPower", "uFocalLength", "uWindowSize", "uSamples", "uDensityFactor", "uIsoValue", "uIsoColour", "uIsoSmooth", "uIsoWalls", "uFilter", "uRange"};
+   Volumes::prog->loadUniforms(vUniforms, 22);
    const char* vAttribs[2] = {"aVertexPosition"};
    Volumes::prog->loadAttribs(pAttribs, 2);
 }
@@ -968,7 +966,7 @@ void GLuciferViewer::display(void)
 
    //Display object list if enabled
    if (objectlist)
-     displayObjectList();
+     displayObjectList(false);
 
    double time = ((clock()-t1)/(double)CLOCKS_PER_SEC);
    if (time > 0.1)
@@ -1102,11 +1100,11 @@ void GLuciferViewer::displayCurrentView()
    if (aview->sort) aview->rotated = false;
 }
 
-void GLuciferViewer::displayObjectList()
+void GLuciferViewer::displayObjectList(bool console)
 {
    //Print available objects by id to screen and stderr
    int offset = 0;
-   std::cerr << "------------------------------------------" << std::endl;
+   if (console) std::cerr << "------------------------------------------" << std::endl;
    for (unsigned int i=0; i < amodel->objects.size(); i++)
    {
       if (amodel->objects[i])
@@ -1115,12 +1113,12 @@ void GLuciferViewer::displayObjectList()
          ss << std::setw(5) << amodel->objects[i]->id << " : " << amodel->objects[i]->name;
          if (amodel->objects[i]->skip)
          {
-            std::cerr << "[ no data  ]" << ss.str() << std::endl;
+            if (console) std::cerr << "[ no data  ]" << ss.str() << std::endl;
             displayText(ss.str(), ++offset, 0xff222288);
          }
          else if (amodel->objects[i]->visible)
          {
-            std::cerr << "[          ]" << ss.str() << std::endl;
+            if (console) std::cerr << "[          ]" << ss.str() << std::endl;
             //Use object colour if provided, unless matches background
             int colour = 0;
             if (amodel->objects[i]->colour.value != viewer->background.value)
@@ -1129,12 +1127,12 @@ void GLuciferViewer::displayObjectList()
          }
          else
          {
-            std::cerr << "[  hidden  ]" << ss.str() << std::endl;
+            if (console) std::cerr << "[  hidden  ]" << ss.str() << std::endl;
             displayText(ss.str(), ++offset, 0xff888888);
          }
       }
    }
-   std::cerr << "------------------------------------------" << std::endl;
+   if (console) std::cerr << "------------------------------------------" << std::endl;
 }
 
 void GLuciferViewer::printMessage(const char *fmt, ...)
@@ -1148,38 +1146,28 @@ void GLuciferViewer::printMessage(const char *fmt, ...)
    }
 }
 
-void GLuciferViewer::displayMessage(bool instant)
+void GLuciferViewer::displayMessage()
 {
-   //Set viewport to entire window
-   glViewport(0, 0, viewer->width, viewer->height);
-   glScissor(0, 0, viewer->width, viewer->height);
-   Viewport2d(viewer->width, viewer->height);
-
-   //Print in XOR to display against any background and allow removal without redraw
-   Colour_SetXOR(true);
-
-   if (instant && strlen(last_message))
-   {
-      //Clear previous message
-      Print(10, 10, 1.0, last_message);
-   }
-
-   strcpy(last_message, message);
    if (strlen(message))
    {
+      //Set viewport to entire window
+      glViewport(0, 0, viewer->width, viewer->height);
+      glScissor(0, 0, viewer->width, viewer->height);
+      Viewport2d(viewer->width, viewer->height);
+
+      //Print in XOR to display against any background
+      Colour_SetXOR(true);
+
       //Print current message
       Print(10, 10, 1.0, message);
       message[0] = '\0';
+
+      //Revert to normal colour
+      Colour_SetXOR(false);
+      PrintSetColour(viewer->inverse.value);
+
+      Viewport2d(0, 0);
    }
-
-   //Revert to normal colour
-   Colour_SetXOR(false);
-   PrintSetColour(viewer->inverse.value);
-
-   Viewport2d(0, 0);
-
-   if (instant)
-      viewer->swap();  //Immediate display
 }
 
 void GLuciferViewer::displayText(std::string text, int lineno, int colour)
@@ -1383,6 +1371,19 @@ bool GLuciferViewer::loadWindow(int window_idx, int at_timestep, bool autozoom)
    for (unsigned int m=0; m < files.size(); m++)
       readScriptFile(files[m]);
 
+
+   //Cache fill (if cache large enough for all data)
+   if (GeomCache::size >= amodel->timesteps.size())
+   {
+      printf("Caching all geometry data...\n");
+      for (int i=0; i<=amodel->timesteps.size(); i++)
+      {
+         printf("%d...%d\n", i, timestep);
+         setTimeStep(timestep+1);
+      }
+      setTimeStep(at_timestep);
+   }
+
    return true;
 }
 
@@ -1406,7 +1407,7 @@ int GLuciferViewer::setTimeStep(int ts)
    amodel->attach(timestep);
 
    //Attempt to load from cache first
-   if (amodel->restoreStep(timestep, geometry)) return 1; //Dummy successful return value
+   if (amodel->restoreStep(timestep, geometry)) return 0; //Cache hit successful return value
 
    //clearObjects();
    //noload flag skips loading geometry until "load" commands issued
@@ -1567,7 +1568,6 @@ int GLuciferViewer::loadGeometry(int object_id, int time_start, int time_stop, b
                      min[i] = (float)sqlite3_column_double(statement, 14+i);
                      max[i] = (float)sqlite3_column_double(statement, 17+i);
                   }
-                  //printf("~~MIN %f,%f,%f MAX %f,%f,%f\n", min[0], min[1], min[2], max[0], max[1], max[2]);
                }
 
                //Detect null dims data due to bugs in dimension output
@@ -1581,6 +1581,7 @@ int GLuciferViewer::loadGeometry(int object_id, int time_start, int time_stop, b
                   //Slow way, detects bounding box by checking each vertex
                   for (int p=0; p < items*3; p += 3)
                      Geometry::checkPointMinMax((float*)data + p);
+
                   //Fix for future loads
 #ifdef ALTER_DB
                   amodel->reopen(true);  //Open writable
@@ -1819,7 +1820,7 @@ void GLuciferViewer::jsonWriteFile(unsigned int id, bool jsonp)
 void GLuciferViewer::jsonWrite(std::ostream& json, unsigned int id, bool objdata)
 {
    //Write new JSON format objects
-   float rotate[3], translate[3], focus[3], stereo[3];
+   float rotate[4], translate[3], focus[3], stereo[3];
    aview->getCamera(rotate, translate, focus);
 
    json << "{\n  \"options\" :\n  {\n"
@@ -1827,12 +1828,14 @@ void GLuciferViewer::jsonWrite(std::ostream& json, unsigned int id, bool objdata
         << "    \"pointType\" : " << points->pointType << ",\n"
         << "    \"border\" : " << (aview->borderType ? "true" : "false") << ",\n"
         << "    \"opacity\" : " << GeomData::opacity << ",\n"
-        << "    \"rotate\" : ["  << rotate[0] << "," << rotate[1] << "," << rotate[2] << "],\n";
+        << "    \"rotate\" : ["  << rotate[0] << "," << rotate[1] << "," << rotate[2] << "," << rotate[3] << "],\n";
    json << "    \"translate\" : [" << translate[0] << "," << translate[1] << "," << translate[2] << "],\n";
    json << "    \"focus\" : [" << focus[0] << "," << focus[1] << "," << focus[2] << "],\n";
    json << "    \"scale\" : [" << aview->scale[0] << "," << aview->scale[1] << "," << aview->scale[2] << "],\n";
-   json << "    \"min\" : [" << Geometry::min[0] << "," << Geometry::min[1] << "," << Geometry::min[2] << "],\n";
-   json << "    \"max\" : [" << Geometry::max[0] << "," << Geometry::max[1] << "," << Geometry::max[2] << "],\n";
+   if (Geometry::min[0] < HUGE_VAL && Geometry::min[1] < HUGE_VAL && Geometry::min[2] < HUGE_VAL)
+      json << "    \"min\" : [" << Geometry::min[0] << "," << Geometry::min[1] << "," << Geometry::min[2] << "],\n";
+   if (Geometry::max[0] > -HUGE_VAL && Geometry::max[1] > -HUGE_VAL && Geometry::max[2] > -HUGE_VAL)
+      json << "    \"max\" : [" << Geometry::max[0] << "," << Geometry::max[1] << "," << Geometry::max[2] << "],\n";
    json << "    \"near\" : " << aview->near_clip << ",\n";
    json << "    \"far\" : " << aview->far_clip << ",\n";
    json << "    \"orientation\" : " << aview->orientation << ",\n";

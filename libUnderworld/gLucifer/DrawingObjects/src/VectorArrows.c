@@ -127,8 +127,7 @@ void _lucVectorArrows_AssignFromXML( void* drawingObject, Stg_ComponentFactory* 
 void _lucVectorArrows_Draw( void* drawingObject, lucDatabase* database, void* _context )
 {
    lucVectorArrows*       self    = (lucVectorArrows*)drawingObject;
-   DomainContext* context         = (DomainContext*) _context;
-   Dimension_Index        dim     = context->dim;
+   Dimension_Index        dim     = self->fieldVariable->dim;
 
    if ( dim == 2 )
    {

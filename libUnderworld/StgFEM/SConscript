@@ -34,17 +34,6 @@ suites = []
 tst_exp = []
 tst_input = []
 
-# Get the revision definition.
-revision = "UNKNOWN"
-path = "UNKNOWN"
-branch = "UNKNOWN"
-for entry in env['IDDEFINES']:
-    if entry[0] == 'STGFEM':
-        revision = entry[1]
-        path = entry[2]
-        branch = entry[3]
-        break
-
 #
 # Process each directory uniformly.
 #
@@ -57,10 +46,7 @@ for d in dirs:
 
     # Need the module name, which is just the directory.
     mod_name = env['ESCAPE']('"' + ''.join(d.split('/')) + '"')
-    version_name = 'STGFEM_VERSION'
-    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) + \
-               [('VERSION', revision)] + [('PATH', path)] + \
-               [('BRANCH', branch)]
+    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) 
 
     # Setup where to look for files.
     src_dir = d + '/src'
@@ -97,19 +83,12 @@ env.Install('include/StgFEM', Glob('libStgFEM/src/*.h'))
 Import('DOXYGEN_DIRS')
 
 pluginDirs = ['libStgFEM/Toolbox',
-     'plugins/CompareFeVariableAgainstReferenceSolution',
-     'plugins/Document',
-     'plugins/FeVariableImportExporters/FeVariable_ImportExport_ABAQUS',
-     'plugins/FeVariableImportExporters/FeVariable_ImportExport_SpecRidge2D',
-     #'plugins/FileAnalyticSolution',
      'plugins/Output/CPUTime',
      'plugins/Output/CPUTimeAndNumberOfIterationsForInnerAndOuterSolve',
      'plugins/Output/FrequentOutput',
      'plugins/Output/FeVariableList',
      'plugins/Output/SwarmVariableList',
      'plugins/Output/PeakMemory',
-     'plugins/Output/PrintFeVariableDiscreteValues',
-     'plugins/Output/PrintFeVariableDiscreteValues_2dBox',
      'plugins/StandardConditionFunctions',
      'plugins/Multigrid',
      'plugins/GMG',
@@ -131,9 +110,7 @@ for d in pluginDirs:
 
     name = 'StgFEM_' + d.split('/')[-1] + 'module'
     mod_name = env['ESCAPE']('"' + ''.join(d.split('/')) + '"')
-    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) + \
-               [('VERSION', revision)] + [('PATH', path)] + \
-               [('BRANCH', branch)]
+    cpp_defs = [('CURR_MODULE_NAME', mod_name)] + env.get('CPPDEFINES', []) 
 
     env.Install('include/StgFEM/' + d.split('/')[-1], Glob(d + '/*.h'))
 

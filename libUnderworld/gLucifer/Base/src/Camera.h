@@ -50,7 +50,8 @@ extern const Type lucCamera_Type;
 		XYZ					upDirection; \
 		double				focalLength; \
 		double				aperture; \
-      int               autoZoomTimestep; \
+        int               autoZoomTimestep; \
+        int               useBoundingBox; \
 		double            modelSize; \
 		Bool					autoFitMode; \
 
@@ -71,7 +72,8 @@ lucCamera* lucCamera_New(
    double               focalLength,
    double               aperture,
    FieldVariable*       centreFieldVariable,
-   int                  autoZoomTimestep);
+   int                  autoZoomTimestep,
+   int                  useBoundingBox);
 
 #ifndef ZERO
 #define ZERO 0
@@ -97,7 +99,8 @@ void _lucCamera_Init(
    double               focalLength,
    double               aperture,
    FieldVariable*       centreFieldVariable,
-   int                  autoZoomTimestep);
+   int                  autoZoomTimestep,
+   int                  useBoundingBox);
 
 void _lucCamera_Delete( void* camera );
 void _lucCamera_Print( void* camera, Stream* stream );

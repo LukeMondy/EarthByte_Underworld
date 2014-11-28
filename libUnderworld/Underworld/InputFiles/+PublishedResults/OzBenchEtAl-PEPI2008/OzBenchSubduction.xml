@@ -181,11 +181,13 @@
 		<struct name="vonMisesUpper">
 			<param name="Type">VonMises</param>
 			<param name="StrainRateField">StrainRateField</param>
+			<param name="MaterialPointsSwarm">materialSwarm</param>
 			<param name="cohesion">0.06</param>
 		</struct>
 		<struct name="vonMisesLower">
 			<param name="Type">VonMises</param>
 			<param name="StrainRateField">StrainRateField</param>
+			<param name="MaterialPointsSwarm">materialSwarm</param>
 			<param name="cohesion">0.06</param>
 		</struct>	
 
@@ -271,7 +273,7 @@
 	<param name="journal-enable-branch.debug.lucDebug">f</param>
 
 	<!-- general simulation parameters -->
-	<param name="maxTimeSteps"> 1000 </param>
+	<param name="maxTimeSteps"> 10 </param>
 	<param name="dumpEvery"> 1 </param>
 	<param name="outputPath"> ./output/veSlab </param>
 	<param name="gravity"> 1.0 </param>

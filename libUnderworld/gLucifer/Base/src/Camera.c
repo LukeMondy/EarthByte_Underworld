@@ -58,12 +58,13 @@ lucCamera* lucCamera_New(
    double                  focalLength,
    double                  aperture,
    FieldVariable*          centreFieldVariable,
-   int                     autoZoomTimestep)
+   int                     autoZoomTimestep,
+   int                     useBoundingBox)
 {
    lucCamera* self = (lucCamera*) _lucCamera_DefaultNew( name );
 
    self->isConstructed = True;
-   _lucCamera_Init( self, coordSystem, focalPoint, translate, rotate, rotationCentre, upDirection, focalLength, aperture, centreFieldVariable, autoZoomTimestep );
+   _lucCamera_Init( self, coordSystem, focalPoint, translate, rotate, rotationCentre, upDirection, focalLength, aperture, centreFieldVariable, autoZoomTimestep, useBoundingBox );
 
    return self;
 }
@@ -116,7 +117,8 @@ void _lucCamera_Init(
    double               focalLength,
    double               aperture,
    FieldVariable*       centreFieldVariable,
-   int                  autoZoomTimestep)
+   int                  autoZoomTimestep,
+   int                  useBoundingBox )
 {
    lucCamera* self = camera;
 
@@ -131,6 +133,7 @@ void _lucCamera_Init(
    self->aperture              = aperture;
    self->centreFieldVariable   = centreFieldVariable;
    self->autoZoomTimestep      = autoZoomTimestep;
+   self->useBoundingBox        = useBoundingBox;
 
    /* Default model size */
    self->modelSize = 1.0;
@@ -216,10 +219,7 @@ void _lucCamera_AssignFromXML( void* camera, Stg_ComponentFactory* cf, void* dat
    lucCoordinateSystem     coordSystem;
    double                  coordZ;
    int                     autoZoomTimestep;
-
-   self->context = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Context", AbstractContext, False, data );
-   if ( !self->context  )
-      self->context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, data  );
+   int                     useBoundingBox;
  
    /* Get Coordinate System */
    /* - left-handed has positive z-axis pointing into screen */
@@ -260,11 +260,12 @@ void _lucCamera_AssignFromXML( void* camera, Stg_ComponentFactory* cf, void* dat
    /* These parameters alow overriding some view properties, but usually the calculated defaults are the best settings */
    focalLength = Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"focalLength", 0);
    aperture = Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"aperture", 45.0  );
-   autoZoomTimestep = Stg_ComponentFactory_GetInt( cf, self->name, (Dictionary_Entry_Key)"autoZoomTimestep", 0 );
+   autoZoomTimestep = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"autoZoomTimestep", False );
+   useBoundingBox = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"useBoundingBox", False );
 
    centreFieldVariable = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"CentreFieldVariable", FieldVariable, False, data );
 
-   _lucCamera_Init( self, coordSystem, focalPoint, translate, rotate, rotationCentre, upDirection, focalLength, aperture, centreFieldVariable, autoZoomTimestep);
+   _lucCamera_Init( self, coordSystem, focalPoint, translate, rotate, rotationCentre, upDirection, focalLength, aperture, centreFieldVariable, autoZoomTimestep, useBoundingBox);
 }
 
 void _lucCamera_Build( void* camera, void* data )

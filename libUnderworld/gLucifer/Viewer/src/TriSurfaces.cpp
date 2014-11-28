@@ -658,8 +658,6 @@ void TriSurfaces::render()
 
 void TriSurfaces::draw()
 {
-   clock_t t1 = clock();
-
    //Draw, calls display list when available
    Geometry::draw();
 
@@ -667,6 +665,7 @@ void TriSurfaces::draw()
    if (view->sort) render();
 
    // Draw using vertex buffer object
+   clock_t t1 = clock();
    int stride = 6 * sizeof(float) + sizeof(Colour);   //3+3 vertices, normals + 32-bit colour
    glBindBuffer(GL_ARRAY_BUFFER, vbo);
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexvbo);
@@ -693,15 +692,17 @@ void TriSurfaces::draw()
          }
       }
       //Draw remaining elements (transparent, depth sorted)
-      if (start < elements)
+      if (start > 0 && start < elements)
       {
          //fprintf(stderr, "(*) DRAWING TRANSPARENT TRIANGLES: %d\n", elements-start);
          glDrawRangeElements(GL_TRIANGLES, 0, elements, elements-start, GL_UNSIGNED_INT, (GLvoid*)(start*sizeof(GLuint)));
       }
-      //Render all triangles - elements is the number of indices. 3 indices needed to make a single triangle
-      //If there is no separate opaque/transparent geometry could(should?) use this
-      //glDrawElements(GL_TRIANGLES, elements, GL_UNSIGNED_INT, (GLvoid*)0);
-
+      else
+      {
+         //Render all triangles - elements is the number of indices. 3 indices needed to make a single triangle
+         //(If there is no separate opaque/transparent geometry)
+         glDrawElements(GL_TRIANGLES, elements, GL_UNSIGNED_INT, (GLvoid*)0);
+      }
 
       glDisableClientState(GL_VERTEX_ARRAY);
       glDisableClientState(GL_NORMAL_ARRAY);

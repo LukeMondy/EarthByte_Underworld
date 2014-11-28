@@ -260,8 +260,6 @@ void _FiniteElementContext_AssignFromXML( void* context, Stg_ComponentFactory* c
 
    _DomainContext_AssignFromXML( context, cf, data );
 
-   self->dictionary = cf->rootDict;
-
    self->dt = 0.0f;
    self->prevTimestepDt = 0.0;
    self->limitTimeStepIncreaseRate = Dictionary_GetBool_WithDefault(
@@ -477,12 +475,18 @@ void _FiniteElementContext_SaveMesh( void* context ) {
       if ( Stg_Class_IsInstance( stgComp, FeMesh_Type ) ) {
          mesh = (FeMesh*)stgComp;
 
-         if( mesh->isCheckpointedAndReloaded == True && mesh->requiresCheckpointing == True ){         
+         if( mesh->isCheckpointedAndReloaded == True ) {
+            /* only checkpoint mesh if it's:
+               - the initial timestep
+               - the mesh is continuously deforming
+            */
+            if( mesh->isDeforming == True || ((AbstractContext*)context)->timeStep == 0 ){         
 #ifdef WRITE_HDF5
-         _FiniteElementContext_DumpMeshHDF5( context, mesh );
+               _FiniteElementContext_DumpMeshHDF5( context, mesh );
 #else
-         _FiniteElementContext_DumpMeshAscii( context, mesh );
+               _FiniteElementContext_DumpMeshAscii( context, mesh );
 #endif
+            }
          }
       }
    }

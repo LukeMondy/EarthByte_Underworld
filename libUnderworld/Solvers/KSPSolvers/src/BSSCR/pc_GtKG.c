@@ -25,8 +25,15 @@ method.
 
 #include "common-driver-utils.h"
 
-#include "private/pcimpl.h"
-#include "private/kspimpl.h"
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/pcimpl.h"
+  #include "petsc-private/kspimpl.h"
+#else
+  #include "private/pcimpl.h"
+  #include "private/kspimpl.h"
+#endif
+
 #include "pc_GtKG.h"
 
 #include <StGermain/StGermain.h>
@@ -175,6 +182,10 @@ PetscErrorCode BSSCR_PCSetUp_GtKG( PC pc )
 	
 	MatCreate( comm, &Ident );
 	MatSetSizes( Ident, m,m , M, M );
+#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
+        MatSetUp(Ident);
+#endif
+
 	MatGetType( ctx->G, &mtype );
 	MatSetType( Ident, mtype );
 	
@@ -200,7 +211,7 @@ PetscErrorCode BSSCR_PCSetUp_GtKG( PC pc )
 	Stg_VecDestroy(&diag );
 	
 	
-	KSPSetOperators( ctx->ksp, ctx->GtG, ctx->GtG, SAME_NONZERO_PATTERN );
+	Stg_KSPSetOperators( ctx->ksp, ctx->GtG, ctx->GtG, SAME_NONZERO_PATTERN );
 	
 	if (!pc->setupcalled) {	
 		wasSetup = PETSC_FALSE;
@@ -543,7 +554,7 @@ PetscErrorCode BSSCR_PCCreate_GtKG( PC pc )
 	PetscErrorCode  ierr;
 	
 	/* create memory for ctx */
-	ierr = PetscNew( _PC_GtKG,&pc_data);CHKERRQ(ierr);
+	ierr = Stg_PetscNew( _PC_GtKG,&pc_data);CHKERRQ(ierr);
 	
 	/* init ctx */
 	pc_data->K   = PETSC_NULL;

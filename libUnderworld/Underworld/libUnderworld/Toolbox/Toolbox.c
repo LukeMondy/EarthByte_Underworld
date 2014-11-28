@@ -73,7 +73,7 @@ void Underworld_Toolbox_Finalise( ToolboxesManager* toolboxesManager ) {
    
    Journal_RPrintf(
       Journal_Register( Info_Type, (Name)Underworld_Toolbox_Type ),
-         "Finalised: Underworld (Geodynamics Framework) Revision %s.\n", VERSION );
+         "Finalised: Underworld (Geodynamics Framework).\n" );
 }
 
 Index Underworld_Toolbox_Register( ToolboxesManager* toolboxesManager ) {

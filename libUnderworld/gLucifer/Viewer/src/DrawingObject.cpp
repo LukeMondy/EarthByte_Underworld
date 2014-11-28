@@ -61,6 +61,8 @@ DrawingObject::DrawingObject(unsigned int id, bool persistent, std::string name,
    steps = props.Int("steps", 0);
    time = props.Float("time", 0);
    colourbar = props.Bool("colourbar", false);
+
+   texture = NULL;
 }
 
 void DrawingObject::addColourMap(ColourMap* map, lucGeometryDataType data_type)
@@ -80,8 +82,9 @@ void DrawingObject::addColourMap(ColourMap* map, lucGeometryDataType data_type)
 int DrawingObject::useTexture()
 {
    std::string texfn = props["texturefile"];
-   if (texfn.length() && !texture.width)
+   if (texfn.length() && !texture)
    {
+      texture = new TextureData();
       GLenum mode = GL_REPLACE;
       int data_type;
       for (data_type=lucMinDataType; data_type<lucMaxDataType; data_type++)
@@ -96,26 +99,26 @@ int DrawingObject::useTexture()
       std::string ext = texfn.substr(texfn.find_last_of(".") + 1);
       std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
       if (ext == "png")
-         LoadTexturePNG(&texture, texfn.c_str(), true, mode);
+         LoadTexturePNG(texture, texfn.c_str(), true, mode);
       if (ext == "tga")
-         LoadTextureTGA(&texture, texfn.c_str(), true, mode);
+         LoadTextureTGA(texture, texfn.c_str(), true, mode);
       if (ext == "ppm")
-         LoadTexturePPM(&texture, texfn.c_str(), true, mode);
+         LoadTexturePPM(texture, texfn.c_str(), true, mode);
    }
 
-   if (texture.width)
+   if (texture && texture->width)
    {
-      if (texture.depth > 1)
+      if (texture->depth > 1)
       {
          glEnable(GL_TEXTURE_3D);
          glActiveTexture(GL_TEXTURE0);
-         glBindTexture(GL_TEXTURE_3D, texture.id);
+         glBindTexture(GL_TEXTURE_3D, texture->id);
       }
       else
       {
          glEnable(GL_TEXTURE_2D);
          glActiveTexture(GL_TEXTURE0);
-         glBindTexture(GL_TEXTURE_2D, texture.id);
+         glBindTexture(GL_TEXTURE_2D, texture->id);
       }
       return 0; //Return unit id
    }

@@ -1,0 +1,35 @@
+VecAXPY 
+(1) y1 = 
+Process [0]
+4
+8
+Process [1]
+12
+16
+(1) y2 = 
+Process [0]
+15
+18
+21
+Process [1]
+24
+27
+X.Y = 1610.000000 
+(2) y1 = 
+Process [0]
+4
+9
+Process [1]
+14
+19
+(2) y2 = 
+Process [0]
+25
+30
+35
+Process [1]
+40
+45
+X.Y = 2644.000000 
+(max-X) = 18.000000 : index = 8 
+(min-X) = 0.000000 : index = 0 

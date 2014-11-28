@@ -124,7 +124,6 @@ void* _lucScalarField_DefaultNew( Name name )
 void _lucScalarField_AssignFromXML( void* drawingObject, Stg_ComponentFactory* cf, void* data )
 {
    lucScalarField*  self = (lucScalarField*)drawingObject;
-   DomainContext* context;
 
    /* Construct Parent */
    _lucScalarFieldCrossSection_AssignFromXML( self, cf, data );
@@ -132,16 +131,14 @@ void _lucScalarField_AssignFromXML( void* drawingObject, Stg_ComponentFactory* c
    _lucScalarField_Init(self, Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"drawSides", "xyzXYZ"));
 
    /* Drawing object default overrides */
-   context = (DomainContext*)self->context;
-   if (context->dim == 2) self->lit = False;
+   if (self->fieldVariable->dim == 2) self->lit = False;
 }
 
-void _lucScalarField_Draw( void* drawingObject, lucDatabase* database, void* _context )
+void _lucScalarField_Draw( void* drawingObject, lucDatabase* database, void* data )
 {
    lucScalarField*   self          = (lucScalarField*)drawingObject;
-   DomainContext*    context       = (DomainContext*) _context;
 
-   if (context->dim == 2)
+   if (self->fieldVariable->dim == 2)
    {
       lucScalarFieldCrossSection_DrawCrossSection( lucCrossSection_Set(self, 0.0, K_AXIS, False), database, False);
    }

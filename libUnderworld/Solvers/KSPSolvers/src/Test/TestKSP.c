@@ -13,7 +13,12 @@
 #include <petscext.h>
 #include <petscext_pc.h>
 
-#include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#include <petscversion.h>
+#if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
+  #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
+#else
+  #include "private/kspimpl.h"   /*I "petscksp.h" I*/
+#endif
 
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
@@ -37,7 +42,7 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPRegisterTEST(const char path[])
     PetscErrorCode ierr;
 
     PetscFunctionBegin;
-    ierr = KSPRegister(KSPTEST, path, "KSPCreate_TEST", KSPCreate_TEST );CHKERRQ(ierr);
+    ierr = Stg_KSPRegister(KSPTEST, path, "KSPCreate_TEST", KSPCreate_TEST );CHKERRQ(ierr);
     PetscFunctionReturn(0);
 }
 
@@ -91,6 +96,10 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_TEST(KSP ksp)
 {
     PetscErrorCode ierr;
     PetscFunctionBegin;
+
+    #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >= 2 ) )
+    ierr = KSPSetSupportedNorm(ksp,KSP_NORM_NONE,PC_LEFT,1);CHKERRQ(ierr);
+    #endif
     /*
        Sets the functions that are associated with this data structure 
        (in C++ this is the same as defining virtual functions)

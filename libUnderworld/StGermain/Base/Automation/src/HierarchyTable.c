@@ -79,7 +79,7 @@ Bool HierarchyTable_IsChild( void* hierarchyTable, Type childType, Type possible
 	 * Keep going until the Hierarchy Table produces a NULL - this means that we've reached the end of the table */
 	for ( currType = childType ; currType != NULL ; currType = HierarchyTable_GetParent( self, currType ) ) {
 		/* Test if this parent is the same as the one being tested for */
-		if ( currType == possibleParentType )
+		if ( !strcmp(currType,possibleParentType ) )
 			return True;
 	}
 

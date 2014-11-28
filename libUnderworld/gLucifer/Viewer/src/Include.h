@@ -38,7 +38,8 @@
 #include <ctype.h>
 #include <pthread.h>
 
-//#define PDF_CAPTURE
+//Utils
+#include "jpeg/jpge.h"
 
 //Utils
 #include "jpeg/jpge.h"
@@ -60,10 +61,8 @@
 //This could be problematic with different configurations...
 #if defined __APPLE__
 #include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
 #else
 #include <GL/gl.h>
-#include <GL/glu.h>
 #endif
 
 #else
@@ -150,6 +149,7 @@ extern PFNGLGETUNIFORMLOCATIONPROC glGetUniformLocation;
 extern PFNGLUNIFORM1FPROC glUniform1f;
 extern PFNGLUNIFORM1IPROC glUniform1i;
 extern PFNGLUNIFORM2FPROC glUniform2f;
+extern PFNGLUNIFORM1FVPROC glUniform1fv;
 extern PFNGLUNIFORM2FVPROC glUniform2fv;
 extern PFNGLUNIFORM3FVPROC glUniform3fv;
 extern PFNGLUNIFORM4FVPROC glUniform4fv;

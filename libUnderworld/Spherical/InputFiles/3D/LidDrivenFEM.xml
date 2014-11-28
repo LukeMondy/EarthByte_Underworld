@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+  <!-- Load the plugin that sets up the app, plus any others you require -->
+  <list name="import">
+    <param>Underworld</param>
+    <param>Spherical</param>
+    <param>Solvers</param>
+  </list>
+  <list name="plugins" mergeType="merge">
+    <struct>
+      <param name="Type">StgFEM_StandardConditionFunctions</param>
+      <param name="Context">context</param>
+    </struct>
+    <struct>
+      <param name="Type">StgFEM_FrequentOutput</param>
+      <param name="Context">context</param>
+    </struct>
+  </list>
+
+  <include>StgFEM/ConstantMesh.xml</include>
+  <include>Spherical/SphericalMesh.xml</include>
+  <include>StgFEM/VelocityField.xml</include>
+  <include>StgFEM/PressureField.xml</include>
+  <include>Underworld/GaussSwarm.xml</include>
+  <include>Underworld/GaussSwarmWithGaussMaterialSwarm.xml</include>
+  <include>Spherical/StokesFlowUzawa.xml</include>
+  <!--
+  <include>PICellerator/AllowOutflow.xml</include>
+  <include>../Spherical_Components/StokesFlowUzawaPIC.xml</include>
+  <include>Spherical/NewStokesFlowUzawaPIC.xml</include>
+  <include>StgFEM/MultigridForRegular.xml</include>
+  <param name="mgLevels">3</param>
+  -->
+
+  <struct name="components" mergeType="merge">
+    <struct name="context">
+      <param name="Type">UnderworldContext</param>
+    </struct>
+    <struct name="linearMeshGenerator" mergeType="merge">
+      <param name="regular">false</param> <!-- switch on approximate xzyincell search algorithm rather than analytic one which can fail -->
+    </struct>
+    <struct name="materialSwarmParticleLayout" mergeType="merge">
+      <param name="Type" mergeType="replace">IrregularMeshParticleLayout</param>
+      <param name="cellParticleCount">20</param>
+      <param name="FeMesh">linearMesh</param>
+    </struct>
+    <struct name="everywhere">
+      <param name="Type">Everywhere</param>
+    </struct>
+    <struct name="background">
+      <param name="Type">RheologyMaterial</param>
+      <param name="Shape">everywhere</param>
+      <param name="Rheology">viscosity</param>
+    </struct>
+    <struct name="viscosity">
+      <param name="Type">MaterialViscosity</param>
+      <param name="eta">1</param>
+    </struct>
+  </struct>
+  <!-- Simulation control -->
+  <param name="maxTimeSteps"> 0 </param>
+  <param name="outputEvery"> 1 </param>
+  <param name="dumpEvery"> 1 </param>
+  <param name="checkpointEvery"> 1 </param>
+  <param name="outputPath"> ./lidDriven </param>
+  <!-- Geometry & Mesh setup -->
+  <param name="velocityMesh">linearMesh</param>
+  <param name="pressureMesh">constantMesh</param>
+  <param name="elementMesh">linearMesh</param>
+  <param name="dim"> 3 </param>
+  <param name="shadowDepth"> 1 </param>
+  <!-- radius -->
+  <param name="minX"> 2 </param>
+  <param name="maxX"> 6 </param>
+  <param name="elementResI"> 3 </param>
+  <!-- longitude range is [-180,180) -->
+  <!--param name="minY">  45 </param> <param name="maxY">  90 </param-->
+  <param name="minY">  -45 </param>
+  <param name="maxY">  45 </param>
+  <param name="elementResJ"> 5 </param>
+  <!--
+	<param name="minZ"> 0 </param> <param name="maxZ"> 0.7853981633974483 </param>
+	-->
+  <!-- latitude - range is (-90,90) -->
+  <!--param name="minZ">  -20 </param> <param name="maxZ">  25 </param-->
+  <param name="minZ"> -45 </param>
+  <param name="maxZ"> 45 </param>
+  <param name="elementResK"> 5 </param>
+  <!-- material points swarm parameters -->
+  <param name="seed">13</param>
+  <param name="gaussParticlesX"> 2 </param>
+  <param name="gaussParticlesY"> 2 </param>
+  <param name="gaussParticlesZ"> 2 </param>
+  <!-- Set up BCs -->
+  <include> ./BCs/lidDrivenBCs.xml </include>
+</StGermainData>

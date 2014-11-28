@@ -67,7 +67,6 @@
       FeVariable*     baseFeVariable; \
       Bool            useGradient; \
       Dictionary*     dictionary; \
-      Dictionary*     myDict;
 
    struct OperatorFeVariable { __OperatorFeVariable };   
 

@@ -72,7 +72,7 @@ void PICellerator_Toolbox_Finalise( ToolboxesManager* toolboxesManager ) {
    
    Journal_RPrintf(
       Journal_Register( Info_Type, (Name)PICellerator_Toolbox_Type ),
-         "Finalised: PICellerator (Particle-In-Cell Framework) Revision %s.\n", VERSION );
+         "Finalised: PICellerator (Particle-In-Cell Framework).\n" );
 }
 
 Index PICellerator_Toolbox_Register( ToolboxesManager* toolboxesManager ) {

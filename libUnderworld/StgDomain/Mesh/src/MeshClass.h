@@ -55,7 +55,7 @@
 								\
 		/* Mesh info */					\
 		MeshTopology*			topo;		\
-		double**			verts;		\
+		double*			vertices;		\
 								\
 		List*				vars;		\
 								\
@@ -88,7 +88,7 @@
 		/* should mesh be stored and reloaded ? */                    \
 		Bool                            isCheckpointedAndReloaded;    \
 		/* determines if mesh requires storing (it may already have been stored) */ \
-		Bool                            requiresCheckpointing;        \
+		Bool                            isDeforming;        \
 		ExtensionManager_Register*	emReg;
 
 	struct Mesh { __Mesh };
@@ -207,6 +207,9 @@
 
 	void Mesh_DeformationUpdate( void* mesh );
 	void Mesh_Sync( void* mesh );
+
+    void Mesh_GenerateVertices( void* mesh, unsigned nVerts, unsigned nDims );
+
 
 	/*--------------------------------------------------------------------------------------------------------------------------
 	** Private Member functions

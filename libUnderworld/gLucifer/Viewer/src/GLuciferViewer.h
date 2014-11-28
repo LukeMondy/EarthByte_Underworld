@@ -54,7 +54,6 @@ class GLuciferViewer : public ViewerApp
    bool writeimage, writemovie;
 
    char message[256];
-   char last_message[256];
 
    std::vector<Model*> models;
    std::vector<Win*> windows;
@@ -143,10 +142,10 @@ class GLuciferViewer : public ViewerApp
 
    void clearObjects(bool all=false);
    void redrawObjects();
-   void displayObjectList();
+   void displayObjectList(bool console=true);
    void printMessage(const char *fmt, ...);
    void displayText(std::string text, int lineno=1, int colour=0);
-   void displayMessage(bool instant=false);
+   void displayMessage();
    void drawColourBar(DrawingObject* draw, int startx, int starty, int length, int height);
    void drawScene(void);
    void drawSceneBlended();
@@ -196,16 +195,16 @@ Hold [shift] and use the scroll wheel to move the clip plane in and out.\n\
 [Home]       View All mode ON/OFF, shows all objects in a single viewport\n\
 [End]        ViewPort mode ON/OFF, shows all viewports in window together\n\
 \n\
+\nHold [ALT] plus:\n\
 [`]          Full screen ON/OFF\n\
 [*]          Auto zoom to fit ON/OFF\n\
 [/]          Stereo ON/OFF\n\
 [\\]          Switch coordinate system Right-handed/Left-handed\n\
 [|]          Switch rulers ON/OFF\n\
 [,]          Switch to next particle rendering texture\n\
-[+]          More particles (reduce sub-sampling)\n\
-[=]          Less particles (increase sub-sampling)\n\
+[+/=]        More particles (reduce sub-sampling)\n\
+[-]          Less particles (increase sub-sampling)\n\
 \n\
-\nHold [ALT] plus:\n\
 [a]          Hide/show axis\n\
 [b]          Background colour switch WHITE/BLACK\n\
 [B]          Background colour gray\n\

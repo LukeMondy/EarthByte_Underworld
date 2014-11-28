@@ -67,6 +67,14 @@ lucDatabase* _lucDatabase_New(  LUCDATABASE_DEFARGS  )
    nameAllocationType = NON_GLOBAL;
 
    self = (lucDatabase*) _Stg_Component_New(  STG_COMPONENT_PASSARGS  );
+   
+   self->filename  = NULL;
+   self->dbPath    = NULL;
+   self->db        = NULL;
+   self->db2       = NULL;
+   self->memdb     = NULL;
+   self->vfs       = NULL;
+   self->timeUnits = NULL;
 
    return self;
 }
@@ -106,6 +114,7 @@ void _lucDatabase_Init(
    char*                filename,
    char*                vfs,
    Name                 timeUnits,
+   char*                dbPath,
    Bool                 disabled,
    Bool                 blocking )
 {
@@ -121,33 +130,36 @@ void _lucDatabase_Init(
    self->compressed = compressed;
    self->singleFile = singleFile;
    self->filename = StG_Strdup(filename);
-   self->vfs = NULL;
+   if (context && !strcmp("", dbPath)) {
+      self->dbPath = StG_Strdup(context->outputPath);
+   } else {
+      self->dbPath = StG_Strdup(dbPath);
+   }
    if (vfs && strlen(vfs)) self->vfs = StG_Strdup(vfs);
-   self->db = NULL;
-   self->db2 = NULL;
-   self->memdb = NULL;
    self->timeUnits = StG_Strdup(timeUnits);
-   self->disabled = disabled || !self->context->vis;
+   self->disabled = disabled;
+   if(self->context){
+      self->disabled = !self->context->vis;
 
-   self->minValue[ I_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minX", 0.0  );
-   self->minValue[ J_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minY", 0.0  );
-   self->minValue[ K_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minZ", 0.0  );
+      self->minValue[ I_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minX", 0.0  );
+      self->minValue[ J_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minY", 0.0  );
+      self->minValue[ K_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minZ", 0.0  );
 
-   self->maxValue[ I_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxX", 1.0  );
-   self->maxValue[ J_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxY", 1.0  );
-   self->maxValue[ K_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxZ", 1.0  );
-
+      self->maxValue[ I_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxX", 1.0  );
+      self->maxValue[ J_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxY", 1.0  );
+      self->maxValue[ K_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxZ", 1.0  );
+      if (self->context->dim == 2)
+      {
+         self->minValue[K_AXIS] += 0.5 * (self->maxValue[K_AXIS] = self->minValue[K_AXIS]);
+         self->maxValue[K_AXIS] = self->minValue[K_AXIS];
+      }
+   }
    self->drawingObject_Register = lucDrawingObject_Register_New();
 
    for ( object_I = 0 ; object_I < drawingObjectCount ; object_I++ )
       lucDrawingObject_Register_Add( self->drawingObject_Register, drawingObjectList[ object_I ] );
 
    /* Set minZ = maxZ for 2d models */
-   if (self->context->dim == 2)
-   {
-      self->minValue[K_AXIS] += 0.5 * (self->maxValue[K_AXIS] = self->minValue[K_AXIS]);
-      self->maxValue[K_AXIS] = self->minValue[K_AXIS];
-   }
 
    /* Create geometry data stores */
    lucGeometryType type;
@@ -185,14 +197,25 @@ void _lucDatabase_Init(
      self->dump_script = StG_Strdup("dump.sh");
 
    /* Add to entry points if we have our own list of drawing objects to output, bypassing window/viewport structures */
-   if (!disabled)
+   if (!disabled && self->context)
    {
       /* Ensure our execute called before window execute by using Prepend...
        * If we have our own list of drawing objects they will be dumped here */
-      EP_PrependClassHook(  Context_GetEntryPoint( context, AbstractContext_EP_DumpClass ), self->_execute, self );
+      EP_PrependClassHook(  Context_GetEntryPoint( self->context, AbstractContext_EP_DumpClass ), self->_execute, self );
    }
    
    self->blocking = blocking;
+   
+   if(self->context){
+      self->rank         = self->context->rank;
+      self->nproc        = self->context->nproc;
+      self->communicator = self->context->communicator;
+   } else {
+      self->communicator = MPI_COMM_WORLD;
+      MPI_Comm_rank( self->communicator, &self->rank );
+      MPI_Comm_size( self->communicator, &self->nproc );
+   }
+
 }
 
 lucDatabase* lucDatabase_New(
@@ -207,7 +230,7 @@ lucDatabase* lucDatabase_New(
    char*             vfs)
 {
    lucDatabase* self = (lucDatabase*)_lucDatabase_DefaultNew("database");
-   _lucDatabase_Init(self, context, NULL, 0, deleteAfter, writeimage, splitTransactions, transparent, compressed, singleFile, filename, vfs, "", False, False);
+   _lucDatabase_Init(self, context, NULL, 0, deleteAfter, writeimage, splitTransactions, transparent, compressed, singleFile, filename, vfs, "", "", False, False);
    return self;
 }
 
@@ -231,7 +254,10 @@ void _lucDatabase_Delete( void* database )
    if (self->memdb) sqlite3_close(self->memdb);
 
    if (self->filename) Memory_Free(self->filename);
+   if (self->dbPath) Memory_Free(self->dbPath);
    if (self->vfs) Memory_Free(self->vfs);
+   if (self->timeUnits) Memory_Free(self->timeUnits);
+   
 
    _Stg_Component_Delete( self );
 }
@@ -242,9 +268,6 @@ void _lucDatabase_AssignFromXML( void* database, Stg_ComponentFactory* cf, void*
    AbstractContext* context = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Context", AbstractContext, False, data );
    DrawingObject_Index drawingObjectCount;
    lucDrawingObject**  drawingObjectList;
-
-   if (!context)
-      context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, data  );
 
    /* Optional global drawing object list, can provide to database instead of windows+viewports */
    drawingObjectList = Stg_ComponentFactory_ConstructByList( cf, self->name, (Dictionary_Entry_Key)"DrawingObject", Stg_ComponentFactory_Unlimited, lucDrawingObject, False, &drawingObjectCount, data);
@@ -261,6 +284,7 @@ void _lucDatabase_AssignFromXML( void* database, Stg_ComponentFactory* cf, void*
       Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"filename", "gLucifer"),
       Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"vfs", NULL),
       Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"timeUnits", ""  ),
+      Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"dbPath", ""  ),
       Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"disable", False  ),
       Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"blocking", False  )
       );
@@ -270,7 +294,7 @@ void _lucDatabase_Build( void* database, void* data )
 {
    lucDatabase* self = (lucDatabase*) database ;
    /* Get rendering engine to write images at each 'Dump' entry point. */
-   if (self->context->rank == 0 && !self->disabled)
+   if (self->rank == 0 && !self->disabled && self->context)
       EP_AppendClassHook(  Context_GetEntryPoint( self->context, AbstractContext_EP_DumpClass ), lucDatabase_Dump, self);
 }
 
@@ -283,9 +307,16 @@ void _lucDatabase_Execute( void* database, void* data )
     * they will be output by their parent window:
     * Window_Execute(Display) -> Viewport->Draw */
    lucDatabase* self = (lucDatabase*)database;
-   if (!self->context->vis) return;
+   self->timeStep = 0;
+   float currentTime = 0.;
+   if (self->context){
+      self->timeStep = self->context->timeStep;
+      currentTime    = self->context->currentTime;
+   }
+   
+   if (self->context && !self->context->vis) return;
 
-   if (self->context->rank == 0)
+   if (self->rank == 0)
    {
       if (!self->db)
       {
@@ -323,7 +354,7 @@ void _lucDatabase_Execute( void* database, void* data )
             lucDatabase_IssueSQL(self->memdb, "delete from timestep");
          }
  
-         if (self->context->timeStep > 0)
+         if (self->timeStep > 0)
          {
             /* Attach db for new timestep */
             lucDatabase_AttachDatabase(self);
@@ -338,46 +369,56 @@ void _lucDatabase_Execute( void* database, void* data )
          Journal_Firewall(lucDatabase_BeginTransaction(self), lucError, "Begin transaction failed! %s '%s'.\n", self->type, self->name );
 
       /* If a data window is set, delete expired geometry */
-      if (self->deleteAfter > 0)
+      if (self->deleteAfter > 0 )
       {
-         int deleteEnd = self->context->timeStep - self->deleteAfter - 1;
+         int deleteEnd = self->timeStep - self->deleteAfter - 1;
          if (deleteEnd >= 0)
             lucDatabase_DeleteGeometry(self, -1, deleteEnd);
       }
 
       /* Get scaling coefficient and units for timestep */
       double dimCoeff = 1.0; /* coefficient for dimensionalising field */
-      Scaling* theScaling;
-      /* very hacky to get the scaling component */
-      theScaling = self->context->scaling;
-      if( theScaling && self->timeUnits) 
-         dimCoeff = Scaling_ParseDimCoeff(theScaling, self->timeUnits);
-
-      /* Enter timestep in database */
+      if( self->context ){
+         Scaling* theScaling;
+         /* very hacky to get the scaling component */
+         theScaling = self->context->scaling;
+         if( theScaling && self->timeUnits)
+            dimCoeff = Scaling_ParseDimCoeff(theScaling, self->timeUnits);
+      }
 
       /* When restarted, delete any existing geometry at current timestep */
-      if (self->context->loadFromCheckPoint)
-         lucDatabase_DeleteGeometry(self, self->context->timeStep, self->context->timeStep);
+      if (self->context && self->context->loadFromCheckPoint)
+         lucDatabase_DeleteGeometry(self, self->timeStep, self->timeStep);
+      else
+         lucDatabase_DeleteGeometry(self, 0, 0);
 
       /* Enter timestep in database */
       /* Write and update timestep */
-      snprintf(SQL, 1024, "insert into timestep (id, time, dim_factor, units) values (%d, %g, %g, '%s')", self->context->timeStep, self->context->currentTime, dimCoeff, self->timeUnits);
+      snprintf(SQL, 1024, "insert into timestep (id, time, dim_factor, units) values (%d, %g, %g, '%s')", self->timeStep, currentTime, dimCoeff, self->timeUnits);
       /*printf("%s\n", SQL);*/
       if (!lucDatabase_IssueSQL(self->db, SQL)) return;
       /* Also write to attached db */
-      if (!self->singleFile && self->context->timeStep > 0)
+      if (!self->singleFile && self->timeStep > 0)
         if (!lucDatabase_IssueSQL(self->db2, SQL)) return;
    }
 
    /* If we have global list of drawing objects to output, process them here */
-   if (lucDrawingObject_Register_GetCount( self->drawingObject_Register ) > 0)
-   {
-      lucDrawingObject_Register_DrawAll( self->drawingObject_Register, self);
-      lucDrawingObject_Register_CleanUpAll( self->drawingObject_Register, self->context );
-   }
+   lucDrawingObject_Register_DrawAll( self->drawingObject_Register, self);
+   lucDrawingObject_Register_CleanUpAll( self->drawingObject_Register );
 }
 
 void _lucDatabase_Destroy( void* database, void* data ) { }
+
+void lucDatabase_DeleteWindows(lucDatabase* self)
+{
+   /* Delete any existing window->viewport->object structure information */
+   lucDatabase_IssueSQL(self->db, "delete from window;");
+   lucDatabase_IssueSQL(self->db, "delete from window_viewport;");
+   lucDatabase_IssueSQL(self->db, "delete from viewport;");
+   lucDatabase_IssueSQL(self->db, "delete from object;");
+   lucDatabase_IssueSQL(self->db, "delete from object_colourmap;");
+   lucDatabase_IssueSQL(self->db, "delete from viewport_object;");
+}
 
 void lucDatabase_Dump(void* database)
 {
@@ -401,8 +442,8 @@ void lucDatabase_Dump(void* database)
    lucDatabase_Wait(database);*/
    char* dumpcmd;
    asprintf(&dumpcmd, "%s %s %s%d %s",
-            self->dump_script, self->context->outputPath,
-            (self->transparent ? "-t " : ""), self->context->timeStep, self->path );
+            self->dump_script, self->dbPath,
+            (self->transparent ? "-t " : ""), self->timeStep, self->path );
 
    Journal_Printf(lucInfo, "Dump command: %s\n", dumpcmd);
 
@@ -413,9 +454,9 @@ void lucDatabase_Dump(void* database)
       if (self->dump_pid == 0)
       {
          char timestep[16];
-         sprintf(timestep, "%d", self->context->timeStep);
+         sprintf(timestep, "%d", self->timeStep);
          /* Code executed by child process */
-         execl(self->dump_script, self->dump_script, self->context->outputPath,
+         execl(self->dump_script, self->dump_script, self->dbPath,
                timestep, self->path, (self->transparent ? "-t" : (char*)0), (char *)0);
          /* If we are still here, exec call failed */
          Journal_Printf(lucError, "Exec failed!\n");
@@ -469,7 +510,7 @@ void lucDatabase_OutputWindow(lucDatabase* self, lucWindow* window)
    if (lucDatabase_BeginTransaction(self))
    {
       float *min, *max;
-      if (window->useModelBounds)
+      if (self->context && window->useModelBounds)
       {
          min = self->minValue;
          max = self->maxValue;
@@ -531,7 +572,7 @@ void lucDatabase_OutputViewport(lucDatabase* self, lucViewport* viewport, int wi
    /* Update properties string for viewport */
    lucViewport_Update(viewport);
 
-   if (cam->centreFieldVariable)
+   if (cam->centreFieldVariable || cam->useBoundingBox)
       sprintf(focus, "null, null, null");
    else
       sprintf(focus, "%g, %g, %g", cam->focalPoint[0], cam->focalPoint[1], cam->focalPoint[2]);
@@ -686,14 +727,14 @@ void lucDatabase_OutputGeometry(lucDatabase* self, int object_id)
 {
    lucGeometryType type;
    lucGeometryDataType data_type;
-   unsigned int procs = self->context->nproc;
+   unsigned int procs = self->nproc;
    unsigned int bytes = 0, outbytes = 0;
    double time, gtotal = 0, wtotal = 0;
    //Journal_Printf(lucInfo, "gLucifer: writing geometry to database ...\n");
 
    /* Write geometry to database */
    time = MPI_Wtime();
-   if (self->context->rank > 0 || !self->splitTransactions || lucDatabase_BeginTransaction(self))
+   if (self->rank > 0 || !self->splitTransactions || lucDatabase_BeginTransaction(self))
    {
       for (type=lucMinType; type<lucMaxType; type++)
       {
@@ -704,7 +745,7 @@ void lucDatabase_OutputGeometry(lucDatabase* self, int object_id)
             for (data_type=lucMinDataType; data_type<lucMaxDataType; data_type++)
                lucDatabase_GatherGeometry(self, type, data_type);
          }
-         if (self->context->rank > 0) continue;
+         if (self->rank > 0) continue;
          gtotal += MPI_Wtime() - time;
 
          /* Loop through all geometry types and write to database */
@@ -718,7 +759,7 @@ void lucDatabase_OutputGeometry(lucDatabase* self, int object_id)
       }
 
       /* Commit transaction */
-      if (self->context->rank == 0 && self->splitTransactions)
+      if (self->rank == 0 && self->splitTransactions)
       {
          time = MPI_Wtime();
          lucDatabase_Commit(self);
@@ -728,9 +769,9 @@ void lucDatabase_OutputGeometry(lucDatabase* self, int object_id)
 
    if (bytes > 0)
    {
-      if (self->context->nproc > 1)
+      if (self->nproc > 1)
          Journal_Printf(lucInfo, "    Gather data, took %f sec\n", gtotal);
-      if (self->context->rank == 0 && self->splitTransactions)
+      if (self->rank == 0 && self->splitTransactions)
          Journal_Printf(lucInfo, "    Transaction took %f seconds\n", wtotal);
       Journal_Printf(lucInfo, "    %.3f kb of geometry data saved, %.3f kb written.\n", bytes/1000.0f, outbytes/1000.0f);
    }
@@ -741,23 +782,23 @@ void lucDatabase_OutputGeometry(lucDatabase* self, int object_id)
 
 void lucDatabase_GatherGeometry(lucDatabase* self, lucGeometryType type, lucGeometryDataType data_type)
 {
-   unsigned int procs = self->context->nproc;
+   unsigned int procs = self->nproc;
    lucGeometryData* block = self->data[type][data_type];
 
    /* Get the count on each proc */
    int p;
    int *counts = NULL;
-   if (self->context->rank == 0)
+   if (self->rank == 0)
       counts = Memory_Alloc_Array(int, procs, "displacements");
    /* 1 value from each proc */
-   (void)MPI_Gather(&block->count, 1, MPI_INT, counts, 1, MPI_INT, 0, self->context->communicator);
+   (void)MPI_Gather(&block->count, 1, MPI_INT, counts, 1, MPI_INT, 0, self->communicator);
 
    /* Now we have count per proc, gather all values */
    //double time = MPI_Wtime();
    int *displ = NULL;
    float *data = NULL;
    int total = 0;
-   if (self->context->rank == 0)
+   if (self->rank == 0)
    {
       displ = Memory_Alloc_Array(int, procs, "displacements");
 
@@ -771,20 +812,20 @@ void lucDatabase_GatherGeometry(lucDatabase* self, lucGeometryType type, lucGeom
    }
 
    /* Any data to gather? */
-   MPI_Bcast(&total, 1, MPI_INT, 0, self->context->communicator);
+   MPI_Bcast(&total, 1, MPI_INT, 0, self->communicator);
    if (total > 0)
    {
-      (void)MPI_Gatherv(block->data, block->count, MPI_FLOAT, data, counts, displ, MPI_FLOAT, 0, self->context->communicator);
+      (void)MPI_Gatherv(block->data, block->count, MPI_FLOAT, data, counts, displ, MPI_FLOAT, 0, self->communicator);
 
       /* Reduce to get minimum & maximum from all procs */
       float min, max;
       int width = 0;
-      MPI_Reduce( &block->minimum, &min, 1, MPI_FLOAT, MPI_MIN, 0, self->context->communicator );
-      MPI_Reduce( &block->maximum, &max, 1, MPI_FLOAT, MPI_MAX, 0, self->context->communicator );
+      MPI_Reduce( &block->minimum, &min, 1, MPI_FLOAT, MPI_MIN, 0, self->communicator );
+      MPI_Reduce( &block->maximum, &max, 1, MPI_FLOAT, MPI_MAX, 0, self->communicator );
       if (data_type == lucVertexData)
-         MPI_Reduce( &block->width, &width, 1, MPI_INT, MPI_SUM, 0, self->context->communicator );
+         MPI_Reduce( &block->width, &width, 1, MPI_INT, MPI_SUM, 0, self->communicator );
       /* (keep dimcoeff and units from root proc) */
-      if (self->context->rank == 0)
+      if (self->rank == 0)
       {
          //Journal_Printf(lucInfo, "Gathered %d values, took %f sec\n", total, MPI_Wtime() - time);
          /* Add new data on master */
@@ -895,17 +936,19 @@ void lucDatabase_AddValues(lucDatabase* self, int n, lucGeometryType type, lucGe
    /* Get scaling coefficient and units if available */
    double dimCoeff = 1.0;
    char* units = "";
-   if (colourMap->fieldVariable)
-   {
-      /* very hacky to get the scaling component */
-      Scaling* theScaling = colourMap->fieldVariable->context->scaling;
-      if( colourMap->fieldVariable->o_units )
+   if (self->context) {
+      if (colourMap->fieldVariable)
       {
-         if( theScaling ) 
-            dimCoeff = Scaling_ParseDimCoeff( theScaling, colourMap->fieldVariable->o_units );
-         units = colourMap->fieldVariable->o_units;
-      }
-   } 
+         /* very hacky to get the scaling component */
+         Scaling* theScaling = colourMap->fieldVariable->context->scaling;
+         if( colourMap->fieldVariable->o_units )
+         {
+            if( theScaling )
+               dimCoeff = Scaling_ParseDimCoeff( theScaling, colourMap->fieldVariable->o_units );
+            units = colourMap->fieldVariable->o_units;
+         }
+      } 
+   }
    /* Set colour map parameters */
    lucGeometryData_Setup(self->data[type][data_type], colourMap->minimum, colourMap->maximum, dimCoeff, units);
 }
@@ -1047,12 +1090,12 @@ void lucDatabase_OpenDatabase(lucDatabase* self)
       if (restart && strlen(self->context->checkpointReadPath) > 0)*/
 
       if (self->filename)
-         sprintf(self->path, "%s/%s.gldb", self->context->outputPath, self->filename); 
+         sprintf(self->path, "%s/%s.gldb", self->dbPath, self->filename);
       else
          sprintf(self->path, ":memory"); 
 
 
-      if (!(self->context->loadFromCheckPoint))
+      if (!self->context || !(self->context->loadFromCheckPoint))
          /* Remove existing file */
          remove(self->path);
 
@@ -1066,7 +1109,7 @@ void lucDatabase_OpenDatabase(lucDatabase* self)
       /* 10 sec timeout on busy(locked), as we are only accessing the db on root should not be necessary */
       sqlite3_busy_timeout(self->db, 10000);
 
-      if (!(self->context->loadFromCheckPoint))
+      if (!self->context || !(self->context->loadFromCheckPoint))
       {
          /* Remove existing data */
          lucDatabase_IssueSQL(self->db, "drop table IF EXISTS geometry");
@@ -1153,7 +1196,7 @@ void lucDatabase_AttachDatabase(lucDatabase* self)
       sqlite3_close(self->db2);
 
    /* Create path */
-   sprintf(path, "%s/%s%05d.gldb", self->context->outputPath, self->filename, self->context->timeStep); 
+   sprintf(path, "%s/%s%05d.gldb", self->dbPath, self->filename, self->timeStep);
 
    /* Attach new database */
    if (sqlite3_open_v2(path, &self->db2, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, self->vfs))
@@ -1194,7 +1237,7 @@ int lucDatabase_WriteGeometry(lucDatabase* self, int index, lucGeometryType type
       cmp_len = compressBound(src_len);
       buffer = (mz_uint8*)malloc((size_t)cmp_len);
       Journal_Firewall(buffer != NULL, lucError, "Compress database: Out of memory! %s '%s'.\n", self->type, self->name );
-      Journal_Firewall(compress(buffer, &cmp_len, (const unsigned char *)block->data, src_len) == Z_OK, 
+      Journal_Firewall(compress2(buffer, &cmp_len, (const unsigned char *)block->data, src_len, 1) == Z_OK,
          lucError, "Compress database failed! %s '%s'.\n", self->type, self->name );
       if (cmp_len == src_len)
       {
@@ -1211,7 +1254,7 @@ int lucDatabase_WriteGeometry(lucDatabase* self, int index, lucGeometryType type
    if (block->min[1] > block->max[1]) block->min[1] = block->max[1] = 0;
    if (block->min[2] > block->max[2]) block->min[2] = block->max[2] = 0;
 
-   snprintf(SQL, 1024, "insert into geometry (object_id, timestep, rank, idx, type, data_type, size, count, width, minimum, maximum, dim_factor, units, minX, minY, minZ, maxX, maxY, maxZ, labels, data) values (%d, %d, %d, %d, %d, %d, %d, %d, %d, %g, %g, %g, '%s', %g, %g, %g, %g, %g, %g, ?, ?)", object_id, self->context->timeStep, 0, index, type, data_type, block->size, block->count, block->width, block->minimum, block->maximum, block->dimCoeff, block->units ? block->units : "", block->min[0], block->min[1], block->min[2], block->max[0], block->max[1], block->max[2]);
+   snprintf(SQL, 1024, "insert into geometry (object_id, timestep, rank, idx, type, data_type, size, count, width, minimum, maximum, dim_factor, units, minX, minY, minZ, maxX, maxY, maxZ, labels, data) values (%d, %d, %d, %d, %d, %d, %d, %d, %d, %g, %g, %g, '%s', %g, %g, %g, %g, %g, %g, ?, ?)", object_id, self->timeStep, 0, index, type, data_type, block->size, block->count, block->width, block->minimum, block->maximum, block->dimCoeff, block->units ? block->units : "", block->min[0], block->min[1], block->min[2], block->max[0], block->max[1], block->max[2]);
 
    /* Prepare statement... */
    if (sqlite3_prepare_v2(db, SQL, -1, &statement, NULL) != SQLITE_OK)

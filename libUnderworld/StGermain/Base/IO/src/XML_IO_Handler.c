@@ -185,13 +185,9 @@ static Bool _XML_IO_Handler_IsOnlyWhiteSpace( char* );
 static int _XML_IO_Handler_WriteAllToDoc(
    void*       xml_io_handler,
    Dictionary* dictionary,
-   Dictionary* sources,
-   Dictionary* versions,
-   Dictionary* branches,
-   Dictionary* paths );
+   Dictionary* sources );
 static void _XML_IO_Handler_WriteDictionary( XML_IO_Handler*, Dictionary*, xmlNodePtr );
 static void _XML_IO_Handler_WriteSources( XML_IO_Handler*, Dictionary*, xmlNodePtr );
-static void _XML_IO_Handler_WriteIdentity( XML_IO_Handler*, Dictionary*, Dictionary*, Dictionary*, xmlNodePtr );
 static void _XML_IO_Handler_WriteNode(
    XML_IO_Handler*         self,
    char*                   name,
@@ -1842,10 +1838,7 @@ Bool _XML_IO_Handler_WriteAllToFile(
    void*       xml_io_handler,
    const char* filename,
    Dictionary* dictionary,
-   Dictionary* sources,
-   Dictionary* versions,
-   Dictionary* branches,
-   Dictionary* paths )
+   Dictionary* sources )
 {
    int fileSize = -1;
    XML_IO_Handler* self = (XML_IO_Handler*)xml_io_handler;
@@ -1858,7 +1851,7 @@ Bool _XML_IO_Handler_WriteAllToFile(
    assert( filename );
    #endif
 
-   if(!_XML_IO_Handler_WriteAllToDoc( xml_io_handler, dictionary, sources, versions, branches, paths ))
+   if(!_XML_IO_Handler_WriteAllToDoc( xml_io_handler, dictionary, sources ))
       return False;
    
    /* Write result to file. */
@@ -1884,14 +1877,11 @@ Bool _XML_IO_Handler_WriteAllToFile(
 char* _XML_IO_Handler_WriteAllMem(
    void*       xml_io_handler,
    Dictionary* dictionary,
-   Dictionary* sources,
-   Dictionary* versions,
-   Dictionary* branches,
-   Dictionary* paths )
+   Dictionary* sources )
 {
 
    XML_IO_Handler* self = (XML_IO_Handler*)xml_io_handler;
-   if(!_XML_IO_Handler_WriteAllToDoc( xml_io_handler, dictionary, sources, versions, branches, paths ))
+   if(!_XML_IO_Handler_WriteAllToDoc( xml_io_handler, dictionary, sources ))
       return NULL;
    
    /* Write result to memory */
@@ -1920,10 +1910,7 @@ char* _XML_IO_Handler_WriteAllMem(
 static int _XML_IO_Handler_WriteAllToDoc(
    void*       xml_io_handler,
    Dictionary* dictionary,
-   Dictionary* sources,
-   Dictionary* versions,
-   Dictionary* branches,
-   Dictionary* paths )
+   Dictionary* sources )
 {
    XML_IO_Handler* self = (XML_IO_Handler*)xml_io_handler;
    xmlNodePtr      rootNode;
@@ -1960,14 +1947,11 @@ static int _XML_IO_Handler_WriteAllToDoc(
    
    xmlDocSetRootElement( self->currDoc, rootNode );
 
-   /* Write identity information. */
-   _XML_IO_Handler_WriteIdentity( self, versions, branches, paths, rootNode );
-
    /* Write model information. */
    _XML_IO_Handler_WriteDictionary( self, dictionary, rootNode );
 
    /* Write sources information. */
-   if( self->writeSources )
+   if( self->writeSources && sources)
       _XML_IO_Handler_WriteSources( self, sources, rootNode );
 
    return True;
@@ -2114,59 +2098,6 @@ static void _XML_IO_Handler_WriteSources( XML_IO_Handler* self, Dictionary* sour
    }
 }
 
-static void _XML_IO_Handler_WriteIdentity( XML_IO_Handler* self, Dictionary* versions, Dictionary* branches, Dictionary* paths, xmlNodePtr parent ) {
-   xmlNodePtr        outerStructNode;
-   xmlNodePtr        versionNode;
-   xmlNodePtr        branchNode;
-   xmlNodePtr        pathNode;
-   xmlNodePtr        structNode;
-   Dictionary_Index  index = 0;
-   Dictionary_Entry* currentVersion = NULL;
-   Dictionary_Entry* currentBranch = NULL ;
-   Dictionary_Entry* currentPath = NULL;
-   char*             identityBuffer = NULL;
-
-   if( versions && branches && paths ) {
-      Journal_Firewall( Dictionary_GetCount( versions ) == Dictionary_GetCount( branches ) &&
-         Dictionary_GetCount( branches ) == Dictionary_GetCount( paths ), Journal_Register( Error_Type, self->type ),
-         "[ERROR] Identity dictionaries have mis-matching entries." );
-
-      if( Dictionary_GetCount( versions ) > 0 ) {
-         for( index = 0; index < Dictionary_GetCount( versions ); index++ ) {
-            currentVersion = versions->entryPtr[index];
-            currentBranch = branches->entryPtr[index];
-            currentPath = paths->entryPtr[index];
-
-            if( strcmp( "UNKNOWN",  Dictionary_Entry_Value_AsString( currentVersion->value ) ) && 
-               strcmp( "UNKNOWN",  Dictionary_Entry_Value_AsString( currentBranch->value ) ) &&
-               strcmp( "UNKNOWN",  Dictionary_Entry_Value_AsString( currentPath->value ) ) ) {
-
-               if( index == 0 ) {
-                  Stg_asprintf( &identityBuffer, "%s",
-                     "Snapshot (revisions) of the framework used to generate this flattened file." );
-                  xmlAddChild( parent, xmlNewComment( (xmlChar*)identityBuffer ) );
-   
-                  outerStructNode = xmlNewTextChild( parent, self->currNameSpace, STRUCT_ATTR, NULL );
-                  xmlNewProp( outerStructNode, (xmlChar*)NAME_ATTR, (xmlChar*)IDENTITY_NAME );
-               }
-
-               structNode = xmlNewTextChild( outerStructNode, self->currNameSpace, STRUCT_ATTR, NULL );
-               xmlNewProp( structNode, (xmlChar*)NAME_ATTR, (xmlChar*)currentVersion->key );
-
-               versionNode = xmlNewTextChild( structNode, self->currNameSpace, PARAM_ATTR,
-                  (xmlChar*)Dictionary_Entry_Value_AsString( currentVersion->value ) );
-               xmlNewProp( versionNode, (xmlChar*)NAME_ATTR, (xmlChar*)VERSION_ATTR );
-               branchNode = xmlNewTextChild( structNode, self->currNameSpace, PARAM_ATTR,
-                  (xmlChar*)Dictionary_Entry_Value_AsString( currentBranch->value ) );
-               xmlNewProp( branchNode, (xmlChar*)NAME_ATTR, (xmlChar*)BRANCH_ATTR );
-               pathNode = xmlNewTextChild( structNode, self->currNameSpace, PARAM_ATTR,
-                  (xmlChar*)Dictionary_Entry_Value_AsString( currentPath->value ) );
-               xmlNewProp( pathNode, (xmlChar*)NAME_ATTR, (xmlChar*)PATH_ATTR );
-            }
-         }
-      }
-   }  
-}
 
 /* Write a single node and its children to file. */
 static void _XML_IO_Handler_WriteNode(

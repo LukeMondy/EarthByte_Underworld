@@ -1,6 +1,7 @@
 #ifdef HAVE_PETSCEXT
 
 #include "writeMatVec.h"
+#include "../../../../StgDomain/Utils/src/PETScCompatibility.h"
 
 void bsscr_writeMat(Mat K, char name[], char message[]){
     PetscViewer             mat_view_file;

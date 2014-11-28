@@ -544,7 +544,7 @@
     </element>
     <element type="struct" name="velocityArrows">
       <element type="param" name="Type">lucVectorArrows</element>
-      <element type="param" name="VectorVariable">VelocityField</element>
+      <element type="param" name="FieldVariable">VelocityField</element>
       <element type="param" name="Colour">black</element>
       <element type="param" name="arrowHeadSize">0.15</element>
       <element type="param" name="lengthScale">0.15</element>

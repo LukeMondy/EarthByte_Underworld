@@ -1,41 +1,77 @@
 
-## Coding
 
-### Design
-Expectations at the python level
-Expectations at the c level
-Python / c interface & interaction
-Granularity of objects -- global contexts, global varialbes, lists of lists of lists
-Naming convections - for classes, instances, input parameters
-#### Class overview
+Design
+======
+User Interface?
+Naming convections - for classes, instances, input parameters?
+Class overview?
 
 
-### Whitespace
+Directory Structure
+===================
 
-### Comments
+* libUnderworld            - contains backend stack of tools (Underworld, StgFEM, etc)
+ * libUnderworldPy         - contains swig generated wrappers for backend as well as auxiliary implementations (such as StGermain_Tools)
+* underworld               - python only directory structure containing python frontend routines and supporting scripts
+* docs                     - contains various documentation including this file
+* InputFiles               - contains various examples input files
 
-### Error handling
-#### Reporting
-#### Checking / exceptions
 
-### Versions
-#### Development Workflow
-##### Bug fixes
-##### New Features / Redesigned interface or API
-#### Release candidates 
 
-### Testing
-#### Unit tests
-#### Regression tests
+Coding Style
+============
 
-### Directory Structure
+Whitespace
+----------
+PEP 8
+http://legacy.python.org/dev/peps/pep-0008/
 
-### Distribution
-#### Releases format
+Most importantly:
+Spaces should be used for tabs.
+Indent levels should be 4 spaces deep.
 
-### Bug reporting & tracking
+autopep8 tool can be used to tidy when necessary:
+https://pypi.python.org/pypi/autopep8/
 
-### Useful tools
+This command seems to give good results (not overly aggressive):
+autopep8 -v -i -r  --ignore E201,E202,E501,E221,E251 .
 
-### Licensing 
-#### Template Header
+* Comments?
+* Error handling?
+ * Reporting?
+ * Checking / exceptions?
+
+
+License 
+=======
+
+
+
+Development
+===========
+* Versions?
+* Development Workflow?
+* Bug fixes & reporting?
+* New Features / Redesigned interface or API?
+* Release candidates?
+* Distribution?
+
+Testing
+=======
+* Unit tests?
+* Regression tests?
+
+Jenkins, CI server
+------------------
+We run a contiguous integration system Jenkins. Currently it downloads the code each night, configures, compiles and runs the units and system tests. If an error is detected in any of these processes the code is labelled as a Failure.
+
+See https://130.56.248.95:8080/job/underworld2/
+
+To test ipython notebooks perhaps we can use scripts like this https://gist.github.com/shoyer/7497853
+
+
+Useful Link
+===========
+http://matplotlib.org/devel/gitwash/git_development.html
+https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
+http://docs.scipy.org/doc/numpy/dev/index.html

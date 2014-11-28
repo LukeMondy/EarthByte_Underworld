@@ -57,6 +57,7 @@
       double                      localMax;                                 /** maximum value stored in the array locally */                                      \
       double                      zSliceCoord;                              /** z location of 3D voxel data to take slice from for 2d simulations */              \
       Bool                        useNearestCell;                           /** if querying outside the domain, should we used nearest cell? */                   \
+      Bool                        useExternalArray;                         /** true if voxelfieldvariable memory is defined elsewhere (eg numpy array) */        \
       Stream*                     errorStream; \
       Bool                        minMaxCached;
 

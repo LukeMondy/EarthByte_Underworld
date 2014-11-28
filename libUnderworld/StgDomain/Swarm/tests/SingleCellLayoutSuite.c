@@ -46,7 +46,7 @@
 typedef struct {
 	SingleCellLayout*	singleCellLayout;
 	unsigned int		dimExists[3];
-	double***			cellPoints;
+	Cell_Points			cellPoints;
 	MPI_Comm				comm;
 	int					rank;
 	int					nProcs;
@@ -74,7 +74,7 @@ void SingleCellLayoutSuite_Driver( SingleCellLayoutSuiteData* data ) {
 		Cell_PointIndex count;
 
 		count = data->singleCellLayout->_pointCount( data->singleCellLayout, cell );
-		data->cellPoints = Memory_Alloc_Array( double**, count, "cellsPoints" );
+		data->cellPoints = Memory_Alloc_Array( Cell_Point, count, "cellsPoints" );
 		data->singleCellLayout->_initialisePoints( data->singleCellLayout, cell, count, data->cellPoints );
 	}
 }

@@ -4,7 +4,7 @@
 
 function keyPressCommand(event, el) {
   if (event.keyCode == 13) {
-    //debug("PRESS Code: " + event.keyCode + " Char: " + charc);
+    //OK.debug("PRESS Code: " + event.keyCode + " Char: " + charc);
     var cmd = el.value.trim();
     if (cmd.length == 0) cmd = "repeat";
     requestData('/command=' + cmd);
@@ -23,18 +23,21 @@ function keyPress(event) {
      // ie or special key
      code = event.keyCode;
 
-    //Special key codes
-    if (code == 38) key = 17;
-    else if (code == 40) key = 18;
-    else if (code == 37) key = 20;
-    else if (code == 39) key = 19;
-    else if (code == 33) key = 24;
-    else if (code == 34) key = 25;
-    else if (code == 36) key = 22;
-    else if (code == 35) key = 23;
-    else key = code; 
+  //Ignore ESC, too easy to accidentally quit
+  if (code == 27) return;
 
-  //debug("PRESS Code: " + event.keyCode + " Char: " + charc);
+  //Special key codes
+  if (code == 38) key = 17;
+  else if (code == 40) key = 18;
+  else if (code == 37) key = 20;
+  else if (code == 39) key = 19;
+  else if (code == 33) key = 24;
+  else if (code == 34) key = 25;
+  else if (code == 36) key = 22;
+  else if (code == 35) key = 23;
+  else key = code; 
+
+  //OK.debug("PRESS Code: " + event.keyCode + " Char: " + charc);
   requestData('/key=' + key + ',modifiers=' + getModifiers(event) + ",x=" + defaultMouse.x + ",y=" + defaultMouse.y);
 }
 
@@ -139,9 +142,9 @@ function requestData(data, callback, sync) {
         if (callback)
           callback(http.responseText);
         else
-          debug(http.responseText);
+          OK.debug(http.responseText);
       } else  
-        debug("Ajax Request Error: " + url + ", returned status code " + http.status + " " + http.statusText);
+        OK.debug("Ajax Request Error: " + url + ", returned status code " + http.status + " " + http.statusText);
   } 
 
   //Add date to url to prevent caching
@@ -170,7 +173,7 @@ function requestImage() {
       //if (imgtimer) clearTimeout(imgtimer);
       //imgtimer = setTimeout(requestImage, 100);
     } else  
-      debug("Ajax Request Error: " + url + ", returned status code " + http.status + " " + http.statusText);
+      OK.debug("Ajax Request Error: " + url + ", returned status code " + http.status + " " + http.statusText);
   } 
 
   http.open("GET", url, true); 
@@ -182,12 +185,8 @@ function requestImage() {
 var client_id = 0;
 function parseRequest(response) {
   client_id = parseInt(response);
-  if (client_id < 0) {
-    if (confirm("Too many connections, try again later by refreshing the page?"))
-      location.reload();
-  } else
-    requestData('/objects', parseObjects);
-    //requestImage();
+  requestData('/objects', parseObjects);
+  //requestImage();
 }
 
 var imgtimer;

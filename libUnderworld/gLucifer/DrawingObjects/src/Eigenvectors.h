@@ -37,6 +37,8 @@
 #ifndef __lucEigenvectors_h__
 #define __lucEigenvectors_h__
 
+#include "EigenvectorsCrossSection.h"
+
 /** Textual name of this class - This is a global pointer which is used for times when you need to refer to class and not a particular instance of a class */
 extern const Type lucEigenvectors_Type;
 

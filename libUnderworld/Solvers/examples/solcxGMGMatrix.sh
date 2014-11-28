@@ -39,9 +39,9 @@ export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
-for VC in 6
+for VC in 2 4 6 8
 do
-for SC in 0
+for SC in 1
 do
 for UW in gmgdiag
 do
@@ -58,10 +58,10 @@ echo "|-------+-------+------------+----------+------+------+------+------+-----
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
 #for PEN in 0.0 10.0 100.0 1000.0 10000.0
-for PEN in 40.0
+for PEN in 0.01
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
-PEN=`echo "0.25*$PEN" | bc -l`
+#PEN=`echo "0.25*$PEN" | bc -l`
 
 #SCRP="unpreconditioned"
 SCRP="default"
@@ -105,7 +105,7 @@ MGOP=" "
     fi
 
 ID=$SCR$A11
-RES=64
+RES=$1
 RESX=$RES
 RESY=$RES
 PP=40
@@ -153,13 +153,13 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
   		--components.stokesEqn.isNonLinear=False \
   		--saveDataEvery=1 --checkpointEvery=2 --checkpointWritePath="./$OUT/Checkpoints" --checkpointAppendStep=1 \
                 --components.FieldTest.normaliseByAnalyticSolution=False \
-                --solCx_eta=$VV \
+                --solCx_etaA=$VV \
                 --solCx_xc=0.5 \
                 --solCx_etaB=$VB \
                 --solCx_n=2.0 \
                 --wavenumberY=2.0 \
                 -scr_ksp_set_min_it_converge 1 \
-                -force_correction 1 -k_scale_only 0 \
+                -force_correction 1 -k_scale_only $SC \
                 -uzawastyle 0 \
                 -scrPCKSP_ksp_type fgmres \
                 -XscrPCKSP_ksp_converged_reason \
@@ -191,7 +191,8 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
                 -backsolveA11_ksp_type fgmres \
                 -backsolveA11_ksp_rtol 1.0e-6 \
   		--elementResI=$RES --elementResJ=$RES \
-  		--maxTimeSteps=0 -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -NN $OUT \
+  		--maxTimeSteps=0 -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_"  \
+                -matdumpdir $OUT -solutiondumpdir $OUT \
     > "./$OUT/output.txt" 2>&1
 
 #./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt

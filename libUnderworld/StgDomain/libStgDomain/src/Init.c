@@ -58,13 +58,7 @@ Bool StgDomain_Init( int* argc, char** argv[] ) {
       /* DO NOT CHANGE OR REMOVE */
       Journal_Printf( 
          Journal_Register( InfoStream_Type, (Name)"Context" ), 
-         "StgDomain (Domain Library) Revision %s. Copyright (C) 2003-2007 VPAC.\n",
-         VERSION );
-
-      /* Add repo indentity info in the repo dictionary. */
-      Dictionary_Add( versionDict, "StgDomain", Dictionary_Entry_Value_FromString( VERSION ) );
-      Dictionary_Add( branchDict, "StgDomain", Dictionary_Entry_Value_FromString( BRANCH ) );
-      Dictionary_Add( pathDict, "StgDomain", Dictionary_Entry_Value_FromString( PATH ) );
+         "StgDomain (Domain Library). Copyright (C) 2003-2007 VPAC.\n");
 
       Stream_Flush( Journal_Register( InfoStream_Type, (Name)"Context" ) );
       Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context" ), tmp );

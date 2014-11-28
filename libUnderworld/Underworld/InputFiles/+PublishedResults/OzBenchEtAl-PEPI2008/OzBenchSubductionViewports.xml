@@ -73,7 +73,7 @@
 	<struct name="velocityArrows">
 		<param name="Type">lucVectorArrows</param>
 		<!--  Velocity arrows in a horizontal cross section -->
-		<param name="VectorVariable">VelocityField</param>
+		<param name="FieldVariable">VelocityField</param>
 		<param name="colour">Black</param>
 		<!--param name="CrossSection">y=0.8</param-->
 		<param name="arrowHeadSize">0.1</param> 

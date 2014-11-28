@@ -67,13 +67,7 @@ Bool Geothermal_Init( int* argc, char** argv[] ) {
       /* DO NOT CHANGE OR REMOVE */
 		Journal_Printf( 
 			Journal_Register( InfoStream_Type, (Name)"Context"  ), 
-			"Geothermal (Bleeding Edge Geodynamics framework) Revision %s. Copyright (C) 2005 Monash University.\n",
-         VERSION );
-
-      /* Add repo indentity info in the repo dictionary. */
-      Dictionary_Add( versionDict, "Geothermal", Dictionary_Entry_Value_FromString( VERSION ) );
-      Dictionary_Add( branchDict, "Geothermal", Dictionary_Entry_Value_FromString( BRANCH ) );
-      Dictionary_Add( pathDict, "Geothermal", Dictionary_Entry_Value_FromString( PATH ) );
+			"Geothermal (Bleeding Edge Geodynamics framework). Copyright (C) 2005 Monash University.\n" );
 
 		Stream_Flush( Journal_Register( InfoStream_Type, (Name)"Context" )  );
 		Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context"  ), tmp );
