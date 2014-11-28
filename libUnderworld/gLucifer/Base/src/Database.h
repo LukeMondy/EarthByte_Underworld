@@ -162,6 +162,7 @@ void lucDatabase_AddIndex(lucDatabase* self, lucGeometryType type, unsigned int 
 void lucDatabase_AddRGBA(lucDatabase* self, lucGeometryType type, float opacity, lucColour* colour);
 void lucDatabase_AddTexCoord(lucDatabase* self, lucGeometryType type, float x, float y);
 void lucDatabase_AddLabel(lucDatabase* self, lucGeometryType type, char* label);
+void lucDatabase_AddVolumeSlice(lucDatabase* self, int width, int height, float* corners, lucColourMap* colourMap, float* data);
 
 lucGeometryData* lucGeometryData_New(lucGeometryDataType data_type);
 void lucGeometryData_Clear(lucGeometryData* self);

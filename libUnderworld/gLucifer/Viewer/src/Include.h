@@ -41,6 +41,9 @@
 //Utils
 #include "jpeg/jpge.h"
 
+//Utils
+#include "jpeg/jpge.h"
+
 #ifndef _WIN32
 #include <sys/poll.h>
 #include <unistd.h>

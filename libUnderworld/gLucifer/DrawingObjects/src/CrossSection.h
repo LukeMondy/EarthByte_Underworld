@@ -103,6 +103,7 @@ void lucCrossSection_Interpolate2d(void* crossSection, double factorA, double fa
 void lucCrossSection_SetPosition(void* crossSection);
 double lucCrossSection_GetValue(void* crossSection, double min, double max);
 lucCrossSection* lucCrossSection_Set(void* crossSection, double val, Axis axis, Bool interpolate);
+lucCrossSection* lucCrossSection_Slice(void* crossSection, double val, Bool interpolate);
 
 void lucCrossSection_AllocateSampleData(void* drawingObject, int dims);
 void lucCrossSection_SampleField(void* drawingObject, Bool reverse);

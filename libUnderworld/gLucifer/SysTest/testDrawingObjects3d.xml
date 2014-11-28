@@ -14,6 +14,7 @@
 	<include>lucEigenvectorsTest.xml</include>
 	
 	<include>lucFieldSamplerTest.xml</include>
+
 	<include>lucHistoricalSwarmTrajectoryTest.xml</include>
 	<include>lucIsosurfaceTest.xml</include>
 	<include>lucMeshViewerTest.xml</include>

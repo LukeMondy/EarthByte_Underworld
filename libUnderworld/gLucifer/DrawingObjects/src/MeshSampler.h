@@ -33,29 +33,27 @@
 **
 **~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#include "CrossSection.h"
+#include "MeshCrossSection.h"
 
-#ifndef __lucFieldSampler_h__
-#define __lucFieldSampler_h__
+#ifndef __lucMeshSampler_h__
+#define __lucMeshSampler_h__
 
 /** Textual name of this class - This is a global pointer which is used for times when you need to refer to class and not a particular instance of a class */
-extern const Type lucFieldSampler_Type;
+extern const Type lucMeshSampler_Type;
 
 /** Class contents - this is defined as a macro so that sub-classes of this class can use this macro at the start of the definition of their struct */
-#define __lucFieldSampler \
+#define __lucMeshSampler \
       /* Macro defining parent goes here - This means you can cast this class as its parent */ \
-      __lucCrossSection \
+      __lucMeshCrossSection \
       /* Virtual functions go here */ \
-      /* Other info */\
-      IJK                           resolution;       \
       /* Calculated Values */ \
       Index                         total;            \
       Index                         elementRes[3];    \
       Coord                         cell;             \
 
-struct lucFieldSampler
+struct lucMeshSampler
 {
-   __lucFieldSampler
+   __lucMeshSampler
 };
 
 /** Private Constructor: This will accept all the virtual functions for this class as arguments. */
@@ -64,26 +62,26 @@ struct lucFieldSampler
 #define ZERO 0
 #endif
 
-#define LUCFIELDSAMPLER_DEFARGS \
-                LUCCROSSSECTION_DEFARGS
+#define LUCMESHSAMPLER_DEFARGS \
+                LUCMESHCROSSSECTION_DEFARGS
 
-#define LUCFIELDSAMPLER_PASSARGS \
-                LUCCROSSSECTION_PASSARGS
+#define LUCMESHSAMPLER_PASSARGS \
+                LUCMESHCROSSSECTION_PASSARGS
 
-lucFieldSampler* _lucFieldSampler_New(  LUCFIELDSAMPLER_DEFARGS  );
+lucMeshSampler* _lucMeshSampler_New(  LUCMESHSAMPLER_DEFARGS  );
 
-void _lucFieldSampler_Delete( void* drawingObject ) ;
-void _lucFieldSampler_Print( void* drawingObject, Stream* stream ) ;
+void _lucMeshSampler_Delete( void* drawingObject ) ;
+void _lucMeshSampler_Print( void* drawingObject, Stream* stream ) ;
 
 /* 'Stg_Component' implementations */
-void* _lucFieldSampler_DefaultNew( Name name ) ;
-void _lucFieldSampler_AssignFromXML( void* drawingObject, Stg_ComponentFactory* cf, void* data );
-void _lucFieldSampler_Build( void* drawingObject, void* data ) ;
-void _lucFieldSampler_Initialise( void* drawingObject, void* data ) ;
-void _lucFieldSampler_Execute( void* drawingObject, void* data );
-void _lucFieldSampler_Destroy( void* drawingObject, void* data ) ;
+void* _lucMeshSampler_DefaultNew( Name name ) ;
+void _lucMeshSampler_AssignFromXML( void* drawingObject, Stg_ComponentFactory* cf, void* data );
+void _lucMeshSampler_Build( void* drawingObject, void* data ) ;
+void _lucMeshSampler_Initialise( void* drawingObject, void* data ) ;
+void _lucMeshSampler_Execute( void* drawingObject, void* data );
+void _lucMeshSampler_Destroy( void* drawingObject, void* data ) ;
 
 /* Drawing Object Implementations */
-void _lucFieldSampler_Draw( void* drawingObject, lucDatabase* database, void* _context ) ;
+void _lucMeshSampler_Draw( void* drawingObject, lucDatabase* database, void* _context ) ;
 #endif
 

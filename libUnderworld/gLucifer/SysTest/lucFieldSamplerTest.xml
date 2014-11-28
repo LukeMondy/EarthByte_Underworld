@@ -3,54 +3,61 @@
 <StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
 
    <struct name="components" mergeType="merge">
-      <struct name="fieldFieldSampler1">
-         <param name="Type">lucFieldSampler</param>
-         <param name="sampleField">StrainRateInvariantField</param>
+      <struct name="strainRateInvVolume">
+         <param name="Type">lucMeshSampler</param>
+         <param name="FieldVariable">StrainRateInvariantField</param>
          <param name="ColourMap">strainRateInvColourMap</param>
-         <param name="pointSize">10.0</param>
-         <param name="sampleGlobal">true</param>
-         <param name="resolution">10</param>
-         <param name="pointSmoothing">0</param>
       </struct> 
 
-      <struct name="fieldFieldSampler2">
+      <struct name="velocityMagVolume">
          <param name="Type">lucFieldSampler</param>
-         <param name="sampleField">VelocityMagnitudeField</param>
+         <param name="FieldVariable">VelocityMagnitudeField</param>
          <param name="ColourMap">velocityMagnitudeColourMap</param>
-         <param name="pointSize">6.0</param>
-         <param name="sampleGlobal">false</param>
-         <param name="resolution">20</param>
-         <param name="pointSmoothing">0</param>
+         <param name="resolution">12</param>
       </struct> 
 
-      <struct name="materialFieldSampler">
+      <struct name="materialFieldVolume">
          <param name="Type">lucFieldSampler</param>
-         <param name="sampleField">lightLayerField</param>
+         <param name="FieldVariable">lightLayerField</param>
          <param name="ColourMap">densityColourMap</param>
-         <param name="pointSize">3.0</param>
-         <param name="sampleGlobal">false</param>
-         <param name="resolution">40</param>
-         <param name="pointSmoothing">0</param>
+         <param name="resolution">10</param>
       </struct> 
 
-      <!-- Viewport -->
-      <struct name="lucFieldSamplerTestVP">
+      <!-- Viewports -->
+      <struct name="lucFieldSamplerStrainRateVP">
          <param name="Type">lucViewport</param>
          <param name="Camera">camera</param>
+         <param name="margin">5</param>
          <list name="DrawingObject">
-            <param>fieldFieldSampler1</param>
-            <param>fieldFieldSampler2</param>
-            <param>materialFieldSampler</param>
+            <param>strainRateInvVolume</param>
+         </list>
+      </struct>
+      <struct name="lucFieldSamplerVelocityMagVP">
+         <param name="Type">lucViewport</param>
+         <param name="Camera">camera</param>
+         <param name="margin">5</param>
+         <list name="DrawingObject">
+            <param>velocityMagVolume</param>
+         </list>
+      </struct>
+      <struct name="lucFieldSamplerMaterialVP">
+         <param name="Type">lucViewport</param>
+         <param name="Camera">camera</param>
+         <param name="margin">5</param>
+         <list name="DrawingObject">
+            <param>materialFieldVolume</param>
          </list>
       </struct>
 
       <struct name="windowFieldSampler">
-			<param name="Type">lucDefaultWindow</param>
-			<param name="Database">database</param>
-			<param name="antialias">false</param>
-         <list name="Viewport">
-            <param>lucFieldSamplerTestVP</param>
-         </list>
+	  		<param name="Type">lucDefaultWindow</param>
+		  	<param name="Database">database</param>
+			  <param name="antialias">false</param>
+        <param name="width">540</param>
+        <param name="height">200</param>
+        <list name="Viewport">
+          <param>lucFieldSamplerStrainRateVP lucFieldSamplerVelocityMagVP lucFieldSamplerMaterialVP</param>
+        </list>
       </struct>
 
    </struct>
