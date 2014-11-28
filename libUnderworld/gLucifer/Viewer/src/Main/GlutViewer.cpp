@@ -80,14 +80,22 @@ void GlutViewer::open(int width, int height)
       glutMouseFunc(glut_mouseclick);
       glutMotionFunc(glut_mousemove);
    }
-   else
-   {
-      //Resize
-      glutReshapeWindow(width, height);
-   }
 
    //Call base class open
    OpenGLViewer::open(width, height);
+}
+
+void GlutViewer::setsize(int width, int height)
+{
+   //Resize
+   glutReshapeWindow(width, height);
+
+   //Call base class setsize
+   OpenGLViewer::setsize(width, height);
+
+   //No glut callbacks when window is hidden so manually call resize
+   if (!visible)
+      resize(width, height);
 }
 
 void GlutViewer::show()
@@ -119,9 +127,16 @@ void GlutViewer::swap()
 void GlutViewer::execute()
 {
    //Ensure window visible for interaction
-   show();
-
-   glutMainLoop();
+   if (visible) 
+   {
+     show();
+     glutMainLoop();
+   }
+   else
+   {
+      //Run our own event loop
+      OpenGLViewer::execute();
+   }
 }
 
 void GlutViewer::fullScreen()

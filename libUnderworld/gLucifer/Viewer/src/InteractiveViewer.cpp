@@ -211,31 +211,39 @@ bool GLuciferViewer::parseChar(unsigned char key)
       {
       case KEY_UP:    return parseCommands("model up");
       case KEY_DOWN:  return parseCommands("model down");
-      case 'q':       return parseCommands("quit");
+      case '*':       return parseCommands("autozoom");
+      case '/':       return parseCommands("stereo");
+      case '\\':      return parseCommands("coordsystem");
+      case ',':       return parseCommands("pointtype all");
+      case '-':       return parseCommands("pointsample down");
+      case '+':       return parseCommands("pointsample up");
+      case '=':       return parseCommands("pointsample up");
+      case '|':       return parseCommands("rulers");
       case 'a':       return parseCommands("axis");
+      case 'b':       return parseCommands("background invert");
+      case 'c':       return parseCommands("camera");
+      case 'd':       return parseCommands("trianglestrips");
+      case 'e':       return parseCommands("list elements");
+      case 'f':       return parseCommands("border");
+      case 'g':       return parseCommands("logscales");
+      case 'h':       return parseCommands("history");
+      case 'i':       return parseCommands("image");
+      case 'j':       return parseCommands("localise");
+      case 'k':       return parseCommands("lockscale");
       case 'u':       return parseCommands("cullface");
       case 'w':       return parseCommands("wireframe");
-      case 'd':       return parseCommands("trianglestrips");
-      case 'g':       return parseCommands("logscales");
-      case 'j':       return parseCommands("localise");
       case 'J':       return parseCommands("json");
-      case 'k':       return parseCommands("lockscale");
       case 'o':       return parseCommands("list objects");
-      case 'e':       return parseCommands("list elements");
+      case 'q':       return parseCommands("quit");
       case 'r':       return parseCommands("reset");
-      case 'i':       return parseCommands("image");
-      case 'b':       return parseCommands("background invert");
-      case 'f':       return parseCommands("border");
-      case 'h':       return parseCommands("history");
-      case 'c':       return parseCommands("camera");
-      case 's':       return parseCommands("scale shapes down");
-      case 'v':       return parseCommands("scale vectors up");
-      case 't':       return parseCommands("scale tracers up");
       case 'p':       return parseCommands("scale points up");
+      case 's':       return parseCommands("scale shapes up");
+      case 't':       return parseCommands("scale tracers up");
+      case 'v':       return parseCommands("scale vectors up");
       case 'l':       return parseCommands("scale lines up");
       case 'R':       return parseCommands("reload");
       case 'B':       return parseCommands("background");
-      case 'S':       return parseCommands("scale shapes up");
+      case 'S':       return parseCommands("scale shapes down");
       case 'V':       return parseCommands("scale vectors down");
       case 'T':       return parseCommands("scale tracers down");
       case 'P':       return parseCommands("scale points down");
@@ -261,6 +269,13 @@ bool GLuciferViewer::parseChar(unsigned char key)
       if (entry.length() == 1)
       {
          char ck = entry.at(0);
+         //Digit? (9 == ascii 57)
+         if (ck < 57)
+         {
+           response = parseCommands(entry);
+           entry = "";
+           return response;
+         }
          switch (ck)
          {
             case 'p':   //Points
@@ -382,14 +397,6 @@ bool GLuciferViewer::parseChar(unsigned char key)
       printMessage("ViewPorts set to %s", (viewPorts ? "ON" : "OFF"));
       break;
    case '`':    return parseCommands("fullscreen");
-   case '*':    return parseCommands("autozoom");
-   case '/':    return parseCommands("stereo");
-   case '\\':   return parseCommands("coordsystem");
-   case ',':    return parseCommands("pointtype all");
-   case '=':    return parseCommands("pointsample down");
-   case '+':    return parseCommands("pointsample up");
-   case '|':    return parseCommands("rulers");
-   case '!':    return parseCommands("title");
    case KEY_F1: return parseCommands("help");
    case KEY_F2: return parseCommands("antialias");
    default:
@@ -403,11 +410,9 @@ bool GLuciferViewer::parseChar(unsigned char key)
    if (entry.length() > 0 || msg)
    {
      printMessage(": %s", entry.c_str());
-     if (msg) 
-     {
-        displayMessage(true);
-        response = false;
-     }
+     response = false;
+     if (!response) 
+        viewer->postdisplay = true;
    }
 
    return response;
@@ -480,6 +485,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
    int ival;
    if (parsed.exists("rotation"))
    {
+      std::cerr << cmd << std::endl;
       float x = 0, y = 0, z = 0, w = 0;
       if (parsed.has(x, "rotation", 0) &&
           parsed.has(y, "rotation", 1) &&
@@ -490,7 +496,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
         aview->rotated = true;  //Flag rotation finished
       }
    }
-   if (parsed.exists("translation"))
+   else if (parsed.exists("translation"))
    {
       float x = 0, y = 0, z = 0;
       if (parsed.has(x, "translation", 0) &&
@@ -500,7 +506,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
         aview->setTranslation(x, y, z);
       }
    }
-   if (parsed.exists("rotate"))
+   else if (parsed.exists("rotate"))
    {
       float xr = 0, yr = 0, zr = 0;
       std::string axis = parsed["rotate"];
@@ -519,30 +525,30 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       aview->rotate(xr, yr, zr);
       aview->rotated = true;  //Flag rotation finished
    }
-   if (parsed.has(fval, "rotatex"))
+   else if (parsed.has(fval, "rotatex"))
    {
       aview->rotate(fval, 0, 0);
       aview->rotated = true;  //Flag rotation finished
    }
-   if (parsed.has(fval, "rotatey"))
+   else if (parsed.has(fval, "rotatey"))
    {
       aview->rotate(0, fval, 0);
       aview->rotated = true;  //Flag rotation finished
    }
-   if (parsed.has(fval, "rotatez"))
+   else if (parsed.has(fval, "rotatez"))
    {
       aview->rotate(0, 0, fval);
       aview->rotated = true;  //Flag rotation finished
    }
-   if (parsed.has(fval, "zoom"))
+   else if (parsed.has(fval, "zoom"))
       aview->zoom(fval);
-   if (parsed.has(fval, "translatex"))
+   else if (parsed.has(fval, "translatex"))
       aview->translate(fval, 0, 0);
-   if (parsed.has(fval, "translatey"))
+   else if (parsed.has(fval, "translatey"))
       aview->translate(0, fval, 0);
-   if (parsed.has(fval, "translatez"))
+   else if (parsed.has(fval, "translatez"))
       aview->translate(0, 0, fval);
-   if (parsed.exists("translate"))
+   else if (parsed.exists("translate"))
    {
       float xt = 0, yt = 0, zt = 0;
       std::string axis = parsed["translate"];
@@ -560,7 +566,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       }
       aview->translate(xt, yt, zt);
    }
-   if (parsed.exists("focus"))
+   else if (parsed.exists("focus"))
    {
       float xf = 0, yf = 0, zf = 0;
       if (parsed.has(xf, "focus", 0) &&
@@ -570,19 +576,19 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          aview->focus(xf, yf, zf);
       }
    }
-   if (parsed.has(fval, "aperture"))
+   else if (parsed.has(fval, "aperture"))
       aview->adjustStereo(fval, 0, 0);
-   if (parsed.has(fval, "focallength"))
+   else if (parsed.has(fval, "focallength"))
       aview->adjustStereo(0, fval, 0);
-   if (parsed.has(fval, "eyeseparation"))
+   else if (parsed.has(fval, "eyeseparation"))
       aview->adjustStereo(0, 0, fval);
-   if (parsed.has(fval, "zoomclip"))
+   else if (parsed.has(fval, "zoomclip"))
       aview->zoomClip(fval);
-   if (parsed.has(fval, "nearclip"))
+   else if (parsed.has(fval, "nearclip"))
       aview->near_clip = fval;
-   if (parsed.has(fval, "farclip"))
+   else if (parsed.has(fval, "farclip"))
       aview->far_clip = fval;
-   if (parsed.exists("timestep"))  //Absolute
+   else if (parsed.exists("timestep"))  //Absolute
    {
       if (!parsed.has(ival, "timestep"))
       {
@@ -595,13 +601,13 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       }
       if (setTimeStep(ival) >= 0)
       {
-         printMessage("Jump to timestep %d", timestep);
+         printMessage("Go to timestep %d", timestep);
          resetViews(); //Update the viewports
       }
       else
          return false;  //Invalid
    }
-   if (parsed.has(ival, "jump"))      //Relative
+   else if (parsed.has(ival, "jump"))      //Relative
    {
       //Relative jump
       if (setTimeStep(timestep+ival) >= 0)
@@ -612,7 +618,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       else
          return false;  //Invalid
    }
-   if (parsed.exists("model"))      //Model switch
+   else if (parsed.exists("model"))      //Model switch
    {
       if (!parsed.has(ival, "model"))
       {
@@ -628,7 +634,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       if (!loadWindow(ival, timestep)) return false;  //Invalid
       printMessage("Load model %d", window);
    }
-   if (parsed.exists("hide") || parsed.exists("show"))
+   else if (parsed.exists("hide") || parsed.exists("show"))
    {
       std::string action = parsed.exists("hide") ? std::string("hide") : std::string("show");
       std::string what = parsed[action];
@@ -671,44 +677,50 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       {
          //Hide by name/ID match in all drawing objects
          //std::string which = parsed.get(action, 1);
-         int id = parsed.Int(action, 0);
-         DrawingObject* obj = findObject(what, id);
-         if (obj)
+         for (int c=0; c<10; c++) //Allow multiple id/name specs on line
          {
-            if (obj->skip)
+            int id = parsed.Int(action, 0, c);
+            DrawingObject* obj = findObject(what, id);
+            if (obj)
             {
-               std::ostringstream ss;
-               ss << "load " << obj->id;
-               return parseCommands(ss.str());
-            }
-            else
-            {
-               showById(obj->id, action == "show");
-               //printMessage("%s object %d", (amodel->objects[i]->visible ? "Show" : "Hide"), num);
-               printMessage("%s object %s", action.c_str(), obj->name.c_str());
-               redrawViewports();
+               if (obj->skip)
+               {
+                  std::ostringstream ss;
+                  ss << "load " << obj->id;
+                  return parseCommands(ss.str());
+               }
+               else
+               {
+                  showById(obj->id, action == "show");
+                  //printMessage("%s object %d", (amodel->objects[i]->visible ? "Show" : "Hide"), num);
+                  printMessage("%s object %s", action.c_str(), obj->name.c_str());
+                  redrawViewports();
+               }
             }
          }
       }
    }
-   if (parsed.has(ival, "dump"))
+   else if (parsed.has(ival, "dump"))
    {
       //Export drawing object by name/ID match 
-      DrawingObject* obj = findObject(parsed["dump"], parsed.Int("dump", 0));
-      if (obj)
+      for (int c=0; c<10; c++) //Allow multiple id/name specs on line
       {
-         dumpById(obj->id);
-         printMessage("Dumped object %s to CSV", obj->name.c_str());
+         DrawingObject* obj = findObject(parsed["dump"], parsed.Int("dump", 0, c));
+         if (obj)
+         {
+            dumpById(obj->id);
+            printMessage("Dumped object %s to CSV", obj->name.c_str());
+         }
       }
    }
-   if (parsed.has(ival, "tracersteps"))
+   else if (parsed.has(ival, "tracersteps"))
    {
       tracers->steps = ival;
       if (tracers->steps > timestep) tracers->steps = timestep;
       printMessage("Set tracer steps limit to %d", tracers->steps);
       tracers->redraw = true;
    }
-   if (parsed.has(fval, "alpha"))
+   else if (parsed.has(fval, "alpha"))
    {
       if (fval > 1.0)
          GeomData::opacity = fval / 255.0;
@@ -719,7 +731,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       triSurfaces->redraw = true;
       redrawViewports();
    }
-   if (parsed.exists("opacity"))
+   else if (parsed.exists("opacity"))
    {
       std::string what = parsed["opacity"];
       //Alpha by name/ID match in all drawing objects
@@ -733,11 +745,11 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          redrawViewports();
       }
    }
-   if (parsed.has(ival, "movie"))
+   else if (parsed.has(ival, "movie"))
    {
       encodeVideo("gLucifer.mp4", timestep, ival);
    }
-   if (parsed.has(ival, "play"))
+   else if (parsed.has(ival, "play"))
    {
       writeSteps(false, false, timestep, ival, NULL);
    }
@@ -747,26 +759,26 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       loop = true;
       OpenGLViewer::commands.push_back(std::string("next"));
    }
-   if (parsed.exists("next"))
+   else if (parsed.exists("next"))
    {
       int old = timestep;
       setTimeStep(timestep+1);
       //Allow loop back to start when using next command
-      if (timestep < 0 && timestep == old)
+      if (timestep > 0 && timestep == old)
          setTimeStep(0);
 
       if (loop)
          OpenGLViewer::commands.push_back(std::string("next"));
    }
-   if (parsed.exists("stop"))
+   else if (parsed.exists("stop"))
    {
       loop = false;
    }
-   if (parsed.has(ival, "images"))
+   else if (parsed.has(ival, "images"))
    {
       writeImages(timestep, ival);
    }
-   if (parsed.exists("repeat"))
+   else if (parsed.exists("repeat"))
    {
       bool state = recording;
       if (parsed["repeat"] == "history" && parsed.has(ival, "repeat", 1))
@@ -797,11 +809,11 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       else
          return parseCommands(last_cmd);
    }
-   if (parsed.exists("quit"))
+   else if (parsed.exists("quit"))
    {
       viewer->quitProgram = true;
    }
-   if (parsed.exists("axis"))
+   else if (parsed.exists("axis"))
    {
       std::string axis = parsed["axis"];
       if (parsed["axis"] == "on")
@@ -812,7 +824,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
         aview->axis = !aview->axis;
       printMessage("Axis %s", aview->axis ? "ON" : "OFF");
    }
-   if (parsed.exists("cullface"))
+   else if (parsed.exists("cullface"))
    {
       quadSurfaces->cullface = !quadSurfaces->cullface;
       triSurfaces->cullface = !triSurfaces->cullface;
@@ -820,7 +832,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       quadSurfaces->redraw = true;
       triSurfaces->redraw = true;
    }
-   if (parsed.exists("wireframe"))
+   else if (parsed.exists("wireframe"))
    {
       for (int type=lucMinType; type<lucMaxType; type++)
       {
@@ -829,52 +841,60 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       }
       printMessage("Wireframe %s", geometry[lucMinType]->wireframe ? "ON":"OFF");
    }
-   if (parsed.exists("trianglestrips"))
+   else if (parsed.exists("trianglestrips"))
    {
       quadSurfaces->triangles = !quadSurfaces->triangles;
       printMessage("Triangle strips for quad surfaces %s", quadSurfaces->triangles ? "ON":"OFF");
       quadSurfaces->redraw = true;
    }
-   if (parsed.exists("fullscreen"))
+   else if (parsed.exists("redraw"))
+   {
+      for (int type=lucMinType; type<lucMaxType; type++)
+      {
+         geometry[type]->redraw = true;
+      }
+      printMessage("Redrawing all objects");
+   }
+   else if (parsed.exists("fullscreen"))
    {
       viewer->fullScreen();
       printMessage("Full-screen is %s", viewer->fullscreen ? "ON":"OFF");
    }
-   if (parsed.exists("scaling"))
+   else if (parsed.exists("scaling"))
    {
       printMessage("Scaling is %s", aview->scaleSwitch() ? "ON":"OFF");
    }
-   if (parsed.exists("fit"))
+   else if (parsed.exists("fit"))
    {
       aview->zoomToFit();
    }
-   if (parsed.exists("autozoom"))
+   else if (parsed.exists("autozoom"))
    {
       aview->autozoom = !aview->autozoom;
       printMessage("AutoZoom is %s", aview->autozoom ? "ON":"OFF");
    }
-   if (parsed.exists("stereo"))
+   else if (parsed.exists("stereo"))
    {
       aview->stereo = !aview->stereo;
       printMessage("Stereo is %s", aview->stereo ? "ON":"OFF");
    }
-   if (parsed.exists("coordsystem"))
+   else if (parsed.exists("coordsystem"))
    {
       printMessage("%s coordinate system", (aview->switchCoordSystem() == RIGHT_HANDED ? "Right-handed":"Left-handed"));
    }
-   if (parsed.exists("title"))
+   else if (parsed.exists("title"))
    {
       //Show/hide title
       aview->heading = !aview->heading;
       printMessage("Title %s", aview->heading ? "ON" : "OFF");
    }
-   if (parsed.exists("rulers"))
+   else if (parsed.exists("rulers"))
    {
       //Show/hide rulers
       aview->rulers = !aview->rulers;
       printMessage("Rulers %s", aview->rulers ? "ON" : "OFF");
    }
-   if (parsed.exists("log"))
+   else if (parsed.exists("log"))
    {
       ColourMap::logscales = (ColourMap::logscales + 1) % 3;
       bool state = ColourMap::lock;
@@ -885,7 +905,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       printMessage("Log scales are %s", ColourMap::logscales  == 0 ? "DEFAULT": ( ColourMap::logscales  == 1 ? "ON" : "OFF"));
       redrawObjects();
    }
-   if (parsed.exists("help"))
+   else if (parsed.exists("help"))
    {
       viewer->display();  //Ensures any previous help text wiped
       std::string cmd = parsed["help"];
@@ -915,7 +935,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          std::cout << "\nDisplay commands:\n\n";
          std::cout << helpCommand("background") << helpCommand("alpha") << helpCommand("opacity");
          std::cout << helpCommand("axis") << helpCommand("cullface") << helpCommand("wireframe");
-         std::cout << helpCommand("trianglestrips") << helpCommand("scaling") << helpCommand("rulers") << helpCommand("log");
+         std::cout << helpCommand("trianglestrips") << helpCommand("redraw") << helpCommand("scaling") << helpCommand("rulers") << helpCommand("log");
          std::cout << helpCommand("antialias") << helpCommand("localise") << helpCommand("lockscale");
          std::cout << helpCommand("lighting") << helpCommand("colourmap") << helpCommand("pointtype");
          std::cout << helpCommand("vectorquality") << helpCommand("tracerflat");
@@ -936,12 +956,12 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       viewer->swap();  //Immediate display
       redisplay = false;
    }
-   if (parsed.exists("antialias"))
+   else if (parsed.exists("antialias"))
    {
       aview->antialias = !aview->antialias;
       printMessage("Anti-aliasing %s", aview->antialias ? "ON":"OFF");
    }
-   if (parsed.exists("localise"))
+   else if (parsed.exists("localise"))
    {
       //Find colour value min/max local to each geom element
       points->localiseColourValues();
@@ -952,28 +972,32 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       printMessage("ColourMap scales localised");
       redrawObjects();
    }
-   if (parsed.exists("json"))
+   else if (parsed.exists("json"))
    {
       //Export drawing object by name/ID match 
-      DrawingObject* obj = findObject(parsed["json"], parsed.Int("json", 0));
-      if (obj)
+      for (int c=0; c<10; c++) //Allow multiple id/name specs on line
       {
-         jsonWriteFile(obj->id);
-         printMessage("Dumped object %s to json", obj->name.c_str());
-      }
-      else
-      {
-         jsonWriteFile();
-         printMessage("Dumped all objects to json", ival);
+         DrawingObject* obj = findObject(parsed["json"], parsed.Int("json", 0, c));
+         if (obj)
+         {
+            jsonWriteFile(obj->id);
+            printMessage("Dumped object %s to json", obj->name.c_str());
+         }
+         else
+         {
+            jsonWriteFile();
+            printMessage("Dumped all objects to json", ival);
+            break;
+         }
       }
    }
-   if (parsed.exists("lockscale"))
+   else if (parsed.exists("lockscale"))
    {
       ColourMap::lock = !ColourMap::lock;
       printMessage("ColourMap scale locking %s", ColourMap::lock ? "ON":"OFF");
       redrawObjects();
    }
-   if (parsed.exists("lighting"))
+   else if (parsed.exists("lighting"))
    {
       //Lighting ON/OFF
       for (int type=lucMinType; type<lucMaxType; type++)
@@ -983,28 +1007,12 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       }
       printMessage("Lighting is %s", geometry[lucMinType]->lit ? "ON":"OFF");
    }
-   if (parsed.exists("list"))
+   else if (parsed.exists("list"))
    {
       if (parsed["list"] == "objects")
       {
          objectlist = !objectlist;
-         int offset = 0;
-         std::cerr << "------------------------------------------" << std::endl;
-         for (unsigned int i=0; i < amodel->objects.size(); i++)
-         {
-            if (amodel->objects[i])
-            {
-               std::ostringstream ss;
-               ss << std::setw(5) << amodel->objects[i]->id << " : " << amodel->objects[i]->name;
-               if (amodel->objects[i]->skip)
-                  std::cerr << "[ no data  ]" << ss.str() << std::endl;
-               else if (!amodel->objects[i]->visible)
-                  std::cerr << "[  hidden  ]" << ss.str() << std::endl;
-               else
-                  std::cerr << "[          ]" << ss.str() << std::endl;
-            }
-         }
-         std::cerr << "------------------------------------------" << std::endl;
+         displayObjectList(true);
       }
       if (parsed["list"] == "elements")
       {
@@ -1031,22 +1039,22 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          return false;
       }
    }
-   if (parsed.exists("reset"))
+   else if (parsed.exists("reset"))
    {
       aview->reset();     //Reset camera
       aview->init(true);  //Reset camera to default view of model
       printMessage("View reset");
    }
-   if (parsed.exists("reload"))
+   else if (parsed.exists("reload"))
    {
       //Restore original window data
       if (!loadWindow(window, timestep)) return false;
    }
-   if (parsed.exists("zerocam"))
+   else if (parsed.exists("zerocam"))
    {
       aview->reset();     //Zero camera
    }
-   if (parsed.exists("colourmap"))
+   else if (parsed.exists("colourmap"))
    {
       std::string what = parsed["colourmap"];
 
@@ -1070,7 +1078,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       }
    }
    //TODO: document colourvalue,colourset,colour
-   if (parsed.exists("colourvalue"))
+   else if (parsed.exists("colourvalue"))
    {
       std::string what = parsed["colourvalue"];
       //Set value on colourmap (id idx val)
@@ -1083,7 +1091,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
             printMessage("%s colourmap idx (%d) value set to (%f)", cmap->name.c_str(), idx, val);
       //Will need to redraw all objects using this colourmap...
    }
-   if (parsed.exists("colourset"))
+   else if (parsed.exists("colourset"))
    {
       std::string what = parsed["colourset"];
       //Set colourmap colour (id idx val-hex-rgba)
@@ -1096,7 +1104,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
             printMessage("%s colourmap idx (%d) colour set to (%x)", cmap->name.c_str(), idx, colour);
       //Will need to redraw all objects using this colourmap...
    }
-   if (parsed.exists("colour"))
+   else if (parsed.exists("colour"))
    {
       //Set object colour by name/ID match in all drawing objects
       std::string what = parsed["colour"];
@@ -1111,7 +1119,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          redrawViewports();
       }
    }
-   if (parsed.exists("pointtype"))
+   else if (parsed.exists("pointtype"))
    {
       std::string what = parsed["pointtype"];
       if (what == "all")
@@ -1145,7 +1153,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          }
       }
    }
-   if (parsed.has(ival, "vectorquality"))
+   else if (parsed.has(ival, "vectorquality"))
    {
       if (ival <0 || ival > 10) return false;
       vectors->redraw = true;
@@ -1153,19 +1161,19 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       if (ival == 0) vectors->flat = true;
       printMessage("Vector quality set to %d", vectors->glyphs);
    }
-   if (parsed.exists("tracerflat"))
+   else if (parsed.exists("tracerflat"))
    {
       tracers->redraw = true;
       tracers->flat = tracers->flat ? false : true;
       printMessage("Flat tracer rendering is %s", tracers->flat ? "ON":"OFF");
    }
-   if (parsed.exists("tracerscale"))
+   else if (parsed.exists("tracerscale"))
    {
       tracers->redraw = true;
       tracers->scaling = tracers->scaling ? false : true;
       printMessage("Scaled tracer rendering is %s", tracers->scaling ? "ON":"OFF");
    }
-   if (parsed.exists("pointsample"))
+   else if (parsed.exists("pointsample"))
    {
       if (parsed.has(ival, "pointsample"))
          Points::subSample = ival;
@@ -1177,7 +1185,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       points->redraw = true;
       printMessage("Point sampling %d", Points::subSample);
    }
-   if (parsed.exists("image"))
+   else if (parsed.exists("image"))
    {
       viewer->snapshot(awin->name.c_str());
       if (viewer->outwidth > 0)
@@ -1185,13 +1193,13 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       else
          printMessage("Saved image %d x %d", viewer->width, viewer->height);
    }
-   if (parsed.has(ival, "outwidth"))
+   else if (parsed.has(ival, "outwidth"))
    {
       if (ival < 10) return false;
       viewer->outwidth = ival;
       printMessage("Output image width set to %d", viewer->outwidth);
    }
-   if (parsed.exists("background"))
+   else if (parsed.exists("background"))
    {
       if (parsed["background"] == "white")
          awin->background.value = 0xffffffff;
@@ -1216,7 +1224,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       viewer->setBackground(awin->background.value);
       printMessage("Background colour set");
    }
-   if (parsed.exists("border"))
+   else if (parsed.exists("border"))
    {
       //Frame off/on/filled
       if (parsed["border"] == "on")
@@ -1230,12 +1238,12 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       aview->borderType = aview->borderType % 3;
       printMessage("Frame set to %s", aview->borderType == 0 ? "OFF": (aview->borderType == 1 ? "ON" : "FILLED"));
    }
-   if (parsed.exists("camera"))
+   else if (parsed.exists("camera"))
    {
       //Output camera view xml
       aview->print();
    }
-   if (parsed.exists("scale"))
+   else if (parsed.exists("scale"))
    {
       std::string what = parsed["scale"];
       Geometry* active = getGeometryType(what);
@@ -1290,7 +1298,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          }
       }
    }
-   if (parsed.exists("history"))
+   else if (parsed.exists("history"))
    {
       std::string scriptfile = parsed["history"];
       if (scriptfile.length() > 0)
@@ -1311,28 +1319,28 @@ bool GLuciferViewer::parseCommands(std::string cmd)
             std::cout << history[l] << std::endl;
       }
    }
-   if (parsed.exists("clearhistory"))
+   else if (parsed.exists("clearhistory"))
    {
       history.clear();
       return false; //Skip record
    }
-   if (parsed.exists("resize"))
+   else if (parsed.exists("resize"))
    {
       float w = 0, h = 0;
       if (parsed.has(w, "resize", 0) && parsed.has(h, "resize", 1))
       {
          if (w != viewer->width && h != viewer->height)
          {
-            viewer->close();
-            viewer->open(w, h);
+            viewer->setsize(w, h);
+            resetViews(true);
          }
       }
    }
-   if (parsed.has(ival, "pause"))
+   else if (parsed.has(ival, "pause"))
    {
       PAUSE(ival);
    }
-   if (parsed.exists("delete"))
+   else if (parsed.exists("delete"))
    {
       //Delete drawing object by name/ID match 
       std::string what = parsed["delete"];
@@ -1376,26 +1384,29 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          }
       }
    }
-   if (parsed.exists("load"))
+   else if (parsed.exists("load"))
    {
       //Load drawing object by name/ID match 
       std::string what = parsed["load"];
-      int id = parsed.Int("load", 0);
-      DrawingObject* obj = findObject(what, id);
-      if (obj)
+      for (int c=0; c<10; c++) //Allow multiple id/name specs on line
       {
-         loadGeometry(obj->id);
-         //if (!loadWindow(window, timestep)) return false;
-         //Update the views
-         resetViews(false);
-         redrawObjects();
-         //aview->init(true);
-         //resetViews(true);
-         //Delete the cache as object list changed
-         amodel->deleteCache();
+         int id = parsed.Int("load", 0, c);
+         DrawingObject* obj = findObject(what, id);
+         if (obj)
+         {
+            loadGeometry(obj->id);
+            //if (!loadWindow(window, timestep)) return false;
+            //Update the views
+            resetViews(false);
+            redrawObjects();
+            //aview->init(true);
+            //resetViews(true);
+            //Delete the cache as object list changed
+            amodel->deleteCache();
+         }
       }
    }
-   if (parsed.exists("script"))
+   else if (parsed.exists("script"))
    {
       std::string scriptfile = parsed["script"];
       std::ifstream file(scriptfile.c_str(), std::ios::in);
@@ -1412,13 +1423,12 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          printMessage("Unable to open file: %s", scriptfile.c_str());
    }
    //TODO: NOT YET DOCUMENTED
-   if (parsed.exists("inertia"))
+   else if (parsed.exists("inertia"))
    {
       aview->use_inertia = !aview->use_inertia;
       printMessage("Inertia is %s", aview->use_inertia ? "ON":"OFF");
    }
-   //TODO: NOT YET DOCUMENTED
-   if (parsed.exists("sort"))
+   else if (parsed.exists("sort"))
    {
       //Always disables sort on rotate mode
       sort_on_rotate = false;
@@ -1426,14 +1436,14 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       viewer->notIdle(1500); //Start idle redisplay timer
       printMessage("Sorting geometry (auto-sort has been disabled)");
    }
-   if (parsed.exists("idle"))
+   else if (parsed.exists("idle"))
    {
       if (!sort_on_rotate && aview->rotated)
          aview->sort = true;
       return true; //Skip record
    }
    //Special commands for passing keyboard/mouse actions directly (web server mode)
-   if (parsed.exists("mouse"))
+   else if (parsed.exists("mouse"))
    {
       std::string data = parsed["mouse"];
 
@@ -1478,7 +1488,7 @@ bool GLuciferViewer::parseCommands(std::string cmd)
          redisplay = mouseScroll(spin);
       }
    }
-   if (parsed.exists("key"))
+   else if (parsed.exists("key"))
    {
       std::string data = parsed["key"];
 
@@ -1497,6 +1507,21 @@ bool GLuciferViewer::parseCommands(std::string cmd)
       viewer->keyState.alt = modifiers.find('A')+1;
 
       redisplay = keyPress(key, x, y);
+   }
+   else
+   {
+      //If value parses as integer and contains nothing else 
+      //interpret as timestep jump
+      ival = atoi(cmd.c_str());
+      std::ostringstream oss;
+      oss << ival;
+      if (oss.str() == cmd && setTimeStep(ival) >= 0)
+      {
+         printMessage("Go to timestep %d", timestep);
+         resetViews(); //Update the viewports
+      }
+      else
+         return false;  //Invalid
    }
 
    //Always redraw when using multiple viewports in window (urgh sooner this is gone the better)
@@ -1778,6 +1803,10 @@ std::string GLuciferViewer::helpCommand(std::string cmd)
    else if (cmd == "fullscreen")
    {
       help += "Switch viewer to full-screen mode and back to windowed mode\n";
+   }
+   else if (cmd == "redraw")
+   {
+      help += "Redraw all object data, required after changing some parameters but may be slow\n";
    }
    else if (cmd == "scaling")
    {

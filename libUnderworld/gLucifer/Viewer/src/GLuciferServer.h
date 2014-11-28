@@ -27,8 +27,7 @@ class GLuciferServer : public OutputInterface
    pthread_cond_t condition_var;
    std::deque<std::string> commands;
 
-   int clients;
-   int wait_count;
+   int client_id;
    int quality;
    bool updated;
    std::map<int,bool> synched; //Client status

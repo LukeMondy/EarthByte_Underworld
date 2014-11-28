@@ -242,11 +242,10 @@ class Geometry
    void label(DrawingObject* draw, const char* labels);
    GeomData* getObjectStore(DrawingObject* draw);
    void print();
-
    int size() {return geom.size();}
    void setView(View* vp) {view = vp;}
-
    void move(Geometry* other);
+   void toImage(unsigned int idx);
 };
 
 class Vectors : public Geometry
@@ -350,6 +349,24 @@ class Points : public Geometry
    virtual void jsonWrite(unsigned int id, std::ostream* osp);
 
    void dumpJSON();
+};
+
+class Volumes : public Geometry
+{
+  public:
+   static Shader* prog;
+   GLuint colourTexture;
+   std::map<int, int> slices;
+
+   Volumes(bool hidden=false);
+   ~Volumes();
+   virtual void close();
+   virtual void update();
+   virtual void draw();
+   void render(int i);
+   GLubyte* getTiledImage(unsigned int id, int& iw, int& ih, bool flip, int xtiles=16);
+   void pngWrite(unsigned int id, int xtiles=16);
+   virtual void jsonWrite(unsigned int id, std::ostream* osp);
 };
 
 //Sorting util functions

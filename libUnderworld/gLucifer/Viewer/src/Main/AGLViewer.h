@@ -46,8 +46,6 @@
 class AGLViewer  : public OpenGLViewer
 {
   public:
-   int timer;
-
    AGLContext graphicsContext;
    // Pixel buffer for background windows
    AGLPbuffer PixelBuffer; 
@@ -57,11 +55,11 @@ class AGLViewer  : public OpenGLViewer
    
    //Function implementations
    void open(int width, int height);
+   void setsize(int width, int height);
    void show();
    void display();
    void swap();
    void execute();
-   void animate(int msec);
 };
 
 #endif //AGLViewer__

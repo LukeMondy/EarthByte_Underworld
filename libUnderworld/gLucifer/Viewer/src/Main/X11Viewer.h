@@ -50,7 +50,6 @@
 //Derived from interactive window class
 class X11Viewer  : public OpenGLViewer
 {
-  public:
    int quitEventLoop;
    GLXContext     glxcontext;
    Display*       Xdisplay;
@@ -64,18 +63,19 @@ class X11Viewer  : public OpenGLViewer
    unsigned int   displayNumber;
    unsigned int   displayScreen;
 
+  public:
 
    X11Viewer(bool stereo, bool fullscreen);
    ~X11Viewer();
    
    //Function implementations
    void open(int width, int height);
+   void setsize(int width, int height);
    void show();
    void display();
    void swap();
    void execute();
    void fullScreen();
-   void animate(int msec);
 
    bool chooseVisual();
    bool createWindow(int width, int height);

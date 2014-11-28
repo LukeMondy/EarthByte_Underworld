@@ -57,6 +57,7 @@ class GlutViewer  : public OpenGLViewer
    
    //Function implementations
    void open(int width, int height);
+   void setsize(int width, int height);
    void show();
    void display();
    void swap();
@@ -82,4 +83,5 @@ class GlutViewer  : public OpenGLViewer
 #endif //GlutViewer__
 
 #endif //HAVE_GLUT
+
 

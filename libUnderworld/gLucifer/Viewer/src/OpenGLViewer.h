@@ -41,11 +41,20 @@
 #include "ApplicationInterface.h"
 #include "OutputInterface.h"
 
+// Check for framebuffer object support
+#ifdef GL_FRAMEBUFFER_EXT
+//#ifdef GL_DEPTH_STENCIL_EXT
+#define FBO_SUPPORTED
+//#endif
+#endif
+
 class OpenGLViewer : public ApplicationInterface
 {
   private:
 
   protected:
+   int timer;
+
    static int idle;
    static int displayidle; //Redisplay when idle for # milliseconds
    std::vector<OutputInterface*> outputs; //Additional output attachments
@@ -90,12 +99,13 @@ class OpenGLViewer : public ApplicationInterface
 
    //Window app management - called by derived classes, in turn call application interface virtuals
    virtual void open(int width=800, int height=600);
+   virtual void setsize(int width, int height);
    virtual void resize(int new_width, int new_height);
    virtual void display();
    virtual void swap() {};
    virtual void close();
    virtual void light();
-   virtual void animate(int msec) {}
+   virtual void animate(int msec);
 
    // Default virtual functions for interactivity (call application interface)
    virtual bool mouseMove(int x, int y) {return app->mouseMove(x,y);}
@@ -105,7 +115,7 @@ class OpenGLViewer : public ApplicationInterface
 
    virtual void show();
    virtual void setTitle() {}
-   virtual void execute() {}   //For entering interactive mode
+   virtual void execute();
 
    virtual void fullScreen() {}
    void pixels(void* buffer, bool alpha=false, bool flip=false);
@@ -117,6 +127,11 @@ class OpenGLViewer : public ApplicationInterface
       inverse = background;
       Colour_Invert(inverse);
       PrintSetColour(inverse.value);
+      if (isopen)
+      {
+         //Set clear colour
+         glClearColor(background.rgba[0]/255.0, background.rgba[1]/255.0, background.rgba[2]/255.0, 0);
+      }
    }
 
    void notIdle(int display=-1);

@@ -122,7 +122,7 @@ void Shapes::update()
             //drawCuboid(min, max, true);
             drawCuboid(zpos, sdims[0], sdims[1], sdims[2], true);
          else
-            drawEllipsoid(zpos, sdims[0], sdims[1], sdims[2], 16, NULL);
+            drawEllipsoid(zpos, sdims[0], sdims[1], sdims[2], 24, NULL);
 
          //Restore model view
          glPopMatrix();

@@ -173,6 +173,7 @@ Colour ColourMap::getfast(float value)
    int c = (int)((SAMPLE_COUNT-1) * ((value - minimum) / range));
    if (c > SAMPLE_COUNT - 1) c = SAMPLE_COUNT - 1;
    if (c < 0) c = 0;
+   //printf("%f min %f max %f pos = %d colour: %d\n", value, minimum, maximum, c, precalc[c]);
    return precalc[c];
 }
 
@@ -457,4 +458,31 @@ void ColourMap::setComponent(int component_index)
    for (unsigned int i=0; i<colours.size(); i++)
       for (int c=0; c<3; c++)
          if (c != component_index) colours[i].colour.rgba[c] = 0;
+}
+
+void ColourMap::loadTexture()
+{
+   if (!texture) texture = new TextureData();
+   #define PALSIZE 4096
+   calibrate(0, PALSIZE);
+   unsigned char paletteData[4*PALSIZE];
+   Colour col;
+   for (int i=0; i<PALSIZE; i++)
+   {
+      col = get(i);
+      //printf("RGBA %d %d %d %d\n", col.r, col.g, col.b, col.a);
+      paletteData[i*4] = col.r;
+      paletteData[i*4+1] = col.g;
+      paletteData[i*4+2] = col.b;
+      paletteData[i*4+3] = col.a;
+   }
+
+   glActiveTexture(GL_TEXTURE0);
+   glBindTexture(GL_TEXTURE_2D, texture->id);
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, PALSIZE, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, paletteData);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+   glBindTexture(GL_TEXTURE_2D, 0);
 }

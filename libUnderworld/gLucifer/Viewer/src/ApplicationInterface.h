@@ -60,6 +60,7 @@ class ApplicationInterface
    virtual void open(int width, int height) = 0;
    virtual void close() = 0;
    virtual void resize(int new_width, int new_height) = 0;
+   virtual void setsize(int width, int height) {}
    virtual void display() = 0;
    virtual void swap() = 0;
 

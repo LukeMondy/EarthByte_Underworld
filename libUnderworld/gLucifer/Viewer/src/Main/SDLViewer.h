@@ -51,7 +51,6 @@ class SDLViewer : public OpenGLViewer
    int savewidth;
    int saveheight;
    SDL_Surface* screen;
-   unsigned int timer;
    SDL_TimerID timer_id;
 
    SDLViewer(bool stereo, bool fullscreen);
@@ -59,6 +58,7 @@ class SDLViewer : public OpenGLViewer
    
    //Function implementations
    void open(int width, int height);
+   void setsize(int width, int height);
    void show();
    void display();
    void swap();
