@@ -60,14 +60,14 @@
       __Stg_Component \
       \
       /* SemiLagrangianIntegrator info */ \
-      FeVariable*                  velocityField;		     \
-      Stg_ObjectList*              variableList;       	  \
-      Stg_ObjectList*              varStarList;  		     \
-      Stg_ObjectList*              varOldList;  	     	  \
-      FiniteElementContext*        context;             	  \
-      FeVariable*		              advectedField;		     \
+      FeVariable*                  velocityField;	   \
+      Stg_ObjectList*              variableList;       	   \
+      Stg_ObjectList*              varStarList;  	   \
+      Stg_ObjectList*              varOldList;  	   \
+      FiniteElementContext*        context;                \
+      FeVariable*		   advectedField;	   \
       /* for problems with temporally evolving velocity */ \
-      FeVariable*		              prevVelField;           \
+      FeVariable*		   prevVelField;           \
       Energy_SLE*                  sle;
 
    /** Abstract class defining the interface for a SemiLagrangianIntegrator solver - see SemiLagrangianIntegrator.h */
@@ -116,11 +116,13 @@
    void SemiLagrangianIntegrator_UpdatePreviousVelocityField( void* slIntegrator, void* data );
 
    /* --- Public functions --- */
-   void BicubicInterpolator( FeVariable* feVariable, double* coord, double* delta, unsigned* nNodes, double* result );
-   Bool PeriodicUpdate( double* pos, double* min, double* max, unsigned dim, Bool isPeriodic );
-   void InterpLagrange( double x, double* coords, double** values, unsigned numdofs, double* result );
-   void IntegrateRungeKutta( FeVariable* velocityField, double dt, double* origin, double* position );
-   void IntegrateRungeKutta_VariableVelocity( FeVariable* velocityField, FeVariable* prevVelField, double dt, double* origin, double* position );
+   void SemiLagrangianIntegrator_BicubicInterpolator( FeVariable* feVariable, double* coord, double* delta, unsigned* nNodes, double* result );
+   Bool SemiLagrangianIntegrator_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic, unsigned nDims );
+   void SemiLagrangianIntegrator_InterpLagrange( double x, double* coords, double** values, unsigned numdofs, double* result );
+   void SemiLagrangianIntegrator_GetDeltaConst( FeVariable* feVariable, double* delta, unsigned* nNodes );
+   void SemiLagrangianIntegrator_IntegrateEuler( FeVariable* velocityField, double dt, double* origin, double* position );
+   void SemiLagrangianIntegrator_IntegrateRK4( FeVariable* velocityField, double dt, double* delta, unsigned* nnodes, double* origin, double* position );
+   void SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity( FeVariable* velocityField, FeVariable* prevVelField, double dt, double* origin, double* position );
 
    /** Does any required solver setup beyond assembly of the matrices to be solved: e.g. priming the Matrix solvers
    etc. */
