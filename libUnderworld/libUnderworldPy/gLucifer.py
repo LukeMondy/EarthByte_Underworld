@@ -1091,6 +1091,10 @@ def lucDatabase_AddLabel(*args):
   return _gLucifer.lucDatabase_AddLabel(*args)
 lucDatabase_AddLabel = _gLucifer.lucDatabase_AddLabel
 
+def lucDatabase_AddVolumeSlice(*args):
+  return _gLucifer.lucDatabase_AddVolumeSlice(*args)
+lucDatabase_AddVolumeSlice = _gLucifer.lucDatabase_AddVolumeSlice
+
 def lucGeometryData_New(*args):
   return _gLucifer.lucGeometryData_New(*args)
 lucGeometryData_New = _gLucifer.lucGeometryData_New
@@ -3096,28 +3100,6 @@ _lucFeVariableSurface_Destroy = _gLucifer._lucFeVariableSurface_Destroy
 def _lucFeVariableSurface_Draw(*args):
   return _gLucifer._lucFeVariableSurface_Draw(*args)
 _lucFeVariableSurface_Draw = _gLucifer._lucFeVariableSurface_Draw
-class Sample(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Sample, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Sample, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["pos"] = _gLucifer.Sample_pos_set
-    __swig_getmethods__["pos"] = _gLucifer.Sample_pos_get
-    if _newclass:pos = _swig_property(_gLucifer.Sample_pos_get, _gLucifer.Sample_pos_set)
-    __swig_setmethods__["value"] = _gLucifer.Sample_value_set
-    __swig_getmethods__["value"] = _gLucifer.Sample_value_get
-    if _newclass:value = _swig_property(_gLucifer.Sample_value_get, _gLucifer.Sample_value_set)
-    def __init__(self): 
-        this = _gLucifer.new_Sample()
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _gLucifer.delete_Sample
-    __del__ = lambda self : None;
-Sample_swigregister = _gLucifer.Sample_swigregister
-Sample_swigregister(Sample)
-lucFieldSampler_Type = cvar.lucFieldSampler_Type
-
 class lucFieldSampler(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, lucFieldSampler, name, value)
@@ -3259,39 +3241,81 @@ class lucFieldSampler(_object):
     __swig_setmethods__["nproc"] = _gLucifer.lucFieldSampler_nproc_set
     __swig_getmethods__["nproc"] = _gLucifer.lucFieldSampler_nproc_get
     if _newclass:nproc = _swig_property(_gLucifer.lucFieldSampler_nproc_get, _gLucifer.lucFieldSampler_nproc_set)
-    __swig_setmethods__["sampleField"] = _gLucifer.lucFieldSampler_sampleField_set
-    __swig_getmethods__["sampleField"] = _gLucifer.lucFieldSampler_sampleField_get
-    if _newclass:sampleField = _swig_property(_gLucifer.lucFieldSampler_sampleField_get, _gLucifer.lucFieldSampler_sampleField_set)
+    __swig_setmethods__["fieldVariable"] = _gLucifer.lucFieldSampler_fieldVariable_set
+    __swig_getmethods__["fieldVariable"] = _gLucifer.lucFieldSampler_fieldVariable_get
+    if _newclass:fieldVariable = _swig_property(_gLucifer.lucFieldSampler_fieldVariable_get, _gLucifer.lucFieldSampler_fieldVariable_set)
+    __swig_setmethods__["value"] = _gLucifer.lucFieldSampler_value_set
+    __swig_getmethods__["value"] = _gLucifer.lucFieldSampler_value_get
+    if _newclass:value = _swig_property(_gLucifer.lucFieldSampler_value_get, _gLucifer.lucFieldSampler_value_set)
+    __swig_setmethods__["defaultResolution"] = _gLucifer.lucFieldSampler_defaultResolution_set
+    __swig_getmethods__["defaultResolution"] = _gLucifer.lucFieldSampler_defaultResolution_get
+    if _newclass:defaultResolution = _swig_property(_gLucifer.lucFieldSampler_defaultResolution_get, _gLucifer.lucFieldSampler_defaultResolution_set)
+    __swig_setmethods__["resolutionA"] = _gLucifer.lucFieldSampler_resolutionA_set
+    __swig_getmethods__["resolutionA"] = _gLucifer.lucFieldSampler_resolutionA_get
+    if _newclass:resolutionA = _swig_property(_gLucifer.lucFieldSampler_resolutionA_get, _gLucifer.lucFieldSampler_resolutionA_set)
+    __swig_setmethods__["resolutionB"] = _gLucifer.lucFieldSampler_resolutionB_set
+    __swig_getmethods__["resolutionB"] = _gLucifer.lucFieldSampler_resolutionB_get
+    if _newclass:resolutionB = _swig_property(_gLucifer.lucFieldSampler_resolutionB_get, _gLucifer.lucFieldSampler_resolutionB_set)
+    __swig_setmethods__["normal"] = _gLucifer.lucFieldSampler_normal_set
+    __swig_getmethods__["normal"] = _gLucifer.lucFieldSampler_normal_get
+    if _newclass:normal = _swig_property(_gLucifer.lucFieldSampler_normal_get, _gLucifer.lucFieldSampler_normal_set)
+    __swig_setmethods__["coord1"] = _gLucifer.lucFieldSampler_coord1_set
+    __swig_getmethods__["coord1"] = _gLucifer.lucFieldSampler_coord1_get
+    if _newclass:coord1 = _swig_property(_gLucifer.lucFieldSampler_coord1_get, _gLucifer.lucFieldSampler_coord1_set)
+    __swig_setmethods__["coord2"] = _gLucifer.lucFieldSampler_coord2_set
+    __swig_getmethods__["coord2"] = _gLucifer.lucFieldSampler_coord2_get
+    if _newclass:coord2 = _swig_property(_gLucifer.lucFieldSampler_coord2_get, _gLucifer.lucFieldSampler_coord2_set)
+    __swig_setmethods__["coord3"] = _gLucifer.lucFieldSampler_coord3_set
+    __swig_getmethods__["coord3"] = _gLucifer.lucFieldSampler_coord3_get
+    if _newclass:coord3 = _swig_property(_gLucifer.lucFieldSampler_coord3_get, _gLucifer.lucFieldSampler_coord3_set)
+    __swig_setmethods__["axis"] = _gLucifer.lucFieldSampler_axis_set
+    __swig_getmethods__["axis"] = _gLucifer.lucFieldSampler_axis_get
+    if _newclass:axis = _swig_property(_gLucifer.lucFieldSampler_axis_get, _gLucifer.lucFieldSampler_axis_set)
+    __swig_setmethods__["axis1"] = _gLucifer.lucFieldSampler_axis1_set
+    __swig_getmethods__["axis1"] = _gLucifer.lucFieldSampler_axis1_get
+    if _newclass:axis1 = _swig_property(_gLucifer.lucFieldSampler_axis1_get, _gLucifer.lucFieldSampler_axis1_set)
+    __swig_setmethods__["axis2"] = _gLucifer.lucFieldSampler_axis2_set
+    __swig_getmethods__["axis2"] = _gLucifer.lucFieldSampler_axis2_get
+    if _newclass:axis2 = _swig_property(_gLucifer.lucFieldSampler_axis2_get, _gLucifer.lucFieldSampler_axis2_set)
+    __swig_setmethods__["interpolate"] = _gLucifer.lucFieldSampler_interpolate_set
+    __swig_getmethods__["interpolate"] = _gLucifer.lucFieldSampler_interpolate_get
+    if _newclass:interpolate = _swig_property(_gLucifer.lucFieldSampler_interpolate_get, _gLucifer.lucFieldSampler_interpolate_set)
+    __swig_setmethods__["axisAligned"] = _gLucifer.lucFieldSampler_axisAligned_set
+    __swig_getmethods__["axisAligned"] = _gLucifer.lucFieldSampler_axisAligned_get
+    if _newclass:axisAligned = _swig_property(_gLucifer.lucFieldSampler_axisAligned_get, _gLucifer.lucFieldSampler_axisAligned_set)
+    __swig_setmethods__["gatherData"] = _gLucifer.lucFieldSampler_gatherData_set
+    __swig_getmethods__["gatherData"] = _gLucifer.lucFieldSampler_gatherData_get
+    if _newclass:gatherData = _swig_property(_gLucifer.lucFieldSampler_gatherData_get, _gLucifer.lucFieldSampler_gatherData_set)
+    __swig_setmethods__["offsetEdges"] = _gLucifer.lucFieldSampler_offsetEdges_set
+    __swig_getmethods__["offsetEdges"] = _gLucifer.lucFieldSampler_offsetEdges_get
+    if _newclass:offsetEdges = _swig_property(_gLucifer.lucFieldSampler_offsetEdges_get, _gLucifer.lucFieldSampler_offsetEdges_set)
+    __swig_setmethods__["cullface"] = _gLucifer.lucFieldSampler_cullface_set
+    __swig_getmethods__["cullface"] = _gLucifer.lucFieldSampler_cullface_get
+    if _newclass:cullface = _swig_property(_gLucifer.lucFieldSampler_cullface_get, _gLucifer.lucFieldSampler_cullface_set)
+    __swig_setmethods__["vertices"] = _gLucifer.lucFieldSampler_vertices_set
+    __swig_getmethods__["vertices"] = _gLucifer.lucFieldSampler_vertices_get
+    if _newclass:vertices = _swig_property(_gLucifer.lucFieldSampler_vertices_get, _gLucifer.lucFieldSampler_vertices_set)
+    __swig_setmethods__["values"] = _gLucifer.lucFieldSampler_values_set
+    __swig_getmethods__["values"] = _gLucifer.lucFieldSampler_values_get
+    if _newclass:values = _swig_property(_gLucifer.lucFieldSampler_values_get, _gLucifer.lucFieldSampler_values_set)
+    __swig_setmethods__["min"] = _gLucifer.lucFieldSampler_min_set
+    __swig_getmethods__["min"] = _gLucifer.lucFieldSampler_min_get
+    if _newclass:min = _swig_property(_gLucifer.lucFieldSampler_min_get, _gLucifer.lucFieldSampler_min_set)
+    __swig_setmethods__["max"] = _gLucifer.lucFieldSampler_max_set
+    __swig_getmethods__["max"] = _gLucifer.lucFieldSampler_max_get
+    if _newclass:max = _swig_property(_gLucifer.lucFieldSampler_max_get, _gLucifer.lucFieldSampler_max_set)
     __swig_setmethods__["resolution"] = _gLucifer.lucFieldSampler_resolution_set
     __swig_getmethods__["resolution"] = _gLucifer.lucFieldSampler_resolution_get
     if _newclass:resolution = _swig_property(_gLucifer.lucFieldSampler_resolution_get, _gLucifer.lucFieldSampler_resolution_set)
-    __swig_setmethods__["sampleGlobal"] = _gLucifer.lucFieldSampler_sampleGlobal_set
-    __swig_getmethods__["sampleGlobal"] = _gLucifer.lucFieldSampler_sampleGlobal_get
-    if _newclass:sampleGlobal = _swig_property(_gLucifer.lucFieldSampler_sampleGlobal_get, _gLucifer.lucFieldSampler_sampleGlobal_set)
-    __swig_setmethods__["scaling"] = _gLucifer.lucFieldSampler_scaling_set
-    __swig_getmethods__["scaling"] = _gLucifer.lucFieldSampler_scaling_get
-    if _newclass:scaling = _swig_property(_gLucifer.lucFieldSampler_scaling_get, _gLucifer.lucFieldSampler_scaling_set)
-    __swig_setmethods__["samples"] = _gLucifer.lucFieldSampler_samples_set
-    __swig_getmethods__["samples"] = _gLucifer.lucFieldSampler_samples_get
-    if _newclass:samples = _swig_property(_gLucifer.lucFieldSampler_samples_get, _gLucifer.lucFieldSampler_samples_set)
-    __swig_setmethods__["count"] = _gLucifer.lucFieldSampler_count_set
-    __swig_getmethods__["count"] = _gLucifer.lucFieldSampler_count_get
-    if _newclass:count = _swig_property(_gLucifer.lucFieldSampler_count_get, _gLucifer.lucFieldSampler_count_set)
+    __swig_setmethods__["total"] = _gLucifer.lucFieldSampler_total_set
+    __swig_getmethods__["total"] = _gLucifer.lucFieldSampler_total_get
+    if _newclass:total = _swig_property(_gLucifer.lucFieldSampler_total_get, _gLucifer.lucFieldSampler_total_set)
     __swig_setmethods__["elementRes"] = _gLucifer.lucFieldSampler_elementRes_set
     __swig_getmethods__["elementRes"] = _gLucifer.lucFieldSampler_elementRes_get
     if _newclass:elementRes = _swig_property(_gLucifer.lucFieldSampler_elementRes_get, _gLucifer.lucFieldSampler_elementRes_set)
     __swig_setmethods__["cell"] = _gLucifer.lucFieldSampler_cell_set
     __swig_getmethods__["cell"] = _gLucifer.lucFieldSampler_cell_get
     if _newclass:cell = _swig_property(_gLucifer.lucFieldSampler_cell_get, _gLucifer.lucFieldSampler_cell_set)
-    __swig_setmethods__["nx"] = _gLucifer.lucFieldSampler_nx_set
-    __swig_getmethods__["nx"] = _gLucifer.lucFieldSampler_nx_get
-    if _newclass:nx = _swig_property(_gLucifer.lucFieldSampler_nx_get, _gLucifer.lucFieldSampler_nx_set)
-    __swig_setmethods__["ny"] = _gLucifer.lucFieldSampler_ny_set
-    __swig_getmethods__["ny"] = _gLucifer.lucFieldSampler_ny_get
-    if _newclass:ny = _swig_property(_gLucifer.lucFieldSampler_ny_get, _gLucifer.lucFieldSampler_ny_set)
-    __swig_setmethods__["nz"] = _gLucifer.lucFieldSampler_nz_set
-    __swig_getmethods__["nz"] = _gLucifer.lucFieldSampler_nz_get
-    if _newclass:nz = _swig_property(_gLucifer.lucFieldSampler_nz_get, _gLucifer.lucFieldSampler_nz_set)
     def __init__(self): 
         this = _gLucifer.new_lucFieldSampler()
         try: self.this.append(this)
@@ -3300,6 +3324,7 @@ class lucFieldSampler(_object):
     __del__ = lambda self : None;
 lucFieldSampler_swigregister = _gLucifer.lucFieldSampler_swigregister
 lucFieldSampler_swigregister(lucFieldSampler)
+lucFieldSampler_Type = cvar.lucFieldSampler_Type
 
 
 def _lucFieldSampler_New(*args):
@@ -3337,10 +3362,6 @@ _lucFieldSampler_Execute = _gLucifer._lucFieldSampler_Execute
 def _lucFieldSampler_Destroy(*args):
   return _gLucifer._lucFieldSampler_Destroy(*args)
 _lucFieldSampler_Destroy = _gLucifer._lucFieldSampler_Destroy
-
-def _lucFieldSampler_Setup(*args):
-  return _gLucifer._lucFieldSampler_Setup(*args)
-_lucFieldSampler_Setup = _gLucifer._lucFieldSampler_Setup
 
 def _lucFieldSampler_Draw(*args):
   return _gLucifer._lucFieldSampler_Draw(*args)

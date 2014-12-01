@@ -3273,9 +3273,9 @@ class FeMesh(_object):
     __swig_setmethods__["topo"] = _StgFEM.FeMesh_topo_set
     __swig_getmethods__["topo"] = _StgFEM.FeMesh_topo_get
     if _newclass:topo = _swig_property(_StgFEM.FeMesh_topo_get, _StgFEM.FeMesh_topo_set)
-    __swig_setmethods__["verts"] = _StgFEM.FeMesh_verts_set
-    __swig_getmethods__["verts"] = _StgFEM.FeMesh_verts_get
-    if _newclass:verts = _swig_property(_StgFEM.FeMesh_verts_get, _StgFEM.FeMesh_verts_set)
+    __swig_setmethods__["vertices"] = _StgFEM.FeMesh_vertices_set
+    __swig_getmethods__["vertices"] = _StgFEM.FeMesh_vertices_get
+    if _newclass:vertices = _swig_property(_StgFEM.FeMesh_vertices_get, _StgFEM.FeMesh_vertices_set)
     __swig_setmethods__["vars"] = _StgFEM.FeMesh_vars_set
     __swig_getmethods__["vars"] = _StgFEM.FeMesh_vars_get
     if _newclass:vars = _swig_property(_StgFEM.FeMesh_vars_get, _StgFEM.FeMesh_vars_set)
@@ -14547,25 +14547,33 @@ def SemiLagrangianIntegrator_UpdatePreviousVelocityField(*args):
   return _StgFEM.SemiLagrangianIntegrator_UpdatePreviousVelocityField(*args)
 SemiLagrangianIntegrator_UpdatePreviousVelocityField = _StgFEM.SemiLagrangianIntegrator_UpdatePreviousVelocityField
 
-def BicubicInterpolator(*args):
-  return _StgFEM.BicubicInterpolator(*args)
-BicubicInterpolator = _StgFEM.BicubicInterpolator
+def SemiLagrangianIntegrator_BicubicInterpolator(*args):
+  return _StgFEM.SemiLagrangianIntegrator_BicubicInterpolator(*args)
+SemiLagrangianIntegrator_BicubicInterpolator = _StgFEM.SemiLagrangianIntegrator_BicubicInterpolator
 
-def PeriodicUpdate(*args):
-  return _StgFEM.PeriodicUpdate(*args)
-PeriodicUpdate = _StgFEM.PeriodicUpdate
+def SemiLagrangianIntegrator_PeriodicUpdate(*args):
+  return _StgFEM.SemiLagrangianIntegrator_PeriodicUpdate(*args)
+SemiLagrangianIntegrator_PeriodicUpdate = _StgFEM.SemiLagrangianIntegrator_PeriodicUpdate
 
-def InterpLagrange(*args):
-  return _StgFEM.InterpLagrange(*args)
-InterpLagrange = _StgFEM.InterpLagrange
+def SemiLagrangianIntegrator_InterpLagrange(*args):
+  return _StgFEM.SemiLagrangianIntegrator_InterpLagrange(*args)
+SemiLagrangianIntegrator_InterpLagrange = _StgFEM.SemiLagrangianIntegrator_InterpLagrange
 
-def IntegrateRungeKutta(*args):
-  return _StgFEM.IntegrateRungeKutta(*args)
-IntegrateRungeKutta = _StgFEM.IntegrateRungeKutta
+def SemiLagrangianIntegrator_GetDeltaConst(*args):
+  return _StgFEM.SemiLagrangianIntegrator_GetDeltaConst(*args)
+SemiLagrangianIntegrator_GetDeltaConst = _StgFEM.SemiLagrangianIntegrator_GetDeltaConst
 
-def IntegrateRungeKutta_VariableVelocity(*args):
-  return _StgFEM.IntegrateRungeKutta_VariableVelocity(*args)
-IntegrateRungeKutta_VariableVelocity = _StgFEM.IntegrateRungeKutta_VariableVelocity
+def SemiLagrangianIntegrator_IntegrateEuler(*args):
+  return _StgFEM.SemiLagrangianIntegrator_IntegrateEuler(*args)
+SemiLagrangianIntegrator_IntegrateEuler = _StgFEM.SemiLagrangianIntegrator_IntegrateEuler
+
+def SemiLagrangianIntegrator_IntegrateRK4(*args):
+  return _StgFEM.SemiLagrangianIntegrator_IntegrateRK4(*args)
+SemiLagrangianIntegrator_IntegrateRK4 = _StgFEM.SemiLagrangianIntegrator_IntegrateRK4
+
+def SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity(*args):
+  return _StgFEM.SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity(*args)
+SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity = _StgFEM.SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity
 
 def SemiLagrangianIntegrator_Solve(*args):
   return _StgFEM.SemiLagrangianIntegrator_Solve(*args)
