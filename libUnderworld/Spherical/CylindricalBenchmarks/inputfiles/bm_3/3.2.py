@@ -5,7 +5,7 @@ This example shows how you can modify an IC
 
 import os
 import subprocess
-import uwpytools
+import underworld
 
 home=os.getenv("HOME")
 pwd=os.getcwd();
@@ -20,10 +20,10 @@ model_input_files += pwd+"/../../vcs/temperatureBCs.xml "
 model_input_files += pwd+"/3.2IC.xml "
 #model_input_files += " -Uzawa_velSolver_ksp_type preonly -Uzawa_velSolver_pc_type lu -Uzawa_velSolver_pc_factor_shift_amount 1.e-12" 
 # init model
-uwpytools.InitWithArgs(model_input_files)
+underworld.Init(model_input_files)
 
 # grab the dict
-stgdict = uwpytools.GetCurrentDictionary()
+stgdict = underworld.dictionary.GetDictionary()
 
 # now make changes before run time
 radial_elementRes=50
@@ -48,17 +48,16 @@ stgdict["checkpointEvery"]=100
 #stgdict["pauseToAttachDebugger"]=10
 
 # don't forget to set the dict back again to affect the above changes
-uwpytools.SetDictionary(stgdict)
+underworld.dictionary.SetDictionary(stgdict)
 
-uwpytools.Construct()
-uwpytools.BuildAndInitialise()
+underworld.Construct()
 
 ##  lets reinit swarm guys
 #   grab the TemperatureField
-tfield = uwpytools.GetLiveComponent("TemperatureField")
+tfield = underworld._stgermain.GetLiveComponent("TemperatureField")
 
 # get the number of local nodes on the temperature mesh
-nLocalNodes = uwpytools.StgDomain.Mesh_GetLocalSize( tfield.feMesh, 0 ) # 0 represents the 0th topological element of the mesh, ie the nodes
+nLocalNodes = underworld.libUnderworld.StgDomain.Mesh_GetLocalSize( tfield.feMesh, 0 ) # 0 represents the 0th topological element of the mesh, ie the nodes
 '''
 from uwpytools import c_arrays
 from uwpytools import StgDomain
@@ -82,6 +81,7 @@ for ii in range( 0, nLocalNodes ):
 # set the temperature
    StgFEM.FeVariable_SetValueAtNode( tfield, ii, cVal.cast() )
 '''
-uwpytools.RunMainLoop()
 
-uwpytools.Finalise()
+underworld.RunMainLoop()
+
+underworld.Finalise()

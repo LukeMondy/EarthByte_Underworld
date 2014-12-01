@@ -27,7 +27,8 @@ stgdict = underworld.dictionary.GetDictionary()
 radial_elementRes=20
 Ra = 1e4
 stgdict["Ra"]=Ra
-stgdict["outputPath"]=home+"/short/cylindrical_benchmarks/1.1_"+str(radial_elementRes)
+#stgdict["outputPath"]=home+"/short/cylindrical_benchmarks/1.1_"+str(radial_elementRes)
+stgdict["outputPath"]="./1.1_"+str(radial_elementRes)
 
 # important restart bits
 #stgdict["checkpointReadPath"]="/home/JulianGiordani/scratch/Ra_1e4_"+str(radial_elementRes)+"_parall/"
