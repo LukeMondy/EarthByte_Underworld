@@ -174,7 +174,7 @@ void _VectorAssemblyTerm_NA_i__Fi_AssembleElement( void* forceTerm, ForceVector*
    double                     F[3];
    double**                   GNx;
    Node_ElementLocalIndex A;
-   Dof_Index i;
+   Dof_Index i, dim_i;
    int row;
 
    /* Since we are integrating over the velocity mesh - we want the velocity mesh here and not the temperature mesh */
@@ -202,10 +202,18 @@ void _VectorAssemblyTerm_NA_i__Fi_AssembleElement( void* forceTerm, ForceVector*
       PpcManager_Get( self->ppcManager, lElement_I, particle, self->functionLabel, &F[0] );
 
       factor = detJac * particle->weight;
+/*
       for( i = 0; i < dofsPerNode; i++ )
          for( A = 0; A < elementNodeCount; A++ ){
             row = A * dofsPerNode + i;
             elForceVec[row] += factor * GNx[i][A] * F[i];
+         }
+*/
+      for( i = 0; i < dofsPerNode; i++ )
+         for( A = 0; A < elementNodeCount; A++ ){
+            row = A * dofsPerNode + i;
+            for( dim_i = 0; dim_i < dim; dim_i++ )
+            elForceVec[row] += factor * GNx[dim_i][A] * F[dim_i];
          }
    }
 

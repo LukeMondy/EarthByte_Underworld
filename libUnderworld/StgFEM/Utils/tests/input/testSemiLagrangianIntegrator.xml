@@ -4,6 +4,7 @@
 
    <list name="import" mergeType="merge">
       <param>StgFEM</param>
+      <param>gLucifer</param>
    </list>
 
    <list name="plugins" mergeType="merge">
@@ -18,22 +19,23 @@
    <param name="journal.info.Stg_ComponentFactory">False</param>
 
    <param name="dim">2</param>
-   <param name="dumpEvery">2 </param>
+   <param name="dumpEvery">2</param>
+   <param name="checkpointEvery">2</param>
    <param name="minX"> 0.0</param>
    <param name="minY"> 0.0</param>
    <param name="minZ"> 0.0</param>
    <param name="maxX"> 1.0</param>
    <param name="maxY"> 1.0</param>
    <param name="maxZ"> 1.0</param>
-   <param name="elementResI"> 100 </param>
-   <param name="elementResJ"> 100 </param>
+   <param name="elementResI">  64 </param>
+   <param name="elementResJ">  64 </param>
    <param name="elementResK"> 100 </param>
    <param name="outputPath">./output</param>
 
-   <param name="reverseTimeStep">10</param>
-   <param name="maxTimeSteps">20</param>
+   <param name="reverseTimeStep"> 80</param>
+   <param name="maxTimeSteps">160</param>
 
-        <include>StgFEM/LinearMesh.xml</include>
+   <include>StgFEM/LinearMesh.xml</include>
    <include>StgFEM/GaussSwarm.xml</include>
 
    <param name="elementMesh">linearMesh</param>
@@ -199,12 +201,11 @@
             <param>phiInitial</param>
          </list>
       </struct>
-      <struct name="PhiFieldInitial">
+      <struct name="PhiInitField">
          <param name="Type">FeVariable</param>
          <param name="FEMesh">phiMesh</param>
          <param name="DofLayout">phiInitialDofLayout</param>
       </struct>
-
    </struct>
 
    <struct name="phiICs" mergeType="replace">
@@ -216,18 +217,11 @@
                <struct>
                   <param name="name">phi</param>
                   <param name="type">func</param>
-                  <param name="value">Line</param>
+                  <param name="value">SolWave</param>
                </struct>
             </list>
          </struct>
       </list>
    </struct>
    <param name="FieldVariable">PhiField</param>
-   <param name="lineWidth"> 0.02 </param>
-   <param name="useLineRadius"> false </param>
-   <param name="lineRadius"> 0.5 </param>
-
-   <struct name="components" mergeType="merge">
-   </struct>
-
 </StGermainData>
