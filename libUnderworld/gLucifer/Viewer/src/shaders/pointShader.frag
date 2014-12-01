@@ -5,6 +5,9 @@ varying vec3 vPosEye;
 varying float vPointType;
 uniform int uPointType;
 uniform float uOpacity;
+uniform bool uTextured;
+uniform sampler2D uTexture;
+
 void main(void)
 {
    float alpha = gl_Color.a;
@@ -13,13 +16,17 @@ void main(void)
    float pointType = uPointType;
    if (vPointType >= 0) pointType = vPointType;
 
+   //Textured?
+   if (uTextured)
+      gl_FragColor = texture2D(uTexture, gl_PointCoord);
+
    //Flat, square points, fastest
    if (pointType == 4 || vSmooth < 0.0) 
       return;
 
    // calculate normal from point/tex coordinates
    vec3 N;
-   N.xy = gl_PointCoord * vec2(2.0, -2.0) + vec2(-1.0, 1.0);
+   N.xy = gl_PointCoord * 2.0 - vec2(1.0);    
    float mag = dot(N.xy, N.xy);
    if (alpha < 0.01 || mag > 1.0) discard;   // kill pixels outside circle radius and transparent pixels
 
@@ -33,25 +40,24 @@ void main(void)
    }
    N.z = sqrt(1.0-mag);
 
-   // calculate lighting
-   vec3 lightDir = normalize(vec3(1,1,1) - vPosEye);
+   // calculate diffuse lighting
+   vec3 lightDir = normalize(vec3(0,0,0) - vPosEye);
    float diffuse = max(0.0, dot(lightDir, N));
 
-   // compute the specular term if diffuse is larger than zero 
+   // compute the specular term 
    vec3 specular = vec3(0.0,0.0,0.0);
    if (pointType == 3 && diffuse > 0.0)
    {
-      vec3 lightPos = lightDir*2.0; //vec3(1.0, 1.0, 1.0);        //Fixed light position
-      float shininess = 32.0;
-      vec3 specolour = vec3(0.5, 0.5, 0.5);   //Color of light
+      float shininess = 200; //Size of highlight
+      vec3 specolour = vec3(1.0, 1.0, 1.0);   //Color of light
       // normalize the half-vector, and then compute the 
       // cosine (dot product) with the normal
-      //vec3 halfVector = normalize(lightPos - vec3(gl_PointCoord, 0));
-      vec3 halfVector = normalize(lightPos - gl_TexCoord[0].xyz);
+      //vec3 halfVector = normalize(vPosEye + lightDir);
+      vec3 halfVector = normalize(vec3(0.0, 0.0, 1.0) + lightDir);
       float NdotHV = max(dot(N, halfVector), 0.0);
       specular = specolour * pow(NdotHV, shininess);
+      //specular = vec3(1.0, 0.0, 0.0);
    }
 
-   gl_FragColor = vec4(gl_Color.rgb * diffuse + specular, alpha);
-   //gl_FragColor = vec4(gl_Color.rgb * diffuse, alpha);
+   gl_FragColor = vec4(gl_FragColor.rgb * diffuse + specular, alpha);
 }

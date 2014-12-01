@@ -217,10 +217,11 @@ std::string View::translateString()
    return ss.str();
 }
 
-void View::getCamera(float rotate[3], float translate[3], float focus[3])
+void View::getCamera(float rotate[4], float translate[3], float focus[3])
 {
    //Convert translation & rotation to array...
-   rotation.toEuler(rotate[0], rotate[1], rotate[2]);
+   //rotation.toEuler(rotate[0], rotate[1], rotate[2]);
+   for (int i=0; i<4; i++) rotate[i] = rotation[i];
    memcpy(translate, model_trans, sizeof(float) * 3);
    memcpy(focus, focal_point, sizeof(float) * 3);
 }
@@ -277,9 +278,9 @@ void View::setRotation(Quaternion rot)
 void View::rotate(float degrees, Vec3d axis)
 {
    Quaternion nrot;
-   nrot.fromAxisAngle(axis, -degrees);
+   nrot.fromAxisAngle(axis, degrees);
    nrot.normalise();
-	 rotation = rotation * nrot;
+   rotation = nrot * rotation;
    inertia();
 }
 
@@ -402,20 +403,16 @@ void View::projection(int eye)
 {
    if (!initialised) return;
    float aspectRatio = width / (float)height;
-	
-	// Perspective viewing frustum parameters 
-	float left, right, top, bottom;
-   float eye_separation, eye_shift;
+   
+   // Perspective viewing frustum parameters 
+   float left, right, top, bottom;
+   float eye_separation, frustum_shift;
 
    //This is zero parallax distance, objects closer than this will appear in front of the screen,
    //default is to set to distance to model front edge...
    float focal_length = fabs(model_trans_lag[2]) - model_size * 0.5; //3/4 of model size - distance from eye to model centre
-   focal_length += focal_length_adj;	//Apply user adjustment (default 0)
+   focal_length += focal_length_adj;   //Apply user adjustment (default 0)
    if (focal_length < 0) focal_length = 0.1;
-
-   //Adjust clip planes for safe stereo
-   //near_clip = focal_length / 10;
-   //far_clip = focal_length / 100;
 
    //Calculate eye separation based on focal length
    eye_separation = focal_length * eye_sep_ratio;
@@ -429,29 +426,28 @@ void View::projection(int eye)
    left = -right;
 
    //Shift frustum to the left/right to account for right/left eye viewpoint
-   eye_shift = eye * 0.5f * eye_separation * fabs(near_clip / focal_length); //Mutiply by eye (-1 left, 0 none, 1 right)
+   frustum_shift = eye * 0.5 * eye_separation * fabs(near_clip / focal_length);  //Mutiply by eye (-1 left, 0 none, 1 right)
+   //Viewport eye shift in pixels => for raycasting shader
+   eye_shift = eye * eye_sep_ratio * height * 0.6 / tan(DEG2RAD * fov);
 
    // In Stereo, View vector for each camera is parallel 
    // Need to adjust eye position and focal point to left/right to account for this... 
    //Shift model by half of eye-separation in opposite direction of eye (equivalent to camera shift in same direction as eye)
-   scene_shift = -eye * eye_separation * 0.5f; 
-      if (eye) debug_print("STEREO %s: focalLen: %f eyeSep: %f eye_shift: %f, scene_shift: %f\n", (eye < 0 ? "LEFT (RED)  " : "RIGHT (BLUE)"),
-                       focal_length, eye_separation, eye_shift, scene_shift);
+   scene_shift = eye * eye_separation * -0.5f; 
+
+   if (eye) debug_print("STEREO %s: focalLen: %f eyeSep: %f frustum_shift: %f, scene_shift: %f eye_shift %f\n", (eye < 0 ? "LEFT (RED)  " : "RIGHT (BLUE)"),
+                        focal_length, eye_separation, frustum_shift, scene_shift, eye_shift);
    //debug_print(" Ratio %f Left %f Right %f Top %f Bottom %f Near %f Far %f\n",
    //         aspectRatio, left, right, bottom, top, near_clip, far_clip);
 
-	// Set up our projection transform
-      GL_Error_Check;
-	glMatrixMode(GL_PROJECTION);  
-      GL_Error_Check;
+   // Set up our projection transform
+   glMatrixMode(GL_PROJECTION);  
    glLoadIdentity();
-      GL_Error_Check;
-	glFrustum(left - eye_shift, right - eye_shift, bottom, top, near_clip, far_clip);
-      GL_Error_Check;
+   glFrustum(left - frustum_shift, right - frustum_shift, bottom, top, near_clip, far_clip);
 
    // Return to model view
    glMatrixMode(GL_MODELVIEW);
-      GL_Error_Check;
+   GL_Error_Check;
 }
 
 void View::apply()
@@ -477,10 +473,7 @@ void View::apply()
    GL_Error_Check;
 
    // rotate model 
-   float mrot[16];
-   memset(mrot, 0, 16*sizeof(float));
-   rotation_lag.getMatrix(mrot);
-   glMultMatrixf(mrot);
+   rotation_lag.apply();
    GL_Error_Check;
 
    // Adjust back for rotation centre
@@ -493,7 +486,7 @@ void View::apply()
    GL_Error_Check;
 
    // Switch coordinate system if applicable
-   glScalef (1.0, 1.0, 1.0 * orientation); 
+   glScalef(1.0, 1.0, 1.0 * orientation); 
    GL_Error_Check;
 
    // Apply scaling factors
@@ -503,18 +496,14 @@ void View::apply()
       // Enable automatic rescaling of normal vectors when scaling is turned on
       //glEnable(GL_RESCALE_NORMAL);
       glEnable(GL_NORMALIZE);
-   GL_Error_Check;
    }
+   GL_Error_Check;
 
    // Set default polygon front faces
    if (orientation == RIGHT_HANDED)
       glFrontFace(GL_CCW);
    else
       glFrontFace(GL_CW);
-   GL_Error_Check;
-
-   glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
-   //printMatrix(modelView);
    GL_Error_Check;
 }
 
@@ -587,38 +576,37 @@ void View::zoomToFit(int margin)
 {
    if (margin < 0) margin = this->margin;
    // The bounding box of model 
-   GLdouble rect3d[8][3] = {{min[0], min[1], min[2]},
-                            {min[0], min[1], max[2]},
-                            {min[0], max[1], min[2]},
-                            {min[0], max[1], max[2]},
-                            {max[0], min[1], min[2]},
-                            {max[0], min[1], max[2]},
-                            {max[0], max[1], min[2]},
-                            {max[0], max[1], max[2]}};
+   GLfloat rect3d[8][3] = {{min[0], min[1], min[2]},
+                           {min[0], min[1], max[2]},
+                           {min[0], max[1], min[2]},
+                           {min[0], max[1], max[2]},
+                           {max[0], min[1], min[2]},
+                           {max[0], min[1], max[2]},
+                           {max[0], max[1], min[2]},
+                           {max[0], max[1], max[2]}};
 
    //3d rect vertices, object and window coords
-   GLdouble modelView[16];
-   GLdouble projection[16];
+   GLfloat modelView[16];
+   GLfloat projection[16];
    int viewport[4];
    int count = 0;
    double error = 1, scale2d, adjust = ADJUST;
    glGetIntegerv(GL_VIEWPORT, viewport);
-   glGetDoublev(GL_PROJECTION_MATRIX, (double*)projection);
+   glGetFloatv(GL_PROJECTION_MATRIX, projection);
 
    // Continue scaling adjustments until within tolerance
    while (count < 30 && fabs(error) > 0.005) 
    {    
       float min_x = 10000, min_y = 10000, max_x = -10000, max_y = -10000;
-      GLdouble win3d[8][3];
+      GLfloat win3d[8][3];
       int i;
 
       // Set camera and get modelview matrix defined by viewpoint
       apply();
-      glGetDoublev(GL_MODELVIEW_MATRIX, modelView);
+      glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
       for (i = 0; i < 8; i++) {
-         gluProject(rect3d[i][0], rect3d[i][1], rect3d[i][2], 
-                     modelView, projection, viewport, 
-                     &win3d[i][0], &win3d[i][1], &win3d[i][2]);
+         gluProjectf(rect3d[i][0], rect3d[i][1], rect3d[i][2], 
+                     modelView, projection, viewport, &win3d[i][0]);
          //Save max/min x and y - define bounding 2d rectangle
          if (win3d[i][0] < min_x) min_x = win3d[i][0]; 
          if (win3d[i][0] > max_x) max_x = win3d[i][0];
@@ -628,7 +616,7 @@ void View::zoomToFit(int margin)
       }
 
      // Calculate min bounding rectangle centered in viewport (with margins)
-	  {
+     {
       // Offset to viewport edges as gluProject returns window coords
       min_x -= (viewport[0] + margin);
       min_y -= (viewport[1] + margin);
@@ -657,7 +645,7 @@ void View::zoomToFit(int margin)
       xscale = width / rwidth;
       yscale = height / rheight;
       if (xscale < yscale) scale2d = xscale; else scale2d = yscale;
-	  }
+     }
 
       // debug_print("BB new_min_x %f new_max_x %f === ", new_min_x, new_max_x);
       //   debug_print("Bounding rect: %f,%f - %f,%f === ",  min_x, min_y, max_x, max_y);
@@ -805,45 +793,30 @@ void View::drawBorder()
 void View::drawAxis() 
 {
    if (!axis) return;
-   float length = near_clip * axislen; //Length based on near clip plane position
+   float length = 1.5 * axislen;
    float headsize = 8.0;   //8 x radius (r = 0.01 * length)
-   float origin_s[3] = {xpos + 20, ypos + 20, 0.25};   //Screen: X,Y,depth
-   double origin[3];
    float LH = length * 0.1;
-   GLdouble modelMatrix[16];
-   GLdouble projMatrix[16];
-   GLint    viewportArray[4];
+   float aspectRatio = width / (float)height;
 
-   if (is3d)
-   {
-      origin_s[0] += 40;
-      origin_s[1] += 40;
-   }
-
-   GL_Error_Check
-   // Undo any scaling factor
+   //Switch to orthographic projection
+   glMatrixMode(GL_PROJECTION);
    glPushMatrix();
-   if (scale[0] != 1.0 || scale[1] != 1.0 || scale[2] != 1.0)
-      glScalef(1.0/scale[0], 1.0/scale[1], 1.0/scale[2]);
+   glLoadIdentity();
+   glOrtho(-aspectRatio, aspectRatio, -1, 1, 0.01, 10);
+   //Modelview (rotation only)
+   glMatrixMode(GL_MODELVIEW);
+   glPushMatrix();
+   glLoadIdentity();
+   glTranslatef(-0.85 * aspectRatio, -0.85, -1);
+   //Rotation
+   rotation_lag.apply();
+   GL_Error_Check;
+   // Switch coordinate system if applicable
+   glScalef(1.0, 1.0, 1.0 * orientation); 
 
-   projection(EYE_CENTRE);
-
-   glDepthFunc(GL_ALWAYS);   // Draw as overlay
-   //SetFontCharset(FONT_SMALL); //Bitmap fonts
-
-   // Calculate desired origin viewport coords in projected screen coords
-   glGetDoublev( GL_MODELVIEW_MATRIX, modelMatrix );
-   glGetDoublev( GL_PROJECTION_MATRIX, projMatrix );
-   glGetIntegerv( GL_VIEWPORT, viewportArray );
-   GL_Error_Check
-
-   gluUnProject(origin_s[0], origin_s[1], origin_s[2], 
-      modelMatrix, projMatrix, viewportArray,
-      origin, origin + 1, origin + 2);
-
-   float Xpos[3] = {origin[0] + length/2, origin[1], origin[2]};
-   float Ypos[3] = {origin[0], origin[1] + length/2, origin[2]};
-   float Zpos[3] = {origin[0], origin[1], origin[2] + length/2};
+   float Xpos[3] = {length/2, 0, 0};
+   float Ypos[3] = {0, length/2, 0};
+   float Zpos[3] = {0, 0, length/2};
 
    glColor3f(1,0,0);
    {
@@ -874,16 +847,18 @@ void View::drawAxis()
 
    glEnable(GL_LIGHTING);
 
-   glDepthFunc(GL_LESS);   // Restore default
-
-   // Re-Apply scaling factors
+   //Restore
+   glMatrixMode(GL_PROJECTION);
    glPopMatrix();
+   glMatrixMode(GL_MODELVIEW);
+   glPopMatrix();
+   GL_Error_Check;
 }
 
 void View::drawOverlay(Colour& colour, std::string timestamp)
 {
 #ifdef PDF_CAPTURE
-	return;	//Skip overlay
+   return;   //Skip overlay
 #endif
    //Draw axis & rulers 
    drawAxis();

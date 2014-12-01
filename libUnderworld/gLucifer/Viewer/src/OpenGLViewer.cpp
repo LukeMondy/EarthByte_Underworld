@@ -36,17 +36,8 @@
 //OpenGLViewer class
 #include "OpenGLViewer.h"
 
-#include "jpeg/jpge.h"
-
 //Timer increment in ms
-#define TIMER_INC 100
-
-// Check for framebuffer object support
-#ifdef GL_FRAMEBUFFER_EXT
-//#ifdef GL_DEPTH_STENCIL_EXT
-#define FBO_SUPPORTED
-//#endif
-#endif
+#define TIMER_INC 50
 
 std::deque<std::string> OpenGLViewer::commands;
 pthread_mutex_t OpenGLViewer::cmd_mutex;
@@ -59,6 +50,7 @@ OpenGLViewer::OpenGLViewer(bool stereo, bool fullscreen) : stereo(stereo), fulls
 {
    keyState.shift = keyState.ctrl = keyState.alt = 0;
 
+   timer = 0;
    visible = true;
    fbo_enabled = false;
    fbo_texture = fbo_depth = fbo_frame = 0;
@@ -73,6 +65,8 @@ OpenGLViewer::OpenGLViewer(bool stereo, bool fullscreen) : stereo(stereo), fulls
 
 OpenGLViewer::~OpenGLViewer()
 {
+   animate(0);
+
    delete[] title;
    delete[] output_path;
 
@@ -186,6 +180,7 @@ void OpenGLViewer::fbo(int width, int height)
 
    // create a texture to use as the backbuffer
    glHint(GL_GENERATE_MIPMAP_HINT, GL_NICEST);
+   //glActiveTexture(GL_TEXTURE2);
    glGenTextures(1, &fbo_texture);
    glBindTexture(GL_TEXTURE_2D, fbo_texture);                  
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -240,6 +235,12 @@ void OpenGLViewer::fbo(int width, int height)
    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+void OpenGLViewer::setsize(int width, int height)
+{
+   //Resize fbo
+   if (fbo_enabled) fbo(width, height);
+}
+
 void OpenGLViewer::resize(int new_width, int new_height)
 {
    if (new_width > 0 && (width != new_width || height != new_height))
@@ -274,6 +275,23 @@ void OpenGLViewer::close()
    //Call close on any output interfaces
    for (int o=0; o<outputs.size(); o++)
      outputs[o]->close();
+}
+
+void OpenGLViewer::execute()
+{
+   //Default: fake event loop processing
+   display();
+   while (!quitProgram)
+   {
+      //New frame? call display
+      if (postdisplay || OpenGLViewer::pollInput())
+         display();
+#ifdef _WIN32
+      Sleep(TIMER_INC);
+#else
+      usleep(TIMER_INC * 1000);   // usleep takes sleep time in us (1 millionth of a second)
+#endif
+   }
 }
 
 // Render
@@ -317,9 +335,6 @@ void OpenGLViewer::display(void)
       }
    }
   
-   //Clear screen
-   glClearColor(background.rgba[0]/255.0, background.rgba[1]/255.0, background.rgba[2]/255.0, 0);
-
    //Call the application display function
    app->display();
 
@@ -394,41 +409,27 @@ void OpenGLViewer::snapshot(const char* name, int number, bool transparent)
          //glBindTexture(GL_TEXTURE_2D, fbo_texture);
          glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo_frame);
       }
-      else
-         fbo(outwidth, outheight);
-      resize(outwidth, outheight);
+      //else
+      //   fbo(outwidth, outheight);
+
+      setsize(outwidth, outheight);
 #else
-      close();
-      open(outwidth, outheight);
+      setsize(outwidth, outheight);
 #endif
    }
    display();
 
-   GLubyte *image = new GLubyte[width * height * pixel];
-
-#ifdef HAVE_LIBPNG
    // Read the pixels
+   GLubyte *image = new GLubyte[width * height * pixel];
+#ifdef HAVE_LIBPNG
    pixels(image, transparent);
-
-   //Write data to image file
-   sprintf(path, "%s%s.%05d.png", output_path, name, number);
-   std::ofstream file(path, std::ios::binary);
-   write_png(file, transparent, width, height, image);
 #else
-   // Read the pixels (flipped)
    pixels(image, false, true);
-
-   //JPEG support with built in encoder
-   sprintf(path, "%s%s.%05d.jpg", output_path, name, number);
-
-   // Fill in the compression parameter structure.
-   jpge::params params;
-   params.m_quality = 95;
-   params.m_subsampling = jpge::H2V1;   //H2V2/H2V1/H1V1-none/0-grayscale
-
-   if (!compress_image_to_jpeg_file(path, width, height, 3, image, params))
-      abort_program("[write_jpeg] File %s could not be saved\n", path);
 #endif
+   //Write PNG or JPEG
+   sprintf(path, "%s%s.%05d", output_path, name, number);
+   writeImage(image, width, height, path, transparent);
+
    delete[] image;
 
    blend_mode = BLEND_NORMAL;
@@ -436,10 +437,9 @@ void OpenGLViewer::snapshot(const char* name, int number, bool transparent)
    {
 #ifdef FBO_SUPPORTED
       show();  //Disables fbo mode
-      resize(savewidth, saveheight);
+      resize(savewidth, saveheight); //Resized callback
 #else
-      //TODO: TEST!
-      open(savewidth, saveheight);
+      setsize(savewidth, saveheight);
 #endif
    }
 }
@@ -544,3 +544,10 @@ bool OpenGLViewer::pollInput()
    pthread_mutex_unlock(&cmd_mutex);
    return parsed;
 }
+
+void OpenGLViewer::animate(int msec)
+{
+   timer = msec;
+}
+
+

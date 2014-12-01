@@ -49,7 +49,9 @@ PFNGLGETUNIFORMLOCATIONPROC glGetUniformLocation;
 PFNGLUNIFORM1FPROC glUniform1f;
 PFNGLUNIFORM1IPROC glUniform1i;
 PFNGLUNIFORM2FPROC glUniform2f;
+PFNGLUNIFORM2FVPROC glUniform1fv;
 PFNGLUNIFORM2FVPROC glUniform2fv;
+PFNGLUNIFORM3FVPROC glUniform3fv;
 PFNGLUNIFORM4FVPROC glUniform4fv;
 PFNGLUNIFORMMATRIX4FVPROC glUniformMatrix4fv;
 PFNGLGETATTRIBLOCATIONPROC glGetAttribLocation;
@@ -103,7 +105,9 @@ void OpenGL_Extensions_Init()
    glUniform1f = (PFNGLUNIFORM1FPROC) GetProcAddress("glUniform1f");
    glUniform1i = (PFNGLUNIFORM1IPROC) GetProcAddress("glUniform1i");
    glUniform2f = (PFNGLUNIFORM2FPROC) GetProcAddress("glUniform2f");
+   glUniform1fv = (PFNGLUNIFORM1FVPROC) GetProcAddress("glUniform1fv");
    glUniform2fv = (PFNGLUNIFORM2FVPROC) GetProcAddress("glUniform2fv");
+   glUniform3fv = (PFNGLUNIFORM3FVPROC) GetProcAddress("glUniform3fv");
    glUniform4fv = (PFNGLUNIFORM4FVPROC) GetProcAddress("glUniform4fv");
    glUniformMatrix4fv = (PFNGLUNIFORMMATRIX4FVPROC) GetProcAddress("glUniformMatrix4fv");
 

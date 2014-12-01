@@ -187,9 +187,10 @@ void ProjectionGenerator_Generate( void* meshGenerator, void* data ) {
 
    // allocate node coord array and fill in
    verts = self->meshes[0]->vertices = Memory_Alloc_Array_Unnamed( double, 3*nVerts );
+   locals = Memory_Alloc_Array_Unnamed( int, nVerts );
    for( v_i=0; v_i<nVerts; v_i++ ) {
 
-      fscanf( file, "%lg %lg %lg %d\n", &(verts[v_i]), &(verts[v_i+1]), &(verts[v_i+2]), &bc );
+      fscanf( file, "%lg %lg %lg %d\n", &(verts[3*v_i]), &(verts[(3*v_i)+1]), &(verts[(3*v_i)+2]), &bc );
 
       locals[v_i]=v_i;
 

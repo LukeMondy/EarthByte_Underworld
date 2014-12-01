@@ -30,6 +30,9 @@
   <include>PICellerator/MaterialPointSwarm.xml</include>
   <include>PICellerator/AllowOutflow.xml</include>
   <include>Spherical/StokesFlowUzawaPIC.xml</include>
+
+  <param name="AllowSolidBodyRotation"> True </param>
+
   <struct name="components" mergeType="merge">
     <struct name="context">
       <param name="Type">UnderworldContext</param>
@@ -64,8 +67,12 @@
     </struct>
     <struct name="sphere">
       <param name="Type">Sphere</param>
-      <param name="CentreX">0.4</param>
-      <param name="CentreY">4.933351</param>
+      <param name="CentreX">0.2</param>
+      <param name="CentreY">5</param>
+      <!--
+      <param name="CentreY">0.4</param>
+      <param name="CentreX">4.933351</param>
+      -->
       <param name="CentreZ">0</param>
       <param name="radius">0.3</param>
     </struct>
@@ -128,7 +135,7 @@
     </struct>
   </struct>
   <!-- Simulation control -->
-  <param name="maxTimeSteps"> 200 </param>
+  <param name="maxTimeSteps"> 10 </param>
   <param name="outputEvery"> 1 </param>
   <param name="dumpEvery"> 1 </param>
   <param name="checkpointEvery"> 1 </param>
@@ -140,7 +147,7 @@
 
   <param name="dim"> 2 </param>
   <param name="minX"> 3 </param> <param name="maxX"> 6 </param> 
-  <param name="elementResI"> 30 </param>
+  <param name="elementResI"> 20 </param>
   <param name="minY"> 10 </param> <param name="maxY"> 100</param>
   <param name="elementResJ"> 30 </param>
   <param name="minZ"> 0.0f </param> <param name="maxZ"> 1.0f </param>

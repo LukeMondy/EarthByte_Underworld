@@ -55,7 +55,7 @@ function initPage(src, fn) {
     //if (!viewer.gl) {
       //img = document.getElementById('frame');
       //Image canvas event handling
-      //img.mouse = new Mouse(img, new MouseEventHandler(serverMouseClick, serverMouseDown, serverMouseMove, serverMouseWheel));
+      //img.mouse = new Mouse(img, new MouseEventHandler(serverMouseClick, serverMouseWheel, serverMouseMove, serverMouseDown));
     //}
 
     //Initiate the server update
@@ -75,17 +75,13 @@ function initPage(src, fn) {
   }
 
   //Canvas event handling
-  canvas.mouse = new Mouse(canvas, new MouseEventHandler(canvasMouseClick, canvasMouseDown, canvasMouseMove, canvasMouseWheel));
+  canvas.mouse = new Mouse(canvas, new MouseEventHandler(canvasMouseClick, canvasMouseWheel, canvasMouseMove, canvasMouseDown));
   //Following two settings should probably be defaults?
   canvas.mouse.moveUpdate = true; //Continual update of deltaX/Y
   //canvas.mouse.setDefault();
 
   canvas.mouse.wheelTimer = true; //Accumulate wheel scroll (prevents too many events backing up)
   defaultMouse = document.mouse = canvas.mouse;
-  //Other events
-  document.onmouseup = handleMouseUp;
-  document.onmousemove = handleMouseMove;
-  window.onresize = autoResize;
 
   //Create tool windows
   params =     new Toolbox("params", 20, 20);
@@ -238,17 +234,6 @@ function canvasMouseWheel(event, mouse) {
   return false; //Prevent default
 }
 
-function debug(str) {
-  if (!debug_on) return;
-  var console = document.getElementById('console');
-  console.innerHTML = "<div class='message'>" + str + "</div>" + console.innerHTML;
-}
-
-function consoleClear() {
-  var console = document.getElementById('console');
-  console.innerHTML = '';
-}
-
 //File upload handling
 var saved_files;
 function fileSelected(files, callback) {
@@ -315,7 +300,7 @@ function loadColourMaps() {
     palette.cache = [];
     for (var c=0; c<512; c++) {
       //var cstr = "rgba(" + pixels[c*4] + "," + pixels[c*4+1] + "," + pixels[c*4+2] + "," + pixels[c*4+3] + ")";
-      //debug(c + " == " + cstr);
+      //OK.debug(c + " == " + cstr);
       //var colour = new Colour(cstr);
       palette.cache[c] = pixels[c*4] + (pixels[c*4+1] << 8) + (pixels[c*4+2] << 16) + (pixels[c*4+3] << 24);
     }
@@ -396,7 +381,7 @@ function demoData(num)
   var max = [1.0, 1.0, 1.0];
   var dims = [max[0] - min[0], max[1] - min[1], max[2] - min[2]];
   var modelsize = Math.sqrt(dims[0]*dims[0] + dims[1]*dims[1] + dims[2]*dims[2]);
-  debug("Generating demo particles...");
+  OK.debug("Generating demo particles...");
   var data = 
     {
       "options" : {"pointScale" : 1, "rotate" : [0,0,0], "min" : min, "max" : max},
@@ -489,7 +474,7 @@ function demoData(num)
   }
 
 /*
-  debug("Generating demo triangles...");
+  OK.debug("Generating demo triangles...");
   verts = data.objects[1].triangles.vertices.data;
   norms = data.objects[1].triangles.normals.data;
   vals = data.objects[1].triangles.values.data;
@@ -554,7 +539,7 @@ function demoData(num)
 */
 
   var time = (new Date() - start) / 1000.0;
-  debug(time + " seconds to generate random data");
+  OK.debug(time + " seconds to generate random data");
   viewer.loadFile(data);
 }
 
@@ -662,7 +647,7 @@ function radix(nbyte, source, dest, N)
 function radix_sort(source, swap, bytes)
 {
    //assert(bytes % 2 == 0);
-   //debug_print("Radix X sort: %d items %d bytes. Byte: ", N, size);
+   //OK.debug("Radix X sort: %d items %d bytes. Byte: ", N, size);
    // Sort bytes from least to most significant 
    var N = source.length;
    for (var x = 0; x < bytes; x += 2) 
@@ -710,24 +695,29 @@ function Toolbox(id, x, y) {
   this.mouse.moveUpdate = true;
   this.el.mouse = this.mouse;
   this.style = $S(id);
-  this.style.left = x+'px';
-  this.style.top = y+'px';
+  if (x && y) {
+    this.style.left = x + 'px';
+    this.style.top = y + 'px';
+  } else {
+    this.style.left = ((window.innerWidth - this.el.offsetWidth) * 0.5) + 'px';
+    this.style.top = ((window.innerHeight - this.el.offsetHeight) * 0.5) + 'px';
+  }
   this.drag = false;
 }
 
 Toolbox.prototype.toggle = function() {
-  if (this.style.display == 'block')
+  if (this.style.visibility == 'visible')
     this.hide();
   else
     this.show();
 }
 
 Toolbox.prototype.show = function() {
-  this.style.display = 'block';
+  this.style.visibility = 'visible';
 }
 
 Toolbox.prototype.hide = function() {
-  this.style.display = 'none';
+  this.style.visibility = 'hidden';
 }
 
 //Mouse event handling
@@ -756,7 +746,6 @@ Toolbox.prototype.move = function(e, mouse) {
 
 Toolbox.prototype.wheel = function(e, mouse) {
 }
-
 //This object encapsulates a vertex buffer and shader set
 function Renderer(gl, type, colour, border) {
   this.border = border;
@@ -809,7 +798,7 @@ Renderer.prototype.init = function() {
   }
   //Compile the shaders
   this.program = new WebGLProgram(this.gl, vs, fs);
-  if (this.program.errors) debug(this.program.errors);
+  if (this.program.errors) OK.debug(this.program.errors);
   //Setup attribs/uniforms
   this.program.setup(this.attributes, this.uniforms);
 
@@ -826,12 +815,12 @@ function SortIdx(idx, key) {
 
 Renderer.prototype.loadElements = function() {
   if (this.border) return;
-  debug("Loading " + this.type + " elements...");
+  OK.debug("Loading " + this.type + " elements...");
   var start = new Date();
   var distances = [];
   var indices = [];
   //Only update the positions array when sorting due to update
-  if (!viewer.rotated || this.type == 'line') {
+  if (!this.positions || !viewer.rotated || this.type == 'line') {
     this.positions = [];
     //Add visible element positions
     for (var id in vis.objects) {
@@ -842,7 +831,7 @@ Renderer.prototype.loadElements = function() {
           for (var e in vis.objects[id].points) {
             var dat = vis.objects[id].points[e];
             var count = dat.vertices.data.length;
-            //debug(name + " " + skip + " : " + count);
+            //OK.debug(name + " " + skip + " : " + count);
             for (var i=0; i<count; i += 3)
               this.positions.push(skip ? null : [dat.vertices.data[i], dat.vertices.data[i+1], dat.vertices.data[i+2]]);
           }
@@ -872,7 +861,7 @@ Renderer.prototype.loadElements = function() {
           for (var e in vis.objects[id].lines) {
             var dat =  vis.objects[id].lines[e];
             var count = dat.indices.data.length;
-            //debug(name + " " + skip + " : " + count);
+            //OK.debug(name + " " + skip + " : " + count);
             for (var i=0; i<count; i++)
               indices.push(dat.indices.data[i]);
           }
@@ -881,7 +870,7 @@ Renderer.prototype.loadElements = function() {
     }
 
     var time = (new Date() - start) / 1000.0;
-    debug(time + " seconds to update positions ");
+    OK.debug(time + " seconds to update positions ");
     start = new Date();
   }
 
@@ -921,7 +910,7 @@ Renderer.prototype.loadElements = function() {
     }
 
     var time = (new Date() - start) / 1000.0;
-    debug(time + " seconds to update distances ");
+    OK.debug(time + " seconds to update distances ");
 
     if (distances.length > 0) {
       //Sort
@@ -933,7 +922,7 @@ Renderer.prototype.loadElements = function() {
       //if (!this.swap) this.swap = [];
       //radix_sort(distances, this.swap, 2);
       time = (new Date() - start) / 1000.0;
-      debug(time + " seconds to sort");
+      OK.debug(time + " seconds to sort");
 
       start = new Date();
       //Reload index buffer
@@ -953,7 +942,7 @@ Renderer.prototype.loadElements = function() {
         }
       }
       time = (new Date() - start) / 1000.0;
-      debug(time + " seconds to load index buffers");
+      OK.debug(time + " seconds to load index buffers");
     }
   }
 
@@ -964,7 +953,7 @@ Renderer.prototype.loadElements = function() {
     //this.gl.bufferData(this.gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), this.gl.DYNAMIC_DRAW);
 
     time = (new Date() - start) / 1000.0;
-    debug(time + " seconds to update index buffer object");
+    OK.debug(time + " seconds to update index buffer object");
   }
   //Update count to visible elements...
   this.elements = indices.length;
@@ -982,8 +971,8 @@ function VertexBuffer(elements, size) {
   this.ints = new Int32Array(this.array);
   this.bytes = new Uint8Array(this.array);
   this.offset = 0;
-  debug(elements + " - " + size);
-  debug("Created vertex buffer");
+  OK.debug(elements + " - " + size);
+  OK.debug("Created vertex buffer");
 }
 
 VertexBuffer.prototype.loadParticles = function(object) {
@@ -1099,7 +1088,7 @@ VertexBuffer.prototype.update = function(gl) {
   //gl.bufferSubData(gl.ARRAY_BUFFER, 0, buffer);
 
   time = (new Date() - start) / 1000.0;
-  debug(time + " seconds to update vertex buffer object");
+  OK.debug(time + " seconds to update vertex buffer object");
 }
 
 Renderer.prototype.updateBuffers = function() {
@@ -1125,7 +1114,7 @@ Renderer.prototype.updateBuffers = function() {
   }
 
   if (this.elements == 0) return;
-  debug("Updating " + this.type + " data... (" + this.elements + " elements)");
+  OK.debug("Updating " + this.type + " data... (" + this.elements + " elements)");
 
   //Load vertices and attributes into buffers
   var start = new Date();
@@ -1141,7 +1130,7 @@ Renderer.prototype.updateBuffers = function() {
     var subsample = 1;
     if ($("subsample").checked == true && newParticles > 1000000) {
       subsample = Math.round(newParticles/1000000 + 0.5);
-      debug("Subsampling at " + (100/subsample) + "% (" + subsample + ") to " + Math.floor(newParticles / subsample));
+      OK.debug("Subsampling at " + (100/subsample) + "% (" + subsample + ") to " + Math.floor(newParticles / subsample));
     }*/
     //Random subsampling
     //if (subsample > 1 && Math.random() > 1.0/subsample) continue;
@@ -1164,7 +1153,7 @@ Renderer.prototype.updateBuffers = function() {
   }
 
   var time = (new Date() - start) / 1000.0;
-  debug(time + " seconds to load buffers... (elements: " + this.elements + " bytes: " + buffer.byteLength + ")");
+  OK.debug(time + " seconds to load buffers... (elements: " + this.elements + " bytes: " + buffer.byteLength + ")");
 
   buffer.update(this.gl);
 }
@@ -1203,7 +1192,7 @@ Renderer.prototype.draw = function() {
     //(This is done here now so we can skip triangle shaders if not required, 
     //due to really slow rendering when doing triangles and points... still to be looked into)
     if (!this.init()) return;
-    debug("Creating " + this.type + " buffers...");
+    OK.debug("Creating " + this.type + " buffers...");
     this.vertexBuffer = this.gl.createBuffer();
     this.indexBuffer = this.gl.createBuffer();
     //viewer.reload = true;
@@ -1319,7 +1308,7 @@ Renderer.prototype.draw = function() {
   this.gl.useProgram(null);
 
   var time = (new Date() - start) / 1000.0;
-  if (time > 0.01) debug(time + " seconds to draw " + desc);
+  if (time > 0.01) OK.debug(time + " seconds to draw " + desc);
 }
 
 function minMaxDist()
@@ -1354,7 +1343,7 @@ function minMaxDist()
 function Viewer(canvas) {
   this.canvas = canvas;
   try {
-    this.webgl = new WebGL(this.canvas);
+    this.webgl = new WebGL(this.canvas, {antialias: true, premultipliedAlpha: false});
     this.gl = this.webgl.gl;
     this.ext = (
       this.gl.getExtension('OES_element_index_uint') ||
@@ -1363,7 +1352,7 @@ function Viewer(canvas) {
     );
   } catch(e) {
     //No WebGL
-    debug(e);
+    OK.debug(e);
     if (!this.webgl) $('canvas').style.display = 'none';
   }
 
@@ -1375,8 +1364,8 @@ function Viewer(canvas) {
 
   this.rotating = false;
   this.translate = [0,0,0];
-  this.rotate = mat4.create();
-  //this.rotate = quat4.identity();
+  this.rotate = quat4.create();
+  quat4.identity(this.rotate);
   this.focus = [0,0,0];
   this.centre = [0,0,0];
   this.near_clip = this.far_clip = 0.0;
@@ -1409,6 +1398,8 @@ function Viewer(canvas) {
 }
 
 Viewer.prototype.loadFile = function(source) {
+  //Skip update to rotate/translate etc if in process of updating
+  if (document.mouse.isdown) return;
   var start = new Date();
   var updated = true;
   try {
@@ -1423,9 +1414,10 @@ Viewer.prototype.loadFile = function(source) {
     alert(e);
   }
   var time = (new Date() - start) / 1000.0;
-  debug(time + " seconds to parse data");
+  OK.debug(time + " seconds to parse data");
 
   if (source.exported) {
+    if (!vis.options) {OK.debug("Exported settings require loaded model"); return;}
     var old = this.toString();
     //Copy, overwriting if exists in source
     if (source.options.rotate) vis.options.rotate = source.options.rotate;
@@ -1440,6 +1432,10 @@ Viewer.prototype.loadFile = function(source) {
     //Replace
     vis = source;
   }
+
+  //Always set a bounding box
+  if (!source.options.min) source.options.min = [0, 0, 0];
+  if (!source.options.max) source.options.max = [1, 1, 1];
 
   //Load some user options...
   loadColourMaps();
@@ -1461,6 +1457,7 @@ Viewer.prototype.loadFile = function(source) {
     document.getElementById("border").checked = this.showBorder;
     document.getElementById("pointType").value = this.pointType;
   }
+
   this.updateDims(vis.options);
   //boundingBox(vis.options.min, vis.options.max);
 
@@ -1492,7 +1489,7 @@ Viewer.prototype.loadFile = function(source) {
           decodeBase64(id, type, idx, 'normals');
           decodeBase64(id, type, idx, 'sizes');
           decodeBase64(id, type, idx, 'indices', 'integer');
-          debug("Loaded " + vis.objects[id][type][idx].vertices.data.length/3 + " vertices from " + name);
+          OK.debug("Loaded " + vis.objects[id][type][idx].vertices.data.length/3 + " vertices from " + name);
           this.vertexCount += vis.objects[id][type][idx].vertices.data.length/3;
 
           //Create indices for cross-sections
@@ -1560,7 +1557,7 @@ Viewer.prototype.loadFile = function(source) {
     div.appendChild(props);
   }
   var time = (new Date() - start) / 1000.0;
-  debug(time + " seconds to import data");
+  OK.debug(time + " seconds to import data");
 
   //Default to interactive render if vertex count < 0.5 M
   $("interactive").checked = (this.vertexCount <= 500000);
@@ -1601,10 +1598,7 @@ Viewer.prototype.toString = function() {
   var exp = {};
 
   //Copy camera settings
-  //vis.options.rotate = this.rotate;
-  //For some reason the exported quaternion has W flipped, recalc seems to fix
-  vis.options.rotate = quat4.normalize(this.getRotation());
-  vis.options.rotate = quat4.calculateW(vis.options.rotate);
+  vis.options.rotate = this.getRotation();
   vis.options.focus = this.focus;
   vis.options.translate = this.translate;
   vis.options.scale = this.scale;
@@ -1693,13 +1687,14 @@ function setObjPointType(val) {
 }
 
 function setColour() {
-  var colourSet = function(hsv) { 
-    var col = new Colour(0);
-    col.setHSV(hsv);
-    if (server)
+  var el = $('colour_set');
+  if (server) {
+    el.onchange = function() { 
+      var col = new Colour(this.style.backgroundColor);
       requestData("/command=colour " + vis.objects[properties.id].id + " " + col.hex());
+    }
   }
-  viewer.gradient.edit($('colour_set'));
+  viewer.gradient.edit(el);
 }
 
 function setColourMap(id, noserver) {
@@ -1831,7 +1826,7 @@ function removeChildren(element) {
 
 paletteUpdate = function(obj) {
   //Load colourmap change
-  if (!vis.colourmaps) return;
+  if (!vis.colourmaps || !viewer.gradient.mapid) return;
   var canvas = $('palette');
   var context = canvas.getContext('2d');  
   if (!context) alert("getContext failed");
@@ -1873,8 +1868,14 @@ Viewer.prototype.drawFrame = function(borderOnly) {
   
   //Show screenshot while interacting or if using server
   //if (server || borderOnly)
-  if (server)
+  if (server) {
     $("frame").style.display = 'block';
+    var frame = document.getElementById('frame');
+    this.width = frame.offsetWidth;
+    this.height = frame.offsetHeight;
+    this.canvas.style.width = this.width + "px";
+    this.canvas.style.height = this.height + "px";
+  }
   else
     $("frame").style.display = 'none';
   
@@ -1894,6 +1895,7 @@ Viewer.prototype.drawFrame = function(borderOnly) {
     if (this.gl) {
       this.gl.viewportWidth = this.width;
       this.gl.viewportHeight = this.height;
+      //this.webgl.viewport = new Viewport(0, 0, this.width, this.height);      
     }
   }
   this.width = this.height = 0;
@@ -1901,6 +1903,7 @@ Viewer.prototype.drawFrame = function(borderOnly) {
   var start = new Date();
 
   this.gl.viewport(0, 0, this.gl.viewportWidth, this.gl.viewportHeight);
+    //console.log(JSON.stringify(this.webgl.viewport));
   //this.gl.clearColor(this.background.red/255, this.background.green/255, this.background.blue/255, server || document.mouse.isdown ? 0 : 1);
   this.gl.clearColor(this.background.red/255, this.background.green/255, this.background.blue/255, server ? 0 : 1);
   //this.gl.clearColor(this.background.red/255, this.background.green/255, this.background.blue/255, 0);
@@ -1917,10 +1920,8 @@ Viewer.prototype.drawFrame = function(borderOnly) {
   this.webgl.modelView.translate(adjust);
 
   // rotate model 
-  this.webgl.modelView.mult(this.rotate);
-  //var rotMat = mat4.fromRotationTranslation(this.rotate, [0,0,0]);
-  //alert(JSON.stringify(this.rotate));
-  //this.webgl.modelView.mult(this.rotMat);
+  var rotmat = quat4.toMat4(this.rotate);
+  this.webgl.modelView.mult(rotmat);
 
   // Adjust back for rotation centre
   adjust = [this.focus[0] - this.centre[0], this.focus[1] - this.centre[1], this.focus[2] - this.centre[2]];
@@ -1932,7 +1933,7 @@ Viewer.prototype.drawFrame = function(borderOnly) {
   // Apply scaling factors (including orientation switch if required)
   var scaling = [this.scale[0], this.scale[1], this.scale[2] * this.orientation];
   this.webgl.modelView.scale(scaling);
-  //debug(JSON.stringify(this.webgl.modelView));
+  //OK.debug(JSON.stringify(this.webgl.modelView));
 
    // Set default polygon front faces
    if (this.orientation == 1.0)
@@ -1978,27 +1979,15 @@ Viewer.prototype.rotateZ = function(deg) {
 }
 
 Viewer.prototype.rotation = function(deg, axis) {
-  var rotation = mat4.create();
-  mat4.identity(rotation);
-  var arad = deg * Math.PI / 180.0;
-  mat4.rotate(rotation, arad, axis);
-  this.rotate = mat4.multiply(rotation, this.rotate);
-  //this.webgl.modelView.rotate(deg, axis);
-
-/* 
   //Quaterion rotate
   var arad = deg * Math.PI / 180.0;
   var rotation = quat4.fromAngleAxis(arad, axis);
-  rotation.normalize();
-  this.rotate = quat4.multiply(this.rotate, rotation);
-*/
+  rotation = quat4.normalize(rotation);
+  this.rotate = quat4.multiply(rotation, this.rotate);
 }
 
 Viewer.prototype.getRotation = function() {
-  //Return current rotation quaternion
-  var rot3x3 = mat4.toMat3(viewer.rotate);
-  var rot = mat3.toQuat4(rot3x3);
-  return [rot[0], rot[1], rot[2], rot[3]];
+  return [viewer.rotate[0], viewer.rotate[1], viewer.rotate[2], viewer.rotate[3]];
 }
 
 Viewer.prototype.getRotationString = function() {
@@ -2014,15 +2003,13 @@ Viewer.prototype.getTranslationString = function() {
 Viewer.prototype.reset = function() {
   if (this.gl) {
     this.updateDims(vis.options);
-    mat4.identity(this.rotate);
-    this.translate = [0, 0, -this.modelsize];
     this.draw();
   }
 
   if (server) {
-    requestData('/command=' + this.getRotationString());
-    requestData('/command=' + this.getTranslationString());
-    //requestData('/command=reset');
+    //requestData('/command=' + this.getRotationString());
+    //requestData('/command=' + this.getTranslationString());
+    requestData('/command=reset');
   }
 }
 
@@ -2049,6 +2036,7 @@ Viewer.prototype.zoomClip = function(factor) {
 }
 
 Viewer.prototype.updateDims = function(options) {
+  if (!options) return;
   var oldsize = this.modelsize;
   this.dims = [options.max[0] - options.min[0], options.max[1] - options.min[1], options.max[2] - options.min[2]];
   this.modelsize = Math.sqrt(this.dims[0]*this.dims[0] + this.dims[1]*this.dims[1] + this.dims[2]*this.dims[2]);
@@ -2062,20 +2050,19 @@ Viewer.prototype.updateDims = function(options) {
   this.near_clip = this.modelsize / 10.0;   
   this.far_clip = this.modelsize * 10.0;
 
-  mat4.identity(this.rotate);
-  //quat4.identity(this.rotate);
+  quat4.identity(this.rotate);
+  this.rotated = true; 
 
   if (options) {
     //Initial rotation
-    if (options.rotate.length == 3) {
-      this.rotateZ(-options.rotate[2]);
-      this.rotateY(-options.rotate[1]);
-      this.rotateX(-options.rotate[0]);
-    } else if (options.rotate.length == 4) {
-      this.rotate = quat4.toMat4(options.rotate);
-    } else {
-      //Load from matrix
-      this.rotate = options.rotate;
+    if (options.rotate) {
+      if (options.rotate.length == 3) {
+        this.rotateZ(-options.rotate[2]);
+        this.rotateY(-options.rotate[1]);
+        this.rotateX(-options.rotate[0]);
+      } else if (options.rotate.length == 4) {
+        this.rotate = quat4.create(options.rotate);
+      }
     }
 
     //Translate
@@ -2101,9 +2088,9 @@ Viewer.prototype.updateDims = function(options) {
 
   }
 
-  //debug("DIMS: " + min[0] + " to " + max[0] + "," + min[1] + " to " + max[1] + "," + min[2] + " to " + max[2]);
-  debug("New model size: " + this.modelsize + ", Focal point: " + this.focus[0] + "," + this.focus[1] + "," + this.focus[2]);
-  debug("Translate: " + this.translate[0] + "," + this.translate[1] + "," + this.translate[2]);
+  //OK.debug("DIMS: " + min[0] + " to " + max[0] + "," + min[1] + " to " + max[1] + "," + min[2] + " to " + max[2]);
+  OK.debug("New model size: " + this.modelsize + ", Focal point: " + this.focus[0] + "," + this.focus[1] + "," + this.focus[2]);
+  OK.debug("Translate: " + this.translate[0] + "," + this.translate[1] + "," + this.translate[2]);
 }
 
 Viewer.prototype.setPointScale = function() {
@@ -2171,6 +2158,9 @@ function resizeToWindow() {
   //var canvas = document.getElementById('canvas');
   //if (canvas.width < window.innerWidth || canvas.height < window.innerHeight)
     requestData('/command=resize ' + window.innerWidth + " " + window.innerHeight);
+  var frame = document.getElementById('frame');
+  canvas.style.width = frame.style.width = "100%";
+  canvas.style.height = frame.style.height = "100%";
 }
 
 

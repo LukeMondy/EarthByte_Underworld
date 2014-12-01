@@ -23,7 +23,7 @@ GLuciferServer::GLuciferServer(OpenGLViewer* viewer, std::string htmlpath, int p
 {
    jpeg = NULL;
    updated = false;
-   clients = 0;
+   client_id = 0;
    // Initialize mutex and condition variable objects
    pthread_mutex_init(&cs_mutex, NULL);
    pthread_mutex_init(&viewer->cmd_mutex, NULL);
@@ -169,32 +169,19 @@ void* GLuciferServer::callback(enum mg_event event,
       else if (strstr(request_info->uri, "/connect") != NULL)
       {
          //Return an id assigned to this client
-         if (_self->threads > _self->clients+1)
-         {
-           _self->clients++;
-           debug_print("NEW CONNECTION: %d CLIENTS %d THREADS\n", _self->clients, _self->threads);
-           mg_printf(conn, "HTTP/1.1 200 OK\r\n"
-                "Content-Type: text/plain\r\n\r\n"
-                "%d", _self->clients);
-           _self->updated = true; //Force update
-           _self->synched[_self->clients] = false;
-         }
-         else
-         {
-           debug_print("CONNECTION REFUSED!\n %d CLIENTS %d THREADS\n", _self->clients, _self->threads);
-           //Can't accept a new client, 
-           //Always require a spare thread to monitor connections
-           mg_printf(conn, "HTTP/1.1 200 OK\r\n"
-                "Content-Type: text/plain\r\n\r\n"
-                "%d", -1);
-         }
+         _self->client_id++;
+         debug_print("NEW CONNECTION: %d (%d THREADS)\n", _self->client_id, _self->threads);
+         mg_printf(conn, "HTTP/1.1 200 OK\r\n"
+              "Content-Type: text/plain\r\n\r\n"
+              "%d", _self->client_id);
+         _self->updated = true; //Force update
+         _self->synched[_self->client_id] = false;
       }
       else if (strstr(request_info->uri, "/disconnect=") != NULL)
       {
          int id = atoi(request_info->uri+12);
          _self->synched.erase(id);
-         _self->clients--;
-         debug_print("%d DISCONNECTED, CLIENTS %d\n", id, _self->clients);
+         debug_print("%d DISCONNECTED, CLIENT %d\n", id, _self->client_id);
           mg_printf(conn, "HTTP/1.1 200 OK\r\n"
               "Content-Type: text/plain\r\n\r\n");
          _self->updated = true; //Force update
@@ -223,6 +210,7 @@ void* GLuciferServer::callback(enum mg_event event,
          while (_self->synched[id] && !_self->viewer->quitProgram)
          {
             debug_print("CLIENT %d THREAD ID %u WAITING\n", id, tid);
+            _self->viewer->notIdle(1000); //Starts the idle timer (1 second before display fired)
             pthread_cond_wait(&_self->condition_var, &_self->cs_mutex);
          }
          debug_print("CLIENT %d THREAD ID %u RESUMED, quit? %d\n", id, tid, _self->viewer->quitProgram);

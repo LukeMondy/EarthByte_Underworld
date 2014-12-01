@@ -334,10 +334,13 @@ void _lucDatabase_Execute( void* database, void* data )
             lucDatabase_OutputDrawingObject(self, NULL, object);
          }
       }
+   }
 
-      /* Call setup on drawing objects (if any) */
-      lucDrawingObject_Register_SetupAll( self->drawingObject_Register, database );
+   /* Call setup on drawing objects (if any) !This must be called on all procs! */
+   lucDrawingObject_Register_SetupAll( self->drawingObject_Register, database );
 
+   if (self->context->rank == 0)
+   {
       /* Multi-file database setup */
       if (!self->singleFile)
       {
@@ -406,17 +409,6 @@ void _lucDatabase_Execute( void* database, void* data )
 
 void _lucDatabase_Destroy( void* database, void* data ) { }
 
-void lucDatabase_DeleteWindows(lucDatabase* self)
-{
-   /* Delete any existing window->viewport->object structure information */
-   lucDatabase_IssueSQL(self->db, "delete from window;");
-   lucDatabase_IssueSQL(self->db, "delete from window_viewport;");
-   lucDatabase_IssueSQL(self->db, "delete from viewport;");
-   lucDatabase_IssueSQL(self->db, "delete from object;");
-   lucDatabase_IssueSQL(self->db, "delete from object_colourmap;");
-   lucDatabase_IssueSQL(self->db, "delete from viewport_object;");
-}
-
 void lucDatabase_Dump(void* database)
 {
    lucDatabase* self = (lucDatabase*)database;
@@ -481,6 +473,16 @@ void lucDatabase_Wait(lucDatabase* self)
       waitpid(self->dump_pid, &childExitStatus, 0);
       self->dump_pid = 0;
    }
+}
+
+void lucDatabase_DeleteWindows(lucDatabase* self)
+{
+   /* Delete any existing window->viewport->object structure information */
+   lucDatabase_IssueSQL(self->db, "delete from window;");
+   lucDatabase_IssueSQL(self->db, "delete from window_viewport;");
+   lucDatabase_IssueSQL(self->db, "delete from viewport;");
+   lucDatabase_IssueSQL(self->db, "delete from object;");
+   lucDatabase_IssueSQL(self->db, "delete from viewport_object;");
 }
 
 void lucDatabase_OutputWindow(lucDatabase* self, lucWindow* window)
@@ -938,6 +940,16 @@ void lucDatabase_AddValues(lucDatabase* self, int n, lucGeometryType type, lucGe
    }
    /* Set colour map parameters */
    lucGeometryData_Setup(self->data[type][data_type], colourMap->minimum, colourMap->maximum, dimCoeff, units);
+}
+
+
+void lucDatabase_AddVolumeSlice(lucDatabase* self, int width, int height, float* corners, lucColourMap* colourMap, float* data)
+{
+   /* Output corner vertices */
+   lucDatabase_AddVertices(self, 2, lucVolumeType, corners);
+   self->data[lucVolumeType][lucVertexData]->width = width;
+   self->data[lucVolumeType][lucVertexData]->height = height;
+   lucDatabase_AddValues(self, width*height, lucVolumeType, lucColourValueData, colourMap, data);
 }
 
 void lucDatabase_AddIndex(lucDatabase* self, lucGeometryType type, unsigned int index)

@@ -1,9 +1,9 @@
 #include "Shaders.h"
 
-#ifndef BIN_DIR
-#define BIN_DIR ""
+#ifndef SHADER_PATH
+#define SHADER_PATH ""
 #endif
-const char* Shader::path = BIN_DIR;
+const char* Shader::path = SHADER_PATH;
 
 //Default shaders
 const char *vertexShader = STRINGIFY(
@@ -183,7 +183,7 @@ void Shader::loadUniforms(const char** names, int count)
    if (!supported || !program) return;
    for (int i=0; i<count; i++)
    {
-      GLuint loc = glGetUniformLocation(program, names[i]);
+      GLint loc = glGetUniformLocation(program, names[i]);
       if (loc < 0)
         debug_print("Uniform '%s' not found\n", names[i]);
       uniforms[names[i]] = loc;
@@ -195,7 +195,7 @@ void Shader::loadAttribs(const char** names, int count)
    if (!supported || !program) return;
    for (int i=0; i<count; i++)
    {
-      GLuint loc = glGetAttribLocation(program, names[i]);
+      GLint loc = glGetAttribLocation(program, names[i]);
       if (loc < 0)
         debug_print("Attrib '%s' not found\n", names[i]);
       attribs[names[i]] = loc;
@@ -205,14 +205,24 @@ void Shader::loadAttribs(const char** names, int count)
 void Shader::setUniform(const char* name, int value)
 {
    if (!supported || !program) return;
-   GLint loc = uniforms[name];
-   if (loc >= 0) glUniform1i(loc, value);
+   std::map<std::string,int>::iterator it = uniforms.find(name);
+   if (it != uniforms.end())
+   {
+      GLint loc = uniforms[name];
+      if (loc >= 0) glUniform1i(loc, value);
+      GL_Error_Check;
+   }
 }
 
 void Shader::setUniform(const char* name, float value)
 {
    if (!supported || !program) return;
-   GLint loc = uniforms[name];
-   if (loc >= 0) glUniform1f(loc, value);
+   std::map<std::string,int>::iterator it = uniforms.find(name);
+   if (it != uniforms.end())
+   {
+      GLint loc = uniforms[name];
+      if (loc >= 0) glUniform1f(loc, value);
+      GL_Error_Check;
+   }
 }
 

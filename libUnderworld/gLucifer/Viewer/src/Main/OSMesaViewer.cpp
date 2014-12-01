@@ -75,9 +75,10 @@ void OSMesaViewer::open(int width, int height)
    OpenGLViewer::open(width, height);
 }
 
-void OSMesaViewer::show()
+void OSMesaViewer::setsize(int width, int height)
 {
-   OpenGLViewer::show(); 
+   close();
+   open(width, height);
 }
 
 void OSMesaViewer::display()
@@ -88,25 +89,6 @@ void OSMesaViewer::display()
       OSMesaMakeCurrent(osMesaContext, pixelBuffer, GL_UNSIGNED_BYTE, width, height);
 
    OpenGLViewer::display();
-}
-
-void OSMesaViewer::execute()
-{
-   show();
-   display();
-
-   // Enter fake event loop processing
-   while (!quitProgram)
-   {
-      //New frame? call display
-      if (postdisplay || OpenGLViewer::pollInput())
-         display();
-   }
-}
-
-void OSMesaViewer::animate(int msec)
-{
-   timer = msec;
 }
 
 #endif   //HAVE_OSMESA

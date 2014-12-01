@@ -21,7 +21,7 @@
   <!-- </list> -->
 
   <include>StgFEM/QuadraticMesh.xml</include>
-  <include>StgFEM/LinearInnerMesh.xml</include>
+  <!-- <include>StgFEM/LinearInnerMesh.xml</include> -->
   <include>StgFEM/VelocityField.xml</include>
   <include>StgFEM/PressureField.xml</include>
   <include>StgFEM/TimeIntegrator.xml</include>
@@ -80,8 +80,8 @@
     </struct>
   </struct>
 
-  <param name="gaussParticlesX">4</param>
-  <param name="gaussParticlesY">4</param>
+  <param name="gaussParticlesX">7</param>
+  <param name="gaussParticlesY">7</param>
   <param name="gaussParticlesZ">4</param>
 
 </StGermainData>

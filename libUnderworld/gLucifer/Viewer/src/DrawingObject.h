@@ -72,9 +72,10 @@ class DrawingObject
    //Colour Bars
    bool colourbar;
    //Texture
-   TextureData texture;
+   TextureData* texture;
 
    DrawingObject(unsigned int id, bool persistent=false, std::string name="", int colour=0, ColourMap* map=NULL, float opacity=1.0, const char* properties="");
+   ~DrawingObject() {if (texture) delete texture;}
 
    void addColourMap(ColourMap* map, lucGeometryDataType data_type);
    int useTexture();

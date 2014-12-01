@@ -63,7 +63,7 @@
 	<struct name="backgroundMaterial">
 	    <param name="Type">RheologyMaterial</param>
 	    <param name="Shape">everywhereShape</param>
-	    <param name="density">0.0</param>
+	    <param name="density">1.0</param>
 	    <list name="Rheology">
 		<param>isoViscosity</param>
 	    </list>
@@ -85,7 +85,7 @@
 	<struct name="bands">
 	  <param name="Type">RheologyMaterial</param>
 	  <param name="Shape">circleShape</param>
-	  <param name="density">1.0</param>
+	  <param name="density">2.0</param>
 	  <param name="Rheology">circleViscosity</param>
 	</struct>
 
@@ -116,8 +116,8 @@
     <param name="allowUnbalancing"> True </param>
 
     <!-- gauss integration point swarm parameters -->
-    <param name="gaussParticlesX"> 4 </param>
-    <param name="gaussParticlesY"> 4 </param>
+    <param name="gaussParticlesX"> 7 </param>
+    <param name="gaussParticlesY"> 7 </param>
     <param name="gaussParticlesZ"> 4 </param>
 
     <!-- PIC Swarm parameters -->

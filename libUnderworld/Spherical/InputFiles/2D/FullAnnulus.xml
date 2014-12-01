@@ -204,7 +204,10 @@
 	
 	<!-- Set up BCs -->
 	<include> Spherical/VCs/temperatureBCs.xml </include>
+	<include> Spherical/VCs/freeSlipBCs.xml </include>
+        <!--
 	<include> Spherical/VCs/noSlip2DBCs.xml </include>
+        -->
 
 
 	<!--

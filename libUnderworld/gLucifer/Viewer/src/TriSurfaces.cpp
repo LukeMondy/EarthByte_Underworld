@@ -580,9 +580,9 @@ void TriSurfaces::depthSort()
 
    //Calculate min/max distances from view plane
    float maxdist, mindist; 
-   //float modelView[16];
-   //glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
-   Geometry::getMinMaxDistance(view->modelView, &mindist, &maxdist);
+   float modelView[16];
+   glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
+   Geometry::getMinMaxDistance(modelView, &mindist, &maxdist);
    //printMatrix(modelView);
    //printf("MINDIST %f MAXDIST %f\n", mindist, maxdist);
 
@@ -596,7 +596,7 @@ void TriSurfaces::depthSort()
       if (tidx[i].distance < 65535) 
       //if (tidx[i].distance > 0) 
       {
-         tidx[i].fdistance = eyeDistance(view->modelView, tidx[i].centroid);
+         tidx[i].fdistance = eyeDistance(modelView, tidx[i].centroid);
          tidx[i].distance = (int)(multiplier * (tidx[i].fdistance - mindist));
          assert(tidx[i].distance >= 0 && tidx[i].distance <= 65534);
              //Shift by id hack
@@ -658,8 +658,6 @@ void TriSurfaces::render()
 
 void TriSurfaces::draw()
 {
-   clock_t t1 = clock();
-
    //Draw, calls display list when available
    Geometry::draw();
 
@@ -667,6 +665,7 @@ void TriSurfaces::draw()
    if (view->sort) render();
 
    // Draw using vertex buffer object
+   clock_t t1 = clock();
    int stride = 6 * sizeof(float) + sizeof(Colour);   //3+3 vertices, normals + 32-bit colour
    glBindBuffer(GL_ARRAY_BUFFER, vbo);
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexvbo);
@@ -693,15 +692,17 @@ void TriSurfaces::draw()
          }
       }
       //Draw remaining elements (transparent, depth sorted)
-      if (start < elements)
+      if (start > 0 && start < elements)
       {
          //fprintf(stderr, "(*) DRAWING TRANSPARENT TRIANGLES: %d\n", elements-start);
          glDrawRangeElements(GL_TRIANGLES, 0, elements, elements-start, GL_UNSIGNED_INT, (GLvoid*)(start*sizeof(GLuint)));
       }
-      //Render all triangles - elements is the number of indices. 3 indices needed to make a single triangle
-      //If there is no separate opaque/transparent geometry could(should?) use this
-      //glDrawElements(GL_TRIANGLES, elements, GL_UNSIGNED_INT, (GLvoid*)0);
-
+      else
+      {
+         //Render all triangles - elements is the number of indices. 3 indices needed to make a single triangle
+         //(If there is no separate opaque/transparent geometry)
+         glDrawElements(GL_TRIANGLES, elements, GL_UNSIGNED_INT, (GLvoid*)0);
+      }
 
       glDisableClientState(GL_VERTEX_ARRAY);
       glDisableClientState(GL_NORMAL_ARRAY);
@@ -716,7 +717,7 @@ void TriSurfaces::draw()
    glDisable(GL_CULL_FACE);
 
    double time = ((clock()-t1)/(double)CLOCKS_PER_SEC);
-   if (time > 0.001)
+   if (time > 0.05)
      debug_print("  %.4lf seconds to draw triangles\n", time);
    GL_Error_Check;
 }

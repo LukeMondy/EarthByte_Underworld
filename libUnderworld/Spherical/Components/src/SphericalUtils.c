@@ -59,7 +59,142 @@ void Spherical_Radians2Output( double *input ) {
    input[2] = 180/M_PI * input[2];
 }
 
-void Spherical_GetRotationMatrixIJK_ProjectionNodes( Mesh* mesh, int dNodeID, double* rot )
+void Spherical_GetRotationMatrixIJK_RSNodes( Mesh* mesh, int dNodeID, double* rot )
+{
+
+   /* Returns the rotation matrix for a boundary node for the RegionalSphere mesh (RSGenerator)
+
+      Canonoical mesh coords r, eta, xi
+      -45 <= eta, xi <= 45
+
+      s = (1+ tan(eta)*tan(eta) + tan(xi)*tan(xi) )^(-0.5)
+      
+      x = r * s * tan(eta) 
+      y = r * s * tan(xi) 
+      z = r * s
+
+      trick is to calculate the unit vectors for:
+      the normal - n
+      the tangent vector north - tn
+      the tangent vector east - te
+
+      then apply those vectors in the matrix below, which is the rotation matrix
+
+      | dx_dt |     | n_x  tn_x  te_x |  | dr_dt   |
+      | dy_dt |  =  | n_y  tn_y  te_y |  | deta_dt |
+      | dz_dt |     | n_z  tn_z  te_z |  | dxi_dt  |
+
+      To calculate the n, tn, te vectors we use the following definition.
+
+      | dx_dt |     | dx_dr  dx_deta  dx_dxi |  | dr_dt   |
+      | dy_dt |  =  | dy_dr  dy_deta  dy_dxi |  | deta_dt |
+      | dz_dt |     | dz_dr  dz_deta  dz_dxi |  | dxi_dt  |
+
+      1) Evaulate the coeffient matrix.
+      2) each column in the matrix is either n, tn, te
+         we convert these to unit vector. And this is the rotation matrix
+   */
+         
+   ProjectionGenerator* gen = NULL;
+   unsigned inds[3];
+   double *vert, centre[3], vec[3], dimRes[3], R, x_z_len;
+   double mag;
+   double r, t, p;
+   unsigned gNode;
+
+   Grid **grid = (Grid** )Mesh_GetExtension(mesh,Grid**,mesh->vertGridId);
+   centre[0] = centre[1] = centre[2] = 0.0;
+   vert = Mesh_GetVertex( mesh, dNodeID );
+   Grid_Lift( grid[0], dNodeID, inds );
+
+   // calculate the radius of projection
+   r = sqrt( vert[0]*vert[0] + vert[1]*vert[1] + vert[2]*vert[2] );
+   assert( r>1e-9 ); // sanity check for zero radius
+
+   double r_vec[3], tang1_vec[3], tang2_vec[3];
+   double xi  = atan2(vert[0], vert[2] );
+   double eta = atan2(vert[1], vert[2] );
+
+   r_vec[0] = vert[0]/r;
+   r_vec[1] = vert[1]/r;
+   r_vec[2] = vert[2]/r;
+
+   /*
+   if( inds[0] == grid[0]->sizes[0]-1 ) {
+      double t = xi;
+      double p = asin( vert[1]/r );
+      rot[0] = sin(t)*cos(p) ;  rot[1] = r*cos(t)*cos(p)  ;  rot[2] = -r*sin(t)*sin(p);
+      rot[3] = sin(p)        ;  rot[4] = 0                ;  rot[5] = r*cos(p);
+      rot[6] = cos(t)*cos(p) ;  rot[7] = -r*sin(t)*cos(p) ;  rot[8] = -r*cos(t)*sin(p);
+
+      mag = sqrt( rot[0]*rot[0] + rot[3]*rot[3] + rot[6]*rot[6] );
+      rot[0] = rot[0] / mag;
+      rot[3] = rot[3] / mag;
+      rot[6] = rot[6] / mag;
+
+      mag = sqrt( rot[1]*rot[1] + rot[4]*rot[4] + rot[7]*rot[7] );
+      rot[1] = rot[1] / mag;
+      rot[4] = rot[4] / mag;
+      rot[7] = rot[7] / mag;
+
+      mag = sqrt( rot[2]*rot[2] + rot[5]*rot[5] + rot[8]*rot[8] );
+      rot[2] = rot[2] / mag;
+      rot[5] = rot[5] / mag;
+      rot[8] = rot[8] / mag;
+
+   } else */ if( inds[1] == 0 || inds[1] == (grid[0]->sizes[2]-1) || inds[0] == (grid[0]->sizes[0]-1) ) {
+      tang1_vec[0]= cos(xi);
+      tang1_vec[1] = 0;
+      tang1_vec[2] = -1*sin(xi);
+      StGermain_VectorCrossProduct(tang2_vec, r_vec, tang1_vec);
+
+      rot[0] = r_vec[0];  rot[1] = tang1_vec[0];  rot[2] = tang2_vec[0];
+      rot[3] = r_vec[1];  rot[4] = tang1_vec[1];  rot[5] = tang2_vec[1];
+      rot[6] = r_vec[2];  rot[7] = tang1_vec[2];  rot[8] = tang2_vec[2];
+   } else {
+      ///if (inds[2] == 0 || inds[2] == (grid->sizes[2]-1) )*/ {
+      tang1_vec[0] = 0;
+      tang1_vec[1] = cos(eta);
+      tang1_vec[2] = -sin(eta);
+      StGermain_VectorCrossProduct(tang2_vec, r_vec, tang1_vec);
+
+      rot[0] = r_vec[0];  rot[1] = tang2_vec[0];  rot[2] = tang1_vec[0];
+      rot[3] = r_vec[1];  rot[4] = tang2_vec[1];  rot[5] = tang1_vec[1];
+      rot[6] = r_vec[2];  rot[7] = tang2_vec[2];  rot[8] = tang1_vec[2];
+   }
+
+
+   /*
+   double test[9];
+   test[0] = rot[0]*rot[0] + rot[1]*rot[1] + rot[2]*rot[2];
+   test[1] = rot[0]*rot[3] + rot[1]*rot[4] + rot[2]*rot[5];
+   test[2] = rot[0]*rot[6] + rot[1]*rot[7] + rot[2]*rot[8];
+
+   test[3] = rot[3]*rot[0] + rot[4]*rot[1] + rot[5]*rot[2];
+   test[4] = rot[3]*rot[3] + rot[4]*rot[4] + rot[5]*rot[5];
+   test[5] = rot[3]*rot[6] + rot[4]*rot[7] + rot[5]*rot[8];
+
+   test[6] = rot[6]*rot[0] + rot[7]*rot[1] + rot[8]*rot[2];
+   test[7] = rot[6]*rot[3] + rot[7]*rot[4] + rot[8]*rot[5];
+   test[8] = rot[6]*rot[6] + rot[7]*rot[7] + rot[8]*rot[8];
+
+   if( fabs(test[0]-1) > 1e-5 ) assert(0);   
+   if( fabs(test[4]-1) > 1e-5 ) assert(0);   
+   if( fabs(test[8]-1) > 1e-5 ) assert(0);   
+   if( test[1] > 1e-5 ) assert(0);
+   if( test[2] > 1e-5 ) assert(0);
+   if( test[3] > 1e-5 ) assert(0);
+   if( test[5] > 1e-5 ) assert(0);
+   if( test[6] > 1e-5 ) assert(0);
+   if( test[7] > 1e-5 ) assert(0);
+
+   */
+
+
+
+}
+
+void Spherical_GetRotationMatrixIJK_FSNodes( Mesh* mesh, int dNodeID, double* rot )
 {
    /* Return the rotation matrix of a boundary node which doesn't align with
    * the x-y coordinate system.
@@ -68,6 +203,8 @@ definitions:
    x = r * cos(t) * sin(p)
    y = r *          sin(p)
    z = -r * sin(t) * sin(p)
+
+
 
    */
 

@@ -471,7 +471,7 @@ GeomData* Geometry::add(DrawingObject* draw)
    GeomData* geomdata = new GeomData(draw);
    geom.push_back(geomdata);
    if (hidden.size() < geom.size()) hidden.push_back(allhidden);
-   draw->visible = !allhidden;
+   if (allhidden) draw->visible = false;
    //debug_print("NEW DATA STORE CREATED FOR %s size %d\n", draw->name.c_str(), geom.size());
    return geomdata;
 }
@@ -633,6 +633,35 @@ void Geometry::newData(DrawingObject* draw)
             geom[i]->data[data_type]->setOffset();
       }
    }
+}
+
+//Dumps colourmapped data to image
+void Geometry::toImage(unsigned int idx)
+{
+   geom[idx]->colourCalibrate();
+   int width = geom[idx]->width;
+   if (width == 0) width = 256;
+   int height = geom[idx]->colourValue.size() / width;
+   char path[256];
+   int pixel = 3;
+   GLubyte *image = new GLubyte[width * height * pixel];
+   // Read the pixels
+   for (int y=0; y<height; y++)
+   {
+     for (int x=0; x<width; x++)
+     {
+       printf("%f\n", geom[idx]->colourValue[y * width + x]);
+       Colour c;
+       geom[idx]->getColour(c, y * width + x);
+       image[y * width*pixel + x*pixel + 0] = c.r;
+       image[y * width*pixel + x*pixel + 1] = c.g;
+       image[y * width*pixel + x*pixel + 2] = c.b;
+     }
+   }
+   //Write data to image file
+   sprintf(path, "%s.%05d", geom[idx]->draw->name.c_str(), idx);
+   writeImage(image, width, height, path, false);
+   delete[] image;
 }
 
 /////////////////////////////////////////////////////////////////////////////////

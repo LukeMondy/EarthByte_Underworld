@@ -158,7 +158,7 @@ void RSGenerator_CalcCurvilinearGeom( void* _self, Mesh* mesh, Sync* sync, Grid*
    unsigned        	gNode;
 
    double dimRes[3];
-   double radius,theta;
+   double theta;
 
    /*
     * grid->sizes[] ... an array containing the number of nodes in a direction
@@ -173,7 +173,7 @@ void RSGenerator_CalcCurvilinearGeom( void* _self, Mesh* mesh, Sync* sync, Grid*
    memcpy( self->sph_res, dimRes, 3*sizeof(double) );
 
    double phi;
-   double X,Y,R,r;
+   double X,Y,r,d;
 
    /* Loop over domain nodes. */
    for( n_i = 0; n_i < Sync_GetNumDomains( sync ); n_i++ )
@@ -183,17 +183,16 @@ void RSGenerator_CalcCurvilinearGeom( void* _self, Mesh* mesh, Sync* sync, Grid*
       gNode = Sync_DomainToGlobal( sync, n_i );
       Grid_Lift( grid, gNode, inds );
 
-      radius = self->crdMin[0] + dimRes[0]*(double)inds[0];
+      r = self->crdMin[0] + dimRes[0]*(double)inds[0];
       theta = (M_PI/180.0) * (self->crdMin[1]+dimRes[1]*(double)inds[1]); // longitude position discretization
       phi =   (M_PI/180.0) * (self->crdMin[2]+dimRes[2]*(double)inds[2]); // latitude position discretization
 
-      X = radius*tan(theta);
-      Y = radius*tan(phi);
-      r = sqrt(radius*radius + X*X + Y*Y);
-      R = sqrt(3)*radius;
+      X = tan(theta);
+      Y = tan(phi);
+      d = sqrt(1 + X*X + Y*Y);
 
-      vert[0] = R/r * X;
-      vert[1] = R/r * Y;
-      vert[2] = R/r * radius;
+      vert[0] = r/d * X;
+      vert[1] = r/d * Y;
+      vert[2] = r/d * 1;
    }
 }

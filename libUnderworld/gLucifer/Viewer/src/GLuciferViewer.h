@@ -54,7 +54,6 @@ class GLuciferViewer : public ViewerApp
    bool writeimage, writemovie;
 
    char message[256];
-   char last_message[256];
 
    std::vector<Model*> models;
    std::vector<Win*> windows;
@@ -77,7 +76,7 @@ class GLuciferViewer : public ViewerApp
    bool recording;
    bool loop;
 
-   bool filters[8];
+   bool filters[lucMaxType];
    bool output;
    int view;
 
@@ -95,12 +94,14 @@ class GLuciferViewer : public ViewerApp
    TriSurfaces* triSurfaces;
    Lines* lines;
    Shapes* shapes;
+   Volumes* volumes;
 
    GLuciferViewer(std::vector<std::string> args, OpenGLViewer* viewer, int width=0, int height=0);
    virtual ~GLuciferViewer();
 
    void run(bool persist=false);
 
+   void readScriptFile(FilePath& fn);
    void readHeightMap(FilePath& fn);
    void createDemoModel();
    void newModel(std::string name, int w, int h, int bg, float mmin[3], float mmax[3]);
@@ -141,10 +142,10 @@ class GLuciferViewer : public ViewerApp
 
    void clearObjects(bool all=false);
    void redrawObjects();
-   void displayObjectList();
+   void displayObjectList(bool console=true);
    void printMessage(const char *fmt, ...);
    void displayText(std::string text, int lineno=1, int colour=0);
-   void displayMessage(bool instant=false);
+   void displayMessage();
    void drawColourBar(DrawingObject* draw, int startx, int starty, int length, int height);
    void drawScene(void);
    void drawSceneBlended();
@@ -194,16 +195,16 @@ Hold [shift] and use the scroll wheel to move the clip plane in and out.\n\
 [Home]       View All mode ON/OFF, shows all objects in a single viewport\n\
 [End]        ViewPort mode ON/OFF, shows all viewports in window together\n\
 \n\
+\nHold [ALT] plus:\n\
 [`]          Full screen ON/OFF\n\
 [*]          Auto zoom to fit ON/OFF\n\
 [/]          Stereo ON/OFF\n\
 [\\]          Switch coordinate system Right-handed/Left-handed\n\
 [|]          Switch rulers ON/OFF\n\
 [,]          Switch to next particle rendering texture\n\
-[+]          More particles (reduce sub-sampling)\n\
-[=]          Less particles (increase sub-sampling)\n\
+[+/=]        More particles (reduce sub-sampling)\n\
+[-]          Less particles (increase sub-sampling)\n\
 \n\
-\nHold [ALT] plus:\n\
 [a]          Hide/show axis\n\
 [b]          Background colour switch WHITE/BLACK\n\
 [B]          Background colour gray\n\
@@ -211,6 +212,7 @@ Hold [shift] and use the scroll wheel to move the clip plane in and out.\n\
 [d]          Draw quad surfaces as triangle strips ON/OFF\n\
 [f]          Frame box mode ON/FILLED/OFF\n\
 [g]          Colour map log scales override DEFAULT/ON/OFF\n\
+[i]          Take screen-shot and save as png/jpeg image file\n\
 [j]          Experimental: localise colour scales, minimum and maximum calibrated to each object drawn\n\
 [J]          Restore original colour scale min & max\n\
 [k]          Lock colour scale calibrations to current values ON/OFF\n\
@@ -219,7 +221,6 @@ Hold [shift] and use the scroll wheel to move the clip plane in and out.\n\
 [n]          Recalculate surface normals\n\
 [o]          Print list of object names with id numbers.\n\
 [r]          Reset camera viewpoint\n\
-[s]          Take screen-shot and save as png/ppm image file\n\
 [q] or [ESC] Quit program\n\
 [u]          Backface Culling ON/OFF\n\
 [w]          Wireframe ON/OFF\n\
@@ -230,8 +231,8 @@ Hold [shift] and use the scroll wheel to move the clip plane in and out.\n\
 [T]          Reduce tracer size scaling\n\
 [p]          Increase particle size scaling\n\
 [P]          Reduce particle size scaling\n\
-[h]          Increase shape size scaling\n\
-[H]          Reduce shape size scaling\n\
+[s]          Increase shape size scaling\n\
+[S]          Reduce shape size scaling\n\
 \n\
 [p] [ENTER]  hide/show all particle swarms\n\
 [v] [ENTER]  hide/show all vector arrow fields\n\

@@ -21,30 +21,16 @@
 			<param name="Type">Spherical_SphericalAlgorithms</param>
 			<param name="Context">context</param>
 		</struct>
-    <!--
-    -->
 	</list>
 
 	<include>StgFEM/ConstantMesh.xml</include>
 	<include>Spherical/RSMesh.xml</include>
-  <!--
-	<include>StgFEM/LinearMesh.xml</include>
-	<include>StgFEM/GaussSwarm.xml</include>
-	<include>StgFEM/StokesFlowUzawa.xml</include>
-	<include>Underworld/GaussSwarm.xml</include>
-  -->
         <include>Underworld/GaussSwarmWithGaussMaterialSwarm.xml</include>
 
 	<include>StgFEM/VelocityField.xml</include>
 	<include>StgFEM/PressureField.xml</include>
 
 	<include>Spherical/StokesFlowUzawa.xml</include>
-	<!--
-	<include>StgFEM/TemperatureField.xml</include>
-	<include>StgFEM/TempAdvDiff.xml</include>
-	<include>PICellerator/MaterialPointSwarm.xml</include>
-	<include>PICellerator/AllowOutflow.xml</include>
-	-->
         <struct name="components" mergeType="merge">
                 <struct name="context">
                         <param name="Type">UnderworldContext</param>
@@ -74,7 +60,7 @@
 	<param name="outputEvery"> 1 </param>
 	<param name="dumpEvery"> 1 </param>
 	<param name="checkpointEvery"> 1 </param>
-	<param name="outputPath"> ./rs </param>
+	<param name="outputPath"> ./fem </param>
 
 	<!-- Geometry & Mesh setup -->
 	<param name="velocityMesh">linearMesh</param>
@@ -83,51 +69,14 @@
 	<param name="dim"> 3 </param>
 	<param name="shadowDepth"> 1 </param>
 
-
-	<![CDATA[
-	How the mesh is specified
-
-           Y
-           |
-           |    
-           |  /  
-           | / 
-           |/
-           |----------- X
-          /
-	       /
-	      /
-	     Z
-
-	     The domain is specified in spherical coordinates, (r,theta,phi).
-	     To define these spaces we use the existing nomencluture:
-
-	     elementResI is the discretisation of theta, the angle in the X-Y plane (0 is along X-axis)
-	     elementResJ is the discretisation of radius, the radial length
-	     elementResK is the discretisation of phi, the angle in the X-Y plane (0 is along Y-axis)
-
-        ]]>
-
-  <!--
-	<param name="minX"> 0 </param> <param name="maxX"> 1 </param> 
+	<param name="minX"> 3 </param> <param name="maxX"> 6 </param>
 	<param name="elementResI"> 4 </param>
 
-	<param name="minY"> 0 </param> <param name="maxY"> 1 </param>
-	<param name="elementResJ"> 3 </param>
-
-	<param name="minZ"> 0 </param> <param name="maxZ"> 1 </param> 
-	<param name="elementResK"> 2 </param>
-  -->
-
-
-	<param name="minX"> 0.5 </param> <param name="maxX"> 1 </param>
-	<param name="elementResI"> 4 </param>
-
-	<param name="minY"> -70 </param> <param name="maxY">  70</param> 
+	<param name="minY"> -45 </param> <param name="maxY"> 45 </param> 
 	<param name="elementResJ"> 8 </param>
 
 
-	<param name="minZ"> -60 </param> <param name="maxZ"> 60 </param> 
+	<param name="minZ"> -45 </param> <param name="maxZ"> 45 </param> 
 	<param name="elementResK"> 8 </param>
 
 	<!-- material points swarm parameters -->
@@ -140,29 +89,7 @@
 	<param name="defaultDiffusivity"> 1e-3 </param>
 	
 	<!-- Set up BCs -->
-	<!--
-	<include> ./temperatureBCs.xml </include>
-	<include> ./temperatureIC.xml </include>
-	-->
 
-
-	<!--
-	<include> ./annulus.Periodic.xml </include>
-	<include> ./freeSlipBCs.xml </include>
-	-->
 	<include> ./lidDrivenBCs.xml </include>
-
-
-	<!--
-	<include>./TempVP.xml</include>
-	<include>./VelMagVP.xml</include>
-	<include>Underworld/Viewports/ParticleMaterialVP.xml</include>
-	<include>gLucifer/window.xml</include>
-	<struct name="components" mergeType="merge">
-		<struct name="window" mergeType="merge">
-			<param name="Viewport">VelocityMagnitudeVP ParticleMaterialVP</param>
-		</struct>
-	</struct>
-	-->
 
 </StGermainData>

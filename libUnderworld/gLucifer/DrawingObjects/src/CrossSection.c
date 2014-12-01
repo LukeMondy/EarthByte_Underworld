@@ -330,7 +330,7 @@ lucCrossSection* lucCrossSection_Set(void* crossSection, double val, Axis axis, 
    if (self->axisAligned) 
    {
       /* Set other axis directions for drawing cross section:
-       * These settings produce consistant polygon winding for cross sections on all axis */
+       * These settings produce consistent polygon winding for cross sections on all axis */
       switch (self->axis)
       {
       case I_AXIS:
@@ -372,6 +372,28 @@ lucCrossSection* lucCrossSection_Set(void* crossSection, double val, Axis axis, 
 
    /* Create normal to plane */
    StGermain_NormalToPlane( self->normal, self->coord1, self->coord2, self->coord3);
+
+   return self;
+}
+
+/* Function to set cross section parameters for a volume slice */
+lucCrossSection* lucCrossSection_Slice(void* crossSection, double val, Bool interpolate)
+{
+   lucCrossSection* self = (lucCrossSection*)crossSection;
+   self->value = val;
+   self->interpolate = interpolate;
+   self->axis = K_AXIS;
+   self->axis1 = J_AXIS;
+   self->axis2 = I_AXIS;
+
+   FieldVariable_GetMinAndMaxGlobalCoords(self->fieldVariable, self->min, self->max );
+
+   double pos = lucCrossSection_GetValue(self, self->min[K_AXIS], self->max[K_AXIS]);
+   self->coord1[self->axis] = self->coord2[self->axis] = self->coord3[self->axis] = pos;
+   self->coord1[self->axis1] = self->coord3[self->axis1] = self->min[self->axis1];
+   self->coord1[self->axis2] = self->coord2[self->axis2] = self->min[self->axis2];
+   self->coord2[self->axis1] = self->max[self->axis1];
+   self->coord3[self->axis2] = self->max[self->axis2];
 
    return self;
 }
