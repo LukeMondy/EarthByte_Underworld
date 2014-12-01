@@ -847,9 +847,9 @@ class Mesh(_object):
     __swig_setmethods__["topo"] = _StgDomain.Mesh_topo_set
     __swig_getmethods__["topo"] = _StgDomain.Mesh_topo_get
     if _newclass:topo = _swig_property(_StgDomain.Mesh_topo_get, _StgDomain.Mesh_topo_set)
-    __swig_setmethods__["vertices"] = _StgDomain.Mesh_vertices_set
-    __swig_getmethods__["vertices"] = _StgDomain.Mesh_vertices_get
-    if _newclass:vertices = _swig_property(_StgDomain.Mesh_vertices_get, _StgDomain.Mesh_vertices_set)
+    __swig_setmethods__["verts"] = _StgDomain.Mesh_verts_set
+    __swig_getmethods__["verts"] = _StgDomain.Mesh_verts_get
+    if _newclass:verts = _swig_property(_StgDomain.Mesh_verts_get, _StgDomain.Mesh_verts_set)
     __swig_setmethods__["vars"] = _StgDomain.Mesh_vars_set
     __swig_getmethods__["vars"] = _StgDomain.Mesh_vars_get
     if _newclass:vars = _swig_property(_StgDomain.Mesh_vars_get, _StgDomain.Mesh_vars_set)
@@ -1136,10 +1136,6 @@ Mesh_DeformationUpdate = _StgDomain.Mesh_DeformationUpdate
 def Mesh_Sync(*args):
   return _StgDomain.Mesh_Sync(*args)
 Mesh_Sync = _StgDomain.Mesh_Sync
-
-def Mesh_GenerateVertices(*args):
-  return _StgDomain.Mesh_GenerateVertices(*args)
-Mesh_GenerateVertices = _StgDomain.Mesh_GenerateVertices
 
 def Mesh_Destruct(*args):
   return _StgDomain.Mesh_Destruct(*args)

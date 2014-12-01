@@ -3273,9 +3273,9 @@ class FeMesh(_object):
     __swig_setmethods__["topo"] = _StgFEM.FeMesh_topo_set
     __swig_getmethods__["topo"] = _StgFEM.FeMesh_topo_get
     if _newclass:topo = _swig_property(_StgFEM.FeMesh_topo_get, _StgFEM.FeMesh_topo_set)
-    __swig_setmethods__["vertices"] = _StgFEM.FeMesh_vertices_set
-    __swig_getmethods__["vertices"] = _StgFEM.FeMesh_vertices_get
-    if _newclass:vertices = _swig_property(_StgFEM.FeMesh_vertices_get, _StgFEM.FeMesh_vertices_set)
+    __swig_setmethods__["verts"] = _StgFEM.FeMesh_verts_set
+    __swig_getmethods__["verts"] = _StgFEM.FeMesh_verts_get
+    if _newclass:verts = _swig_property(_StgFEM.FeMesh_verts_get, _StgFEM.FeMesh_verts_set)
     __swig_setmethods__["vars"] = _StgFEM.FeMesh_vars_set
     __swig_getmethods__["vars"] = _StgFEM.FeMesh_vars_get
     if _newclass:vars = _swig_property(_StgFEM.FeMesh_vars_get, _StgFEM.FeMesh_vars_set)
