@@ -66,7 +66,6 @@ SemiLagrangianIntegrator* _SemiLagrangianIntegrator_New( SEMILAGRANGIANINTEGRATO
     /* General info */
     self->variableList = Stg_ObjectList_New();
     self->varStarList  = Stg_ObjectList_New();
-    self->varOldList   = Stg_ObjectList_New();
 
     return self;
 }
@@ -106,7 +105,6 @@ void _SemiLagrangianIntegrator_Delete( void* slIntegrator ) {
     SemiLagrangianIntegrator*		self = (SemiLagrangianIntegrator*)slIntegrator;
     Stg_Class_Delete( self->variableList );
     Stg_Class_Delete( self->varStarList );
-    Stg_Class_Delete( self->varOldList );
 }
 
 void _SemiLagrangianIntegrator_Print( void* slIntegrator, Stream* stream ) {
@@ -144,6 +142,8 @@ void _SemiLagrangianIntegrator_AssignFromXML( void* slIntegrator, Stg_ComponentF
     unsigned			field_i;
     Name			fieldName;
     FeVariable*	   		feVariable;
+    unsigned			nEntries;
+    Energy_SLE*			sle		= NULL;
 
     Stg_Component_AssignFromXML( self, cf, data, False );
 
@@ -152,11 +152,15 @@ void _SemiLagrangianIntegrator_AssignFromXML( void* slIntegrator, Stg_ComponentF
         self->context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", FiniteElementContext, True, data  );
 
     self->velocityField = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"VelocityField", FeVariable, False, NULL );
-    self->advectedField = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"AdvectedField", FeVariable, False, NULL );
 
-    dict = Dictionary_Entry_Value_AsDictionary( Dictionary_Get( cf->componentDict, (Dictionary_Entry_Key)self->name )  );
-    dev  = Dictionary_Get( dict, (Dictionary_Entry_Key)"fields" );
-    for( field_i = 0; field_i < Dictionary_Entry_Value_GetCount( dev ); field_i += 3  ) {
+    dict     = Dictionary_Entry_Value_AsDictionary( Dictionary_Get( cf->componentDict, (Dictionary_Entry_Key)self->name )  );
+    dev      = Dictionary_Get( dict, (Dictionary_Entry_Key)"fields" );
+    nEntries = Dictionary_Entry_Value_GetCount( dev );
+
+    self->pureAdvection = Memory_Alloc_Array_Unnamed( Bool, nEntries/3 );
+
+
+    for( field_i = 0; field_i < nEntries; field_i += 3  ) {
         fieldName = Dictionary_Entry_Value_AsString( Dictionary_Entry_Value_GetElement( dev, field_i ) );
         feVariable = Stg_ComponentFactory_ConstructByName( cf, (Name)fieldName, FeVariable, True, data );
         Stg_ObjectList_Append( self->variableList, feVariable );
@@ -166,31 +170,19 @@ void _SemiLagrangianIntegrator_AssignFromXML( void* slIntegrator, Stg_ComponentF
         feVariable = Stg_ComponentFactory_ConstructByName( cf, (Name)fieldName, FeVariable, True, data );
         Stg_ObjectList_Append( self->varStarList, feVariable );
 
-        /* the corresponding old field */
-        fieldName = Dictionary_Entry_Value_AsString( Dictionary_Entry_Value_GetElement( dev, field_i + 2 ) );
-        feVariable = Stg_ComponentFactory_ConstructByName( cf, (Name)fieldName, FeVariable, True, data );
-        Stg_ObjectList_Append( self->varOldList, feVariable );
+        /* the corresponding boolean for if the field is pure advection (ie not part of an SLE and so updated here) */
+        self->pureAdvection[field_i/3] = Dictionary_Entry_Value_AsBool( Dictionary_Entry_Value_GetElement( dev, field_i + 2 ) );
     }
 
-    self->sle = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"SLE", Energy_SLE, False, NULL  );
+    EP_AppendClassHook( Context_GetEntryPoint( self->context, AbstractContext_EP_UpdateClass ), SemiLagrangianIntegrator_InitSolve, self );
 
-    /* for problems with temporally evolving velocity */
-    self->prevVelField = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"PreviousTimeStepVelocityField", FeVariable, False, data );
-    if( self->prevVelField  ) {
-        EP_AppendClassHook( Context_GetEntryPoint( self->context, AbstractContext_EP_UpdateClass ), SemiLagrangianIntegrator_UpdatePreviousVelocityField, self );
-        EP_InsertClassHookAfter( Context_GetEntryPoint( self->context, AbstractContext_EP_UpdateClass ), "SemiLagrangianIntegrator_UpdatePreviousVelocityField", 
-            SemiLagrangianIntegrator_InitSolve, self );
-    } 
-    else {
-        EP_AppendClassHook( Context_GetEntryPoint( self->context, AbstractContext_EP_UpdateClass ), SemiLagrangianIntegrator_InitSolve, self );
-    }
-
-    if( self->sle ) {
+    sle = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"SLE", Energy_SLE, False, NULL );
+    if( sle ) {
         /* also set sle to run where required */
         EP_InsertClassHookAfter( Context_GetEntryPoint( self->context, AbstractContext_EP_UpdateClass ), "SemiLagrangianIntegrator_InitSolve", 
-            SystemLinearEquations_GetRunEPFunction(), self->sle );
+            SystemLinearEquations_GetRunEPFunction(), sle );
         /* remember to disable the standard run at execute */
-        SystemLinearEquations_SetRunDuringExecutePhase( self->sle, False);
+        SystemLinearEquations_SetRunDuringExecutePhase( sle, False );
     }
 
     self->isConstructed = True;
@@ -199,20 +191,15 @@ void _SemiLagrangianIntegrator_AssignFromXML( void* slIntegrator, Stg_ComponentF
 void _SemiLagrangianIntegrator_Build( void* slIntegrator, void* data ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
     FeVariable*			feVariable;
-    FeVariable*			feVarOld;
     FeVariable*			feVarStar;
     unsigned			field_i;
 
     if(self->velocityField) Stg_Component_Build(self->velocityField, data, False);
-    if(self->advectedField) Stg_Component_Build(self->advectedField, data, False);
-    if(self->prevVelField)  Stg_Component_Build(self->prevVelField , data, False);
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
-        feVarOld   = (FeVariable*) self->varOldList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
         if(feVariable) Stg_Component_Build(feVariable, data, False);
-        if(feVarOld  ) Stg_Component_Build(feVarOld  , data, False);
         if(feVarStar ) Stg_Component_Build(feVarStar , data, False);
     }
 }
@@ -220,25 +207,15 @@ void _SemiLagrangianIntegrator_Build( void* slIntegrator, void* data ) {
 void _SemiLagrangianIntegrator_Initialise( void* slIntegrator, void* data ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
     FeVariable*			feVariable;
-    FeVariable*			feVarOld;
     FeVariable*			feVarStar;
-    unsigned			lMeshSize;
-    unsigned			field_i, node_i;
-    double			phi[3];
+    unsigned			field_i;
 
     if(self->velocityField) Stg_Component_Initialise(self->velocityField, data, False);
-    if(self->advectedField) Stg_Component_Initialise(self->advectedField, data, False);
-    if(self->prevVelField) {
-        Stg_Component_Initialise(self->prevVelField , data, False);
-        SemiLagrangianIntegrator_UpdatePreviousVelocityField( slIntegrator, NULL );
-    }
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
-        feVarOld   = (FeVariable*) self->varOldList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
         if(feVariable) Stg_Component_Initialise(feVariable, data, False);
-        if(feVarOld  ) Stg_Component_Initialise(feVarOld  , data, False);
         if(feVarStar ) Stg_Component_Initialise(feVarStar , data, False);
     }
 }
@@ -249,68 +226,43 @@ void _SemiLagrangianIntegrator_Execute( void* slIntegrator, void* data ) {
 void _SemiLagrangianIntegrator_Destroy( void* slIntegrator, void* data ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
     FeVariable*			feVariable;
-    FeVariable*			feVarOld;
     FeVariable*			feVarStar;
     unsigned			field_i;
 
     if(self->velocityField) Stg_Component_Destroy(self->velocityField, data, False);
-    if(self->advectedField) Stg_Component_Destroy(self->advectedField, data, False);
-    if(self->prevVelField)  Stg_Component_Destroy(self->prevVelField , data, False);
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
-        feVarOld   = (FeVariable*) self->varOldList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
         if(feVariable) Stg_Component_Destroy(feVariable, data, False);
-        if(feVarOld  ) Stg_Component_Destroy(feVarOld  , data, False);
         if(feVarStar ) Stg_Component_Destroy(feVarStar , data, False);
     }
+    if(self->pureAdvection) Memory_Free(self->pureAdvection);
 }
 
 void SemiLagrangianIntegrator_InitSolve( void* _self, void* _context ) {
     SemiLagrangianIntegrator*	self			= (SemiLagrangianIntegrator*) _self;
     unsigned			field_i, node_i;
     FeVariable*			feVariable;
-    FeVariable*			feVarOld;
     FeVariable*			feVarStar;
-    double			dt			= self->context->dt;
     double            		phi[3];
-    unsigned			lMeshSize;
-    FeMesh*			mesh;
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
-        feVarOld   = (FeVariable*) self->varOldList->data[field_i];
-
-        /* we're assuming that the solution vector has already been updated onto the FeVariable (in the SLE class) */
-        mesh = feVariable->feMesh;
-        lMeshSize = Mesh_GetLocalSize( mesh, MT_VERTEX );
-        for( node_i = 0; node_i < lMeshSize; node_i++ ) {
-            FeVariable_GetValueAtNode( feVariable, node_i, phi );
-            FeVariable_SetValueAtNode( feVarOld, node_i, phi );
-        }
-        FeVariable_SyncShadowValues( feVarOld );
 
         /* generate the _* field */
-        SemiLagrangianIntegrator_Solve( self, feVarOld, feVarStar );
+        SemiLagrangianIntegrator_Solve( self, feVariable, feVarStar );
+
+        /* if the field is not part of an SLE, (ie: is purely advected), then update here */
+        if( self->pureAdvection[field_i] ) {
+            for( node_i = 0; node_i < Mesh_GetLocalSize( feVariable->feMesh, MT_VERTEX ); node_i++ ) {
+                FeVariable_GetValueAtNode( feVarStar,  node_i, phi );
+                FeVariable_SetValueAtNode( feVariable, node_i, phi );
+            }
+            FeVariable_SyncShadowValues( feVariable );
+        }
     }
-}
-
-void SemiLagrangianIntegrator_IntegrateEuler( FeVariable* velocityField, double dt, double* origin, double* position ) {
-    unsigned		ndims		     = Mesh_GetDimSize( velocityField->feMesh );
-    unsigned*		periodic	     = ((CartesianGenerator*)velocityField->feMesh->generator)->periodic;
-    unsigned		dim_i;
-    double		min[3], max[3];
-    double		vel[3];
-
-    Mesh_GetGlobalCoordRange( velocityField->feMesh, min, max );
-
-    FieldVariable_InterpolateValueAt( velocityField, origin, vel );
-    for( dim_i = 0; dim_i < ndims; dim_i++ ) {
-        position[dim_i] = origin[dim_i] - dt*vel[dim_i];
-    }
-    SemiLagrangianIntegrator_PeriodicUpdate( position, min, max, periodic, ndims );
 }
 
 #define INV6 0.16666666666666667
@@ -324,87 +276,30 @@ void SemiLagrangianIntegrator_IntegrateRK4( FeVariable* velocityField, double dt
 
     Mesh_GetGlobalCoordRange( velocityField->feMesh, min, max );
 
-    //FieldVariable_InterpolateValueAt( velocityField, origin, k[0] );
     SemiLagrangianIntegrator_BicubicInterpolator( velocityField, origin, delta, nnodes, k[0] );
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[0][dim_i];
     }
-    SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
-    //FieldVariable_InterpolateValueAt( velocityField, coordPrime, k[1] );
+    if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
     SemiLagrangianIntegrator_BicubicInterpolator( velocityField, coordPrime, delta, nnodes, k[1] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[1][dim_i];
     }
-    SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
-    //FieldVariable_InterpolateValueAt( velocityField, coordPrime, k[2] );
+    if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
     SemiLagrangianIntegrator_BicubicInterpolator( velocityField, coordPrime, delta, nnodes, k[2] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt * k[2][dim_i];
     }
-    SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
-    //FieldVariable_InterpolateValueAt( velocityField, coordPrime, k[3] );
+    if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
     SemiLagrangianIntegrator_BicubicInterpolator( velocityField, coordPrime, delta, nnodes, k[3] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         position[dim_i] = origin[dim_i] -
             INV6 * dt * ( k[0][dim_i] + 2.0 * k[1][dim_i] + 2.0 * k[2][dim_i] + k[3][dim_i] );
     }
-    SemiLagrangianIntegrator_PeriodicUpdate( position, min, max, periodic, ndims );
-}
-
-/* 2nd order acurate runge kutta algorithm for interpolating backwards in time through a temporally evolving velocity field
-   Durran, D. "Numerical Methods for Wave Equations in Geophysical Fluid Dynamics" (1999), pages 310-313
-
-   u(t^(n+0.5)) = 1.5u(t^n) - 0.5u(t^(n-1))
-   x_* = x^(n+1) - 0.5*dt*u(x^(n+1),t^n)
-   x_j^n = x^(n+1) - dt*u(x_*,t^(n+0.5))
-
-   Force term:
-      F = 0.5*[3*S(x_j^n,t^n) - S(x_j^(n-1),t^(n-1))]
- */
-void SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity( FeVariable* currVelField, FeVariable* interVelField, double dt, double* origin, double* position ) {
-    unsigned		nDims		     = Mesh_GetDimSize( currVelField->feMesh );
-    unsigned		dim_i;
-    double		min[3], max[3];
-    double		midPoint[3];
-    double		velCurr[3], velInter[3];
-    CartesianGenerator*	gen		     = (CartesianGenerator*)currVelField->feMesh->generator;
-
-    Mesh_GetGlobalCoordRange( currVelField->feMesh, min, max );
-
-    FieldVariable_InterpolateValueAt( currVelField, origin, velCurr );
-    for( dim_i = 0; dim_i < nDims; dim_i++ ) {
-        midPoint[dim_i] = origin[dim_i] - 0.5 * dt * velCurr[dim_i];
-    }
-    SemiLagrangianIntegrator_PeriodicUpdate( midPoint, min, max, gen->periodic, nDims );
-
-    FieldVariable_InterpolateValueAt( interVelField, midPoint, velInter );
-
-    /* 2nd order approximation of velocity at time current + dt/2 */
-    for( dim_i = 0; dim_i < nDims; dim_i++ ) {
-        position[dim_i] = origin[dim_i] - dt * velInter[dim_i];
-    }
-    SemiLagrangianIntegrator_PeriodicUpdate( position, min, max, gen->periodic, nDims );
-}
-
-/* for case of temporally evolving velocity field, when we need to integrate backwards in time
- * throught this to find our take off point */
-void SemiLagrangianIntegrator_UpdatePreviousVelocityField( void* _self, void* _context ) {
-    SemiLagrangianIntegrator*	self		= (SemiLagrangianIntegrator*) _self;
-    FeVariable*			currVelField	= self->velocityField;
-    FeVariable*			prevVelField	= self->prevVelField;
-    unsigned			node_i;
-    double			vel[3];
-
-    for( node_i = 0; node_i < Mesh_GetLocalSize( currVelField->feMesh, MT_VERTEX ); node_i++ ) {
-        FeVariable_GetValueAtNode( currVelField, node_i, vel );
-        FeVariable_SetValueAtNode( prevVelField, node_i, vel );
-    }
-
-    FeVariable_SyncShadowValues( currVelField );
-    FeVariable_SyncShadowValues( prevVelField );
+    if( SemiLagrangianIntegrator_PeriodicUpdate( position, min, max, periodic, ndims ) );
 }
 
 /* cubic Lagrangian interpoation in 1-D */
@@ -555,10 +450,8 @@ void SemiLagrangianIntegrator_BicubicInterpolator( FeVariable* feVariable, doubl
 
                 SemiLagrangianIntegrator_InterpLagrange( position[0], px, ptsX, numdofs, ptsY[y_i] );
             }
-
             SemiLagrangianIntegrator_InterpLagrange( position[1], py, ptsY, numdofs, ptsZ[z_i] );
         }
-
         SemiLagrangianIntegrator_InterpLagrange( position[2], pz, ptsZ, numdofs, result );
     }
     else {
@@ -573,7 +466,6 @@ void SemiLagrangianIntegrator_BicubicInterpolator( FeVariable* feVariable, doubl
 
             SemiLagrangianIntegrator_InterpLagrange( position[0], px, ptsX, numdofs, ptsY[y_i] );
         }
-
         SemiLagrangianIntegrator_InterpLagrange( position[1], py, ptsY, numdofs, result );
     }
 
@@ -613,16 +505,6 @@ void SemiLagrangianIntegrator_GetDeltaConst( FeVariable* variableField, double* 
     }
 }
 
-double CalcDt( AbstractContext* context, FeVariable* velocity ) {
-    double 	velMax 		= _FeVariable_GetMaxGlobalFieldMagnitude( velocity );
-    double 	dx, dx3[3];
-    double	courant		= Dictionary_GetDouble_WithDefault( context->dictionary, "courantFactor", 1.0 );
-
-    FeVariable_GetMinimumSeparation( velocity, &dx, dx3 );
-
-    return courant*dx/velMax;
-}
-
 void SemiLagrangianIntegrator_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* varStarField ) {
     SemiLagrangianIntegrator*	self 		     = (SemiLagrangianIntegrator*)slIntegrator;
     FiniteElementContext*	context		     = self->context;
@@ -652,4 +534,3 @@ void SemiLagrangianIntegrator_Solve( void* slIntegrator, FeVariable* variableFie
     }
     FeVariable_SyncShadowValues( varStarField );
 }
-

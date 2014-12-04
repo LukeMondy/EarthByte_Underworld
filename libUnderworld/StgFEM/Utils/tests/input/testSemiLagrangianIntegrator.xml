@@ -19,8 +19,8 @@
    <param name="journal.info.Stg_ComponentFactory">False</param>
 
    <param name="dim">2</param>
-   <param name="dumpEvery">2</param>
-   <param name="checkpointEvery">2</param>
+   <param name="dumpEvery">0</param>
+   <param name="checkpointEvery">0</param>
    <param name="minX"> 0.0</param>
    <param name="minY"> 0.0</param>
    <param name="minZ"> 0.0</param>
@@ -34,6 +34,7 @@
 
    <param name="reverseTimeStep"> 80</param>
    <param name="maxTimeSteps">160</param>
+   <param name="staticTimeStep">0.0003108495</param>
 
    <include>StgFEM/LinearMesh.xml</include>
    <include>StgFEM/GaussSwarm.xml</include>
@@ -68,7 +69,6 @@
          </struct>
       </list>
    </struct>
-   <param name="VelocityFieldScale"> 1.0 </param>
 
    <struct name="components" mergeType="merge">
       <struct name="velocity">
@@ -156,32 +156,13 @@
          <param name="DofLayout"> phiStarDofLayout </param>
          <param name="LinkedDofInfo"> phiStarLinkedDofs </param>
       </struct>
-      <struct name="phiOld">
-         <param name="Type"> MeshVariable </param>
-         <param name="Rank"> Scalar </param>
-         <param name="DataType"> Double </param>
-         <param name="mesh"> phiMesh </param>
-      </struct>
-      <struct name="phiOldDofLayout">
-         <param name="Type"> DofLayout </param>
-         <param name="mesh"> phiMesh </param>
-         <list name="BaseVariables">
-            <param>phiOld</param>
-         </list>
-      </struct>
-      <struct name="PhiOldField">
-         <param name="Type"> FeVariable </param>
-         <param name="FEMesh"> phiMesh </param>
-         <param name="DofLayout"> phiOldDofLayout </param>
-         <param name="LinkedDofInfo"> phiOldLinkedDofs </param>
-      </struct>
 
       <struct name="integrator">
          <param name="Type">SemiLagrangianIntegrator</param>
          <param name="VelocityField">VelocityField</param>
          <param name="Context">context</param>
          <list name="fields">
-            <param>PhiField</param><param>PhiStarField</param><param>PhiOldField</param>
+            <param>PhiField</param><param>PhiStarField</param><param>true</param>
          </list>
       </struct>
 

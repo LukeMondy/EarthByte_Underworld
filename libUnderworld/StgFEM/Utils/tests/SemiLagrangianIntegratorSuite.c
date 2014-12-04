@@ -41,7 +41,6 @@
 #include "SemiLagrangianIntegratorSuite.h"
 
 #define CURR_MODULE_NAME "SemiLagrangianIntegratorSuite"
-#define TOLERANCE 0.035
 
 typedef struct {
 } SemiLagrangianIntegratorSuiteData;
@@ -55,34 +54,21 @@ double SolWave( double* coord ) {
     return sx*sx*sy*sy;
 }
 
-double Dt( void* _context ) {
+double SemiLagrangianIntegratorSuite_Dt( void* _context ) {
     FiniteElementContext*	context		= (FiniteElementContext*) _context;
     FeVariable*			velocityField	= (FeVariable*) LiveComponentRegister_Get( context->CF->LCRegister, (Name)"VelocityField"  );
+    Index                   	staticTimeStep  = Dictionary_GetDouble_WithDefault( context->dictionary, "staticTimeStep", 0.0 );
     double			velMax;
     double			delta[3], minDelta;
+
+    if( staticTimeStep > 1.0e-6 )
+        return staticTimeStep;
 
     velMax = FieldVariable_GetMaxGlobalFieldMagnitude( velocityField );
     //FeVariable_GetMinimumSeparation( velocityField, &minDelta, delta );
     minDelta = 1.0/512;
 
     return 0.5 * minDelta / velMax;
-}
-
-void SemiLagrangianIntegratorSuite_Line( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
-    FiniteElementContext*	context		= (FiniteElementContext*)_context;
-    Dictionary*			dictionary	= context->dictionary;
-    FeVariable*			feVariable	= (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "PhiField" );
-    FeMesh*			mesh		= feVariable->feMesh;
-    double*			coord		= Mesh_GetVertex( mesh, node_lI );
-    double*			result		= (double*)_result;
-    double			width        	= Dictionary_GetDouble_WithDefault( dictionary, (Dictionary_Entry_Key)"lineWidth", 1.0  );
-    double			lineRadius	= Dictionary_GetDouble_WithDefault( dictionary, (Dictionary_Entry_Key)"lineRadius", 10.0 );
-    double			radius		= sqrt( (coord[0] - 0.5)*(coord[0] - 0.5) + (coord[1] - 0.5)*(coord[1] - 0.5) );
-
-    if( fabs( coord[0] - coord[1] ) < width && radius < lineRadius  )
-        *result = 2.0;
-    else
-        *result = 1.0;
 }
 
 void SemiLagrangianIntegratorSuite_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
@@ -143,19 +129,14 @@ void SemiLagrangianIntegratorSuite_UpdatePositions( void* data, FiniteElementCon
     Index                   	reverseTimeStep = Dictionary_GetUnsignedInt_WithDefault( context->dictionary, "reverseTimeStep", 100 );
     FeVariable*			velocityField	= (FeVariable*) LiveComponentRegister_Get( context->CF->LCRegister, (Name)"VelocityField" );
     FeMesh*			mesh		= velocityField->feMesh;
-    unsigned			node_I;
-    Index			dim_I;
+    unsigned			node_I, dim_I;
     unsigned			nDims		= Mesh_GetDimSize( mesh );
     double			velocity[3];
-    double			phi;
-    SemiLagrangianIntegrator*	slIntegrator;
-    FeVariable*			phiField;
-    FeVariable*			phiStarField;
 
     _FeVariable_SyncShadowValues( velocityField );
 
     /* reverse the numerically advected particles (& the semi lagrangian field also) */
-    if( context->timeStep == reverseTimeStep + 1  ) {
+    if( context->timeStep == reverseTimeStep ) {
         for( node_I = 0; node_I < Mesh_GetLocalSize( mesh, MT_VERTEX ); node_I++ ) {
             _FeVariable_GetValueAtNode( velocityField, node_I, velocity );
 
@@ -165,16 +146,7 @@ void SemiLagrangianIntegratorSuite_UpdatePositions( void* data, FiniteElementCon
             FeVariable_SetValueAtNode( velocityField, node_I, velocity );
         }
     }
-
-    slIntegrator = (SemiLagrangianIntegrator*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)"integrator" );
-    phiField     = (FeVariable* )LiveComponentRegister_Get( context->CF->LCRegister, (Name)"PhiField" );
-    phiStarField = (FeVariable* )LiveComponentRegister_Get( context->CF->LCRegister, (Name)"PhiStarField"  );
-    SemiLagrangianIntegrator_Solve( slIntegrator, phiField, phiStarField );
-
-    for( node_I = 0; node_I < Mesh_GetLocalSize( mesh, MT_VERTEX ); node_I++ ) {
-        FeVariable_GetValueAtNode( phiStarField, node_I, &phi );
-        FeVariable_SetValueAtNode( phiField, node_I, &phi );
-    }
+    _FeVariable_SyncShadowValues( velocityField );
 }
 
 double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* phiField, Swarm* gaussSwarm, funcPtr func ) {
@@ -206,8 +178,6 @@ double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* phiField, Swarm*
 
         for( gaussPoint_I = 0; gaussPoint_I < numGaussPoints; gaussPoint_I++ ) {
             gaussPoint = (IntegrationPoint*) Swarm_ParticleInCellAt( gaussSwarm, lCell_I, gaussPoint_I );
-            //FeVariable_InterpolateWithinElement( phiOldField, lElement_I, gaussPoint->xi, &initialValue );
-            //FeVariable_InterpolateWithinElement( phiField, lElement_I, gaussPoint->xi, &finalValue );
 
             FeMesh_CoordLocalToGlobal( feMesh, lElement_I, gaussPoint->xi, gCoord );
             initialValue = func( gCoord );
@@ -243,7 +213,6 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
     //char			xml_input[PCU_PATH_MAX];
     double			l2Error;
     FeVariable*			phiField;
-    FeVariable*			phiOldField;
     FeVariable*			phiInitField;
     Swarm*			gaussSwarm;
     double			phi[3];
@@ -254,8 +223,6 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
     cf = stgMainInitFromXML( "StgFEM/Utils/input/testSemiLagrangianIntegrator.xml", MPI_COMM_WORLD, NULL );
     context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, NULL  );
 
-    condFunc = ConditionFunction_New( SemiLagrangianIntegratorSuite_Line, (Name)"Line", NULL  );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
     condFunc = ConditionFunction_New( SemiLagrangianIntegratorSuite_SolWave, (Name)"SolWave", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
     condFunc = ConditionFunction_New( SemiLagrangianIntegratorSuite_ShearCellX, (Name)"ShearCellX", NULL  );
@@ -264,7 +231,7 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
 
     /* manually set the timestep */
-    ContextEP_ReplaceAll( context, AbstractContext_EP_Dt, Dt );
+    ContextEP_ReplaceAll( context, AbstractContext_EP_Dt, SemiLagrangianIntegratorSuite_Dt );
     ContextEP_Append( context, AbstractContext_EP_UpdateClass, SemiLagrangianIntegratorSuite_UpdatePositions );
 
     stgMainBuildAndInitialise( cf );
@@ -281,10 +248,10 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
 
     l2Error = SemiLagrangianIntegratorSuite_EvaluateError( phiField, gaussSwarm, SolWave );
 
-    printf( "\ntime step: %12.10e\n\n", Dt(context) );
+    printf( "\ntime step: %12.10e\n\n", SemiLagrangianIntegratorSuite_Dt(context) );
     printf( "\nERROR (1): %12.10e\n\n", l2Error );
 
-    pcu_check_true( l2Error < TOLERANCE );
+    pcu_check_true( l2Error < 5.0e-4 );
 
     stgMainDestroy( cf );
 }
