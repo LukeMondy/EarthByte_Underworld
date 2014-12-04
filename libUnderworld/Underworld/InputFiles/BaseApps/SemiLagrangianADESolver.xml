@@ -8,7 +8,6 @@
       <param>VelocityField</param>
       <param>TemperatureField</param>
       <param>temperatureStarField</param>
-      <param>temperatureOldField</param>
    </list>
 
    <include> StgFEM/SemiLagrangianIntegrator.xml </include>
