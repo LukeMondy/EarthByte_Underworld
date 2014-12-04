@@ -19,7 +19,7 @@
 	</list>
 
 	<!-- Component Stuff -->
-	<include>../InputFiles/StokesFlowQ2Q1Nearest.xml </include>
+	<include>../InputFiles/StokesFlowQ2P1Nearest.xml </include>
         <include>StgFEM/ConstantMesh.xml</include>
         <include>StgFEM/TemperatureField.xml         </include>
 	<include>StgFEM/TempAdvDiff.xml              </include>

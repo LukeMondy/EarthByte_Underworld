@@ -22,7 +22,6 @@
 
   <include>StgFEM/QuadraticMesh.xml</include>
   <include>StgFEM/LinearInnerMesh.xml</include>
-  <include>StgFEM/LinearMesh.xml</include>
   <include>StgFEM/VelocityField.xml</include>
   <include>StgFEM/PressureField.xml</include>
   <include>StgFEM/TimeIntegrator.xml</include>
@@ -58,8 +57,10 @@
       <param name="MaterialPointsSwarm">materialSwarm</param>
     </struct>
     <struct name="materialSwarmParticleLayout">
-      <param name="Type">SpaceFillerParticleLayout</param>
-      <param name="averageInitialParticlesPerCell">particlesPerCell</param>
+      <param name="Type">GaussParticleLayout</param>
+      <param name="gaussParticlesX">gaussParticlesX</param>
+      <param name="gaussParticlesY">gaussParticlesY</param>
+      <param name="gaussParticlesZ">gaussParticlesZ</param>
     </struct>
     <struct name="pMovementHandler"> 
       <param name="Type">ParticleMovementHandler</param>

@@ -39,7 +39,7 @@ export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="mpirun -n 4 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
-for VC in 8
+for VC in 6 8
 do
 for SC in 0
 do
@@ -137,19 +137,21 @@ PCRES=15
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
 #NAME="solcxGMG"
-NAME="sinkerq2q1"
+NAME="sinkerBoxq2q1"
 #NAME="penTest"
-DIR="xpcdvc_${NAME}_${RESX}x${RESY}"
+DIR="sink_${NAME}_${RESX}x${RESY}"
 OUT="$DIR/sinker_10e${VC}_${SCALETEXT}_${PEN}"
 mkdir $DIR >& /dev/null
 mkdir $OUT >& /dev/null
 
-$UWEXEC $UWPATH/Solvers/InputFiles/sinkerq2q1PCDVC.xml \
+$UWEXEC $UWPATH/Solvers/InputFiles/sinkerq2q1NearestSquare.xml \
     $UWPATH/Solvers/InputFiles/AugLagStokesSLE-GtMG.xml \
     $UWPATH/Solvers/InputFiles/VelocityMassMatrixSLE.xml \
     $UWPATH/Solvers/InputFiles/kspinterface.xml \
     $UWPATH/Solvers/InputFiles/quiet.xml  \
     $MGOP \
+    --bminX=0.25 --bmaxX=0.75 \
+    --bminY=0.25 --bmaxY=0.75 \
     --particlesPerCell=$PP \
     --gaussParticlesX=$GAUSSP \
     --gaussParticlesY=$GAUSSP \

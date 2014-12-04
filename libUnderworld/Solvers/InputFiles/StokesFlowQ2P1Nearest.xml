@@ -22,7 +22,6 @@
 
   <include>StgFEM/QuadraticMesh.xml</include>
   <include>StgFEM/LinearInnerMesh.xml</include>
-  <include>StgFEM/LinearMesh.xml</include>
   <include>StgFEM/VelocityField.xml</include>
   <include>StgFEM/PressureField.xml</include>
   <include>StgFEM/TimeIntegrator.xml</include>
@@ -30,7 +29,7 @@
   <include>Underworld/StokesFlowUzawaPIC.xml</include>
 
   <param name="velocityMesh">quadraticMesh</param>
-  <param name="pressureMesh">linearMesh</param>
+  <param name="pressureMesh">linearInnerMesh</param>
   <param name="elementMesh">quadraticMesh</param>
 
   <struct name="components" mergeType="merge">
