@@ -339,7 +339,7 @@ void _lucDatabase_Execute( void* database, void* data )
    /* Call setup on drawing objects (if any) !This must be called on all procs! */
    lucDrawingObject_Register_SetupAll( self->drawingObject_Register, database );
 
-   if (self->context->rank == 0)
+   if (self->rank == 0)
    {
       /* Multi-file database setup */
       if (!self->singleFile)
