@@ -14473,21 +14473,12 @@ class SemiLagrangianIntegrator(_object):
     __swig_setmethods__["varStarList"] = _StgFEM.SemiLagrangianIntegrator_varStarList_set
     __swig_getmethods__["varStarList"] = _StgFEM.SemiLagrangianIntegrator_varStarList_get
     if _newclass:varStarList = _swig_property(_StgFEM.SemiLagrangianIntegrator_varStarList_get, _StgFEM.SemiLagrangianIntegrator_varStarList_set)
-    __swig_setmethods__["varOldList"] = _StgFEM.SemiLagrangianIntegrator_varOldList_set
-    __swig_getmethods__["varOldList"] = _StgFEM.SemiLagrangianIntegrator_varOldList_get
-    if _newclass:varOldList = _swig_property(_StgFEM.SemiLagrangianIntegrator_varOldList_get, _StgFEM.SemiLagrangianIntegrator_varOldList_set)
+    __swig_setmethods__["pureAdvection"] = _StgFEM.SemiLagrangianIntegrator_pureAdvection_set
+    __swig_getmethods__["pureAdvection"] = _StgFEM.SemiLagrangianIntegrator_pureAdvection_get
+    if _newclass:pureAdvection = _swig_property(_StgFEM.SemiLagrangianIntegrator_pureAdvection_get, _StgFEM.SemiLagrangianIntegrator_pureAdvection_set)
     __swig_setmethods__["context"] = _StgFEM.SemiLagrangianIntegrator_context_set
     __swig_getmethods__["context"] = _StgFEM.SemiLagrangianIntegrator_context_get
     if _newclass:context = _swig_property(_StgFEM.SemiLagrangianIntegrator_context_get, _StgFEM.SemiLagrangianIntegrator_context_set)
-    __swig_setmethods__["advectedField"] = _StgFEM.SemiLagrangianIntegrator_advectedField_set
-    __swig_getmethods__["advectedField"] = _StgFEM.SemiLagrangianIntegrator_advectedField_get
-    if _newclass:advectedField = _swig_property(_StgFEM.SemiLagrangianIntegrator_advectedField_get, _StgFEM.SemiLagrangianIntegrator_advectedField_set)
-    __swig_setmethods__["prevVelField"] = _StgFEM.SemiLagrangianIntegrator_prevVelField_set
-    __swig_getmethods__["prevVelField"] = _StgFEM.SemiLagrangianIntegrator_prevVelField_get
-    if _newclass:prevVelField = _swig_property(_StgFEM.SemiLagrangianIntegrator_prevVelField_get, _StgFEM.SemiLagrangianIntegrator_prevVelField_set)
-    __swig_setmethods__["sle"] = _StgFEM.SemiLagrangianIntegrator_sle_set
-    __swig_getmethods__["sle"] = _StgFEM.SemiLagrangianIntegrator_sle_get
-    if _newclass:sle = _swig_property(_StgFEM.SemiLagrangianIntegrator_sle_get, _StgFEM.SemiLagrangianIntegrator_sle_set)
     def __init__(self): 
         this = _StgFEM.new_SemiLagrangianIntegrator()
         try: self.this.append(this)
@@ -14543,10 +14534,6 @@ def SemiLagrangianIntegrator_InitSolve(*args):
   return _StgFEM.SemiLagrangianIntegrator_InitSolve(*args)
 SemiLagrangianIntegrator_InitSolve = _StgFEM.SemiLagrangianIntegrator_InitSolve
 
-def SemiLagrangianIntegrator_UpdatePreviousVelocityField(*args):
-  return _StgFEM.SemiLagrangianIntegrator_UpdatePreviousVelocityField(*args)
-SemiLagrangianIntegrator_UpdatePreviousVelocityField = _StgFEM.SemiLagrangianIntegrator_UpdatePreviousVelocityField
-
 def SemiLagrangianIntegrator_BicubicInterpolator(*args):
   return _StgFEM.SemiLagrangianIntegrator_BicubicInterpolator(*args)
 SemiLagrangianIntegrator_BicubicInterpolator = _StgFEM.SemiLagrangianIntegrator_BicubicInterpolator
@@ -14563,17 +14550,9 @@ def SemiLagrangianIntegrator_GetDeltaConst(*args):
   return _StgFEM.SemiLagrangianIntegrator_GetDeltaConst(*args)
 SemiLagrangianIntegrator_GetDeltaConst = _StgFEM.SemiLagrangianIntegrator_GetDeltaConst
 
-def SemiLagrangianIntegrator_IntegrateEuler(*args):
-  return _StgFEM.SemiLagrangianIntegrator_IntegrateEuler(*args)
-SemiLagrangianIntegrator_IntegrateEuler = _StgFEM.SemiLagrangianIntegrator_IntegrateEuler
-
 def SemiLagrangianIntegrator_IntegrateRK4(*args):
   return _StgFEM.SemiLagrangianIntegrator_IntegrateRK4(*args)
 SemiLagrangianIntegrator_IntegrateRK4 = _StgFEM.SemiLagrangianIntegrator_IntegrateRK4
-
-def SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity(*args):
-  return _StgFEM.SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity(*args)
-SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity = _StgFEM.SemiLagrangianIntegrator_IntegrateRK2_VariableVelocity
 
 def SemiLagrangianIntegrator_Solve(*args):
   return _StgFEM.SemiLagrangianIntegrator_Solve(*args)
