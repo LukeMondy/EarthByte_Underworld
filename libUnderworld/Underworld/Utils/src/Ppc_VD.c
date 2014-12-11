@@ -121,9 +121,10 @@ void _Ppc_VD_Destroy( void* _self, void* data )
 int _Ppc_VD_Get( void* _self, unsigned lElement_I, IntegrationPoint* particle, double* result )
 {
    Ppc_VD* self = (Ppc_VD*) _self;
-   int err;
-   double vd, tau[6], sr[6], viscosity;
-   double tmp;
+   int err, dim;
+   double vd, tau[6], sr[6], viscosity, tr;
+
+   dim = self->context->dim;
 
    err = PpcManager_Get( self->manager, lElement_I, particle, self->strainRateTag, sr );
    assert(!err);
@@ -131,10 +132,20 @@ int _Ppc_VD_Get( void* _self, unsigned lElement_I, IntegrationPoint* particle, d
    err = PpcManager_Get( self->manager, lElement_I, particle, self->viscosityTag, &viscosity );
    assert(!err);
 
+   // build a trace free strain rate
+   if( dim == 2 ) tr = (sr[0]+sr[1]) / 2;
+   else           tr = (sr[0]+sr[1]+sr[2]) / 3;
+
    // build a stress tensor - assume isotropic rheology
-   tau[0] = 2 * viscosity * sr[0];
-   tau[1] = 2 * viscosity * sr[1];
+   tau[0] = 2 * viscosity * sr[0] - 2*tr;
+   tau[1] = 2 * viscosity * sr[1] - 2*tr;
    tau[2] = 2 * viscosity * sr[2];
+   if( dim == 3 ) {
+      tau[2] = 2 * viscosity * sr[2] - 2*tr;
+      tau[3] = 2 * viscosity * sr[3];
+      tau[4] = 2 * viscosity * sr[4];
+      tau[5] = 2 * viscosity * sr[5];
+   }
 
    // take the tensor inner product of stress and strain-rate 
    vd = tau[0]*sr[0] + tau[1]*sr[1] + 2*tau[2]*sr[2];
