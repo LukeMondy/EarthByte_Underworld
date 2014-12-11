@@ -1,9 +1,9 @@
 /**
   This Ppc evaluates:
 
-   exp( x )
+   c * exp( x )
 
-  where x is a ppc
+  where c & x are ppcs
 
 **/
 
@@ -20,6 +20,7 @@ extern const Type Ppc_Exponential_Type;
 		__Ppc \
 		/* General data */ \
 		int x_tag;         \
+		int c_tag;         \
 
 struct Ppc_Exponential
 {

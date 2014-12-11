@@ -63,9 +63,9 @@ void _Ppc_Compression_AssignFromXML( void* _self, Stg_ComponentFactory* cf, void
    /* Construct parent */
    _Ppc_AssignFromXML( self, cf, data );
    self->tensorTag = PpcManager_GetField( self->manager, cf, (Stg_Component*)self, "Tensor", True );
-   self->densityTag = PpcManager_GetField( self->manager, cf, (Stg_Component*)self, "Density", True );
-   self->velocityTag = PpcManager_GetField( self->manager, cf, (Stg_Component*)self, "Velocity", True );
-   self->gradRhoTag = PpcManager_GetField( self->manager, cf, (Stg_Component*)self, "grad_rho", True );
+   self->densityTag = PpcManager_GetField( self->manager, cf, (Stg_Component*)self, "Density", False );
+   self->velocityTag = PpcManager_GetField( self->manager, cf, (Stg_Component*)self, "Velocity", False );
+   self->gradRhoTag = PpcManager_GetField( self->manager, cf, (Stg_Component*)self, "grad_rho", False );
 
    found = Stg_ComponentFactory_TryInt( cf, self->name, (Dictionary_Entry_Key)"Invariant", &self->invType );
    Journal_Firewall( found, global_error_stream, "Error in %s:\nCan't find\n <param name=\"Invariant\"> </param>\n in \'%s\' definition. Add the order of invariant number you want\n", __func__, self->name); 

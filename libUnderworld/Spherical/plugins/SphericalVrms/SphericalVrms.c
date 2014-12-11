@@ -42,6 +42,7 @@
 #include <StgFEM/StgFEM.h>
 #include <PICellerator/PICellerator.h>
 #include <Underworld/Underworld.h>
+#include <Spherical/Spherical.h>
 #include <StgFEM/FrequentOutput/FrequentOutput.h>
 
 #include "SphericalVrms.h"
@@ -61,7 +62,12 @@ void _Underworld_SphericalVrms_AssignFromXML( void* component, Stg_ComponentFact
       cf, self, (Dictionary_Entry_Key)"VelocityField", FeVariable, True, data );
 
    Underworld_SphericalVrms_PrintHeaderToFile( self->context );
-   ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Underworld_SphericalVrms_Dump );
+   if( Stg_ComponentFactory_PluginGetBool( cf, self, (Dictionary_Entry_Key)"ElementIntegrals", True ) ) {
+      ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Underworld_SphericalVrms_Dump );
+   } else {
+      ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Underworld_SphericalVrms_Dump_old );
+   }
+
 }
 
 void _Underworld_SphericalVrms_Build( void* component, void* data ) {
@@ -128,6 +134,80 @@ Index Spherical_SphericalVrms_Register( PluginsManager* pluginsManager ) {
 
 /* Integrate Every Step and dump to file */
 void Underworld_SphericalVrms_Dump( void* _context ) {
+   UnderworldContext* context = (UnderworldContext* ) _context;
+   FeMesh*              mesh;
+   FeVariable* velocityField=NULL;
+   Swarm* is=NULL;
+   IntegrationPoint *ip=NULL;
+   int cell_I, cParticleCount, p_i;
+   double             vec[3], rtp[3], xyz[3], vrtp[3];
+   double             area, detJac, factor, gArea, magVrms;
+   double             vrms[2], gVrms[2]; // 1st component is radial_vrms, 2nd angular_vrms 
+   Dimension_Index    dim = context->dim;
+   int ii, nLocalEls;
+
+   Underworld_SphericalVrms* self;
+
+   self = (Underworld_SphericalVrms*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)Underworld_SphericalVrms_Type );
+   assert( self );
+   velocityField = self->velocityField; assert( velocityField );
+   mesh = velocityField->feMesh; assert( mesh );
+   is = self->gaussSwarm;
+   nLocalEls = FeMesh_GetElementLocalSize( mesh );
+   
+   // zero integrals
+   vrms[0]=vrms[1]=area=0;
+
+   for( ii=0; ii<nLocalEls; ii++ ) {
+
+      cell_I = CellLayout_MapElementIdToCellId( is->cellLayout, ii );
+      cParticleCount = is->cellParticleCountTbl[ cell_I ];
+
+      for( p_i = 0 ; p_i < cParticleCount; p_i++ ) {
+         ip = (IntegrationPoint*)Swarm_ParticleInCellAt( is, cell_I, p_i );
+
+         /* get vert coord */
+         FeMesh_CoordLocalToGlobal( mesh, ii, ip->xi, xyz );
+         Spherical_XYZ2RTP2D( xyz, rtp );
+
+         /* get vel vec */
+         FeVariable_InterpolateFromMeshLocalCoord( velocityField, mesh, ii, ip->xi, vec );
+         Spherical_VectorXYZ2RTP( vec, xyz, dim, vrtp );
+
+         /* get integration weight and volume */
+         detJac = ElementType_JacobianDeterminant( 
+               FeMesh_GetElementType( mesh, ii ), 
+               mesh, ii, ip->xi, dim );
+
+         factor = detJac * ip->weight;
+         area += factor;
+         
+
+         // integrate the square
+         vrms[0] += (vrtp[0]*vrtp[0]*factor);
+         vrms[1] += (vrtp[1]*vrtp[1]*factor);
+      }
+   }
+
+   /* Sum processor integral */
+   (void)MPI_Allreduce( vrms, gVrms, 2, MPI_DOUBLE, MPI_SUM, context->communicator );
+   (void)MPI_Allreduce( &area, &gArea, 1, MPI_DOUBLE, MPI_SUM, context->communicator );
+
+   // sqrt of volume averaged component
+   gVrms[0] = sqrt(gVrms[0]/gArea);
+   gVrms[1] = sqrt(gVrms[1]/gArea);
+
+   magVrms = sqrt( gVrms[0]*gVrms[0] + gVrms[1]*gVrms[1] );
+   /* Print data to file */
+   StgFEM_FrequentOutput_PrintValue( context, magVrms );
+   StgFEM_FrequentOutput_PrintValue( context, gVrms[0] );
+   StgFEM_FrequentOutput_PrintValue( context, gVrms[1] );
+
+   /* Put Value onto context */
+   self->vrms = magVrms;
+}
+
+void Underworld_SphericalVrms_Dump_old( void* _context ) {
    UnderworldContext* context = (UnderworldContext* ) _context;
    FeMesh*              mesh;
    FeVariable* velocityField=NULL;

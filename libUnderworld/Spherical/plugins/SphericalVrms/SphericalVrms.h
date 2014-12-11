@@ -47,6 +47,7 @@
    } Underworld_SphericalVrms;
 
    void Underworld_SphericalVrms_Dump( void* _context ) ;
+   void Underworld_SphericalVrms_Dump_old( void* _context ) ;
    void Underworld_SphericalVrms_PrintHeaderToFile( void* _context ) ;
    Index Underworld_SphericalVrms_Register( PluginsManager* pluginsManager );
 

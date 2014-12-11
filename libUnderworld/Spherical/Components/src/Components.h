@@ -32,6 +32,7 @@
 #include "MatAssembly_NA__Fi__NB.h"
 #include "Ppc_SphericalDepth.h"
 #include "Ppc_Compression.h"
+#include "Ppc_VecDotVec.h"
 
 #include "Init.h"
 #include "Finalise.h"

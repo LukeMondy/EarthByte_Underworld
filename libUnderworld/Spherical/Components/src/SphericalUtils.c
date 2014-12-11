@@ -596,6 +596,7 @@ void Spherical_FeVariable_NonAABCsCalibration( void *_self )
       FeVariable_SetValueAtNode( fe, node_I, vec_xy );
    }
 }
+
 void Spherical_VectorRTP2XYZ( double *Q, double *xyz, int dim, double* v ) {
    /*@
    	Purpose - Convert spherical vector, Q, at position xyz, into cartesian vector, v, assuming
@@ -611,10 +612,19 @@ void Spherical_VectorRTP2XYZ( double *Q, double *xyz, int dim, double* v ) {
    if( dim == 2 ) {
       radius = sqrt( xyz[0]*xyz[0] + xyz[1]*xyz[1] );
 
-      v[0] = ( Q[0]*xyz[0] + Q[1]*xyz[1] ) / radius;
-      v[1] = (-Q[0]*xyz[1] + Q[1]*xyz[0] ) / radius;
+      v[0] = ( Q[0]*xyz[0] - Q[1]*xyz[1] ) / radius;
+      v[1] = ( Q[0]*xyz[1] + Q[1]*xyz[0] ) / radius;
+
+      norm_cart = sqrt( Q[0]*Q[0] + Q[1]*Q[1] );
+      norm_rtp  = sqrt( v[0]*v[0] + v[1]*v[1] );
+
 
    } else {assert(0);}
+
+   if( fabs(norm_cart - norm_rtp) > 1e-5 ) {
+      printf("\nFucked up in %s\n\n", __func__ );
+      assert(0);
+   }
 }
 
 void Spherical_VectorXYZ2RTP( double *_v, double *xyz, int dim, double* v )
@@ -639,10 +649,9 @@ void Spherical_VectorXYZ2RTP( double *_v, double *xyz, int dim, double* v )
       v[0] = ( _v[0]*xyz[0] + _v[1]*xyz[1] ) / radius;
       v[1] = (-_v[0]*xyz[1] + _v[1]*xyz[0] ) / radius;
 
-      /*
-      v[0] = ( _v[0]*xyz[0] + _v[1]*xyz[1] ) / radius;
-      v[1] = ( _v[1]*xyz[0] - _v[0]*xyz[1] ) / (radius*radius);
-      */
+
+      norm_cart = sqrt( _v[0]*_v[0]+_v[1]*_v[1] );
+      norm_rtp = sqrt( v[0]*v[0] + v[1]*v[1] );
    } 
    else {
 
@@ -660,10 +669,10 @@ void Spherical_VectorXYZ2RTP( double *_v, double *xyz, int dim, double* v )
       v[2] = ( -xyz[0]*xyz[1]*pow(b2, -1.5) * _v[0] +
              pow(b2, -0.5) * _v[1] +
              -xyz[1]*xyz[2] * pow(b2,-1.5) ) / (1 + b1*b1 );
-   }
 
-   norm_cart = sqrt( _v[0]*_v[0]+_v[1]*_v[1]+_v[2]*_v[2] );
-   norm_rtp = sqrt( v[0]*v[0] + v[1]*v[1]+v[2]*v[2] );
+      norm_cart = sqrt( _v[0]*_v[0]+_v[1]*_v[1]+_v[2]*_v[2] );
+      norm_rtp = sqrt( v[0]*v[0] + v[1]*v[1]+v[2]*v[2] );
+   }
 
    if( fabs(norm_cart - norm_rtp) > 1e-5 ) {
       printf("\nFucked up in %s\n\n", __func__ );

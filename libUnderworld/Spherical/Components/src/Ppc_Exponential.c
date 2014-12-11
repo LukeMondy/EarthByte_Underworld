@@ -57,7 +57,8 @@ void _Ppc_Exponential_AssignFromXML( void* _self, Stg_ComponentFactory* cf, void
 
    /* Construct parent */
    _Ppc_AssignFromXML( self, cf, data );
-	self->x_tag = PpcManager_GetPpcFromDict( self->manager, cf, (Name)self->name, "exponent_input", "" );
+   self->x_tag = PpcManager_GetPpcFromDict( self->manager, cf, (Name)self->name, "exponent_input", "" );
+   self->c_tag = PpcManager_GetPpcFromDict( self->manager, cf, (Name)self->name, "coefficient_input", "" );
 
 }
 
@@ -119,13 +120,18 @@ int _Ppc_Exponential_Get( void* _self, unsigned lElement_I, IntegrationPoint* pa
 {
 	Ppc_Exponential* self = (Ppc_Exponential*) _self;
 	int err;
-	double c;
+	double x, c;
 
-	err = PpcManager_Get( self->manager, lElement_I, particle, self->x_tag, &c );
+        c = 1.0;
+
+        // get expoenent
+	err = PpcManager_Get( self->manager, lElement_I, particle, self->x_tag, &x );
+        // get coefficient
+        if( self->c_tag != -1 ) err = PpcManager_Get( self->manager, lElement_I, particle, self->c_tag, &c );
 
 	assert( !err );
 
-	*result = exp( c );
+	*result = c * exp( x );
 
   return 0;
 }

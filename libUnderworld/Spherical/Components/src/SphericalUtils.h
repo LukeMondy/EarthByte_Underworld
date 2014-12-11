@@ -13,6 +13,7 @@ void Spherical_XYZ2RTP( double *xyz, double* rtp );
 
 /* Returns spherical vector v. Converts cartesian vector, _v, at position xyz assuming center of spherical coordinates is at x=0, y=0 */
 void Spherical_VectorXYZ2RTP( double *_v, double *xyz, int dim, double* v );
+void Spherical_VectorRTP2XYZ( double *Q, double *xyz, int dim, double* v );
 
 void Spherical_XYZ2RTP2D( double *xyz, double* rtp );
 void Spherical_XYZ2RTP3D( double *xyz, double* rtp );

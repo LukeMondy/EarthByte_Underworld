@@ -24,6 +24,7 @@ typedef struct Ppc_AdiabaticHeating Ppc_AdiabaticHeating;
 typedef struct MatAssembly_NA__Fi__NB MatAssembly_NA__Fi__NB;
 typedef struct Ppc_SphericalDepth Ppc_SphericalDepth;
 typedef struct Ppc_Compression Ppc_Compression;
+typedef struct Ppc_VecDotVec Ppc_VecDotVec;
 
 typedef enum {
    SphereBC_Wall_Inner,

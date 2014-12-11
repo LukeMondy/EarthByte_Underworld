@@ -204,15 +204,14 @@ void _MatAssembly_NA__Fi__NB_AssembleElement(
       ElementType_EvaluateShapeFunctionsAt( colElementType, xi, N ); 
 
       /* evaluate ppc function */
-      PpcManager_Get( self->ppcManager, lElement_I, currIntegrationPoint, self->grad_rho, &(gradRho_rtp[0]) );
       PpcManager_Get( self->ppcManager, lElement_I, currIntegrationPoint, self->rho, &rho );
+
+      // ASSUMES: gradRho_rtp[0] is the radial component of grad(rho)
+      PpcManager_Get( self->ppcManager, lElement_I, currIntegrationPoint, self->grad_rho, &(gradRho_rtp[0]) );
+      gradRho_rtp[0]=-1*gradRho_rtp[0]/rho; gradRho_rtp[1]=0; gradRho_rtp[2]=0; // minus one because depth is the negative of radial-axis
+      // This needs to be converted to an xyz basis vector
       FeMesh_CoordLocalToGlobal( colFeVar->feMesh, lElement_I, xi, xyz );
-      /*
-      gradRho_rtp[0]=gradRho_rtp[0]/rho; gradRho_rtp[1]=0; gradRho_rtp[2]=0;
       Spherical_VectorRTP2XYZ( gradRho_rtp, xyz, 2, gradRho_xyz );
-      */
-      gradRho_xyz[0]=0;
-      gradRho_xyz[1]=gradRho_rtp[1]/rho;
 
       for( A=0; A<rowNodes; A++ ) {
          for( B=0; B<colNodes; B++ ) {
