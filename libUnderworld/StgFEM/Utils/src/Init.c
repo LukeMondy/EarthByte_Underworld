@@ -56,20 +56,23 @@ Bool StgFEM_Utils_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister* componentRegister = Stg_ComponentRegister_Get_ComponentRegister();
    int tmp;
 
-   Journal_Printf( Journal_Register( DebugStream_Type, (Name)"Context"  ), "In: %s\n", __func__ ); /* DO NOT CHANGE OR REMOVE */
+   Journal_Printf( Journal_Register( DebugStream_Type, (Name)"Context" ), "In: %s\n", __func__ ); /* DO NOT CHANGE OR REMOVE */
    tmp = Stream_GetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context" )  );
-   Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context"  ), 0 );
-   Stream_Flush( Journal_Register( InfoStream_Type, (Name)"Context" )  );
-   Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context"  ), tmp );
+   Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context" ), 0 );
+   Stream_Flush( Journal_Register( InfoStream_Type, (Name)"Context" ) );
+   Stream_SetPrintingRank( Journal_Register( InfoStream_Type, (Name)"Context" ), tmp );
 
    /* initialise this level's streams */
    StgFEM_Utils_Debug = Stream_RegisterChild( StgFEM_Debug, "StgFEM" );
 
-   Stg_ComponentRegister_Add( componentRegister, SemiLagrangianIntegrator_Type, (Name)"0", _SemiLagrangianIntegrator_DefaultNew  );
-   RegisterParent( SemiLagrangianIntegrator_Type,	Stg_Component_Type );
+   Stg_ComponentRegister_Add( componentRegister, SemiLagrangianIntegrator_Type, (Name)"0", _SemiLagrangianIntegrator_DefaultNew );
+   RegisterParent( SemiLagrangianIntegrator_Type, Stg_Component_Type );
 
-		Stg_ComponentRegister_Add( componentRegister, IrregularMeshParticleLayout_Type, "0", (Stg_Component_DefaultConstructorFunction*) _IrregularMeshParticleLayout_DefaultNew);
-		RegisterParent( IrregularMeshParticleLayout_Type,	GlobalParticleLayout_Type	);
+   Stg_ComponentRegister_Add( componentRegister, SLIntegrator_Unstructured_Type, (Name)"0", _SLIntegrator_Unstructured_DefaultNew );
+   RegisterParent( SLIntegrator_Unstructured_Type, Stg_Component_Type );
+
+   Stg_ComponentRegister_Add( componentRegister, IrregularMeshParticleLayout_Type, "0", (Stg_Component_DefaultConstructorFunction*) _IrregularMeshParticleLayout_DefaultNew );
+   RegisterParent( IrregularMeshParticleLayout_Type, GlobalParticleLayout_Type );
 
    return True;
 }

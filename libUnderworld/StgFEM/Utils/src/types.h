@@ -52,6 +52,7 @@
 
    /* FE types/classes */
 	typedef struct SemiLagrangianIntegrator		SemiLagrangianIntegrator;
+	typedef struct SLIntegrator_Unstructured	SLIntegrator_Unstructured;
 	typedef struct IrregularMeshParticleLayout	IrregularMeshParticleLayout;
 
    /* output streams: initialised in PDE_Rework_Init() */
