@@ -69,40 +69,38 @@
 			<param name="LinkedDofInfo"> temperatureInitLinkedDofs </param>
 		</struct>
 
-      <struct name="temperatureStar">
-         <param name="Type"> MeshVariable </param>
-         <param name="Rank"> Scalar </param>
-         <param name="DataType"> Double </param>
-         <param name="mesh"> temperatureMesh </param>
-      </struct>
-      <struct name="temperatureStarDofLayout">
-         <param name="Type"> DofLayout </param>
-         <param name="mesh"> temperatureMesh </param>
-         <list name="BaseVariables">
-            <param>temperatureStar</param>
-         </list>
-      </struct>
-      <struct name="temperatureStarField">
-         <param name="Type"> FeVariable </param>
-         <param name="FEMesh"> temperatureMesh </param>
-         <param name="DofLayout"> temperatureStarDofLayout </param>
-         <param name="LinkedDofInfo"> temperatureStarLinkedDofs </param>
-      </struct>
+		<struct name="temperatureStar">
+			<param name="Type"> MeshVariable </param>
+			<param name="Rank"> Scalar </param>
+			<param name="DataType"> Double </param>
+			<param name="mesh"> temperatureMesh </param>
+		</struct>
+		<struct name="temperatureStarDofLayout">
+			<param name="Type"> DofLayout </param>
+			<param name="mesh"> temperatureMesh </param>
+			<list name="BaseVariables">
+				<param>temperatureStar</param>
+			</list>
+		</struct>
+		<struct name="temperatureStarField">
+			<param name="Type"> FeVariable </param>
+			<param name="FEMesh"> temperatureMesh </param>
+			<param name="DofLayout"> temperatureStarDofLayout </param>
+			<param name="LinkedDofInfo"> temperatureStarLinkedDofs </param>
+		</struct>
 
-      <struct name="integrator">
-         <param name="Type">SLIntegrator_Unstructured</param>
-         <param name="VelocityField">VelocityField</param>
-         <param name="Context">context</param>
-         <list name="fields">
-            <!-- false as field is not to be updated within the sl integrator as it is assumed to be part of a sle -->
-            <param>TemperatureField</param><param>temperatureStarField</param><param>true</param>
-         </list>
-      </struct>
-
+		<struct name="integrator">
+			<param name="Type">SLIntegrator_Unstructured</param>
+			<param name="VelocityField">VelocityField</param>
+			<param name="Context">context</param>
+			<list name="fields">
+				<param>TemperatureField</param><param>temperatureStarField</param><param>true</param>
+			</list>
+		</struct>
 	</struct>
 
 	<!-- Simulation control -->
-	<param name="maxTimeSteps"> 2160 </param>
+	<param name="maxTimeSteps"> 864 </param>
 	<param name="outputEvery"> 0 </param>
 	<param name="dumpEvery"> 0 </param>
 	<param name="checkpointEvery"> 1 </param>
@@ -169,8 +167,7 @@
 	<param name="solWave_scaleY"> 1.0 </param>
         <param name="parametricCircle_scale"> 6.0 </param>
         <param name="reverseTimeStep"> 0 </param>
-        <!--param name="staticTimeStep"> 0.1308996938995747 </param-->
-        <param name="staticTimeStep"> 0.06544984694978735 </param>
+        <param name="staticTimeStep"> 0.04363323129985824 </param>
 	
 	<!-- Set up BCs -->
 	<include>Spherical/Viewports/TempVP.xml</include>

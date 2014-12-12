@@ -213,6 +213,8 @@ double SemiLagrangian_EvaluateError( FiniteElementContext* context, FeVariable* 
     double			yo		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_shiftY", 0.5 );
     double			ax   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleX", 5.0 );
     double			ay		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleY", 7.0 );
+    Bool  			unstructured 	= Dictionary_GetBool_WithDefault( context->dictionary, "unstructuredMesh", False );
+    SLIntegrator_Unstructured*  slIntegrator    = (SLIntegrator_Unstructured*) LiveComponentRegister_Get( context->CF->LCRegister, (Name)"integrator" );
 
     for( lElement_I = 0; lElement_I < numMeshElements; lElement_I++ ) {
         lCell_I = CellLayout_MapElementIdToCellId( gaussSwarm->cellLayout, lElement_I );
@@ -229,8 +231,13 @@ double SemiLagrangian_EvaluateError( FiniteElementContext* context, FeVariable* 
 
             initialValue = func( gCoord, xo, yo, ax, ay );
             
-            SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
-            SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
+            if( !unstructured ) {
+                SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
+                SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
+            }
+            else {
+                SLIntegrator_Unstructured_CubicInterpolator( slIntegrator, phiField, gCoord, &finalValue );
+            }
  
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
