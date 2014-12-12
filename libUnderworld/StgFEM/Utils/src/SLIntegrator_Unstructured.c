@@ -202,6 +202,8 @@ void _SLIntegrator_Unstructured_Build( void* slIntegrator, void* data ) {
         if(feVariable) Stg_Component_Build(feVariable, data, False);
         if(feVarStar ) Stg_Component_Build(feVarStar , data, False);
     }
+
+    self->inc = IArray_New();
 }
 
 double P4  ( double x )  { return 0.125*(35.0*x*x*x*x - 30.0*x*x + 3.0); }
@@ -212,7 +214,7 @@ void _SLIntegrator_Unstructured_Initialise( void* slIntegrator, void* data ) {
     SLIntegrator_Unstructured*	self 		= (SLIntegrator_Unstructured*)slIntegrator;
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
-    unsigned			field_i, i, j;
+    unsigned			field_i;//, i, j;
 
     if(self->velocityField) Stg_Component_Initialise(self->velocityField, data, False);
 
@@ -225,11 +227,11 @@ void _SLIntegrator_Unstructured_Initialise( void* slIntegrator, void* data ) {
 
     //self->weights = malloc(4*sizeof(double));
     self->abcissa = malloc(4*sizeof(double));
-    self->Ni      = malloc(16*sizeof(double));
+    self->Ni      = malloc(64*sizeof(double));
     self->GNix    = malloc(2*sizeof(double*));
-    self->GNix[0] = malloc(16*sizeof(double));
-    self->GNix[1] = malloc(16*sizeof(double));
-    //self->dCij    = malloc(16*sizeof(double));
+    self->GNix[0] = malloc(64*sizeof(double));
+    self->GNix[1] = malloc(64*sizeof(double));
+    //self->dCij    = malloc(64*sizeof(double));
 
     //self->weights[0] = 0.16666666666666667;
     //self->weights[1] = 0.83333333333333333;
@@ -284,6 +286,8 @@ void _SLIntegrator_Unstructured_Destroy( void* slIntegrator, void* data ) {
     free(self->GNix[1]);
     free(self->GNix);
     //free(self->dCij);
+
+    Stg_Class_Delete( self->inc );
 }
 
 void SLIntegrator_Unstructured_InitSolve( void* _self, void* _context ) {
@@ -312,7 +316,7 @@ void SLIntegrator_Unstructured_InitSolve( void* _self, void* _context ) {
 }
 
 #define INV6 0.16666666666666667
-void SLIntegrator_Unstructured_IntegrateRK4( void* slIntegrator, FeVariable* velocityField, double dt, double* delta, unsigned* nnodes, double* origin, double* position ) {
+void SLIntegrator_Unstructured_IntegrateRK4( void* slIntegrator, FeVariable* velocityField, double dt, double* origin, double* position ) {
     SLIntegrator_Unstructured*	self 	     = (SLIntegrator_Unstructured*)slIntegrator;
     unsigned		ndims		     = Mesh_GetDimSize( velocityField->feMesh );
     unsigned		dim_i;
@@ -323,24 +327,24 @@ void SLIntegrator_Unstructured_IntegrateRK4( void* slIntegrator, FeVariable* vel
 
     Mesh_GetGlobalCoordRange( velocityField->feMesh, min, max );
 
-    SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, origin, delta, nnodes, k[0] );
+    SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, origin, k[0] );
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[0][dim_i];
     }
     if( SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, delta, nnodes, k[1] );
+    SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, k[1] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[1][dim_i];
     }
     if( SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, delta, nnodes, k[2] );
+    SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, k[2] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt * k[2][dim_i];
     }
     if( SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, delta, nnodes, k[3] );
+    SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, k[3] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         position[dim_i] = origin[dim_i] -
@@ -367,8 +371,33 @@ Bool SLIntegrator_Unstructured_PeriodicUpdate( double* pos, double* min, double*
     return result;
 }
 
+void GlobalNodeToIJK( FeMesh* feMesh, unsigned gNode, unsigned* IJK ) {
+    Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    unsigned*   sizes           = Grid_GetSizes( *grid );
+    unsigned	dim  		= Mesh_GetDimSize( feMesh );
+
+    IJK[0] = gNode%sizes[0];
+    IJK[1] = (gNode/sizes[0])%sizes[1];
+    if( dim == 3 )
+        IJK[2] = gNode/(sizes[0]*sizes[1]);
+}
+
+unsigned IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
+    Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    unsigned*   sizes           = Grid_GetSizes( *grid );
+    unsigned	dim  		= Mesh_GetDimSize( feMesh );
+    unsigned	gNode;
+
+    gNode = sizes[0]*IJK[1] + IJK[0];
+    if( dim == 3 )
+        gNode += IJK[2]*(sizes[0]*sizes[1]);
+
+    return gNode;
+}
+
+#if 0
 void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* delta, unsigned* nNodes, double* result ) {
-    SLIntegrator_Unstructured*	self 		     = (SLIntegrator_Unstructured*)slIntegrator;
+    SLIntegrator_Unstructured*	self 	= (SLIntegrator_Unstructured*)slIntegrator;
     FeMesh*	feMesh			= feVariable->feMesh;
     Index	elementIndex;
     unsigned	nInc, *inc;
@@ -378,9 +407,11 @@ void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable
     Index	gNode_I, lNode_I;
     double	px[4], py[4], pz[4];
     unsigned	nDims			= Mesh_GetDimSize( feMesh );
-    unsigned	nodeIndex[16];
-    unsigned	node_I3D[4][4][4];
+    unsigned	nodeIndex[64];
     unsigned	numdofs			= feVariable->dofLayout->dofCounts[0];
+    double	lCoord[3], phi_i[3];
+    unsigned	node_i, dof_i;
+    Bool	spherical		= ( strcmp( feMesh->algorithms->type, "Mesh_SphericalAlgorithms" ) == 0 ) ? True : False;
 
     Mesh_SearchElements( feMesh, position, &elementIndex );
     FeMesh_GetElementNodes( feMesh, elementIndex, feVariable->inc );
@@ -394,6 +425,10 @@ void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable
     y_0 = ((int) gNode_I / nNodes[0]) % nNodes[1];
     if( nDims == 3 )
         z_0 = (int) gNode_I / ( nNodes[0] * nNodes[1] );
+
+    if( spherical ) {
+        position[1] *= 1; //TODO
+    }
 
     /* get the number of nodes across and up that the point lies... */
     if( nInc % 3 == 0 ) { /* quadratic mesh */
@@ -433,7 +468,7 @@ void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable
     }
     else abort();
 
-    /* interpolate using Lagrange's formula */
+    /* interpolate using Lagrange polynomial shape functions */
     if( nDims == 2 ) {
         for( y_i = 0; y_i < 4; y_i++ ) {
             for( x_i = 0; x_i < 4; x_i++ ) {
@@ -444,11 +479,11 @@ void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable
             }
         }
         /* map to master element and interpolate */
-        double		lCoord[3], phi_i[3];
-        unsigned	node_i, dof_i;
-        *result = 0.0;
         SLIntegrator_Unstructured_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
         SLIntegrator_Unstructured_ShapeFuncs( self, lCoord, self->Ni );
+        for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+            result[dof_i] = 0.0;
+        }
         for( node_i = 0; node_i < 16; node_i++ ) {
             FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
             for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
@@ -463,8 +498,211 @@ void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable
                     gNode_I = x_0 + x_i + ( y_0 + y_i ) * nNodes[0] + ( z_0 + z_i ) * nNodes[0] * nNodes[1];
                     if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_I, &lNode_I ) ) abort();
                     else
-                        node_I3D[x_i][y_i][z_i] = lNode_I;
+                        nodeIndex[z_i*16+y_i*4+x_i] = lNode_I;
                 }
+            }
+        }
+        SLIntegrator_Unstructured_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
+        SLIntegrator_Unstructured_ShapeFuncs3D( self, lCoord, self->Ni );
+        for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+            result[dof_i] = 0.0;
+        }
+        for( node_i = 0; node_i < 64; node_i++ ) {
+            FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
+            for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+                result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
+            }
+        }
+    }
+}
+#endif
+
+Bool HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
+    Bool 	quad	= (nNodes%3==0) ? True : False;
+    unsigned	dim	= Mesh_GetDimSize( feMesh );
+    unsigned	nInc;
+
+    if( dim == 2 ) {
+        Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[0]], dim, inc );
+        nInc   = IArray_GetSize( inc );
+        Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[1]], dim, inc );
+        nInc  += IArray_GetSize( inc );
+        if( nInc > 5 )
+            return True;
+    }
+    else {
+        Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[0]], dim, inc );
+        nInc       = IArray_GetSize( inc );
+        Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[1]], dim, inc );
+        nInc      += IArray_GetSize( inc );
+        Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[2]], dim, inc );
+        nInc      += IArray_GetSize( inc );
+        Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[3]], dim, inc );
+        nInc      += IArray_GetSize( inc );
+        if( nInc > 17 )
+            return True;
+    }
+    return False;
+}
+
+Bool HasLeft( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
+    Bool 	quad		= (nNodes%3==0) ? True : False;
+    unsigned	dim		= Mesh_GetDimSize( feMesh );
+    unsigned	sideNodes[4];
+
+    sideNodes[0] = 0;
+    sideNodes[1] = (quad) ? 6 : 2;
+    if( dim == 3 ) {
+        sideNodes[2] = (quad) ? 18 : 4;
+        sideNodes[3] = (quad) ? 24 : 6;
+    }
+    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
+}
+
+Bool HasRight( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
+    Bool 	quad		= (nNodes%3==0) ? True : False;
+    unsigned	dim		= Mesh_GetDimSize( feMesh );
+    unsigned	sideNodes[4];
+
+    sideNodes[0] = (quad) ? 2 : 1;
+    sideNodes[1] = (quad) ? 8 : 3;
+    if( dim == 3 ) {
+        sideNodes[2] = (quad) ? 20 : 5;
+        sideNodes[3] = (quad) ? 26 : 7;
+    }
+    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
+}
+
+Bool HasBottom( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
+    Bool 	quad		= (nNodes%3==0) ? True : False;
+    unsigned	dim		= Mesh_GetDimSize( feMesh );
+    unsigned	sideNodes[4];
+
+    sideNodes[0] = 0;
+    sideNodes[1] = (quad) ? 2 : 1;
+    if( dim == 3 ) {
+        sideNodes[2] = (quad) ? 18 : 4;
+        sideNodes[3] = (quad) ? 20 : 5;
+    }
+    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
+}
+
+Bool HasTop( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
+    Bool 	quad		= (nNodes%3==0) ? True : False;
+    unsigned	dim		= Mesh_GetDimSize( feMesh );
+    unsigned	sideNodes[4];
+
+    sideNodes[0] = (quad) ? 6 : 2;
+    sideNodes[1] = (quad) ? 8 : 3;
+    if( dim == 3 ) {
+        sideNodes[2] = (quad) ? 24 : 6;
+        sideNodes[3] = (quad) ? 26 : 7;
+    }
+    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
+}
+
+Bool HasFront( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
+    Bool 	quad		= (nNodes%3==0) ? True : False;
+    unsigned	sideNodes[4];
+
+    sideNodes[0] = 0;
+    sideNodes[1] = (quad) ? 2 : 1;
+    sideNodes[2] = (quad) ? 6 : 2;
+    sideNodes[3] = (quad) ? 8 : 3;
+
+    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
+}
+
+Bool HasBack( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
+    Bool 	quad		= (nNodes%3==0) ? True : False;
+    unsigned	sideNodes[4];
+
+    sideNodes[0] = (quad) ? 18 : 4;
+    sideNodes[1] = (quad) ? 20 : 5;
+    sideNodes[2] = (quad) ? 24 : 6;
+    sideNodes[3] = (quad) ? 26 : 7;
+
+    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
+}
+
+void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
+    SLIntegrator_Unstructured*	self 	= (SLIntegrator_Unstructured*)slIntegrator;
+    FeMesh*	feMesh			= feVariable->feMesh;
+    unsigned	elInd, nInc, *inc;
+    unsigned	IJK[3], IJK_test[3], index = 0;
+    unsigned	gNode_I, lNode_I;
+    unsigned	nDims			= Mesh_GetDimSize( feMesh );
+    unsigned	nodeIndex[64];
+    unsigned	numdofs			= feVariable->dofLayout->dofCounts[0];
+    double	lCoord[3], phi_i[3];
+    unsigned	node_i, dof_i;//, dim_i;
+    Grid**      grid            	= (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    unsigned*   sizes           	= Grid_GetSizes( *grid );
+
+    Mesh_SearchElements( feMesh, position, &elInd );
+    FeMesh_GetElementNodes( feMesh, elInd, feVariable->inc );
+    nInc = IArray_GetSize( feVariable->inc );
+    inc  = IArray_GetPtr( feVariable->inc );
+
+    gNode_I = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
+    GlobalNodeToIJK( feMesh, gNode_I, IJK );
+
+    if( !HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
+    if( !HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1]--;
+    if( nDims == 3 ) {
+        if( !HasBack( feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
+    }
+
+    if( HasLeft( feMesh, self->inc, elInd, inc, nInc ) )   IJK[0]--;
+    if( HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
+    if( nDims == 3 ) {
+        if( HasFront( feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
+    }
+    FeMesh_NodeGlobalToDomain( feMesh, IJKToGlobalNode( feMesh, IJK ), &lNode_I );
+
+    /* interpolate using Lagrange polynomial shape functions */
+    if( nDims == 2 ) {
+        for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+            for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                gNode_I = IJKToGlobalNode( feMesh, IJK_test );
+                if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_I, &lNode_I ) ) abort();
+                else
+                    nodeIndex[index++] = lNode_I;
+            }
+        }
+        /* map to master element and interpolate */
+        SLIntegrator_Unstructured_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
+        SLIntegrator_Unstructured_ShapeFuncs( self, lCoord, self->Ni );
+        for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+            result[dof_i] = 0.0;
+        }
+        for( node_i = 0; node_i < 16; node_i++ ) {
+            FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
+            for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+                result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
+            }
+        }
+    }
+    else {
+        for( IJK_test[2] = IJK[2]; IJK_test[2] < IJK[1] + 4; IJK_test[2]++ ) {
+            for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+                for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                    gNode_I = IJKToGlobalNode( feMesh, IJK_test );
+                    if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_I, &lNode_I ) ) abort();
+                    else
+                        nodeIndex[index++] = lNode_I;
+                }
+            }
+        }
+        SLIntegrator_Unstructured_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
+        SLIntegrator_Unstructured_ShapeFuncs3D( self, lCoord, self->Ni );
+        for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+            result[dof_i] = 0.0;
+        }
+        for( node_i = 0; node_i < 64; node_i++ ) {
+            FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
+            for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+                result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
             }
         }
     }
@@ -480,11 +718,8 @@ void SLIntegrator_Unstructured_Solve( void* slIntegrator, FeVariable* variableFi
     double			dt		     = AbstractContext_Dt( context );
     double			position[3];
     double			var[3];
-    unsigned			nNodes[3];
-    double			delta[3];
     double*			coord;
 
-    SLIntegrator_Unstructured_GetMaxDelta( variableField, delta, nNodes );
 
     FeVariable_SyncShadowValues( velocityField );
     FeVariable_SyncShadowValues( variableField );
@@ -493,58 +728,11 @@ void SLIntegrator_Unstructured_Solve( void* slIntegrator, FeVariable* variableFi
     for( node_I = 0; node_I < meshSize; node_I++ ) {
 	coord = Mesh_GetVertex(feMesh,node_I);
 
-        SLIntegrator_Unstructured_IntegrateRK4( self, velocityField, dt, delta, nNodes, coord, position );
-        SLIntegrator_Unstructured_CubicInterpolator( self, variableField, position, delta, nNodes, var );
+        SLIntegrator_Unstructured_IntegrateRK4( self, velocityField, dt, coord, position );
+        SLIntegrator_Unstructured_CubicInterpolator( self, variableField, position, var );
         FeVariable_SetValueAtNode( varStarField, node_I, var );
     }
     FeVariable_SyncShadowValues( varStarField );
-}
-
-void SLIntegrator_Unstructured_GetMaxDelta( FeVariable* variableField, double* delta, unsigned* nNodes ) {
-    unsigned            nInc;
-    unsigned*           inc;
-    unsigned            dim_i;
-    FeMesh*             feMesh          = variableField->feMesh;
-    unsigned            nDims           = Mesh_GetDimSize( feMesh );
-    Grid**              grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*,  feMesh->elGridId );
-    unsigned*           sizes           = Grid_GetSizes( *grid );
-    unsigned            el_i;
-    double              testDelta[3];
-
-    for( dim_i = 0; dim_i < nDims; dim_i++ ) {
-        delta[dim_i] = 0.0;
-    }
-    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, nDims ); el_i++ ) {
-        FeMesh_GetElementNodes( variableField->feMesh, el_i, variableField->inc );
-        nInc = IArray_GetSize( variableField->inc );
-        inc  = IArray_GetPtr( variableField->inc );
-        if( nInc%3==0 ) { /* quadratic elements */
-            testDelta[0] = Mesh_GetVertex( feMesh, inc[1] )[0] - Mesh_GetVertex( feMesh, inc[0] )[0];
-            testDelta[1] = Mesh_GetVertex( feMesh, inc[3] )[1] - Mesh_GetVertex( feMesh, inc[0] )[1];
-            if( nDims == 3 ) {
-                testDelta[2] = Mesh_GetVertex( feMesh, inc[9] )[2] - Mesh_GetVertex( feMesh, inc[0] )[2];
-            }
-        }
-        else {
-            testDelta[0] = Mesh_GetVertex( feMesh, inc[1] )[0] - Mesh_GetVertex( feMesh, inc[0] )[0];
-            testDelta[1] = Mesh_GetVertex( feMesh, inc[2] )[1] - Mesh_GetVertex( feMesh, inc[0] )[1];
-            if( nDims == 3 ) {
-                testDelta[2] = Mesh_GetVertex( feMesh, inc[4] )[2] - Mesh_GetVertex( feMesh, inc[0] )[2];
-            }
-        }
-        for( dim_i = 0; dim_i < nDims; dim_i++ ) {
-            if( delta[dim_i] < testDelta[dim_i] ) delta[dim_i] = testDelta[dim_i];
-        }
-    }
-
-    if( nInc%3 == 0 ) { /* quadratic elements */
-        for( dim_i = 0; dim_i < nDims; dim_i++ )
-            nNodes[dim_i] = 2*sizes[dim_i] + 1;
-    }
-    else {
-        for( dim_i = 0; dim_i < nDims; dim_i++ )
-            nNodes[dim_i] = sizes[dim_i] + 1;
-    }
 }
 
 #define EPS 1.0e-8
@@ -597,7 +785,7 @@ double LagrangeDeriv( double* xi, double x, int j ) {
 
 void SLIntegrator_Unstructured_ShapeFuncs( void* slIntegrator, const double xi[], double* const Ni ) {
     SLIntegrator_Unstructured* self = (SLIntegrator_Unstructured*) slIntegrator;
-    int                     x_i, y_i, x_j, y_j, pt_j, N = 3;
+    int                     x_j, y_j, pt_j;//, x_i, y_i, N = 3;
     double                  Nx, Ny;
 
 /*
@@ -633,11 +821,31 @@ void SLIntegrator_Unstructured_ShapeFuncs( void* slIntegrator, const double xi[]
     }
 }
 
+void SLIntegrator_Unstructured_ShapeFuncs3D( void* slIntegrator, const double xi[], double* const Ni ) {
+    SLIntegrator_Unstructured* self = (SLIntegrator_Unstructured*) slIntegrator;
+    int                     x_j, y_j, z_j, pt_j = 0;
+    double                  Nx, Ny, Nz;
+
+    for( z_j = 0; z_j < 4; z_j++ ) {
+        Nz = Lagrange( self->abcissa, xi[2], z_j );
+
+        for( y_j = 0; y_j < 4; y_j++ ) {
+            Ny = Lagrange( self->abcissa, xi[1], y_j );
+            
+            for( x_j = 0; x_j < 4; x_j++ ) {
+                Nx = Lagrange( self->abcissa, xi[0], x_j );
+
+                Ni[pt_j++] = Nx*Ny*Nz;
+            }
+        }
+    }
+}
+
 void SLIntegrator_Unstructured_ShapeFuncDerivs( void* slIntegrator, const double xi[], double** const GNix ) {
     SLIntegrator_Unstructured* self = (SLIntegrator_Unstructured*) slIntegrator;
-    double                  Nx, Ny, GNx, GNy, a, b, c;
-    int                     x_i, y_i, x_j, y_j, pt_j;
-    unsigned                N = 3;
+    double                  Nx, Ny, GNx, GNy;//, a, b, c;
+    int                     /*x_i, y_i,*/ x_j, y_j, pt_j;
+    //unsigned                N = 3;
 
 /*
     for( pt_j = 0; pt_j < 16; pt_j++ ) {
@@ -686,6 +894,32 @@ void SLIntegrator_Unstructured_ShapeFuncDerivs( void* slIntegrator, const double
     }
 }
 
+void SLIntegrator_Unstructured_ShapeFuncDerivs3D( void* slIntegrator, const double xi[], double** const GNix ) {
+    SLIntegrator_Unstructured* self = (SLIntegrator_Unstructured*) slIntegrator;
+    double                  Nx, Ny, Nz, GNx, GNy, GNz;
+    int                     x_j, y_j, z_j, pt_j = 0;
+
+    for( z_j = 0; z_j < 4; z_j++ ) {
+        Nz  = Lagrange( self->abcissa, xi[2], z_j );
+        GNz = LagrangeDeriv( self->abcissa, xi[2], z_j );
+
+        for( y_j = 0; y_j < 4; y_j++ ) {
+            Ny  = Lagrange( self->abcissa, xi[1], y_j );
+            GNy = LagrangeDeriv( self->abcissa, xi[1], y_j );
+            
+            for( x_j = 0; x_j < 4; x_j++ ) {
+                Nx = Lagrange( self->abcissa, xi[0], x_j );
+                GNx = LagrangeDeriv( self->abcissa, xi[0], x_j );
+
+                GNix[0][pt_j] = GNx*Ny*Nz;
+                GNix[1][pt_j] = Nx*GNy*Nz;
+                GNix[2][pt_j] = Nx*Ny*GNz;
+                pt_j++;
+            }
+        }
+    }
+}
+
 void SLIntegrator_Unstructured_GlobalToLocal( void* slIntegrator, void* _mesh, unsigned* nodeInds, const double* gCoord, double* lCoord ) {
     SLIntegrator_Unstructured* 	self 		= (SLIntegrator_Unstructured*)slIntegrator;
     Mesh*			mesh 		= (Mesh*)_mesh;
@@ -699,9 +933,9 @@ void SLIntegrator_Unstructured_GlobalToLocal( void* slIntegrator, void* _mesh, u
     XYZ                 	rightHandSide;
     XYZ                 	xiIncrement;
     double*       	    	nodeCoord;
-    Dimension_Index     	dim             = 2;
     double*		    	Ni		= self->Ni;
     double**	    		GNix		= self->GNix;
+    unsigned			dim		= Mesh_GetDimSize( mesh );
 
     /* Initial guess for element local coordinate is in the centre of the element - ( 0.0, 0.0, 0.0 ) */
     memset( lCoord, 0, dim*sizeof(double) );
@@ -729,11 +963,24 @@ void SLIntegrator_Unstructured_GlobalToLocal( void* slIntegrator, void* _mesh, u
             /* Form right hand side */
             rightHandSide[ I_AXIS ] -= Ni[node_I] * nodeCoord[ I_AXIS ];
             rightHandSide[ J_AXIS ] -= Ni[node_I] * nodeCoord[ J_AXIS ];
+
+            if( dim == 3 ) {
+                jacobiMatrix[ MAP_3D_TENSOR( 0, 2 ) ] += GNix[2][node_I] * nodeCoord[ I_AXIS ];
+                jacobiMatrix[ MAP_3D_TENSOR( 1, 2 ) ] += GNix[2][node_I] * nodeCoord[ J_AXIS ];
+
+                jacobiMatrix[ MAP_3D_TENSOR( 2, 0 ) ] += GNix[0][node_I] * nodeCoord[ K_AXIS ];
+                jacobiMatrix[ MAP_3D_TENSOR( 2, 1 ) ] += GNix[1][node_I] * nodeCoord[ K_AXIS ];
+                jacobiMatrix[ MAP_3D_TENSOR( 2, 2 ) ] += GNix[2][node_I] * nodeCoord[ K_AXIS ];
+
+                rightHandSide[ K_AXIS ] -= Ni[node_I] * nodeCoord[ K_AXIS ];
+            }
         }
 
         /* Finish building right hand side */
         rightHandSide[ I_AXIS ] += gCoord[ I_AXIS ];
         rightHandSide[ J_AXIS ] += gCoord[ J_AXIS ];
+        if( dim == 3 )
+            rightHandSide[ K_AXIS ] += gCoord[ K_AXIS ];
 
         /* Solve for xi increment */
         TensorArray_SolveSystem( jacobiMatrix, xiIncrement, rightHandSide, dim );
@@ -741,11 +988,15 @@ void SLIntegrator_Unstructured_GlobalToLocal( void* slIntegrator, void* _mesh, u
         /* Update xi */
         lCoord[ I_AXIS ] += xiIncrement[ I_AXIS ];
 	lCoord[ J_AXIS ] += xiIncrement[ J_AXIS ];
+        if( dim == 3 )
+            lCoord[ K_AXIS ] += xiIncrement[ K_AXIS ];
 
         /* Check for convergence */
         maxResidual = fabs( xiIncrement[ I_AXIS ] );
         if( maxResidual < fabs( xiIncrement[ J_AXIS ] ) )
             maxResidual = fabs( xiIncrement[ J_AXIS ] );
+        if( dim == 3 && maxResidual < fabs( xiIncrement[ K_AXIS ] ) )
+            maxResidual = fabs( xiIncrement[ K_AXIS ] );
 
         if( maxResidual < tolerance )
             return;

@@ -70,6 +70,7 @@
       double*			   Ni;			   \
       double**			   GNix;		   \
       double*			   dCij;		   \
+      IArray*			   inc;			   \
 
    /** Abstract class defining the interface for a SLIntegrator_Unstructured solver - see SLIntegrator_Unstructured.h */
    struct SLIntegrator_Unstructured { __SLIntegrator_Unstructured };
@@ -116,17 +117,18 @@
    void SLIntegrator_Unstructured_InitSolve( void* slIntegrator, void* data );
 
    /* --- Public functions --- */
-   void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* coord, double* delta, unsigned* nNodes, double* result );
+   void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* coord, double* result );
    Bool SLIntegrator_Unstructured_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic, unsigned nDims );
-   void SLIntegrator_Unstructured_IntegrateRK4( void* slIntegrator, FeVariable* velocityField, double dt, double* delta, unsigned* nnodes, double* origin, double* position );
+   void SLIntegrator_Unstructured_IntegrateRK4( void* slIntegrator, FeVariable* velocityField, double dt, double* origin, double* position );
 
    /** Solve:- calculate the new values for all solution vectors in the system. */
    void SLIntegrator_Unstructured_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* variableFieldPrime );
 
-   void SLIntegrator_Unstructured_GetMaxDelta( FeVariable* feVariable, double* delta, unsigned* nNodes );
-   void SLIntegrator_Unstructured_ShapeFuncs( void* elementType, const double lCoord[], double* const Ni );
-   void SLIntegrator_Unstructured_ShapeFuncDerivs( void* elementType, const double lCoord[], double** const GNix );
-   void SLIntegrator_Unstructured_GlobalToLocal( void* elementType, void* _mesh, unsigned* nodeInds, const double* gCoord, double* lCoord );
+   void SLIntegrator_Unstructured_ShapeFuncs( void* slIntegrator, const double lCoord[], double* const Ni );
+   void SLIntegrator_Unstructured_ShapeFuncDerivs( void* slIntegrator, const double lCoord[], double** const GNix );
+   void SLIntegrator_Unstructured_ShapeFuncs2D( void* slIntegrator, const double lCoord[], double* const Ni );
+   void SLIntegrator_Unstructured_ShapeFuncDerivs3D( void* slIntegrator, const double lCoord[], double** const GNix );
+   void SLIntegrator_Unstructured_GlobalToLocal( void* slIntegrator, void* _mesh, unsigned* nodeInds, const double* gCoord, double* lCoord );
 
 #endif
 
