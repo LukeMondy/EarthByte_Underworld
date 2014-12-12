@@ -324,6 +324,7 @@ void SLIntegrator_Unstructured_IntegrateRK4( void* slIntegrator, FeVariable* vel
     double		k[4][3];
     double		coordPrime[3];
     unsigned*		periodic	     = ((CartesianGenerator*)velocityField->feMesh->generator)->periodic;
+    Bool		spherical	     = ( strcmp( velocityField->feMesh->algorithms->type, "Mesh_SphericalAlgorithms" ) == 0 ) ? True : False;
 
     Mesh_GetGlobalCoordRange( velocityField->feMesh, min, max );
 
@@ -331,26 +332,26 @@ void SLIntegrator_Unstructured_IntegrateRK4( void* slIntegrator, FeVariable* vel
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[0][dim_i];
     }
-    if( SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
+    if( !spherical ) SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
     SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, k[1] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[1][dim_i];
     }
-    if( SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
+    if( !spherical ) SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
     SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, k[2] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt * k[2][dim_i];
     }
-    if( SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
+    if( !spherical ) SLIntegrator_Unstructured_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
     SLIntegrator_Unstructured_CubicInterpolator( self, velocityField, coordPrime, k[3] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         position[dim_i] = origin[dim_i] -
             INV6 * dt * ( k[0][dim_i] + 2.0 * k[1][dim_i] + 2.0 * k[2][dim_i] + k[3][dim_i] );
     }
-    if( SLIntegrator_Unstructured_PeriodicUpdate( position, min, max, periodic, ndims ) );
+    if( !spherical ) SLIntegrator_Unstructured_PeriodicUpdate( position, min, max, periodic, ndims );
 }
 
 Bool SLIntegrator_Unstructured_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic, unsigned ndim ) {
@@ -394,128 +395,6 @@ unsigned IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
 
     return gNode;
 }
-
-#if 0
-void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* delta, unsigned* nNodes, double* result ) {
-    SLIntegrator_Unstructured*	self 	= (SLIntegrator_Unstructured*)slIntegrator;
-    FeMesh*	feMesh			= feVariable->feMesh;
-    Index	elementIndex;
-    unsigned	nInc, *inc;
-    int		x_0, y_0, z_0;
-    int		x_i, y_i, z_i;
-    double	localMin[3], localMax[3];
-    Index	gNode_I, lNode_I;
-    double	px[4], py[4], pz[4];
-    unsigned	nDims			= Mesh_GetDimSize( feMesh );
-    unsigned	nodeIndex[64];
-    unsigned	numdofs			= feVariable->dofLayout->dofCounts[0];
-    double	lCoord[3], phi_i[3];
-    unsigned	node_i, dof_i;
-    Bool	spherical		= ( strcmp( feMesh->algorithms->type, "Mesh_SphericalAlgorithms" ) == 0 ) ? True : False;
-
-    Mesh_SearchElements( feMesh, position, &elementIndex );
-    FeMesh_GetElementNodes( feMesh, elementIndex, feVariable->inc );
-    nInc = IArray_GetSize( feVariable->inc );
-    inc  = IArray_GetPtr( feVariable->inc );
-
-    Mesh_GetLocalCoordRange( feMesh, localMin, localMax );
-    gNode_I = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
-
-    x_0 = (int) gNode_I % nNodes[0];
-    y_0 = ((int) gNode_I / nNodes[0]) % nNodes[1];
-    if( nDims == 3 )
-        z_0 = (int) gNode_I / ( nNodes[0] * nNodes[1] );
-
-    if( spherical ) {
-        position[1] *= 1; //TODO
-    }
-
-    /* get the number of nodes across and up that the point lies... */
-    if( nInc % 3 == 0 ) { /* quadratic mesh */
-        /* bottom left corner of stencil is closer to LHS of element */
-        if( position[0] <= Mesh_GetVertex( feMesh, inc[1] )[0] ) x_0--;
-        /* bottom left corner of stencil is closer to bottom of element */
-        if( position[1] <= Mesh_GetVertex( feMesh, inc[3] )[1] ) y_0--;
-
-        /* LHS node is global domain boundary */
-        if( position[0] <= localMin[0] + delta[0] ) x_0++;
-        /* RHS node is global domain boundary */
-        else if( position[0] >= localMax[0] - delta[0] ) x_0--;
-
-        /* top node is global domain boundary */
-        if( position[1] <= localMin[1] + delta[1] ) y_0++;
-        /* bottom node is global domain boundary */
-        else if( position[1] >= localMax[1] - delta[1] ) y_0--;
-
-        if( nDims == 3 ) {
-            if( position[2] <= Mesh_GetVertex( feMesh, inc[9] )[2] ) z_0--;
-
-            if( position[2] <= localMin[2] + delta[2] ) z_0++;
-            else if( position[2] >= localMax[2] - delta[2] ) z_0--;
-        }
-    }
-    else if ( nInc % 2 == 0 ) { /* linear mesh */
-        if( position[0] > localMin[0] + delta[0] ) x_0--;
-        if( position[0] >= localMax[0] - delta[0] ) x_0--;
-
-        if( position[1] > localMin[1] + delta[1] ) y_0--;
-        if( position[1] >= localMax[1] - delta[1] ) y_0--;
-
-        if( nDims == 3 ) {
-            if( position[2] > localMin[2] + delta[2] ) z_0--;
-            if( position[2] >= localMax[2] - delta[2] ) z_0--;
-        }
-    }
-    else abort();
-
-    /* interpolate using Lagrange polynomial shape functions */
-    if( nDims == 2 ) {
-        for( y_i = 0; y_i < 4; y_i++ ) {
-            for( x_i = 0; x_i < 4; x_i++ ) {
-                gNode_I = x_0 + x_i + ( y_0 + y_i ) * nNodes[0];
-                if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_I, &lNode_I ) ) abort();
-                else
-                    nodeIndex[y_i*4+x_i] = lNode_I;
-            }
-        }
-        /* map to master element and interpolate */
-        SLIntegrator_Unstructured_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
-        SLIntegrator_Unstructured_ShapeFuncs( self, lCoord, self->Ni );
-        for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
-            result[dof_i] = 0.0;
-        }
-        for( node_i = 0; node_i < 16; node_i++ ) {
-            FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
-            for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
-                result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
-            }
-        }
-    }
-    else {
-        for( z_i = 0; z_i < 4; z_i++ ) {
-            for( y_i = 0; y_i < 4; y_i++ ) {
-                for( x_i = 0; x_i < 4; x_i++ ) {
-                    gNode_I = x_0 + x_i + ( y_0 + y_i ) * nNodes[0] + ( z_0 + z_i ) * nNodes[0] * nNodes[1];
-                    if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_I, &lNode_I ) ) abort();
-                    else
-                        nodeIndex[z_i*16+y_i*4+x_i] = lNode_I;
-                }
-            }
-        }
-        SLIntegrator_Unstructured_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
-        SLIntegrator_Unstructured_ShapeFuncs3D( self, lCoord, self->Ni );
-        for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
-            result[dof_i] = 0.0;
-        }
-        for( node_i = 0; node_i < 64; node_i++ ) {
-            FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
-            for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
-                result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
-            }
-        }
-    }
-}
-#endif
 
 Bool HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
     Bool 	quad	= (nNodes%3==0) ? True : False;
@@ -635,7 +514,7 @@ void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable
     unsigned	nodeIndex[64];
     unsigned	numdofs			= feVariable->dofLayout->dofCounts[0];
     double	lCoord[3], phi_i[3];
-    unsigned	node_i, dof_i;//, dim_i;
+    unsigned	node_i, dof_i;
     Grid**      grid            	= (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
     unsigned*   sizes           	= Grid_GetSizes( *grid );
 
