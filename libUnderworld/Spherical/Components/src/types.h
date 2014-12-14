@@ -19,11 +19,10 @@ typedef struct LatLongRegion LatLongRegion;
 typedef struct SphericalFeMesh SphericalFeMesh;
 typedef struct SphereBC SphereBC;
 typedef struct Ppc_Exponential Ppc_Exponential;
-typedef struct Ppc_2ndInvariant Ppc_2ndInvariant;
 typedef struct Ppc_AdiabaticHeating Ppc_AdiabaticHeating;
 typedef struct MatAssembly_NA__Fi__NB MatAssembly_NA__Fi__NB;
 typedef struct Ppc_SphericalDepth Ppc_SphericalDepth;
-typedef struct Ppc_Compression Ppc_Compression;
+typedef struct Ppc_TensorInvariant Ppc_TensorInvariant;
 typedef struct Ppc_VecDotVec Ppc_VecDotVec;
 
 typedef enum {

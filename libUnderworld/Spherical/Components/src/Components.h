@@ -27,11 +27,10 @@
 #include "Ppc_Quality.h"
 #include "LatLongRegion.h"
 #include "Ppc_Exponential.h"
-#include "Ppc_2ndInvariant.h"
 #include "Ppc_AdiabaticHeating.h"
 #include "MatAssembly_NA__Fi__NB.h"
 #include "Ppc_SphericalDepth.h"
-#include "Ppc_Compression.h"
+#include "Ppc_TensorInvariant.h"
 #include "Ppc_VecDotVec.h"
 
 #include "Init.h"

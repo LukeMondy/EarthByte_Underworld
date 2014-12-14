@@ -58,6 +58,7 @@ typedef struct {
    FeVariable* temperatureGradientsField;
    PpcIntegral* volAvgVD;
    PpcIntegral* volAvgW;
+   PpcIntegral* volAvgT;
    PpcIntegral* vol;
    PpcManager* mgr;
    double      Ra;
@@ -89,16 +90,17 @@ void _Spherical_Nusselt_AssignFromXML( void* component, Stg_ComponentFactory* cf
 		self->mgr = Stg_ComponentFactory_ConstructByName( cf, (Name)"default_ppcManager", PpcManager, True, data  );
 
    // initialise as unfound ppc
-   self->volAvgVD = self->volAvgW = self->vol = NULL;
+   self->volAvgVD = self->volAvgW = self->volAvgT = self->vol = NULL;
 
    self->volAvgVD = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_viscous_dissipation",PpcIntegral, False, data);
    self->volAvgW = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_work_done",PpcIntegral, False, data);
+   self->volAvgT = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_temperature",PpcIntegral, True, data);
    self->vol = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume",PpcIntegral, False, data);
 
    self->Ra = Stg_ComponentFactory_PluginGetDouble( cf, self, (Dictionary_Entry_Key)"Ra", -2 );
    assert( self->Ra > -1 );
 
- //  StgFEM_FrequentOutput_PrintString( self->context, "NuU_Jarvis" );
+   StgFEM_FrequentOutput_PrintString( self->context, "<T'>" );
    StgFEM_FrequentOutput_PrintString( self->context, "NuU_av" );
 
  //  StgFEM_FrequentOutput_PrintString( self->context, "NuB_Jarvis" );
@@ -272,6 +274,7 @@ void Spherical_Nusselt_Output( UnderworldContext* context ) {
    FeMesh* mesh=NULL;
    ElementType* elementType=NULL;
    Grid *grid=NULL;
+   double avgT, vol;
 
    self = (Spherical_Nusselt*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)Spherical_Nusselt_Type );
 
@@ -394,6 +397,11 @@ void Spherical_Nusselt_Output( UnderworldContext* context ) {
    // normalise Nusselt lower condition
    factor = 1.22 * log(0.55);
    gJ_Nu[1] = factor * gJ_Nu[1];
+
+   avgT = PpcIntegral_Integrate( self->volAvgT );
+   vol = PpcIntegral_Integrate( self->vol );
+
+   StgFEM_FrequentOutput_PrintValue( context, avgT/vol );
 
    StgFEM_FrequentOutput_PrintValue( context, gJ_Nu[0] );
 

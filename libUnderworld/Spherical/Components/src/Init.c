@@ -58,9 +58,6 @@ Bool Spherical_Components_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( compReg, Ppc_Exponential_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_Exponential_DefaultNew );
    RegisterParent( Ppc_Exponential_Type, Ppc_Type );
 
-   Stg_ComponentRegister_Add( compReg, Ppc_2ndInvariant_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_2ndInvariant_DefaultNew );
-   RegisterParent( Ppc_2ndInvariant_Type, Ppc_Type );
-
    Stg_ComponentRegister_Add( compReg, Ppc_AdiabaticHeating_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_AdiabaticHeating_DefaultNew );
    RegisterParent( Ppc_AdiabaticHeating_Type, Ppc_Type );
 
@@ -70,8 +67,8 @@ Bool Spherical_Components_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( compReg, Ppc_SphericalDepth_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_SphericalDepth_DefaultNew );
    RegisterParent( Ppc_SphericalDepth_Type, Ppc_Type );
 
-   Stg_ComponentRegister_Add( compReg, Ppc_Compression_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_Compression_DefaultNew );
-   RegisterParent( Ppc_Compression_Type, Ppc_Type );
+   Stg_ComponentRegister_Add( compReg, Ppc_TensorInvariant_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_TensorInvariant_DefaultNew );
+   RegisterParent( Ppc_TensorInvariant_Type, Ppc_Type );
 
    Stg_ComponentRegister_Add( compReg, Ppc_VecDotVec_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_VecDotVec_DefaultNew );
    RegisterParent( Ppc_VecDotVec_Type, Ppc_Type );

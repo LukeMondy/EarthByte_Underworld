@@ -177,7 +177,7 @@ void blasMatrixMultAB( double *A, double *B, int rowA, int colA, int colB, doubl
       &colB, &rowA, &colA,
       &alpha, B, &colB,
       A, &colA, &zero,
-      C, &colB );
+      C, &colB ); 
 }
 
 void blasMatrixMultAtB( double *A, double *B, int rowA, int colA, int colB, double *C )
@@ -203,38 +203,42 @@ void blasMatrixMultAtB( double *A, double *B, int rowA, int colA, int colB, doub
       C, &colB );
 }
 
-void Assemble_DB( double eta, double d_dx, double d_dy, double d_dz, int dim, double* B ){
+void Assemble_DB( double eta, double d_dx, double d_dy, double d_dz, int dim, double* DB ){
    /*@
-      Assembles Strain rate operator.
+      Assembles [D B], not this assumes a diagonal [D], constitutiveMatrix.
    @*/
 
    assert(dim>0);
-   assert(B);
+   assert(DB);
 
    if( dim == 2 ) {
    /*
-   [B] = [ d/dx,     0  ]
-         [    0,  d/dy  ]
-         [ d/dy,  d/dx  ]  */
+   [D] = [ 2*eta,  0,  0   ]
+         [  0,  2*eta, 0   ]
+         [  0,   0,   eta  ]  */
 
-      B[0]=2*eta*d_dx;  B[1]=0;
-      B[2]=0;     B[3]=2*eta*d_dy;
-      B[4]=eta*d_dy;  B[5]=eta*d_dx;
+      DB[0]= 2*eta*d_dx;  DB[1]= 0;
+      DB[2]= 0;           DB[3]= 2*eta*d_dy;
+      DB[4]= eta*d_dy;    DB[5]= eta*d_dx;
+
+ // if nondiagonal D:  blasMatrixMultAB( D, B, 3, 3, 2, DB );
    } else {
    /*
-   [B] = [ d/dx,     0,      0  ]
-         [    0,  d/dy,      0  ]
-         [    0,     0,   d/dx  ]
-         [ d/dy,  d/dx,      0  ]
-         [ d/dz,     0,   d/dx  ]
-         [    0,  d/dz,   d/dy  ] */
+   [D] = [ 2*eta,  0,   0,   0,   0,  0 ]
+         [  0,  2*eta,  0,   0,   0,  0 ]
+         [  0,   0,   2*eta, 0,   0,  0 ] 
+         [  0,   0,     0,  eta,  0,  0 ]  
+         [  0,   0,     0,   0,  eta, 0 ]  
+         [  0,   0,     0,   0,  0,  eta]  
+         */
 
-      B[0]=d_dx;  B[1]=0;     B[2]=0;
-      B[3]=0;     B[4]=d_dy;  B[5]=0;
-      B[6]=0;     B[7]=0;     B[8]=d_dz;
-      B[9]=d_dy;  B[10]=d_dx; B[11]=0;
-      B[12]=d_dz; B[13]=0;    B[14]=d_dx;
-      B[15]=0;    B[16]=d_dz; B[17]=d_dy;
+      DB[0]=2*eta*d_dx;  DB[1]=0;           DB[2]=0;
+      DB[3]=0;           DB[4]=2*eta*d_dy;  DB[5]=0;
+      DB[6]=0;           DB[7]=0;           DB[8]=2*eta*d_dz;
+      DB[9]=eta*d_dy;    DB[10]=eta*d_dx;   DB[11]=0;
+      DB[12]=eta*d_dz;   DB[13]=0;          DB[14]=eta*d_dx;
+      DB[15]=0;          DB[16]=eta*d_dz;   DB[17]=eta*d_dy;
+ // if nondiagonal D:  blasMatrixMultAB( D, B, 6, 6, 3, DB );
    }
  
 } 
@@ -273,7 +277,6 @@ void Assemble_B( double d_dx, double d_dy, double d_dz, int dim, double* B ){
    }
  
 }
-#if 0
 void _MatrixAssemblyTerm_NA_i__NB_i__Cij_AssembleElement(
       void*                                              matrixTerm,
       StiffnessMatrix*                                   stiffnessMatrix,
@@ -406,8 +409,8 @@ void _MatrixAssemblyTerm_NA_i__NB_i__Cij_AssembleElement(
       }
    }
 }
-#endif
 
+#if 0
 void _MatrixAssemblyTerm_NA_i__NB_i__Cij_AssembleElement(
       void*                                              matrixTerm,
       StiffnessMatrix*                                   stiffnessMatrix,
@@ -439,18 +442,12 @@ void _MatrixAssemblyTerm_NA_i__NB_i__Cij_AssembleElement(
    Cell_Index                          cell_I;
    ElementType*                        elementType;
    unsigned                            dofCount;
-   double                              B_a[18], B_b[18];
-   double                              D[64]; // see louis paper for definition, is the consitutive matrix
    double                              DB[18]; // see louis paper for definition, is the consitutive matrix
    double                              BtDB[9]; // see louis paper for definition, is the consitutive matrix
 
    // sanity check and initialise all small matrices
    assert( stiffnessMatrix->rowVariable == stiffnessMatrix->columnVariable );
-   memset( B_a, 0 ,sizeof(double)*18);
-   memset( B_b, 0 ,sizeof(double)*18);
-   memset( D, 0 ,sizeof(double)*64);
    memset( DB, 0 ,sizeof(double)*18);
-   memset( BtDB, 0 ,sizeof(double)*9);
 
    /* Set the element type */
    elementType = FeMesh_GetElementType( rowVar->feMesh, lElement_I );
@@ -503,29 +500,30 @@ void _MatrixAssemblyTerm_NA_i__NB_i__Cij_AssembleElement(
             d_dy = GNx[J_AXIS][b_i];
             d_dz = GNx[K_AXIS][b_i];
 
-            /* K = [B]^T[D][B] */
+            /* K = [B]^T[D][B], we build it's transpose, don't know why */
             if( dim == 2 ) {
                elStiffMat[colDof_i  ][rowDof_i  ] += d_dx*DB[0]+d_dy*DB[4];
                elStiffMat[colDof_i  ][rowDof_i+1] += d_dy*DB[5];
                elStiffMat[colDof_i+1][rowDof_i  ] += d_dx*DB[4];
                elStiffMat[colDof_i+1][rowDof_i+1] += d_dy*DB[3]+d_dx*DB[5];
             }
-            /* Need to update
             if( dim == 3 ) {
-               elStiffMat[colDof_i  ][rowDof_i  ] += BtDB[0];
-               elStiffMat[colDof_i  ][rowDof_i+1] += BtDB[1];
-               elStiffMat[colDof_i  ][rowDof_i+2] += BtDB[2];
-               elStiffMat[colDof_i+1][rowDof_i  ] += BtDB[3];
-               elStiffMat[colDof_i+1][rowDof_i+1] += BtDB[4];
-               elStiffMat[colDof_i+1][rowDof_i+2] += BtDB[5];
-               elStiffMat[colDof_i+2][rowDof_i  ] += BtDB[6];
-               elStiffMat[colDof_i+2][rowDof_i+1] += BtDB[7];
-               elStiffMat[colDof_i+2][rowDof_i+2] += BtDB[8];
+
+               elStiffMat[colDof_i  ][rowDof_i  ] += d_dx*DB[0] + d_dy*DB[9] + d_dz*DB[12];
+               elStiffMat[colDof_i  ][rowDof_i+1] += d_dx*DB[1] + d_dy*DB[10] + d_dz*DB[13];
+               elStiffMat[colDof_i  ][rowDof_i+2] += d_dx*DB[2] + d_dy*DB[11] + d_dz*DB[14];
+
+               elStiffMat[colDof_i+1][rowDof_i  ] += d_dy*DB[3] + d_dx*DB[9] + d_dz*DB[15];
+               elStiffMat[colDof_i+1][rowDof_i+1] += d_dy*DB[4] + d_dx*DB[10] + d_dz*DB[16];
+               elStiffMat[colDof_i+1][rowDof_i+2] += d_dy*DB[5] + d_dx*DB[11] + d_dz*DB[17];
+
+               elStiffMat[colDof_i+2][rowDof_i  ] += d_dz*DB[6] + d_dx*DB[12] + d_dy*DB[15];
+               elStiffMat[colDof_i+2][rowDof_i+1] += d_dz*DB[7] + d_dx*DB[13] + d_dy*DB[16];
+               elStiffMat[colDof_i+2][rowDof_i+2] += d_dz*DB[8] + d_dx*DB[14] + d_dy*DB[17];
             }
-            */
          }
       }
    }
 }
-
+#endif
 

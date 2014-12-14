@@ -111,7 +111,7 @@ Bool Underworld_Utils_Init( int* argc, char** argv[] ) {
    RegisterParent( ViscousHeatingTermPpc_Type,      ForceTerm_Type );
 
    Stg_ComponentRegister_Add( componentRegister, Ppc_VD_Type, (Name)"0", _Ppc_VD_DefaultNew  );
-   RegisterParent( Ppc_VD_Type,      ForceTerm_Type );
+   RegisterParent( Ppc_VD_Type,      Ppc_Type );
 
    Stg_ComponentRegister_Add( componentRegister, AdiabaticHeatingTermPpc_Type, (Name)"0", _AdiabaticHeatingTermPpc_DefaultNew  );
    RegisterParent( AdiabaticHeatingTermPpc_Type,      ForceTerm_Type );
