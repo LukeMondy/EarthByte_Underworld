@@ -214,7 +214,8 @@ void _SLIntegrator_Unstructured_Initialise( void* slIntegrator, void* data ) {
     SLIntegrator_Unstructured*	self 		= (SLIntegrator_Unstructured*)slIntegrator;
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
-    unsigned			field_i;//, i, j;
+    unsigned			field_i;
+    unsigned			dim		= Mesh_GetDimSize( self->velocityField->feMesh );
 
     if(self->velocityField) Stg_Component_Initialise(self->velocityField, data, False);
 
@@ -228,9 +229,11 @@ void _SLIntegrator_Unstructured_Initialise( void* slIntegrator, void* data ) {
     //self->weights = malloc(4*sizeof(double));
     self->abcissa = malloc(4*sizeof(double));
     self->Ni      = malloc(64*sizeof(double));
-    self->GNix    = malloc(2*sizeof(double*));
+    self->GNix    = malloc(dim*sizeof(double*));
     self->GNix[0] = malloc(64*sizeof(double));
     self->GNix[1] = malloc(64*sizeof(double));
+    if( dim == 3 )
+        self->GNix[2] = malloc(64*sizeof(double));
     //self->dCij    = malloc(64*sizeof(double));
 
     //self->weights[0] = 0.16666666666666667;
@@ -268,6 +271,7 @@ void _SLIntegrator_Unstructured_Destroy( void* slIntegrator, void* data ) {
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
     unsigned			field_i;
+    unsigned			dim		= Mesh_GetDimSize( self->velocityField->feMesh );
 
     if(self->velocityField) Stg_Component_Destroy(self->velocityField, data, False);
 
@@ -284,6 +288,8 @@ void _SLIntegrator_Unstructured_Destroy( void* slIntegrator, void* data ) {
     free(self->Ni);
     free(self->GNix[0]);
     free(self->GNix[1]);
+    if( dim == 3 )
+        free(self->GNix[2]);
     free(self->GNix);
     //free(self->dCij);
 
@@ -826,8 +832,14 @@ void SLIntegrator_Unstructured_GlobalToLocal( void* slIntegrator, void* _mesh, u
         memset( rightHandSide, 0, sizeof( XYZ ) );
 
         /* Evaluate shape functions for rhs */
-        SLIntegrator_Unstructured_ShapeFuncs( self, lCoord, Ni );
-        SLIntegrator_Unstructured_ShapeFuncDerivs( self, lCoord, GNix );
+        if( dim == 2 ) {
+            SLIntegrator_Unstructured_ShapeFuncs( self, lCoord, Ni );
+            SLIntegrator_Unstructured_ShapeFuncDerivs( self, lCoord, GNix );
+        }
+        else {
+            SLIntegrator_Unstructured_ShapeFuncs3D( self, lCoord, Ni );
+            SLIntegrator_Unstructured_ShapeFuncDerivs3D( self, lCoord, GNix );
+        }
 
         for( node_I = 0 ; node_I < nodeCount ; node_I++ ) {
             nodeCoord = Mesh_GetVertex( mesh, nodeInds[node_I] );
