@@ -532,16 +532,32 @@ void SLIntegrator_Unstructured_CubicInterpolator( void* slIntegrator, FeVariable
     gNode_I = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
     GlobalNodeToIJK( feMesh, gNode_I, IJK );
 
-    if( !HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
-    if( !HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1]--;
-    if( nDims == 3 ) {
-        if( !HasBack( feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
-    }
+    if( nInc%3 == 0 ) { /* quadratic mesh */
+        unsigned cIndex = ( nDims == 3 ) ? 13 : 4;
+        double*  cCoord = Mesh_GetVertex( feMesh, inc[cIndex] );
 
-    if( HasLeft( feMesh, self->inc, elInd, inc, nInc ) )   IJK[0]--;
-    if( HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
-    if( nDims == 3 ) {
-        if( HasFront( feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
+        if( position[0] > cCoord[0] && !HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0] -= 2;
+        if( position[1] > cCoord[1] && !HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1] -= 2;
+        if( nDims == 3 ) {
+            if( position[2] > cCoord[2] && !HasBack( feMesh, self->inc, elInd, inc, nInc ) ) IJK[2] -= 2;
+        }
+
+        if( position[0] < cCoord[0] && HasLeft( feMesh, self->inc, elInd, inc, nInc ) )   IJK[0]--;
+        if( position[1] < cCoord[1] && HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
+        if( nDims == 3 ) {
+            if( position[2] < cCoord[2] && HasFront( feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
+        }
+    }
+    else { /* linear mesh */
+        if( !HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
+        if( !HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1]--;
+        if( nDims == 3 )
+            if( !HasBack( feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
+
+        if( HasLeft( feMesh, self->inc, elInd, inc, nInc ) )   IJK[0]--;
+        if( HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
+        if( nDims == 3 )
+            if( HasFront( feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
     }
     FeMesh_NodeGlobalToDomain( feMesh, IJKToGlobalNode( feMesh, IJK ), &lNode_I );
 
