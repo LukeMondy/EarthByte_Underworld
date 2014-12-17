@@ -30,7 +30,6 @@
 	<include>StgFEM/VelocityField.xml</include>
 	<include>StgFEM/TemperatureField.xml</include>
 	<include>StgFEM/GaussSwarm.xml</include>
-        <!--include>StgFEM/SLIntegrator_Unstructured.xml</include-->
         <include>StgFEM/BreadSliceDecomposition.x.xml</include>
 	
 	<struct name="components" mergeType="merge">
@@ -91,7 +90,10 @@
 		</struct>
 
 		<struct name="integrator">
+			<param name="Type">SLIntegrator_Spherical</param>
+			<!--
 			<param name="Type">SLIntegrator_Unstructured</param>
+			-->
 			<param name="VelocityField">VelocityField</param>
 			<param name="Context">context</param>
 			<list name="fields">
@@ -114,10 +116,10 @@
 	<param name="shadowDepth"> 1 </param>
 
         <param name="minX"> 3 </param> <param name="maxX"> 6 </param> 
-	<param name="elementResI"> 48 </param>
+	<param name="elementResI"> 24 </param>
 
 	<param name="minY"> 0 </param> <param name="maxY"> 180 </param>
-	<param name="elementResJ">144 </param>
+	<param name="elementResJ"> 72 </param>
 
 	<param name="minZ"> 0.0f </param> <param name="maxZ"> 1.0f </param>
 	<param name="elementResK"> 1000 </param>
