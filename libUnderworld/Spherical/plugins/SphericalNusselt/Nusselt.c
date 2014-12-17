@@ -94,7 +94,7 @@ void _Spherical_Nusselt_AssignFromXML( void* component, Stg_ComponentFactory* cf
 
    self->volAvgVD = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_viscous_dissipation",PpcIntegral, False, data);
    self->volAvgW = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_work_done",PpcIntegral, False, data);
-   self->volAvgT = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_temperature",PpcIntegral, True, data);
+   self->volAvgT = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_temperature",PpcIntegral, False, data);
    self->vol = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume",PpcIntegral, False, data);
 
    self->Ra = Stg_ComponentFactory_PluginGetDouble( cf, self, (Dictionary_Entry_Key)"Ra", -2 );
