@@ -25,6 +25,10 @@
 			<param name="Type">StgFEM_SemiLagrangian</param>
 			<param name="Context">context</param>
 		</struct>
+		<struct>
+			<param name="Type">Spherical_InitialConditions</param>
+			<param name="Context">context</param>
+		</struct>
 	</list>
 
 	<include>Spherical/RSMesh.xml</include>
@@ -82,7 +86,7 @@
 		</struct>
 
 		<struct name="integrator">
-			<param name="Type">SLIntegrator_Unstructured</param>
+			<param name="Type">SLIntegrator_Spherical</param>
 			<param name="VelocityField">VelocityField</param>
 			<param name="Context">context</param>
 			<list name="fields">
@@ -100,12 +104,12 @@
 					<struct>
 						<param name="name">vy</param>
 						<param name="type">func</param>
-						<param name="value">ShearCellX</param>
+						<param name="value">ShearCellEta</param>
 					</struct>
 					<struct>
 						<param name="name">vz</param>
 						<param name="type">func</param>
-						<param name="value">ShearCellY</param>
+						<param name="value">ShearCellZeta</param>
 					</struct>
 				</list>
 			</struct>
@@ -120,16 +124,16 @@
 					<struct>
 						<param name="name">temperature</param>
 						<param name="type">func</param>
-						<param name="value">SolWave</param>
+						<param name="value">SolWave_RS</param>
 					</struct>
 				</list>
 			</struct>
 		</list>
 	</struct>
-	<param name="solWave_shiftX"> 4.5 </param>
-	<param name="solWave_shiftY"> 0.0 </param>
-	<param name="solWave_scaleX"> 1.5 </param>
-	<param name="solWave_scaleY"> 1.0 </param>
+	<param name="solWave_shiftEta">  0.0 </param>
+	<param name="solWave_shiftZeta"> 0.0 </param>
+	<param name="solWave_scaleEta">  3.0 </param>
+	<param name="solWave_scaleZeta"> 4.0 </param>
         <param name="reverseTimeStep"> 80 </param>
         <param name="staticTimeStep"> 0.04363323129985824 </param>
         <param name="unstructuredMesh"> true </param>
@@ -152,11 +156,11 @@
 	<param name="elementResI"> 4 </param>
 
 	<param name="minY"> -45 </param> <param name="maxY"> 45 </param> 
-	<param name="elementResJ">32 </param>
+	<param name="elementResJ"> 16 </param>
 
 
 	<param name="minZ"> -45 </param> <param name="maxZ"> 45 </param> 
-	<param name="elementResK">32 </param>
+	<param name="elementResK"> 16 </param>
 
 	<!-- material points swarm parameters -->
 	<param name="gaussParticlesX"> 2 </param>

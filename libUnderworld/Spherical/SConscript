@@ -77,7 +77,8 @@ dirs = ['libSpherical/Toolbox',
         'plugins/SphericalAlgorithms',
         'plugins/SimpleSteadyStateTest',
         'plugins/SphericalNusselt',
-        'plugins/SphericalVrms']
+        'plugins/SphericalVrms',
+        'plugins/InitialConditions']
 
 pl_objs = []
 pl_regs = []
