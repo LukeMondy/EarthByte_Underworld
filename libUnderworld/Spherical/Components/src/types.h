@@ -24,6 +24,7 @@ typedef struct MatAssembly_NA__Fi__NB MatAssembly_NA__Fi__NB;
 typedef struct Ppc_SphericalDepth Ppc_SphericalDepth;
 typedef struct Ppc_TensorInvariant Ppc_TensorInvariant;
 typedef struct Ppc_VecDotVec Ppc_VecDotVec;
+typedef struct SLIntegrator_Spherical SLIntegrator_Spherical;
 
 typedef enum {
    SphereBC_Wall_Inner,

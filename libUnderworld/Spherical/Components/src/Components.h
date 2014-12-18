@@ -32,6 +32,7 @@
 #include "Ppc_SphericalDepth.h"
 #include "Ppc_TensorInvariant.h"
 #include "Ppc_VecDotVec.h"
+#include "SLIntegrator_Spherical.h"
 
 #include "Init.h"
 #include "Finalise.h"

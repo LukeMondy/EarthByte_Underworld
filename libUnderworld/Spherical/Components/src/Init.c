@@ -73,6 +73,9 @@ Bool Spherical_Components_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( compReg, Ppc_VecDotVec_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Ppc_VecDotVec_DefaultNew );
    RegisterParent( Ppc_VecDotVec_Type, Ppc_Type );
 
+   Stg_ComponentRegister_Add( compReg, SLIntegrator_Spherical_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_SLIntegrator_Spherical_DefaultNew );
+   RegisterParent( SLIntegrator_Spherical_Type, Stg_Component_Type );
+
 	VariableCondition_Register_Add( variableCondition_Register, SphereBC_Type, SphereBC_Factory );
 
    ConditionFunction_Register_Add( 
