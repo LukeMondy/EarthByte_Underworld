@@ -123,6 +123,55 @@ void InitialConditions_ShearCellZeta( Node_LocalIndex node_lI, Variable_Index va
     *result = -M_PI*cos( M_PI*rs[1] )*sin( M_PI*rs[2] );
 }
 
+void InitialConditions_ParametricSphereX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+    FiniteElementContext*       context         = (FiniteElementContext*)_context;
+    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+    double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricSphere_scale", 1.0 );
+    FeMesh*                     mesh            = feVariable->feMesh;
+    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
+    double*                     result          = (double*)_result;
+    double                      radius          = sqrt( coord[0]*coord[0] + coord[1]*coord[1] + coord[2]*coord[2] );
+    double                      phi;
+
+    phi = atan2( coord[1], coord[0] );
+
+    *result = -radius*sin( phi )/scale;
+    //if( coord[0] < 0.0 )
+    //    *result *= -1.0;
+}
+
+void InitialConditions_ParametricSphereY( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+    FiniteElementContext*       context         = (FiniteElementContext*)_context;
+    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+    double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricSphere_scale", 1.0 );
+    FeMesh*                     mesh            = feVariable->feMesh;
+    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
+    double*                     result          = (double*)_result;
+    double                      radius          = sqrt( coord[0]*coord[0] + coord[1]*coord[1] + coord[2]*coord[2] );
+    double                      phi;
+
+    phi = atan2( coord[1], coord[0] );
+
+    *result = radius*cos( phi )/scale;
+    //if( coord[0] < 0.0 )
+    //    *result *= -1.0;
+}
+
+void InitialConditions_ParametricSphereZ( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+    FiniteElementContext*       context         = (FiniteElementContext*)_context;
+    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+    double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricSphere_scale", 1.0 );
+    FeMesh*                     mesh            = feVariable->feMesh;
+    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
+    double*                     result          = (double*)_result;
+    double                      radius          = sqrt( coord[0]*coord[0] + coord[1]*coord[1] + coord[2]*coord[2] );
+    double                      phi;
+
+    phi = atan2( coord[1], coord[0] );
+
+    *result = 0.0;
+}
+
 void Spherical_InitialConditions_AssignFromXML( void* _self, Stg_ComponentFactory* cf, void* data ) {
     Spherical_InitialConditions* 	self 		= (Spherical_InitialConditions*)_self;
     AbstractContext*		context		= Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, NULL  );
@@ -133,6 +182,12 @@ void Spherical_InitialConditions_AssignFromXML( void* _self, Stg_ComponentFactor
     condFunc = ConditionFunction_New( InitialConditions_ShearCellEta, (Name)"ShearCellEta", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
     condFunc = ConditionFunction_New( InitialConditions_ShearCellZeta, (Name)"ShearCellZeta", NULL  );
+    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    condFunc = ConditionFunction_New( InitialConditions_ParametricSphereX, (Name)"ParametricSphereX", NULL  );
+    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    condFunc = ConditionFunction_New( InitialConditions_ParametricSphereY, (Name)"ParametricSphereY", NULL  );
+    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    condFunc = ConditionFunction_New( InitialConditions_ParametricSphereZ, (Name)"ParametricSphereZ", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
 }
 
