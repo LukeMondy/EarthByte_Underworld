@@ -37,20 +37,24 @@ for l in range(1,len(sys.argv)):
 
 # Check if enviroment is ok
 print 'Checking environment...'
-if 'PETSCEXT2_DIR' not in os.environ:
-  sys.exit('ERROR: PETSCEXT2_DIR enviroment variable is not set')
-petscextdir = os.environ['PETSCEXT2_DIR']
+#if 'PETSCEXT2_DIR' not in os.environ:
+#  sys.exit('ERROR: PETSCEXT2_DIR enviroment variable is not set')
+petscextdir = os.path.realpath(os.getcwd())
+#petscextdir = os.environ['PETSCEXT2_DIR']
 petscarch = os.environ['PETSC_ARCH']
 
-# Check PETSCEXT2_DIR mathches current working directory
+# Check PETSCEXT2_DIR matches current working directory -- should match by definition now.
 cwd = os.path.realpath(os.getcwd())
-if not cwd == os.path.realpath(petscextdir):
-  error_mesg = os.sep.join( ['ERROR: PETSCEXT2_DIR must match current working directory: Yours was', petscextdir,', should be: '])
-  error_mesg = os.sep.join([error_mesg,cwd])
-  sys.exit( error_mesg )
+#if not cwd == os.path.realpath(petscextdir):
+#  error_mesg = os.sep.join( ['ERROR: PETSCEXT2_DIR must match current working directory: Yours was', petscextdir,', should be: '])
+#  error_mesg = os.sep.join([error_mesg,cwd])
+#  sys.exit( error_mesg )
 
 if not os.path.exists(petscextdir) or not os.path.exists(os.sep.join([petscextdir,'conf'])):
+  error_mesg = os.sep.join( ['ERROR: PETSCEXT2_DIR must match current working directory: Yours was', petscextdir,', should be: '])
+  error_mesg = os.sep.join([error_mesg,cwd])
   sys.exit('ERROR: PETSCEXT2_DIR enviroment variable is not valid as petscextdir/conf does not exist')
+
 os.chdir(petscextdir)
 if 'PETSC_DIR' not in os.environ:
   sys.exit('ERROR: PETSC_DIR enviroment variable is not set [2]')
@@ -75,8 +79,8 @@ for arg in sys.argv[1:]:
 
 # Check some information about PETSc configuration
 petscconf.Load(petscdir)
-if petscconf.VERSION < '3.1.0':
-  sys.exit('ERROR: This PETScExt version is not compatible with PETSc version '+petscconf.VERSION) 
+#if petscconf.VERSION < '3.1.0':
+#  sys.exit('ERROR: This PETScExt version is not compatible with PETSc version '+petscconf.VERSION) 
 if not petscconf.PRECISION in ['double','single','matsingle']:
   sys.exit('ERROR: This PETScExt version does not work with '+petscconf.PRECISION+' precision')
 

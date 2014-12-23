@@ -5,9 +5,11 @@
 #
 ALL: all
 LOCDIR	 = ./
+PETSCEXT2_DIR = ${PWD}
 DIRS	 = src include
 CFLAGS	 = 
 FFLAGS	 = 
+export PETSCEXT2_DIR
 
 ifneq ("$(wildcard $(PETSC_DIR)/$(PETSC_ARCH))","")
 INSTALL_DIR=${PETSC_DIR}/${PETSC_ARCH}

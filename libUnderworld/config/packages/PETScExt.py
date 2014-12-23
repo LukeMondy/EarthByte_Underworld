@@ -8,7 +8,11 @@ class PETScExt(Package):
         self.petsc = self.add_dependency(PETSc)
 
     def gen_locations(self):
-        yield ('/usr/local', ['/usr/local/include'], ['/usr/local/lib'])
+        extloc = 'Solvers/PetscExt'
+        extdir = os.path.join(os.getcwdu(), extloc)
+        extinc = os.path.join(extdir, 'include')
+        extlib = os.path.join(extdir, 'lib')  # if petscarch exists will be updated below
+        yield (extdir,[extinc],[extlib])
 
     def gen_envs(self, loc):
         env = self.env.Clone()
@@ -23,7 +27,6 @@ class PETScExt(Package):
            if os.path.exists( loc[2][0] ):
              if self.arch is not None:
                loc[2][0] = os.path.join(loc[2][0], self.arch)
-
            else:
              if self.arch is not None:
                loc[2][0] = os.path.join(loc[0], self.arch, 'lib')

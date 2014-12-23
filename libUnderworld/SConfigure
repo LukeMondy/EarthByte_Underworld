@@ -66,6 +66,28 @@ def UWExit( self ):
 env.AddMethod( UWExit )
 
 #
+# Build PetscExt here.
+#
+import os
+
+class cd:
+    """Create a context manager to work in an insulated environment with a changed directory"""
+    def __init__(self, newPath):
+        self.newPath = newPath
+
+    def __enter__(self):
+        self.savedPath = os.getcwd()
+        os.chdir(self.newPath)
+
+    def __exit__(self, etype, value, traceback):
+        os.chdir(self.savedPath)
+
+import subprocess
+with cd("./Solvers/PetscExt"):
+    subprocess.call('./config/configure.py',shell=True)
+    subprocess.call('make all',shell=True)
+
+#
 # Declare which packages we're going to use.
 #
 
@@ -305,6 +327,7 @@ if not (GetOption('help') or GetOption('clean')):
             viewer_env.SaveConfig('viewer.cfg')
         if offscreen_env:
             offscreen_env.SaveConfig('offscreen.cfg')
+
 
 #
 # Print success message.
