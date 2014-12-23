@@ -464,9 +464,9 @@ void Spherical_RTP2XYZ3D( double* rtp, double* xyz ) {
 }
 
 #define SL_EPS 1.0e-04
-void SLIntegrator_Spherical_BoundaryUpdate2D( FeMesh* feMesh, IArray* iArray, double* pos ) {
+unsigned SLIntegrator_Spherical_BoundaryUpdate2D( FeMesh* feMesh, IArray* iArray, double* pos ) {
     unsigned*   periodic        = ((CartesianGenerator*)feMesh->generator)->periodic;
-    unsigned    dim_i;
+    unsigned    dim_i, elInd;
     double      rtp[3], min[3], max[3];
 
     Mesh_GetGlobalCoordRange( feMesh, min, max );
@@ -482,14 +482,18 @@ void SLIntegrator_Spherical_BoundaryUpdate2D( FeMesh* feMesh, IArray* iArray, do
         }
     }
     Spherical_RTP2XYZ( rtp, pos );
+
+    Mesh_SearchElements( feMesh, pos, &elInd );
+    return elInd;
 }
 
-void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, double* pos ) {
+unsigned SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, double* pos ) {
     unsigned*   periodic        = ((CartesianGenerator*)feMesh->generator)->periodic;
     double      rtp[3], min[3], max[3];
     Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->elGridId );
     unsigned*   sizes           = Grid_GetSizes( *grid );
     unsigned	dim_i, elInd;
+    Bool	searchDone	= False;
 
     for( dim_i = 0; dim_i < 3; dim_i++ ) {
         min[dim_i] = ((RSGenerator*)feMesh->generator)->crdMin[dim_i];
@@ -504,9 +508,9 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
 
     if( !periodic[0] ) {
         double dr = (max[0]-min[0])/sizes[0];
-        double testRS[3], testXYZ[3], v1[3], v2[3], norm[3], nMag, hyp[3], hNorm, lambda, theta, sgn;
+        double testRS[3], testXYZ[3], v1[3], v2[3], norm[3], nMag, hyp[3], hNorm, lambda, theta;
         unsigned nInc, *inc, ind0, ind1, ind2;
-        if( rtp[0] > max[0] ) {
+        if( rtp[0] > max[0] - SL_EPS ) {
             testRS[0] = rtp[0] - 0.5*dr;
             for( dim_i = 1; dim_i < 3; dim_i++ ) {
                 testRS[dim_i] = rtp[dim_i];
@@ -515,14 +519,14 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
             }
             Spherical_RegionalSphere2XYZ( testRS, testXYZ );
             Mesh_SearchElements( feMesh, testXYZ, &elInd );
+            searchDone = True;
             FeMesh_GetElementNodes( feMesh, elInd, iArray );
             nInc = IArray_GetSize( iArray );
             inc  = IArray_GetPtr( iArray );
             if( nInc%3 == 0 ) {
-                ind0 = 18; ind1 = 20; ind2 = 24;//TODO fix these
+                ind0 = 2; ind1 = 8; ind2 = 20;
             } else {
-                //ind0 = 4;  ind1 = 5;  ind2 = 6;
-                ind0 = 1;  ind1 = 3;  ind2 = 5;
+                ind0 = 1; ind1 = 3; ind2 = 5;
             }
             for( dim_i = 0; dim_i < 3; dim_i++ ) {
                 v1[dim_i] = Mesh_GetVertex( feMesh, inc[ind1] )[dim_i] - Mesh_GetVertex( feMesh, inc[ind0] )[dim_i];
@@ -538,9 +542,7 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
             }
             hNorm  = sqrt( hyp[0]*hyp[0] + hyp[1]*hyp[1] + hyp[2]*hyp[2] );
             theta  = 0.25*M_PI - acos( ( norm[0]*hyp[0] + norm[1]*hyp[1] + norm[2]*hyp[2] )/hNorm );
-            lambda = hNorm*sin( theta );
-            //sgn    = ( lambda > 0.0 ) ? +1.0 : -1.0;
-            //lambda += sgn*SL_EPS;
+            lambda = fabs( hNorm*sin( theta ) );
             for( dim_i = 0; dim_i < 3; dim_i++ ) {
                 pos[dim_i] -= lambda*norm[dim_i];
             }
@@ -558,6 +560,11 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
         }
     }
     Spherical_RegionalSphere2XYZ( rtp, pos );
+
+    if( !searchDone ) {
+        Mesh_SearchElements( feMesh, pos, &elInd );
+    }
+    return elInd;
 }
 
 #if 0
@@ -597,9 +604,9 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
             nInc = IArray_GetSize( iArray );
             inc  = IArray_GetPtr( iArray );
             if( nInc%3 == 0 ) {
-                ind0 = 18; ind1 = 20; ind2 = 24;//TODO: fix these
+                ind0 = 2; ind1 = 8; ind2 = 20;
             } else {
-                ind0 = 1;  ind1 = 3;  ind2 = 5;
+                ind0 = 1; ind1 = 3; ind2 = 5;
             }
             Spherical_XYZ2regionalSphere( Mesh_GetVertex( feMesh, inc[ind0] ), p0 );
             Spherical_XYZ2regionalSphere( Mesh_GetVertex( feMesh, inc[ind1] ), p1 );
@@ -662,17 +669,17 @@ unsigned IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
 }
 
 void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
-    SLIntegrator_Spherical*	self 	= (SLIntegrator_Spherical*)slIntegrator;
-    FeMesh*	feMesh			= feVariable->feMesh;
-    unsigned	elInd, nInc, *inc;
-    unsigned	IJK[3], IJK_test[3], index = 0;
-    unsigned	gNode_I, lNode_I;
-    unsigned	nDims			= Mesh_GetDimSize( feMesh );
-    unsigned	nodeIndex[64];
-    unsigned	numdofs			= feVariable->dofLayout->dofCounts[0];
-    double	lCoord[3], phi_i[3];
-    unsigned	node_i, dof_i;
-    Grid**      grid                    = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    SLIntegrator_Spherical*	self 			= (SLIntegrator_Spherical*)slIntegrator;
+    FeMesh*			feMesh			= feVariable->feMesh;
+    unsigned			elInd, nInc, *inc;
+    unsigned			IJK[3], IJK_test[3], index = 0;
+    unsigned			gNode_I, lNode_I;
+    unsigned			nDims			= Mesh_GetDimSize( feMesh );
+    unsigned			nodeIndex[64];
+    unsigned			numdofs			= feVariable->dofLayout->dofCounts[0];
+    double			lCoord[3], phi_i[3];
+    unsigned			node_i, dof_i;
+    Grid**      		grid                    = (Grid**)Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
 
     Mesh_SearchElements( feMesh, position, &elInd );
     FeMesh_GetElementNodes( feMesh, elInd, feVariable->inc );
