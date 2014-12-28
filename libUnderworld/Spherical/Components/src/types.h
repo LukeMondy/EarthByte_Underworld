@@ -25,6 +25,7 @@ typedef struct Ppc_SphericalDepth Ppc_SphericalDepth;
 typedef struct Ppc_TensorInvariant Ppc_TensorInvariant;
 typedef struct Ppc_VecDotVec Ppc_VecDotVec;
 typedef struct SLIntegrator_Spherical SLIntegrator_Spherical;
+typedef struct SLIntegrator_Polar SLIntegrator_Polar;
 
 typedef enum {
    SphereBC_Wall_Inner,

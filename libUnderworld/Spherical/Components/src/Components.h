@@ -33,6 +33,7 @@
 #include "Ppc_TensorInvariant.h"
 #include "Ppc_VecDotVec.h"
 #include "SLIntegrator_Spherical.h"
+#include "SLIntegrator_Polar.h"
 
 #include "Init.h"
 #include "Finalise.h"
