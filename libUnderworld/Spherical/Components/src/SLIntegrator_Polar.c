@@ -241,7 +241,7 @@ void _SLIntegrator_Polar_Initialise( void* slIntegrator, void* data ) {
         abort();
     }
     if( strcmp( self->velocityField->feMesh->algorithms->type, "Mesh_SphericalAlgorithms" ) != 0 ) {
-        printf( "ERROR: component %s required mesh algorithms type Mesh_SphericalAlgoritms, type is %s.\n", self->velocityField->feMesh->algorithms->type );
+        printf( "ERROR: component %s required mesh algorithms type Mesh_SphericalAlgoritms, type is %s.\n", self->type, self->velocityField->feMesh->algorithms->type );
         abort();
     }
 }
@@ -300,39 +300,41 @@ void SLIntegrator_Polar_InitSolve( void* _self, void* _context ) {
 
 #define INV6 0.16666666666666667
 void SLIntegrator_Polar_IntegrateRK4( void* slIntegrator, FeVariable* velocityField, double dt, double* origin, double* position ) {
-    SLIntegrator_Polar*	self 	     = (SLIntegrator_Polar*)slIntegrator;
-    unsigned		ndims		     = Mesh_GetDimSize( velocityField->feMesh );
+    SLIntegrator_Polar*	self 	     	     = (SLIntegrator_Polar*)slIntegrator;
     unsigned		dim_i;
     double		min[3], max[3];
     double		k[4][3];
     double		coordPrime[3];
     unsigned*		periodic	     = ((CartesianGenerator*)velocityField->feMesh->generator)->periodic;
+    Bool		fullAnnulus	     = ((SphericalGenerator*)velocityField->feMesh->generator)->fullAnnulus;
 
     Mesh_GetGlobalCoordRange( velocityField->feMesh, min, max );
+    min[1] *= M_PI/180;
+    max[1] *= M_PI/180;
 
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, origin, k[0] );
-    for( dim_i = 0; dim_i < ndims; dim_i++ ) {
+    for( dim_i = 0; dim_i < 2; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[0][dim_i];
     }
-    //if( !spherical ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
+    if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[1] );
 
-    for( dim_i = 0; dim_i < ndims; dim_i++ ) {
+    for( dim_i = 0; dim_i < 2; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[1][dim_i];
     }
-    //if( !spherical ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
+    if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[2] );
 
-    for( dim_i = 0; dim_i < ndims; dim_i++ ) {
+    for( dim_i = 0; dim_i < 2; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt*k[2][dim_i];
     }
-    //if( !spherical ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic, ndims );
+    if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[3] );
 
-    for( dim_i = 0; dim_i < ndims; dim_i++ ) {
+    for( dim_i = 0; dim_i < 2; dim_i++ ) {
         position[dim_i] = origin[dim_i] - INV6*dt*( k[0][dim_i] + 2.0*k[1][dim_i] + 2.0*k[2][dim_i] + k[3][dim_i] );
     }
-    //if( !spherical ) SLIntegrator_Polar_PeriodicUpdate( position, min, max, periodic, ndims );
+    if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( position, min, max, periodic );
 }
 
 Bool HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
@@ -384,22 +386,22 @@ Bool HasTop( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, uns
     return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SLIntegrator_Polar_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic ) {
-    Bool	result		= False;
+void SLIntegrator_Polar_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic ) {
     unsigned 	dim_i;
+    double	rt[2];
+
+    Spherical_XYZ2RTP2D( pos, rt );
 
     for( dim_i = 0; dim_i < 2; dim_i++ ) {
-        if( pos[dim_i] < min[dim_i] ) {
-            pos[dim_i] = (isPeriodic[dim_i]) ? max[dim_i] - min[dim_i] + pos[dim_i] : min[dim_i];
-            result = True;
+        if( rt[dim_i] < min[dim_i] ) {
+            rt[dim_i] = (isPeriodic[dim_i]) ? max[dim_i] - min[dim_i] + rt[dim_i] : min[dim_i];
         }
-        if( pos[dim_i] > max[dim_i] ) {
-            pos[dim_i] = (isPeriodic[dim_i]) ? min[dim_i] - max[dim_i] + pos[dim_i] : max[dim_i];
-            result = True;
+        if( rt[dim_i] > max[dim_i] ) {
+            rt[dim_i] = (isPeriodic[dim_i]) ? min[dim_i] - max[dim_i] + rt[dim_i] : max[dim_i];
         }
     }
 
-    return result;
+    Spherical_RTP2XYZ( rt, pos );
 }
 
 void SLIntegrator_Polar_GlobalNodeToIJK( FeMesh* feMesh, unsigned gNode, unsigned* IJK ) {
@@ -421,18 +423,17 @@ unsigned SLIntegrator_Polar_IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
 }
 
 void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
-    SLIntegrator_Polar*	self 	= (SLIntegrator_Polar*)slIntegrator;
-    FeMesh*	feMesh			= feVariable->feMesh;
-    unsigned	elInd, nInc, *inc;
-    unsigned	IJK[3], IJK_test[3], index = 0;
-    unsigned	gNode_I, lNode_I;
-    unsigned	nDims			= Mesh_GetDimSize( feMesh );
-    unsigned	nodeIndex[64];
-    unsigned	numdofs			= feVariable->dofLayout->dofCounts[0];
-    double	lCoord[3], phi_i[3];
-    unsigned	node_i, dof_i;
-    Grid**      grid            	= (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
-    unsigned*   sizes           	= Grid_GetSizes( *grid );
+    SLIntegrator_Polar*	self 			= (SLIntegrator_Polar*)slIntegrator;
+    FeMesh*		feMesh			= feVariable->feMesh;
+    unsigned		elInd, nInc, *inc;
+    unsigned		IJK[3], IJK_test[3], index = 0;
+    unsigned		gNode_I, lNode_I;
+    unsigned		nodeIndex[64];
+    unsigned		numdofs			= feVariable->dofLayout->dofCounts[0];
+    double		lCoord[3], phi_i[3];
+    unsigned		node_i, dof_i;
+    Grid**      	grid            	= (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    unsigned*   	sizes           	= Grid_GetSizes( *grid );
 
     Mesh_SearchElements( feMesh, position, &elInd );
     FeMesh_GetElementNodes( feMesh, elInd, feVariable->inc );
@@ -443,8 +444,7 @@ void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVar
     SLIntegrator_Polar_GlobalNodeToIJK( feMesh, gNode_I, IJK );
 
     if( nInc%3 == 0 ) { /* quadratic mesh */
-        unsigned cIndex = ( nDims == 3 ) ? 13 : 4;
-        double*  cCoord = Mesh_GetVertex( feMesh, inc[cIndex] );
+        double*  cCoord = Mesh_GetVertex( feMesh, inc[4] );
 
         if( position[0] > cCoord[0] && !HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0] -= 2;
         if( position[1] > cCoord[1] && !HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1] -= 2;
@@ -499,6 +499,9 @@ void SLIntegrator_Polar_Solve( void* slIntegrator, FeVariable* variableField, Fe
 
     /* assume that the variable mesh is the same as the velocity mesh */
     for( node_I = 0; node_I < meshSize; node_I++ ) {
+        if( FeVariable_IsBC( variableField, node_I, 0 ) )
+            continue;
+
 	coord = Mesh_GetVertex(feMesh,node_I);
 
         SLIntegrator_Polar_IntegrateRK4( self, velocityField, dt, coord, position );

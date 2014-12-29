@@ -70,6 +70,7 @@ void SemiLagrangian_Block( Node_LocalIndex node_lI, Variable_Index var_I, void* 
         *result = 1.0;
 }
 
+/*
 void SemiLagrangian_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
     FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "TemperatureField" );
@@ -81,7 +82,10 @@ void SemiLagrangian_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, void
     double			ax   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleX", 5.0 );
     double			ay		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleY", 7.0 );
 
-    *result = SolWave_Domain( coord, xo, yo, ax, ay );
+    double	sx 	= 1.0/cosh( ax*(coord[0] - xo) );
+    double	sy 	= 1.0/cosh( ay*(coord[1] - yo) );
+
+    *result = sx*sx*sy*sy;
 }
 
 void SemiLagrangian_ShearCellX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
@@ -153,6 +157,7 @@ void SemiLagrangian_ParametricCircleY( Node_LocalIndex node_lI, Variable_Index v
     if( coord[0] < 0.0 )
         *result *= -1.0;
 }
+*/
 
 double SemiLagrangian_Dt( void* _context ) {
     FiniteElementContext*       context         = (FiniteElementContext*) _context;
@@ -166,13 +171,13 @@ double SemiLagrangian_Dt( void* _context ) {
     double                      delta[3], minDelta;
     double			dtMax;
 
-    velMax = FieldVariable_GetMaxGlobalFieldMagnitude( velocityField );
-    FeVariable_GetMinimumSeparation( velocityField, &minDelta, delta );
-
     if( staticTimeStep > 0.0 ) {
         dt = staticTimeStep;
     }
     else {
+        velMax = FieldVariable_GetMaxGlobalFieldMagnitude( velocityField );
+        FeVariable_GetMinimumSeparation( velocityField, &minDelta, delta );
+
         dt = 0.5 * minDelta / velMax;
         dt *= timeStepScale;
     }
@@ -318,16 +323,16 @@ void StgFEM_SemiLagrangian_AssignFromXML( void* _self, Stg_ComponentFactory* cf,
 
     condFunc = ConditionFunction_New( SemiLagrangian_Block, (Name)"Block", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( SemiLagrangian_SolWave, (Name)"SolWave", NULL  );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( SemiLagrangian_ShearCellX, (Name)"ShearCellX", NULL  );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( SemiLagrangian_ShearCellY, (Name)"ShearCellY", NULL  );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( SemiLagrangian_ParametricCircleX, (Name)"ParametricCircleX", NULL  );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( SemiLagrangian_ParametricCircleY, (Name)"ParametricCircleY", NULL  );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    //condFunc = ConditionFunction_New( SemiLagrangian_SolWave, (Name)"SolWave", NULL  );
+    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    //condFunc = ConditionFunction_New( SemiLagrangian_ShearCellX, (Name)"ShearCellX", NULL  );
+    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    //condFunc = ConditionFunction_New( SemiLagrangian_ShearCellY, (Name)"ShearCellY", NULL  );
+    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    //condFunc = ConditionFunction_New( SemiLagrangian_ParametricCircleX, (Name)"ParametricCircleX", NULL  );
+    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    //condFunc = ConditionFunction_New( SemiLagrangian_ParametricCircleY, (Name)"ParametricCircleY", NULL  );
+    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
 
     ContextEP_ReplaceAll( context, AbstractContext_EP_Dt, SemiLagrangian_Dt );
     ContextEP_Append( context, AbstractContext_EP_UpdateClass, SemiLagrangian_UpdatePositions );

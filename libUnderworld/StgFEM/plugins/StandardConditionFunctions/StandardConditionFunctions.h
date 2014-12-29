@@ -137,4 +137,10 @@ void StgFEM_StandardConditionFunctions_ParabolicProfile3D(Node_LocalIndex node_l
 void StgFEM_StandardConditionFunctions_StepProfile2D(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
 void StgFEM_StandardConditionFunctions_StepProfile3D(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
 
+void StgFEM_StandardConditionFunctions_SolWave(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
+void StgFEM_StandardConditionFunctions_ShearCellX(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
+void StgFEM_StandardConditionFunctions_ShearCellY(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
+void StgFEM_StandardConditionFunctions_ParametricCircleX(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
+void StgFEM_StandardConditionFunctions_ParametricCircleY(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
+
 #endif	
