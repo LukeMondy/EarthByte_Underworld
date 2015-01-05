@@ -53,29 +53,10 @@ Spherical_InitialConditions* Spherical_InitialConditions_selfPointer = NULL;
 
 typedef double (*funcPtr)( double* coord, double xo, double yo, double ax, double ay );
 
-void Spherical_InitialConditions_XYZ2regionalSphere( double *xyz, double* rs ) {
-    rs[0] = sqrt( xyz[0]*xyz[0] + xyz[1]*xyz[1] + xyz[2]*xyz[2] );
-    rs[1] = atan2( xyz[0], xyz[2] );
-    rs[2] = atan2( xyz[1], xyz[2] );
-}
-
-void Spherical_InitialConditions_RegionalSphere2XYZ( double *rs, double* xyz ) {
-      double r          = rs[0];
-      double theta      = rs[1];
-      double phi        = rs[2];
-      double X          = tan(theta);
-      double Y          = tan(phi);
-      double d          = sqrt(1 + X*X + Y*Y);
-
-      xyz[0] = r/d * X;
-      xyz[1] = r/d * Y;
-      xyz[2] = r/d * 1;
-}
-
 double SphericalICs_SolWave( double* coord, double xo, double yo, double ax, double ay ) {
     double	rs[3];
 
-    Spherical_InitialConditions_XYZ2regionalSphere( coord, rs );
+    Spherical_XYZ2regionalSphere( coord, rs );
 
     double	sx 	= 1.0/cosh( ax*(rs[1] - xo) );
     double	sy 	= 1.0/cosh( ay*(rs[2] - yo) );
@@ -105,9 +86,9 @@ void InitialConditions_ShearCellEta( Node_LocalIndex node_lI, Variable_Index var
     double*                     result          = (double*)_result;
     double			rs[3];
 
-    Spherical_InitialConditions_XYZ2regionalSphere( coord, rs );
+    Spherical_XYZ2regionalSphere( coord, rs );
 
-    *result = M_PI*sin( M_PI*rs[1] )*cos( M_PI*rs[2] );
+    *result = M_PI*sin( 0.5*M_PI*rs[1] )*cos( 0.5*M_PI*rs[2] );
 }
 
 void InitialConditions_ShearCellZeta( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
@@ -118,9 +99,9 @@ void InitialConditions_ShearCellZeta( Node_LocalIndex node_lI, Variable_Index va
     double*                     result          = (double*)_result;
     double			rs[3];
 
-    Spherical_InitialConditions_XYZ2regionalSphere( coord, rs );
+    Spherical_XYZ2regionalSphere( coord, rs );
 
-    *result = -M_PI*cos( M_PI*rs[1] )*sin( M_PI*rs[2] );
+    *result = -M_PI*cos( 0.5*M_PI*rs[1] )*sin( 0.5*M_PI*rs[2] );
 }
 
 void InitialConditions_ParametricSphereX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {

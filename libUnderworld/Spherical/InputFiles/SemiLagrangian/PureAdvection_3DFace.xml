@@ -22,7 +22,7 @@
 			<param name="Context">context</param>
 		</struct>
 		<struct>
-			<param name="Type">StgFEM_SemiLagrangian</param>
+			<param name="Type">Spherical_SLIntegrator3D</param>
 			<param name="Context">context</param>
 		</struct>
 		<struct>
@@ -43,6 +43,10 @@
                 </struct>	
 		<struct name="linearMeshGenerator" mergeType="merge">
 			<param name="sixthOnly" mergeType="replace">True</param>
+			<!--
+			<param name="periodic_y" mergeType="replace">True</param>
+			<param name="periodic_z" mergeType="replace">True</param>
+			-->
 		</struct>	
 
 		<struct name="temperatureInit">
@@ -103,18 +107,22 @@
 				<list name="variables">
 					<struct>
 						<param name="name">vx</param>
-						<param name="type">func</param>
-						<param name="value">ParametricSphereX</param>
+						<!--param name="type">func</param-->
+						<!--param name="value">ParametricSphereX</param-->
+						<param name="type">double</param>
+						<param name="value">0.0</param>
 					</struct>
 					<struct>
 						<param name="name">vy</param>
 						<param name="type">func</param>
-						<param name="value">ParametricSphereY</param>
+						<!--param name="value">ParametricSphereY</param-->
+						<param name="value">ShearCellEta</param>
 					</struct>
 					<struct>
 						<param name="name">vz</param>
 						<param name="type">func</param>
-						<param name="value">ParametricSphereZ</param>
+						<!--param name="value">ParametricSphereZ</param-->
+						<param name="value">ShearCellZeta</param>
 					</struct>
 				</list>
 			</struct>
@@ -136,16 +144,93 @@
 			</struct>
 		</list>
 	</struct>
-	<param name="solWave_shiftEta">  0.0 </param>
+        <struct name="temperatureBCs">
+                <param name="type">CompositeVC</param>
+                <list name="vcList">
+                        <!--struct>
+                                <param name="type"> WallVC </param>
+                                <param name="wall"> left </param>
+                                <list name="variables">
+                                        <struct>
+                                                <param name="name">temperature</param>
+                                                <param name="type">double</param>
+                                                <param name="value"> 0 </param>
+                                        </struct>
+                                </list>
+                        </struct-->
+                        <struct>
+                                <param name="type"> WallVC </param>
+                                <param name="wall"> right </param>
+                                <list name="variables">
+                                        <struct>
+                                                <param name="name">temperature</param>
+                                                <param name="type">double</param>
+                                                <param name="value"> 0 </param>
+                                        </struct>
+                                </list>
+                        </struct>
+<!--
+                        <struct>
+                                <param name="type"> WallVC </param>
+                                <param name="wall"> bottom </param>
+                                <list name="variables">
+                                        <struct>
+                                                <param name="name">temperature</param>
+                                                <param name="type">double</param>
+                                                <param name="value"> 0 </param>
+                                        </struct>
+                                </list>
+                        </struct>
+                        <struct>
+                                <param name="type"> WallVC </param>
+                                <param name="wall"> top </param>
+                                <list name="variables">
+                                        <struct>
+                                                <param name="name">temperature</param>
+                                                <param name="type">double</param>
+                                                <param name="value"> 0 </param>
+                                        </struct>
+                                </list>
+                        </struct>
+                        <struct>
+                                <param name="type"> WallVC </param>
+                                <param name="wall"> front </param>
+                                <list name="variables">
+                                        <struct>
+                                                <param name="name">temperature</param>
+                                                <param name="type">double</param>
+                                                <param name="value"> 0 </param>
+                                        </struct>
+                                </list>
+                        </struct>
+                        <struct>
+                                <param name="type"> WallVC </param>
+                                <param name="wall"> back </param>
+                                <list name="variables">
+                                        <struct>
+                                                <param name="name">temperature</param>
+                                                <param name="type">double</param>
+                                                <param name="value"> 0 </param>
+                                        </struct>
+                                </list>
+                        </struct>
+-->
+                </list>
+        </struct>
+
+	<!--
+	<param name="solWave_shiftEta"> -1.57079632679 </param>
+	-->
+	<param name="solWave_shiftEta"> 0.0 </param>
 	<param name="solWave_shiftZeta"> 0.0 </param>
 	<param name="solWave_scaleEta">  3.0 </param>
 	<param name="solWave_scaleZeta"> 4.0 </param>
-        <param name="reverseTimeStep"> 80 </param>
+        <param name="reverseTimeStep"> 12 </param>
         <param name="staticTimeStep"> 0.04363323129985824 </param>
         <param name="unstructuredMesh"> true </param>
 
 	<!-- Simulation control -->
-	<param name="maxTimeSteps">160 </param>
+	<param name="maxTimeSteps"> 24 </param>
 	<param name="outputEvery"> 0 </param>
 	<param name="dumpEvery"> 0 </param>
 	<param name="checkpointEvery"> 1 </param>
@@ -159,14 +244,13 @@
 	<param name="shadowDepth"> 1 </param>
 
 	<param name="minX"> 3 </param> <param name="maxX"> 6 </param>
-	<param name="elementResI"> 4 </param>
+	<param name="elementResI"> 8 </param>
 
 	<param name="minY"> -45 </param> <param name="maxY"> 45 </param> 
-	<param name="elementResJ"> 16 </param>
-
+	<param name="elementResJ"> 32 </param>
 
 	<param name="minZ"> -45 </param> <param name="maxZ"> 45 </param> 
-	<param name="elementResK"> 16 </param>
+	<param name="elementResK"> 32 </param>
 
 	<!-- material points swarm parameters -->
 	<param name="gaussParticlesX"> 2 </param>

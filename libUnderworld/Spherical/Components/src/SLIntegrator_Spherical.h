@@ -116,9 +116,12 @@
 
    /* --- Public functions --- */
    void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* coord, double* result );
-   unsigned SLIntegrator_Spherical_BoundaryUpdate2D( FeMesh* feMesh, IArray* iArray, double* pos );
-   unsigned SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, double* pos );
+   void SLIntegrator_Spherical_BoundaryUpdate2D( FeMesh* feMesh, IArray* iArray, double* pos );
+   void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, double* pos );
    void SLIntegrator_Spherical_IntegrateRK4( void* slIntegrator, FeVariable* velocityField, double dt, double* origin, double* position );
+
+   void Spherical_XYZ2regionalSphere( double* xyz, double* rs );
+   void Spherical_RegionalSphere2XYZ( double* rs, double* xyz );
 
    /** Solve:- calculate the new values for all solution vectors in the system. */
    void SLIntegrator_Spherical_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* variableFieldPrime );
