@@ -90,10 +90,10 @@
 		</struct>
 
 		<struct name="integrator">
-			<param name="Type">SLIntegrator_Spherical</param>
 			<!--
-			<param name="Type">SLIntegrator_Unstructured</param>
+			<param name="Type">SLIntegrator_Spherical</param>
 			-->
+			<param name="Type">SLIntegrator_Polar</param>
 			<param name="VelocityField">VelocityField</param>
 			<param name="Context">context</param>
 			<list name="fields">
