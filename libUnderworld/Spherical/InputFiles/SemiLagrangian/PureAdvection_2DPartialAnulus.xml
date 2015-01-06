@@ -114,10 +114,10 @@
 	<param name="shadowDepth"> 1 </param>
 
         <param name="minX"> 3 </param> <param name="maxX"> 6 </param> 
-	<param name="elementResI"> 24 </param>
+	<param name="elementResI"> 48 </param>
 
 	<param name="minY"> -45 </param> <param name="maxY"> +45 </param>
-	<param name="elementResJ"> 24 </param>
+	<param name="elementResJ"> 48 </param>
 
 	<param name="minZ"> 0.0f </param> <param name="maxZ"> 1.0f </param>
 	<param name="elementResK"> 1000 </param>
@@ -165,7 +165,7 @@
         <struct name="temperatureBCs">
                 <param name="type">CompositeVC</param>
                 <list name="vcList">
-                        <struct>
+                        <!--struct>
                                 <param name="type"> WallVC </param>
                                 <param name="wall"> left </param>
                                 <list name="variables">
@@ -175,7 +175,7 @@
                                                 <param name="value"> 0 </param>
                                         </struct>
                                 </list>
-                        </struct>
+                        </struct-->
                         <struct>
                                 <param name="type"> WallVC </param>
                                 <param name="wall"> right </param>

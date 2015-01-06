@@ -64,7 +64,7 @@ SLIntegrator_Spherical* _SLIntegrator_Spherical_New( SLINTEGRATOR_SPHERICAL_DEFA
        and so should be set to ZERO in any children of this class. */
     nameAllocationType = NON_GLOBAL;
 
-    self = (SLIntegrator_Spherical*) _Stg_Component_New(  STG_COMPONENT_PASSARGS  );
+    self = (SLIntegrator_Spherical*) _Stg_Component_New( STG_COMPONENT_PASSARGS );
 
     /* General info */
     self->variableList = Stg_ObjectList_New();
@@ -355,7 +355,7 @@ Bool SLIntegrator_Spherical_HasLeft( FeMesh* feMesh, IArray* inc, unsigned elInd
     unsigned	sideNodes[4];
 
     sideNodes[0] = 0;
-    sideNodes[1] = (quad) ? 6 : 2;
+    sideNodes[1] = (quad) ?  6 : 2;
     sideNodes[2] = (quad) ? 18 : 4;
     sideNodes[3] = (quad) ? 24 : 6;
 
@@ -366,8 +366,8 @@ Bool SLIntegrator_Spherical_HasRight( FeMesh* feMesh, IArray* inc, unsigned elIn
     Bool 	quad		= (nNodes%3==0) ? True : False;
     unsigned	sideNodes[4];
 
-    sideNodes[0] = (quad) ? 2 : 1;
-    sideNodes[1] = (quad) ? 8 : 3;
+    sideNodes[0] = (quad) ?  2 : 1;
+    sideNodes[1] = (quad) ?  8 : 3;
     sideNodes[2] = (quad) ? 20 : 5;
     sideNodes[3] = (quad) ? 26 : 7;
 
@@ -379,7 +379,7 @@ Bool SLIntegrator_Spherical_HasBottom( FeMesh* feMesh, IArray* inc, unsigned elI
     unsigned	sideNodes[4];
 
     sideNodes[0] = 0;
-    sideNodes[1] = (quad) ? 2 : 1;
+    sideNodes[1] = (quad) ?  2 : 1;
     sideNodes[2] = (quad) ? 18 : 4;
     sideNodes[3] = (quad) ? 20 : 5;
 
@@ -390,8 +390,8 @@ Bool SLIntegrator_Spherical_HasTop( FeMesh* feMesh, IArray* inc, unsigned elInd,
     Bool 	quad		= (nNodes%3==0) ? True : False;
     unsigned	sideNodes[4];
 
-    sideNodes[0] = (quad) ? 6 : 2;
-    sideNodes[1] = (quad) ? 8 : 3;
+    sideNodes[0] = (quad) ?  6 : 2;
+    sideNodes[1] = (quad) ?  8 : 3;
     sideNodes[2] = (quad) ? 24 : 6;
     sideNodes[3] = (quad) ? 26 : 7;
 
@@ -507,10 +507,6 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
     }*/
 
     for( dim_i = 0; dim_i < DIM; dim_i++ ) {
-        /*if( !periodic[dim_i] ) {
-            if( rs[dim_i] < min[dim_i] )      rs[dim_i] = min[dim_i];
-            else if( rs[dim_i] > max[dim_i] ) rs[dim_i] = max[dim_i];
-        }*/
         if( rs[dim_i] < min[dim_i] ) {
             rs[dim_i] = (periodic[dim_i]) ? max[dim_i] - min[dim_i] + rs[dim_i] : min[dim_i];
         }
@@ -565,21 +561,21 @@ void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* f
         double*  cCoord = Mesh_GetVertex( feMesh, inc[13] ); /* central node of the element */
 
         if( position[0] > cCoord[0] && !SLIntegrator_Spherical_HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0] -= 2;
-        if( position[1] > cCoord[1] && !SLIntegrator_Spherical_HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1] -= 2;
-        if( position[2] > cCoord[2] && !SLIntegrator_Spherical_HasBack( feMesh, self->inc, elInd, inc, nInc ) )  IJK[2] -= 2;
+        if( position[1] > cCoord[1] && !SLIntegrator_Spherical_HasTop(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[1] -= 2;
+        if( position[2] > cCoord[2] && !SLIntegrator_Spherical_HasBack(  feMesh, self->inc, elInd, inc, nInc ) ) IJK[2] -= 2;
 
-        if( position[0] < cCoord[0] && SLIntegrator_Spherical_HasLeft( feMesh, self->inc, elInd, inc, nInc ) )   IJK[0]--;
+        if( position[0] < cCoord[0] && SLIntegrator_Spherical_HasLeft(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
         if( position[1] < cCoord[1] && SLIntegrator_Spherical_HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
-        if( position[2] < cCoord[2] && SLIntegrator_Spherical_HasFront( feMesh, self->inc, elInd, inc, nInc ) )  IJK[2]--;
+        if( position[2] < cCoord[2] && SLIntegrator_Spherical_HasFront(  feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
     }
     else { /* linear mesh */
         if( !SLIntegrator_Spherical_HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
-        if( !SLIntegrator_Spherical_HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1]--;
-        if( !SLIntegrator_Spherical_HasBack( feMesh, self->inc, elInd, inc, nInc ) )  IJK[2]--;
+        if( !SLIntegrator_Spherical_HasTop(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
+        if( !SLIntegrator_Spherical_HasBack(  feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
 
-        if( SLIntegrator_Spherical_HasLeft( feMesh, self->inc, elInd, inc, nInc ) )   IJK[0]--;
+        if( SLIntegrator_Spherical_HasLeft(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
         if( SLIntegrator_Spherical_HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
-        if( SLIntegrator_Spherical_HasFront( feMesh, self->inc, elInd, inc, nInc ) )  IJK[2]--;
+        if( SLIntegrator_Spherical_HasFront(  feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
     }
     FeMesh_NodeGlobalToDomain( feMesh, IJKToGlobalNode( feMesh, IJK ), &lNode_I );
 

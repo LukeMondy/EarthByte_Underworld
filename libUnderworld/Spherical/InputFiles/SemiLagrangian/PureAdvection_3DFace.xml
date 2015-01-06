@@ -43,10 +43,8 @@
                 </struct>	
 		<struct name="linearMeshGenerator" mergeType="merge">
 			<param name="sixthOnly" mergeType="replace">True</param>
-			<!--
 			<param name="periodic_y" mergeType="replace">True</param>
 			<param name="periodic_z" mergeType="replace">True</param>
-			-->
 		</struct>	
 
 		<struct name="temperatureInit">
@@ -107,22 +105,18 @@
 				<list name="variables">
 					<struct>
 						<param name="name">vx</param>
-						<!--param name="type">func</param-->
-						<!--param name="value">ParametricSphereX</param-->
-						<param name="type">double</param>
-						<param name="value">0.0</param>
+						<param name="type">func</param>
+						<param name="value">ParametricSphereX</param>
 					</struct>
 					<struct>
 						<param name="name">vy</param>
 						<param name="type">func</param>
-						<!--param name="value">ParametricSphereY</param-->
-						<param name="value">ShearCellEta</param>
+						<param name="value">ParametricSphereY</param>
 					</struct>
 					<struct>
 						<param name="name">vz</param>
-						<param name="type">func</param>
-						<!--param name="value">ParametricSphereZ</param-->
-						<param name="value">ShearCellZeta</param>
+						<param name="type">double</param>
+						<param name="value">0.0</param>
 					</struct>
 				</list>
 			</struct>
@@ -244,7 +238,7 @@
 	<param name="shadowDepth"> 1 </param>
 
 	<param name="minX"> 3 </param> <param name="maxX"> 6 </param>
-	<param name="elementResI"> 8 </param>
+	<param name="elementResI"> 16</param>
 
 	<param name="minY"> -45 </param> <param name="maxY"> 45 </param> 
 	<param name="elementResJ"> 32 </param>
