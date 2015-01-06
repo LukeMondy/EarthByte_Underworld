@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+<!-- A StGermain input file -->
+<!-- DTD to validate against -->
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+	<!-- Load the plugin that sets up the app, plus any others you require -->
+	<list name="import">
+		<param>Underworld</param>
+		<param>Spherical</param>
+	</list>
+
+	<list name="plugins" mergeType="merge">
+		<struct>
+			<param name="Type">StgFEM_StandardConditionFunctions</param>
+			<param name="Context">context</param>
+		</struct>
+		<struct>
+			<param name="Type">StgFEM_FrequentOutput</param>
+			<param name="Context">context</param>
+		</struct>
+		<struct>
+			<param name="Type">Spherical_SphericalAlgorithms</param>
+		</struct>
+	</list>
+
+	<include>Spherical/ProjectionMesh.xml</include>
+	<include>StgFEM/VelocityField.xml</include>
+	<include>StgFEM/PressureField.xml</include>
+	<include>Underworld/GaussSwarmWithGaussMaterialSwarm.xml</include>
+	<!--
+	<include>StgFEM/TemperatureField.xml</include>
+	<include>StgFEM/TempAdvDiff.xml</include>
+	<include>StgFEM/Multigrid.xml</include>
+	-->
+	<include>Spherical/StokesFlowUzawa.xml</include>
+	
+	<struct name="components" mergeType="merge">
+		<struct name="context">
+			<param name="Type">UnderworldContext</param>
+		</struct>	
+
+		<struct name="default_scaling">
+      <param name="Type">Scaling</param>
+      <param name="spaceCoefficient_meters"> 1.0 </param>
+      <param name="timeCoefficient_seconds"> 1.0 </param>
+      <param name="massCoefficient_kilograms"> 1.0 </param>
+      <param name="temperatureCoefficient_kelvin"> 1.0 </param>
+    </struct>
+		<struct name="default_ppcManager">
+      <param name="Type">PpcManager</param>
+      <param name="MaterialSwarm"> gaussMaterialSwarm </param>
+      <param name="IntegrationSwarm"> gaussSwarm </param>
+      <param name="Mesh"> linearMesh </param>
+      <param name="Gravity"> 1 </param>
+      <list name="Properties">
+        <struct>
+          <param name="PropertyName"> DensityLabel </param>
+          <param name="StoreOnParticles"> False </param>
+          <param name="StoreOnMesh"> False </param>
+        </struct>
+      </list>
+		</struct>
+		<struct name="linearMeshGenerator" mergeType="merge">
+			<param name="Type" mergeType="replace">ProjectionGenerator</param>
+			<param name="regular" mergeType="replace">false</param>
+			<param name="numberSquares" mergeType="replace">8</param>
+			<param name="mappingStyle" mergeType="replace">0</param>
+			<param name="factor" mergeType="replace">1</param>
+			<param name="decay" mergeType="replace">1</param>
+			<param name="equiangle" mergeType="replace">True</param>
+			<param name="rotateMesh" mergeType="replace">False</param>
+		</struct>
+
+		<struct name="everywhere">
+			<param name="Type">Everywhere</param>
+		</struct>
+		<struct name="sphere">
+			<param name="Type">Sphere</param>
+			<param name="CentreX">0.4</param>
+			<param name="CentreY">0.5</param>
+			<param name="CentreZ">0</param>
+			<param name="radius">0.3</param>
+		</struct>
+		<struct name="background">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">everywhere</param>
+			<param name="Rheology">viscosity</param>
+			<param name="DensityLabel">density_background</param>
+		</struct>
+		<struct name="viscosity">
+			<param name="Type">MaterialViscosity</param>
+			<param name="eta">1</param>
+		</struct>
+		<struct name="weight">
+			<param name="Type">RheologyMaterial</param>
+			<param name="Shape">sphere</param>
+			<param name="Rheology">viscosity</param>
+			<param name="DensityLabel">density_weight</param>
+		</struct>
+
+		<!-- Density and gravity based on ppc -->
+			<struct type="struct" name="buoyancyForceTerm">
+				<param name="Type">VectorAssemblyTerm_NA__F</param>
+				<param name="functionLabel">bodyForce</param>
+				<param name="ForceVector">mom_force</param>
+				<param name="Swarm">gaussSwarm</param>
+			</struct>
+
+      <struct name="isInside">
+				<param name="Type">Ppc_IsInsideShape</param>
+        <!--
+        <param name="Shape">magicShape</param>
+        <param name="Shape">usShape</param>
+        -->
+        <param name="Shape">coreShape</param>
+      </struct>
+			<struct name="DensityCondition">
+				<param name="Type">Ppc_Condition</param>
+        <param name="Condition">eq</param>
+        <param name="Field">isInside</param>
+        <param name="ValueToCompare">1</param>
+        <param name="ValueIfTrue">2</param>
+        <param name="ValueIfFalse">1</param>
+      </struct>
+			<struct name="density_background">
+				<param name="Type">Ppc_LinearDensity</param>
+				<param name="ReferenceDensity" units="kg*m^-3">1.0</param>
+				<param name="ReferenceTemperature" units="K">0</param>
+				<param name="ThermalExpansivity"> 0 </param>
+				<param name="Temperature"> 0 </param>
+				<param name="Compressibility"> 0 </param>
+			</struct>
+			<struct name="density_weight">
+				<param name="Type">Ppc_LinearDensity</param>
+				<param name="ReferenceDensity" units="kg*m^-3">2.0</param>
+				<param name="ReferenceTemperature" units="K">0</param>
+				<param name="ThermalExpansivity"> 0 </param>
+				<param name="Temperature"> 0 </param>
+				<param name="Compressibility"> 0 </param>
+			</struct>
+			<struct name="bodyForce">
+				<param name="Type">Ppc_PointGravity</param>
+				<param name="Alpha">DensityCondition</param>
+				<param name="xcoord">0.0</param>
+				<param name="ycoord">0.0</param>
+			</struct>
+
+			<struct name="coreShape">
+				<param name="Type">Sphere</param>
+				<param name="radius">1.2</param>
+				<param name="CentreX">-3.4</param>
+				<param name="CentreY">0</param>
+			</struct>
+      <struct name="usShape">
+        <param name="Type">LatLongRegion</param>
+        <param name="startRadius">4</param>
+        <param name="endRadius">6</param>
+        <param name="startLat">-20</param>
+        <param name="endLat">20</param>
+        <param name="startLong">10</param>
+        <param name="endLong">90</param>
+      </struct>
+      <struct name="magicShape">
+				<param name="Type">Sphere</param>
+				<param name="radius">0.8</param>
+				<param name="CentreX">0</param>
+				<param name="CentreY">0.5</param>
+				<param name="CentreZ">2.8</param>
+			</struct>
+	</struct>
+
+	<!-- Simulation control -->
+	<param name="maxTimeSteps"> 0 </param>
+	<param name="outputEvery"> 1 </param>
+	<param name="dumpEvery"> 1 </param>
+	<param name="checkpointEvery"> 1 </param>
+	<param name="outputPath"> ./projection </param>
+
+	<!-- Geometry & Mesh setup -->
+	<param name="velocityMesh">linearMesh</param>
+	<param name="pressureMesh">constantMesh</param>
+	<param name="elementMesh">linearMesh</param>
+	<param name="dim"> 3 </param>
+	<param name="shadowDepth"> 1 </param>
+
+		<param name="minX"> 0.0 </param> <param name="maxX"> 2 </param> 
+	<param name="elementResI"> 39 </param>
+
+	<param name="minY"> 0 </param> <param name="maxY"> 2 </param>
+	<param name="elementResJ"> 39 </param>
+
+	<param name="minZ"> 0.0f </param> <param name="maxZ"> 1.0f </param>
+	<param name="elementResK"> 1000 </param>
+
+	<!-- material points swarm parameters -->
+  <param name="particleLayoutType">random</param>
+  <param name="particlesPerCell">20</param>
+	<param name="gaussParticlesX"> 1 </param>
+	<param name="gaussParticlesY"> 1 </param>
+	<param name="gaussParticlesZ"> 1 </param>
+	
+	<!-- Set up BCs -->
+	<!--
+	<include> ./temperatureBCs.xml </include>
+	<include> ./temperatureIC.xml </include>
+	-->
+	<!--
+	<include> ./FS_crazyBCs.xml </include>
+	-->
+
+	<include> ./FS_freeSlipTopBCs.xml </include>
+
+
+	<!--
+	<include>./TempVP.xml</include>
+	<include>./VelocityPressureVP.xml</include>
+	<include>gLucifer/window.xml</include>
+	<struct name="components" mergeType="merge">
+
+		<struct name="window" mergeType="merge">
+			<param name="Viewport">VelocityVP  PressureVP</param>
+		</struct>
+	</struct>
+	-->
+
+</StGermainData>
