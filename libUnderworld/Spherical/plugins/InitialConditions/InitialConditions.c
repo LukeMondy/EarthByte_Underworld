@@ -78,30 +78,34 @@ void InitialConditions_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, v
     *result = SphericalICs_SolWave( coord, xo, yo, ax, ay );
 }
 
-void InitialConditions_ShearCellEta( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+void InitialConditions_ParametricCircle3DX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
-    FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+    double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricCircle_scale", 1.0 );
     FeMesh*                     mesh            = feVariable->feMesh;
     double*                     coord           = Mesh_GetVertex( mesh, node_lI );
     double*                     result          = (double*)_result;
-    double			rs[3];
+    double                      radius          = sqrt( coord[1]*coord[1] + coord[2]*coord[2] );
+    double                      phi;
 
-    Spherical_XYZ2regionalSphere( coord, rs );
+    phi = atan2( coord[2], coord[1] );
 
-    *result = M_PI*sin( 0.5*M_PI*rs[1] )*cos( 0.5*M_PI*rs[2] );
+    *result = -radius*sin( phi )/scale;
 }
 
-void InitialConditions_ShearCellZeta( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+void InitialConditions_ParametricCircle3DY( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
-    FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+    double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricCircle_scale", 1.0 );
     FeMesh*                     mesh            = feVariable->feMesh;
     double*                     coord           = Mesh_GetVertex( mesh, node_lI );
     double*                     result          = (double*)_result;
-    double			rs[3];
+    double                      radius          = sqrt( coord[1]*coord[1] + coord[2]*coord[2] );
+    double                      phi;
 
-    Spherical_XYZ2regionalSphere( coord, rs );
+    phi = atan2( coord[2], coord[1] );
 
-    *result = -M_PI*cos( 0.5*M_PI*rs[1] )*sin( 0.5*M_PI*rs[2] );
+    *result = +radius*cos( phi )/scale;
 }
 
 void InitialConditions_ParametricSphereX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
@@ -160,15 +164,15 @@ void Spherical_InitialConditions_AssignFromXML( void* _self, Stg_ComponentFactor
 
     condFunc = ConditionFunction_New( InitialConditions_SolWave, (Name)"SolWave_RS", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( InitialConditions_ShearCellEta, (Name)"ShearCellEta", NULL  );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( InitialConditions_ShearCellZeta, (Name)"ShearCellZeta", NULL  );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
     condFunc = ConditionFunction_New( InitialConditions_ParametricSphereX, (Name)"ParametricSphereX", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
     condFunc = ConditionFunction_New( InitialConditions_ParametricSphereY, (Name)"ParametricSphereY", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
     condFunc = ConditionFunction_New( InitialConditions_ParametricSphereZ, (Name)"ParametricSphereZ", NULL  );
+    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    condFunc = ConditionFunction_New( InitialConditions_ParametricCircle3DX, (Name)"ParametricCircle3DX", NULL  );
+    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    condFunc = ConditionFunction_New( InitialConditions_ParametricCircle3DY, (Name)"ParametricCircle3DY", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
 }
 
