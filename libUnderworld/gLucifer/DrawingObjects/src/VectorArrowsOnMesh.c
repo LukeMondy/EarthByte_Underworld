@@ -107,6 +107,10 @@ void _lucVectorArrowsOnMesh_AssignFromXML( void* drawingObject, Stg_ComponentFac
 {
    lucVectorArrowsOnMesh* self = (lucVectorArrowsOnMesh*)drawingObject;
 
+   self->elementRes[I_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResI"  );
+   self->elementRes[J_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResJ"  );
+   self->elementRes[K_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResK"  );
+
    /* Construct Parent */
    _lucVectorArrowMeshCrossSection_AssignFromXML( self, cf, data );
 
@@ -116,20 +120,18 @@ void _lucVectorArrowsOnMesh_AssignFromXML( void* drawingObject, Stg_ComponentFac
 void _lucVectorArrowsOnMesh_Draw( void* drawingObject, lucDatabase* database, void* _context )
 {
    lucVectorArrowsOnMesh*       self    = (lucVectorArrowsOnMesh*)drawingObject;
-   DomainContext* context         = (DomainContext*) _context;
-   Dimension_Index        dim     = context->dim;
+   Dimension_Index dim  = self->fieldVariable->dim;
 
    if ( dim == 2 )
    {
-      _lucVectorArrowMeshCrossSection_DrawCrossSection( lucCrossSection_Set(self, 0, K_AXIS, False), database, dim);
+      _lucVectorArrowMeshCrossSection_DrawCrossSection( lucCrossSection_Set(self, 0, K_AXIS, False), database);
    }
    else
    {
       int idx;
-      int zres = Dictionary_GetInt( context->CF->rootDict, (Dictionary_Entry_Key)"elementResK" );
-      for ( idx=0; idx <= zres; idx++)
+      for ( idx=0; idx <= self->elementRes[K_AXIS]; idx++)
       {
-         _lucVectorArrowMeshCrossSection_DrawCrossSection( lucCrossSection_Set(self, idx, K_AXIS, False), database, dim);
+         _lucVectorArrowMeshCrossSection_DrawCrossSection( lucCrossSection_Set(self, idx, K_AXIS, False), database);
       }
    }
 }

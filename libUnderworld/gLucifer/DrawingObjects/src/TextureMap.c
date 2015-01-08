@@ -173,7 +173,7 @@ void _lucTextureMap_Draw( void* drawingObject, lucDatabase* database, void* _con
    lucTextureMap* self = (lucTextureMap*)drawingObject;
 
    /* Only draw on proc 0 */
-   if (database->context->rank > 0) return;
+   if (self->rank > 0) return;
 
    /* Dump vertex pos */
    float coords[12] = {self->topLeftCoord[0], self->topLeftCoord[1], self->topLeftCoord[2],

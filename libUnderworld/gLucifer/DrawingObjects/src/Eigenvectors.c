@@ -127,15 +127,13 @@ void _lucEigenvectors_AssignFromXML( void* drawingObject, Stg_ComponentFactory* 
 void _lucEigenvectors_Draw( void* drawingObject, lucDatabase* database, void* _context )
 {
    lucEigenvectors*       self            = (lucEigenvectors*)drawingObject;
-   DomainContext* context         = (DomainContext*) _context;
-   Dimension_Index        dim             = context->dim;
    int idx;
 
-   if ( dim == 2 )
-      _lucEigenvectorsCrossSection_DrawCrossSection( lucCrossSection_Set(self, 0.0, K_AXIS, False), database, dim);
+   if (self->fieldVariable->dim == 2 )
+      _lucEigenvectorsCrossSection_DrawCrossSection( lucCrossSection_Set(self, 0.0, K_AXIS, False), database);
    else
       for ( idx=0; idx <= self->resolution[K_AXIS]; idx++)
-         _lucEigenvectorsCrossSection_DrawCrossSection( lucCrossSection_Set(self, idx / (double)self->resolution[ K_AXIS ], K_AXIS, True), database, dim);
+         _lucEigenvectorsCrossSection_DrawCrossSection( lucCrossSection_Set(self, idx / (double)self->resolution[ K_AXIS ], K_AXIS, True), database);
 }
 
 

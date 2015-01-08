@@ -373,7 +373,8 @@ void lucContourCrossSection_PlotPoint(lucContourCrossSection* self, lucDatabase*
          char label[32];
          double dimCoeff = 1.0; /* coefficient for dimensionalising field */
          /* very hacky to get the scaling component */
-         Scaling* theScaling = self->fieldVariable->context->scaling;
+         Scaling* theScaling = NULL;
+         if (self->fieldVariable->context) theScaling = self->fieldVariable->context->scaling;
          if (self->fieldVariable->o_units && theScaling)
             dimCoeff = Scaling_ParseDimCoeff( theScaling, self->fieldVariable->o_units );
 

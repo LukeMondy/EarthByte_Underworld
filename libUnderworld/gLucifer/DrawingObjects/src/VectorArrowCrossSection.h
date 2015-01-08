@@ -84,7 +84,7 @@ void _lucVectorArrowCrossSection_Execute( void* drawingObject, void* data );
 void _lucVectorArrowCrossSection_Destroy( void* drawingObject, void* data ) ;
 
 void _lucVectorArrowCrossSection_Draw( void* drawingObject, lucDatabase* database, void* _context );
-void _lucVectorArrowCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database, Dimension_Index dim );
+void _lucVectorArrowCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database);
 
 #endif
 

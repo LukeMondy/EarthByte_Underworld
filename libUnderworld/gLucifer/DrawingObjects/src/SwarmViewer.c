@@ -381,10 +381,10 @@ void _lucSwarmViewer_Draw( void* drawingObject, lucDatabase* database, void* _co
       lucDatabase_AddVertices(database, 1, self->geomType, coordf);
 
       /* Sets the colour for the particle */
-      self->_setParticleColour( self, database, _context, lParticle_I );
+      self->_setParticleColour( self, database, lParticle_I );
 
       /* Plot the particle using the function given by the concrete class */
-      self->_plotParticle( self, database, _context, lParticle_I );
+      self->_plotParticle( self, database, lParticle_I );
 
    }
 
@@ -398,7 +398,7 @@ void lucSwarmViewBase_DrawParticleNumbers( void* drawingObject, void* _context )
    abort();
 }
 
-void _lucSwarmViewer_PlotParticleNumber( void* drawingObject, void* _context, Particle_Index lParticle_I, lucColour colour )
+void _lucSwarmViewer_PlotParticleNumber( void* drawingObject, Particle_Index lParticle_I, lucColour colour )
 {
 /*
    lucSwarmViewer*      self                = (lucSwarmViewer*)drawingObject;
@@ -407,7 +407,7 @@ void _lucSwarmViewer_PlotParticleNumber( void* drawingObject, void* _context, Pa
    Name particle_number;
    Stg_asprintf(&particle_number, "%d", lParticle_I );
 
-   if (context->dim == 2)
+   if (self->swarm->dim == 2)
       glRasterPos2f( (float)coord[0] + 0.025, (float)coord[1] );
    else
       glRasterPos3f( (float)coord[0] + 0.025, (float)coord[1], (float)coord[2] );
@@ -485,7 +485,7 @@ void lucSwarmViewer_SetColourComponent(void* object, lucDatabase* database, Swar
 }
 
 /* Default Swarm Viewer Implementation */
-void _lucSwarmViewer_SetParticleColour( void* drawingObject, lucDatabase* database, void* context, Particle_Index lParticle_I )
+void _lucSwarmViewer_SetParticleColour( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I )
 {
    lucSwarmViewer*      self                = (lucSwarmViewer*) drawingObject;
    SwarmVariable*           colourVariable      = self->colourVariable;
@@ -509,7 +509,7 @@ void _lucSwarmViewer_SetParticleColour( void* drawingObject, lucDatabase* databa
    lucColour_SetColour( &self->colour, self->opacity );
 }
 
-void _lucSwarmViewer_PlotParticle( void* drawingObject, lucDatabase* database, void* _context, Particle_Index lParticle_I )
+void _lucSwarmViewer_PlotParticle( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I )
 {
    lucSwarmViewer*          self          = (lucSwarmViewer*)drawingObject;
    float size = self->pointSize;

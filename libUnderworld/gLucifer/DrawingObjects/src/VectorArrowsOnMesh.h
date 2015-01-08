@@ -46,6 +46,7 @@ extern const Type lucVectorArrowsOnMesh_Type;
 		__lucVectorArrowMeshCrossSection \
 		/* Virtual functions go here */ \
 		/* Other info */\
+    Index     elementRes[3];          \
  
 struct lucVectorArrowsOnMesh
 {

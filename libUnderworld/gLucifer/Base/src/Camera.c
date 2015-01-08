@@ -260,7 +260,7 @@ void _lucCamera_AssignFromXML( void* camera, Stg_ComponentFactory* cf, void* dat
    /* These parameters alow overriding some view properties, but usually the calculated defaults are the best settings */
    focalLength = Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"focalLength", 0);
    aperture = Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"aperture", 45.0  );
-   autoZoomTimestep = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"autoZoomTimestep", False );
+   autoZoomTimestep = Stg_ComponentFactory_GetInt( cf, self->name, (Dictionary_Entry_Key)"autoZoomTimestep", False );
    useBoundingBox = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"useBoundingBox", False );
 
    centreFieldVariable = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"CentreFieldVariable", FieldVariable, False, data );

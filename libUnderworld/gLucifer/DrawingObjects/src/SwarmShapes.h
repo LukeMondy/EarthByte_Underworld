@@ -96,7 +96,7 @@ void _lucSwarmShapes_Destroy( void* drawingObject, void* data ) ;
 void _lucSwarmShapes_Setup( void* drawingObject, lucDatabase* database, void* _context ) ;
 
 /* SwarmViewer Implementations */
-void _lucSwarmShapes_PlotParticle( void* drawingObject, lucDatabase* database, void* _context, Particle_Index lParticle_I ) ;
+void _lucSwarmShapes_PlotParticle( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I ) ;
 
 void lucSwarmShapes_UpdateVariables( void* drawingObject ) ;
 #endif

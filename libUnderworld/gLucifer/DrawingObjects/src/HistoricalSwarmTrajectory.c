@@ -131,7 +131,8 @@ void _lucHistoricalSwarmTrajectory_AssignFromXML( void* drawingObject, Stg_Compo
 
    /* Construct Parent */
    _lucDrawingObject_AssignFromXML( self, cf, data );
-   unsigned int endstep = self->context->loadFromCheckPoint ? self->context->restartTimestep + self->context->maxTimeSteps : self->context->maxTimeSteps;
+   unsigned int endstep = 0;
+   if (self->context) endstep = self->context->loadFromCheckPoint ? self->context->restartTimestep + self->context->maxTimeSteps : self->context->maxTimeSteps;
    if (endstep < defaultSteps) defaultSteps = endstep;
 
    swarm         =  Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Swarm", Swarm, True, data  );
@@ -170,19 +171,19 @@ void _lucHistoricalSwarmTrajectory_Initialise( void* drawingObject, void* data )
    int p;
    unsigned int offset = 0;
    unsigned int particle_id;
-   unsigned int* counts = Memory_Alloc_Array(unsigned int, self->context->nproc, "particle counts");
+   unsigned int* counts = Memory_Alloc_Array(unsigned int, self->nproc, "particle counts");
 
    Stg_Component_Initialise( self->swarm, data, False );
 
    /* Get the count on each proc */
-   (void)MPI_Allgather(&swarm->particleLocalCount, 1, MPI_UNSIGNED, counts, 1, MPI_UNSIGNED, self->context->communicator);
+   (void)MPI_Allgather(&swarm->particleLocalCount, 1, MPI_UNSIGNED, counts, 1, MPI_UNSIGNED, self->comm);
 
    /* Assign a global ID to each particle */
-   for (p=0; p < self->context->nproc; p++)
+   for (p=0; p < self->nproc; p++)
    {
       /* Sum to get offset */
       if (p > 0) offset += counts[p-1];
-      if (self->context->rank == p)
+      if (self->rank == p)
       {
          for( particle_id = 0 ; particle_id < swarm->particleLocalCount ; particle_id++ )
          {

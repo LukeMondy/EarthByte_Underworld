@@ -147,7 +147,7 @@ void _lucFeVariableSurface_Draw( void* drawingObject, lucDatabase* database, voi
       }
    }
 
-   if (self->context->rank == 0 && database)
+   if (self->rank == 0 && database)
    {
       int count = self->dim[1] * self->dim[2];
       lucDatabase_AddGridVertices(database, count, self->dim[2], self->vertices[0][0]);

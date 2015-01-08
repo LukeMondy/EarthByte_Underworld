@@ -65,9 +65,6 @@ lucMeshSampler* _lucMeshSampler_New(  LUCMESHSAMPLER_DEFARGS  )
 
 void _lucMeshSampler_Init(lucMeshSampler*           self)
 {
-   self->elementRes[I_AXIS] = Dictionary_GetInt( self->context->CF->rootDict, (Dictionary_Entry_Key)"elementResI"  );
-   self->elementRes[J_AXIS] = Dictionary_GetInt( self->context->CF->rootDict, (Dictionary_Entry_Key)"elementResJ"  );
-   self->elementRes[K_AXIS] = Dictionary_GetInt( self->context->CF->rootDict, (Dictionary_Entry_Key)"elementResK"  );
 }
 
 void _lucMeshSampler_Delete( void* drawingObject )
@@ -112,6 +109,10 @@ void _lucMeshSampler_AssignFromXML( void* drawingObject, Stg_ComponentFactory* c
    lucMeshSampler*         self               = (lucMeshSampler*)drawingObject;
    Index                  defaultRes;
 
+   self->elementRes[I_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResI"  );
+   self->elementRes[J_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResJ"  );
+   self->elementRes[K_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResK"  );
+
    /* Construct Parent */
    _lucMeshCrossSection_AssignFromXML( self, cf, data );
 
@@ -146,7 +147,7 @@ void lucMeshSampler_DrawSlice(lucMeshSampler* self, lucDatabase* database)
    /* Sample the 2d cross-section */
    lucMeshCrossSection_Sample(self, False);
 
-   if (self->context->rank == 0 && database)
+   if (self->rank == 0 && database)
    {
       /* Write slice values on root processor */
       lucDatabase_AddVolumeSlice(database, self->elementRes[I_AXIS]+1, self->elementRes[J_AXIS]+1, corners, self->colourMap, &self->values[0][0][0]);
@@ -160,9 +161,8 @@ void lucMeshSampler_DrawSlice(lucMeshSampler* self, lucDatabase* database)
 
 void _lucMeshSampler_Draw( void* drawingObject, lucDatabase* database, void* _context )
 {
-   lucMeshSampler* self          = (lucMeshSampler*)drawingObject;
-   DomainContext* context         = (DomainContext*) _context;
-   Dimension_Index        dim     = context->dim;
+   lucMeshSampler* self = (lucMeshSampler*)drawingObject;
+   Dimension_Index dim  = self->fieldVariable->dim;
 
    if (dim == 2)
    {

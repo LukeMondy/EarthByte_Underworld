@@ -209,7 +209,7 @@ void _lucIsosurfaceCrossSection_Draw( void* drawingObject, lucDatabase* database
    /* Copy object id */
    isosurf->id = self->id; 
 
-   if (self->context->rank == 0)
+   if (self->rank == 0)
    {
       /* Calculate a value we can use to offset each surface section slightly
        *  so they appear in the same position but don't actually overlap */

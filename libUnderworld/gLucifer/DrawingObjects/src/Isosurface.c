@@ -143,6 +143,11 @@ void _lucIsosurface_AssignFromXML( void* drawingObject, Stg_ComponentFactory* cf
    resolution[ J_AXIS ] = Stg_ComponentFactory_GetUnsignedInt( cf, self->name, (Dictionary_Entry_Key)"resolutionY", defaultRes);
    resolution[ K_AXIS ] = Stg_ComponentFactory_GetUnsignedInt( cf, self->name, (Dictionary_Entry_Key)"resolutionZ", defaultRes);
 
+   /* Get fields */
+   self->isosurfaceField = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"IsosurfaceField", FieldVariable, True, data  );
+   self->colourField     = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"ColourField", FieldVariable, False, data  );
+   self->maskField       = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"MaskField", FieldVariable, False, data  );
+
    if (defaultRes == 1 && (resolution[I_AXIS] > 2 || resolution[J_AXIS] > 2 || resolution[K_AXIS] > 2))
    {
       Journal_Printf( lucInfo, "** WARNING ** excessive isosurface resolution: samples per element reduced to 2,2,2 - was %d,%d,%d\n", resolution[I_AXIS], resolution[J_AXIS], resolution[K_AXIS]);
@@ -165,17 +170,11 @@ void _lucIsosurface_AssignFromXML( void* drawingObject, Stg_ComponentFactory* cf
 void _lucIsosurface_Build( void* drawingObject, void* data )
 {
    lucIsosurface*             self = (lucIsosurface*)drawingObject;
-   AbstractContext* context = self->context;
-   Stg_ComponentFactory* cf = context->CF;
 
-   /* It seems fields need to be constructed in build phase or are sometimes incomplete */
-   self->isosurfaceField = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"IsosurfaceField", FieldVariable, True, data  );
-   self->colourField     = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"ColourField", FieldVariable, False, data  );
-   self->maskField       = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"MaskField", FieldVariable, False, data  );
-   
+   /* Legacy, probably not necessary... */
    Stg_Component_Build( self->isosurfaceField, data, False );
-   if (self->colourField) Stg_Component_Build( self->colourField, data, False );
-   if (self->maskField) Stg_Component_Build( self->maskField, data, False );
+   Stg_Component_Build( self->colourField, data, False );
+   Stg_Component_Build( self->maskField, data, False );
 }
 
 void _lucIsosurface_Initialise( void* drawingObject, void* data ) {
@@ -186,7 +185,7 @@ void _lucIsosurface_Initialise( void* drawingObject, void* data ) {
    if (self->resolution[ J_AXIS ] >= self->elementRes[J_AXIS]) self->resolution[ J_AXIS ] /= self->elementRes[J_AXIS];
    if (self->resolution[ K_AXIS ] >= self->elementRes[K_AXIS]) self->resolution[ K_AXIS ] /= self->elementRes[K_AXIS];
 
-   if (context->dim == 2) self->resolution[K_AXIS] = 0;
+   if (self->isosurfaceField->dim == 2) self->resolution[K_AXIS] = 0;
 
    if (self->sampleGlobal)
    {
@@ -265,10 +264,10 @@ void lucIsosurface_SampleLocal( void* drawingObject, void* _context )
          }
       }
 
-      if (context->dim == 3)
+      if (self->isosurfaceField->dim == 3)
          lucIsosurface_MarchingCubes( self, vertex );
 
-      if (context->dim == 2 || self->drawWalls)
+      if (self->isosurfaceField->dim == 2 || self->drawWalls)
          lucIsosurface_DrawWalls( self, vertex );
    }
 
@@ -301,7 +300,7 @@ void lucIsosurface_SampleGlobal( void* drawingObject, void* _context )
    dx = (max[0] - min[0])/((double) self->nx - 1);
    dy = (max[1] - min[1])/((double) self->ny - 1);
    dz = (max[2] - min[2])/((double) self->nz - 1);
-   if (context->dim == 2)
+   if (self->isosurfaceField->dim == 2)
    {
       dz = 0.0;
       self->nz = 1;
@@ -329,11 +328,11 @@ void lucIsosurface_SampleGlobal( void* drawingObject, void* _context )
       }
    }
 
-   if (context->dim == 3)
+   if (self->isosurfaceField->dim == 3)
       /* Find Surface with Marching Cubes */
       lucIsosurface_MarchingCubes( self, vertex );
 
-   if (context->dim == 2 || self->drawWalls)
+   if (self->isosurfaceField->dim == 2 || self->drawWalls)
       lucIsosurface_DrawWalls( self, vertex );
 
    /* Free memory */
@@ -804,6 +803,7 @@ void CreateTriangle(lucIsosurface* self, Vertex* point1, Vertex* point2, Vertex*
          pos[0] = points[i]->pos[0];
          pos[1] = points[i]->pos[1];
          pos[2] = points[i]->pos[2];
+         if (self->isosurfaceField->dim == 2) pos[2] = 0;
 
          /* Get colourField value */
          if ( self->colourField && self->colourMap)
@@ -868,7 +868,7 @@ void lucIsosurface_DrawWalls( lucIsosurface* self, Vertex ***vertex )
     * only draw walls if aligned to outer edges of global domain */ 
    int min[3], max[3], range[3] = {self->nx-1, self->ny-1, self->nz-1};
    int axis;
-   if (self->sampleGlobal || context->dim == 2)
+   if (self->sampleGlobal || self->isosurfaceField->dim == 2)
    {
       /* Array covers the entire domain, don't need to check */
       for (axis=0; axis<3; axis++)
@@ -913,7 +913,7 @@ void lucIsosurface_DrawWalls( lucIsosurface* self, Vertex ***vertex )
    }
 
    /* Generate left/right walls (X=min/max, sample YZ) */
-   if (context->dim == 3 && range[I_AXIS] > 0) 
+   if (self->isosurfaceField->dim == 3 && range[I_AXIS] > 0) 
    {
       for ( k = 0 ; k < self->nz - 1 ; k++ )
       {
@@ -932,7 +932,7 @@ void lucIsosurface_DrawWalls( lucIsosurface* self, Vertex ***vertex )
    }
 
    /* Generate top/bottom walls (Y=min/max, sample XZ) */
-   if (context->dim == 3 && range[J_AXIS] > 0) 
+   if (self->isosurfaceField->dim == 3 && range[J_AXIS] > 0) 
    {
       for ( i = 0 ; i < self->nx - 1 ; i++ )
       {

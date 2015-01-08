@@ -46,6 +46,7 @@ extern const Type lucPlot_Type;
 		__lucDrawingObject                  \
 		/* Virtual functions go here */           \
 		/* Other info */                          \
+		char*                outputPath;        \
 		char*                dataFileName;        \
 		char*                colourMapFileName;        \
       unsigned int         columns;             \

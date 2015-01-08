@@ -92,14 +92,20 @@ void _lucPlot_Init(
    unsigned int    pointSize,
    Bool            colourMapFromFile)
 {
+   /* Default output path */
+   if (self->context)
+      self->outputPath = self->context->outputPath;
+   else
+      self->outputPath = StG_Strdup(".");
+
    /* Check input file for leading slash or ./ */
    if (dataFileName && ((dataFileName[0] != '/') || (dataFileName[0] != '.')))
-      Stg_asprintf(&self->dataFileName, "%s/%s", self->context->outputPath, dataFileName);
+      Stg_asprintf(&self->dataFileName, "%s/%s", self->outputPath, dataFileName);
    else
       self->dataFileName = StG_Strdup(dataFileName);
    /* Check colourMap file for leading slash or ./ */
    if (colourMapFileName && ((colourMapFileName[0] != '/') || (colourMapFileName[0] != '.')))
-      Stg_asprintf(&self->colourMapFileName, "%s/%s", self->context->outputPath, colourMapFileName);
+      Stg_asprintf(&self->colourMapFileName, "%s/%s", self->outputPath, colourMapFileName);
    else
       self->colourMapFileName = StG_Strdup(colourMapFileName);
 
@@ -241,7 +247,7 @@ void lucPlot_ReadDataFile( void* drawingObject )
    double data[100];
    int i;
    char temp[1024];
-   if (self->context->rank > 0) return;
+   if (self->rank > 0) return;
 
    /* Read input file data */
    fp = fopen( self->dataFileName, "r" );
@@ -321,7 +327,6 @@ float clamp(float x, float min, float max)
 void _lucPlot_Draw( void* drawingObject, lucDatabase* database, void* _context )
 {
    lucPlot* self = (lucPlot*)drawingObject;
-   AbstractContext* context = (AbstractContext*)_context;
    lucColourMap* colourMap = self->colourMap;
    int i;
    double *coloursR = NULL;
@@ -331,7 +336,7 @@ void _lucPlot_Draw( void* drawingObject, lucDatabase* database, void* _context )
    
    double min[3] = {DBL_MAX, DBL_MAX, DBL_MAX}, max[3] = {-DBL_MAX, -DBL_MAX, -DBL_MAX};
 
-   if (self->context->rank > 0) return;
+   if (self->rank > 0) return;
 
    /* Read the data */
    lucPlot_ReadDataFile(self);
@@ -350,7 +355,7 @@ void _lucPlot_Draw( void* drawingObject, lucDatabase* database, void* _context )
       {
          /* Attempt to open in output path */
          char* filename;
-         Stg_asprintf(&filename, "%s/%s", context->outputPath, self->colourMapFileName);
+         Stg_asprintf(&filename, "%s/%s", self->outputPath, self->colourMapFileName);
          fp = fopen( filename, "r" );
          Memory_Free( filename );
          if (!fp)

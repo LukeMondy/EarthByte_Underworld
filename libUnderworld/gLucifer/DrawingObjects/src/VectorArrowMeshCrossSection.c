@@ -154,10 +154,10 @@ void _lucVectorArrowMeshCrossSection_Draw( void* drawingObject, lucDatabase* dat
    lucVectorArrowMeshCrossSection*       self            = (lucVectorArrowMeshCrossSection*)drawingObject;
    DomainContext*            context         = (DomainContext*) _context;
 
-   _lucVectorArrowMeshCrossSection_DrawCrossSection( self, database, context->dim );
+   _lucVectorArrowMeshCrossSection_DrawCrossSection( self, database );
 }
 
-void _lucVectorArrowMeshCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database, Dimension_Index dim )
+void _lucVectorArrowMeshCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database )
 {
    lucVectorArrowMeshCrossSection*  self           = (lucVectorArrowMeshCrossSection*)drawingObject;
    FieldVariable*    vectorVariable = self->fieldVariable;
@@ -175,7 +175,7 @@ void _lucVectorArrowMeshCrossSection_DrawCrossSection( void* drawingObject, lucD
    /* Sample the 2d cross-section */
    lucMeshCrossSection_Sample(self, False);
 
-   if (self->context->rank == 0 && database)
+   if (self->rank == 0 && database)
    {
       int count = self->dim[1] * self->dim[2];
       lucDatabase_AddVertices(database, count, lucVectorType, &self->vertices[0][0][0]);

@@ -37,8 +37,8 @@
 #ifndef __lucSwarmViewer_h__
 #define __lucSwarmViewer_h__
 
-typedef void (lucSwarmViewer_PlotParticleFunction) ( void* object, lucDatabase* database, void* context, Particle_Index lParticle_I );
-typedef void (lucSwarmViewer_SetParticleColourFunction) ( void* object, lucDatabase* database, void* context, Particle_Index lParticle_I );
+typedef void (lucSwarmViewer_PlotParticleFunction) ( void* object, lucDatabase* database, Particle_Index lParticle_I );
+typedef void (lucSwarmViewer_SetParticleColourFunction) ( void* object, lucDatabase* database, Particle_Index lParticle_I );
 
 /** Textual name of this class - This is a global pointer which is used for times when you need to refer to class and not a particular instance of a class */
 extern const Type lucSwarmViewer_Type;
@@ -126,8 +126,8 @@ void lucSwarmViewer_UpdateVariables( void* drawingObject ) ;
 void lucSwarmViewer_FindParticleLocalIndex(void *drawingObject, Coord coord, Particle_Index  *lParticle_I);
 
 void lucSwarmViewer_SetColourComponent(void* object, lucDatabase* database, SwarmVariable* var, Particle_Index lParticle_I, lucGeometryDataType type, lucColourMap* colourMap);
-void _lucSwarmViewer_SetParticleColour( void* drawingObject, lucDatabase* database, void* _context, Particle_Index lParticle_I ) ;
+void _lucSwarmViewer_SetParticleColour( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I ) ;
 
-void _lucSwarmViewer_PlotParticle( void* drawingObject, lucDatabase* database, void* _context, Particle_Index lParticle_I );
+void _lucSwarmViewer_PlotParticle( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I );
 #endif
 

@@ -177,11 +177,11 @@ void _lucSwarmRGBColourViewer_Setup( void* drawingObject, lucDatabase* database,
       lucColourMap_CalibrateFromSwarmVariable( self->blueColourMap, self->colourBlueVariable );
 }
 
-void _lucSwarmRGBColourViewer_SetParticleColour( void* drawingObject, lucDatabase* database, void* _context, Particle_Index lParticle_I )
+void _lucSwarmRGBColourViewer_SetParticleColour( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I )
 {
    lucSwarmRGBColourViewer* self                  = (lucSwarmRGBColourViewer*)drawingObject;
    
-   _lucSwarmViewer_SetParticleColour(drawingObject, database, _context, lParticle_I );
+   _lucSwarmViewer_SetParticleColour(drawingObject, database, lParticle_I );
 
    lucSwarmViewer_SetColourComponent(self, database, self->colourRedVariable, lParticle_I, lucRedValueData, self->redColourMap);
    lucSwarmViewer_SetColourComponent(self, database, self->colourGreenVariable, lParticle_I, lucGreenValueData, self->greenColourMap);
