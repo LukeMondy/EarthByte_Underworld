@@ -157,7 +157,10 @@ def compare(imgFilename1, imgFilename2, verbose=False):
     img2 = Image.open(imgFilename2)
     #Check size and components match
     if img1.size != img2.size or img1.getbands() != img2.getbands():
-        return False
+        print "Size or Component mismatch! "
+        print " Sizes : ", img1.size, img2.size
+        print " Bands : ", img1.getbands(), img2.getbands()
+        return 1,1
     #Colour comparison
     dist1 = colourDiff(img1, img2)
     if verbose: print "Colour space difference: %f" % dist1
