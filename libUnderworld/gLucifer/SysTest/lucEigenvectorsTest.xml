@@ -5,7 +5,7 @@
    <struct name="components" mergeType="merge">
       <struct name="eigenvectors">
         <param name="Type">lucEigenvectors</param>
-        <param name="TensorField">StrainRateField</param>
+        <param name="FieldVariable">StrainRateField</param>
         <param name="leastColour">Green</param>
         <param name="middleColour">Yellow</param>
         <param name="greatestColour">Red</param>

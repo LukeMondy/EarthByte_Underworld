@@ -53,7 +53,7 @@
 	  		<param name="Type">lucDefaultWindow</param>
 		  	<param name="Database">database</param>
 			  <param name="antialias">false</param>
-        <param name="width">540</param>
+        <param name="width">600</param>
         <param name="height">200</param>
         <list name="Viewport">
           <param>lucFieldSamplerStrainRateVP lucFieldSamplerVelocityMagVP lucFieldSamplerMaterialVP</param>

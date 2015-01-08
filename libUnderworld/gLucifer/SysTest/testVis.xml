@@ -17,6 +17,7 @@
 
 		<struct name="database">
 			<param name="Type">lucDatabase</param>
+			<param name="Context">context</param>
 		</struct>
 
       <!-- Colour maps -->
