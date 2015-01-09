@@ -111,7 +111,7 @@
    void SemiLagrangianIntegrator_InitSolve( void* slIntegrator, void* data );
 
    /* --- Public functions --- */
-   void SemiLagrangianIntegrator_BicubicInterpolator( FeVariable* feVariable, double* coord, double* delta, unsigned* nNodes, double* result );
+   void SemiLagrangianIntegrator_CubicInterpolator( FeVariable* feVariable, double* coord, double* delta, unsigned* nNodes, double* result );
    Bool SemiLagrangianIntegrator_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic, unsigned nDims );
    void SemiLagrangianIntegrator_InterpLagrange( double x, double* coords, double** values, unsigned numdofs, double* result );
    void SemiLagrangianIntegrator_GetDeltaConst( FeVariable* feVariable, double* delta, unsigned* nNodes );

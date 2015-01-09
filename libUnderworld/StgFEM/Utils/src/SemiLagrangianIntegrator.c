@@ -276,24 +276,24 @@ void SemiLagrangianIntegrator_IntegrateRK4( FeVariable* velocityField, double dt
 
     Mesh_GetGlobalCoordRange( velocityField->feMesh, min, max );
 
-    SemiLagrangianIntegrator_BicubicInterpolator( velocityField, origin, delta, nnodes, k[0] );
+    SemiLagrangianIntegrator_CubicInterpolator( velocityField, origin, delta, nnodes, k[0] );
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[0][dim_i];
     }
     if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SemiLagrangianIntegrator_BicubicInterpolator( velocityField, coordPrime, delta, nnodes, k[1] );
+    SemiLagrangianIntegrator_CubicInterpolator( velocityField, coordPrime, delta, nnodes, k[1] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[1][dim_i];
     }
     if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SemiLagrangianIntegrator_BicubicInterpolator( velocityField, coordPrime, delta, nnodes, k[2] );
+    SemiLagrangianIntegrator_CubicInterpolator( velocityField, coordPrime, delta, nnodes, k[2] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt * k[2][dim_i];
     }
     if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SemiLagrangianIntegrator_BicubicInterpolator( velocityField, coordPrime, delta, nnodes, k[3] );
+    SemiLagrangianIntegrator_CubicInterpolator( velocityField, coordPrime, delta, nnodes, k[3] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         position[dim_i] = origin[dim_i] -
@@ -346,7 +346,7 @@ Bool SemiLagrangianIntegrator_PeriodicUpdate( double* pos, double* min, double* 
     return result;
 }
 
-void SemiLagrangianIntegrator_BicubicInterpolator( FeVariable* feVariable, double* position, double* delta, unsigned* nNodes, double* result ) {
+void SemiLagrangianIntegrator_CubicInterpolator( FeVariable* feVariable, double* position, double* delta, unsigned* nNodes, double* result ) {
     FeMesh*	feMesh			= feVariable->feMesh;
     Index	elementIndex;
     unsigned	nInc, *inc;
@@ -529,7 +529,7 @@ void SemiLagrangianIntegrator_Solve( void* slIntegrator, FeVariable* variableFie
 	coord = Mesh_GetVertex(feMesh,node_I);
 
         SemiLagrangianIntegrator_IntegrateRK4( velocityField, dt, delta, nNodes, coord, position );
-        SemiLagrangianIntegrator_BicubicInterpolator( variableField, position, delta, nNodes, var );
+        SemiLagrangianIntegrator_CubicInterpolator( variableField, position, delta, nNodes, var );
         FeVariable_SetValueAtNode( varStarField, node_I, var );
     }
     FeVariable_SyncShadowValues( varStarField );
