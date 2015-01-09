@@ -222,7 +222,6 @@ Bool FeMesh_ElementType_ElementHasPoint_ForIrregular(
       i.e. global_coords = \sum _i N_i\bar{x_i}(\zeta) */
    inc = IArray_New();
    Mesh_GetIncidence( mesh, Mesh_GetDimSize(mesh), elInd, MT_VERTEX, inc );
-   //Mesh_GetIncidence( mesh, nDims, elInd, 0, inc );
    nNodes = IArray_GetSize( inc );
    nodes = IArray_GetPtr( inc );
 
@@ -237,8 +236,23 @@ Bool FeMesh_ElementType_ElementHasPoint_ForIrregular(
       }
    }
 
-   // calc a length scale for error measure, simple implementation - using the 1st and 4th node in element.
-   lengthScale = fabs( (Mesh_GetVertex(mesh, nodes[0])[0]) - (Mesh_GetVertex(mesh, nodes[3])[0]) ) ;
+   // calc a length scale for error measure
+   if( dim == 2 ) {
+      lengthScale  = ( Mesh_GetVertex( mesh, nodes[0] )[0] - Mesh_GetVertex( mesh, nodes[3] )[0] )*
+                     ( Mesh_GetVertex( mesh, nodes[0] )[0] - Mesh_GetVertex( mesh, nodes[3] )[0] );
+      lengthScale += ( Mesh_GetVertex( mesh, nodes[0] )[1] - Mesh_GetVertex( mesh, nodes[3] )[1] )*
+                     ( Mesh_GetVertex( mesh, nodes[0] )[1] - Mesh_GetVertex( mesh, nodes[3] )[1] );
+      lengthScale  = sqrt( lengthScale );
+   }
+   else {
+      lengthScale  = ( Mesh_GetVertex( mesh, nodes[0] )[0] - Mesh_GetVertex( mesh, nodes[7] )[0] )*
+                     ( Mesh_GetVertex( mesh, nodes[0] )[0] - Mesh_GetVertex( mesh, nodes[7] )[0] );
+      lengthScale += ( Mesh_GetVertex( mesh, nodes[0] )[1] - Mesh_GetVertex( mesh, nodes[7] )[1] )*
+                     ( Mesh_GetVertex( mesh, nodes[0] )[1] - Mesh_GetVertex( mesh, nodes[7] )[1] );
+      lengthScale += ( Mesh_GetVertex( mesh, nodes[0] )[2] - Mesh_GetVertex( mesh, nodes[7] )[2] )*
+                     ( Mesh_GetVertex( mesh, nodes[0] )[2] - Mesh_GetVertex( mesh, nodes[7] )[2] );
+      lengthScale  = sqrt( lengthScale );
+   }
    assert( lengthScale > DBL_MIN );
 
    for( dim_i = 0; dim_i<nDims; dim_i++ ) {

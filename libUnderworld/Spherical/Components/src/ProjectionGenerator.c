@@ -160,10 +160,10 @@ void _ProjectionGenerator_AssignFromXML( void* meshGenerator, Stg_ComponentFacto
    self->comm = Comm_New();
 }
 
-void ProjectionGenerator_Generate( void* meshGenerator, void* data ) {
-   
-  ProjectionGenerator*		self = (ProjectionGenerator*)meshGenerator;
-  IGraph *topo = self->meshes[0]->topo; // TODO I hate this backwards pointer crap
+void ProjectionGenerator_Generate( void* meshGenerator, void* data ) 
+{
+   ProjectionGenerator*		self = (ProjectionGenerator*)meshGenerator;
+   IGraph *topo = self->meshes[0]->topo; // TODO I hate this backwards pointer crap
 
    int v_i, n_i, e_i, nVerts, nEls;
    FILE *file=NULL;
@@ -207,7 +207,7 @@ void ProjectionGenerator_Generate( void* meshGenerator, void* data ) {
    IndexSet_UpdateMembersCount( mesh->innerSet );
    IndexSet_UpdateMembersCount( mesh->outerSet );
 
-	IGraph_SetElements( topo, 0, nVerts, locals );
+   IGraph_SetElements( topo, 0, nVerts, locals );
    FreeArray(locals);
 
    /* read in element node mapping */
@@ -217,7 +217,7 @@ void ProjectionGenerator_Generate( void* meshGenerator, void* data ) {
 
    // allocate node coord array and fill in
    e_n = Memory_Alloc_Array_Unnamed( int*, nEls );
-	locals = Memory_Alloc_Array_Unnamed( unsigned, nEls );
+   locals = Memory_Alloc_Array_Unnamed( unsigned, nEls );
    for( e_i=0; e_i<nEls; e_i++ ) {
       locals[e_i]=e_i;
       e_n[e_i] = Memory_Alloc_Array_Unnamed( int, 8 );
@@ -241,12 +241,12 @@ void ProjectionGenerator_Generate( void* meshGenerator, void* data ) {
    }
    fclose( file );
 
-	IGraph_SetElements( topo, 3, nEls, locals );
+   IGraph_SetElements( topo, 3, nEls, locals );
    FreeArray(locals);
 
    /* Now everything is read in, we set up the mesh */
    for(e_i=0; e_i<nEls; e_i++ ) {
-		IGraph_SetIncidence( topo, MT_VOLUME, e_i, MT_VERTEX, 8, e_n[e_i] );
+      IGraph_SetIncidence( topo, MT_VOLUME, e_i, MT_VERTEX, 8, e_n[e_i] );
    }
 
    // build the node-to-element mapping
@@ -256,7 +256,49 @@ void ProjectionGenerator_Generate( void* meshGenerator, void* data ) {
 		IGraph_SetIncidence( topo, MT_VERTEX, v_i, MT_VERTEX, 6, nbr[v_i] );
    }
    */
-  _ProjectionGenerator_GenElementTypes( self, self->meshes[0] );
+   _ProjectionGenerator_GenElementTypes( self, self->meshes[0] );
+
+   /* generate the element to element (3d) incidence graph */
+   unsigned el_i, el_j, node_i, node_j, *elNodes, nElNodes, *otherElNodes, nOtherElNodes, nNeighbours, neighbours[26];
+   Bool isNeighbour;
+   IArray* inc_i = IArray_New();
+   IArray* inc_j = IArray_New();
+   for( el_i = 0; el_i < nEls; el_i++ ) {
+      /* get the element nodes */
+      MeshTopology_GetIncidence( topo, MT_VOLUME, el_i, MT_VERTEX, inc_i );
+      nElNodes = IArray_GetSize( inc_i );
+      elNodes  = IArray_GetPtr( inc_i );
+
+      nNeighbours = 0;
+      for( el_j = 0; el_j < nEls; el_j++ ) {
+         /* skip the current element */
+         if( el_j == el_i || nNeighbours == 26 )
+            continue;
+
+         /* get the other elements nodes */
+         MeshTopology_GetIncidence( topo, MT_VOLUME, el_j, MT_VERTEX, inc_j );
+         nOtherElNodes = IArray_GetSize( inc_j );
+         otherElNodes  = IArray_GetPtr( inc_j );
+
+         /* if the other element shares at least one node with the given element... */
+         isNeighbour = False;
+         for( node_i = 0; node_i < nElNodes; node_i++ ) {
+            for( node_j = 0; node_j < nOtherElNodes; node_j++ ) {
+               if( elNodes[node_i] == otherElNodes[node_j] )
+                  isNeighbour = True;
+            }
+         }
+
+         /* ...then add it to the list of neighbouring elements */
+         if( isNeighbour ) {
+            neighbours[nNeighbours++] = el_j;
+         }
+      }
+      /* set the neighbouring elements */
+      IGraph_SetIncidence( topo, MT_VOLUME, el_i, MT_VOLUME, nNeighbours, neighbours );
+   }
+   Stg_Class_Delete( inc_i );
+   Stg_Class_Delete( inc_j );
 }
 void _ProjectionGenerator_Build( void* meshGenerator, void* data )
 {
