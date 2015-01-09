@@ -183,7 +183,7 @@ double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* phiField, Swarm*
             initialValue = func( gCoord );
 
             SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
-            SemiLagrangianIntegrator_BicubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
+            SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
 
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
@@ -301,7 +301,7 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
         for( pt_i = 0; pt_i < nGaussPts; pt_i++ ) {
             gaussPoint = (IntegrationPoint*)Swarm_ParticleInCellAt( gaussSwarm, cell_i, pt_i );
             FeMesh_CoordLocalToGlobal( phiField->feMesh, el_i, gaussPoint->xi, gCoord );
-            SemiLagrangianIntegrator_BicubicInterpolator( phiField, gCoord, delta, nNodes, &phi );
+            SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &phi );
             //_FeVariable_InterpolateValueAt( phiField, gCoord, &phi );
 
             phi_a = f( a, gCoord );
