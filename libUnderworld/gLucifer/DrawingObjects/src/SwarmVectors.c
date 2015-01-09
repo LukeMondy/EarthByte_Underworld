@@ -181,7 +181,7 @@ void _lucSwarmVectors_Setup( void* drawingObject, lucDatabase* database, void* _
    lucSwarmVectors_UpdateVariables( drawingObject );
 }
 
-void _lucSwarmVectors_PlotParticle( void* drawingObject, lucDatabase* database, void* _context, Particle_Index lParticle_I )
+void _lucSwarmVectors_PlotParticle( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I )
 {
    lucSwarmVectors*        self                = (lucSwarmVectors*)drawingObject;
    SwarmVariable*          lengthVariable      = self->lengthVariable;

@@ -211,7 +211,7 @@ void lucMeshCrossSection_Sample( void* drawingObject, Bool reverse)
             double value[self->fieldDim];
             FeVariable_GetValueAtNode( fieldVariable, node_dI, value );
             double* pos = Mesh_GetVertex( mesh, node_dI );
-            /*fprintf(stderr, "[%d] (%d,%d) Node %d %f,%f,%f value %f\n", self->context->rank, i, j, node_gI, pos[0], pos[1], pos[2], value);*/
+            /*fprintf(stderr, "[%d] (%d,%d) Node %d %f,%f,%f value %f\n", self->rank, i, j, node_gI, pos[0], pos[1], pos[2], value);*/
          
             for (d=0; d<fieldVariable->dim; d++)
                self->vertices[i][j][d] = pos[d];
@@ -232,14 +232,14 @@ void lucMeshCrossSection_Sample( void* drawingObject, Bool reverse)
       for ( j=0 ; j < self->dim[2]; j++ )
       {
          /* Receive values at root */
-         if (self->context->rank == 0)
+         if (self->rank == 0)
          {
             /* Already have value? */
             if (self->vertices[i][j][0] != HUGE_VAL) {localcount--; continue; }
 
             /* Recv (pos and value together = (3 + fevar dims)*float) */
             float data[3 + self->fieldDim];
-            (void)MPI_Recv(data, 3+self->fieldDim, MPI_FLOAT, MPI_ANY_SOURCE, i*self->dim[2]+j, self->context->communicator, MPI_STATUS_IGNORE);
+            (void)MPI_Recv(data, 3+self->fieldDim, MPI_FLOAT, MPI_ANY_SOURCE, i*self->dim[2]+j, self->comm, MPI_STATUS_IGNORE);
             /* Copy */
             memcpy(self->vertices[i][j], data, 3 * sizeof(float));
             memcpy(self->values[i][j], &data[3], self->fieldDim * sizeof(float));
@@ -255,15 +255,15 @@ void lucMeshCrossSection_Sample( void* drawingObject, Bool reverse)
             memcpy(&data[3], self->values[i][j], self->fieldDim * sizeof(float));
 
             /* Send values to root (pos & value = 4 * float) */
-            MPI_Ssend(data, 3+self->fieldDim, MPI_FLOAT, 0, i*self->dim[2]+j, self->context->communicator);
+            MPI_Ssend(data, 3+self->fieldDim, MPI_FLOAT, 0, i*self->dim[2]+j, self->comm);
             localcount--;
          }
       }
    }
-   MPI_Barrier(self->context->communicator);    /* Barrier required, prevent subsequent MPI calls from interfering with transfer */
+   MPI_Barrier(self->comm);    /* Barrier required, prevent subsequent MPI calls from interfering with transfer */
    Journal_Printf(lucInfo, " Gather in %f sec.\n", MPI_Wtime() - time);
    Journal_Firewall(localcount == 0, lucError,
                      "Error - in %s: count of values sampled compared to sent/received by mpi on proc %d does not match (balance = %d)\n",
-                     __func__, self->context->rank, localcount);
+                     __func__, self->rank, localcount);
 }
 

@@ -6,7 +6,7 @@
 
       <struct name="eigenvectorsX">
          <param name="Type">lucEigenvectorsCrossSection</param>
-         <param name="TensorField">StrainRateField</param>
+         <param name="FieldVariable">StrainRateField</param>
         <param name="leastColour">Green</param>
         <param name="middleColour">Yellow</param>
         <param name="greatestColour">Red</param>
@@ -20,7 +20,7 @@
 
       <struct name="eigenvectorsX2">
          <param name="Type">lucEigenvectorsCrossSection</param>
-         <param name="TensorField">StrainRateField</param>
+         <param name="FieldVariable">StrainRateField</param>
         <param name="arrowHeadSize">0.1</param>
         <param name="lengthScale">0.2</param>
          <param name="resolution">5</param>
@@ -30,7 +30,7 @@
 
       <struct name="eigenvectorsY">
          <param name="Type">lucEigenvectorsCrossSection</param>
-         <param name="TensorField">StrainRateField</param>
+         <param name="FieldVariable">StrainRateField</param>
         <param name="leastColour">Green</param>
         <param name="middleColour">Yellow</param>
         <param name="greatestColour">Red</param>
@@ -42,7 +42,7 @@
 
       <struct name="eigenvectorsY2">
          <param name="Type">lucEigenvectorsCrossSection</param>
-         <param name="TensorField">StrainRateField</param>
+         <param name="FieldVariable">StrainRateField</param>
         <param name="leastColour">Green</param>
         <param name="middleColour">Yellow</param>
         <param name="greatestColour">Red</param>
@@ -55,7 +55,7 @@
 
       <struct name="eigenvectorsZ">
          <param name="Type">lucEigenvectorsCrossSection</param>
-         <param name="TensorField">StrainRateField</param>
+         <param name="FieldVariable">StrainRateField</param>
         <param name="leastColour">Green</param>
         <param name="middleColour">Yellow</param>
         <param name="greatestColour">Red</param>
@@ -67,7 +67,7 @@
 
       <struct name="eigenvectorsZ2">
          <param name="Type">lucEigenvectorsCrossSection</param>
-         <param name="TensorField">StrainRateField</param>
+         <param name="FieldVariable">StrainRateField</param>
         <param name="leastColour">Green</param>
         <param name="middleColour">Yellow</param>
         <param name="greatestColour">Red</param>

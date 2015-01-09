@@ -130,30 +130,16 @@ void _lucDatabase_Init(
    self->compressed = compressed;
    self->singleFile = singleFile;
    self->filename = StG_Strdup(filename);
-   if (context && !strcmp("", dbPath)) {
+   if (strcmp(".", dbPath) == 0 && context)
       self->dbPath = StG_Strdup(context->outputPath);
-   } else {
+   else
       self->dbPath = StG_Strdup(dbPath);
-   }
+   
    if (vfs && strlen(vfs)) self->vfs = StG_Strdup(vfs);
    self->timeUnits = StG_Strdup(timeUnits);
    self->disabled = disabled;
-   if(self->context){
+   if(self->context)
       self->disabled = !self->context->vis;
-
-      self->minValue[ I_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minX", 0.0  );
-      self->minValue[ J_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minY", 0.0  );
-      self->minValue[ K_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"minZ", 0.0  );
-
-      self->maxValue[ I_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxX", 1.0  );
-      self->maxValue[ J_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxY", 1.0  );
-      self->maxValue[ K_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( self->context->CF, (Dictionary_Entry_Key)"maxZ", 1.0  );
-      if (self->context->dim == 2)
-      {
-         self->minValue[K_AXIS] += 0.5 * (self->maxValue[K_AXIS] = self->minValue[K_AXIS]);
-         self->maxValue[K_AXIS] = self->minValue[K_AXIS];
-      }
-   }
    self->drawingObject_Register = lucDrawingObject_Register_New();
 
    for ( object_I = 0 ; object_I < drawingObjectCount ; object_I++ )
@@ -230,6 +216,13 @@ lucDatabase* lucDatabase_New(
    char*             vfs)
 {
    lucDatabase* self = (lucDatabase*)_lucDatabase_DefaultNew("database");
+   /* Default min/max bounding box for db not created in xml */
+   int i;
+   for (i=0; i<3; i++)
+   {
+      self->minValue[i] = 0.0;
+      self->maxValue[i] = FLT_EPSILON;
+   }
    _lucDatabase_Init(self, context, NULL, 0, deleteAfter, writeimage, splitTransactions, transparent, compressed, singleFile, filename, vfs, "", "", False, False);
    return self;
 }
@@ -272,6 +265,22 @@ void _lucDatabase_AssignFromXML( void* database, Stg_ComponentFactory* cf, void*
    /* Optional global drawing object list, can provide to database instead of windows+viewports */
    drawingObjectList = Stg_ComponentFactory_ConstructByList( cf, self->name, (Dictionary_Entry_Key)"DrawingObject", Stg_ComponentFactory_Unlimited, lucDrawingObject, False, &drawingObjectCount, data);
 
+   Dimension_Index dim = Stg_ComponentFactory_GetRootDictDouble( cf, (Dictionary_Entry_Key)"dim", 3.0  );
+
+   self->minValue[ I_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( cf, (Dictionary_Entry_Key)"minX", 0.0  );
+   self->minValue[ J_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( cf, (Dictionary_Entry_Key)"minY", 0.0  );
+   self->minValue[ K_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( cf, (Dictionary_Entry_Key)"minZ", 0.0  );
+
+   self->maxValue[ I_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( cf, (Dictionary_Entry_Key)"maxX", FLT_EPSILON  );
+   self->maxValue[ J_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( cf, (Dictionary_Entry_Key)"maxY", FLT_EPSILON  );
+   self->maxValue[ K_AXIS ] = Stg_ComponentFactory_GetRootDictDouble( cf, (Dictionary_Entry_Key)"maxZ", FLT_EPSILON  );
+
+   if (dim == 2)
+   {
+      self->minValue[K_AXIS] += 0.5 * (self->maxValue[K_AXIS] = self->minValue[K_AXIS]);
+      self->maxValue[K_AXIS] = self->minValue[K_AXIS];
+   }
+
    _lucDatabase_Init( self, context, 
       drawingObjectList,
       drawingObjectCount,
@@ -283,8 +292,8 @@ void _lucDatabase_AssignFromXML( void* database, Stg_ComponentFactory* cf, void*
       Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"singleFile", True),
       Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"filename", "gLucifer"),
       Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"vfs", NULL),
-      Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"timeUnits", ""  ),
-      Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"dbPath", ""  ),
+      Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"timeUnits", ""),
+      Stg_ComponentFactory_GetString( cf, self->name, (Dictionary_Entry_Key)"dbPath", "."),
       Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"disable", False  ),
       Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"blocking", False  )
       );
@@ -309,7 +318,8 @@ void _lucDatabase_Execute( void* database, void* data )
    lucDatabase* self = (lucDatabase*)database;
    self->timeStep = 0;
    float currentTime = 0.;
-   if (self->context){
+   if (self->context)
+   {
       self->timeStep = self->context->timeStep;
       currentTime    = self->context->currentTime;
    }
@@ -386,10 +396,14 @@ void _lucDatabase_Execute( void* database, void* data )
             dimCoeff = Scaling_ParseDimCoeff(theScaling, self->timeUnits);
       }
 
-      /* When restarted, delete any existing geometry at current timestep */
-      if (self->context && self->context->loadFromCheckPoint)
-         lucDatabase_DeleteGeometry(self, self->timeStep, self->timeStep);
+      if (self->context)
+      {
+         /* When restarted, delete any existing geometry at current timestep */
+         if (self->context->loadFromCheckPoint)
+            lucDatabase_DeleteGeometry(self, self->timeStep, self->timeStep);
+      }
       else
+         /* Running from python, delete any existing geometry at timestep 0 */
          lucDatabase_DeleteGeometry(self, 0, 0);
 
       /* Enter timestep in database */
@@ -499,7 +513,7 @@ void lucDatabase_OutputWindow(lucDatabase* self, lucWindow* window)
    if (lucDatabase_BeginTransaction(self))
    {
       float *min, *max;
-      if (self->context && window->useModelBounds)
+      if (window->useModelBounds)
       {
          min = self->minValue;
          max = self->maxValue;
@@ -851,7 +865,6 @@ void lucDatabase_AddIsosurface(lucDatabase* self, lucIsosurface* iso, Bool walls
          float coordf[3] = {iso->triangleList[triangle_I].pos[i][0],
                             iso->triangleList[triangle_I].pos[i][1],
                             iso->triangleList[triangle_I].pos[i][2]};
-         if (self->context->dim == 2) coordf[2] = 0;
          float value = iso->triangleList[triangle_I].value[i];
          lucDatabase_AddVertices(self, 1, lucTriangleType, coordf);
          if (iso->colourField && iso->colourMap)
@@ -1090,7 +1103,7 @@ void lucDatabase_OpenDatabase(lucDatabase* self)
 
       if(sqlite3_open_v2(self->path, &self->db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, self->vfs))
       {
-         printf("Can't open database: %s\n", sqlite3_errmsg(self->db));
+         printf("Can't open database: (%s) %s\n", self->path, sqlite3_errmsg(self->db));
          self->db = NULL;
          return;
       }

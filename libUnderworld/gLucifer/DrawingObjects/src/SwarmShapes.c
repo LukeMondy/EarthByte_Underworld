@@ -190,7 +190,7 @@ void _lucSwarmShapes_Setup( void* drawingObject, lucDatabase* database, void* _c
    _lucSwarmViewer_Setup( drawingObject, database, _context );
 }
 
-void _lucSwarmShapes_PlotParticle( void* drawingObject, lucDatabase* database, void* _context, Particle_Index lParticle_I )
+void _lucSwarmShapes_PlotParticle( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I )
 {
    lucSwarmShapes*         self                = (lucSwarmShapes*)drawingObject;
    float length = self->length;

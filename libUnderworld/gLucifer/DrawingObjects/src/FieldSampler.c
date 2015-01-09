@@ -69,10 +69,6 @@ void _lucFieldSampler_Init(
 {
    memcpy( self->resolution, resolution, sizeof(IJK) );
 
-   self->elementRes[I_AXIS] = Dictionary_GetInt( self->context->CF->rootDict, (Dictionary_Entry_Key)"elementResI"  );
-   self->elementRes[J_AXIS] = Dictionary_GetInt( self->context->CF->rootDict, (Dictionary_Entry_Key)"elementResJ"  );
-   self->elementRes[K_AXIS] = Dictionary_GetInt( self->context->CF->rootDict, (Dictionary_Entry_Key)"elementResK"  );
-
    /* Setup sampling resolution */
    if (self->resolution[I_AXIS] == 0) self->resolution[I_AXIS] = self->elementRes[I_AXIS]+1;
    if (self->resolution[J_AXIS] == 0) self->resolution[J_AXIS] = self->elementRes[J_AXIS]+1;
@@ -125,6 +121,10 @@ void _lucFieldSampler_AssignFromXML( void* drawingObject, Stg_ComponentFactory* 
    /* Construct Parent */
    _lucCrossSection_AssignFromXML( self, cf, data );
 
+   self->elementRes[I_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResI"  );
+   self->elementRes[J_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResJ"  );
+   self->elementRes[K_AXIS] = Dictionary_GetInt( cf->rootDict, (Dictionary_Entry_Key)"elementResK"  );
+
    defaultRes = Stg_ComponentFactory_GetUnsignedInt( cf, self->name, (Dictionary_Entry_Key)"resolution", 0);
    resolution[ I_AXIS ] = Stg_ComponentFactory_GetUnsignedInt( cf, self->name, (Dictionary_Entry_Key)"resolutionX", defaultRes);
    resolution[ J_AXIS ] = Stg_ComponentFactory_GetUnsignedInt( cf, self->name, (Dictionary_Entry_Key)"resolutionY", defaultRes);
@@ -169,7 +169,7 @@ void lucFieldSampler_DrawSlice(void* drawingObject, lucDatabase* database)
    self->resolutionB = self->resolution[J_AXIS];
    lucCrossSection_SampleField(self, False);
 
-   if (self->context->rank == 0 && database)
+   if (self->rank == 0 && database)
    {
       /* Write slice values on root processor */
       lucDatabase_AddVolumeSlice(database, self->resolution[I_AXIS], self->resolution[J_AXIS], corners, self->colourMap, &self->values[0][0][0]);
@@ -183,9 +183,8 @@ void lucFieldSampler_DrawSlice(void* drawingObject, lucDatabase* database)
 
 void _lucFieldSampler_Draw( void* drawingObject, lucDatabase* database, void* _context )
 {
-   lucFieldSampler* self          = (lucFieldSampler*)drawingObject;
-   DomainContext* context         = (DomainContext*) _context;
-   Dimension_Index        dim     = context->dim;
+   lucFieldSampler* self = (lucFieldSampler*)drawingObject;
+   Dimension_Index dim   = self->fieldVariable->dim;
 
    /*printf("(%s) Resolution %d,%d,%d (dx/y/z %f,%f,%f)\n", self->name, self->resolution[0], self->resolution[1], self->resolution[2], self->cell[I_AXIS], self->cell[J_AXIS], self->cell[K_AXIS]);*/
 

@@ -131,14 +131,14 @@ void _lucVectorArrows_Draw( void* drawingObject, lucDatabase* database, void* _c
 
    if ( dim == 2 )
    {
-      _lucVectorArrowCrossSection_DrawCrossSection( lucCrossSection_Set(self, 0.0, K_AXIS, False), database, dim);
+      _lucVectorArrowCrossSection_DrawCrossSection( lucCrossSection_Set(self, 0.0, K_AXIS, False), database);
    }
    else
    {
       int idx;
       for ( idx=0; idx <= self->resolution[K_AXIS]; idx++)
       {
-         _lucVectorArrowCrossSection_DrawCrossSection( lucCrossSection_Set(self, idx / (double)self->resolution[ K_AXIS ], K_AXIS, True), database, dim);
+         _lucVectorArrowCrossSection_DrawCrossSection( lucCrossSection_Set(self, idx / (double)self->resolution[ K_AXIS ], K_AXIS, True), database);
       }
    }
 }

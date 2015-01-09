@@ -64,7 +64,6 @@ lucScalarFieldOnMesh* _lucScalarFieldOnMesh_New(  LUCSCALARFIELDONMESH_DEFARGS  
 
 void _lucScalarFieldOnMesh_Init(lucScalarFieldOnMesh* self, char* drawSides)
 {
-   DomainContext* context = (DomainContext*) self->context;
    int i;
    for (i=0; i<3; i++) {
       self->drawSides[i][0] = True;
@@ -80,7 +79,7 @@ void _lucScalarFieldOnMesh_Init(lucScalarFieldOnMesh* self, char* drawSides)
    if (!strchr(drawSides, 'Z')) self->drawSides[K_AXIS][1] = False;
 
    /* Set cull face to on */
-   if (context->dim == 2)
+   if (self->fieldVariable->dim == 2)
       self->cullface = False;
    else
       self->cullface = True;

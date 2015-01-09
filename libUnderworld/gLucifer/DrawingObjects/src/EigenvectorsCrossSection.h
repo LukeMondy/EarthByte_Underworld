@@ -92,7 +92,7 @@ void _lucEigenvectorsCrossSection_Execute( void* drawingObject, void* data );
 void _lucEigenvectorsCrossSection_Destroy( void* drawingObject, void* data ) ;
 
 void _lucEigenvectorsCrossSection_Draw( void* drawingObject, lucDatabase* database, void* _context );
-void _lucEigenvectorsCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database, Dimension_Index dim );
+void _lucEigenvectorsCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database );
 
 #endif
 

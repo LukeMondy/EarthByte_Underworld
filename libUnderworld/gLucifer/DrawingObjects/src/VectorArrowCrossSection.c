@@ -152,10 +152,10 @@ void _lucVectorArrowCrossSection_Draw( void* drawingObject, lucDatabase* databas
    lucVectorArrowCrossSection*       self            = (lucVectorArrowCrossSection*)drawingObject;
    DomainContext*            context         = (DomainContext*) _context;
 
-   _lucVectorArrowCrossSection_DrawCrossSection( self, database, context->dim );
+   _lucVectorArrowCrossSection_DrawCrossSection( self, database);
 }
 
-void _lucVectorArrowCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database, Dimension_Index dim )
+void _lucVectorArrowCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database)
 {
    lucVectorArrowCrossSection*  self           = (lucVectorArrowCrossSection*)drawingObject;
    FieldVariable*    vectorVariable = self->fieldVariable;

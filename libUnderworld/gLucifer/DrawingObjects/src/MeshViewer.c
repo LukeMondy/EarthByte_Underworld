@@ -160,6 +160,9 @@ void _lucMeshViewer_AssignFromXML( void* drawingObject, Stg_ComponentFactory* cf
    self->displayNodes = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"displayNodes", False );
    self->displayEdges = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"displayEdges", True );
 
+   self->colourVariable = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"ColourField", FieldVariable, False, data  );
+   self->sizeVariable = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"SizeField", FieldVariable, False, data  );
+
    _lucMeshViewer_Init(
       self,
       mesh,
@@ -175,14 +178,9 @@ void _lucMeshViewer_AssignFromXML( void* drawingObject, Stg_ComponentFactory* cf
 void _lucMeshViewer_Build( void* drawingObject, void* data )
 {
    lucMeshViewer*	self = (lucMeshViewer*)drawingObject;
-   AbstractContext* context = self->context;
-   Stg_ComponentFactory* cf = context->CF;
 
-   /* HACK - Get pointer to FieldVariable in build phase just to let FieldVariables be created in plugins */
-   self->colourVariable = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"ColourField", FieldVariable, False, data  );
-   if (self->colourVariable) Stg_Component_Build( self->colourVariable, data, False );
-   self->sizeVariable = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"SizeField", FieldVariable, False, data  );
-   if (self->sizeVariable) Stg_Component_Build( self->sizeVariable, data, False );
+   Stg_Component_Build( self->colourVariable, data, False );
+   Stg_Component_Build( self->sizeVariable, data, False );
 }
 
 void _lucMeshViewer_Initialise( void* drawingObject, void* data )
@@ -228,7 +226,7 @@ void _lucMeshViewer_Draw( void* drawingObject, lucDatabase* database, void* _con
    else if (colourMap )
    {
       /* Colour by proc */
-      lucColourMap_SetMinMax( colourMap, 0, database->context->nproc-1);
+      lucColourMap_SetMinMax( colourMap, 0, self->nproc-1);
    }
 
    /* Pick the correct dimension. */

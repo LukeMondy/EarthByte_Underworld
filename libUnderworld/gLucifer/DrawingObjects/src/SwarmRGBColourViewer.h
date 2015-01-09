@@ -92,7 +92,7 @@ void _lucSwarmRGBColourViewer_Destroy( void* drawingObject, void* data ) ;
 void _lucSwarmRGBColourViewer_Setup( void* drawingObject, lucDatabase* database, void* _context ) ;
 
 /* SwarmViewer Implementations */
-void _lucSwarmRGBColourViewer_SetParticleColour( void* drawingObject, lucDatabase* database, void* _context, Particle_Index lParticle_I ) ;
+void _lucSwarmRGBColourViewer_SetParticleColour( void* drawingObject, lucDatabase* database, Particle_Index lParticle_I ) ;
 
 void lucSwarmRGBColourViewer_UpdateVariables( void* drawingObject ) ;
 #endif

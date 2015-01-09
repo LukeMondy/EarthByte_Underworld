@@ -188,12 +188,13 @@ void _lucEigenvectorsCrossSection_Draw( void* drawingObject, lucDatabase* databa
    lucEigenvectorsCrossSection*       self            = (lucEigenvectorsCrossSection*)drawingObject;
    DomainContext*            context         = (DomainContext*) _context;
 
-   _lucEigenvectorsCrossSection_DrawCrossSection( self, database, context->dim );
+   _lucEigenvectorsCrossSection_DrawCrossSection( self, database);
 }
 
-void _lucEigenvectorsCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database, Dimension_Index dim )
+void _lucEigenvectorsCrossSection_DrawCrossSection( void* drawingObject, lucDatabase* database)
 {
    lucEigenvectorsCrossSection*  self           = (lucEigenvectorsCrossSection*)drawingObject;
+   Dimension_Index dim = self->fieldVariable->dim;
    FieldVariable*    tensorField    = self->fieldVariable;
    SymmetricTensor   tensor;
    Eigenvector       eigenvectorList[3];
