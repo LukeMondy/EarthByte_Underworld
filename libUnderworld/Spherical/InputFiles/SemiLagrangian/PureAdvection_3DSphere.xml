@@ -83,7 +83,7 @@
 		</struct>
 
 		<struct name="integrator">
-			<param name="Type">SLIntegrator_Spherical</param>
+			<param name="Type">SLIntegrator_FullSphere</param>
 			<param name="VelocityField">VelocityField</param>
 			<param name="Context">context</param>
 			<list name="fields">
@@ -165,12 +165,12 @@
 	<param name="solWave_shiftZeta"> 0.0 </param>
 	<param name="solWave_scaleEta">  3.0 </param>
 	<param name="solWave_scaleZeta"> 4.0 </param>
-        <param name="reverseTimeStep"> 12 </param>
         <param name="staticTimeStep"> 0.04363323129985824 </param>
+        <param name="reverseTimeStep"> 10000000 </param>
         <param name="unstructuredMesh"> true </param>
 
 	<!-- Simulation control -->
-	<param name="maxTimeSteps"> -1 </param>
+	<param name="maxTimeSteps"> 144 </param>
 	<param name="outputEvery"> 0 </param>
 	<param name="dumpEvery"> 0 </param>
 	<param name="checkpointEvery"> 1 </param>
