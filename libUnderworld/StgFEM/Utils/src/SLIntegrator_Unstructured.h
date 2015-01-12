@@ -125,6 +125,7 @@
    void SLIntegrator_Unstructured_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* variableFieldPrime );
 
    void SLIntegrator_Unstructured_ShapeFuncs( void* slIntegrator, const double lCoord[], double* const Ni );
+   void SLIntegrator_Unstructured_ShapeFuncs3D( void* slIntegrator, const double xi[], double* const Ni );
    void SLIntegrator_Unstructured_ShapeFuncDerivs( void* slIntegrator, const double lCoord[], double** const GNix );
    void SLIntegrator_Unstructured_ShapeFuncs2D( void* slIntegrator, const double lCoord[], double* const Ni );
    void SLIntegrator_Unstructured_ShapeFuncDerivs3D( void* slIntegrator, const double lCoord[], double** const GNix );
