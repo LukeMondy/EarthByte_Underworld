@@ -138,8 +138,12 @@ double SLIntegrator3D_EvaluateError( FiniteElementContext* context, FeVariable* 
 
             initialValue = func( gCoord, xo, yo, ax, ay );
             
-            if( nDims == 3 )
-                SLIntegrator_Spherical_CubicInterpolator( slIntegrator, phiField, gCoord, &finalValue );
+            if( nDims == 3 ) {
+                if( strcmp( feMesh->algorithms->type, "Mesh_SphericalAlgorithms" ) == 0 )
+                    SLIntegrator_Spherical_CubicInterpolator( slIntegrator, phiField, gCoord, &finalValue );
+                else if( strcmp( feMesh->algorithms->type, "Mesh_ProjectionAlgorithms" ) == 0 )
+                    SLIntegrator_FullSphere_CubicInterpolator( slIntegrator, phiField, gCoord, &finalValue );
+            }
             else
                 SLIntegrator_Polar_CubicInterpolator( slIntegrator, phiField, gCoord, &finalValue );
  
@@ -224,13 +228,12 @@ void Spherical_SLIntegrator3D_AssignFromXML( void* _self, Stg_ComponentFactory* 
     self->phiInitField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureInitField" );
 }
 
-void Spherical_SLIntegrator3D_Build( void* _self, void* data ) {
-    Spherical_SLIntegrator3D* self = (Spherical_SLIntegrator3D*)_self;
-}
+void Spherical_SLIntegrator3D_Build( void* _self, void* data ) {}
 
 void Spherical_SLIntegrator3D_Initialise( void* _self, void* data ) {
     Spherical_SLIntegrator3D* 	self 	= (Spherical_SLIntegrator3D*)_self;
-    double 			phi[3];
+    double 			phi[3];//, rs[3], vel_rs[3], vel_xyz[3];
+    double			*xyz, vel[3], radius, theta;
     int				node_i;
 
     for( node_i = 0; node_i < Mesh_GetLocalSize( self->phiField->feMesh, MT_VERTEX ); node_i++ ) {
@@ -239,10 +242,7 @@ void Spherical_SLIntegrator3D_Initialise( void* _self, void* data ) {
     }
 }
 
-void Spherical_SLIntegrator3D_Execute( void* _self, void* data ) {
-    Spherical_SLIntegrator3D* self = (Spherical_SLIntegrator3D*)_self;
-
-}
+void Spherical_SLIntegrator3D_Execute( void* _self, void* data ) {}
 
 void* Spherical_SLIntegrator3D_New( Name name ) {
     /* Variables set in this function */
