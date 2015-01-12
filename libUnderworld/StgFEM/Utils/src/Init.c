@@ -68,9 +68,6 @@ Bool StgFEM_Utils_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( componentRegister, SemiLagrangianIntegrator_Type, (Name)"0", _SemiLagrangianIntegrator_DefaultNew );
    RegisterParent( SemiLagrangianIntegrator_Type, Stg_Component_Type );
 
-   Stg_ComponentRegister_Add( componentRegister, SLIntegrator_Unstructured_Type, (Name)"0", _SLIntegrator_Unstructured_DefaultNew );
-   RegisterParent( SLIntegrator_Unstructured_Type, Stg_Component_Type );
-
    Stg_ComponentRegister_Add( componentRegister, IrregularMeshParticleLayout_Type, "0", (Stg_Component_DefaultConstructorFunction*) _IrregularMeshParticleLayout_DefaultNew );
    RegisterParent( IrregularMeshParticleLayout_Type, GlobalParticleLayout_Type );
 

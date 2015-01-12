@@ -55,7 +55,6 @@
    #include "types.h"
 
    #include "SemiLagrangianIntegrator.h"
-   #include "SLIntegrator_Unstructured.h"
    #include "IrregularMeshParticleLayout.h"
 
    #include "Init.h"
