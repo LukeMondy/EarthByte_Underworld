@@ -237,7 +237,7 @@ Bool FeMesh_ElementType_ElementHasPoint_ForIrregular(
    }
 
    // calc a length scale for error measure
-   if( dim == 2 ) {
+   if( nDims == 2 ) {
       lengthScale  = ( Mesh_GetVertex( mesh, nodes[0] )[0] - Mesh_GetVertex( mesh, nodes[3] )[0] )*
                      ( Mesh_GetVertex( mesh, nodes[0] )[0] - Mesh_GetVertex( mesh, nodes[3] )[0] );
       lengthScale += ( Mesh_GetVertex( mesh, nodes[0] )[1] - Mesh_GetVertex( mesh, nodes[3] )[1] )*
