@@ -35,4 +35,9 @@ if m < m_old - 0.1*m_old:
 	print 'ERROR: convergence rate has degraded from ', m_old
 
 plt.loglog(dx,err,'o-')
+plt.xlabel('$\Delta x$')
+plt.ylabel('||Error||')
+plt.title('$L_2$ Error convergence for pure advection test')
+plt.savefig('pure_advection_errors.png')
 plt.show()
+

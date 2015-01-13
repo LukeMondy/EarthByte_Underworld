@@ -115,7 +115,7 @@ double FourierMode( FiniteElementContext* context, double* coord ) {
 	ky *= 2.0*M_PI;
 
         SemiLagrangianIntegrator_GetDeltaConst( feVariable, delta, nNodes );
-        SemiLagrangianIntegrator_BicubicInterpolator( feVariable, gCoord, delta, nNodes, vel );
+        SemiLagrangianIntegrator_CubicInterpolator( feVariable, gCoord, delta, nNodes, vel );
 
         return exp( -visc*(kx*kx + ky*ky)*time )*cos( kx*coord[0] + ky*coord[1] - (vel[0]*kx + vel[1]*ky)*time );
 }
@@ -182,7 +182,7 @@ double SemiLagrangianADE_CalcErrors_EvaluateError( FiniteElementContext* context
             initialValue = func( context, gCoord );
             
             SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
-            SemiLagrangianIntegrator_BicubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
+            SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
  
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
