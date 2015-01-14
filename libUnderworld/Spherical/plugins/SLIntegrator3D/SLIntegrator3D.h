@@ -44,8 +44,7 @@ extern const Type Spherical_SLIntegrator3D_Type;
 
 typedef struct {
     __Codelet
-    FeVariable* phiField;
-    FeVariable* phiInitField;
+    FeVariable* 		phiField;
 } Spherical_SLIntegrator3D;
 
 Index Spherical_SLIntegrator3D_Register( PluginsManager* mgr );

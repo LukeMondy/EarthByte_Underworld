@@ -8,10 +8,9 @@
       <param>VelocityField</param>
       <param>TemperatureField</param>
       <param>temperatureStarField</param>
-      <!--param>temperatureOldField</param-->
    </list>
 
-   <include> SLIntegrator_Spherical.xml </include>
+   <include> SLIntegrator_Polar.xml </include>
 
    <struct name="components" mergeType="merge">
 

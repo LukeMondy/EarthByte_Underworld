@@ -52,10 +52,12 @@
   <include>StgFEM/PressureField.xml</include>
   <include>Underworld/GaussSwarmWithGaussMaterialSwarm.xml</include>
   <include>StgFEM/TemperatureField.xml</include>
-  <!--include>StgFEM/TempAdvDiff.xml</include-->
   <include>Spherical/StokesFlowUzawa.xml</include>
 
+  <include>StgFEM/TempAdvDiff.xml</include>
+  <!--
   <include>AdvDiff_SL_Spherical.xml</include>
+  -->
 
   <struct name="components" mergeType="merge">
     <struct name="context">
@@ -190,7 +192,7 @@
   <param name="Ra"> 1e4 </param>
   <param name="defaultDiffusivity"> 1 </param>
 <!-- Simulation control -->
-  <param name="maxTimeSteps"> 3 </param>
+  <param name="maxTimeSteps"> 100 </param>
   <param name="outputEvery"> 1 </param>
   <param name="dumpEvery"> 1 </param>
   <param name="checkpointEvery"> 2 </param>

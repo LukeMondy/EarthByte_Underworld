@@ -174,14 +174,9 @@ void SLIntegrator3D_UpdatePositions( void* data, FiniteElementContext* context )
     Index                       dim_I;
     unsigned             	nDims           = Mesh_GetDimSize( mesh );
     double                      velocity[3];
-    double                      phi;
     FeVariable*          	phiField	= (FeVariable*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)"TemperatureField" );
-    FeVariable*          	phiInitField	= NULL;
     double			error;
-    double			xo   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_shiftEta",  0.5 );
-    double			yo		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_shiftZeta", 0.5 );
-    double			ax   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleEta",  5.0 );
-    double			ay		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleZeta", 7.0 );
+    FILE* 			fp 		= fopen( "error.txt", "w" );
 
     _FeVariable_SyncShadowValues( velocityField );
 
@@ -193,53 +188,46 @@ void SLIntegrator3D_UpdatePositions( void* data, FiniteElementContext* context )
            for( dim_I = 0; dim_I < nDims; dim_I++ ) {
                velocity[dim_I] *= -1;
            }
-
            FeVariable_SetValueAtNode( velocityField, node_I, velocity );
         }
     }
 
     if( context->timeStep == context->maxTimeSteps ) {
-        phiInitField = (FeVariable*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)"TemperatureInitField" );
-        error        = SLIntegrator3D_EvaluateError( context, phiField, gaussSwarm, SolWave3D_Domain );
+        error = SLIntegrator3D_EvaluateError( context, phiField, gaussSwarm, SolWave3D_Domain );
         printf( "\nstep: %u\terror: %12.10f\n\n", context->timeStep, error );
 
-        FILE* fp = fopen( "error.txt", "w" );
+        fp = fopen( "error.txt", "w" );
         fprintf( fp, "%12.10e", error );
         fclose( fp );
-
-        double phi_a;
-        for( node_I = 0; node_I < Mesh_GetLocalSize( mesh, MT_VERTEX ); node_I++ ) {
-            FeVariable_GetValueAtNode( phiField, node_I, &phi );
-            phi_a = SolWave3D_Domain( Mesh_GetVertex( mesh, node_I ), xo, yo, ax, ay );
-            phi_a -= phi;
-            FeVariable_SetValueAtNode( phiInitField, node_I, &phi_a );
-        }
     }
 }
 
 void Spherical_SLIntegrator3D_AssignFromXML( void* _self, Stg_ComponentFactory* cf, void* data ) {
     Spherical_SLIntegrator3D* 	self 		= (Spherical_SLIntegrator3D*)_self;
-    AbstractContext*		context		= Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, NULL  );
 
-    ContextEP_ReplaceAll( context, AbstractContext_EP_Dt, SLIntegrator3D_Dt );
-    ContextEP_Append( context, AbstractContext_EP_UpdateClass, SLIntegrator3D_UpdatePositions );
+    self->phiField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
+    self->context  = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", FiniteElementContext, True, NULL  );
 
-    self->phiField     = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
-    self->phiInitField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureInitField" );
+    ContextEP_ReplaceAll( self->context, AbstractContext_EP_Dt, SLIntegrator3D_Dt );
+    ContextEP_Append( self->context, AbstractContext_EP_UpdateClass, SLIntegrator3D_UpdatePositions );
+
 }
 
 void Spherical_SLIntegrator3D_Build( void* _self, void* data ) {}
 
 void Spherical_SLIntegrator3D_Initialise( void* _self, void* data ) {
-    Spherical_SLIntegrator3D* 	self 	= (Spherical_SLIntegrator3D*)_self;
-    double 			phi[3];//, rs[3], vel_rs[3], vel_xyz[3];
-    double			*xyz, vel[3], radius, theta;
-    int				node_i;
+    Spherical_SLIntegrator3D* 	self 		= (Spherical_SLIntegrator3D*)_self;
+/*
+    char* 			filename;
+    char* 			inputPath 	= Context_GetCheckPointReadPrefixString( self->context );
+    unsigned			restartStep	= Dictionary_GetUnsignedInt_WithDefault( self->context->dictionary, "restartTimestep", 0 );
 
-    for( node_i = 0; node_i < Mesh_GetLocalSize( self->phiField->feMesh, MT_VERTEX ); node_i++ ) {
-        FeVariable_GetValueAtNode( self->phiField, node_i, phi );
-        FeVariable_SetValueAtNode( self->phiInitField, node_i, phi );
+    if( restartStep ) {
+        Stg_asprintf( &filename, "%s.%.5u.h5", inputPath, self->phiField->name, restartStep );
+        FeVariable_ReadFromFile( self->phiField, filename );
+        Memory_Free( filename );
     }
+*/
 }
 
 void Spherical_SLIntegrator3D_Execute( void* _self, void* data ) {}
