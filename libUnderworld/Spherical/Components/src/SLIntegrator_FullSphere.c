@@ -49,7 +49,7 @@
 
 #include <assert.h>
 
-#define DIM 3
+#define SL_FS_DIM 3
 
 /** Textual name of this class */
 const Type SLIntegrator_FullSphere_Type = "SLIntegrator_FullSphere";
@@ -227,13 +227,13 @@ void _SLIntegrator_FullSphere_Initialise( void* slIntegrator, void* data ) {
 
     self->abcissa = malloc(4*sizeof(double));
     self->Ni      = malloc(64*sizeof(double));
-    self->GNix    = malloc(DIM*sizeof(double*));
+    self->GNix    = malloc(SL_FS_DIM*sizeof(double*));
     self->GNix[0] = malloc(64*sizeof(double));
     self->GNix[1] = malloc(64*sizeof(double));
     self->GNix[2] = malloc(64*sizeof(double));
 
-    self->elPatch = malloc(Mesh_GetLocalSize( feMesh, DIM )*sizeof(unsigned*));
-    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, DIM ); el_i++ ) {
+    self->elPatch = malloc(Mesh_GetLocalSize( feMesh, SL_FS_DIM )*sizeof(unsigned*));
+    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, SL_FS_DIM ); el_i++ ) {
         self->elPatch[el_i] = malloc( 64*sizeof(unsigned) );
     }
 
@@ -243,7 +243,7 @@ void _SLIntegrator_FullSphere_Initialise( void* slIntegrator, void* data ) {
     self->abcissa[3] = -1.0*self->abcissa[0];
 
     /* sanity checks */
-    if( Mesh_GetDimSize( feMesh ) != DIM ) {
+    if( Mesh_GetDimSize( feMesh ) != SL_FS_DIM ) {
         printf( "ERROR: component %s requires mesh of dimension 3\n", self->type );
         abort();
     }
@@ -280,7 +280,7 @@ void _SLIntegrator_FullSphere_Destroy( void* slIntegrator, void* data ) {
     free(self->GNix[2]);
     free(self->GNix);
 
-    for( el_i = 0; el_i < Mesh_GetLocalSize( self->velocityField->feMesh, DIM ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetLocalSize( self->velocityField->feMesh, SL_FS_DIM ); el_i++ ) {
         free( self->elPatch[el_i] );
     }
     free( self->elPatch );
@@ -321,22 +321,22 @@ void SLIntegrator_FullSphere_IntegrateRK4( void* slIntegrator, FeVariable* veloc
     double			coordPrime[3];
 
     SLIntegrator_FullSphere_CubicInterpolator( self, velocityField, origin, k[0] );
-    for( dim_i = 0; dim_i < DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < SL_FS_DIM; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[0][dim_i];
     }
     SLIntegrator_FullSphere_CubicInterpolator( self, velocityField, coordPrime, k[1] );
 
-    for( dim_i = 0; dim_i < DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < SL_FS_DIM; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[1][dim_i];
     }
     SLIntegrator_FullSphere_CubicInterpolator( self, velocityField, coordPrime, k[2] );
 
-    for( dim_i = 0; dim_i < DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < SL_FS_DIM; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt*k[2][dim_i];
     }
     SLIntegrator_FullSphere_CubicInterpolator( self, velocityField, coordPrime, k[3] );
 
-    for( dim_i = 0; dim_i < DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < SL_FS_DIM; dim_i++ ) {
         position[dim_i] = origin[dim_i] - INV6*dt*( k[0][dim_i] + 2.0*k[1][dim_i] + 2.0*k[2][dim_i] + k[3][dim_i] );
     }
 }
