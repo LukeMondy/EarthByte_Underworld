@@ -26,6 +26,7 @@ typedef struct Ppc_TensorInvariant Ppc_TensorInvariant;
 typedef struct Ppc_VecDotVec Ppc_VecDotVec;
 typedef struct SLIntegrator_Spherical SLIntegrator_Spherical;
 typedef struct SLIntegrator_Polar SLIntegrator_Polar;
+typedef struct SLIntegrator_FullSphere SLIntegrator_FullSphere;
 
 typedef enum {
    SphereBC_Wall_Inner,

@@ -34,6 +34,7 @@
 #include "Ppc_VecDotVec.h"
 #include "SLIntegrator_Spherical.h"
 #include "SLIntegrator_Polar.h"
+#include "SLIntegrator_FullSphere.h"
 
 #include "Init.h"
 #include "Finalise.h"
