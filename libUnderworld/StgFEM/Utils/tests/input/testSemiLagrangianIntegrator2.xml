@@ -35,7 +35,7 @@
    <include>StgFEM/GaussSwarm.xml</include>
 
    <param name="elementMesh">linearMesh</param>
-   <param name="phiMesh">linearMesh</param>
+   <param name="temperatureMesh">linearMesh</param>
 
    <struct name="components" mergeType="merge">
       <struct name="context">
@@ -44,32 +44,32 @@
    </struct>
 
    <struct name="components" mergeType="merge">
-      <struct name="phi">
+      <struct name="temperature">
          <param name="Type">MeshVariable</param>
-         <param name="mesh">phiMesh</param>
+         <param name="mesh">temperatureMesh</param>
          <param name="Rank">Scalar</param>
          <param name="DataType">Double</param>
          <list name="names">
-            <param>phi</param>
+            <param>temperature</param>
          </list>
       </struct>
-      <struct name="phiICs">
+      <struct name="temperatureICs">
          <param name="Type">CompositeVC</param>
-         <param name="Data">phiMesh</param>
+         <param name="Data">temperatureMesh</param>
       </struct>
 
-      <struct name="phiDofLayout">
+      <struct name="temperatureDofLayout">
          <param name="Type">DofLayout</param>
-         <param name="mesh">phiMesh</param>
+         <param name="mesh">temperatureMesh</param>
          <list name="BaseVariables">
-            <param>phi</param>
+            <param>temperature</param>
          </list>
       </struct>
-      <struct name="PhiField">
+      <struct name="TemperatureField">
          <param name="Type">FeVariable</param>
-         <param name="FEMesh">phiMesh</param>
-         <param name="DofLayout">phiDofLayout</param>
-         <param name="IC">phiICs</param>
+         <param name="FEMesh">temperatureMesh</param>
+         <param name="DofLayout">temperatureDofLayout</param>
+         <param name="IC">temperatureICs</param>
       </struct>
    </struct>
 

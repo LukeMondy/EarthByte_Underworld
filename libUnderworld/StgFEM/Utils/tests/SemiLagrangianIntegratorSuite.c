@@ -73,7 +73,7 @@ double SemiLagrangianIntegratorSuite_Dt( void* _context ) {
 
 void SemiLagrangianIntegratorSuite_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
-    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "PhiField" );
+    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "TemperatureField" );
     FeMesh*                     mesh            = feVariable->feMesh;
     double*                     coord           = Mesh_GetVertex( mesh, node_lI );
     double*                     result          = (double*)_result;
@@ -149,8 +149,8 @@ void SemiLagrangianIntegratorSuite_UpdatePositions( void* data, FiniteElementCon
     _FeVariable_SyncShadowValues( velocityField );
 }
 
-double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* phiField, Swarm* gaussSwarm, funcPtr func ) {
-    FeMesh*			feMesh		= phiField->feMesh;
+double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* temperatureField, Swarm* gaussSwarm, funcPtr func ) {
+    FeMesh*			feMesh		= temperatureField->feMesh;
     GaussParticleLayout*	particleLayout 	= (GaussParticleLayout*)gaussSwarm->particleLayout;
     Index			lElement_I, lCell_I;
     unsigned			nDims		= Mesh_GetDimSize( feMesh );
@@ -182,8 +182,8 @@ double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* phiField, Swarm*
             FeMesh_CoordLocalToGlobal( feMesh, lElement_I, gaussPoint->xi, gCoord );
             initialValue = func( gCoord );
 
-            SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
-            SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
+            SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
+            SemiLagrangianIntegrator_CubicInterpolator( temperatureField, gCoord, delta, nNodes, &finalValue );
 
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
@@ -212,10 +212,10 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
     ConditionFunction*      	condFunc;
     //char			xml_input[PCU_PATH_MAX];
     double			l2Error;
-    FeVariable*			phiField;
-    FeVariable*			phiInitField;
+    FeVariable*			temperatureField;
+    FeVariable*			temperatureInitField;
     Swarm*			gaussSwarm;
-    double			phi[3];
+    double			temperature[3];
     unsigned			node_i;
     AbstractContext*		context;
 
@@ -236,17 +236,17 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
 
     stgMainBuildAndInitialise( cf );
 
-    phiField     = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"PhiField" );
-    phiInitField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"PhiInitField" );
+    temperatureField     = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
+    temperatureInitField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureInitField" );
     gaussSwarm   = (Swarm*)LiveComponentRegister_Get( cf->LCRegister, (Name)"gaussSwarm" );
-    for( node_i = 0; node_i < Mesh_GetLocalSize( phiField->feMesh, MT_VERTEX ); node_i++ ) {
-        FeVariable_GetValueAtNode( phiField,     node_i, phi );
-        FeVariable_SetValueAtNode( phiInitField, node_i, phi );
+    for( node_i = 0; node_i < Mesh_GetLocalSize( temperatureField->feMesh, MT_VERTEX ); node_i++ ) {
+        FeVariable_GetValueAtNode( temperatureField,     node_i, temperature );
+        FeVariable_SetValueAtNode( temperatureInitField, node_i, temperature );
     }
 
     stgMainLoop( cf );
 
-    l2Error = SemiLagrangianIntegratorSuite_EvaluateError( phiField, gaussSwarm, SolWave );
+    l2Error = SemiLagrangianIntegratorSuite_EvaluateError( temperatureField, gaussSwarm, SolWave );
 
     printf( "\ntime step: %12.10e\n\n", SemiLagrangianIntegratorSuite_Dt(context) );
     printf( "\nERROR (1): %12.10e\n\n", l2Error );
@@ -262,13 +262,13 @@ double f( double a[2], double x[2] ) { return Sech2(a[0],x[0])*Sech2(a[1],x[1]);
 
 void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegratorSuiteData* data ) {
     Stg_ComponentFactory*	cf;
-    FeVariable*			phiField;
+    FeVariable*			temperatureField;
     Swarm*			gaussSwarm;
     ElementType*		elType;
     IntegrationPoint*		gaussPoint;
     Index			node_i, el_i, cell_i, pt_i;
     Index			nGaussPts;
-    double			phi, phi_a;
+    double			temperature, temperature_a;
     double			a[2]		= { 4.0, 6.0 };
     double			delta[2];
     unsigned			nNodes[2];
@@ -280,36 +280,36 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
 
     stgMainBuildAndInitialise( cf );
 
-    phiField 		= (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"PhiField" );
+    temperatureField 		= (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
     gaussSwarm   	= (Swarm*)LiveComponentRegister_Get( cf->LCRegister, (Name)"gaussSwarm" );
 
-    SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
+    SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
 
-    for( node_i = 0; node_i < Mesh_GetLocalSize( phiField->feMesh, MT_VERTEX ); node_i++ ) {
-        phi = f( a, Mesh_GetVertex( phiField->feMesh, node_i ) );
-        FeVariable_SetValueAtNode( phiField, node_i, &phi );
+    for( node_i = 0; node_i < Mesh_GetLocalSize( temperatureField->feMesh, MT_VERTEX ); node_i++ ) {
+        temperature = f( a, Mesh_GetVertex( temperatureField->feMesh, node_i ) );
+        FeVariable_SetValueAtNode( temperatureField, node_i, &temperature );
     }
 
-    for( el_i = 0; el_i < Mesh_GetLocalSize( phiField->feMesh, MT_FACE ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetLocalSize( temperatureField->feMesh, MT_FACE ); el_i++ ) {
         cell_i    = CellLayout_MapElementIdToCellId( gaussSwarm->cellLayout, el_i );
         nGaussPts = _GaussParticleLayout_InitialCount( gaussSwarm->particleLayout, NULL, cell_i );
-        elType    = FeMesh_GetElementType( phiField->feMesh, el_i );
+        elType    = FeMesh_GetElementType( temperatureField->feMesh, el_i );
 
         elErrorSq    = 0.0;
         elAnalyticSq = 0.0;
 
         for( pt_i = 0; pt_i < nGaussPts; pt_i++ ) {
             gaussPoint = (IntegrationPoint*)Swarm_ParticleInCellAt( gaussSwarm, cell_i, pt_i );
-            FeMesh_CoordLocalToGlobal( phiField->feMesh, el_i, gaussPoint->xi, gCoord );
-            SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &phi );
-            //_FeVariable_InterpolateValueAt( phiField, gCoord, &phi );
+            FeMesh_CoordLocalToGlobal( temperatureField->feMesh, el_i, gaussPoint->xi, gCoord );
+            SemiLagrangianIntegrator_CubicInterpolator( temperatureField, gCoord, delta, nNodes, &temperature );
+            //_FeVariable_InterpolateValueAt( temperatureField, gCoord, &temperature );
 
-            phi_a = f( a, gCoord );
+            temperature_a = f( a, gCoord );
  
-            detJac = ElementType_JacobianDeterminant( elType, phiField->feMesh, el_i, gaussPoint->xi, 2 );
+            detJac = ElementType_JacobianDeterminant( elType, temperatureField->feMesh, el_i, gaussPoint->xi, 2 );
 
-            elErrorSq    += ( phi - phi_a ) * ( phi - phi_a ) * gaussPoint->weight * detJac;
-            elAnalyticSq += ( phi_a * phi_a ) * gaussPoint->weight * detJac;
+            elErrorSq    += ( temperature - temperature_a ) * ( temperature - temperature_a ) * gaussPoint->weight * detJac;
+            elAnalyticSq += ( temperature_a * temperature_a ) * gaussPoint->weight * detJac;
         }
 
         lError    += sqrt( elErrorSq );
