@@ -162,7 +162,6 @@ void _SLIntegrator_Polar_AssignFromXML( void* slIntegrator, Stg_ComponentFactory
 
     self->pureAdvection = Memory_Alloc_Array_Unnamed( Bool, nEntries/3 );
 
-
     for( field_i = 0; field_i < nEntries; field_i += 3  ) {
         fieldName = Dictionary_Entry_Value_AsString( Dictionary_Entry_Value_GetElement( dev, field_i ) );
         feVariable = Stg_ComponentFactory_ConstructByName( cf, (Name)fieldName, FeVariable, True, data );
@@ -192,7 +191,7 @@ void _SLIntegrator_Polar_AssignFromXML( void* slIntegrator, Stg_ComponentFactory
 }
 
 void _SLIntegrator_Polar_Build( void* slIntegrator, void* data ) {
-    SLIntegrator_Polar*	self 		= (SLIntegrator_Polar*)slIntegrator;
+    SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
     unsigned			field_i;
@@ -447,8 +446,8 @@ void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVar
         double*  cCoord = Mesh_GetVertex( feMesh, inc[4] );
 
         if( position[0] > cCoord[0] && !HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0] -= 2;
-        if( position[1] > cCoord[1] && !HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1] -= 2;
-        if( position[0] < cCoord[0] && HasLeft( feMesh, self->inc, elInd, inc, nInc ) )   IJK[0]--;
+        if( position[1] > cCoord[1] && !HasTop(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[1] -= 2;
+        if( position[0] < cCoord[0] && HasLeft(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
         if( position[1] < cCoord[1] && HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
     }
     else { /* linear mesh */
@@ -485,28 +484,31 @@ void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVar
 void SLIntegrator_Polar_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* varStarField ) {
     SLIntegrator_Polar*		self 		     = (SLIntegrator_Polar*)slIntegrator;
     FiniteElementContext*	context		     = self->context;
-    unsigned			node_I;
+    unsigned			node_i;
     FeMesh*			feMesh		     = variableField->feMesh;
     unsigned			meshSize	     = Mesh_GetLocalSize( feMesh, MT_VERTEX );
     FeVariable*			velocityField	     = self->velocityField;
     double			dt		     = AbstractContext_Dt( context );
-    double			position[3];
-    double			var[3];
+    double			pos[3], var[3];
     double*			coord;
+    Grid**      		grid                 = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    unsigned*   		sizes                = Grid_GetSizes( *grid );
 
     FeVariable_SyncShadowValues( velocityField );
     FeVariable_SyncShadowValues( variableField );
 
     /* assume that the variable mesh is the same as the velocity mesh */
-    for( node_I = 0; node_I < meshSize; node_I++ ) {
-        if( FeVariable_IsBC( variableField, node_I, 0 ) )
+    for( node_i = 0; node_i < meshSize; node_i++ ) {
+        /* skip if node is an outer wall with a boundary condition to avoid overshooting of characteristics 
+           to departure points outside circle. TODO: only consistent for scalar fields at present */
+        if( FeVariable_IsBC( variableField, node_i, 0 ) && node_i%sizes[0] == sizes[0] - 1 /*outer (right) wall*/ )
             continue;
 
-	coord = Mesh_GetVertex(feMesh,node_I);
+	coord = Mesh_GetVertex( feMesh, node_i );
 
-        SLIntegrator_Polar_IntegrateRK4( self, velocityField, dt, coord, position );
-        SLIntegrator_Polar_CubicInterpolator( self, variableField, position, var );
-        FeVariable_SetValueAtNode( varStarField, node_I, var );
+        SLIntegrator_Polar_IntegrateRK4( self, velocityField, dt, coord, pos );
+        SLIntegrator_Polar_CubicInterpolator( self, variableField, pos, var );
+        FeVariable_SetValueAtNode( varStarField, node_i, var );
     }
     FeVariable_SyncShadowValues( varStarField );
 }
