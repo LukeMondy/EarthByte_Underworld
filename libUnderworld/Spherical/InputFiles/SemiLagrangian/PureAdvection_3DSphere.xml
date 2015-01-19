@@ -102,14 +102,26 @@
 						<param name="name">vx</param>
 						<param name="type">double</param>
 						<param name="value">0.0</param>
+<!--
+						<param name="type">func</param>
+						<param name="value">ParametricCircle3DX</param>
+-->
 					</struct>
 					<struct>
 						<param name="name">vy</param>
+<!--
+						<param name="type">double</param>
+						<param name="value">0.0</param>
+-->
 						<param name="type">func</param>
 						<param name="value">ParametricCircle3DX</param>
 					</struct>
 					<struct>
 						<param name="name">vz</param>
+<!--
+						<param name="type">double</param>
+						<param name="value">0.0</param>
+-->
 						<param name="type">func</param>
 						<param name="value">ParametricCircle3DY</param>
 					</struct>
@@ -117,7 +129,6 @@
 			</struct>
 		</list>
 	</struct>
-	<param name="parametricCircle_scale"> 6.0 </param>
 	<struct name="temperatureICs" mergeType="replace">
 		<param name="type">CompositeVC</param>
 		<list name="vcList">
@@ -136,17 +147,6 @@
         <struct name="temperatureBCs">
                 <param name="type">CompositeVC</param>
                 <list name="vcList">
-                        <!--struct>
-                                <param name="type"> SphereBC </param>
-                                <param name="wall"> inner </param>
-                                <list name="variables">
-                                        <struct>
-                                                <param name="name">temperature</param>
-                                                <param name="type">double</param>
-                                                <param name="value"> 0 </param>
-                                        </struct>
-                                </list>
-                        </struct-->
                         <struct>
                                 <param name="type"> SphereBC </param>
                                 <param name="wall"> outer </param>
@@ -160,21 +160,43 @@
                         </struct>
                 </list>
         </struct>
-
+	<param name="parametricCircle_scale"> 6.0 </param>
+<!--
+	orientation 1:
+		vy: 	ParametricCircle3DX
+		vz: 	ParametricCircle3DY
+                axis 1: 1
+		axis 2:	2
+	orientation 2:
+		vz: 	ParametricCircle3DX
+		vx: 	ParametricCircle3DY
+                axis 1: 2
+		axis 2:	0
+	orientation 3:
+		vx: 	ParametricCircle3DX
+		vy: 	ParametricCircle3DY
+                axis 1: 0
+		axis 2:	1
+-->
+	<param name="parametricCircle_axis1"> 1 </param>
+	<param name="parametricCircle_axis2"> 2 </param>
 	<param name="solWave_shiftEta">  0.0 </param>
 	<param name="solWave_shiftZeta"> 0.0 </param>
-	<param name="solWave_scaleEta">  3.0 </param>
-	<param name="solWave_scaleZeta"> 4.0 </param>
-        <param name="staticTimeStep"> 0.04363323129985824 </param>
+	<param name="solWave_scaleEta">  4.0 </param>
+	<param name="solWave_scaleZeta"> 3.0 </param>
+        <!--param name="staticTimeStep"> 0.04363323129985824 </param-->
+        <!--param name="staticTimeStep"> 0.1308996938995747 </param-->
+        <param name="staticTimeStep"> 0.2617993877991494 </param>
         <param name="reverseTimeStep"> 10000000 </param>
         <param name="unstructuredMesh"> true </param>
 
 	<!-- Simulation control -->
+        <!--param name="restartTimestep"> 90 </param-->
 	<param name="maxTimeSteps"> 144 </param>
 	<param name="outputEvery"> 0 </param>
 	<param name="dumpEvery"> 0 </param>
 	<param name="checkpointEvery"> 1 </param>
-	<param name="outputPath"> ./output </param>
+	<param name="outputPath"> ./3Dsphere </param>
 
 	<!-- Geometry & Mesh setup -->
 	<param name="velocityMesh">linearMesh</param>

@@ -25,10 +25,10 @@
       <param name="Type">Underworld_AverageTemperature</param>
       <param name="Context">context</param>
     </struct>
-    <struct>
+    <!--struct>
       <param name="Type">Spherical_SimpleSteadyStateTest</param>
       <param name="Context">context</param>
-    </struct>
+    </struct-->
     <struct>
       <param name="Type">Spherical_SphericalVrms</param>
       <param name="Context">context</param>
@@ -54,15 +54,17 @@
   <include>StgFEM/TemperatureField.xml</include>
   <include>Spherical/StokesFlowUzawa.xml</include>
 
-  <include>StgFEM/TempAdvDiff.xml</include>
-  <!--
-  <include>AdvDiff_SL_Spherical.xml</include>
-  -->
+  <include>AdvDiff_SL_Polar.xml</include>
 
   <struct name="components" mergeType="merge">
     <struct name="context">
       <param name="Type">UnderworldContext</param>
     </struct>
+
+    <!--struct name="residual">
+       <param name="Type">ForceVector</param>
+       <param name="FeVariable">TemperatureField</param>
+    </struct-->
 
     <struct name="volume">
       <param name="Type">PpcIntegral</param>
@@ -134,13 +136,7 @@
         <param>-6.9078</param>
       </list>
     </struct>
-
-      <struct name="residual">
-         <param name="Type">ForceVector</param>
-         <param name="FeVariable">TemperatureField</param>
-      </struct>
-
-    <!-- Density and gravity based on ppc -->
+<!-- Density and gravity based on ppc -->
     <struct type="struct" name="buoyancyForceTerm">
       <param name="Type">VectorAssemblyTerm_NA__F</param>
       <param name="functionLabel">bodyForce</param>
@@ -149,8 +145,8 @@
     </struct>
     <struct type="struct" name="sourceTerm" mergeType="replace">
       <param name="Type">VectorAssemblyTerm_NA__F</param>
-      <param name="ForceVector">residual</param>
-      <!--param name="ForceVector">fVector</param--> <!-- TODO: adv diff eqn force vector is different for the SL scheme, check this is ok... -->
+      <!--param name="ForceVector">residual</param-->
+      <param name="ForceVector">fVector</param>
       <param name="functionLabel">sourceTerm_thermalEqn</param>
       <param name="Swarm">gaussSwarm</param>
       <param name="Manager">default_ppcManager</param>
@@ -158,10 +154,6 @@
     <struct name="sourceTerm_thermalEqn" mergeType="replace">
       <param name="Type">Ppc_Constant</param>
       <param name="Value"> 0 </param>
-    </struct>
-    <struct name="tempPpc">
-      <param name="Type">Ppc_Variable</param>
-      <param name="FieldVariable">TemperatureField</param>
     </struct>
     <struct name="BA">
       <param name="Type">Ppc_Operation</param>
@@ -192,10 +184,10 @@
   <param name="Ra"> 1e4 </param>
   <param name="defaultDiffusivity"> 1 </param>
 <!-- Simulation control -->
-  <param name="maxTimeSteps"> 100 </param>
+  <param name="maxTimeSteps"> 3 </param>
   <param name="outputEvery"> 1 </param>
   <param name="dumpEvery"> 1 </param>
-  <param name="checkpointEvery"> 2 </param>
+  <param name="checkpointEvery"> 1 </param>
   <param name="outputPath"> ./annulus </param>
 <!-- Geometry & Mesh setup -->
   <param name="velocityMesh">linearMesh</param>
@@ -220,5 +212,15 @@
 	<include> ./freeSlipBCs.xml </include>
 	<include> ./noSlipBCs.xml </include>
 	<include> ./lidDrivenBCs.xml </include>
+	-->
+<!--
+	<include>./TempVP.xml</include>
+	<include>../VelMagVP.xml</include>
+	<include>gLucifer/window.xml</include>
+	<struct name="components" mergeType="merge">
+		<struct name="window" mergeType="merge">
+			<param name="Viewport">VelocityMagnitudeVP </param>
+		</struct>
+	</struct>
 	-->
 </StGermainData>

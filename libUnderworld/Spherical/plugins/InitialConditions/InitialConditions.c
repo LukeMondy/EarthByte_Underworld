@@ -51,20 +51,7 @@
 const Type Spherical_InitialConditions_Type = "Spherical_InitialConditions";
 Spherical_InitialConditions* Spherical_InitialConditions_selfPointer = NULL;
 
-typedef double (*funcPtr)( double* coord, double xo, double yo, double ax, double ay );
-
-double SphericalICs_SolWave( double* coord, double xo, double yo, double ax, double ay ) {
-    double	rs[3];
-
-    Spherical_XYZ2regionalSphere( coord, rs );
-
-    double	sx 	= 1.0/cosh( ax*(rs[1] - xo) );
-    double	sy 	= 1.0/cosh( ay*(rs[2] - yo) );
-
-    return sx*sx*sy*sy;
-}
-
-void InitialConditions_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+void Spherical_InitialConditions_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
     FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "TemperatureField" );
     FeMesh*                     mesh            = feVariable->feMesh;
@@ -74,41 +61,47 @@ void InitialConditions_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, v
     double			yo		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_shiftZeta", 0.5 );
     double			ax   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleEta" , 5.0 );
     double			ay		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleZeta", 7.0 );
+    double			rs[3], sx, sy;
 
-    *result = SphericalICs_SolWave( coord, xo, yo, ax, ay );
+    Spherical_XYZ2regionalSphere( coord, rs );
+
+    sx = 1.0/cosh( ax*(rs[1] - xo) );
+    sy = 1.0/cosh( ay*(rs[2] - yo) );
+
+    *result = sx*sx*sy*sy;
 }
 
-void InitialConditions_ParametricCircle3DX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+void Spherical_InitialConditions_ParametricCircle3DX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
     FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
     double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricCircle_scale", 1.0 );
+    unsigned			axis1		= Dictionary_GetUnsignedInt_WithDefault( context->dictionary, "parametricCircle_axis1", 1 );
+    unsigned			axis2		= Dictionary_GetUnsignedInt_WithDefault( context->dictionary, "parametricCircle_axis2", 2 );
     FeMesh*                     mesh            = feVariable->feMesh;
     double*                     coord           = Mesh_GetVertex( mesh, node_lI );
     double*                     result          = (double*)_result;
-    double                      radius          = sqrt( coord[1]*coord[1] + coord[2]*coord[2] );
-    double                      phi;
-
-    phi = atan2( coord[2], coord[1] );
+    double                      radius          = sqrt( coord[axis1]*coord[axis1] + coord[axis2]*coord[axis2] );
+    double                      phi		= atan2( coord[axis2], coord[axis1] );
 
     *result = -radius*sin( phi )/scale;
 }
 
-void InitialConditions_ParametricCircle3DY( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+void Spherical_InitialConditions_ParametricCircle3DY( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
     FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
     double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricCircle_scale", 1.0 );
+    unsigned			axis1		= Dictionary_GetUnsignedInt_WithDefault( context->dictionary, "parametricCircle_axis1", 1 );
+    unsigned			axis2		= Dictionary_GetUnsignedInt_WithDefault( context->dictionary, "parametricCircle_axis2", 2 );
     FeMesh*                     mesh            = feVariable->feMesh;
     double*                     coord           = Mesh_GetVertex( mesh, node_lI );
     double*                     result          = (double*)_result;
-    double                      radius          = sqrt( coord[1]*coord[1] + coord[2]*coord[2] );
-    double                      phi;
-
-    phi = atan2( coord[2], coord[1] );
+    double                      radius          = sqrt( coord[axis1]*coord[axis1] + coord[axis2]*coord[axis2] );
+    double                      phi		= atan2( coord[axis2], coord[axis1] );
 
     *result = +radius*cos( phi )/scale;
 }
 
-void InitialConditions_ParametricSphereX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+void Spherical_InitialConditions_ParametricSphereX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
     FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
     double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricSphere_scale", 1.0 );
@@ -116,16 +109,12 @@ void InitialConditions_ParametricSphereX( Node_LocalIndex node_lI, Variable_Inde
     double*                     coord           = Mesh_GetVertex( mesh, node_lI );
     double*                     result          = (double*)_result;
     double                      radius          = sqrt( coord[0]*coord[0] + coord[1]*coord[1] + coord[2]*coord[2] );
-    double                      phi;
-
-    phi = atan2( coord[1], coord[0] );
+    double                      phi		= atan2( coord[1], coord[0] );
 
     *result = -radius*sin( phi )/scale;
-    //if( coord[0] < 0.0 )
-    //    *result *= -1.0;
 }
 
-void InitialConditions_ParametricSphereY( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+void Spherical_InitialConditions_ParametricSphereY( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
     FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
     double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricSphere_scale", 1.0 );
@@ -133,16 +122,12 @@ void InitialConditions_ParametricSphereY( Node_LocalIndex node_lI, Variable_Inde
     double*                     coord           = Mesh_GetVertex( mesh, node_lI );
     double*                     result          = (double*)_result;
     double                      radius          = sqrt( coord[0]*coord[0] + coord[1]*coord[1] + coord[2]*coord[2] );
-    double                      phi;
-
-    phi = atan2( coord[1], coord[0] );
+    double                      phi		= atan2( coord[1], coord[0] );
 
     *result = radius*cos( phi )/scale;
-    //if( coord[0] < 0.0 )
-    //    *result *= -1.0;
 }
 
-void InitialConditions_ParametricSphereZ( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+void Spherical_InitialConditions_ParametricSphereZ( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
     FiniteElementContext*       context         = (FiniteElementContext*)_context;
     FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
     double                      scale           = Dictionary_GetDouble_WithDefault( context->dictionary, "parametricSphere_scale", 1.0 );
@@ -150,11 +135,21 @@ void InitialConditions_ParametricSphereZ( Node_LocalIndex node_lI, Variable_Inde
     double*                     coord           = Mesh_GetVertex( mesh, node_lI );
     double*                     result          = (double*)_result;
     double                      radius          = sqrt( coord[0]*coord[0] + coord[1]*coord[1] + coord[2]*coord[2] );
-    double                      phi;
-
-    phi = atan2( coord[1], coord[0] );
+    double                      phi		= atan2( coord[1], coord[0] );
 
     *result = 0.0;
+}
+
+void Spherical_InitialConditions_AngleVaryingTemperature( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+    FiniteElementContext*       context         = (FiniteElementContext*)_context;
+    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+    double                      alpha           = Dictionary_GetDouble_WithDefault( context->dictionary, "angleVaryingTemperature_alpha", 1.0 );
+    FeMesh*                     mesh            = feVariable->feMesh;
+    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
+    double*                     result          = (double*)_result;
+    double                      theta		= atan2( coord[1], coord[0] );
+
+    *result = cos( alpha*theta );
 }
 
 void Spherical_InitialConditions_AssignFromXML( void* _self, Stg_ComponentFactory* cf, void* data ) {
@@ -162,17 +157,19 @@ void Spherical_InitialConditions_AssignFromXML( void* _self, Stg_ComponentFactor
     AbstractContext*		context		= Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, NULL  );
     ConditionFunction*		condFunc;
 
-    condFunc = ConditionFunction_New( InitialConditions_SolWave, (Name)"SolWave_RS", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_SolWave, (Name)"SolWave_RS", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( InitialConditions_ParametricSphereX, (Name)"ParametricSphereX", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereX, (Name)"ParametricSphereX", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( InitialConditions_ParametricSphereY, (Name)"ParametricSphereY", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereY, (Name)"ParametricSphereY", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( InitialConditions_ParametricSphereZ, (Name)"ParametricSphereZ", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereZ, (Name)"ParametricSphereZ", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( InitialConditions_ParametricCircle3DX, (Name)"ParametricCircle3DX", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricCircle3DX, (Name)"ParametricCircle3DX", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( InitialConditions_ParametricCircle3DY, (Name)"ParametricCircle3DY", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricCircle3DY, (Name)"ParametricCircle3DY", NULL  );
+    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_AngleVaryingTemperature, (Name)"AngleVaryingTemperature", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
 }
 
