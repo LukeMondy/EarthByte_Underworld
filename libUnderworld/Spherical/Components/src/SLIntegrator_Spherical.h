@@ -121,6 +121,7 @@
 
    void Spherical_XYZ2regionalSphere( double* xyz, double* rs );
    void Spherical_RegionalSphere2XYZ( double* rs, double* xyz );
+   void Spherical_VectorXYZ2regionalSphere( double* v, double* x, double* v2 );
 
    /** Solve:- calculate the new values for all solution vectors in the system. */
    void SLIntegrator_Spherical_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* variableFieldPrime );

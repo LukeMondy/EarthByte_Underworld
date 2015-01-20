@@ -429,16 +429,42 @@ void Spherical_XYZ2regionalSphere( double *xyz, double* rs ) {
 }
 
 void Spherical_RegionalSphere2XYZ( double *rs, double* xyz ) {
-      double r 		= rs[0];
-      double theta 	= rs[1];
-      double phi 	= rs[2];
-      double X 		= tan(theta);
-      double Y		= tan(phi);
-      double d 		= sqrt(1 + X*X + Y*Y);
+    double r 		= rs[0];
+    double theta 	= rs[1];
+    double phi 		= rs[2];
+    double X 		= tan(theta);
+    double Y		= tan(phi);
+    double d 		= sqrt(1 + X*X + Y*Y);
 
-      xyz[0] = r/d * X;
-      xyz[1] = r/d * Y;
-      xyz[2] = r/d * 1;
+    xyz[0] = r/d * X;
+    xyz[1] = r/d * Y;
+    xyz[2] = r/d * 1;
+}
+
+void Spherical_VectorXYZ2regionalSphere( double* v, double* x, double* v2 ) {
+    double	rInv	= 1.0/sqrt( x[0]*x[0] + x[1]*x[1] + x[2]*x[2] );
+    double	a2	= x[0]*x[0]/x[2]/x[2];
+    double	b2	= x[1]*x[1]/x[2]/x[2];
+    double	dr[3], dEta[3], dZeta[3];
+    unsigned	i;
+
+    dr[0]    = x[0]*rInv;
+    dr[1]    = x[1]*rInv;
+    dr[2]    = x[2]*rInv;
+    dEta[0]  = 1.0/x[2]/(1.0 + a2);
+    dEta[1]  = 0.0;
+    dEta[2]  = -x[0]/x[2]/x[2]/(1.0 + a2);
+    dZeta[0] = 0.0;
+    dZeta[1] = 1.0/x[2]/(1.0 + b2);
+    dZeta[2] = -x[1]/x[2]/x[2]/(1.0 + b2);
+
+    v2[0] = v2[1] = v2[2] = 0.0;
+
+    for( i = 0; i < 3; i++ ) {
+        v2[0] += dr[i]*v[i];
+        v2[1] += dEta[i]*v[i];
+        v2[2] += dZeta[i]*v[i];
+    }
 }
 
 #define SL_EPS 1.0e-04
@@ -606,7 +632,7 @@ void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* f
 void SLIntegrator_Spherical_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* varStarField ) {
     SLIntegrator_Spherical*	self 		     = (SLIntegrator_Spherical*)slIntegrator;
     FiniteElementContext*	context		     = self->context;
-    unsigned			node_I;
+    unsigned			node_i;
     FeMesh*			feMesh		     = variableField->feMesh;
     unsigned			meshSize	     = Mesh_GetLocalSize( feMesh, MT_VERTEX );
     FeVariable*			velocityField	     = self->velocityField;
@@ -614,20 +640,24 @@ void SLIntegrator_Spherical_Solve( void* slIntegrator, FeVariable* variableField
     double			position[3];
     double			var[3];
     double*			coord;
+    Grid**      		grid                 = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    unsigned*   		sizes                = Grid_GetSizes( *grid );
 
     FeVariable_SyncShadowValues( velocityField );
     FeVariable_SyncShadowValues( variableField );
 
     /* assume that the variable mesh is the same as the velocity mesh */
-    for( node_I = 0; node_I < meshSize; node_I++ ) {
-        if( FeVariable_IsBC( variableField, node_I, 0 ) )
+    for( node_i = 0; node_i < meshSize; node_i++ ) {
+        /* skip if node is an outer wall with a boundary condition to avoid overshooting of characteristics 
+           to departure points outside circle. TODO: only consistent for scalar fields at present */
+        if( FeVariable_IsBC( variableField, node_i, 0 ) && node_i%sizes[0] == sizes[0] - 1 /*outer (right) wall*/ )
             continue;
 
-	coord = Mesh_GetVertex( feMesh, node_I );
+	coord = Mesh_GetVertex( feMesh, node_i );
 
         SLIntegrator_Spherical_IntegrateRK4( self, velocityField, dt, coord, position );
         SLIntegrator_Spherical_CubicInterpolator( self, variableField, position, var );
-        FeVariable_SetValueAtNode( varStarField, node_I, var );
+        FeVariable_SetValueAtNode( varStarField, node_i, var );
     }
     FeVariable_SyncShadowValues( varStarField );
 }
