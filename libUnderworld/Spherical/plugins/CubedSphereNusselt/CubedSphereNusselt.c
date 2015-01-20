@@ -364,7 +364,7 @@ void Spherical_CubedSphereNusselt_Output( UnderworldContext* context ) {
             FeMesh_CoordLocalToGlobal( mesh, e_i, particle->xi, xyz );
 
             Spherical_XYZ2regionalSphere( xyz, rtp );
-            Spherical_VectorXYZ2RTP( vel, xyz, 3, vel_rtp );
+            Spherical_VectorXYZ2regionalSphere( vel, xyz, vel_rtp );
             detJac = ElementType_JacobianDeterminant( elementType, (FeMesh*)mesh, e_i, particle->xi, 3 );
 
             r = sqrt( rtp[0]*rtp[0] + rtp[1]*rtp[1] + rtp[2]*rtp[2] );
