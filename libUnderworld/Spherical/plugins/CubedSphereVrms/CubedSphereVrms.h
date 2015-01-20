@@ -47,7 +47,6 @@
    } Spherical_CubedSphereVrms;
 
    void Spherical_CubedSphereVrms_Dump( void* _context ) ;
-   void Spherical_CubedSphereVrms_Dump_old( void* _context ) ;
    void Spherical_CubedSphereVrms_PrintHeaderToFile( void* _context ) ;
    Index Spherical_CubedSphereVrms_Register( PluginsManager* pluginsManager );
 

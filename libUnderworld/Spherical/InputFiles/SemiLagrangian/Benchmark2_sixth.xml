@@ -26,13 +26,13 @@
       <param name="Context">context</param>
     </struct>
     <struct>
-      <param name="Type">Spherical_SphericalVrms</param>
+      <param name="Type">Spherical_CubedSphereVrms</param>
       <param name="Context">context</param>
       <param name="GaussSwarm">gaussSwarm</param>
       <param name="VelocityField">VelocityField</param>
     </struct>
     <struct>
-      <param name="Type">Spherical_SphericalNusselt</param>
+      <param name="Type">Spherical_CubedSphereNusselt</param>
       <param name="Context">context</param>
       <param name="GaussSwarm">gaussSwarm</param>
       <param name="VelocityField">VelocityField</param>

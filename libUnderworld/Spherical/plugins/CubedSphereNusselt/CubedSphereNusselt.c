@@ -101,8 +101,6 @@ void _Spherical_CubedSphereNusselt_AssignFromXML( void* component, Stg_Component
 
    StgFEM_FrequentOutput_PrintString( self->context, "<T'>" );
    StgFEM_FrequentOutput_PrintString( self->context, "NuU_av" );
-
- //  StgFEM_FrequentOutput_PrintString( self->context, "NuB_Jarvis" );
    StgFEM_FrequentOutput_PrintString( self->context, "NuB_av" );
 
    StgFEM_FrequentOutput_PrintString( self->context, "out_max_VelMag" );
@@ -193,7 +191,7 @@ void* _Spherical_CubedSphereNusselt_DefaultNew( Name name ) {
    return _Codelet_New( CODELET_PASSARGS );
 }
 
-Index Spherical_SphericalCubedSphereNusselt_Register( PluginsManager* pluginsManager ) {
+Index Spherical_CubedSphereNusselt_Register( PluginsManager* pluginsManager ) {
    return PluginsManager_Submit( pluginsManager, Spherical_CubedSphereNusselt_Type, (Name)"0", _Spherical_CubedSphereNusselt_DefaultNew );
 }
 
@@ -217,7 +215,7 @@ void Spherical_Work_Output( UnderworldContext* context ) {
 void Spherical_MaxVel_Output( UnderworldContext* context ) {
    Spherical_CubedSphereNusselt* 	self		= (Spherical_CubedSphereNusselt*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)Spherical_CubedSphereNusselt_Type );
    FeVariable*				velocityField   = self->velocityField;
-   SphericalFeMesh* 			mesh 		= velocityField->feMesh;
+   FeMesh* 				mesh 		= velocityField->feMesh;
    Grid*				grid		= NULL;
    unsigned*				sizes		= NULL;
    int 					vertId, dId;

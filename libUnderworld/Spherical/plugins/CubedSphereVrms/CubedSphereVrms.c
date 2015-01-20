@@ -62,11 +62,8 @@ void _Spherical_CubedSphereVrms_AssignFromXML( void* component, Stg_ComponentFac
       cf, self, (Dictionary_Entry_Key)"VelocityField", FeVariable, True, data );
 
    Spherical_CubedSphereVrms_PrintHeaderToFile( self->context );
-   if( Stg_ComponentFactory_PluginGetBool( cf, self, (Dictionary_Entry_Key)"ElementIntegrals", True ) ) {
-      ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Spherical_CubedSphereVrms_Dump );
-   } else {
-      ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Spherical_CubedSphereVrms_Dump_old );
-   }
+
+   ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Spherical_CubedSphereVrms_Dump );
 }
 
 void _Spherical_CubedSphereVrms_Build( void* component, void* data ) {

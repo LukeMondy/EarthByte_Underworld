@@ -58,13 +58,6 @@ minR = 3.0
 dx   = minR - maxR
 d2x  = minR*minR - maxR*maxR
 
-eta     = math.atan2( mesh[0][0], mesh[0][2] )
-zeta    = math.atan2( mesh[0][1], mesh[0][2] )
-print 'ANGLES',eta*180.0/np.pi,zeta*180.0/np.pi
-eta     = math.atan2( mesh[mesh.shape[0]-1][0], mesh[mesh.shape[0]-1][2] )
-zeta    = math.atan2( mesh[mesh.shape[0]-1][1], mesh[mesh.shape[0]-1][2] )
-print 'ANGLES',eta*180.0/np.pi,zeta*180.0/np.pi
-
 temp = np.zeros( mesh.shape[0] )
 
 cVal = c_arrays.DoubleArray(1)
