@@ -140,6 +140,7 @@
       <param name="Type">Ppc_Operation</param>
       <param name="Operation"> * </param>
       <list name="Properties">
+        <param>-1</param>
         <param>ppcRa</param>
         <param>tempPpc</param>
       </list>

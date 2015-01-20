@@ -246,7 +246,7 @@
         <!--
         <param>referenceDensity</param>
         -->
-        <param>1</param>
+        <param>-1</param>
         <param>tempPpc</param>
       </list>
     </struct>

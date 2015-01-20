@@ -2,19 +2,19 @@
 <!-- A StGermain input file -->
 <!-- DTD to validate against -->
 <StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+  <!--
 
-<!--
-wall conversion:
-in xml == in model
-bottom  == clockwise facing out wall
-top     == anticlockwise facing out wall
-left    == inner radius wall
-right   == outer radius wall
+   Definitions of wall is misleading and needs fixing:
+   So for now:
 
-vx is radial velocity
-vy is angular velocity anticlockwise
--->
+      top/bottom wall are perpendicular to E-W 
+      right/left wall are perpendicular to OUTER/INNER radius
+      front/back wall are perpendicular to N-S 
 
+        vx - is radial
+        vy - is E-W
+        vz - is N-S
+	-->
   <!-- Velocity BCs -->
   <struct name="velocityBCs">
     <param name="type">CompositeVC</param>
@@ -23,71 +23,36 @@ vy is angular velocity anticlockwise
         <param name="type"> WallVC </param>
         <param name="wall"> bottom </param>
         <list name="variables">
-          <struct>
-            <param name="name">vx</param>
+	 <struct>
+            <param name="name">vy</param>
             <param name="type">double</param>
             <param name="value"> 0 </param>
-          </struct>
-          <!--
-					<struct>
-						<param name="name">vy</param>
-						<param name="type">double</param>
-						<param name="value"> 1 </param>
-					</struct>
+          </struct> 
+        <!--
+	 <struct>
+            <param name="name">vz</param>
+            <param name="type">double</param>
+            <param name="value"> 1 </param>
+          </struct> 
           -->
         </list>
       </struct>
-      <struct>
-        <param name="type"> WallVC </param>
-        <param name="wall"> left </param>
-        <list name="variables">
-          <!--
-					<struct>
-						<param name="name">vx</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-				-->
-          <struct>
-            <param name="name">vy</param>
-            <param name="type">double</param>
-            <param name="value"> 0 </param>
-          </struct>
-        </list>
-      </struct>
-      <struct>
-        <param name="type"> WallVC </param>
-        <param name="wall"> right </param>
-        <list name="variables">
-          <!--
-					<struct>
-						<param name="name">vx</param>
-						<param name="type">double</param>
-						<param name="value"> 0 </param>
-					</struct>
-					-->
-          <struct>
-            <param name="name">vy</param>
-            <param name="type">double</param>
-            <param name="value"> 0 </param>
-          </struct>
-        </list>
-      </struct>
+
       <struct>
         <param name="type"> WallVC </param>
         <param name="wall"> top </param>
         <list name="variables">
           <struct>
-            <param name="name">vx</param>
+            <param name="name">vy</param>
             <param name="type">double</param>
             <param name="value"> 0 </param>
           </struct>
-          <!--
-					<struct>
-						<param name="name">vy</param>
-						<param name="type">double</param>
-						<param name="value"> 1 </param>
-					</struct>
+        <!--
+	 <struct>
+            <param name="name">vz</param>
+            <param name="type">double</param>
+            <param name="value"> 1 </param>
+          </struct> 
           -->
         </list>
       </struct>
@@ -98,8 +63,15 @@ vy is angular velocity anticlockwise
           <struct>
             <param name="name">vz</param>
             <param name="type">double</param>
-            <param name="value"> 0 </param>
+            <param name="value"> 0</param>
           </struct>
+          <!--
+          <struct>
+            <param name="name">vy</param>
+            <param name="type">double</param>
+            <param name="value"> 1</param>
+          </struct>
+          -->
         </list>
       </struct>
       <struct>
@@ -111,6 +83,35 @@ vy is angular velocity anticlockwise
             <param name="type">double</param>
             <param name="value"> 0 </param>
           </struct>
+        <!--
+          <struct>
+            <param name="name">vy</param>
+            <param name="type">double</param>
+            <param name="value"> 1 </param>
+          </struct>
+          -->
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <param name="wall"> left </param>
+        <list name="variables">
+	  <struct>
+            <param name="name">vx</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct> 
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <param name="wall"> right </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vx</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct> 
         </list>
       </struct>
     </list>

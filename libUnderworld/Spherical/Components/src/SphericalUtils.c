@@ -690,7 +690,7 @@ void Spherical_XYZ2RTP2D( double *xyz, double* rtp )
    	Purpose - Convert cartesian coordinates in spherical coordinates assuming
    	center of spherical coordinates is at x=0, y=0
 
-        Return rtp vector is [radius, theta], where theta is between [-180, 180]
+        Return rtp vector is [radius, theta], where theta is between [-pi, pi]
    @*/
 
    // sort out radius

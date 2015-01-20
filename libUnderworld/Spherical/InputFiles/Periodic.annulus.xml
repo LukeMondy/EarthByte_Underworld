@@ -31,6 +31,8 @@
   <include>PICellerator/AllowOutflow.xml</include>
   <include>Spherical/StokesFlowUzawaPIC.xml</include>
 
+
+  <!-- VERY IMPORTANT allows solid body rotation flow (Null Space solution) -->
   <param name="AllowSolidBodyRotation"> True </param>
 
   <struct name="components" mergeType="merge">
@@ -176,7 +178,6 @@
 	-->
   <!--
 	<include>./TempVP.xml</include>
-	-->
   <include>Spherical/Viewports/VelMagVP.xml</include>
   <include>gLucifer/window.xml</include>
   <struct name="components" mergeType="merge">
@@ -184,4 +185,5 @@
       <param name="Viewport">VelocityMagnitudeVP </param>
     </struct>
   </struct>
+	-->
 </StGermainData>

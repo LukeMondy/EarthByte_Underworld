@@ -61,9 +61,9 @@ tfield = underworld._stgermain.GetLiveComponent("TemperatureField")
 nLocalNodes = underworld.libUnderworld.StgDomain.Mesh_GetLocalSize( tfield.feMesh, 0 ) # 0 represents the 0th topological element of the mesh, ie the nodes
 
 '''
-from uwpytools import c_arrays
-from uwpytools import StgDomain
-from uwpytools import StgFEM
+from libUnderworld import c_arrays
+from libUnderworld import StgDomain
+from libUnderworld import StgFEM
 import math
 
 maxR = 2.22

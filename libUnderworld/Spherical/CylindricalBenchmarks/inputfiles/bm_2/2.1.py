@@ -15,10 +15,10 @@ pwd=os.getcwd();
 #model_input_files = pwd+"/prototype/newModel_withPpcEta.xml "
 model_input_files = pwd+"/2_input.xml "
 # velocity BC def
+model_input_files += pwd+"/../../vcs/temperatureBCs.xml "
 model_input_files += pwd+"/../../vcs/annulus.Periodic.freeSlip.xml "
 # temperature BC def
 #model_input_files += pwd+"/2.1ICs.xml "
-model_input_files += pwd+"/../../vcs/temperatureBCs.xml"
 #model_input_files += " -Uzawa_velSolver_ksp_type preonly -Uzawa_velSolver_pc_type lu -Uzawa_velSolver_pc_factor_shift_amount 1.e-12" 
 # init model
 underworld.Init(model_input_files)
@@ -41,8 +41,8 @@ stgdict["outputPath"]="./output_2.1_"+str(radial_elementRes)
 stgdict["elementResI"]=radial_elementRes
 stgdict["elementResJ"]=round(10.807*radial_elementRes)
 
-stgdict["maxTimeSteps"]=-2
-stgdict["checkpointEvery"]=100
+stgdict["maxTimeSteps"]=1
+stgdict["checkpointEvery"]=1
 
 stgdict["pauseToAttachDebugger"]=0
 
@@ -58,10 +58,9 @@ tfield = underworld._stgermain.GetLiveComponent("TemperatureField")
 # get the number of local nodes on the temperature mesh
 nLocalNodes = underworld.libUnderworld.StgDomain.Mesh_GetLocalSize( tfield.feMesh, 0 ) # 0 represents the 0th topological element of the mesh, ie the nodes
 
-'''
-from uwpytools import c_arrays
-from uwpytools import StgDomain
-from uwpytools import StgFEM
+from libUnderworld import c_arrays
+from libUnderworld import StgDomain
+from libUnderworld import StgFEM
 import math
 
 maxR = 2.22
@@ -80,8 +79,5 @@ for ii in range( 0, nLocalNodes ):
    cVal[0] = temp
 # set the temperature
    StgFEM.FeVariable_SetValueAtNode( tfield, ii, cVal.cast() )
-'''
 
 underworld.RunMainLoop()
-
-underworld.Finalise()

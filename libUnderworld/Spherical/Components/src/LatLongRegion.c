@@ -129,7 +129,7 @@ void _LatLongRegion_AssignFromXML( void* shape, Stg_ComponentFactory* cf, void* 
 	Dictionary_Entry_Key endKey        = StG_Strdup("end");
 	Dimension_Index      dim_I;
 
-        char* words[]={"Radius", "Lat", "Long"};
+        char* words[]={"Radius", "Long", "Lat"};
         char destStart[500];
         char destEnd[500];
 
@@ -191,8 +191,16 @@ Bool _LatLongRegion_IsCoordInside( void* shape, Coord coord ) {
    Dimension_Index dim_I;
    Coord rtp;
 
-   /* Transform coordinate from x,y,z into radius,theta,phi */
-   Spherical_XYZ2RTP3D( coord, rtp );
+   if( self->dim == 2 ) {
+     Spherical_XYZ2RTP2D( coord, rtp );
+     rtp[1] = rtp[1] * (180.0/M_PI); // convert to degrees
+   }
+   else {
+     /* Transform coordinate from x,y,z into radius,theta,phi */
+     Spherical_XYZ2RTP3D( coord, rtp );
+     rtp[1] = rtp[1] * (180.0/M_PI); // convert to degrees
+     rtp[2] = rtp[2] * (180.0/M_PI); // convert to degrees
+   }
 
    for( dim_I=0; dim_I<self->dim; dim_I++ ) {
       // offset rtp coords into shape reference frame 

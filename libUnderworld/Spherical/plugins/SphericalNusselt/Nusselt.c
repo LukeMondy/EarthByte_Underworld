@@ -398,10 +398,14 @@ void Spherical_Nusselt_Output( UnderworldContext* context ) {
    factor = 1.22 * log(0.55);
    gJ_Nu[1] = factor * gJ_Nu[1];
 
-   avgT = PpcIntegral_Integrate( self->volAvgT );
-   vol = PpcIntegral_Integrate( self->vol );
-
-   StgFEM_FrequentOutput_PrintValue( context, avgT/vol );
+   // easy check
+   if( self->volAvgT == NULL || self->vol == NULL )
+      StgFEM_FrequentOutput_PrintValue( context, 0 );
+   else {
+      avgT = PpcIntegral_Integrate( self->volAvgT );
+      vol = PpcIntegral_Integrate( self->vol ); 
+      StgFEM_FrequentOutput_PrintValue( context, avgT/vol );
+   }
 
    StgFEM_FrequentOutput_PrintValue( context, gJ_Nu[0] );
 
