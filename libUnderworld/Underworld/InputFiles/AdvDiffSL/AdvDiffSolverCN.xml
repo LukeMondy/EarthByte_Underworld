@@ -69,7 +69,7 @@
          <list name="Properties">
             <param>0.5</param>
             <param>diffusivityPpc</param>
-            <!--param>dtPpc</param-->
+            <param>dtPpc</param>
          </list>
       </struct>
       <struct name="dtPpc">
@@ -77,8 +77,9 @@
       </struct>
       <struct name="diffusivityPpc">
          <param name="Type">Ppc_Constant</param>
-         <!--param name="Value"> 0.0001953125 </param--> <!-- dt*visc -->
-         <param name="Value"> 3.0517578125e-05 </param> <!-- dt*visc -->
+         <!--param name="Value"> 0.0001953125 </param--> <!-- dt*visc (for benchmarking) -->
+         <!--param name="Value"> 3.0517578125e-05 </param--> <!-- dt*visc (for benchmarking) -->
+         <param name="Value"> 1.0 </param-->
       </struct>
       <struct name="temperatureStarGradientFieldPpc">
          <param name="Type">Ppc_Variable</param>
@@ -95,7 +96,7 @@
          <list name="Properties">
             <param>-0.5</param>
             <param>diffusivityPpc</param>
-            <!--param>dtPpc</param-->
+            <param>dtPpc</param>
          </list>
       </struct>
 
