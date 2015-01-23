@@ -214,7 +214,7 @@ void _SLIntegrator_Spherical_Initialise( void* slIntegrator, void* data ) {
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
     FeMesh*			feMesh		= self->velocityField->feMesh;
-    unsigned			field_i;
+    unsigned			field_i, el_i;
 
     if( self->velocityField ) Stg_Component_Initialise( self->velocityField, data, False );
 
@@ -232,6 +232,12 @@ void _SLIntegrator_Spherical_Initialise( void* slIntegrator, void* data ) {
     self->GNix[1] = malloc(64*sizeof(double));
     self->GNix[2] = malloc(64*sizeof(double));
 
+    self->elPatch = malloc(Mesh_GetLocalSize( feMesh, SL_DIM )*sizeof(unsigned*));
+    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, SL_DIM ); el_i++ ) {
+        self->elPatch[el_i] = malloc( 64*sizeof(unsigned) );
+    }
+
+    self->abcissa[0] = -1.0;
     self->abcissa[0] = -1.0;
     self->abcissa[1] = -0.33333333333333333;
     self->abcissa[2] = -1.0*self->abcissa[1];
@@ -246,6 +252,8 @@ void _SLIntegrator_Spherical_Initialise( void* slIntegrator, void* data ) {
         printf( "ERROR: component %s required mesh algorithms type Mesh_SphericalAlgoritms, type is %s.\n", self->type, feMesh->algorithms->type );
         abort();
     }
+
+    SLIntegrator_Spherical_InitPatches( self );
 }
 
 void _SLIntegrator_Spherical_Execute( void* slIntegrator, void* data ) {}
@@ -254,9 +262,7 @@ void _SLIntegrator_Spherical_Destroy( void* slIntegrator, void* data ) {
     SLIntegrator_Spherical*	self 		= (SLIntegrator_Spherical*)slIntegrator;
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
-    unsigned			field_i;
-
-    if( self->velocityField ) Stg_Component_Destroy( self->velocityField, data, False );
+    unsigned			field_i, el_i;
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
@@ -264,7 +270,7 @@ void _SLIntegrator_Spherical_Destroy( void* slIntegrator, void* data ) {
         if( feVariable ) Stg_Component_Destroy( feVariable, data, False );
         if( feVarStar  ) Stg_Component_Destroy( feVarStar , data, False );
     }
-    if(self->pureAdvection) Memory_Free(self->pureAdvection);
+    if( self->pureAdvection ) Memory_Free( self->pureAdvection );
 
     free(self->abcissa);
     free(self->Ni);
@@ -273,7 +279,14 @@ void _SLIntegrator_Spherical_Destroy( void* slIntegrator, void* data ) {
     free(self->GNix[2]);
     free(self->GNix);
 
+    for( el_i = 0; el_i < Mesh_GetLocalSize( self->velocityField->feMesh, SL_DIM ); el_i++ ) {
+        free( self->elPatch[el_i] );
+    }
+    free( self->elPatch );
+
     Stg_Class_Delete( self->inc );
+
+    if( self->velocityField ) Stg_Component_Destroy( self->velocityField, data, False );
 }
 
 void SLIntegrator_Spherical_InitSolve( void* _self, void* _context ) {
@@ -473,7 +486,7 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
     double      rs[3], min[3], max[3];
     Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->elGridId );
     unsigned*   sizes           = Grid_GetSizes( *grid );
-    unsigned	dim_i, elInd;
+    unsigned	dim_i;
 
     for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
         min[dim_i] = ((RSGenerator*)feMesh->generator)->crdMin[dim_i];
@@ -566,16 +579,17 @@ unsigned IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
 void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
     SLIntegrator_Spherical*	self 			= (SLIntegrator_Spherical*)slIntegrator;
     FeMesh*			feMesh			= feVariable->feMesh;
-    unsigned			elInd, nInc, *inc;
-    unsigned			IJK[3], IJK_test[3], index = 0;
-    unsigned			gNode_I, lNode_I;
-    unsigned			nodeIndex[64];
+    unsigned			elInd;//, nInc, *inc;
+    //unsigned			IJK[3], IJK_test[3], index = 0;
+    //unsigned			gNode_I, lNode_I;
+    //unsigned			nodeIndex[64];
     unsigned			numdofs			= feVariable->dofLayout->dofCounts[0];
     double			lCoord[3], phi_i[3];
     unsigned			node_i, dof_i;
     Grid**      		grid                    = (Grid**)Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
 
     Mesh_SearchElements( feMesh, position, &elInd );
+#if 0
     FeMesh_GetElementNodes( feMesh, elInd, feVariable->inc );
     nInc = IArray_GetSize( feVariable->inc );
     inc  = IArray_GetPtr( feVariable->inc );
@@ -617,12 +631,15 @@ void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* f
         }
     }
     SLIntegrator_Spherical_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
+#endif
+    SLIntegrator_Spherical_GlobalToLocal( self, feMesh, self->elPatch[elInd], position, lCoord );
     SLIntegrator_Spherical_ShapeFuncs3D( self, lCoord, self->Ni );
     for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
         result[dof_i] = 0.0;
     }
     for( node_i = 0; node_i < 64; node_i++ ) {
-        FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
+        //FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
+        FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][node_i], phi_i );
         for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
             result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
         }
@@ -815,8 +832,45 @@ void SLIntegrator_Spherical_GlobalToLocal( void* slIntegrator, void* _mesh, unsi
 
         if( maxResidual < tolerance )
             return;
-	}
-        /* if we are here, it means the iterative method didn't converge.
-           Thus we set the local coord's to be invalid, i.e. greater than 1.0 */
-        lCoord[0] = 1.1;
+    }
+    /* if we are here, it means the iterative method didn't converge.
+       Thus we set the local coord's to be invalid, i.e. greater than 1.0 */
+    lCoord[0] = 1.1;
+}
+
+void SLIntegrator_Spherical_InitPatches( void* slIntegrator ) {
+    SLIntegrator_Spherical* 	self 		= (SLIntegrator_Spherical*)slIntegrator;
+    FeMesh*			feMesh		= self->velocityField->feMesh;
+    unsigned			el_i, *inc, nInc, IJK[3], IJK_test[3], lNode_i, gNode_i, index;
+
+    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, SL_DIM ); el_i++ ) {
+        FeMesh_GetElementNodes( feMesh, el_i, self->velocityField->inc );
+        nInc = IArray_GetSize( self->velocityField->inc );
+        inc  = IArray_GetPtr( self->velocityField->inc );
+
+        gNode_i = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
+        GlobalNodeToIJK( feMesh, gNode_i, IJK );
+
+        if( !SLIntegrator_Spherical_HasRight( feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SLIntegrator_Spherical_HasTop(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SLIntegrator_Spherical_HasBack(  feMesh, self->inc, el_i, inc, nInc ) ) IJK[2]--;
+
+        if( SLIntegrator_Spherical_HasLeft(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
+        if( SLIntegrator_Spherical_HasBottom( feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
+        if( SLIntegrator_Spherical_HasFront(  feMesh, self->inc, el_i, inc, nInc ) ) IJK[2]--;
+        FeMesh_NodeGlobalToDomain( feMesh, IJKToGlobalNode( feMesh, IJK ), &lNode_i );
+
+        index = 0;
+        /* interpolate using Lagrange polynomial shape functions */
+        for( IJK_test[2] = IJK[2]; IJK_test[2] < IJK[2] + 4; IJK_test[2]++ ) {
+            for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+                for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                    gNode_i = IJKToGlobalNode( feMesh, IJK_test );
+                    if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_i, &lNode_i ) ) abort();
+                    else
+                        self->elPatch[el_i][index++] = lNode_i;
+                }
+            }
+        }
+    }
 }

@@ -10,9 +10,10 @@
       <param>temperatureStarField</param>
    </list>
 
-   <include> StgFEM/SemiLagrangianIntegrator.xml </include>
+   <include> SLIntegrator_Face.xml </include>
 
    <struct name="components" mergeType="merge">
+
       <!-- create the vecs and mats -->
       <struct name="sVector">
          <param name="Type">SolutionVector</param>
@@ -68,18 +69,17 @@
             <param>0.5</param>
             <param>diffusivityPpc</param>
             <param>dtPpc</param>
+<!--
+            <param>0.01227184630308513</param>
+-->
          </list>
       </struct>
       <struct name="dtPpc">
          <param name="Type">Ppc_Dt</param>
-<!-- constant for benchmarking
-         <param name="Type">Ppc_Constant</param>
-         <param name="Value"> 3.0517578125e-04 </param> 
--->
       </struct>
       <struct name="diffusivityPpc">
          <param name="Type">Ppc_Constant</param>
-         <param name="Value"> 1.0 </param>
+         <param name="Value"> 1.0 </param> 
       </struct>
       <struct name="temperatureStarGradientFieldPpc">
          <param name="Type">Ppc_Variable</param>
@@ -97,6 +97,9 @@
             <param>-0.5</param>
             <param>diffusivityPpc</param>
             <param>dtPpc</param>
+<!--
+            <param>0.01227184630308513</param>
+-->
          </list>
       </struct>
 

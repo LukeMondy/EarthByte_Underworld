@@ -77,11 +77,9 @@ void _Spherical_CubedSphereNusselt_AssignFromXML( void* component, Stg_Component
    FeVariable*				velocityField;
    FeVariable*				temperatureField;
 
-   self->context = (AbstractContext*)Stg_ComponentFactory_PluginConstructByKey(
-      cf, self, (Dictionary_Entry_Key)"Context", UnderworldContext, True, data );
+   self->context = (AbstractContext*)Stg_ComponentFactory_PluginConstructByKey( cf, self, (Dictionary_Entry_Key)"Context", UnderworldContext, True, data );
 
-   self->gaussSwarm = Stg_ComponentFactory_PluginConstructByKey(
-      cf, self, (Dictionary_Entry_Key)"GaussSwarm", Swarm, True, data );
+   self->gaussSwarm = Stg_ComponentFactory_PluginConstructByKey( cf, self, (Dictionary_Entry_Key)"GaussSwarm", Swarm, True, data );
 
    /* The PpcManager */
    self->mgr = Stg_ComponentFactory_PluginConstructByKey( cf, self, (Dictionary_Entry_Key)"Manager", PpcManager, False, data );
@@ -306,8 +304,8 @@ void Spherical_CubedSphereNusselt_Output( UnderworldContext* context ) {
 
    elementType = FeMesh_GetElementType( mesh, 0 ); // assuming all element are the same as el 0
 
-   memset( J_Nu, 0, 3*sizeof(double) );
-   memset( volume, 0, 3*sizeof(double) );
+   memset( J_Nu, 0, 2*sizeof(double) );
+   memset( volume, 0, 2*sizeof(double) );
 
    RegularMeshUtils_ErrorCheckAndGetDetails( (Mesh*)mesh, MT_VOLUME, &nEls, &grid );
 

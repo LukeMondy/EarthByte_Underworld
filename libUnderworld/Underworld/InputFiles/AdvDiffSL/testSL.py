@@ -6,7 +6,7 @@ import underworld as uw
 
 res=16
 cfl=0.0625
-n=4
+n=3
 
 dx  = np.zeros(n)
 err = np.zeros(n)
@@ -34,4 +34,8 @@ m,c = np.linalg.lstsq(y,log_e)[0]
 print 'convergence rate: ',m
 
 plt.loglog(dx,err,'o-')
+plt.title('Error convergence for advection-diffusion test: %e'%m)
+plt.xlabel('$\Delta x$')
+plt.ylabel('$||L_2|| error$')
+plt.savefig('advection_diffusion_errors.png')
 plt.show()

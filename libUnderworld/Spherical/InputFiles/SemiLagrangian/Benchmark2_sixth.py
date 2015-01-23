@@ -22,6 +22,7 @@ stgdict = underworld.dictionary.GetDictionary()
 
 # now make changes before run time
 Ra = 1e4
+restartTimestep = 108
 stgdict["Ra"]=Ra
 stgdict["outputPath"]="./benchmark2"
 
@@ -32,6 +33,7 @@ stgdict["outputPath"]="./benchmark2"
 # set to initialise and solve
 stgdict["maxTimeSteps"]=800
 stgdict["checkpointEvery"]=1
+stgdict["restartTimestep"]=restartTimestep
 
 stgdict["pauseToAttachDebugger"]=0
 
@@ -60,27 +62,28 @@ d2x  = minR*minR - maxR*maxR
 
 temp = np.zeros( mesh.shape[0] )
 
-cVal = c_arrays.DoubleArray(1)
-for ii in range( 0, nLocalNodes ):
-	r        = math.sqrt(mesh[ii][0]*mesh[ii][0] + mesh[ii][1]*mesh[ii][1] + mesh[ii][2]*mesh[ii][2])
-	eta      = math.atan2( mesh[ii][0], mesh[ii][2] )
-	zeta     = math.atan2( mesh[ii][1], mesh[ii][2] )
-	#scaledR = (maxR - r) / ( maxR - minR ) 
+if restartTimestep == 0:
+	cVal = c_arrays.DoubleArray(1)
+	for ii in range( 0, nLocalNodes ):
+		r        = math.sqrt(mesh[ii][0]*mesh[ii][0] + mesh[ii][1]*mesh[ii][1] + mesh[ii][2]*mesh[ii][2])
+		eta      = math.atan2( mesh[ii][0], mesh[ii][2] )
+		zeta     = math.atan2( mesh[ii][1], mesh[ii][2] )
+		#scaledR = (maxR - r) / ( maxR - minR ) 
 # calculate a perturbation on the temperature
-	height   = 0.25*(math.sin(2*eta) + 1.0)*(math.sin(2*zeta) + 1.0)
-        #temp    = scaledR + 0.1*math.sin(math.pi*scaledR)*height
-	a        = height
-        b        = (1.0 - a*d2x)/dx
-	c        = maxR*(a*d2x - 1.0)/dx - a*maxR*maxR
-        temp[ii] = a*r*r + b*r + c
-        if( temp[ii] ) < 0.0:
-		temp[ii] = 0.0
+		height   = 0.25*(math.sin(2*eta) + 1.0)*(math.sin(2*zeta) + 1.0)
+	        #temp    = scaledR + 0.1*math.sin(math.pi*scaledR)*height
+		a        = height
+	        b        = (1.0 - a*d2x)/dx
+		c        = maxR*(a*d2x - 1.0)/dx - a*maxR*maxR
+	        temp[ii] = a*r*r + b*r + c
+	        if( temp[ii] ) < 0.0:
+			temp[ii] = 0.0
 
-cVal = c_arrays.DoubleArray(1)
-for ii in range( 0, nLocalNodes ):
-	cVal[0] = temp[ii]
-# set the temperature
-	StgFEM.FeVariable_SetValueAtNode( tfield, ii, cVal.cast() )
+	cVal = c_arrays.DoubleArray(1)
+	for ii in range( 0, nLocalNodes ):
+		cVal[0] = temp[ii]
+	# set the temperature
+		StgFEM.FeVariable_SetValueAtNode( tfield, ii, cVal.cast() )
 
 underworld.RunMainLoop()
 

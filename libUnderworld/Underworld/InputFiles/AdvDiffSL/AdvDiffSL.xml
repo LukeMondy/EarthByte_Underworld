@@ -22,7 +22,6 @@
    <include>Underworld/GaussSwarmWithGaussMaterialSwarm.xml</include>
    <include>StgFEM/PeriodicX.xml</include>
    <include>StgFEM/PeriodicY.xml</include>
-
 <!--
    <include>StgFEM/TempAdvDiff.xml</include>
 -->
@@ -78,13 +77,13 @@
    </struct>
 
    <!-- Simulation control -->
-   <param name="maxTimeSteps">400</param>
+   <param name="maxTimeSteps">100</param>
    <param name="outputPath">./output</param>
    <param name="dumpEvery">10</param>
    <param name="checkpointEvery">0</param>
 
    <!---param name="courantFactor">0.25</param-->
-   <param name="courantFactor">0.125</param>
+   <!--param name="courantFactor">0.125</param-->
    
    <!-- Journal Control -->
    <param name="journal.info.Context-verbose">True</param>
@@ -124,10 +123,10 @@
    </struct>
    <param name="courantNumber">0.125</param>
    <param name="velMax">1.0</param>
-   <param name="visc">1.0</param>
+   <param name="visc">0.1</param>
    <param name="k_x">2.0</param>
    <param name="k_y">3.0</param>
-   <param name="manualTimeStep">3.0517578125e-05</param>
+   <!--param name="manualTimeStep">3.0517578125e-04</param-->
 
    <struct name="velocityICs" mergeType="replace">
        <param name="type">CompositeVC</param>

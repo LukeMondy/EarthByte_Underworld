@@ -263,8 +263,6 @@ void _SLIntegrator_FullSphere_Destroy( void* slIntegrator, void* data ) {
     FeVariable*			feVarStar;
     unsigned			field_i, el_i;
 
-    if( self->velocityField ) Stg_Component_Destroy( self->velocityField, data, False );
-
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
@@ -286,6 +284,8 @@ void _SLIntegrator_FullSphere_Destroy( void* slIntegrator, void* data ) {
     free( self->elPatch );
 
     Stg_Class_Delete( self->inc );
+
+    if( self->velocityField ) Stg_Component_Destroy( self->velocityField, data, False );
 }
 
 void SLIntegrator_FullSphere_InitSolve( void* _self, void* _context ) {

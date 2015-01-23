@@ -69,6 +69,7 @@
       double*			   Ni;			   \
       double**			   GNix;		   \
       IArray*			   inc;			   \
+      unsigned**		   elPatch;		   \
 
    /** Abstract class defining the interface for a SLIntegrator_Spherical solver - see SLIntegrator_Spherical.h */
    struct SLIntegrator_Spherical { __SLIntegrator_Spherical };
@@ -135,13 +136,14 @@
    double SLIntegrator_Spherical_Lagrange( double* xi, double x, int j );
    double SLIntegrator_Spherical_LagrangeDeriv( double* xi, double x, int j );
 
-   Bool SLIntegrator_SLIntegrator_Spherical_HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes );
-   Bool SLIntegrator_SLIntegrator_Spherical_HasLeft( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SLIntegrator_SLIntegrator_Spherical_HasRight( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SLIntegrator_SLIntegrator_Spherical_HasBottom( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SLIntegrator_SLIntegrator_Spherical_HasTop( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SLIntegrator_SLIntegrator_Spherical_HasFront( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SLIntegrator_SLIntegrator_Spherical_HasBack( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SLIntegrator_Spherical_HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes );
+   Bool SLIntegrator_Spherical_HasLeft( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SLIntegrator_Spherical_HasRight( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SLIntegrator_Spherical_HasBottom( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SLIntegrator_Spherical_HasTop( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SLIntegrator_Spherical_HasFront( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SLIntegrator_Spherical_HasBack( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+
+   void SLIntegrator_Spherical_InitPatches( void* slIntegrator );
 
 #endif
-

@@ -78,8 +78,11 @@ dirs = ['libSpherical/Toolbox',
         'plugins/SimpleSteadyStateTest',
         'plugins/SphericalNusselt',
         'plugins/SphericalVrms',
+        'plugins/CubedSphereNusselt',
+        'plugins/CubedSphereVrms',
         'plugins/InitialConditions',
 	'plugins/SLIntegrator',
+	'plugins/SLIntegrator2D',
 	'plugins/SLIntegrator3D']
 
 pl_objs = []
