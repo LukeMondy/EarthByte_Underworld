@@ -36,6 +36,9 @@
 
    <include>StgFEM/LinearMesh.xml</include>
    <include>StgFEM/GaussSwarm.xml</include>
+   <include>StgFEM/VelocityField.xml</include>
+   <include>StgFEM/TemperatureField.xml</include>
+   <include>StgFEM/SemiLagrangianIntegrator.xml</include>
 
    <param name="elementMesh">linearMesh</param>
    <param name="velocityMesh">linearMesh</param>
@@ -69,6 +72,7 @@
    <param name="VelocityFieldScale"> 1.0 </param>
 
    <struct name="components" mergeType="merge">
+<!--
       <struct name="velocity">
          <param name="Type">MeshVariable</param>
          <param name="mesh">velocityMesh</param>
@@ -107,6 +111,7 @@
          <param name="IC">velocityICs</param>
          <param name="LinkedDofInfo">velocityLinkedDofs</param>
       </struct>
+-->
    </struct>
 
 </StGermainData>

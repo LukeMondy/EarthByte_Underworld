@@ -61,7 +61,7 @@ SemiLagrangianIntegrator* _SemiLagrangianIntegrator_New( SEMILAGRANGIANINTEGRATO
        and so should be set to ZERO in any children of this class. */
     nameAllocationType = NON_GLOBAL;
 
-    self = (SemiLagrangianIntegrator*) _Stg_Component_New(  STG_COMPONENT_PASSARGS  );
+    self = (SemiLagrangianIntegrator*) _Stg_Component_New( STG_COMPONENT_PASSARGS );
 
     /* General info */
     self->variableList = Stg_ObjectList_New();
@@ -183,7 +183,14 @@ void _SemiLagrangianIntegrator_AssignFromXML( void* slIntegrator, Stg_ComponentF
             SystemLinearEquations_GetRunEPFunction(), sle );
         /* remember to disable the standard run at execute */
         SystemLinearEquations_SetRunDuringExecutePhase( sle, False );
+
+        /* add the time step function */
+        if( strcmp( sle->type, Energy_SLE_Type ) == 0 ) {
+            EntryPoint_AppendClassHook( self->context->calcDtEP, "SemiLagrangianIntegrator_CalcAdvDiffDt", SemiLagrangianIntegrator_CalcAdvDiffDt, self->type, self );
+        }
     }
+
+    self->courant = Dictionary_GetDouble_WithDefault( self->context->dictionary, "courantFactor", 0.5 );
 
     self->isConstructed = True;
 }
@@ -208,36 +215,59 @@ void _SemiLagrangianIntegrator_Initialise( void* slIntegrator, void* data ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
-    unsigned			field_i;
+    unsigned			field_i, el_i, pt_i;
+    unsigned 			dim 		= Mesh_GetDimSize( self->velocityField->feMesh );
+    unsigned 			patchSize 	= ( dim == 2 ) ? 16 : 64;
 
-    if(self->velocityField) Stg_Component_Initialise(self->velocityField, data, False);
+    self->lElSize = Mesh_GetLocalSize( self->velocityField->feMesh, dim );
+
+    if( self->velocityField ) Stg_Component_Initialise( self->velocityField, data, False );
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
-        if(feVariable) Stg_Component_Initialise(feVariable, data, False);
-        if(feVarStar ) Stg_Component_Initialise(feVarStar , data, False);
+        if( feVariable ) Stg_Component_Initialise( feVariable, data, False );
+        if( feVarStar  ) Stg_Component_Initialise( feVarStar , data, False );
     }
+
+    self->ptsX = Memory_Alloc_2DArray_Unnamed( double, 4, 3 );
+    self->ptsY = Memory_Alloc_2DArray_Unnamed( double, 4, 3 );
+    self->ptsZ = Memory_Alloc_2DArray_Unnamed( double, 4, 3 );
+
+    self->elPatch = malloc( self->lElSize*sizeof(unsigned*) );
+    for( el_i = 0; el_i < self->lElSize; el_i++ ) {
+        self->elPatch[el_i] = malloc( patchSize*sizeof(unsigned) );
+    }
+
+    SemiLagrangianIntegrator_InitPatches( self );
 }
 
-void _SemiLagrangianIntegrator_Execute( void* slIntegrator, void* data ) {
-}
+void _SemiLagrangianIntegrator_Execute( void* slIntegrator, void* data ) {}
 
 void _SemiLagrangianIntegrator_Destroy( void* slIntegrator, void* data ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
-    unsigned			field_i;
+    unsigned			field_i, el_i, pt_i;
 
-    if(self->velocityField) Stg_Component_Destroy(self->velocityField, data, False);
+    for( el_i = 0; el_i < self->lElSize; el_i++ ) {
+        free( self->elPatch[el_i] );
+    }
+    free( self->elPatch );
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
-        if(feVariable) Stg_Component_Destroy(feVariable, data, False);
-        if(feVarStar ) Stg_Component_Destroy(feVarStar , data, False);
+        if(feVariable) Stg_Component_Destroy( feVariable, data, False );
+        if(feVarStar ) Stg_Component_Destroy( feVarStar , data, False );
     }
-    if(self->pureAdvection) Memory_Free(self->pureAdvection);
+    if( self->pureAdvection ) Memory_Free( self->pureAdvection );
+
+    Memory_Free( self->ptsX );
+    Memory_Free( self->ptsY );
+    Memory_Free( self->ptsZ );
+
+    if( self->velocityField ) Stg_Component_Destroy( self->velocityField, data, False );
 }
 
 void SemiLagrangianIntegrator_InitSolve( void* _self, void* _context ) {
@@ -266,34 +296,36 @@ void SemiLagrangianIntegrator_InitSolve( void* _self, void* _context ) {
 }
 
 #define INV6 0.16666666666666667
-void SemiLagrangianIntegrator_IntegrateRK4( FeVariable* velocityField, double dt, double* delta, unsigned* nnodes, double* origin, double* position ) {
-    unsigned		ndims		     = Mesh_GetDimSize( velocityField->feMesh );
-    unsigned		dim_i;
-    double		min[3], max[3];
-    double		k[4][3];
-    double		coordPrime[3];
-    unsigned*		periodic	     = ((CartesianGenerator*)velocityField->feMesh->generator)->periodic;
+void SemiLagrangianIntegrator_IntegrateRK4( void* slIntegrator, double dt, double* delta, unsigned* nnodes, double* origin, double* position ) {
+    SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
+    FeVariable*			velocityField	= self->velocityField;
+    unsigned			ndims		= Mesh_GetDimSize( velocityField->feMesh );
+    unsigned			dim_i;
+    double			min[3], max[3];
+    double			k[4][3];
+    double			coordPrime[3];
+    unsigned*			periodic	= ((CartesianGenerator*)velocityField->feMesh->generator)->periodic;
 
     Mesh_GetGlobalCoordRange( velocityField->feMesh, min, max );
 
-    SemiLagrangianIntegrator_CubicInterpolator( velocityField, origin, delta, nnodes, k[0] );
+    SemiLagrangianIntegrator_CubicInterpolator( self, velocityField, origin, delta, nnodes, k[0] );
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[0][dim_i];
     }
     if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SemiLagrangianIntegrator_CubicInterpolator( velocityField, coordPrime, delta, nnodes, k[1] );
+    SemiLagrangianIntegrator_CubicInterpolator( self, velocityField, coordPrime, delta, nnodes, k[1] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5 * dt * k[1][dim_i];
     }
     if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SemiLagrangianIntegrator_CubicInterpolator( velocityField, coordPrime, delta, nnodes, k[2] );
+    SemiLagrangianIntegrator_CubicInterpolator( self, velocityField, coordPrime, delta, nnodes, k[2] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt * k[2][dim_i];
     }
     if( SemiLagrangianIntegrator_PeriodicUpdate( coordPrime, min, max, periodic, ndims ) );
-    SemiLagrangianIntegrator_CubicInterpolator( velocityField, coordPrime, delta, nnodes, k[3] );
+    SemiLagrangianIntegrator_CubicInterpolator( self, velocityField, coordPrime, delta, nnodes, k[3] );
 
     for( dim_i = 0; dim_i < ndims; dim_i++ ) {
         position[dim_i] = origin[dim_i] -
@@ -342,26 +374,24 @@ Bool SemiLagrangianIntegrator_PeriodicUpdate( double* pos, double* min, double* 
             result = True;
         }
     }
-
     return result;
 }
 
-void SemiLagrangianIntegrator_CubicInterpolator( FeVariable* feVariable, double* position, double* delta, unsigned* nNodes, double* result ) {
-    FeMesh*	feMesh			= feVariable->feMesh;
-    Index	elementIndex;
-    unsigned	nInc, *inc;
-    int		x_0, y_0, z_0;
-    int		x_i, y_i, z_i;
-    double	localMin[3], localMax[3];
-    Index	gNode_I, lNode_I;
-    double	px[4], py[4], pz[4];
-    unsigned	nDims			= Mesh_GetDimSize( feMesh );
-    unsigned	nodeIndex[4][4];
-    unsigned	node_I3D[4][4][4];
-    unsigned	numdofs			= feVariable->dofLayout->dofCounts[0];
-    double**	ptsX			= Memory_Alloc_2DArray_Unnamed( double, 4, 3 );
-    double**	ptsY			= Memory_Alloc_2DArray_Unnamed( double, 4, 3 );
-    double**	ptsZ			= Memory_Alloc_2DArray_Unnamed( double, 4, 3 );
+#if 0
+void SemiLagrangianIntegrator_CubicInterpolator( void* slIntegrator, double* position, double* delta, unsigned* nNodes, double* result ) {
+    SemiLagrangianIntegrator*	self 			= (SemiLagrangianIntegrator*)slIntegrator;
+    FeMesh*			feMesh			= feVariable->feMesh;
+    Index			elementIndex;
+    unsigned			nInc, *inc;
+    int				x_0, y_0, z_0;
+    int				x_i, y_i, z_i;
+    double			localMin[3], localMax[3];
+    Index			gNode_I, lNode_I;
+    double			px[4], py[4], pz[4];
+    unsigned			nDims			= Mesh_GetDimSize( feMesh );
+    unsigned			nodeIndex[4][4];
+    unsigned			node_I3D[4][4][4];
+    unsigned			numdofs			= feVariable->dofLayout->dofCounts[0];
 
     Mesh_SearchElements( feMesh, position, &elementIndex );
     FeMesh_GetElementNodes( feMesh, elementIndex, feVariable->inc );
@@ -446,13 +476,13 @@ void SemiLagrangianIntegrator_CubicInterpolator( FeVariable* feVariable, double*
         for( z_i = 0; z_i < 4; z_i++ ) {
             for( y_i = 0; y_i < 4; y_i++ ) {
                 for( x_i = 0; x_i < 4; x_i++ )
-                    FeVariable_GetValueAtNode( feVariable, node_I3D[x_i][y_i][z_i], ptsX[x_i] );
+                    FeVariable_GetValueAtNode( feVariable, node_I3D[x_i][y_i][z_i], ptsX[0][x_i] );
 
-                SemiLagrangianIntegrator_InterpLagrange( position[0], px, ptsX, numdofs, ptsY[y_i] );
+                SemiLagrangianIntegrator_InterpLagrange( position[0], px, ptsX[0], numdofs, ptsX[1][y_i] );
             }
-            SemiLagrangianIntegrator_InterpLagrange( position[1], py, ptsY, numdofs, ptsZ[z_i] );
+            SemiLagrangianIntegrator_InterpLagrange( position[1], py, ptsX[1], numdofs, ptsX[2][z_i] );
         }
-        SemiLagrangianIntegrator_InterpLagrange( position[2], pz, ptsZ, numdofs, result );
+        SemiLagrangianIntegrator_InterpLagrange( position[2], pz, ptsX[2], numdofs, result );
     }
     else {
         for( x_i = 0; x_i < 4; x_i++ )
@@ -462,16 +492,55 @@ void SemiLagrangianIntegrator_CubicInterpolator( FeVariable* feVariable, double*
 
         for( y_i = 0; y_i < 4; y_i++ ) {
             for( x_i = 0; x_i < 4; x_i++ )
-                FeVariable_GetValueAtNode( feVariable, nodeIndex[x_i][y_i], ptsX[x_i] );
+                FeVariable_GetValueAtNode( feVariable, nodeIndex[x_i][y_i], ptsX[0][x_i] );
 
-            SemiLagrangianIntegrator_InterpLagrange( position[0], px, ptsX, numdofs, ptsY[y_i] );
+            SemiLagrangianIntegrator_InterpLagrange( position[0], px, ptsX[0], numdofs, ptsX[1][y_i] );
         }
-        SemiLagrangianIntegrator_InterpLagrange( position[1], py, ptsY, numdofs, result );
+        SemiLagrangianIntegrator_InterpLagrange( position[1], py, ptsX[1], numdofs, result );
     }
+}
+#endif
 
-    Memory_Free( ptsX );
-    Memory_Free( ptsY );
-    Memory_Free( ptsZ );
+void SemiLagrangianIntegrator_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* delta, unsigned* nNodes, double* result ) {
+    SemiLagrangianIntegrator*	self 			= (SemiLagrangianIntegrator*)slIntegrator;
+    FeMesh*			feMesh			= feVariable->feMesh;
+    double			px[4], py[4], pz[4];
+    unsigned			nDims			= Mesh_GetDimSize( feMesh );
+    unsigned			numdofs			= feVariable->dofLayout->dofCounts[0];
+    unsigned			elInd, index = 0;
+    unsigned			x_i, y_i, z_i;
+
+    Mesh_SearchElements( feMesh, position, &elInd );
+
+    for( x_i = 0; x_i < 4; x_i++ )
+        px[x_i] = Mesh_GetVertex( feMesh, self->elPatch[elInd][x_i] )[0];
+    for( y_i = 0; y_i < 4; y_i++ )
+        py[y_i] = Mesh_GetVertex( feMesh, self->elPatch[elInd][4*y_i] )[1];
+
+    if( nDims == 3 ) {
+        for( z_i = 0; z_i < 4; z_i++ )
+            pz[z_i] = Mesh_GetVertex( feMesh, self->elPatch[elInd][16*z_i] )[2];
+
+        for( z_i = 0; z_i < 4; z_i++ ) {
+            for( y_i = 0; y_i < 4; y_i++ ) {
+                for( x_i = 0; x_i < 4; x_i++ )
+                    FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][index++], self->ptsX[x_i] );
+
+                SemiLagrangianIntegrator_InterpLagrange( position[0], px, self->ptsX, numdofs, self->ptsY[y_i] );
+            }
+            SemiLagrangianIntegrator_InterpLagrange( position[1], py, self->ptsY, numdofs, self->ptsZ[z_i] );
+        }
+        SemiLagrangianIntegrator_InterpLagrange( position[2], pz, self->ptsZ, numdofs, result );
+    }
+    else {
+        for( y_i = 0; y_i < 4; y_i++ ) {
+            for( x_i = 0; x_i < 4; x_i++ )
+                FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][index++], self->ptsX[x_i] );
+
+            SemiLagrangianIntegrator_InterpLagrange( position[0], px, self->ptsX, numdofs, self->ptsY[y_i] );
+        }
+        SemiLagrangianIntegrator_InterpLagrange( position[1], py, self->ptsY, numdofs, result );
+    }
 }
 
 void SemiLagrangianIntegrator_GetDeltaConst( FeVariable* variableField, double* delta, unsigned* nNodes ) {
@@ -528,9 +597,92 @@ void SemiLagrangianIntegrator_Solve( void* slIntegrator, FeVariable* variableFie
     for( node_I = 0; node_I < meshSize; node_I++ ) {
 	coord = Mesh_GetVertex(feMesh,node_I);
 
-        SemiLagrangianIntegrator_IntegrateRK4( velocityField, dt, delta, nNodes, coord, position );
-        SemiLagrangianIntegrator_CubicInterpolator( variableField, position, delta, nNodes, var );
+        SemiLagrangianIntegrator_IntegrateRK4( self, dt, delta, nNodes, coord, position );
+        SemiLagrangianIntegrator_CubicInterpolator( self, variableField, position, delta, nNodes, var );
         FeVariable_SetValueAtNode( varStarField, node_I, var );
     }
     FeVariable_SyncShadowValues( varStarField );
+}
+
+void SemiLagrangianIntegrator_InitPatches( void* slIntegrator ) {
+    SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
+    FeMesh*			feMesh		= self->velocityField->feMesh;
+    double			min[3], max[3], delta[3], pos[3];
+    unsigned			dim		= Mesh_GetDimSize( feMesh );
+    unsigned			el_i, *inc, gNode_i, lNode_i, nNodes[3], index;
+    int				x_0, y_0, z_0, x_i, y_i, z_i;
+
+    SemiLagrangianIntegrator_GetDeltaConst( self->velocityField, delta, nNodes );
+
+    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, dim ); el_i++ ) {
+        FeMesh_GetElementNodes( feMesh, el_i, self->velocityField->inc );
+        inc  = IArray_GetPtr( self->velocityField->inc );
+
+        Mesh_GetLocalCoordRange( feMesh, min, max );
+        gNode_i = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
+
+        x_0 = (int) gNode_i % nNodes[0];
+        y_0 = ((int) gNode_i / nNodes[0])%nNodes[1];
+        if( dim == 3 )
+            z_0 = (int) gNode_i / ( nNodes[0]*nNodes[1] );
+
+        pos[0] = Mesh_GetVertex( feMesh, inc[0] )[0] + 1.0e-4;
+        pos[1] = Mesh_GetVertex( feMesh, inc[0] )[1] + 1.0e-4;
+        if( dim == 3 )
+            pos[2] = Mesh_GetVertex( feMesh, inc[0] )[2] + 1.0e-4;
+
+        if( pos[0] >  min[0] + delta[0] ) x_0--;
+        if( pos[0] >= max[0] - delta[0] ) x_0--;
+
+        if( pos[1] >  min[1] + delta[1] ) y_0--;
+        if( pos[1] >= max[1] - delta[1] ) y_0--;
+
+        if( dim == 3 ) {
+            if( pos[2] >  min[2] + delta[2] ) z_0--;
+            if( pos[2] >= max[2] - delta[2] ) z_0--;
+        }
+
+        index = 0;
+        if( dim == 2 ) {
+            for( y_i = 0; y_i < 4; y_i++ )
+                for( x_i = 0; x_i < 4; x_i++ ) {
+                    gNode_i = x_0 + x_i + ( y_0 + y_i ) * nNodes[0];
+                    if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_i, &lNode_i ) ) abort();
+                    else
+                        self->elPatch[el_i][index++] = lNode_i;
+                }
+        }
+        else {
+            for( z_i = 0; z_i < 4; z_i++ )
+                for( y_i = 0; y_i < 4; y_i++ )
+                    for( x_i = 0; x_i < 4; x_i++ ) {
+                        gNode_i = x_0 + x_i + ( y_0 + y_i ) * nNodes[0] + ( z_0 + z_i ) * nNodes[0] * nNodes[1];
+                        if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_i, &lNode_i ) ) abort();
+                        else
+                            self->elPatch[el_i][index++] = lNode_i;
+                    }
+        }
+    }
+}
+
+double SemiLagrangianIntegrator_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context ) {
+    SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
+    double			lAdv, lDif, gAdv, gDif, dt, dx[3], dxMin, vMag;
+    double 			manualDt        = Dictionary_GetDouble_WithDefault( context->dictionary, "manualTimeStep", 0.0 );
+
+    if( manualDt > 1.0e-6 ) {
+        return manualDt;
+    }
+
+    FeVariable_GetMinimumSeparation( self->velocityField, &dxMin, dx );
+    vMag = FieldVariable_GetMaxGlobalFieldMagnitude( self->velocityField );
+    lAdv = self->courant*dxMin/vMag;
+    lDif = self->courant*dxMin*dxMin;
+
+    MPI_Allreduce( &lAdv, &gAdv, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
+    MPI_Allreduce( &lDif, &gDif, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
+
+    dt = ( gAdv < gDif ) ? gAdv : gDif;
+
+    return dt;
 }

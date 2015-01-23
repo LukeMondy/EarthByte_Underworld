@@ -65,6 +65,12 @@
       Stg_ObjectList*              varStarList;  	   \
       Bool*                        pureAdvection;          \
       FiniteElementContext*        context;                \
+      double**                     ptsX;                   \
+      double**                     ptsY;                   \
+      double**                     ptsZ;                   \
+      unsigned**                   elPatch;                \
+      unsigned                     lElSize;                \
+      double                       courant;                \
 
    /** Abstract class defining the interface for a SemiLagrangianIntegrator solver - see SemiLagrangianIntegrator.h */
    struct SemiLagrangianIntegrator { __SemiLagrangianIntegrator };
@@ -84,7 +90,7 @@
    #define SEMILAGRANGIANINTEGRATOR_PASSARGS \
                 STG_COMPONENT_PASSARGS
 
-   SemiLagrangianIntegrator* _SemiLagrangianIntegrator_New(  SEMILAGRANGIANINTEGRATOR_DEFARGS  );
+   SemiLagrangianIntegrator* _SemiLagrangianIntegrator_New( SEMILAGRANGIANINTEGRATOR_DEFARGS );
 
    /* --- Virtual function implementations --- */
 
@@ -111,16 +117,20 @@
    void SemiLagrangianIntegrator_InitSolve( void* slIntegrator, void* data );
 
    /* --- Public functions --- */
-   void SemiLagrangianIntegrator_CubicInterpolator( FeVariable* feVariable, double* coord, double* delta, unsigned* nNodes, double* result );
+   void SemiLagrangianIntegrator_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* coord, double* delta, unsigned* nNodes, double* result );
    Bool SemiLagrangianIntegrator_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic, unsigned nDims );
    void SemiLagrangianIntegrator_InterpLagrange( double x, double* coords, double** values, unsigned numdofs, double* result );
    void SemiLagrangianIntegrator_GetDeltaConst( FeVariable* feVariable, double* delta, unsigned* nNodes );
-   void SemiLagrangianIntegrator_IntegrateRK4( FeVariable* velocityField, double dt, double* delta, unsigned* nnodes, double* origin, double* position );
+   void SemiLagrangianIntegrator_IntegrateRK4( void* slIntegrator, double dt, double* delta, unsigned* nnodes, double* origin, double* position );
 
    /** Does any required solver setup beyond assembly of the matrices to be solved: e.g. priming the Matrix solvers
    etc. */
 
    /** Solve:- calculate the new values for all solution vectors in the system. */
    void SemiLagrangianIntegrator_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* variableFieldPrime );
+
+   void SemiLagrangianIntegrator_InitPatches( void* slIntegrator );
+
+   double SemiLagrangianIntegrator_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context );
 #endif
 

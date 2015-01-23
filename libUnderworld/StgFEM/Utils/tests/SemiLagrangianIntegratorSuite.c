@@ -149,7 +149,7 @@ void SemiLagrangianIntegratorSuite_UpdatePositions( void* data, FiniteElementCon
     _FeVariable_SyncShadowValues( velocityField );
 }
 
-double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* temperatureField, Swarm* gaussSwarm, funcPtr func ) {
+double SemiLagrangianIntegratorSuite_EvaluateError( SemiLagrangianIntegrator* slIntegrator, FeVariable* temperatureField, Swarm* gaussSwarm, funcPtr func ) {
     FeMesh*			feMesh		= temperatureField->feMesh;
     GaussParticleLayout*	particleLayout 	= (GaussParticleLayout*)gaussSwarm->particleLayout;
     Index			lElement_I, lCell_I;
@@ -183,7 +183,7 @@ double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* temperatureField
             initialValue = func( gCoord );
 
             SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
-            SemiLagrangianIntegrator_CubicInterpolator( temperatureField, gCoord, delta, nNodes, &finalValue );
+            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, temperatureField, gCoord, delta, nNodes, &finalValue );
 
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
@@ -201,11 +201,9 @@ double SemiLagrangianIntegratorSuite_EvaluateError( FeVariable* temperatureField
     return gError/gAnalytic;
 }
 
-void SemiLagrangianIntegratorSuite_Setup( SemiLagrangianIntegratorSuiteData* data ) {
-}
+void SemiLagrangianIntegratorSuite_Setup( SemiLagrangianIntegratorSuiteData* data ) {}
 
-void SemiLagrangianIntegratorSuite_Teardown( SemiLagrangianIntegratorSuiteData* data ) {
-}
+void SemiLagrangianIntegratorSuite_Teardown( SemiLagrangianIntegratorSuiteData* data ) {}
 
 void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data ) {
     Stg_ComponentFactory*	cf;
@@ -218,6 +216,7 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
     double			temperature[3];
     unsigned			node_i;
     AbstractContext*		context;
+    SemiLagrangianIntegrator*	slIntegrator;
 
     //pcu_filename_input( "testSemiLagrangianIntegrator.xml", xml_input );
     cf = stgMainInitFromXML( "StgFEM/Utils/input/testSemiLagrangianIntegrator.xml", MPI_COMM_WORLD, NULL );
@@ -238,7 +237,8 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
 
     temperatureField     = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
     temperatureInitField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureInitField" );
-    gaussSwarm   = (Swarm*)LiveComponentRegister_Get( cf->LCRegister, (Name)"gaussSwarm" );
+    gaussSwarm           = (Swarm*)LiveComponentRegister_Get( cf->LCRegister, (Name)"gaussSwarm" );
+    slIntegrator         = (SemiLagrangianIntegrator*)LiveComponentRegister_Get( cf->LCRegister, (Name)"integrator" );
     for( node_i = 0; node_i < Mesh_GetLocalSize( temperatureField->feMesh, MT_VERTEX ); node_i++ ) {
         FeVariable_GetValueAtNode( temperatureField,     node_i, temperature );
         FeVariable_SetValueAtNode( temperatureInitField, node_i, temperature );
@@ -246,7 +246,7 @@ void SemiLagrangianIntegratorSuite_Test( SemiLagrangianIntegratorSuiteData* data
 
     stgMainLoop( cf );
 
-    l2Error = SemiLagrangianIntegratorSuite_EvaluateError( temperatureField, gaussSwarm, SolWave );
+    l2Error = SemiLagrangianIntegratorSuite_EvaluateError( slIntegrator, temperatureField, gaussSwarm, SolWave );
 
     printf( "\ntime step: %12.10e\n\n", SemiLagrangianIntegratorSuite_Dt(context) );
     printf( "\nERROR (1): %12.10e\n\n", l2Error );
@@ -275,13 +275,15 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
     double			gCoord[2];
     double			detJac, elErrorSq, elAnalyticSq;
     double			lError = 0.0, lAnalytic = 0.0, gError, gAnalytic, l2Error;
+    SemiLagrangianIntegrator*	slIntegrator;
 
     cf = stgMainInitFromXML( "StgFEM/Utils/input/testSemiLagrangianIntegrator2.xml", MPI_COMM_WORLD, NULL );
 
     stgMainBuildAndInitialise( cf );
 
-    temperatureField 		= (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
-    gaussSwarm   	= (Swarm*)LiveComponentRegister_Get( cf->LCRegister, (Name)"gaussSwarm" );
+    slIntegrator     = (SemiLagrangianIntegrator*)LiveComponentRegister_Get( cf->LCRegister, (Name)"integrator" );
+    temperatureField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
+    gaussSwarm       = (Swarm*)LiveComponentRegister_Get( cf->LCRegister, (Name)"gaussSwarm" );
 
     SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
 
@@ -301,8 +303,7 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
         for( pt_i = 0; pt_i < nGaussPts; pt_i++ ) {
             gaussPoint = (IntegrationPoint*)Swarm_ParticleInCellAt( gaussSwarm, cell_i, pt_i );
             FeMesh_CoordLocalToGlobal( temperatureField->feMesh, el_i, gaussPoint->xi, gCoord );
-            SemiLagrangianIntegrator_CubicInterpolator( temperatureField, gCoord, delta, nNodes, &temperature );
-            //_FeVariable_InterpolateValueAt( temperatureField, gCoord, &temperature );
+            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, temperatureField, gCoord, delta, nNodes, &temperature );
 
             temperature_a = f( a, gCoord );
  
@@ -337,9 +338,12 @@ void SemiLagrangianIntegratorSuite_RK4Integration( SemiLagrangianIntegratorSuite
     int				pass;
     double			delta[2];
     unsigned			nnodes[2];
-    
+    SemiLagrangianIntegrator*	slIntegrator;
+
     cf = stgMainInitFromXML( "StgFEM/Utils/input/testSemiLagrangianIntegrator3.xml", MPI_COMM_WORLD, NULL );
     context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, NULL  );
+
+    slIntegrator = (SemiLagrangianIntegrator*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)"integrator" );
 
     condFunc = ConditionFunction_New( SemiLagrangianIntegratorSuite_ParametricCircleX, (Name)"ParametricCircleX", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
@@ -355,7 +359,7 @@ void SemiLagrangianIntegratorSuite_RK4Integration( SemiLagrangianIntegratorSuite
     SemiLagrangianIntegrator_GetDeltaConst( velField, delta, nnodes );
 
     for( step_i = 1; step_i <= nSteps; step_i++ ) {
-        SemiLagrangianIntegrator_IntegrateRK4( velField, dt, delta, nnodes, coord, cNew );
+        SemiLagrangianIntegrator_IntegrateRK4( slIntegrator, dt, delta, nnodes, coord, cNew );
         coord[0] = cNew[0];
         coord[1] = cNew[1];
     }

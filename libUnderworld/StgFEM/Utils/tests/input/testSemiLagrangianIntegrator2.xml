@@ -33,6 +33,8 @@
 
    <include>StgFEM/LinearMesh.xml</include>
    <include>StgFEM/GaussSwarm.xml</include>
+   <include>StgFEM/SemiLagrangianIntegrator.xml</include>
+   <include>StgFEM/VelocityField.xml</include>
 
    <param name="elementMesh">linearMesh</param>
    <param name="temperatureMesh">linearMesh</param>
