@@ -56,9 +56,9 @@ typedef struct {
    FeVariable* velocityField;
    FeVariable* temperatureField;
    FeVariable* temperatureGradientsField;
-   PpcIntegral* volAvgVD;
-   PpcIntegral* volAvgW;
-   PpcIntegral* volAvgT;
+   PpcIntegral* volIntVD;
+   PpcIntegral* volIntW;
+   PpcIntegral* volIntT;
    PpcIntegral* vol;
    PpcManager* mgr;
    double      Ra;
@@ -90,20 +90,18 @@ void _Spherical_Nusselt_AssignFromXML( void* component, Stg_ComponentFactory* cf
 		self->mgr = Stg_ComponentFactory_ConstructByName( cf, (Name)"default_ppcManager", PpcManager, True, data  );
 
    // initialise as unfound ppc
-   self->volAvgVD = self->volAvgW = self->volAvgT = self->vol = NULL;
+   self->volIntVD = self->volIntW = self->volIntT = self->vol = NULL;
 
-   self->volAvgVD = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_viscous_dissipation",PpcIntegral, False, data);
-   self->volAvgW = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_work_done",PpcIntegral, False, data);
-   self->volAvgT = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_averaged_temperature",PpcIntegral, False, data);
+   self->volIntVD = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_int_viscous_dissipation",PpcIntegral, False, data);
+   self->volIntW = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_int_work_done",PpcIntegral, False, data);
+   self->volIntT = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume_int_temperature",PpcIntegral, False, data);
    self->vol = Stg_ComponentFactory_PluginConstructByKey( cf, self, "volume",PpcIntegral, False, data);
 
    self->Ra = Stg_ComponentFactory_PluginGetDouble( cf, self, (Dictionary_Entry_Key)"Ra", -2 );
    assert( self->Ra > -1 );
 
-   StgFEM_FrequentOutput_PrintString( self->context, "<T'>" );
    StgFEM_FrequentOutput_PrintString( self->context, "NuU_av" );
 
- //  StgFEM_FrequentOutput_PrintString( self->context, "NuB_Jarvis" );
    StgFEM_FrequentOutput_PrintString( self->context, "NuB_av" );
 
    StgFEM_FrequentOutput_PrintString( self->context, "out_max_VelMag" );
@@ -111,10 +109,12 @@ void _Spherical_Nusselt_AssignFromXML( void* component, Stg_ComponentFactory* cf
 
    // if ppcs found then add to FrequentOutput file
    if( self->vol ) {
-      if( self->volAvgVD )
-         StgFEM_FrequentOutput_PrintString( self->context, "volAvgVD" );
-      if( self->volAvgW )
-         StgFEM_FrequentOutput_PrintString( self->context, "volAvgW" );
+      if( self->volIntVD )
+         StgFEM_FrequentOutput_PrintString( self->context, "volIntVD" );
+      if( self->volIntW )
+         StgFEM_FrequentOutput_PrintString( self->context, "volIntW" );
+      if( self->volIntT )
+         StgFEM_FrequentOutput_PrintString( self->context, "<T'>" );
    }
    
    context = (UnderworldContext*)self->context;
@@ -136,8 +136,10 @@ void _Spherical_Nusselt_AssignFromXML( void* component, Stg_ComponentFactory* cf
    ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Spherical_Nusselt_Output );
    ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Spherical_MaxVel_Output );
 
+   if( self->vol && self->volIntT )
+      ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Spherical_Work_Output );
    // if the definition for the vd and adiabatic work exist add another hook
-   if( self->vol && self->volAvgVD && self->volAvgW )
+   if( self->vol && self->volIntVD && self->volIntW )
       ContextEP_Append( self->context, AbstractContext_EP_FrequentOutput, Spherical_Work_Output );
 }
 
@@ -200,30 +202,36 @@ Index Spherical_SphericalNusselt_Register( PluginsManager* pluginsManager ) {
 
 void Spherical_Work_Output( UnderworldContext* context ) {
    Spherical_Nusselt* self=(Spherical_Nusselt*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)Spherical_Nusselt_Type );
-   double vol, volAvgVD, volAvgW;
+   double vol, volIntVD, volIntW;
 
    // get energy metrics
    vol = PpcIntegral_Integrate( self->vol );
-   volAvgVD = PpcIntegral_Integrate( self->volAvgVD );
-   volAvgW = PpcIntegral_Integrate( self->volAvgW );
+   volIntVD = PpcIntegral_Integrate( self->volIntVD );
+   volIntW = PpcIntegral_Integrate( self->volIntW );
 
    // make volume averaged values
-   volAvgVD = volAvgVD/vol;
-   volAvgW = volAvgW/vol;
+   volIntVD = volIntVD/vol;
+   volIntW = volIntW/vol;
 
    //print
-   StgFEM_FrequentOutput_PrintValue( context, volAvgVD ); 
-   StgFEM_FrequentOutput_PrintValue( context, volAvgW );
+   StgFEM_FrequentOutput_PrintValue( context, volIntVD ); 
+   StgFEM_FrequentOutput_PrintValue( context, volIntW );
+   if( self->volIntT != NULL ) {
+      double avgT = PpcIntegral_Integrate( self->volIntT );
+      StgFEM_FrequentOutput_PrintValue( context, avgT/vol );
+   } else {
+      StgFEM_FrequentOutput_PrintValue( context, 0 );
+   }
+
 }
 void Spherical_MaxVel_Output( UnderworldContext* context ) {
    Spherical_Nusselt* self=(Spherical_Nusselt*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)Spherical_Nusselt_Type );
    FeVariable *velocityField = self->velocityField;
-   SphericalFeMesh* mesh=velocityField->feMesh;
+   SphericalFeMesh* mesh = (SphericalFeMesh*)velocityField->feMesh;
    Grid *grid=NULL;
-   InterpolationResult result;
-   int vertId, dId;
+   unsigned int vertId, dId;
    unsigned dT_i, nDomainSize, ijk[3];
-   double rtp[3], xyz[3], vel[3], velMax[2], gVelMax[2], velMag, wtf;
+   double vel[3], velMax[2], gVelMax[2], velMag;
 
    //set 'em big and negative
    velMax[0] = velMax[1] = -1*HUGE_VAL;
@@ -274,7 +282,6 @@ void Spherical_Nusselt_Output( UnderworldContext* context ) {
    FeMesh* mesh=NULL;
    ElementType* elementType=NULL;
    Grid *grid=NULL;
-   double avgT, vol;
 
    self = (Spherical_Nusselt*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)Spherical_Nusselt_Type );
 
@@ -304,9 +311,13 @@ void Spherical_Nusselt_Output( UnderworldContext* context ) {
    IntegrationPoint *particle;
    double value[3], xyz[3], rtp[3], theta, detJac, dT_dr, factor, vel[3], T, vel_rtp[3];
    double gVolume[2], volume[2];
+   double min_rtp[3], max_rtp[3], radial_ratio;
    double J_Nu[2], gJ_Nu[2];
 
    elementType = FeMesh_GetElementType( mesh, 0 ); // assuming all element are the same as el 0
+
+   Mesh_GetGlobalCoordRange( mesh, min_rtp, max_rtp ); // expected the first coord in min/max represent radial coord
+   radial_ratio = min_rtp[0] / max_rtp[0];
 
    memset( J_Nu, 0, 2*sizeof(double) );
    memset( volume, 0, 2*sizeof(double) );
@@ -391,21 +402,13 @@ void Spherical_Nusselt_Output( UnderworldContext* context ) {
    gJ_Nu[1] /= gVolume[1];
 
    // normalise Nusselt upper condition
-   factor = 2.22 * log(0.55);
+   factor = max_rtp[0] * log(radial_ratio);
    gJ_Nu[0] = factor *  gJ_Nu[0];
 
    // normalise Nusselt lower condition
-   factor = 1.22 * log(0.55);
+   factor = min_rtp[0] * log(radial_ratio);
    gJ_Nu[1] = factor * gJ_Nu[1];
 
-   // easy check
-   if( self->volAvgT == NULL || self->vol == NULL )
-      StgFEM_FrequentOutput_PrintValue( context, 0 );
-   else {
-      avgT = PpcIntegral_Integrate( self->volAvgT );
-      vol = PpcIntegral_Integrate( self->vol ); 
-      StgFEM_FrequentOutput_PrintValue( context, avgT/vol );
-   }
 
    StgFEM_FrequentOutput_PrintValue( context, gJ_Nu[0] );
 

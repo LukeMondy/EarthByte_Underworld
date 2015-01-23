@@ -1,0 +1,4 @@
+avgMem_KB, 0
+pageFaults, 283
+maxMem_KB, 43412
+walltime, 0:02.94

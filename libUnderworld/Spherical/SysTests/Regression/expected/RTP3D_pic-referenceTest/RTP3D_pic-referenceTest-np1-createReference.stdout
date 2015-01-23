@@ -1,0 +1,402 @@
+StGermain Framework. Copyright (C) 2003-2005 VPAC.
+Toolbox "Underworld" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/Underworld_Toolboxmodule.so
+Toolbox "StgDomain" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgDomain_Toolboxmodule.so
+StgDomain (Domain Library). Copyright (C) 2003-2007 VPAC.
+Toolbox "StgFEM" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgFEM_Toolboxmodule.so
+StgFEM (Finite Element Framework). Copyright (C) 2003-2005 VPAC.
+Toolbox "PICellerator" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/PICellerator_Toolboxmodule.so
+PICellerator (Particle-In-Cell Framework). Copyright (C) 2005-2010 VPAC & Monash University.
+Underworld (Geodynamics Framework). Copyright (C) 2005-2010 Monash University.
+Toolbox "Spherical" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/Spherical_Toolboxmodule.so
+Spherical (Bleeding Edge Geodynamics framework). Copyright (C) 2005 Monash University.
+
+Creating Stg_Components from the component-list
+
+	Instantiating UnderworldContext as context
+	Instantiating FeMesh as constantMesh
+	Instantiating C0Generator as constantMeshGenerator
+	Instantiating FeMesh as linearMesh
+	Instantiating SphericalGenerator as linearMeshGenerator
+	Instantiating MeshVariable as velocity
+	Instantiating CompositeVC as velocityBCs
+	Instantiating CompositeVC as velocityICs
+	Instantiating DofLayout as velocityDofLayout
+	Instantiating FeVariable as VelocityField
+	Instantiating OperatorFeVariable as VelocityMagnitudeField
+	Instantiating OperatorFeVariable as VelocityGradientsField
+	Instantiating OperatorFeVariable as VelocityGradientsInvariantField
+	Instantiating OperatorFeVariable as VelocityXXField
+	Instantiating OperatorFeVariable as VelocityYYField
+	Instantiating OperatorFeVariable as StrainRateField
+	Instantiating OperatorFeVariable as VorticityField
+	Instantiating OperatorFeVariable as StrainRateInvariantField
+	Instantiating OperatorFeVariable as StrainRateXXField
+	Instantiating OperatorFeVariable as StrainRateYYField
+	Instantiating MeshVariable as pressure
+	Instantiating CompositeVC as pressureBCs
+	Instantiating CompositeVC as pressureICs
+	Instantiating DofLayout as pressureDofLayout
+	Instantiating FeVariable as PressureField
+	Instantiating MeshVariable as temperature
+	Instantiating CompositeVC as temperatureBCs
+	Instantiating CompositeVC as temperatureICs
+	Instantiating DofLayout as temperatureDofLayout
+	Instantiating FeVariable as TemperatureField
+	Instantiating OperatorFeVariable as TemperatureGradientsField
+	Instantiating ForceVector as residual
+	Instantiating ForceVector as massMatrix
+	Instantiating AdvDiffMulticorrector as predictorMulticorrector
+	Instantiating AdvectionDiffusionSLE as EnergyEqn
+	Instantiating LumpedMassMatrixForceTerm as lumpedMassMatrixForceTerm
+	Instantiating AdvDiffResidualForceTerm as defaultResidualForceTerm
+	Instantiating SingleCellLayout as cellLayout
+	Instantiating GaussParticleLayout as particleLayout
+	Instantiating IntegrationPointsSwarm as gaussSwarm
+	Instantiating TimeIntegrator as timeIntegrator
+	Instantiating ElementCellLayout as elementCellLayout
+	Instantiating PCDVC as weights
+	Instantiating MappedParticleLayout as localLayout
+	Instantiating IntegrationPointsSwarm as picIntegrationPoints
+	Instantiating CoincidentMapper as mapper
+	Instantiating IrregularMeshParticleLayout as materialSwarmParticleLayout
+	Instantiating ParticleMovementHandler as pMovementHandler
+	Instantiating ParticleShadowSync as pShadowSync
+	Instantiating MaterialPointsSwarm as materialSwarm
+	Instantiating SwarmAdvector as materialSwarmAdvector
+	Instantiating EscapedRoutine as escapedRoutine
+	Instantiating SolutionVector as solutionVelocity
+	Instantiating SolutionVector as solutionPressure
+	Instantiating SphericalForceVector as mom_force
+	Instantiating ForceVector as cont_force
+	Instantiating SphericalStiffnessMatrix as k_matrix
+	Instantiating ConstitutiveMatrixCartesian as constitutiveMatrix
+	Instantiating SphericalStiffnessMatrix as g_matrix
+	Instantiating GradientStiffnessMatrixTerm as gradientStiffnessMatrixTerm
+	Instantiating SphericalStiffnessMatrix as preconditioner
+	Instantiating UzawaPreconditionerTerm as preconditionerTerm
+	Instantiating Stokes_SLE_UzawaSolver as uzawa
+	Instantiating Stokes_SLE as stokesEqn
+	Instantiating SphericalStiffnessMatrix as div_matrix
+	Instantiating DivergenceMatrixTerm as divergenceDofTerm
+	Instantiating Scaling as default_scaling
+	Instantiating PpcManager as default_ppcManager
+	Instantiating Everywhere as everywhere
+	Instantiating RheologyMaterial as background
+	Instantiating LatLongRegion as usShape
+	Instantiating RheologyMaterial as other
+	Instantiating PpcRheology as numericalRheology
+	Instantiating Ppc_Constant as viscosity
+	Instantiating Ppc_Operation as tempDep_exp
+	Instantiating VectorAssemblyTerm_NA__F as buoyancyForceTerm
+	Instantiating VectorAssemblyTerm_NA__F as sourceTerm
+	Instantiating Ppc_Constant as sourceTerm_thermalEqn
+	Instantiating Ppc_Variable as tempPpc
+	Instantiating Ppc_Constant as ppcRa
+	Instantiating Ppc_PointGravity as bodyForce
+****************************
+SCALING THE DICTIONARY
+****************************
+Constructing default_scaling..
+
+Constructing Stg_Components from the live-component register
+
+	Constructing context..
+Plugin "StgFEM_StandardConditionFunctions" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgFEM_StandardConditionFunctionsmodule.so
+Plugin "StgFEM_FrequentOutput" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgFEM_FrequentOutputmodule.so
+Plugin "Underworld_AverageTemperature" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/Underworld_AverageTemperaturemodule.so
+Plugin "StgFEM_CPUTime" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgFEM_CPUTimemodule.so
+Plugin "Spherical_SphericalAlgorithms" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/Spherical_SphericalAlgorithmsmodule.so
+		default_ppcManager has not been constructed yet. Constructing now.
+			Constructing default_ppcManager..
+				linearMesh has not been constructed yet. Constructing now.
+					Constructing linearMesh..
+				picIntegrationPoints has not been constructed yet. Constructing now.
+					Constructing picIntegrationPoints..
+						elementCellLayout has not been constructed yet. Constructing now.
+							Constructing elementCellLayout..
+						localLayout has not been constructed yet. Constructing now.
+							Constructing localLayout..
+						timeIntegrator has not been constructed yet. Constructing now.
+							Constructing timeIntegrator..
+						weights has not been constructed yet. Constructing now.
+							Constructing weights..
+								materialSwarm has not been constructed yet. Constructing now.
+									Constructing materialSwarm..
+										materialSwarmParticleLayout has not been constructed yet. Constructing now.
+											Constructing materialSwarmParticleLayout..
+											pMovementHandler has not been constructed yet. Constructing now.
+												Constructing pMovementHandler..
+											pShadowSync has not been constructed yet. Constructing now.
+												Constructing pShadowSync..
+										escapedRoutine has not been constructed yet. Constructing now.
+											Constructing escapedRoutine..
+						mapper has not been constructed yet. Constructing now.
+							Constructing mapper..
+	Constructing constantMesh..
+	Constructing constantMeshGenerator..
+	Constructing linearMeshGenerator..
+	Constructing velocity..
+	Constructing velocityBCs..
+	Constructing velocityICs..
+	Constructing velocityDofLayout..
+	Constructing VelocityField..
+	Constructing VelocityMagnitudeField..
+	Constructing VelocityGradientsField..
+	Constructing VelocityGradientsInvariantField..
+	Constructing VelocityXXField..
+	Constructing VelocityYYField..
+	Constructing StrainRateField..
+	Constructing VorticityField..
+	Constructing StrainRateInvariantField..
+	Constructing StrainRateXXField..
+	Constructing StrainRateYYField..
+	Constructing pressure..
+	Constructing pressureBCs..
+	Constructing pressureICs..
+	Constructing pressureDofLayout..
+	Constructing PressureField..
+	Constructing temperature..
+	Constructing temperatureBCs..
+	Constructing temperatureICs..
+	Constructing temperatureDofLayout..
+	Constructing TemperatureField..
+	Constructing TemperatureGradientsField..
+	Constructing residual..
+	Constructing massMatrix..
+	Constructing predictorMulticorrector..
+	Constructing EnergyEqn..
+	Constructing lumpedMassMatrixForceTerm..
+		gaussSwarm has not been constructed yet. Constructing now.
+			Constructing gaussSwarm..
+				cellLayout has not been constructed yet. Constructing now.
+					Constructing cellLayout..
+				particleLayout has not been constructed yet. Constructing now.
+					Constructing particleLayout..
+	Constructing defaultResidualForceTerm..
+	Constructing materialSwarmAdvector..
+	Constructing solutionVelocity..
+	Constructing solutionPressure..
+	Constructing mom_force..
+	Constructing cont_force..
+	Constructing k_matrix..
+	Constructing constitutiveMatrix..
+	Constructing g_matrix..
+	Constructing gradientStiffnessMatrixTerm..
+	Constructing preconditioner..
+	Constructing preconditionerTerm..
+	Constructing uzawa..
+	Constructing stokesEqn..
+		div_matrix has not been constructed yet. Constructing now.
+			Constructing div_matrix..
+	Constructing divergenceDofTerm..
+	Constructing everywhere..
+	Constructing background..
+			numericalRheology has not been constructed yet. Constructing now.
+				Constructing numericalRheology..
+					viscosity has not been constructed yet. Constructing now.
+						Constructing viscosity..
+Creating Ppc 'viscosity' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+	Constructing usShape..
+	Constructing other..
+	Constructing tempDep_exp..
+Creating Ppc 'tempDep_exp' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+		tempPpc has not been constructed yet. Constructing now.
+			Constructing tempPpc..
+Creating Ppc 'tempPpc' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Creating Ppc 'TemperatureField' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Creating Ppc '-6.9078-solePpcNumber006' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+	Constructing buoyancyForceTerm..
+		bodyForce has not been constructed yet. Constructing now.
+			Constructing bodyForce..
+Creating Ppc 'bodyForce' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+Found Ppc 'DensityLabel' in the 'default_ppcManager' Properties list.
+	Constructing sourceTerm..
+		sourceTerm_thermalEqn has not been constructed yet. Constructing now.
+			Constructing sourceTerm_thermalEqn..
+Creating Ppc 'sourceTerm_thermalEqn' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+	Constructing ppcRa..
+Creating Ppc 'ppcRa' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+	Constructing StgFEM_StandardConditionFunctions..
+	Constructing StgFEM_FrequentOutput..
+	Constructing Underworld_AverageTemperature..
+	Constructing StgFEM_CPUTime..
+	Constructing Spherical_SphericalAlgorithms..
+
+Building Stg_Components from the live-component register
+
+Cartesian generator: 'linearMeshGenerator'
+	Target mesh: 'linearMesh'
+	Global element size: 10x20x20
+	Local offset of rank 0: 0x0x0
+	Local range of rank 0: 10x20x20
+	Generating vertices...
+		... done.
+	Generating elements...
+		... done.
+	Generating edges...
+		... done.
+	Generating faces...
+		... done.
+	Generating element-vertex incidence...
+		... done.
+	Generating edge-vertex incidence...
+		... done.
+	Generating face-vertex incidence...
+		... done.
+	Generating vertex neighbours...
+		... done.
+	Generating geometry...
+		... done.
+	Generating element types...
+		... element types are 'Mesh_HexType',
+		... mesh algorithm type is 'Mesh_SphericalAlgorithms',
+		... done.
+	Assigning FeMesh element types...
+		... FE element types are 'TrilinearElementType',
+		... done.
+Stiffness matrix: 'k_matrix'
+	Calculating number of nonzero entries...
+		Found 877989 nonzero entries.
+		Done.
+	Assigning FeMesh element types...
+		... FE element types are 'ConstantElementType',
+		... done.
+FeEquationNumber: 'defaultFeVariableFeEqName'
+	Generating equation numbers...
+		BCs set to be removed.
+		Assigned 4000 global equation numbers.
+		[0] Assigned 4000 local equation numbers, within range 0 to 4000.
+	... Completed in 0.004004 [min] / 0.004004 [max] seconds.
+Stiffness matrix: 'g_matrix'
+	Calculating number of nonzero entries...
+		Found 89600 nonzero entries.
+		Done.
+Stiffness matrix: 'div_matrix'
+	Calculating number of nonzero entries...
+		Found 89600 nonzero entries.
+		Done.
+Stiffness matrix: 'preconditioner'
+	Calculating number of nonzero entries...
+		Found 4000 nonzero entries.
+		Done.
+Linking materials and ppc... 
+
+Physical properties for material background:
+Creating Ppc 'background-DensityLabel' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+
+Physical properties for material other:
+Creating Ppc 'other-DensityLabel' as a solePpc not related to the Properties list defined in 'default_ppcManager'.
+
+Physical properties for material background:
+
+Physical properties for material other:
+done
+
+Initialising Stg_Components from the live-component register
+
+Laying out material 'background' within Everywhere 'everywhere':
+Laying out material 'other' within LatLongRegion 'usShape':
+In func Materials_Register_AssignParticleProperties(): for swarm "materialSwarm"
+	Assigning initial particle properties to the 80000 global particles
+		done 10% (8000 particles)...
+		done 20% (16000 particles)...
+		done 30% (24000 particles)...
+		done 40% (32000 particles)...
+		done 50% (40000 particles)...
+		done 60% (48000 particles)...
+		done 70% (56000 particles)...
+		done 80% (64000 particles)...
+		done 90% (72000 particles)...
+		done 100% (80000 particles)...
+Materials_Register_AssignParticleProperties(): finished setup of material properties for swarm "materialSwarm"
+	took 0.06129 [min] / 0.06129 [max] secs
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 4000 global cells
+		done 10% (400 cells)...
+		done 20% (800 cells)...
+		done 30% (1200 cells)...
+		done 40% (1600 cells)...
+		done 50% (2000 cells)...
+		done 60% (2400 cells)...
+		done 70% (2800 cells)...
+		done 80% (3200 cells)...
+		done 90% (3600 cells)...
+		done 100% (4000 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+Run until simulation has stepped forward 1 timeStep
+TimeStep = 0, Start time = 0, prev timeStep dt = 0
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 3.656399e-01 (secs)
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0034 , Uzawa residual = 9.7372160383955e-06
+  |G^T u|/|u|               = 1.17637319e-06
+  |f - K u - G p|/|f|       = 1.67335271e-06
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.38165811e-02 , u_rms = 2.30746172e-03
+  |p|_{\infty} = 6.56668836e-01 , p_rms = 3.19697008e-01
+  min/max(u) = -1.07465452e-02 [7436] / 1.38165811e-02 [7457]
+  min/max(p) = -5.59842120e-01 [3249] / 6.56668836e-01 [3240]
+  \sum_i p_i = 3.90009010e+02 
+Linear solver (stokesEqn-execute), solution time 2.098397e+00 (secs)
+I have subtracted the null space from VelocityField - n*sol is 1.77687e-16
+In Swarm_Register_SaveAllRegisteredSwarms(): about to save the swarms to disk:
+	(found 1 swarms that need to be checkpointed)
+Proc 0: beginning Swarm binary checkpoint in _SwarmDump_Execute():
+	Proc 0: for swarm "materialSwarm", dumping its 79961 particles of size 40 bytes each (= 3.19844e+06 bytes total) to file expected/RTP3D_pic-referenceTest/materialSwarm.00000.h5
+Proc 0: finished Swarm binary checkpoint.
+Swarm_Register_SaveAllRegisteredSwarms: saving of swarms completed.
+In _FiniteElementContext_SaveMesh(): about to save the mesh to disk:
+_FiniteElementContext_SaveMesh: saving of mesh completed.
+Time Integration
+Time Integration
+	       EP:        SwarmAdvector_AdvectionSetup -    0.0000 [min] /    0.0000 [max] (secs)
+	2nd order:               materialSwarmAdvector -    0.6154 [min] /    0.6154 [max] (secs)
+	       EP:       SwarmAdvector_AdvectionFinish -    0.2600 (secs)
+	       EP:                 GeneralSwarm_Update -    0.0404 (secs)
+In func WeightsCalculator_CalculateAll(): for swarm "picIntegrationPoints"
+	Calculating weights for the particles in the 4000 global cells
+		done 10% (400 cells)...
+		done 20% (800 cells)...
+		done 30% (1200 cells)...
+		done 40% (1600 cells)...
+		done 50% (2000 cells)...
+		done 60% (2400 cells)...
+		done 70% (2800 cells)...
+		done 80% (3200 cells)...
+		done 90% (3600 cells)...
+		done 100% (4000 cells)...
+WeightsCalculator_CalculateAll(): finished update of weights for swarm "picIntegrationPoints"
+	       EP:       IntegrationPointsSwarm_Update -    0.8890 (secs)
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 1.80498 [min] / 1.80498 [max] (secs)
+Time Integration - 1.805 [min] / 1.805 [max] (secs)
+TimeStep = 1, Start time = 0.00458824, prev timeStep dt = 0.00458824
+Linear solver (EnergyEqn-execute) 
+Linear solver (EnergyEqn-execute), solution time 3.645129e-01 (secs)
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0007 , Uzawa residual = 9.7416087971484e-06
+  |G^T u|/|u|               = 1.17681648e-06
+  |f - K u - G p|/|f|       = 7.06630742e-08
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 1.38177134e-02 , u_rms = 2.30764256e-03
+  |p|_{\infty} = 6.56773305e-01 , p_rms = 3.19703427e-01
+  min/max(u) = -1.07493061e-02 [7436] / 1.38177134e-02 [7457]
+  min/max(p) = -5.59863883e-01 [3249] / 6.56773305e-01 [3240]
+  \sum_i p_i = 3.90071583e+02 
+Linear solver (stokesEqn-execute), solution time 5.398171e-01 (secs)
+I have subtracted the null space from VelocityField - n*sol is 7.00733e-16
+In Swarm_Register_SaveAllRegisteredSwarms(): about to save the swarms to disk:
+	(found 1 swarms that need to be checkpointed)
+Proc 0: beginning Swarm binary checkpoint in _SwarmDump_Execute():
+	Proc 0: for swarm "materialSwarm", dumping its 79961 particles of size 40 bytes each (= 3.19844e+06 bytes total) to file expected/RTP3D_pic-referenceTest/materialSwarm.00001.h5
+Proc 0: finished Swarm binary checkpoint.
+Swarm_Register_SaveAllRegisteredSwarms: saving of swarms completed.
+In _FiniteElementContext_SaveMesh(): about to save the mesh to disk:
+_FiniteElementContext_SaveMesh: saving of mesh completed.
+Finalised: Spherical Toolbox.
+Finalised: Underworld (Geodynamics Framework).
+Finalised: PICellerator (Particle-In-Cell Framework).
+Finalised: StgFEM (Finite Element Framework).
+Finalised: StgDomain (Domain Library).

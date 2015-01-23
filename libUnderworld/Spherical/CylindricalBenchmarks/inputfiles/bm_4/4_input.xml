@@ -42,8 +42,8 @@
       <param name="GaussSwarm">gaussSwarm</param>
       <param name="VelocityField">VelocityField</param>
       <param name="Ra">Ra</param>
-      <param name="volume_averaged_viscous_dissipation">volAvgVD</param>
-      <param name="volume_averaged_work_done">volAvgWorkDone</param>
+      <param name="volume_int_viscous_dissipation">volAvgVD</param>
+      <param name="volume_int_work_done">volAvgWorkDone</param>
       <param name="volume">volume</param>
     </struct>
   </list>

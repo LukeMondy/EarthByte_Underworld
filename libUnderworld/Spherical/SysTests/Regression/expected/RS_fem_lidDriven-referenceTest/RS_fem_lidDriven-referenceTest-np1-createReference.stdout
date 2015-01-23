@@ -1,0 +1,258 @@
+StGermain Framework. Copyright (C) 2003-2005 VPAC.
+Toolbox "Underworld" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/Underworld_Toolboxmodule.so
+Toolbox "StgDomain" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgDomain_Toolboxmodule.so
+StgDomain (Domain Library). Copyright (C) 2003-2007 VPAC.
+Toolbox "StgFEM" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgFEM_Toolboxmodule.so
+StgFEM (Finite Element Framework). Copyright (C) 2003-2005 VPAC.
+Toolbox "PICellerator" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/PICellerator_Toolboxmodule.so
+PICellerator (Particle-In-Cell Framework). Copyright (C) 2005-2010 VPAC & Monash University.
+Underworld (Geodynamics Framework). Copyright (C) 2005-2010 Monash University.
+Toolbox "Spherical" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/Spherical_Toolboxmodule.so
+Spherical (Bleeding Edge Geodynamics framework). Copyright (C) 2005 Monash University.
+
+Creating Stg_Components from the component-list
+
+	Instantiating UnderworldContext as context
+	Instantiating FeMesh as constantMesh
+	Instantiating C0Generator as constantMeshGenerator
+	Instantiating FeMesh as linearMesh
+	Instantiating RSGenerator as linearMeshGenerator
+	Instantiating SingleCellLayout as cellLayout
+	Instantiating GaussParticleLayout as particleLayout
+	Instantiating IntegrationPointsSwarm as gaussSwarm
+	Instantiating GaussMapper as gaussMapper
+	Instantiating BackgroundParticleLayout as backgroundLayout
+	Instantiating ParticleMovementHandler as gaussMSwarmMovementHandler
+	Instantiating MaterialPointsSwarm as gaussMaterialSwarm
+	Instantiating TimeIntegrator as timeIntegrator
+	Instantiating MeshVariable as velocity
+	Instantiating CompositeVC as velocityBCs
+	Instantiating CompositeVC as velocityICs
+	Instantiating DofLayout as velocityDofLayout
+	Instantiating FeVariable as VelocityField
+	Instantiating OperatorFeVariable as VelocityMagnitudeField
+	Instantiating OperatorFeVariable as VelocityGradientsField
+	Instantiating OperatorFeVariable as VelocityGradientsInvariantField
+	Instantiating OperatorFeVariable as VelocityXXField
+	Instantiating OperatorFeVariable as VelocityYYField
+	Instantiating OperatorFeVariable as StrainRateField
+	Instantiating OperatorFeVariable as VorticityField
+	Instantiating OperatorFeVariable as StrainRateInvariantField
+	Instantiating OperatorFeVariable as StrainRateXXField
+	Instantiating OperatorFeVariable as StrainRateYYField
+	Instantiating MeshVariable as pressure
+	Instantiating CompositeVC as pressureBCs
+	Instantiating CompositeVC as pressureICs
+	Instantiating DofLayout as pressureDofLayout
+	Instantiating FeVariable as PressureField
+	Instantiating SolutionVector as solutionVelocity
+	Instantiating SolutionVector as solutionPressure
+	Instantiating SphericalForceVector as mom_force
+	Instantiating ForceVector as cont_force
+	Instantiating SphericalStiffnessMatrix as k_matrix
+	Instantiating ConstitutiveMatrixCartesian as constitutiveMatrix
+	Instantiating SphericalStiffnessMatrix as g_matrix
+	Instantiating GradientStiffnessMatrixTerm as gradientStiffnessMatrixTerm
+	Instantiating SphericalStiffnessMatrix as preconditioner
+	Instantiating UzawaPreconditionerTerm as preconditionerTerm
+	Instantiating Stokes_SLE_UzawaSolver as uzawa
+	Instantiating Stokes_SLE as stokesEqn
+	Instantiating SphericalStiffnessMatrix as div_matrix
+	Instantiating DivergenceMatrixTerm as divergenceDofTerm
+	Instantiating Everywhere as everywhere
+	Instantiating RheologyMaterial as background
+	Instantiating MaterialViscosity as viscosity
+
+Constructing Stg_Components from the live-component register
+
+	Constructing context..
+Plugin "StgFEM_StandardConditionFunctions" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgFEM_StandardConditionFunctionsmodule.so
+Plugin "StgFEM_FrequentOutput" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/StgFEM_FrequentOutputmodule.so
+Plugin "Spherical_SphericalAlgorithms" found using /home/jgiordani/codes/clean_uw/libUnderworld/build/lib/Spherical_SphericalAlgorithmsmodule.so
+		constitutiveMatrix has not been constructed yet. Constructing now.
+			Constructing constitutiveMatrix..
+				k_matrix has not been constructed yet. Constructing now.
+					Constructing k_matrix..
+						VelocityField has not been constructed yet. Constructing now.
+							Constructing VelocityField..
+								linearMesh has not been constructed yet. Constructing now.
+									Constructing linearMesh..
+								velocityDofLayout has not been constructed yet. Constructing now.
+									Constructing velocityDofLayout..
+										velocity has not been constructed yet. Constructing now.
+											Constructing velocity..
+								velocityICs has not been constructed yet. Constructing now.
+									Constructing velocityICs..
+								velocityBCs has not been constructed yet. Constructing now.
+									Constructing velocityBCs..
+						mom_force has not been constructed yet. Constructing now.
+							Constructing mom_force..
+				gaussSwarm has not been constructed yet. Constructing now.
+					Constructing gaussSwarm..
+						cellLayout has not been constructed yet. Constructing now.
+							Constructing cellLayout..
+						particleLayout has not been constructed yet. Constructing now.
+							Constructing particleLayout..
+						timeIntegrator has not been constructed yet. Constructing now.
+							Constructing timeIntegrator..
+						gaussMapper has not been constructed yet. Constructing now.
+							Constructing gaussMapper..
+								gaussMaterialSwarm has not been constructed yet. Constructing now.
+									Constructing gaussMaterialSwarm..
+										backgroundLayout has not been constructed yet. Constructing now.
+											Constructing backgroundLayout..
+											gaussMSwarmMovementHandler has not been constructed yet. Constructing now.
+												Constructing gaussMSwarmMovementHandler..
+	Constructing constantMesh..
+	Constructing constantMeshGenerator..
+	Constructing linearMeshGenerator..
+	Constructing VelocityMagnitudeField..
+	Constructing VelocityGradientsField..
+	Constructing VelocityGradientsInvariantField..
+	Constructing VelocityXXField..
+	Constructing VelocityYYField..
+	Constructing StrainRateField..
+	Constructing VorticityField..
+	Constructing StrainRateInvariantField..
+	Constructing StrainRateXXField..
+	Constructing StrainRateYYField..
+	Constructing pressure..
+	Constructing pressureBCs..
+	Constructing pressureICs..
+	Constructing pressureDofLayout..
+	Constructing PressureField..
+	Constructing solutionVelocity..
+	Constructing solutionPressure..
+	Constructing cont_force..
+	Constructing g_matrix..
+	Constructing gradientStiffnessMatrixTerm..
+	Constructing preconditioner..
+	Constructing preconditionerTerm..
+	Constructing uzawa..
+	Constructing stokesEqn..
+		div_matrix has not been constructed yet. Constructing now.
+			Constructing div_matrix..
+	Constructing divergenceDofTerm..
+	Constructing everywhere..
+	Constructing background..
+			viscosity has not been constructed yet. Constructing now.
+				Constructing viscosity..
+	Constructing StgFEM_StandardConditionFunctions..
+	Constructing StgFEM_FrequentOutput..
+	Constructing Spherical_SphericalAlgorithms..
+
+Building Stg_Components from the live-component register
+
+Cartesian generator: 'linearMeshGenerator'
+	Target mesh: 'linearMesh'
+	Global element size: 4x8x8
+	Local offset of rank 0: 0x0x0
+	Local range of rank 0: 4x8x8
+	Generating vertices...
+		... done.
+	Generating elements...
+		... done.
+	Generating edges...
+		... done.
+	Generating faces...
+		... done.
+	Generating element-vertex incidence...
+		... done.
+	Generating edge-vertex incidence...
+		... done.
+	Generating face-vertex incidence...
+		... done.
+	Generating vertex neighbours...
+		... done.
+	Generating geometry...
+		... done.
+	Generating element types...
+		... element types are 'Mesh_HexType',
+		... mesh algorithm type is 'Mesh_SphericalAlgorithms',
+		... done.
+	Assigning FeMesh element types...
+		... FE element types are 'TrilinearElementType',
+		... done.
+Stiffness matrix: 'k_matrix'
+	Calculating number of nonzero entries...
+		Found 39495 nonzero entries.
+		Done.
+	Assigning FeMesh element types...
+		... FE element types are 'ConstantElementType',
+		... done.
+FeEquationNumber: 'defaultFeVariableFeEqName'
+	Generating equation numbers...
+		BCs set to be removed.
+		Assigned 256 global equation numbers.
+		[0] Assigned 256 local equation numbers, within range 0 to 256.
+	... Completed in 0.00018096 [min] / 0.00018096 [max] seconds.
+Stiffness matrix: 'g_matrix'
+	Calculating number of nonzero entries...
+		Found 4672 nonzero entries.
+		Done.
+Stiffness matrix: 'div_matrix'
+	Calculating number of nonzero entries...
+		Found 4672 nonzero entries.
+		Done.
+Stiffness matrix: 'preconditioner'
+	Calculating number of nonzero entries...
+		Found 256 nonzero entries.
+		Done.
+Linking materials and ppc... 
+done
+
+Initialising Stg_Components from the live-component register
+
+Run until simulation has stepped forward 1 timeStep
+Laying out material 'background' within Everywhere 'everywhere':
+In func Materials_Register_AssignParticleProperties(): for swarm "gaussMaterialSwarm"
+	Assigning initial particle properties to the 1 global particles
+		done 100% (1 particles)...
+Materials_Register_AssignParticleProperties(): finished setup of material properties for swarm "gaussMaterialSwarm"
+	took 2.28882e-05 [min] / 2.28882e-05 [max] secs
+TimeStep = 0, Start time = 0, prev timeStep dt = 0
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0016 , Uzawa residual = 8.4021789609668e-06
+  |G^T u|/|u|               = 2.87894212e-02
+  |f - K u - G p|/|f|       = 3.05790660e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 7.04618773e-01 , u_rms = 2.97650176e-01
+  |p|_{\infty} = 3.82370344e+00 , p_rms = 1.38535908e+00
+  min/max(u) = -7.04618773e-01 [745] / 7.04618756e-01 [1]
+  min/max(p) = -3.82370342e+00 [2] / 3.82370344e+00 [254]
+  \sum_i p_i = -4.81819888e-07 
+Linear solver (stokesEqn-execute), solution time 1.021004e-02 (secs)
+In Swarm_Register_SaveAllRegisteredSwarms(): about to save the swarms to disk:
+found 0 swarms that need to be checkpointed -> nothing to do
+Swarm_Register_SaveAllRegisteredSwarms: saving of swarms completed.
+In _FiniteElementContext_SaveMesh(): about to save the mesh to disk:
+_FiniteElementContext_SaveMesh: saving of mesh completed.
+Time Integration
+Time Integration
+	       EP:       IntegrationPointsSwarm_Update -    0.0000 (secs)
+Time Integration - 3.19481e-05 [min] / 3.19481e-05 [max] (secs)
+Time Integration - 4.292e-05 [min] / 4.292e-05 [max] (secs)
+TimeStep = 1, Start time = 0.148091, prev timeStep dt = 0.148091
+Linear solver (stokesEqn-execute) 
+Summary:
+  Uzawa its. = 0001 , Uzawa residual = 3.4621526504273e-06
+  |G^T u|/|u|               = 2.87896448e-02
+  |f - K u - G p|/|f|       = 1.64757104e-07
+  |f - K u - G p|_w/|f|_w   = 1.00000000e+00
+  |u|_{\infty} = 7.04618043e-01 , u_rms = 2.97650131e-01
+  |p|_{\infty} = 3.82369402e+00 , p_rms = 1.38535872e+00
+  min/max(u) = -7.04618026e-01 [745] / 7.04618043e-01 [1]
+  min/max(p) = -3.82369402e+00 [2] / 3.82369362e+00 [254]
+  \sum_i p_i = 2.11278531e-07 
+Linear solver (stokesEqn-execute), solution time 2.624989e-03 (secs)
+In Swarm_Register_SaveAllRegisteredSwarms(): about to save the swarms to disk:
+found 0 swarms that need to be checkpointed -> nothing to do
+Swarm_Register_SaveAllRegisteredSwarms: saving of swarms completed.
+In _FiniteElementContext_SaveMesh(): about to save the mesh to disk:
+_FiniteElementContext_SaveMesh: saving of mesh completed.
+Finalised: Spherical Toolbox.
+Finalised: Underworld (Geodynamics Framework).
+Finalised: PICellerator (Particle-In-Cell Framework).
+Finalised: StgFEM (Finite Element Framework).
+Finalised: StgDomain (Domain Library).

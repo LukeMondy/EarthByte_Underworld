@@ -1,0 +1,25 @@
+<StgModelResult>
+  <modelName>RTP3D_pic-referenceTest-np1-createReference</modelName>
+  <outputPath>/home/jgiordani/codes/clean_uw/libUnderworld/Spherical/SysTests/Regression/expected/RTP3D_pic-referenceTest</outputPath>
+  <jobMetaInfo>
+    <runType>MPI</runType>
+    <simtime>0.0</simtime>
+    <submitTime>2015-01-23 15:29:24.488376</submitTime>
+    <platformInfo>
+      <release>3.13.0-44-generic</release>
+      <machine>x86_64</machine>
+      <version>#73-Ubuntu SMP Tue Dec 16 00:22:43 UTC 2014</version>
+      <node>625cm-119878</node>
+      <system>Linux</system>
+    </platformInfo>
+    <performanceInfo>
+      <profilerInfo profType="UnixTimeCmd">
+        <avgMem_KB>0.0</avgMem_KB>
+        <pageFaults>0.0</pageFaults>
+        <maxMem_KB>80296.0</maxMem_KB>
+        <walltime>11.15</walltime>
+      </profilerInfo>
+    </performanceInfo>
+    <runCommand>mpiexec -np 1 /home/jgiordani/codes/clean_uw/libUnderworld/build/bin/StGermain RTP3D_pic.xml /home/jgiordani/codes/clean_uw/libUnderworld/Spherical/SysTests/Regression/expected/RTP3D_pic-referenceTest/credo-analysis.xml </runCommand>
+  </jobMetaInfo>
+</StgModelResult>

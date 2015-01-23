@@ -621,10 +621,10 @@ void Spherical_VectorRTP2XYZ( double *Q, double *xyz, int dim, double* v ) {
 
    } else {assert(0);}
 
-   if( fabs(norm_cart - norm_rtp) > 1e-5 ) {
-      printf("\nFucked up in %s\n\n", __func__ );
-      assert(0);
-   }
+   Journal_Firewall( (fabs(norm_cart - norm_rtp) < 1e-5*norm_cart),
+                  global_error_stream,
+                  "\nERROR converting the xyz vector --> spherical vector",
+                  "\nMagnitudes are different xyz = %g, spherical = %g %s\n\n", norm_cart, norm_rtp, __func__ );
 }
 
 void Spherical_VectorXYZ2RTP( double *_v, double *xyz, int dim, double* v )
@@ -674,10 +674,10 @@ void Spherical_VectorXYZ2RTP( double *_v, double *xyz, int dim, double* v )
       norm_rtp = sqrt( v[0]*v[0] + v[1]*v[1]+v[2]*v[2] );
    }
 
-   if( fabs(norm_cart - norm_rtp) > 1e-5 ) {
-      printf("\nFucked up in %s\n\n", __func__ );
-      assert(0);
-   }
+   Journal_Firewall( (fabs(norm_cart - norm_rtp) < 1e-5*norm_cart),
+                  global_error_stream,
+                  "\nERROR converting the xyz vector --> spherical vector",
+                  "\nMagnitudes are different xyz = %g, spherical = %g %s\n\n", norm_cart, norm_rtp, __func__ );
 
 
 
