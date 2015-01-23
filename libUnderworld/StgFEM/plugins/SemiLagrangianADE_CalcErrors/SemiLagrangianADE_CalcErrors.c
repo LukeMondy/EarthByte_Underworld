@@ -48,7 +48,7 @@
 const Type StgFEM_SemiLagrangianADE_CalcErrors_Type = "StgFEM_SemiLagrangianADE_CalcErrors";
 StgFEM_SemiLagrangianADE_CalcErrors* StgFEM_SemiLagrangianADE_CalcErrors_selfPointer = NULL;
 
-typedef double (*funcPtr)( FiniteElementContext* context, double* coord );
+typedef double (*funcPtr)( SemiLagrangianIntegrator* slIntegrator, FiniteElementContext* context, double* coord );
 
 double SemiLagrangianADE_CalcErrors_Dt( void* _context ) {
     FiniteElementContext*       context         = (FiniteElementContext*) _context;
@@ -97,11 +97,10 @@ void SemiLagrangianADE_CalcErrors_ShearCellY( Node_LocalIndex node_lI, Variable_
     *result = -M_PI * cos( M_PI * coord[0] ) * sin( M_PI * coord[1] );
 }
 
-double FourierMode( FiniteElementContext* context, double* coord ) {
+double FourierMode( SemiLagrangianIntegrator* slIntegrator, FiniteElementContext* context, double* coord ) {
         Dictionary    *dictionary = context->dictionary;
         FeVariable    *feVariable = (FeVariable*)FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
 	double        time        = context->timeStep*SemiLagrangianADE_CalcErrors_Dt( context );
-	//double        time        = context->currentTime;
         double        kx, ky, vel[2], visc;
         double	      gCoord[3];
         double	      delta[3];
@@ -115,11 +114,11 @@ double FourierMode( FiniteElementContext* context, double* coord ) {
 	ky *= 2.0*M_PI;
 
         SemiLagrangianIntegrator_GetDeltaConst( feVariable, delta, nNodes );
-        SemiLagrangianIntegrator_CubicInterpolator( feVariable, gCoord, delta, nNodes, vel );
+        SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, feVariable, gCoord, delta, nNodes, vel );
 
         return exp( -visc*(kx*kx + ky*ky)*time )*cos( kx*coord[0] + ky*coord[1] - (vel[0]*kx + vel[1]*ky)*time );
 }
-
+/*
 void SemiLagrangianADE_CalcErrors_FourierMode(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result) {
         FiniteElementContext	*context    = (FiniteElementContext*)_context;
         Dictionary    		*dictionary = context->dictionary;
@@ -141,11 +140,11 @@ void SemiLagrangianADE_CalcErrors_FourierMode(Node_LocalIndex node_lI,Variable_I
 
         FeVariable_GetValueAtNode( feVariable, node_lI, vel );
 
-        /* Find coordinate of node */
         coord = Mesh_GetVertex( mesh, node_lI );
 
         *result = exp( -visc*(kx*kx + ky*ky)*time )*cos( kx*coord[0] + ky*coord[1] - (vel[0]*kx + vel[1]*ky)*time );
 }
+*/
 
 double SemiLagrangianADE_CalcErrors_EvaluateError( FiniteElementContext* context, FeVariable* phiField, Swarm* gaussSwarm, funcPtr func ) {
     FeMesh*              	feMesh          = phiField->feMesh;
@@ -164,7 +163,10 @@ double SemiLagrangianADE_CalcErrors_EvaluateError( FiniteElementContext* context
     double               	detJac;
     double			gCoord[3];
     double			delta[3];
-    unsigned			nNodes[3];
+    unsigned			nNodes[3], pt_i;
+    SemiLagrangianIntegrator*	slIntegrator;
+
+    slIntegrator = (SemiLagrangianIntegrator*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)"integrator" );
 
     for( lElement_I = 0; lElement_I < numMeshElements; lElement_I++ ) {
         lCell_I = CellLayout_MapElementIdToCellId( gaussSwarm->cellLayout, lElement_I );
@@ -179,10 +181,10 @@ double SemiLagrangianADE_CalcErrors_EvaluateError( FiniteElementContext* context
             gaussPoint = (IntegrationPoint*) Swarm_ParticleInCellAt( gaussSwarm, lCell_I, gaussPoint_I );
             FeMesh_CoordLocalToGlobal( feMesh, lElement_I, gaussPoint->xi, gCoord );
 
-            initialValue = func( context, gCoord );
+            initialValue = func( slIntegrator, context, gCoord );
             
             SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
-            SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
+            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, phiField, gCoord, delta, nNodes, &finalValue );
  
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
@@ -211,16 +213,18 @@ void SemiLagrangianADE_CalcErrors_Evaluate( void* data, FiniteElementContext* co
     FeVariable*          	tempFinalField		= NULL;
     double			error;
     double			temp_a, temp_n, diff;
+    SemiLagrangianIntegrator*	slIntegrator		= NULL;
 
     _FeVariable_SyncShadowValues( velocityField );
 
     temperatureField = (FeVariable*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)"TemperatureField" );
     tempFinalField   = (FeVariable*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)"TempFinalField" );
+    slIntegrator     = (SemiLagrangianIntegrator*)LiveComponentRegister_Get( context->CF->LCRegister, (Name)"integrator" );
 
     printf( "\ndt: %12.10e\n\n", SemiLagrangianADE_CalcErrors_Dt( context ) );
 
     for( node_I = 0; node_I < Mesh_GetLocalSize( mesh, MT_VERTEX ); node_I++ ) {
-        temp_a = FourierMode( context, Mesh_GetVertex( temperatureField->feMesh, node_I ) );
+        temp_a = FourierMode( slIntegrator, context, Mesh_GetVertex( temperatureField->feMesh, node_I ) );
         FeVariable_GetValueAtNode( temperatureField, node_I, &temp_n );
         diff = temp_a - temp_n;
         FeVariable_SetValueAtNode( tempFinalField, node_I, &temp_a );
@@ -241,8 +245,8 @@ void StgFEM_SemiLagrangianADE_CalcErrors_AssignFromXML( void* _self, Stg_Compone
     AbstractContext*		context		= Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, NULL  );
     ConditionFunction*		condFunc;
 
-    condFunc = ConditionFunction_New( SemiLagrangianADE_CalcErrors_FourierMode, (Name)"FourierMode", NULL );
-    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    //condFunc = ConditionFunction_New( SemiLagrangianADE_CalcErrors_FourierMode, (Name)"FourierMode", NULL );
+    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
     condFunc = ConditionFunction_New( SemiLagrangianADE_CalcErrors_ShearCellX, (Name)"ShearCellX", NULL );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
     condFunc = ConditionFunction_New( SemiLagrangianADE_CalcErrors_ShearCellY, (Name)"ShearCellY", NULL );
@@ -282,7 +286,7 @@ void* StgFEM_SemiLagrangianADE_CalcErrors_New( Name name ) {
     /* Variables that are set to ZERO are variables that will be set either by the current _New function or another parent _New function further up the hierachy */
     AllocationType  nameAllocationType = NON_GLOBAL /* default value NON_GLOBAL */;
 
-    return _Codelet_New(  CODELET_PASSARGS  );
+    return _Codelet_New( CODELET_PASSARGS );
 }
 
 Index StgFEM_SemiLagrangianADE_CalcErrors_Register( PluginsManager* mgr ) {

@@ -142,5 +142,6 @@ void StgFEM_StandardConditionFunctions_ShearCellX(Node_LocalIndex node_lI,Variab
 void StgFEM_StandardConditionFunctions_ShearCellY(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
 void StgFEM_StandardConditionFunctions_ParametricCircleX(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
 void StgFEM_StandardConditionFunctions_ParametricCircleY(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
+void StgFEM_StandardConditionFunctions_FourierMode(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result);
 
 #endif	

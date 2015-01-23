@@ -278,6 +278,9 @@ void _StgFEM_StandardConditionFunctions_AssignFromXML( void* component, Stg_Comp
 
    condFunc = ConditionFunction_New( StgFEM_StandardConditionFunctions_ParametricCircleY, (Name)"ParametricCircleY", NULL);
    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+
+   condFunc = ConditionFunction_New( StgFEM_StandardConditionFunctions_FourierMode, (Name)"FourierMode", NULL);
+   ConditionFunction_Register_Add( condFunc_Register, condFunc );
 }
 
 void _StgFEM_StandardConditionFunctions_Destroy( void* _self, void* data ) {
@@ -2731,3 +2734,31 @@ void StgFEM_StandardConditionFunctions_ParametricCircleY( Node_LocalIndex node_l
     if( coord[0] < 0.0 )
         *result *= -1.0;
 }
+
+void StgFEM_StandardConditionFunctions_FourierMode(Node_LocalIndex node_lI,Variable_Index var_I,void *_context,void* _data, void* _result) {
+        FiniteElementContext    *context    = (FiniteElementContext*)_context;
+        Dictionary              *dictionary = context->dictionary;
+        FeVariable              *feVariable = NULL;
+        FeMesh                  *mesh       = NULL;
+        double                  *result     = (double*) _result;
+        double                  *coord;
+        double                  kx, ky, vel[2], visc, time = 0.0;
+
+        feVariable = (FeVariable*)FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
+        mesh       = feVariable->feMesh;
+
+        kx   = Dictionary_GetDouble_WithDefault( dictionary, (Dictionary_Entry_Key)"k_x",  1.0 );
+        ky   = Dictionary_GetDouble_WithDefault( dictionary, (Dictionary_Entry_Key)"k_y",  1.0 );
+        visc = Dictionary_GetDouble_WithDefault( dictionary, (Dictionary_Entry_Key)"visc", 1.0 );
+
+        kx *= 2.0*M_PI;
+        ky *= 2.0*M_PI;
+
+        FeVariable_GetValueAtNode( feVariable, node_lI, vel );
+
+        /* Find coordinate of node */
+        coord = Mesh_GetVertex( mesh, node_lI );
+
+        *result = exp( -visc*(kx*kx + ky*ky)*time )*cos( kx*coord[0] + ky*coord[1] - (vel[0]*kx + vel[1]*ky)*time );
+}
+

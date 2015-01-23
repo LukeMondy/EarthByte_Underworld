@@ -70,95 +70,6 @@ void SemiLagrangian_Block( Node_LocalIndex node_lI, Variable_Index var_I, void* 
         *result = 1.0;
 }
 
-/*
-void SemiLagrangian_SolWave( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
-    FiniteElementContext*       context         = (FiniteElementContext*)_context;
-    FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "TemperatureField" );
-    FeMesh*                     mesh            = feVariable->feMesh;
-    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
-    double*                     result          = (double*)_result;
-    double			xo   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_shiftX", 0.5 );
-    double			yo		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_shiftY", 0.5 );
-    double			ax   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleX", 5.0 );
-    double			ay		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleY", 7.0 );
-
-    double	sx 	= 1.0/cosh( ax*(coord[0] - xo) );
-    double	sy 	= 1.0/cosh( ay*(coord[1] - yo) );
-
-    *result = sx*sx*sy*sy;
-}
-
-void SemiLagrangian_ShearCellX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
-    FiniteElementContext*       context         = (FiniteElementContext*)_context;
-    FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
-    FeMesh*                     mesh            = feVariable->feMesh;
-    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
-    double*                     result          = (double*)_result;
-
-    *result = M_PI * sin( M_PI * coord[0] ) * cos( M_PI * coord[1] );
-}
-
-void SemiLagrangian_ShearCellY( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
-    FiniteElementContext*       context         = (FiniteElementContext*)_context;
-    FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
-    FeMesh*                     mesh            = feVariable->feMesh;
-    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
-    double*                     result          = (double*)_result;
-
-    *result = -M_PI * cos( M_PI * coord[0] ) * sin( M_PI * coord[1] );
-}
-
-void SemiLagrangian_ParametricCircleX( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
-    FiniteElementContext*       context         = (FiniteElementContext*)_context;
-    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
-    double			scale		= Dictionary_GetDouble_WithDefault( context->dictionary, "parametricCircle_scale", 1.0 );
-    FeMesh*                     mesh            = feVariable->feMesh;
-    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
-    double*                     result          = (double*)_result;
-    double                      radius          = sqrt( coord[0]*coord[0] + coord[1]*coord[1] );
-    double                      theta;
-
-    if( fabs( coord[0] ) < 0.0001 ) {
-        if( coord[1] > 0.0 )
-            theta = +0.5*M_PI;
-        else
-            theta = -0.5*M_PI;
-    }
-    else {
-        theta = atan( coord[1]/coord[0] );
-    }
-
-    *result = -radius*sin( theta )/scale;
-    if( coord[0] < 0.0 )
-        *result *= -1.0;
-}
-
-void SemiLagrangian_ParametricCircleY( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
-    FiniteElementContext*       context         = (FiniteElementContext*)_context;
-    FeVariable*                 feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "VelocityField" );
-    double			scale		= Dictionary_GetDouble_WithDefault( context->dictionary, "parametricCircle_scale", 1.0 );
-    FeMesh*                     mesh            = feVariable->feMesh;
-    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
-    double*                     result          = (double*)_result;
-    double                      radius          = sqrt( coord[0]*coord[0] + coord[1]*coord[1] );
-    double                      theta;
-
-    if( fabs( coord[0] ) < 0.0001 ) {
-        if( coord[1] > 0.0 )
-            theta = +0.5*M_PI;
-        else
-            theta = -0.5*M_PI;
-    }
-    else {
-        theta = atan( coord[1]/coord[0] );
-    }
-
-    *result = radius*cos( theta )/scale;
-    if( coord[0] < 0.0 )
-        *result *= -1.0;
-}
-*/
-
 double SemiLagrangian_Dt( void* _context ) {
     FiniteElementContext*       context         = (FiniteElementContext*) _context;
     double                      dt;
@@ -236,7 +147,7 @@ double SemiLagrangian_EvaluateError( FiniteElementContext* context, FeVariable* 
             initialValue = func( gCoord, xo, yo, ax, ay );
             
             SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
-            SemiLagrangianIntegrator_CubicInterpolator( phiField, gCoord, delta, nNodes, &finalValue );
+            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, phiField, gCoord, delta, nNodes, &finalValue );
  
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
