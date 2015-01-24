@@ -186,7 +186,14 @@ void _SLIntegrator_FullSphere_AssignFromXML( void* slIntegrator, Stg_ComponentFa
             SystemLinearEquations_GetRunEPFunction(), sle );
         /* remember to disable the standard run at execute */
         SystemLinearEquations_SetRunDuringExecutePhase( sle, False );
+
+        /* add the time step function */
+        if( strcmp( sle->type, Energy_SLE_Type ) == 0 ) {
+            EntryPoint_AppendClassHook( self->context->calcDtEP, "SLIntegrator_FullSphere_CalcAdvDiffDt", SLIntegrator_FullSphere_CalcAdvDiffDt, SLIntegrator_FullSphere_Type, self );
+        }
     }
+
+    self->courant = Dictionary_GetDouble_WithDefault( self->context->dictionary, "courantFactor", 0.5 );
 
     self->isConstructed = True;
 }
@@ -909,4 +916,26 @@ void SLIntegrator_FullSphere_InitPatches( void* slIntegrator ) {
     free( isTriplePtNode );
 
     Stg_Class_Delete( iArray );
+}
+
+double SLIntegrator_FullSphere_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context ) {
+    SLIntegrator_Spherical*	self 		= (SLIntegrator_Spherical*)slIntegrator;
+    double			lAdv, lDif, gAdv, gDif, dt, dx[3], dxMin, vMag;
+    double 			manualDt        = Dictionary_GetDouble_WithDefault( context->dictionary, "manualTimeStep", 0.0 );
+
+    if( manualDt > 1.0e-6 ) {
+        return manualDt;
+    }
+
+    FeVariable_GetMinimumSeparation( self->velocityField, &dxMin, dx );
+    vMag = FieldVariable_GetMaxGlobalFieldMagnitude( self->velocityField );
+    lAdv = self->courant*dxMin/vMag;
+    lDif = self->courant*dxMin*dxMin;
+
+    MPI_Allreduce( &lAdv, &gAdv, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
+    MPI_Allreduce( &lDif, &gDif, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
+
+    dt = ( gAdv < gDif ) ? gAdv : gDif;
+
+    return dt;
 }

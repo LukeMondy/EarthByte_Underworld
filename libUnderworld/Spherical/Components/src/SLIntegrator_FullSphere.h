@@ -70,6 +70,7 @@
       double**			   GNix;		   \
       IArray*			   inc;			   \
       unsigned**		   elPatch;		   \
+      double			   courant;		   \
 
    /** Abstract class defining the interface for a SLIntegrator_FullSphere solver - see SLIntegrator_FullSphere.h */
    struct SLIntegrator_FullSphere { __SLIntegrator_FullSphere };
@@ -121,6 +122,8 @@
 
    /** Solve:- calculate the new values for all solution vectors in the system. */
    void SLIntegrator_FullSphere_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* variableFieldPrime );
+
+   double SLIntegrator_FullSphere_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context );
 
    void SLIntegrator_FullSphere_InitPatches( void* slIntegrator );
 
