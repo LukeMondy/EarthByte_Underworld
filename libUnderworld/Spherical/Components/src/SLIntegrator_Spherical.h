@@ -70,6 +70,7 @@
       double**			   GNix;		   \
       IArray*			   inc;			   \
       unsigned**		   elPatch;		   \
+      double			   courant;		   \
 
    /** Abstract class defining the interface for a SLIntegrator_Spherical solver - see SLIntegrator_Spherical.h */
    struct SLIntegrator_Spherical { __SLIntegrator_Spherical };
@@ -143,6 +144,8 @@
    Bool SLIntegrator_Spherical_HasTop( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
    Bool SLIntegrator_Spherical_HasFront( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
    Bool SLIntegrator_Spherical_HasBack( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+
+   double SLIntegrator_Spherical_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context );
 
    void SLIntegrator_Spherical_InitPatches( void* slIntegrator );
 
