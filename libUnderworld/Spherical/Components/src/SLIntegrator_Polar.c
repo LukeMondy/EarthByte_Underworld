@@ -185,7 +185,14 @@ void _SLIntegrator_Polar_AssignFromXML( void* slIntegrator, Stg_ComponentFactory
             SystemLinearEquations_GetRunEPFunction(), sle );
         /* remember to disable the standard run at execute */
         SystemLinearEquations_SetRunDuringExecutePhase( sle, False );
+
+        /* add the time step function */
+        if( strcmp( sle->type, Energy_SLE_Type ) == 0 ) {
+            EntryPoint_AppendClassHook( self->context->calcDtEP, "SLIntegrator_Polar_CalcAdvDiffDt", SLIntegrator_Polar_CalcAdvDiffDt, SLIntegrator_Polar_Type, self );
+        }
     }
+
+    self->courant = Dictionary_GetDouble_WithDefault( self->context->dictionary, "courantFactor", 0.5 );
 
     self->isConstructed = True;
 }
@@ -212,7 +219,7 @@ void _SLIntegrator_Polar_Initialise( void* slIntegrator, void* data ) {
     SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
-    unsigned			field_i;
+    unsigned			field_i, el_i;
 
     if( self->velocityField ) Stg_Component_Initialise( self->velocityField, data, False );
 
@@ -234,6 +241,11 @@ void _SLIntegrator_Polar_Initialise( void* slIntegrator, void* data ) {
     self->abcissa[2] = -1.0*self->abcissa[1];
     self->abcissa[3] = -1.0*self->abcissa[0];
 
+    self->elPatch = malloc(Mesh_GetLocalSize( self->velocityField->feMesh, 2 )*sizeof(unsigned*));
+    for( el_i = 0; el_i < Mesh_GetLocalSize( self->velocityField->feMesh, 2 ); el_i++ ) {
+        self->elPatch[el_i] = malloc( 16*sizeof(unsigned) );
+    }
+
     /* sanity checks */
     if( Mesh_GetDimSize( self->velocityField->feMesh ) != 2 ) {
         printf( "ERROR: component %s requires mesh of dimension 2\n", self->type );
@@ -243,6 +255,8 @@ void _SLIntegrator_Polar_Initialise( void* slIntegrator, void* data ) {
         printf( "ERROR: component %s required mesh algorithms type Mesh_SphericalAlgoritms, type is %s.\n", self->type, self->velocityField->feMesh->algorithms->type );
         abort();
     }
+
+    SLIntegrator_Polar_InitPatches( self );
 }
 
 void _SLIntegrator_Polar_Execute( void* slIntegrator, void* data ) {}
@@ -251,9 +265,7 @@ void _SLIntegrator_Polar_Destroy( void* slIntegrator, void* data ) {
     SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
-    unsigned			field_i;
-
-    if( self->velocityField ) Stg_Component_Destroy( self->velocityField, data, False );
+    unsigned			field_i, el_i;
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
@@ -269,7 +281,14 @@ void _SLIntegrator_Polar_Destroy( void* slIntegrator, void* data ) {
     free(self->GNix[1]);
     free(self->GNix);
 
+    for( el_i = 0; el_i < Mesh_GetLocalSize( self->velocityField->feMesh, 2 ); el_i++ ) {
+        free( self->elPatch[el_i] );
+    }
+    free( self->elPatch );
+
     Stg_Class_Delete( self->inc );
+
+    if( self->velocityField ) Stg_Component_Destroy( self->velocityField, data, False );
 }
 
 void SLIntegrator_Polar_InitSolve( void* _self, void* _context ) {
@@ -424,6 +443,33 @@ unsigned SLIntegrator_Polar_IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
 void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
     SLIntegrator_Polar*	self 			= (SLIntegrator_Polar*)slIntegrator;
     FeMesh*		feMesh			= feVariable->feMesh;
+    unsigned		elInd;
+    unsigned		numdofs			= feVariable->dofLayout->dofCounts[0];
+    double		lCoord[3], phi_i[3];
+    unsigned		node_i, dof_i;
+    Grid**      	grid            	= (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    unsigned*   	sizes           	= Grid_GetSizes( *grid );
+
+    Mesh_SearchElements( feMesh, position, &elInd );
+
+    /* map to master element and interpolate */
+    SLIntegrator_Polar_GlobalToLocal( self, feMesh, self->elPatch[elInd], position, lCoord );
+    SLIntegrator_Polar_ShapeFuncs( self, lCoord, self->Ni );
+    for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+        result[dof_i] = 0.0;
+    }
+    for( node_i = 0; node_i < 16; node_i++ ) {
+        FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][node_i], phi_i );
+        for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
+            result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
+        }
+    }
+}
+
+#if 0
+void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
+    SLIntegrator_Polar*	self 			= (SLIntegrator_Polar*)slIntegrator;
+    FeMesh*		feMesh			= feVariable->feMesh;
     unsigned		elInd, nInc, *inc;
     unsigned		IJK[3], IJK_test[3], index = 0;
     unsigned		gNode_I, lNode_I;
@@ -480,6 +526,7 @@ void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVar
         }
     }
 }
+#endif
 
 void SLIntegrator_Polar_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* varStarField ) {
     SLIntegrator_Polar*		self 		     = (SLIntegrator_Polar*)slIntegrator;
@@ -648,4 +695,59 @@ void SLIntegrator_Polar_GlobalToLocal( void* slIntegrator, void* _mesh, unsigned
         /* if we are here, it means the iterative method didn't converge.
            Thus we set the local coord's to be invalid, i.e. greater than 1.0 */
         lCoord[0] = 1.1;
+}
+
+void SLIntegrator_Polar_InitPatches( void* slIntegrator ) {
+    SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
+    FeMesh*			feMesh		= self->velocityField->feMesh;
+    unsigned			el_i, lNode_i, gNode_i, index, nInc, *inc, IJK[3], IJK_test[3];
+
+    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, 2 ); el_i++ ) {
+        FeMesh_GetElementNodes( feMesh, el_i, self->velocityField->inc );
+        inc  = IArray_GetPtr( self->velocityField->inc );
+        nInc = IArray_GetSize( self->velocityField->inc );
+
+        gNode_i = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
+        SLIntegrator_Polar_GlobalNodeToIJK( feMesh, gNode_i, IJK );
+
+        if( !HasRight( feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
+        if( !HasTop(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
+        if( HasLeft(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
+        if( HasBottom( feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
+
+        FeMesh_NodeGlobalToDomain( feMesh, SLIntegrator_Polar_IJKToGlobalNode( feMesh, IJK ), &lNode_i );
+
+    /* interpolate using SLIntegrator_Polar_Lagrange polynomial shape functions */
+        index = 0;
+        for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+            for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                gNode_i = SLIntegrator_Polar_IJKToGlobalNode( feMesh, IJK_test );
+                if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_i, &lNode_i ) ) abort();
+                else
+                    self->elPatch[el_i][index++] = lNode_i;
+            }
+        }
+    }
+}
+
+double SLIntegrator_Polar_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context ) {
+    SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
+    double			lAdv, lDif, gAdv, gDif, dt, dx[3], dxMin, vMag;
+    double 			manualDt        = Dictionary_GetDouble_WithDefault( context->dictionary, "manualTimeStep", 0.0 );
+
+    if( manualDt > 1.0e-6 ) {
+        return manualDt;
+    }
+
+    FeVariable_GetMinimumSeparation( self->velocityField, &dxMin, dx );
+    vMag = FieldVariable_GetMaxGlobalFieldMagnitude( self->velocityField );
+    lAdv = self->courant*dxMin/vMag;
+    lDif = self->courant*dxMin*dxMin;
+
+    MPI_Allreduce( &lAdv, &gAdv, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
+    MPI_Allreduce( &lDif, &gDif, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
+
+    dt = ( gAdv < gDif ) ? gAdv : gDif;
+
+    return dt;
 }

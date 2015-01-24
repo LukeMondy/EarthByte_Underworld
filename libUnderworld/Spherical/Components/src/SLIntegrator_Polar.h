@@ -69,6 +69,8 @@
       double*			   Ni;			   \
       double**			   GNix;		   \
       IArray*			   inc;			   \
+      double			   courant;		   \
+      unsigned**		   elPatch;		   \
 
    /** Abstract class defining the interface for a SLIntegrator_Polar solver - see SLIntegrator_Polar.h */
    struct SLIntegrator_Polar { __SLIntegrator_Polar };
@@ -125,6 +127,10 @@
    void SLIntegrator_Polar_ShapeFuncs( void* slIntegrator, const double lCoord[], double* const Ni );
    void SLIntegrator_Polar_ShapeFuncDerivs( void* slIntegrator, const double lCoord[], double** const GNix );
    void SLIntegrator_Polar_GlobalToLocal( void* slIntegrator, void* _mesh, unsigned* nodeInds, const double* gCoord, double* lCoord );
+
+   double SLIntegrator_Polar_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context );
+
+   void SLIntegrator_Polar_InitPatches( void* slIntegrator );
 
 #endif
 
