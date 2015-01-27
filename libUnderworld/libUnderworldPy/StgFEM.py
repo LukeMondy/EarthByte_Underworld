@@ -14479,6 +14479,24 @@ class SemiLagrangianIntegrator(_object):
     __swig_setmethods__["context"] = _StgFEM.SemiLagrangianIntegrator_context_set
     __swig_getmethods__["context"] = _StgFEM.SemiLagrangianIntegrator_context_get
     if _newclass:context = _swig_property(_StgFEM.SemiLagrangianIntegrator_context_get, _StgFEM.SemiLagrangianIntegrator_context_set)
+    __swig_setmethods__["ptsX"] = _StgFEM.SemiLagrangianIntegrator_ptsX_set
+    __swig_getmethods__["ptsX"] = _StgFEM.SemiLagrangianIntegrator_ptsX_get
+    if _newclass:ptsX = _swig_property(_StgFEM.SemiLagrangianIntegrator_ptsX_get, _StgFEM.SemiLagrangianIntegrator_ptsX_set)
+    __swig_setmethods__["ptsY"] = _StgFEM.SemiLagrangianIntegrator_ptsY_set
+    __swig_getmethods__["ptsY"] = _StgFEM.SemiLagrangianIntegrator_ptsY_get
+    if _newclass:ptsY = _swig_property(_StgFEM.SemiLagrangianIntegrator_ptsY_get, _StgFEM.SemiLagrangianIntegrator_ptsY_set)
+    __swig_setmethods__["ptsZ"] = _StgFEM.SemiLagrangianIntegrator_ptsZ_set
+    __swig_getmethods__["ptsZ"] = _StgFEM.SemiLagrangianIntegrator_ptsZ_get
+    if _newclass:ptsZ = _swig_property(_StgFEM.SemiLagrangianIntegrator_ptsZ_get, _StgFEM.SemiLagrangianIntegrator_ptsZ_set)
+    __swig_setmethods__["elPatch"] = _StgFEM.SemiLagrangianIntegrator_elPatch_set
+    __swig_getmethods__["elPatch"] = _StgFEM.SemiLagrangianIntegrator_elPatch_get
+    if _newclass:elPatch = _swig_property(_StgFEM.SemiLagrangianIntegrator_elPatch_get, _StgFEM.SemiLagrangianIntegrator_elPatch_set)
+    __swig_setmethods__["lElSize"] = _StgFEM.SemiLagrangianIntegrator_lElSize_set
+    __swig_getmethods__["lElSize"] = _StgFEM.SemiLagrangianIntegrator_lElSize_get
+    if _newclass:lElSize = _swig_property(_StgFEM.SemiLagrangianIntegrator_lElSize_get, _StgFEM.SemiLagrangianIntegrator_lElSize_set)
+    __swig_setmethods__["courant"] = _StgFEM.SemiLagrangianIntegrator_courant_set
+    __swig_getmethods__["courant"] = _StgFEM.SemiLagrangianIntegrator_courant_get
+    if _newclass:courant = _swig_property(_StgFEM.SemiLagrangianIntegrator_courant_get, _StgFEM.SemiLagrangianIntegrator_courant_set)
     def __init__(self): 
         this = _StgFEM.new_SemiLagrangianIntegrator()
         try: self.this.append(this)
@@ -14557,6 +14575,14 @@ SemiLagrangianIntegrator_IntegrateRK4 = _StgFEM.SemiLagrangianIntegrator_Integra
 def SemiLagrangianIntegrator_Solve(*args):
   return _StgFEM.SemiLagrangianIntegrator_Solve(*args)
 SemiLagrangianIntegrator_Solve = _StgFEM.SemiLagrangianIntegrator_Solve
+
+def SemiLagrangianIntegrator_InitPatches(*args):
+  return _StgFEM.SemiLagrangianIntegrator_InitPatches(*args)
+SemiLagrangianIntegrator_InitPatches = _StgFEM.SemiLagrangianIntegrator_InitPatches
+
+def SemiLagrangianIntegrator_CalcAdvDiffDt(*args):
+  return _StgFEM.SemiLagrangianIntegrator_CalcAdvDiffDt(*args)
+SemiLagrangianIntegrator_CalcAdvDiffDt = _StgFEM.SemiLagrangianIntegrator_CalcAdvDiffDt
 def SquareBracketsFinal(self, index):
 	return self.numpyArray[index]
 
