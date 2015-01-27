@@ -311,7 +311,7 @@ void Spherical_CubedSphereNusselt_Output( UnderworldContext* context ) {
 
    for( e_i = 0; e_i < nEls; e_i++ ) {
       // use cartesian grid data structure - can improve later on to make more general
-      RegularMeshUtils_Element_1DTo3D( mesh, Mesh_DomainToGlobal( (Mesh*)mesh, MT_FACE, e_i ), ijk );
+      RegularMeshUtils_Element_1DTo3D( mesh, Mesh_DomainToGlobal( (Mesh*)mesh, MT_VOLUME, e_i ), ijk );
 
       // if element is on the outer radius boundary
       if( ijk[0] == grid->sizes[0] - 1 ) {
