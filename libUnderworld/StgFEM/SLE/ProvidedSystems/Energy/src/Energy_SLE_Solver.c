@@ -163,7 +163,14 @@ void _Energy_SLE_Solver_AssignFromXML( void* sleSolver, Stg_ComponentFactory* cf
 void _Energy_SLE_Solver_Build( void* sleSolver, void* standardSLE ) {
 	Energy_SLE_Solver*	self = (Energy_SLE_Solver*)sleSolver;
 	SystemLinearEquations*	sle = (SystemLinearEquations*) standardSLE;
-	StiffnessMatrix*	stiffMat = (StiffnessMatrix*)sle->stiffnessMatrices->data[0];
+	StiffnessMatrix*	stiffMat;
+
+	/* when the solver is built from the python wrapper the second argument is passed in as null. component gets 
+	   built from the system of linear equations anyway, so just force it not to be built from python */
+	if( sle == NULL )
+		return;
+
+	stiffMat = (StiffnessMatrix*)sle->stiffnessMatrices->data[0];
 
 	Journal_DPrintf( self->debug, "In %s()\n", __func__ );
 	Stream_IndentBranch( StgFEM_SLE_ProvidedSystems_Energy_Debug );
@@ -171,10 +178,10 @@ void _Energy_SLE_Solver_Build( void* sleSolver, void* standardSLE ) {
 
 	Stg_Component_Build( stiffMat, standardSLE, False );
 
-   if( self->matrixSolver == PETSC_NULL ){
+	if( self->matrixSolver == PETSC_NULL ){
 		KSPCreate( sle->comm, &self->matrixSolver );
-      KSPSetOptionsPrefix( self->matrixSolver, "EnergySolver_" );
-   }
+		KSPSetOptionsPrefix( self->matrixSolver, "EnergySolver_" );
+	}
 
 	Stream_UnIndentBranch( StgFEM_SLE_ProvidedSystems_Energy_Debug );
 }
