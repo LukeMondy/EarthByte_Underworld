@@ -1,5 +1,4 @@
 | p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |
 |-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----+----|
-| 18 | 449 | 6.512 | 1.40592587e-09 |  | 1 | 18 |-4.528298e-01 | 4.272971e-01 | -3.230879e-03 | 5.210183e-03 | 1000.0 | gkgdiag | 0 | fgmres | 1e-3 | default  | fgmres | 1e-5 | 32 | gmg | sink_sinkerBoxq2q1_32x32 | fgmresfgmres | 6 |
-|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----+----|
-| 16 | 529 | 33.42 | 4.30763666e-07 |  | 1 | 16 |-1.452713e+01 | 1.463946e+01 | -1.040936e-03 | 1.377128e-03 | 1000.0 | gkgdiag | 0 | fgmres | 1e-3 | default  | fgmres | 1e-5 | 32 | gmg | sink_sinkerBoxq2q1_32x32 | fgmresfgmres | 8 |
+ 100.0 | gkgdiag | 0 | fgmres | 1e-8 | default  | fgmres | 1e-9 | 256 | gmg | hiresTestSinker_256x256 | fgmresfgmres | 6 |
+ 0.0 | gkgdiag | 0 | fgmres | 1e-8 | default  | fgmres | 1e-9 | 256 | gmg | hiresTestSinker_256x256 | fgmresfgmres | 6 |

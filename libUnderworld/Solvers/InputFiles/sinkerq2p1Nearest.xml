@@ -115,8 +115,8 @@
     <param name="allowUnbalancing"> True </param>
 
     <!-- gauss integration point swarm parameters -->
-    <param name="gaussParticlesX"> 5 </param>
-    <param name="gaussParticlesY"> 5 </param>
+    <param name="gaussParticlesX"> 6 </param>
+    <param name="gaussParticlesY"> 6 </param>
     <param name="gaussParticlesZ"> 4 </param>
 
     <!-- PIC Swarm parameters -->
@@ -149,5 +149,6 @@
 	    </list>
 	</struct>
     </struct>
-    
+
+
 </StGermainData>	

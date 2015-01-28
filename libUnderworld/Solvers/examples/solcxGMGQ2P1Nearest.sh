@@ -37,12 +37,13 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
+#export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
 
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
 
-for VC in 4 6 8
+for VC in 2
 do
-for SC in 0 1
+for SC in 0
 do
 for UW in gkgdiag
 do
@@ -50,15 +51,15 @@ for SCR in fgmres
 do
 for A11 in fgmres
 do
-for SCRTOL in 1e-10
+for SCRTOL in 1e-4
 do
-for A11TOL in 1e-5
+for A11TOL in 1e-3
 do
 #echo "|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----|" | tee -a var.txt
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
-for PEN in 0.0 0.1 1.0 10. 100.0
+for PEN in 0.0
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 ##PEN=`echo "0.25*$PEN" | bc -l`
@@ -79,7 +80,8 @@ MG=gmg
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
-        MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg.opt "
+        #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg.opt "
+	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml  -options_file ./options-scr-mg-rob.opt"
 	    #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-accelerating.opt "
     fi
     if [ "$MG" = "boomeramg" ]                                            
@@ -136,6 +138,8 @@ PCRES=15
 #NAME="Q2P1Solcx"
 NAME="q2p1runsSolCx_conditionNumberMatrices"
 NAME="cxq2p1nearest"
+NAME="cxCHECKPOINTINGq2p1nearest"
+##NAME="hires_cxq2p1_6x6gp"
 #DIR="${NAME}_${RESX}x${RESY}_${BVISC}_${PP}"
 #OUT="$DIR/${PEN}_$count"
 DIR="${NAME}_${RESX}x${RESY}"
@@ -161,6 +165,8 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Nearest.xml \
   	--components.stokesEqn.isNonLinear=False \
   	--saveDataEvery=1 --checkpointEvery=2 --checkpointWritePath="./$OUT/Checkpoints" --checkpointAppendStep=1 \
     --components.FieldTest.normaliseByAnalyticSolution=False \
+    --gaussParticlesX=6 \
+    --gaussParticlesY=6 \
     --solCx_etaA=$VV \
     --solCx_xc=0.5 \
     --solCx_etaB=$VB \
@@ -182,20 +188,21 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Nearest.xml \
   	-A11_ksp_rtol $A11TOL \
     -A11_ksp_type $A11 \
     -A11_ksp_converged_reason \
-    -change_backsolve 1 \
-    -backsolveA11_ksp_type preonly \
-    -backsolveA11_pc_type lu \
-    -backsolveA11_ksp_rtol 1.0e-6 \
-    -change_A11rhspresolve 1 \
-    -rhsA11_ksp_type preonly \
-    -rhsA11_pc_type lu \
-    -rhsA11_ksp_rtol 1.0e-6 \
+    -scr_ksp_monitor \
+    -xchange_backsolve 1 \
+    -xbacksolveA11_ksp_type preonly \
+    -xbacksolveA11_pc_type lu \
+    -xbacksolveA11_ksp_rtol 1.0e-6 \
+    -xchange_A11rhspresolve 1 \
+    -xrhsA11_ksp_type preonly \
+    -xrhsA11_pc_type lu \
+    -xrhsA11_ksp_rtol 1.0e-6 \
   	--elementResI=$RES --elementResJ=$RES \
   	--maxTimeSteps=0 -Xdump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_"  \
     -Xmatdumpdir $OUT -Xsolutiondumpdir $OUT \
     > "./$OUT/output.txt" 2>&1
 
-mv  "$OUT/window.00000.png" "png/${NAME}_${RES}x${RES}_10e${VC}_p${PEN}_tol${SCRTOL}.png"
+cp  "$OUT/window.00000.png" "png/${NAME}_${RES}x${RES}_10e${VC}_p${PEN}_tol${SCRTOL}.png"
 
 #./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt
 

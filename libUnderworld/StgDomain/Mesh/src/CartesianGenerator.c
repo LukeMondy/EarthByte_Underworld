@@ -364,7 +364,7 @@ void _CartesianGenerator_AssignFromXML( void* meshGenerator, Stg_ComponentFactor
 	      /** Read in minimum coord. */
 	      file = H5Fopen( meshReadFileName, H5F_ACC_RDONLY, H5P_DEFAULT );
 	      
-	      if( !file ) {
+	      if( file <= 0 ) {  //H5Fopen returns -1 for non-existant file.
             /** file not found, so don't load from checkpoint */
             self->readFromFile = False;
 				Journal_Printf( errorStream, 

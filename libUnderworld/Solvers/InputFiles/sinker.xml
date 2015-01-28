@@ -105,8 +105,8 @@
     <param name="allowUnbalancing"> True </param>
 
     <!-- gauss integration point swarm parameters -->
-    <param name="gaussParticlesX"> 2 </param>
-    <param name="gaussParticlesY"> 2 </param>
+    <param name="gaussParticlesX"> 6 </param>
+    <param name="gaussParticlesY"> 6 </param>
     <param name="gaussParticlesZ"> 2 </param>
 
     <!-- PIC Swarm parameters -->
@@ -128,7 +128,7 @@
     <!-- Set up BCs and ICs -->
     <include>Underworld/VariableConditions/velocityBCs.freeslip.xml</include>
     
-    <include>Underworld/Viewports/VelocityMagnitudeVP.xml</include>
+<!--    <include>Underworld/Viewports/VelocityMagnitudeVP.xml</include>
     <include>Underworld/Viewports/PressureVP.xml</include>
     
     <include>gLucifer/window.xml</include>
@@ -139,5 +139,6 @@
 	    </list>
 	</struct>
     </struct>
-    
+-->
+
 </StGermainData>	

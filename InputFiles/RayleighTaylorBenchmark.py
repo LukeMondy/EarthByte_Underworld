@@ -44,7 +44,9 @@ dim = 2
 uw.dictionary.setParameters(gravity = 1.0,
                  outputPath="raytay",
                  #restartTimestep  = 59,
-                 maxTimeSteps     = steps
+                 maxTimeSteps     = steps,
+                 resX = 32,
+                 resY = 32
                  )
             
 
@@ -110,13 +112,14 @@ bc.setup.wallNoSlipCreate( wall="bottom")
 uw.dictionary.UpdateDictWithComponent( gdict, name="escapedRoutine", Type="EscapedRoutine")
 fields.setup.operatorFeVariableCreate(feVariableName="VelocityField", operator="Magnitude")
 uw.Construct()
+uw.RunMainLoop()
 
 
 # In[5]:
 
 # Create a field to visualise.
 
-import glucifer.pylab as plt
+#import glucifer.pylab as plt
 
 
 #visual.setup.cameraCreate(centreFieldVariable="VelocityField", name="camera")
@@ -139,18 +142,18 @@ import glucifer.pylab as plt
 
 # In[7]:
 
-fig = plt.figure(num="need3g2y")
-fig.Points(swarm="materialSwarm", colourVariable="materialSwarm-MaterialIndex", pointSize=3.)
+#fig = plt.figure(num="need3g2y")
+#fig.Points(swarm="materialSwarm", colourVariable="materialSwarm-MaterialIndex", pointSize=3.)
 
 
 # In[8]:
 
-fig.show()
+#fig.show()
 
 
 # In[9]:
 
-fig.saveDB("somenewDB.gldb")
+#fig.saveDB("somenewDB.gldb")
 
 
 # In[9]:

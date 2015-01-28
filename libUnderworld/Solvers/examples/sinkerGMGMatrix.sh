@@ -37,6 +37,7 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
+export UWEXEC="mpirun -n 4 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
 for VC in 6
@@ -52,15 +53,15 @@ for SCR in fgmres
 do
 for A11 in fgmres
 do
-for SCRTOL in 1e-5
+for SCRTOL in 1e-8
 do
-for A11TOL in 1e-6
+for A11TOL in 1e-9
 do
 echo "|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----+----|" | tee -a var.txt
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
-for PEN in 1.0
+for PEN in 100.0
 #for PEN in 0 0.000001 0.000005 0.00001 0.00005 0.0001 0.0005 0.001 0.005 0.01 0.05 0.1 0.5 1 10 100 500 1000 10000 100000 1000000 10000000
 #for PEN in 40.0
 do
@@ -83,7 +84,7 @@ SCRP="default"
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
-	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-fixedsmooths.opt "
+	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg-rob.opt "
     fi
     if [ "$MG" = "boomeramg" ]                                            
         then                                                                                                                                                                                          
@@ -112,7 +113,7 @@ ID=$SCR$A11
 RES=$1
 RESX=$RES
 RESY=$RES
-PP=40
+PP=300
 
 SCALETEXT=no_scale
 
@@ -133,14 +134,15 @@ VV=`echo "10^($VC)" | bc -l`
 #VCC=0
 #VB=`echo "10^(-$VCC)" | bc -l`
 VB=1.0
-PCRES=15
+PCRES=25
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
 #NAME="solcxGMG"
 NAME="q1p0xsinkerGMG_conditionNumber"
+NAME="hiresTestSinker"
 #NAME="penTest_${MG}"
 DIR="${NAME}_${RESX}x${RESY}"
-OUT="$DIR/sinker_10e${VC}_${SCALETEXT}"
+OUT="$DIR/sinker_10e${VC}_${SCALETEXT}_${PEN}"
 mkdir $DIR >& /dev/null
 mkdir $OUT >& /dev/null
 
@@ -188,12 +190,15 @@ $UWEXEC $UWPATH/Solvers/InputFiles/sinker.xml \
     -XbacksolveA11_ksp_type fgmres \
     -XbacksolveA11_ksp_rtol 1.0e-6 \
   	--elementResI=$RES --elementResJ=$RES \
-  	--maxTimeSteps=0 -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_sinker_" -matdumpdir $OUT -solutiondumpdir $OUT  \
-    -change_backsolve 1 \
-    --components.stokesblockkspinterface.OptionsString=" -backsolveA11_ksp_view -backsolveA11_ksp_monitor -backsolveA11_ksp_type preonly -backsolveA11_pc_type lu " \
-    > "./$OUT/output.txt" 2>&1
+  	--maxTimeSteps=0 -xdump_matvec -xmatsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_sinker_" -xmatdumpdir $OUT -solutiondumpdir $OUT  \
+    -change_backsolve 0 \
+    > "./$OUT/output.txt"
 
-./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt
+#    > "./$OUT/output.txt" 2>&1
+
+#./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt
+
+#    --components.stokesblockkspinterface.OptionsString=" -backsolveA11_ksp_view -backsolveA11_ksp_monitor -backsolveA11_ksp_type preonly -backsolveA11_pc_type lu " \
 
 echo " $PEN | $UW | $SC | $SCR | $SCRTOL | $SCRP  | $A11 | $A11TOL | $RES | $MG | $DIR | $ID | $VC |" | tee -a  var.txt
 

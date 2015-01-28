@@ -20,7 +20,7 @@
 #-Q22_pc_type uwscale
 
 #-scr_ksp_converged_reason
--A11_ksp_converged_reason
+#-A11_ksp_converged_reason
 -A11_ksp_type preonly
 -A11_pc_type lu
 
