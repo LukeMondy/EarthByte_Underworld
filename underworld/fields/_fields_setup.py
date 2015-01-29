@@ -180,7 +180,8 @@ def meshVariableCreate( componentName="",
                         rankType="Vector",
                         dataType="Double",
                         meshName="velocityMesh",
-                        mergeType="merge"):
+                        mergeType="merge",
+                        namesList = ["vx", "vy", "vz"]):
     """
     Set up a Mesh Variable in the dictionary.
     Possible rankTypes are ( Scalar, Vector )
@@ -223,7 +224,7 @@ def meshVariableCreate( componentName="",
     # Will these vx,vy,vz sub-names be unique global names in the dictionary ?
 
     if rankType == "Vector":
-        namesList = ["vx", "vy", "vz"]
+        #namesList = ["vx", "vy", "vz"]
         newComponentMeshVarDict = _uw.dictionary.UpdateDictWithComponent(   name=componentName,
                                                                             Type="MeshVariable",
                                                                             Rank=rankType,

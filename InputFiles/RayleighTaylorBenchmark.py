@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
+# <nbformat>3.0</nbformat>
 
-# coding: utf-8
-
-# In[1]:
+# <codecell>
 
 ## Rayleigh Taylor benchmark with No XML at all!                                                                              
 
@@ -19,14 +19,12 @@ import underworld.boundary as bc
 import underworld.equations as eq
 import underworld.physics as phys
 
-
-# In[2]:
+# <codecell>
 
 gdict=uw.dictionary.GetDictionary()
 uw.dictionary.initDefaultParameters()
 
-
-# In[3]:
+# <codecell>
 
 # For Rayleigh-Taylor
 minX=0.0
@@ -44,14 +42,11 @@ dim = 2
 uw.dictionary.setParameters(gravity = 1.0,
                  outputPath="raytay",
                  #restartTimestep  = 59,
-                 maxTimeSteps     = steps,
-                 resX = 32,
-                 resY = 32
+                 maxTimeSteps     = steps
                  )
             
 
-
-# In[4]:
+# <codecell>
 
 
 # Set up a standard Q1P0 Mesh
@@ -59,9 +54,6 @@ geoNames=geometry.setup.meshQ1P0CartesianCreate(dim=dim, pic=True,
                                                 minX=minX, maxX=maxX, minY=minY, maxY=maxY,
                                                 resX=resX, resY=resY,
                                                 particlesPerCell=particlesPerCell)
-
-
-# In[6]:
 
 # Need to set up Shapes and Rheology                                                                                            
 # Set up default background shape                                                                                               
@@ -87,17 +79,11 @@ material.setup.materialCreate( componentName = "lightLayer",
                                )
 
 
-# In[7]:
-
 # Need a system of Equations and Solver                                                                                         
 #eq.stokesSystemCreate(solver="stokesblockkspinterface", buoyancy=True, pic=True)                                                         
 # The uzawa by default at the moment                                                                                            
 eq.setup.stokesSystemCreate(buoyancy=True, pic=True)
 #help(eq.setup.stokesSystemCreate)
-
-
-
-# In[8]:
 
 # Create BC's                                                                                                                   
 
@@ -111,57 +97,62 @@ bc.setup.wallNoSlipCreate( wall="bottom")
 # Let particles leave box just in case                                                                                          
 uw.dictionary.UpdateDictWithComponent( gdict, name="escapedRoutine", Type="EscapedRoutine")
 fields.setup.operatorFeVariableCreate(feVariableName="VelocityField", operator="Magnitude")
-uw.Construct()
-uw.RunMainLoop()
+#uw.Construct()
+#uw.Step()
 
+# <codecell>
 
-# In[5]:
+#help(uw.Step)
+
+# <codecell>
+
+#uw.importToolBox('gLucifer')
 
 # Create a field to visualise.
+fields.setup.operatorFeVariableCreate(feVariableName="VelocityField", operator="Magnitude")
 
-#import glucifer.pylab as plt
+visual.setup.cameraCreate(centreFieldVariable="VelocityField", name="camera")
+#create some arrows for visualisation
+visual.setup.fieldArrowsCreate(name="velocityArrows", fieldVariable="VelocityField")
+#vis.viewPortCreate(fieldVariable="VelocityField", camera="camera")
 
-
-#visual.setup.cameraCreate(centreFieldVariable="VelocityField", name="camera")
-# create some arrows for visualisation
-#visual.setup.fieldArrowsCreate(name="velocityArrows", fieldVariable="VelocityField")
-#visual.setup.viewPortCreate(fieldVariable="PressureField", camera="camera")
-#visual.setup.databaseCreate()
+#visual.setup.viewPortCreate(name="PressureFieldVP",fieldVariable="PressureField", camera="camera")
+visual.setup.viewPortCreate(fieldVariable="PressureField", camera="camera")
+visual.setup.databaseCreate()
 
 # todo: get swarm etc from outputs from above
-#visual.setup.swarmViewerCreate(name="particleDots", pointSize=2.5, swarm="materialSwarm", variable="Density")
-#visual.setup.viewPortCreate(name="particleDotsVP",scalarFieldMap="particleDots", border="border", camera="camera")
-#visual.setup.viewPortCreate(fieldVariable="magnitudeVelocityField", camera="camera", arrows="velocityArrows")
+visual.setup.swarmViewerCreate(name="particleDots", pointSize=2.5, swarm="materialSwarm", variable="Density")
+visual.setup.viewPortCreate(name="particleDotsVP",scalarFieldMap="particleDots", border="border", camera="camera")
+visual.setup.viewPortCreate(fieldVariable="magnitudeVelocityField", camera="camera", arrows="velocityArrows")
 
 
-#visual.setup.windowCreate(viewPortList=["PressureFieldVP magnitudeVelocityFieldVP particleDotsVP"])
+visual.setup.windowCreate(viewPortList=["PressureFieldVP magnitudeVelocityFieldVP particleDotsVP"])
 
 
+# <codecell>
 
-# In[6]:
+uw.Construct()
+uw.Step(steps=2)
 
-# In[7]:
+# <codecell>
 
-#fig = plt.figure(num="need3g2y")
-#fig.Points(swarm="materialSwarm", colourVariable="materialSwarm-MaterialIndex", pointSize=3.)
+# Create a field to visualise.
+import glucifer.pylab as plt
 
+fig = plt.figure(num="PressureFieldImage")
+fig.Surface(field="PressureField")
+fig.show()
 
-# In[8]:
+# <codecell>
 
-#fig.show()
+fig = plt.figure(num="need3g2y")
+fig.Points(swarm="materialSwarm", colourVariable="materialSwarm-MaterialIndex", pointSize=3.)
 
+# <codecell>
 
-# In[9]:
+fig.show()
 
-#fig.saveDB("somenewDB.gldb")
-
-
-# In[9]:
-
-
-
-
-# In[9]:
+# <codecell>
 
 
 
