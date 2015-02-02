@@ -103,17 +103,18 @@ pltPits={}
 f, ((pltIts[0], pltIts[1]), (pltPtime[0], pltPtime[1]), (pltPress[0], pltPress[1]), (pltVel[0], pltVel[1]), (pltPits[0], pltPits[1])) = plt.subplots(5, 2)
 
 solve="LU"
+solve="gmg"
 basemodel="cx"
 modelstr=basemodel
 gp="6"
 gpstr=gp+"x"+gp
-intstyle="pcdvc"
+#intstyle="pcdvc"
 #intstyle="gauss"
 intstyle="nearest" # Nearest
 quadmodel="q2p1"
 
 a11tol=1e-4
-scrtol=1e-7
+scrtol=1e-3
 
 varmg=0
 #######################################################################################################
@@ -129,7 +130,6 @@ modelNum=0
 for model in models:
     count=1
 
-
     element='Q1-P0'
     matrix='K'
     fac=2
@@ -143,7 +143,6 @@ for model in models:
     if 'q2p1' in model:
         element='Q2-P1'
         fac=1
-
 
     mglevels=3
 
@@ -159,17 +158,17 @@ for model in models:
     pltlist2=[]
     pltlegend2=[]
     
-    resList=[16*fac,24*fac,32*fac]
-    resList=[64*fac,128*fac]
+    resList=[16*fac,24*fac]
+    #resList=[64*fac,128*fac]
     resCount=float(len(resList))
     resAlpha=resCount
 
     ncols=len(resList)
     #resList=[16*fac,24*fac]
-    vjumpList=[2,4,6]
+    vjumpList=[2,6]
     #pens=[0.01, 0.5, 1.0, 3, 10, 20, 100, 500, 2000, 10000]
-    pens=[0.0, 0.01, 1.0, 20, 100, 500, 1000, 10000]
-    pens=[0.0, 500, 10000]
+    #pens=[0.0, 0.01, 1.0, 20, 100, 500, 1000, 10000]
+    pens=[0.01, 500, 10000]
     pensCount=float(len(pens))
 
     lineColorsK=['m','y','r','g']
@@ -185,23 +184,16 @@ for model in models:
     VELOCITYU={}
 
     fstr={}
-    
     colstr=0
-    
     penAll=[]
-    
     scrp="default"
     mg="gmg"
-    
-    #output path
-    
     uw="gkgdiag"
     #uw="gtkg"
     
     scr="fgmres"
     a11=scr
     scrnormtype=""
-
 
     a11tolstr=str(a11tol)
     if "LU" in solve:
@@ -266,7 +258,6 @@ for model in models:
         scale="no_scale"
         colstr=0
         resx=resy=res
-
 
         if(varmg==1):
             #dirstr="%(model)s_%(resx)sx%(resy)s_%(varmg)s" % {"model": model, "resx": resx, "resy": resy, "varmg":varmg}
@@ -455,6 +446,7 @@ strIm="%(modelstr)s%(gpstr)s-%(solve)s-q1p0-%(quadmodel)s%(Intstyle)s_totalWork_
 
 if varmg==1:
     strIm="%(modelstr)s%(gpstr)s-%(solve)s-q1p0-%(quadmodel)s%(Intstyle)s_totalWork_%(scale)s_[%(scrtol)s__%(a11tol)s]_varMG.pdf" % {"modelstr":modelstr, "gpstr": gpstr, "quadmodel":quadmodel, "Intstyle":intstyle.upper(), "scale": scale, "scrtol": str(scrtol), "a11tol": str(a11tolstr), "solve":solve}
-#plt.savefig(strIm, format='pdf')
+
+plt.savefig(strIm, format='pdf')
     
 # for models
