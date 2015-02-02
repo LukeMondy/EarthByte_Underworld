@@ -648,7 +648,7 @@ void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* f
 void SLIntegrator_Spherical_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* varStarField ) {
     SLIntegrator_Spherical*	self 		     = (SLIntegrator_Spherical*)slIntegrator;
     FiniteElementContext*	context		     = self->context;
-    unsigned			node_i;
+    unsigned			node_i, gNode_i;
     FeMesh*			feMesh		     = variableField->feMesh;
     unsigned			meshSize	     = Mesh_GetLocalSize( feMesh, MT_VERTEX );
     FeVariable*			velocityField	     = self->velocityField;
@@ -664,9 +664,10 @@ void SLIntegrator_Spherical_Solve( void* slIntegrator, FeVariable* variableField
 
     /* assume that the variable mesh is the same as the velocity mesh */
     for( node_i = 0; node_i < meshSize; node_i++ ) {
+        gNode_i = Mesh_DomainToGlobal( feMesh, MT_VERTEX, node_i );
         /* skip if node is an outer wall with a boundary condition to avoid overshooting of characteristics 
            to departure points outside circle. TODO: only consistent for scalar fields at present */
-        if( FeVariable_IsBC( variableField, node_i, 0 ) && node_i%sizes[0] == sizes[0] - 1 /*outer (right) wall*/ )
+        if( FeVariable_IsBC( variableField, node_i, 0 ) && gNode_i%sizes[0] == sizes[0] - 1 /*outer (right) wall*/ )
             continue;
 
 	coord = Mesh_GetVertex( feMesh, node_i );
