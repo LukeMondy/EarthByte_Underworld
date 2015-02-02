@@ -170,14 +170,20 @@
 	Bool Mesh_HasIncidence( void* mesh, MeshTopology_Dim fromDim, MeshTopology_Dim toDim );
 	unsigned Mesh_GetIncidenceSize( void* mesh, MeshTopology_Dim fromDim, unsigned fromInd, 
 					MeshTopology_Dim toDim );
-	void Mesh_GetIncidence( void* mesh, MeshTopology_Dim fromDim, unsigned fromInd, MeshTopology_Dim toDim, 
-				IArray* inc );
+
+	/* fromDim: the dimensionality of the input index
+	 * fromInd: the input index
+	 * toDim:   the dimensionality of the output index
+         *
+	 * fromDim and toDim dimensions are 0 (vertex), 1 (edge), 2 (face), 3 (volume)
+         *
+	 * returns the local indices in the index array */
+	void Mesh_GetIncidence( void* mesh, MeshTopology_Dim fromDim, unsigned fromInd, MeshTopology_Dim toDim, IArray* inc );
 
 	unsigned Mesh_NearestVertex( void* mesh, double* point );
 	Bool Mesh_Search( void* mesh, double* point, 
 			  MeshTopology_Dim* dim, unsigned* ind );
 
-	Bool Mesh_SearchElements( void* mesh, double* point, unsigned* elInd );
 	/* Mesh_SearchElements (
 	 * mesh -- is a mesh
 	 * point -- is a global coordinate
@@ -187,6 +193,7 @@
 	 * False if the point is not in the DOMAIN space of the proc 
 	 * True if the point is in the DOMAIN space
 	 */
+	Bool Mesh_SearchElements( void* mesh, double* point, unsigned* elInd );
 
 	Bool Mesh_ElementHasPoint( void* mesh, unsigned element, double* point, 
 				   MeshTopology_Dim* dim, unsigned* ind );
