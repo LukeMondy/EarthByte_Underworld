@@ -127,4 +127,6 @@
 
    void SLIntegrator_FullSphere_InitPatches( void* slIntegrator );
 
+   int NeighbourElementFace( FeMesh* feMesh, unsigned el, unsigned* side, unsigned* elNodes );
+
 #endif

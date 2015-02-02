@@ -239,8 +239,8 @@ void _SLIntegrator_Spherical_Initialise( void* slIntegrator, void* data ) {
     self->GNix[1] = malloc(64*sizeof(double));
     self->GNix[2] = malloc(64*sizeof(double));
 
-    self->elPatch = malloc(Mesh_GetLocalSize( feMesh, SL_DIM )*sizeof(unsigned*));
-    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, SL_DIM ); el_i++ ) {
+    self->elPatch = malloc(Mesh_GetDomainSize( feMesh, SL_DIM )*sizeof(unsigned*));
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, SL_DIM ); el_i++ ) {
         self->elPatch[el_i] = malloc( 64*sizeof(unsigned) );
     }
 
@@ -271,6 +271,11 @@ void _SLIntegrator_Spherical_Destroy( void* slIntegrator, void* data ) {
     FeVariable*			feVarStar;
     unsigned			field_i, el_i;
 
+    for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, SL_DIM ); el_i++ ) {
+        free( self->elPatch[el_i] );
+    }
+    free( self->elPatch );
+
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
@@ -285,11 +290,6 @@ void _SLIntegrator_Spherical_Destroy( void* slIntegrator, void* data ) {
     free(self->GNix[1]);
     free(self->GNix[2]);
     free(self->GNix);
-
-    for( el_i = 0; el_i < Mesh_GetLocalSize( self->velocityField->feMesh, SL_DIM ); el_i++ ) {
-        free( self->elPatch[el_i] );
-    }
-    free( self->elPatch );
 
     Stg_Class_Delete( self->inc );
 
@@ -354,16 +354,12 @@ void SLIntegrator_Spherical_IntegrateRK4( void* slIntegrator, FeVariable* veloci
 }
 
 Bool SLIntegrator_Spherical_HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
-    unsigned	nInc;
+    unsigned	nInc = 0, ii;
 
-    Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[0]], SL_DIM, inc );
-    nInc       = IArray_GetSize( inc );
-    Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[1]], SL_DIM, inc );
-    nInc      += IArray_GetSize( inc );
-    Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[2]], SL_DIM, inc );
-    nInc      += IArray_GetSize( inc );
-    Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[3]], SL_DIM, inc );
-    nInc      += IArray_GetSize( inc );
+    for( ii = 0; ii < 4; ii++ ) {
+        Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[ii]], SL_DIM, inc );
+        nInc += IArray_GetSize( inc );
+    }
     if( nInc > 17 )
         return True;
 
@@ -586,10 +582,7 @@ unsigned IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
 void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
     SLIntegrator_Spherical*	self 			= (SLIntegrator_Spherical*)slIntegrator;
     FeMesh*			feMesh			= feVariable->feMesh;
-    unsigned			elInd;//, nInc, *inc;
-    //unsigned			IJK[3], IJK_test[3], index = 0;
-    //unsigned			gNode_I, lNode_I;
-    //unsigned			nodeIndex[64];
+    unsigned			elInd;
     unsigned			numdofs			= feVariable->dofLayout->dofCounts[0];
     double			lCoord[3], phi_i[3];
     unsigned			node_i, dof_i;
@@ -645,7 +638,6 @@ void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* f
         result[dof_i] = 0.0;
     }
     for( node_i = 0; node_i < 64; node_i++ ) {
-        //FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
         FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][node_i], phi_i );
         for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
             result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
@@ -850,7 +842,7 @@ void SLIntegrator_Spherical_InitPatches( void* slIntegrator ) {
     FeMesh*			feMesh		= self->velocityField->feMesh;
     unsigned			el_i, *inc, nInc, IJK[3], IJK_test[3], lNode_i, gNode_i, index;
 
-    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, SL_DIM ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, SL_DIM ); el_i++ ) {
         FeMesh_GetElementNodes( feMesh, el_i, self->velocityField->inc );
         nInc = IArray_GetSize( self->velocityField->inc );
         inc  = IArray_GetPtr( self->velocityField->inc );
