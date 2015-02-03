@@ -231,18 +231,18 @@ void _SLIntegrator_Polar_Initialise( void* slIntegrator, void* data ) {
     }
 
     self->abcissa = malloc(4*sizeof(double));
-    self->Ni      = malloc(64*sizeof(double));
+    self->Ni      = malloc(16*sizeof(double));
     self->GNix    = malloc(2*sizeof(double*));
-    self->GNix[0] = malloc(64*sizeof(double));
-    self->GNix[1] = malloc(64*sizeof(double));
+    self->GNix[0] = malloc(16*sizeof(double));
+    self->GNix[1] = malloc(16*sizeof(double));
 
     self->abcissa[0] = -1.0;
     self->abcissa[1] = -0.33333333333333333;
     self->abcissa[2] = -1.0*self->abcissa[1];
     self->abcissa[3] = -1.0*self->abcissa[0];
 
-    self->elPatch = malloc(Mesh_GetLocalSize( self->velocityField->feMesh, 2 )*sizeof(unsigned*));
-    for( el_i = 0; el_i < Mesh_GetLocalSize( self->velocityField->feMesh, 2 ); el_i++ ) {
+    self->elPatch = malloc(Mesh_GetDomainSize( self->velocityField->feMesh, 2 )*sizeof(unsigned*));
+    for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, 2 ); el_i++ ) {
         self->elPatch[el_i] = malloc( 16*sizeof(unsigned) );
     }
 
@@ -281,7 +281,7 @@ void _SLIntegrator_Polar_Destroy( void* slIntegrator, void* data ) {
     free(self->GNix[1]);
     free(self->GNix);
 
-    for( el_i = 0; el_i < Mesh_GetLocalSize( self->velocityField->feMesh, 2 ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, 2 ); el_i++ ) {
         free( self->elPatch[el_i] );
     }
     free( self->elPatch );
@@ -320,9 +320,9 @@ void SLIntegrator_Polar_InitSolve( void* _self, void* _context ) {
 void SLIntegrator_Polar_IntegrateRK4( void* slIntegrator, FeVariable* velocityField, double dt, double* origin, double* position ) {
     SLIntegrator_Polar*	self 	     	     = (SLIntegrator_Polar*)slIntegrator;
     unsigned		dim_i;
-    double		min[3], max[3];
-    double		k[4][3];
-    double		coordPrime[3];
+    double		min[2], max[2];
+    double		k[4][2];
+    double		coordPrime[2];
     unsigned*		periodic	     = ((CartesianGenerator*)velocityField->feMesh->generator)->periodic;
     Bool		fullAnnulus	     = ((SphericalGenerator*)velocityField->feMesh->generator)->fullAnnulus;
 
@@ -335,24 +335,28 @@ void SLIntegrator_Polar_IntegrateRK4( void* slIntegrator, FeVariable* velocityFi
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[0][dim_i];
     }
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
+    else               SLIntegrator_Polar_CheckBounds( coordPrime, min[0], max[0] );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[1] );
 
     for( dim_i = 0; dim_i < 2; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[1][dim_i];
     }
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
+    else               SLIntegrator_Polar_CheckBounds( coordPrime, min[0], max[0] );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[2] );
 
     for( dim_i = 0; dim_i < 2; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt*k[2][dim_i];
     }
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
+    else               SLIntegrator_Polar_CheckBounds( coordPrime, min[0], max[0] );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[3] );
 
     for( dim_i = 0; dim_i < 2; dim_i++ ) {
         position[dim_i] = origin[dim_i] - INV6*dt*( k[0][dim_i] + 2.0*k[1][dim_i] + 2.0*k[2][dim_i] + k[3][dim_i] );
     }
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( position, min, max, periodic );
+    else               SLIntegrator_Polar_CheckBounds( position, min[0], max[0] );
 }
 
 Bool HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
@@ -422,6 +426,15 @@ void SLIntegrator_Polar_PeriodicUpdate( double* pos, double* min, double* max, B
     Spherical_RTP2XYZ( rt, pos );
 }
 
+void SLIntegrator_Polar_CheckBounds( double* pos, double min, double max ) {
+    double	rt[2];
+
+    Spherical_XYZ2RTP2D( pos, rt );
+    if( rt[0] < min )      rt[0] = min;
+    else if( rt[0] > max ) rt[0] = max;
+    Spherical_RTP2XYZ( rt, pos );
+}
+
 void SLIntegrator_Polar_GlobalNodeToIJK( FeMesh* feMesh, unsigned gNode, unsigned* IJK ) {
     Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
     unsigned*   sizes           = Grid_GetSizes( *grid );
@@ -445,7 +458,7 @@ void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVar
     FeMesh*		feMesh			= feVariable->feMesh;
     unsigned		elInd;
     unsigned		numdofs			= feVariable->dofLayout->dofCounts[0];
-    double		lCoord[3], phi_i[3];
+    double		lCoord[2], phi_i[2];
     unsigned		node_i, dof_i;
     Grid**      	grid            	= (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
     unsigned*   	sizes           	= Grid_GetSizes( *grid );
@@ -531,12 +544,12 @@ void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVar
 void SLIntegrator_Polar_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* varStarField ) {
     SLIntegrator_Polar*		self 		     = (SLIntegrator_Polar*)slIntegrator;
     FiniteElementContext*	context		     = self->context;
-    unsigned			node_i;
+    unsigned			node_i, gNode_i;
     FeMesh*			feMesh		     = variableField->feMesh;
     unsigned			meshSize	     = Mesh_GetLocalSize( feMesh, MT_VERTEX );
     FeVariable*			velocityField	     = self->velocityField;
     double			dt		     = AbstractContext_Dt( context );
-    double			pos[3], var[3];
+    double			pos[2], var[2];
     double*			coord;
     Grid**      		grid                 = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
     unsigned*   		sizes                = Grid_GetSizes( *grid );
@@ -546,9 +559,10 @@ void SLIntegrator_Polar_Solve( void* slIntegrator, FeVariable* variableField, Fe
 
     /* assume that the variable mesh is the same as the velocity mesh */
     for( node_i = 0; node_i < meshSize; node_i++ ) {
+        gNode_i = Mesh_DomainToGlobal( feMesh, MT_VERTEX, node_i );
         /* skip if node is an outer wall with a boundary condition to avoid overshooting of characteristics 
            to departure points outside circle. TODO: only consistent for scalar fields at present */
-        if( FeVariable_IsBC( variableField, node_i, 0 ) && node_i%sizes[0] == sizes[0] - 1 /*outer (right) wall*/ )
+        if( FeVariable_IsBC( variableField, node_i, 0 ) && gNode_i%sizes[0] == sizes[0] - 1 /*outer (right) wall*/ )
             continue;
 
 	coord = Mesh_GetVertex( feMesh, node_i );
@@ -700,9 +714,9 @@ void SLIntegrator_Polar_GlobalToLocal( void* slIntegrator, void* _mesh, unsigned
 void SLIntegrator_Polar_InitPatches( void* slIntegrator ) {
     SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
     FeMesh*			feMesh		= self->velocityField->feMesh;
-    unsigned			el_i, lNode_i, gNode_i, index, nInc, *inc, IJK[3], IJK_test[3];
+    unsigned			el_i, lNode_i, gNode_i, index, nInc, *inc, IJK[2], IJK_test[2];
 
-    for( el_i = 0; el_i < Mesh_GetLocalSize( feMesh, 2 ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, 2 ); el_i++ ) {
         FeMesh_GetElementNodes( feMesh, el_i, self->velocityField->inc );
         inc  = IArray_GetPtr( self->velocityField->inc );
         nInc = IArray_GetSize( self->velocityField->inc );
@@ -717,7 +731,6 @@ void SLIntegrator_Polar_InitPatches( void* slIntegrator ) {
 
         FeMesh_NodeGlobalToDomain( feMesh, SLIntegrator_Polar_IJKToGlobalNode( feMesh, IJK ), &lNode_i );
 
-    /* interpolate using SLIntegrator_Polar_Lagrange polynomial shape functions */
         index = 0;
         for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
             for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
@@ -732,7 +745,7 @@ void SLIntegrator_Polar_InitPatches( void* slIntegrator ) {
 
 double SLIntegrator_Polar_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context ) {
     SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
-    double			lAdv, lDif, gAdv, gDif, dt, dx[3], dxMin, vMag;
+    double			lAdv, lDif, gAdv, gDif, dt, dx[2], dxMin, vMag;
     double 			manualDt        = Dictionary_GetDouble_WithDefault( context->dictionary, "manualTimeStep", 0.0 );
 
     if( manualDt > 1.0e-6 ) {

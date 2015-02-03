@@ -119,6 +119,7 @@
    /* --- Public functions --- */
    void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* coord, double* result );
    void SLIntegrator_Polar_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic );
+   void SLIntegrator_Polar_CheckBounds( double* pos, double min, double max );
    void SLIntegrator_Polar_IntegrateRK4( void* slIntegrator, FeVariable* velocityField, double dt, double* origin, double* position );
 
    /** Solve:- calculate the new values for all solution vectors in the system. */
