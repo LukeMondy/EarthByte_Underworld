@@ -335,28 +335,24 @@ void SLIntegrator_Polar_IntegrateRK4( void* slIntegrator, FeVariable* velocityFi
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[0][dim_i];
     }
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
-    else               SLIntegrator_Polar_CheckBounds( coordPrime, min[0], max[0] );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[1] );
 
     for( dim_i = 0; dim_i < 2; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[1][dim_i];
     }
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
-    else               SLIntegrator_Polar_CheckBounds( coordPrime, min[0], max[0] );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[2] );
 
     for( dim_i = 0; dim_i < 2; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt*k[2][dim_i];
     }
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( coordPrime, min, max, periodic );
-    else               SLIntegrator_Polar_CheckBounds( coordPrime, min[0], max[0] );
     SLIntegrator_Polar_CubicInterpolator( self, velocityField, coordPrime, k[3] );
 
     for( dim_i = 0; dim_i < 2; dim_i++ ) {
         position[dim_i] = origin[dim_i] - INV6*dt*( k[0][dim_i] + 2.0*k[1][dim_i] + 2.0*k[2][dim_i] + k[3][dim_i] );
     }
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( position, min, max, periodic );
-    else               SLIntegrator_Polar_CheckBounds( position, min[0], max[0] );
 }
 
 Bool HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
@@ -423,15 +419,6 @@ void SLIntegrator_Polar_PeriodicUpdate( double* pos, double* min, double* max, B
         }
     }
 
-    Spherical_RTP2XYZ( rt, pos );
-}
-
-void SLIntegrator_Polar_CheckBounds( double* pos, double min, double max ) {
-    double	rt[2];
-
-    Spherical_XYZ2RTP2D( pos, rt );
-    if( rt[0] < min )      rt[0] = min;
-    else if( rt[0] > max ) rt[0] = max;
     Spherical_RTP2XYZ( rt, pos );
 }
 
