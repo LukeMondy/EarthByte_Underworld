@@ -152,24 +152,74 @@ void Spherical_InitialConditions_AngleVaryingTemperature( Node_LocalIndex node_l
     *result = cos( alpha*theta );
 }
 
+void Spherical_InitialConditions_ShearCellEta( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+    FiniteElementContext*       context         = (FiniteElementContext*)_context;
+    FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "TemperatureField" );
+    FeMesh*                     mesh            = feVariable->feMesh;
+    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
+    double*                     result          = (double*)_result;
+    double			kEta   		= Dictionary_GetDouble_WithDefault( context->dictionary, "shearCell_kEta",  1.0 );
+    double			kZeta		= Dictionary_GetDouble_WithDefault( context->dictionary, "shearCell_kZeta", 1.0 );
+    double			rMin		= Dictionary_GetDouble_WithDefault( context->dictionary, "minX", 1.0 );
+    double			rMax		= Dictionary_GetDouble_WithDefault( context->dictionary, "maxX", 2.0 );
+    double			rFilter;
+    double			rMid, kr;
+    double			rs[3];
+
+    Spherical_XYZ2regionalSphere( coord, rs );
+
+    rMid    = 0.5*(rMin + rMax);
+    kr      = M_PI/(rMin - rMax);
+    rFilter = 0.5*( 1.0 + cos( kr*( rs[0] - rMid ) ) );
+
+    *result = +rFilter*sin( kEta*( rs[1] ) )*cos( kZeta*( rs[2] ) );
+}
+
+void Spherical_InitialConditions_ShearCellZeta( Node_LocalIndex node_lI, Variable_Index var_I, void* _context, void* _data, void* _result ) {
+    FiniteElementContext*       context         = (FiniteElementContext*)_context;
+    FeVariable*          	feVariable      = (FeVariable*) FieldVariable_Register_GetByName( context->fieldVariable_Register, "TemperatureField" );
+    FeMesh*                     mesh            = feVariable->feMesh;
+    double*                     coord           = Mesh_GetVertex( mesh, node_lI );
+    double*                     result          = (double*)_result;
+    double			kEta   		= Dictionary_GetDouble_WithDefault( context->dictionary, "shearCell_kEta",  1.0 );
+    double			kZeta		= Dictionary_GetDouble_WithDefault( context->dictionary, "shearCell_kZeta", 1.0 );
+    double			rMin		= Dictionary_GetDouble_WithDefault( context->dictionary, "minX", 1.0 );
+    double			rMax		= Dictionary_GetDouble_WithDefault( context->dictionary, "maxX", 2.0 );
+    double			rFilter;
+    double			rMid, kr;
+    double			rs[3];
+
+    Spherical_XYZ2regionalSphere( coord, rs );
+
+    rMid    = 0.5*(rMin + rMax);
+    kr      = M_PI/(rMin - rMax);
+    rFilter = 0.5*( 1.0 + cos( kr*( rs[0] - rMid ) ) );
+
+    *result = -rFilter*cos( kEta*( rs[1] ) )*sin( kZeta*( rs[2] ) );
+}
+
 void Spherical_InitialConditions_AssignFromXML( void* _self, Stg_ComponentFactory* cf, void* data ) {
     Spherical_InitialConditions* 	self 		= (Spherical_InitialConditions*)_self;
     AbstractContext*		context		= Stg_ComponentFactory_ConstructByName( cf, (Name)"context", AbstractContext, True, NULL  );
     ConditionFunction*		condFunc;
 
-    condFunc = ConditionFunction_New( Spherical_InitialConditions_SolWave, (Name)"SolWave_RS", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_SolWave, (Name)"SolWave_RS", NULL );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereX, (Name)"ParametricSphereX", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereX, (Name)"ParametricSphereX", NULL );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereY, (Name)"ParametricSphereY", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereY, (Name)"ParametricSphereY", NULL );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereZ, (Name)"ParametricSphereZ", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricSphereZ, (Name)"ParametricSphereZ", NULL );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricCircle3DX, (Name)"ParametricCircle3DX", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricCircle3DX, (Name)"ParametricCircle3DX", NULL );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricCircle3DY, (Name)"ParametricCircle3DY", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ParametricCircle3DY, (Name)"ParametricCircle3DY", NULL );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    condFunc = ConditionFunction_New( Spherical_InitialConditions_AngleVaryingTemperature, (Name)"AngleVaryingTemperature", NULL  );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_AngleVaryingTemperature, (Name)"AngleVaryingTemperature", NULL );
+    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ShearCellEta,  (Name)"ShearCellEta",  NULL );
+    ConditionFunction_Register_Add( condFunc_Register, condFunc );
+    condFunc = ConditionFunction_New( Spherical_InitialConditions_ShearCellZeta, (Name)"ShearCellZeta", NULL );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
 }
 
