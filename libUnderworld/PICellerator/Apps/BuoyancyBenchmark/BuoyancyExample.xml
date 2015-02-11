@@ -35,7 +35,7 @@
    <include>PICellerator/StokesFlowUzawa.xml</include>
    <!--include>Underworld/StokesFlowUzawaCompressible.xml</include-->
 
-   <param name="gravity">9.81</param>
+   <param name="gravity">-9.81</param>
 
    <!-- Rheology Components -->
    <struct name="components" mergeType="merge">
@@ -48,6 +48,10 @@
          <param name="TemperatureField">TemperatureField</param>
          <param name="Swarm">picIntegrationPoints</param>
          <param name="gravity">gravity</param>
+         <list name="gravityDirection">
+             <param> 0 </param>
+             <param> -1 </param>
+         </list>
       </struct>
       <!-- Background Material Stuff -->
       <!--struct name="backgroundShape">
