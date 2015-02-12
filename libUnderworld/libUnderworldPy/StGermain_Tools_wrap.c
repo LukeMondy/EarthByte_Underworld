@@ -3154,7 +3154,7 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[241]
 #define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[242]
 #define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[243]
-#define SWIGTYPE_p_f_p_void_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[244]
+#define SWIGTYPE_p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void swig_types[244]
 #define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[245]
 #define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[246]
 #define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[247]
@@ -4057,7 +4057,7 @@ static swig_type_info _swigt__p_Order_t = {"_p_Order_t", "Order *|enum Order_t *
 static swig_type_info _swigt__p_Plugin = {"_p_Plugin", "struct Plugin *|Plugin *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PluginsManager = {"_p_PluginsManager", "struct PluginsManager *|PluginsManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Progress = {"_p_Progress", "struct Progress *|Progress *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_PtrMap = {"_p_PtrMap", "struct PtrMap *|PtrMap *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_PtrMap = {"_p_PtrMap", "PtrMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PtrMapTuple = {"_p_PtrMapTuple", "struct PtrMapTuple *|PtrMapTuple *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PtrSet = {"_p_PtrSet", "struct PtrSet *|PtrSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_RangeSet = {"_p_RangeSet", "struct RangeSet *|RangeSet *", 0, 0, (void*)0, 0};
@@ -4115,7 +4115,7 @@ static swig_type_info _swigt__p__Stg_CallGraph_Entry = {"_p__Stg_CallGraph_Entry
 static swig_type_info _swigt__p__Stg_Class = {"_p__Stg_Class", "struct _Stg_Class *|Stg_Class *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Stg_Object = {"_p__Stg_Object", "struct _Stg_Object *|Stg_Object *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Stg_ObjectAdaptor = {"_p__Stg_ObjectAdaptor", "struct _Stg_ObjectAdaptor *|Stg_ObjectAdaptor *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p__Stg_ObjectList = {"_p__Stg_ObjectList", "Pointer_Register *|Register_Register *|struct _Stg_ObjectList *|Stg_ObjectList *|ExtensionList *|EntryPointList *|ExtensionInfoList *|HookList *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p__Stg_ObjectList = {"_p__Stg_ObjectList", "Pointer_Register *|Register_Register *|struct _Stg_ObjectList *|ExtensionList *|Stg_ObjectList *|EntryPointList *|ExtensionInfoList *|HookList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Stg_PrimitiveObject = {"_p__Stg_PrimitiveObject", "struct _Stg_PrimitiveObject *|Stg_PrimitiveObject *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Variable = {"_p__Variable", "struct _Variable *|Variable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__VariableAllVC = {"_p__VariableAllVC", "struct _VariableAllVC *|VariableAllVC *", 0, 0, (void*)0, 0};
@@ -4200,12 +4200,12 @@ static swig_type_info _swigt__p_f_p_void_p_void__int = {"_p_f_p_void_p_void__int
 static swig_type_info _swigt__p_f_p_void_p_void__p__Dictionary_Entry_Value = {"_p_f_p_void_p_void__p__Dictionary_Entry_Value", "ModulesManager_GetModulesListFunction *|struct _Dictionary_Entry_Value *(*)(void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void__p_void = {"_p_f_p_void_p_void__p_void", "void *(*)(void *,void *)|Set_UnionFunc *|Set_IntersectionFunc *|Set_SubtractionFunc *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void__unsigned_int = {"_p_f_p_void_p_void__unsigned_int", "Stg_ObjectList_AppendFunction *|Stg_ObjectList_PrependFunction *|unsigned int (*)(void *,void *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_void__void = {"_p_f_p_void_p_void__void", "ConditionFunction_InitFunc *|VariableCondition_BuildSelfFunc *|void (*)(void *,void *)|EntryPoint_Class_VoidPtr_Cast *|EntryPoint_2VoidPtr_Cast *|LinkedList_parseFunction *|LinkedList_dataPrintFunction *|BTree_parseFunction *|IndexSet_DuplicateFunction *|Stg_Component_BuildFunction *|Stg_Component_InitialiseFunction *|Stg_Component_ExecuteFunction *|Stg_Component_DestroyFunction *|HashTable_dataPrintFunction *|HashTable_parseFunction *|EntryPoint_Class_VoidPtr_CallCast *|EntryPoint_VoidPtr_CallCast *|VariableCondition_ApplyFunc *|VariableCondition_ReadDictionaryFunc *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_p_void__void = {"_p_f_p_void_p_void__void", "ConditionFunction_InitFunc *|VariableCondition_BuildSelfFunc *|void (*)(void *,void *)|EntryPoint_Class_VoidPtr_Cast *|EntryPoint_2VoidPtr_Cast *|LinkedList_parseFunction *|LinkedList_dataPrintFunction *|IndexSet_DuplicateFunction *|BTree_parseFunction *|Stg_Component_BuildFunction *|Stg_Component_InitialiseFunction *|Stg_Component_ExecuteFunction *|Stg_Component_DestroyFunction *|HashTable_dataPrintFunction *|HashTable_parseFunction *|EntryPoint_Class_VoidPtr_CallCast *|EntryPoint_VoidPtr_CallCast *|VariableCondition_ApplyFunc *|VariableCondition_ReadDictionaryFunc *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_double__void = {"_p_f_p_void_p_void_double__void", "ContextEntryPoint_Step_CallCast *|void (*)(void *,void *,double)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void = {"_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void", "Stg_Class_CopyFunction *|HashTable_dataCopyFunction *|Stg_ObjectAdaptor_CopyPointerFunction *|void *(*)(void *,void *,enum Bool,char *,struct PtrMap *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_p_void__double = {"_p_f_p_void_p_void_p_void__double", "EntryPoint_Class_Minimum_VoidPtr_CallCast *|EntryPoint_Class_Maximum_VoidPtr_CallCast *|double (*)(void *,void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_p_void__void = {"_p_f_p_void_p_void_p_void__void", "EntryPoint_2VoidPtr_CallCast *|EntryPoint_3VoidPtr_Cast *|void (*)(void *,void *,void *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void = {"_p_f_p_void_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void", "void *(*)(void *,void *,void *,enum Bool,char *,struct PtrMap *)|ExtensionInfo_DataCopyFunction *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void = {"_p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void", "void *(*)(void *,void *,void *,enum Bool,char *,PtrMap *)|ExtensionInfo_DataCopyFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_p_void_p_void__void = {"_p_f_p_void_p_void_p_void_p_void__void", "EntryPoint_3VoidPtr_CallCast *|void (*)(void *,void *,void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_q_const__p_char__p_void = {"_p_f_p_void_q_const__p_char__p_void", "void *(*)(void *,char *const)|Stg_ObjectList_GetFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_q_const__p_char__unsigned_int = {"_p_f_p_void_q_const__p_char__unsigned_int", "unsigned int (*)(void *,char *const)|Stg_ObjectList_GetIndexFunction *", 0, 0, (void*)0, 0};
@@ -4223,7 +4223,7 @@ static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **|Hook_Name *", 0,
 static swig_type_info _swigt__p_p_p_char = {"_p_p_p_char", "char ***", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_stgComponent = {"_p_stgComponent", "struct stgComponent *|stgComponent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|Stg_Byte *|stgByte *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "JournalLevel *|EntryPoint_Index *|ExtensionManager_Index *|Stg_Object_Index *|IndexSet_Index *|ConditionFunction_Index *|AnalyticFunction_Index *|Variable_Set_Index *|Dof_Index *|VariableCondition_Index *|VariableCondition_ValueIndex *|CompositeVC_ItemIndex *|Index *|VariableCondition_VariableIndex *|SetVC_Entry_Index *|Variable_Index *|VariableAllVC_Entry_Index *|ExtensionInfo_Index *|Hook_Index *|Dictionary_Index *|unsigned int *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "JournalLevel *|IndexSet_Index *|Stg_Object_Index *|ConditionFunction_Index *|AnalyticFunction_Index *|Variable_Set_Index *|Dof_Index *|VariableCondition_Index *|ExtensionManager_Index *|EntryPoint_Index *|VariableCondition_ValueIndex *|CompositeVC_ItemIndex *|Index *|VariableCondition_VariableIndex *|ExtensionInfo_Index *|SetVC_Entry_Index *|Variable_Index *|VariableAllVC_Entry_Index *|Hook_Index *|Dictionary_Index *|unsigned int *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "SizeT *|MemoryOpStamp *|Stg_Word *|unsigned long *|ArithPointer *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
@@ -4471,7 +4471,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void,
   &_swigt__p_f_p_void_p_void_p_void__double,
   &_swigt__p_f_p_void_p_void_p_void__void,
-  &_swigt__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void,
+  &_swigt__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void,
   &_swigt__p_f_p_void_p_void_p_void_p_void__void,
   &_swigt__p_f_p_void_q_const__p_char__p_void,
   &_swigt__p_f_p_void_q_const__p_char__unsigned_int,
@@ -4737,7 +4737,7 @@ static swig_cast_info _swigc__p_f_p_void_p_void_double__void[] = {  {&_swigt__p_
 static swig_cast_info _swigc__p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void[] = {  {&_swigt__p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_void_p_void__double[] = {  {&_swigt__p_f_p_void_p_void_p_void__double, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_void_p_void__void[] = {  {&_swigt__p_f_p_void_p_void_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void[] = {  {&_swigt__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void[] = {  {&_swigt__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_void_p_void_p_void__void[] = {  {&_swigt__p_f_p_void_p_void_p_void_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_q_const__p_char__p_void[] = {  {&_swigt__p_f_p_void_q_const__p_char__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_q_const__p_char__unsigned_int[] = {  {&_swigt__p_f_p_void_q_const__p_char__unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
@@ -5003,7 +5003,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void,
   _swigc__p_f_p_void_p_void_p_void__double,
   _swigc__p_f_p_void_p_void_p_void__void,
-  _swigc__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void,
+  _swigc__p_f_p_void_p_void_p_void_enum_Bool_p_char_p_PtrMap__p_void,
   _swigc__p_f_p_void_p_void_p_void_p_void__void,
   _swigc__p_f_p_void_q_const__p_char__p_void,
   _swigc__p_f_p_void_q_const__p_char__unsigned_int,

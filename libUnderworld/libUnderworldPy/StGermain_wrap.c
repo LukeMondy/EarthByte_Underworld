@@ -2910,253 +2910,213 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_AbsArray swig_types[0]
-#define SWIGTYPE_p_AbstractContext swig_types[1]
-#define SWIGTYPE_p_AllocationType swig_types[2]
-#define SWIGTYPE_p_BTree swig_types[3]
-#define SWIGTYPE_p_BTreeIterator swig_types[4]
-#define SWIGTYPE_p_BTreeNode swig_types[5]
-#define SWIGTYPE_p_BTreeProperty_t swig_types[6]
-#define SWIGTYPE_p_BinaryStream swig_types[7]
-#define SWIGTYPE_p_Bool swig_types[8]
-#define SWIGTYPE_p_CFile swig_types[9]
-#define SWIGTYPE_p_CStream swig_types[10]
-#define SWIGTYPE_p_CheckpointFileFormat swig_types[11]
-#define SWIGTYPE_p_Chunk swig_types[12]
-#define SWIGTYPE_p_ChunkArray swig_types[13]
-#define SWIGTYPE_p_ClassHook swig_types[14]
-#define SWIGTYPE_p_ClassPtrExtensionInfo swig_types[15]
-#define SWIGTYPE_p_Codelet swig_types[16]
-#define SWIGTYPE_p_Color_t swig_types[17]
-#define SWIGTYPE_p_Comm swig_types[18]
-#define SWIGTYPE_p_ContextEntryPoint swig_types[19]
-#define SWIGTYPE_p_Context_CallInfo swig_types[20]
-#define SWIGTYPE_p_Dictionary_Entry_Value_AsType swig_types[21]
-#define SWIGTYPE_p_Dictionary_Entry_Value_Type swig_types[22]
-#define SWIGTYPE_p_Dictionary_MergeType swig_types[23]
-#define SWIGTYPE_p_DocumentationComponentFactory swig_types[24]
-#define SWIGTYPE_p_DummyComponent swig_types[25]
-#define SWIGTYPE_p_DynamicVC swig_types[26]
-#define SWIGTYPE_p_EntryPoint swig_types[27]
-#define SWIGTYPE_p_EntryPoint_Register swig_types[28]
-#define SWIGTYPE_p_ExtensionInfo swig_types[29]
-#define SWIGTYPE_p_ExtensionManager swig_types[30]
-#define SWIGTYPE_p_ExtensionManager_Register swig_types[31]
-#define SWIGTYPE_p_File swig_types[32]
-#define SWIGTYPE_p_HashTable swig_types[33]
-#define SWIGTYPE_p_HashTable_Entry swig_types[34]
-#define SWIGTYPE_p_HashTable_Index swig_types[35]
-#define SWIGTYPE_p_Hasher swig_types[36]
-#define SWIGTYPE_p_HierarchyTable swig_types[37]
-#define SWIGTYPE_p_Hook swig_types[38]
-#define SWIGTYPE_p_IArray swig_types[39]
-#define SWIGTYPE_p_IMap swig_types[40]
-#define SWIGTYPE_p_IMapItem swig_types[41]
-#define SWIGTYPE_p_IMapIter swig_types[42]
-#define SWIGTYPE_p_ISet swig_types[43]
-#define SWIGTYPE_p_ISetItem swig_types[44]
-#define SWIGTYPE_p_ISetIter swig_types[45]
-#define SWIGTYPE_p_IndentFormatter swig_types[46]
-#define SWIGTYPE_p_IndexMap swig_types[47]
-#define SWIGTYPE_p_IndexMapTuple swig_types[48]
-#define SWIGTYPE_p_IndexSet swig_types[49]
-#define SWIGTYPE_p_Iter swig_types[50]
-#define SWIGTYPE_p_Journal swig_types[51]
-#define SWIGTYPE_p_JournalTypedStream swig_types[52]
-#define SWIGTYPE_p_KeyType_t swig_types[53]
-#define SWIGTYPE_p_LineFormatter swig_types[54]
-#define SWIGTYPE_p_LinkedList swig_types[55]
-#define SWIGTYPE_p_LinkedListIterator swig_types[56]
-#define SWIGTYPE_p_LinkedListNode swig_types[57]
-#define SWIGTYPE_p_List swig_types[58]
-#define SWIGTYPE_p_ListEncoding swig_types[59]
-#define SWIGTYPE_p_LiveComponentRegister swig_types[60]
-#define SWIGTYPE_p_MPIFile swig_types[61]
-#define SWIGTYPE_p_MPIStream swig_types[62]
-#define SWIGTYPE_p_MPI_Comm swig_types[63]
-#define SWIGTYPE_p_MapTuple swig_types[64]
-#define SWIGTYPE_p_Mapping swig_types[65]
-#define SWIGTYPE_p_MaxHeap swig_types[66]
-#define SWIGTYPE_p_Memory swig_types[67]
-#define SWIGTYPE_p_MemoryField swig_types[68]
-#define SWIGTYPE_p_MemoryPointer swig_types[69]
-#define SWIGTYPE_p_MemoryPointerStatus_t swig_types[70]
-#define SWIGTYPE_p_MemoryPool swig_types[71]
-#define SWIGTYPE_p_MemoryReport swig_types[72]
-#define SWIGTYPE_p_Module swig_types[73]
-#define SWIGTYPE_p_ModulesManager swig_types[74]
-#define SWIGTYPE_p_NameSpaceInfo swig_types[75]
-#define SWIGTYPE_p_NamedObject_Register swig_types[76]
-#define SWIGTYPE_p_NewClass swig_types[77]
-#define SWIGTYPE_p_NewObject swig_types[78]
-#define SWIGTYPE_p_NumberHasher swig_types[79]
-#define SWIGTYPE_p_Order_t swig_types[80]
-#define SWIGTYPE_p_Plugin swig_types[81]
-#define SWIGTYPE_p_PluginsManager swig_types[82]
-#define SWIGTYPE_p_Progress swig_types[83]
-#define SWIGTYPE_p_PtrMap swig_types[84]
-#define SWIGTYPE_p_PtrSet swig_types[85]
-#define SWIGTYPE_p_RangeSet swig_types[86]
-#define SWIGTYPE_p_RangeSet_ParseStruct swig_types[87]
-#define SWIGTYPE_p_RangeSet_Range swig_types[88]
-#define SWIGTYPE_p_RankFormatter swig_types[89]
-#define SWIGTYPE_p_ReplacementOption swig_types[90]
-#define SWIGTYPE_p_STree swig_types[91]
-#define SWIGTYPE_p_STreeMap swig_types[92]
-#define SWIGTYPE_p_STreeNode swig_types[93]
-#define SWIGTYPE_p_Scaling swig_types[94]
-#define SWIGTYPE_p_Set swig_types[95]
-#define SWIGTYPE_p_SimpleExtensionInfo swig_types[96]
-#define SWIGTYPE_p_Stg_CallGraph swig_types[97]
-#define SWIGTYPE_p_Stg_Component swig_types[98]
-#define SWIGTYPE_p_Stg_ComponentFactory swig_types[99]
-#define SWIGTYPE_p_Stg_ComponentRegister swig_types[100]
-#define SWIGTYPE_p_Stg_ComponentRegisterElement swig_types[101]
-#define SWIGTYPE_p_Stg_ObjectAdaptor_CopyPointerFunction swig_types[102]
-#define SWIGTYPE_p_Stg_ObjectAdaptor_DeletePointerFunction swig_types[103]
-#define SWIGTYPE_p_Stg_ObjectAdaptor_PrintPointerFunction swig_types[104]
-#define SWIGTYPE_p_Stream swig_types[105]
-#define SWIGTYPE_p_StreamFormatter swig_types[106]
-#define SWIGTYPE_p_StreamFormatter_Buffer swig_types[107]
-#define SWIGTYPE_p_TestSuite swig_types[108]
-#define SWIGTYPE_p_Toolbox swig_types[109]
-#define SWIGTYPE_p_ToolboxesManager swig_types[110]
-#define SWIGTYPE_p_UIntMap swig_types[111]
-#define SWIGTYPE_p_UnitDefinition_Type swig_types[112]
-#define SWIGTYPE_p_VariableCondition_ValueType swig_types[113]
-#define SWIGTYPE_p_VariableCondition_Value_Array swig_types[114]
-#define SWIGTYPE_p_VariableCondition_Value_AsType swig_types[115]
-#define SWIGTYPE_p_VariableDumpStream swig_types[116]
-#define SWIGTYPE_p_Variable_DataType swig_types[117]
-#define SWIGTYPE_p__AnalyticFunction swig_types[118]
-#define SWIGTYPE_p__AnalyticFunction_Register swig_types[119]
-#define SWIGTYPE_p__CompositeVC swig_types[120]
-#define SWIGTYPE_p__ConditionFunction swig_types[121]
-#define SWIGTYPE_p__ConditionFunction_Register swig_types[122]
-#define SWIGTYPE_p__Dictionary swig_types[123]
-#define SWIGTYPE_p__Dictionary_Entry swig_types[124]
-#define SWIGTYPE_p__Dictionary_Entry_Value swig_types[125]
-#define SWIGTYPE_p__Dictionary_Entry_Value_List swig_types[126]
-#define SWIGTYPE_p__Dictionary_Entry_Value_Validator swig_types[127]
-#define SWIGTYPE_p__Encoding swig_types[128]
-#define SWIGTYPE_p__Heap swig_types[129]
-#define SWIGTYPE_p__IO_Handler swig_types[130]
-#define SWIGTYPE_p__SetVC swig_types[131]
-#define SWIGTYPE_p__SetVC_Entry swig_types[132]
-#define SWIGTYPE_p__Stg_Class swig_types[133]
-#define SWIGTYPE_p__Stg_Object swig_types[134]
-#define SWIGTYPE_p__Stg_ObjectAdaptor swig_types[135]
-#define SWIGTYPE_p__Stg_ObjectList swig_types[136]
-#define SWIGTYPE_p__Stg_PrimitiveObject swig_types[137]
-#define SWIGTYPE_p__Variable swig_types[138]
-#define SWIGTYPE_p__VariableAllVC swig_types[139]
-#define SWIGTYPE_p__VariableAllVC_Entry swig_types[140]
-#define SWIGTYPE_p__VariableCondition swig_types[141]
-#define SWIGTYPE_p__VariableCondition_Register swig_types[142]
-#define SWIGTYPE_p__VariableCondition_Register_Entry swig_types[143]
-#define SWIGTYPE_p__VariableCondition_Tuple swig_types[144]
-#define SWIGTYPE_p__VariableCondition_Value swig_types[145]
-#define SWIGTYPE_p__Variable_Register swig_types[146]
-#define SWIGTYPE_p__XML_IO_Handler swig_types[147]
-#define SWIGTYPE_p_char swig_types[148]
-#define SWIGTYPE_p_double swig_types[149]
-#define SWIGTYPE_p_f___p_void swig_types[150]
-#define SWIGTYPE_p_f___void swig_types[151]
-#define SWIGTYPE_p_f_p_AbstractContext_p_Variable_Register_p_ConditionFunction_Register_p_Dictionary_p_void__p__VariableCondition swig_types[152]
-#define SWIGTYPE_p_f_p_char__p_void swig_types[153]
-#define SWIGTYPE_p_f_p_char_p_struct__Stg_ObjectList__p_Module swig_types[154]
-#define SWIGTYPE_p_f_p_q_const__char__Bool swig_types[155]
-#define SWIGTYPE_p_f_p_q_const__void_p_q_const__void__int swig_types[156]
-#define SWIGTYPE_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int swig_types[157]
-#define SWIGTYPE_p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value swig_types[158]
-#define SWIGTYPE_p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component swig_types[159]
-#define SWIGTYPE_p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component swig_types[160]
-#define SWIGTYPE_p_f_p_void_Name_Name_unsigned_int_Type_Bool_p_unsigned_int_p_void__p_p_Stg_Component swig_types[161]
-#define SWIGTYPE_p_f_p_void_Name_Type_Bool_p_void__p_Stg_Component swig_types[162]
-#define SWIGTYPE_p_f_p_void_VariableCondition_ValueIndex___VariableCondition_Value swig_types[163]
-#define SWIGTYPE_p_f_p_void__Bool swig_types[164]
-#define SWIGTYPE_p_f_p_void__double swig_types[165]
-#define SWIGTYPE_p_f_p_void__p_IndexSet swig_types[166]
-#define SWIGTYPE_p_f_p_void__p_void swig_types[167]
-#define SWIGTYPE_p_f_p_void__unsigned_int swig_types[168]
-#define SWIGTYPE_p_f_p_void__void swig_types[169]
-#define SWIGTYPE_p_f_p_void_double__void swig_types[170]
-#define SWIGTYPE_p_f_p_void_enum_Bool__void swig_types[171]
-#define SWIGTYPE_p_f_p_void_enum_ListEncoding__void swig_types[172]
-#define SWIGTYPE_p_f_p_void_enum_ReplacementOption_p_void__unsigned_int swig_types[173]
-#define SWIGTYPE_p_f_p_void_int_int__void swig_types[174]
-#define SWIGTYPE_p_f_p_void_p_char__p_char swig_types[175]
-#define SWIGTYPE_p_f_p_void_p_char_enum_ReplacementOption__unsigned_int swig_types[176]
-#define SWIGTYPE_p_f_p_void_p_char_enum_ReplacementOption_p_void__unsigned_int swig_types[177]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_p_q_const__char__p_char swig_types[178]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__double__double swig_types[179]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__enum_Bool__Bool swig_types[180]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__int__int swig_types[181]
-#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__unsigned_int__unsigned_int swig_types[182]
-#define SWIGTYPE_p_f_p_void_p_char_p_q_const__char__p_char swig_types[183]
-#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value__Bool swig_types[184]
-#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value__void swig_types[185]
-#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool swig_types[186]
-#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value_p_char_p_char__void swig_types[187]
-#define SWIGTYPE_p_f_p_void_p_char_p_void__unsigned_int swig_types[188]
-#define SWIGTYPE_p_f_p_void_p_char_q_const__double__double swig_types[189]
-#define SWIGTYPE_p_f_p_void_p_char_q_const__enum_Bool__Bool swig_types[190]
-#define SWIGTYPE_p_f_p_void_p_char_q_const__int__int swig_types[191]
-#define SWIGTYPE_p_f_p_void_p_char_q_const__unsigned_int__unsigned_int swig_types[192]
-#define SWIGTYPE_p_f_p_void_p_double_p_double__void swig_types[193]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool swig_types[194]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool swig_types[195]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool swig_types[196]
-#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool swig_types[197]
-#define SWIGTYPE_p_f_p_void_p_struct_Module__Bool swig_types[198]
-#define SWIGTYPE_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void swig_types[199]
-#define SWIGTYPE_p_f_p_void_p_struct_Stream__void swig_types[200]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int__p_char swig_types[201]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int_p_char__Bool swig_types[202]
-#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_p_struct__Dictionary_p_struct__Stg_ObjectList__void swig_types[203]
-#define SWIGTYPE_p_f_p_void_p_void__double swig_types[204]
-#define SWIGTYPE_p_f_p_void_p_void__p__Dictionary_Entry_Value swig_types[205]
-#define SWIGTYPE_p_f_p_void_p_void__unsigned_int swig_types[206]
-#define SWIGTYPE_p_f_p_void_p_void__void swig_types[207]
-#define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[208]
-#define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[209]
-#define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[210]
-#define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[211]
-#define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[212]
-#define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[213]
-#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__Bool swig_types[214]
-#define SWIGTYPE_p_f_p_void_unsigned_int__unsigned_int swig_types[215]
-#define SWIGTYPE_p_f_p_void_unsigned_int_enum_ReplacementOption__void swig_types[216]
-#define SWIGTYPE_p_f_p_void_unsigned_int_p_void__void swig_types[217]
-#define SWIGTYPE_p_f_p_void_unsigned_int_unsigned_int__unsigned_int swig_types[218]
-#define SWIGTYPE_p_f_unsigned_int_unsigned_int_p_void_p_void_p_void__void swig_types[219]
-#define SWIGTYPE_p_f_void__p_File swig_types[220]
-#define SWIGTYPE_p_int swig_types[221]
-#define SWIGTYPE_p_p_EntryPoint swig_types[222]
-#define SWIGTYPE_p_p_HashTable_Entry swig_types[223]
-#define SWIGTYPE_p_p_Stg_Component swig_types[224]
-#define SWIGTYPE_p_p__AnalyticFunction swig_types[225]
-#define SWIGTYPE_p_p__ConditionFunction swig_types[226]
-#define SWIGTYPE_p_p__Dictionary_Entry swig_types[227]
-#define SWIGTYPE_p_p__Stg_Object swig_types[228]
-#define SWIGTYPE_p_p__Variable swig_types[229]
-#define SWIGTYPE_p_p__VariableCondition_Tuple swig_types[230]
-#define SWIGTYPE_p_p_char swig_types[231]
-#define SWIGTYPE_p_p_p_char swig_types[232]
-#define SWIGTYPE_p_p_unsigned_int swig_types[233]
-#define SWIGTYPE_p_p_void swig_types[234]
-#define SWIGTYPE_p_p_xmlChar swig_types[235]
-#define SWIGTYPE_p_stgComponent swig_types[236]
-#define SWIGTYPE_p_unsigned_char swig_types[237]
-#define SWIGTYPE_p_unsigned_int swig_types[238]
-#define SWIGTYPE_p_unsigned_long swig_types[239]
-#define SWIGTYPE_p_void swig_types[240]
-#define SWIGTYPE_p_xmlChar swig_types[241]
-#define SWIGTYPE_p_xmlDocPtr swig_types[242]
-#define SWIGTYPE_p_xmlNodePtr swig_types[243]
-#define SWIGTYPE_p_xmlNsPtr swig_types[244]
-static swig_type_info *swig_types[246];
-static swig_module_info swig_module = {swig_types, 245, 0, 0, 0, 0};
+#define SWIGTYPE_p_AbstractContext swig_types[0]
+#define SWIGTYPE_p_AllocationType swig_types[1]
+#define SWIGTYPE_p_BinaryStream swig_types[2]
+#define SWIGTYPE_p_Bool swig_types[3]
+#define SWIGTYPE_p_CFile swig_types[4]
+#define SWIGTYPE_p_CStream swig_types[5]
+#define SWIGTYPE_p_CheckpointFileFormat swig_types[6]
+#define SWIGTYPE_p_ClassHook swig_types[7]
+#define SWIGTYPE_p_ClassPtrExtensionInfo swig_types[8]
+#define SWIGTYPE_p_Codelet swig_types[9]
+#define SWIGTYPE_p_Comm swig_types[10]
+#define SWIGTYPE_p_ContextEntryPoint swig_types[11]
+#define SWIGTYPE_p_Context_CallInfo swig_types[12]
+#define SWIGTYPE_p_Dictionary_Entry_Value_AsType swig_types[13]
+#define SWIGTYPE_p_Dictionary_Entry_Value_Type swig_types[14]
+#define SWIGTYPE_p_Dictionary_MergeType swig_types[15]
+#define SWIGTYPE_p_DocumentationComponentFactory swig_types[16]
+#define SWIGTYPE_p_DummyComponent swig_types[17]
+#define SWIGTYPE_p_DynamicVC swig_types[18]
+#define SWIGTYPE_p_EntryPoint swig_types[19]
+#define SWIGTYPE_p_EntryPoint_Register swig_types[20]
+#define SWIGTYPE_p_ExtensionInfo swig_types[21]
+#define SWIGTYPE_p_ExtensionManager swig_types[22]
+#define SWIGTYPE_p_ExtensionManager_Register swig_types[23]
+#define SWIGTYPE_p_File swig_types[24]
+#define SWIGTYPE_p_HashTable swig_types[25]
+#define SWIGTYPE_p_HashTable_Entry swig_types[26]
+#define SWIGTYPE_p_HashTable_Index swig_types[27]
+#define SWIGTYPE_p_HierarchyTable swig_types[28]
+#define SWIGTYPE_p_Hook swig_types[29]
+#define SWIGTYPE_p_IndentFormatter swig_types[30]
+#define SWIGTYPE_p_IndexSet swig_types[31]
+#define SWIGTYPE_p_Journal swig_types[32]
+#define SWIGTYPE_p_JournalTypedStream swig_types[33]
+#define SWIGTYPE_p_KeyType swig_types[34]
+#define SWIGTYPE_p_LineFormatter swig_types[35]
+#define SWIGTYPE_p_ListEncoding swig_types[36]
+#define SWIGTYPE_p_LiveComponentRegister swig_types[37]
+#define SWIGTYPE_p_MPIFile swig_types[38]
+#define SWIGTYPE_p_MPIStream swig_types[39]
+#define SWIGTYPE_p_MPI_Comm swig_types[40]
+#define SWIGTYPE_p_Memory swig_types[41]
+#define SWIGTYPE_p_MemoryField swig_types[42]
+#define SWIGTYPE_p_MemoryPointer swig_types[43]
+#define SWIGTYPE_p_MemoryPointerStatus_t swig_types[44]
+#define SWIGTYPE_p_MemoryReport swig_types[45]
+#define SWIGTYPE_p_Module swig_types[46]
+#define SWIGTYPE_p_ModulesManager swig_types[47]
+#define SWIGTYPE_p_NameSpaceInfo swig_types[48]
+#define SWIGTYPE_p_NamedObject_Register swig_types[49]
+#define SWIGTYPE_p_NewClass swig_types[50]
+#define SWIGTYPE_p_NewObject swig_types[51]
+#define SWIGTYPE_p_Plugin swig_types[52]
+#define SWIGTYPE_p_PluginsManager swig_types[53]
+#define SWIGTYPE_p_Progress swig_types[54]
+#define SWIGTYPE_p_PtrMap swig_types[55]
+#define SWIGTYPE_p_RankFormatter swig_types[56]
+#define SWIGTYPE_p_ReplacementOption swig_types[57]
+#define SWIGTYPE_p_Scaling swig_types[58]
+#define SWIGTYPE_p_SimpleExtensionInfo swig_types[59]
+#define SWIGTYPE_p_Stg_CallGraph swig_types[60]
+#define SWIGTYPE_p_Stg_Component swig_types[61]
+#define SWIGTYPE_p_Stg_ComponentFactory swig_types[62]
+#define SWIGTYPE_p_Stg_ComponentRegister swig_types[63]
+#define SWIGTYPE_p_Stg_ComponentRegisterElement swig_types[64]
+#define SWIGTYPE_p_Stg_ObjectAdaptor_CopyPointerFunction swig_types[65]
+#define SWIGTYPE_p_Stg_ObjectAdaptor_DeletePointerFunction swig_types[66]
+#define SWIGTYPE_p_Stg_ObjectAdaptor_PrintPointerFunction swig_types[67]
+#define SWIGTYPE_p_Stream swig_types[68]
+#define SWIGTYPE_p_StreamFormatter swig_types[69]
+#define SWIGTYPE_p_StreamFormatter_Buffer swig_types[70]
+#define SWIGTYPE_p_TestSuite swig_types[71]
+#define SWIGTYPE_p_Toolbox swig_types[72]
+#define SWIGTYPE_p_ToolboxesManager swig_types[73]
+#define SWIGTYPE_p_UIntMap swig_types[74]
+#define SWIGTYPE_p_UnitDefinition_Type swig_types[75]
+#define SWIGTYPE_p_VariableCondition_ValueType swig_types[76]
+#define SWIGTYPE_p_VariableCondition_Value_Array swig_types[77]
+#define SWIGTYPE_p_VariableCondition_Value_AsType swig_types[78]
+#define SWIGTYPE_p_VariableDumpStream swig_types[79]
+#define SWIGTYPE_p_Variable_DataType swig_types[80]
+#define SWIGTYPE_p__AnalyticFunction swig_types[81]
+#define SWIGTYPE_p__AnalyticFunction_Register swig_types[82]
+#define SWIGTYPE_p__CompositeVC swig_types[83]
+#define SWIGTYPE_p__ConditionFunction swig_types[84]
+#define SWIGTYPE_p__ConditionFunction_Register swig_types[85]
+#define SWIGTYPE_p__Dictionary swig_types[86]
+#define SWIGTYPE_p__Dictionary_Entry swig_types[87]
+#define SWIGTYPE_p__Dictionary_Entry_Value swig_types[88]
+#define SWIGTYPE_p__Dictionary_Entry_Value_List swig_types[89]
+#define SWIGTYPE_p__Dictionary_Entry_Value_Validator swig_types[90]
+#define SWIGTYPE_p__Encoding swig_types[91]
+#define SWIGTYPE_p__IO_Handler swig_types[92]
+#define SWIGTYPE_p__SetVC swig_types[93]
+#define SWIGTYPE_p__SetVC_Entry swig_types[94]
+#define SWIGTYPE_p__Stg_Class swig_types[95]
+#define SWIGTYPE_p__Stg_Object swig_types[96]
+#define SWIGTYPE_p__Stg_ObjectAdaptor swig_types[97]
+#define SWIGTYPE_p__Stg_ObjectList swig_types[98]
+#define SWIGTYPE_p__Stg_PrimitiveObject swig_types[99]
+#define SWIGTYPE_p__Variable swig_types[100]
+#define SWIGTYPE_p__VariableAllVC swig_types[101]
+#define SWIGTYPE_p__VariableAllVC_Entry swig_types[102]
+#define SWIGTYPE_p__VariableCondition swig_types[103]
+#define SWIGTYPE_p__VariableCondition_Register swig_types[104]
+#define SWIGTYPE_p__VariableCondition_Register_Entry swig_types[105]
+#define SWIGTYPE_p__VariableCondition_Tuple swig_types[106]
+#define SWIGTYPE_p__VariableCondition_Value swig_types[107]
+#define SWIGTYPE_p__Variable_Register swig_types[108]
+#define SWIGTYPE_p__XML_IO_Handler swig_types[109]
+#define SWIGTYPE_p_char swig_types[110]
+#define SWIGTYPE_p_double swig_types[111]
+#define SWIGTYPE_p_f___p_void swig_types[112]
+#define SWIGTYPE_p_f___void swig_types[113]
+#define SWIGTYPE_p_f_p_AbstractContext_p_Variable_Register_p_ConditionFunction_Register_p_Dictionary_p_void__p__VariableCondition swig_types[114]
+#define SWIGTYPE_p_f_p_char__p_void swig_types[115]
+#define SWIGTYPE_p_f_p_char_p_struct__Stg_ObjectList__p_Module swig_types[116]
+#define SWIGTYPE_p_f_p_q_const__char__Bool swig_types[117]
+#define SWIGTYPE_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int swig_types[118]
+#define SWIGTYPE_p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value swig_types[119]
+#define SWIGTYPE_p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component swig_types[120]
+#define SWIGTYPE_p_f_p_void_Name_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component swig_types[121]
+#define SWIGTYPE_p_f_p_void_Name_Name_unsigned_int_Type_Bool_p_unsigned_int_p_void__p_p_Stg_Component swig_types[122]
+#define SWIGTYPE_p_f_p_void_Name_Type_Bool_p_void__p_Stg_Component swig_types[123]
+#define SWIGTYPE_p_f_p_void_VariableCondition_ValueIndex___VariableCondition_Value swig_types[124]
+#define SWIGTYPE_p_f_p_void__Bool swig_types[125]
+#define SWIGTYPE_p_f_p_void__double swig_types[126]
+#define SWIGTYPE_p_f_p_void__p_IndexSet swig_types[127]
+#define SWIGTYPE_p_f_p_void__p_void swig_types[128]
+#define SWIGTYPE_p_f_p_void__unsigned_int swig_types[129]
+#define SWIGTYPE_p_f_p_void__void swig_types[130]
+#define SWIGTYPE_p_f_p_void_double__void swig_types[131]
+#define SWIGTYPE_p_f_p_void_enum_Bool__void swig_types[132]
+#define SWIGTYPE_p_f_p_void_enum_ListEncoding__void swig_types[133]
+#define SWIGTYPE_p_f_p_void_enum_ReplacementOption_p_void__unsigned_int swig_types[134]
+#define SWIGTYPE_p_f_p_void_int_int__void swig_types[135]
+#define SWIGTYPE_p_f_p_void_p_char__p_char swig_types[136]
+#define SWIGTYPE_p_f_p_void_p_char_enum_ReplacementOption__unsigned_int swig_types[137]
+#define SWIGTYPE_p_f_p_void_p_char_enum_ReplacementOption_p_void__unsigned_int swig_types[138]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_p_q_const__char__p_char swig_types[139]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__double__double swig_types[140]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__enum_Bool__Bool swig_types[141]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__int__int swig_types[142]
+#define SWIGTYPE_p_f_p_void_p_char_p_char_q_const__unsigned_int__unsigned_int swig_types[143]
+#define SWIGTYPE_p_f_p_void_p_char_p_q_const__char__p_char swig_types[144]
+#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value__Bool swig_types[145]
+#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value__void swig_types[146]
+#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool swig_types[147]
+#define SWIGTYPE_p_f_p_void_p_char_p_struct__Dictionary_Entry_Value_p_char_p_char__void swig_types[148]
+#define SWIGTYPE_p_f_p_void_p_char_p_void__unsigned_int swig_types[149]
+#define SWIGTYPE_p_f_p_void_p_char_q_const__double__double swig_types[150]
+#define SWIGTYPE_p_f_p_void_p_char_q_const__enum_Bool__Bool swig_types[151]
+#define SWIGTYPE_p_f_p_void_p_char_q_const__int__int swig_types[152]
+#define SWIGTYPE_p_f_p_void_p_char_q_const__unsigned_int__unsigned_int swig_types[153]
+#define SWIGTYPE_p_f_p_void_p_double_p_double__void swig_types[154]
+#define SWIGTYPE_p_f_p_void_p_q_const__char_p_char_p_struct__Dictionary_Entry_Value_p_char__Bool swig_types[155]
+#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_enum_Dictionary_MergeType__Bool swig_types[156]
+#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_q_const__char__Bool swig_types[157]
+#define SWIGTYPE_p_f_p_void_p_q_const__char_p_struct__Dictionary_p_struct__Dictionary__Bool swig_types[158]
+#define SWIGTYPE_p_f_p_void_p_struct_Module__Bool swig_types[159]
+#define SWIGTYPE_p_f_p_void_p_struct_Stg_ComponentFactory_p_void__void swig_types[160]
+#define SWIGTYPE_p_f_p_void_p_struct_Stream__void swig_types[161]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int__p_char swig_types[162]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_Entry_Value_unsigned_int_p_char__Bool swig_types[163]
+#define SWIGTYPE_p_f_p_void_p_struct__Dictionary_p_struct__Dictionary_p_struct__Stg_ObjectList__void swig_types[164]
+#define SWIGTYPE_p_f_p_void_p_void__double swig_types[165]
+#define SWIGTYPE_p_f_p_void_p_void__p__Dictionary_Entry_Value swig_types[166]
+#define SWIGTYPE_p_f_p_void_p_void__unsigned_int swig_types[167]
+#define SWIGTYPE_p_f_p_void_p_void__void swig_types[168]
+#define SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void swig_types[169]
+#define SWIGTYPE_p_f_p_void_p_void_p_void__double swig_types[170]
+#define SWIGTYPE_p_f_p_void_p_void_p_void__void swig_types[171]
+#define SWIGTYPE_p_f_p_void_p_void_p_void_p_void__void swig_types[172]
+#define SWIGTYPE_p_f_p_void_q_const__p_char__p_void swig_types[173]
+#define SWIGTYPE_p_f_p_void_q_const__p_char__unsigned_int swig_types[174]
+#define SWIGTYPE_p_f_p_void_q_const__p_q_const__char__Bool swig_types[175]
+#define SWIGTYPE_p_f_p_void_unsigned_int__unsigned_int swig_types[176]
+#define SWIGTYPE_p_f_p_void_unsigned_int_enum_ReplacementOption__void swig_types[177]
+#define SWIGTYPE_p_f_p_void_unsigned_int_p_void__void swig_types[178]
+#define SWIGTYPE_p_f_p_void_unsigned_int_unsigned_int__unsigned_int swig_types[179]
+#define SWIGTYPE_p_f_unsigned_int_unsigned_int_p_void_p_void_p_void__void swig_types[180]
+#define SWIGTYPE_p_f_void__p_File swig_types[181]
+#define SWIGTYPE_p_int swig_types[182]
+#define SWIGTYPE_p_p_EntryPoint swig_types[183]
+#define SWIGTYPE_p_p_HashTable_Entry swig_types[184]
+#define SWIGTYPE_p_p_Stg_Component swig_types[185]
+#define SWIGTYPE_p_p__AnalyticFunction swig_types[186]
+#define SWIGTYPE_p_p__ConditionFunction swig_types[187]
+#define SWIGTYPE_p_p__Dictionary_Entry swig_types[188]
+#define SWIGTYPE_p_p__Stg_Object swig_types[189]
+#define SWIGTYPE_p_p__Variable swig_types[190]
+#define SWIGTYPE_p_p__VariableCondition_Tuple swig_types[191]
+#define SWIGTYPE_p_p_char swig_types[192]
+#define SWIGTYPE_p_p_p_char swig_types[193]
+#define SWIGTYPE_p_p_void swig_types[194]
+#define SWIGTYPE_p_p_xmlChar swig_types[195]
+#define SWIGTYPE_p_stgComponent swig_types[196]
+#define SWIGTYPE_p_unsigned_char swig_types[197]
+#define SWIGTYPE_p_unsigned_int swig_types[198]
+#define SWIGTYPE_p_unsigned_long swig_types[199]
+#define SWIGTYPE_p_void swig_types[200]
+#define SWIGTYPE_p_xmlChar swig_types[201]
+#define SWIGTYPE_p_xmlDocPtr swig_types[202]
+#define SWIGTYPE_p_xmlNodePtr swig_types[203]
+#define SWIGTYPE_p_xmlNsPtr swig_types[204]
+static swig_type_info *swig_types[206];
+static swig_module_info swig_module = {swig_types, 205, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3189,7 +3149,6 @@ static swig_module_info swig_module = {swig_types, 245, 0, 0, 0, 0};
 
 
 /* Includes the header in the wrapper code */
-#define SWIG_FILE_WITH_INIT
 #include <StGermain/StGermain.h>
 
 
@@ -3380,75 +3339,6 @@ SWIG_From_float  (float value)
 }
 
 
-#ifndef SWIG_FILE_WITH_INIT
-#  define NO_IMPORT_ARRAY
-#endif
-#include "stdio.h"
-#include <numpy/arrayobject.h>
-
-
-SWIGINTERN int
-SWIG_AsVal_long (PyObject *obj, long* val)
-{
-  if (PyInt_Check(obj)) {
-    if (val) *val = PyInt_AsLong(obj);
-    return SWIG_OK;
-  } else if (PyLong_Check(obj)) {
-    long v = PyLong_AsLong(obj);
-    if (!PyErr_Occurred()) {
-      if (val) *val = v;
-      return SWIG_OK;
-    } else {
-      PyErr_Clear();
-    }
-  }
-#ifdef SWIG_PYTHON_CAST_MODE
-  {
-    int dispatch = 0;
-    long v = PyInt_AsLong(obj);
-    if (!PyErr_Occurred()) {
-      if (val) *val = v;
-      return SWIG_AddCast(SWIG_OK);
-    } else {
-      PyErr_Clear();
-    }
-    if (!dispatch) {
-      double d;
-      int res = SWIG_AddCast(SWIG_AsVal_double (obj,&d));
-      if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, LONG_MIN, LONG_MAX)) {
-	if (val) *val = (long)(d);
-	return res;
-      }
-    }
-  }
-#endif
-  return SWIG_TypeError;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_int (PyObject * obj, int *val)
-{
-  long v;
-  int res = SWIG_AsVal_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < INT_MIN || v > INT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = (int)(v);
-    }
-  }  
-  return res;
-}
-
-
-SWIGINTERNINLINE PyObject*
-  SWIG_From_unsigned_SS_int  (unsigned int value)
-{
-  return PyInt_FromSize_t((size_t) value);
-}
-
-
 SWIGINTERN swig_type_info*
 SWIG_pchar_descriptor(void)
 {
@@ -3585,6 +3475,68 @@ SWIG_From_unsigned_SS_long  (unsigned long value)
 
 
 SWIGINTERN int
+SWIG_AsVal_long (PyObject *obj, long* val)
+{
+  if (PyInt_Check(obj)) {
+    if (val) *val = PyInt_AsLong(obj);
+    return SWIG_OK;
+  } else if (PyLong_Check(obj)) {
+    long v = PyLong_AsLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      PyErr_Clear();
+    }
+  }
+#ifdef SWIG_PYTHON_CAST_MODE
+  {
+    int dispatch = 0;
+    long v = PyInt_AsLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_AddCast(SWIG_OK);
+    } else {
+      PyErr_Clear();
+    }
+    if (!dispatch) {
+      double d;
+      int res = SWIG_AddCast(SWIG_AsVal_double (obj,&d));
+      if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, LONG_MIN, LONG_MAX)) {
+	if (val) *val = (long)(d);
+	return res;
+      }
+    }
+  }
+#endif
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_int (PyObject * obj, int *val)
+{
+  long v;
+  int res = SWIG_AsVal_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < INT_MIN || v > INT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = (int)(v);
+    }
+  }  
+  return res;
+}
+
+
+SWIGINTERNINLINE PyObject*
+  SWIG_From_unsigned_SS_int  (unsigned int value)
+{
+  return PyInt_FromSize_t((size_t) value);
+}
+
+
+SWIGINTERN int
 SWIG_AsVal_short (PyObject * obj, short *val)
 {
   long v;
@@ -3674,435 +3626,6 @@ SWIG_From_size_t  (size_t value)
   return SWIG_From_unsigned_SS_long  ((unsigned long)(value));
 }
 
-
-/* Macros to extract array attributes.
- */
-#define is_array(a)            ((a) && PyArray_Check((PyArrayObject *)a))
-#define array_type(a)          (int)(PyArray_TYPE(a))
-#define array_numdims(a)       (((PyArrayObject *)a)->nd)
-#define array_dimensions(a)    (((PyArrayObject *)a)->dimensions)
-#define array_size(a,i)        (((PyArrayObject *)a)->dimensions[i])
-#define array_data(a)          (((PyArrayObject *)a)->data)
-#define array_is_contiguous(a) (PyArray_ISCONTIGUOUS(a))
-#define array_is_native(a)     (PyArray_ISNOTSWAPPED(a))
-#define array_is_fortran(a)    (PyArray_ISFORTRAN(a))
-
-
-  /* Given a PyObject, return a string describing its type.
-   */
-  const char* pytype_string(PyObject* py_obj) {
-    if (py_obj == NULL          ) return "C NULL value";
-    if (py_obj == Py_None       ) return "Python None" ;
-    if (PyCallable_Check(py_obj)) return "callable"    ;
-    if (PyString_Check(  py_obj)) return "string"      ;
-    if (PyInt_Check(     py_obj)) return "int"         ;
-    if (PyFloat_Check(   py_obj)) return "float"       ;
-    if (PyDict_Check(    py_obj)) return "dict"        ;
-    if (PyList_Check(    py_obj)) return "list"        ;
-    if (PyTuple_Check(   py_obj)) return "tuple"       ;
-    if (PyModule_Check(  py_obj)) return "module"      ;
-#if PY_MAJOR_VERSION < 3
-    if (PyFile_Check(    py_obj)) return "file"        ;
-    if (PyInstance_Check(py_obj)) return "instance"    ;
-#endif
-
-    return "unkown type";
-  }
-
-  /* Given a NumPy typecode, return a string describing the type.
-   */
-  const char* typecode_string(int typecode) {
-    static const char* type_names[25] = {"bool", "byte", "unsigned byte",
-                                   "short", "unsigned short", "int",
-                                   "unsigned int", "long", "unsigned long",
-                                   "long long", "unsigned long long",
-                                   "float", "double", "long double",
-                                   "complex float", "complex double",
-                                   "complex long double", "object",
-                                   "string", "unicode", "void", "ntypes",
-                                   "notype", "char", "unknown"};
-    return typecode < 24 ? type_names[typecode] : type_names[24];
-  }
-
-  /* Make sure input has correct numpy type.  Allow character and byte
-   * to match.  Also allow int and long to match.  This is deprecated.
-   * You should use PyArray_EquivTypenums() instead.
-   */
-  int type_match(int actual_type, int desired_type) {
-    return PyArray_EquivTypenums(actual_type, desired_type);
-  }
-
-
-  /* Given a PyObject pointer, cast it to a PyArrayObject pointer if
-   * legal.  If not, set the python error string appropriately and
-   * return NULL.
-   */
-  PyArrayObject* obj_to_array_no_conversion(PyObject* input, int typecode)
-  {
-    PyArrayObject* ary = NULL;
-    if (is_array(input) && (typecode == NPY_NOTYPE ||
-                            PyArray_EquivTypenums(array_type(input), typecode)))
-    {
-      ary = (PyArrayObject*) input;
-    }
-    else if is_array(input)
-    {
-      const char* desired_type = typecode_string(typecode);
-      const char* actual_type  = typecode_string(array_type(input));
-      PyErr_Format(PyExc_TypeError,
-                   "Array of type '%s' required.  Array of type '%s' given",
-                   desired_type, actual_type);
-      ary = NULL;
-    }
-    else
-    {
-      const char * desired_type = typecode_string(typecode);
-      const char * actual_type  = pytype_string(input);
-      PyErr_Format(PyExc_TypeError,
-                   "Array of type '%s' required.  A '%s' was given",
-                   desired_type, actual_type);
-      ary = NULL;
-    }
-    return ary;
-  }
-
-  /* Convert the given PyObject to a NumPy array with the given
-   * typecode.  On success, return a valid PyArrayObject* with the
-   * correct type.  On failure, the python error string will be set and
-   * the routine returns NULL.
-   */
-  PyArrayObject* obj_to_array_allow_conversion(PyObject* input, int typecode,
-                                               int* is_new_object)
-  {
-    PyArrayObject* ary = NULL;
-    PyObject* py_obj;
-    if (is_array(input) && (typecode == NPY_NOTYPE ||
-                            PyArray_EquivTypenums(array_type(input),typecode)))
-    {
-      ary = (PyArrayObject*) input;
-      *is_new_object = 0;
-    }
-    else
-    {
-      py_obj = PyArray_FROMANY(input, typecode, 0, 0, NPY_DEFAULT);
-      /* If NULL, PyArray_FromObject will have set python error value.*/
-      ary = (PyArrayObject*) py_obj;
-      *is_new_object = 1;
-    }
-    return ary;
-  }
-
-  /* Given a PyArrayObject, check to see if it is contiguous.  If so,
-   * return the input pointer and flag it as not a new object.  If it is
-   * not contiguous, create a new PyArrayObject using the original data,
-   * flag it as a new object and return the pointer.
-   */
-  PyArrayObject* make_contiguous(PyArrayObject* ary, int* is_new_object,
-                                 int min_dims, int max_dims)
-  {
-    PyArrayObject* result;
-    if (array_is_contiguous(ary))
-    {
-      result = ary;
-      *is_new_object = 0;
-    }
-    else
-    {
-      result = (PyArrayObject*) PyArray_ContiguousFromObject((PyObject*)ary,
-                                                             array_type(ary),
-                                                             min_dims,
-                                                             max_dims);
-      *is_new_object = 1;
-    }
-    return result;
-  }
-
-  /* Given a PyArrayObject, check to see if it is Fortran-contiguous.
-   * If so, return the input pointer, but do not flag it as not a new
-   * object.  If it is not Fortran-contiguous, create a new
-   * PyArrayObject using the original data, flag it as a new object
-   * and return the pointer.
-   */
-  PyArrayObject* make_fortran(PyArrayObject* ary, int* is_new_object,
-                              int min_dims, int max_dims)
-  {
-    PyArrayObject* result;
-    if (array_is_fortran(ary))
-    {
-      result = ary;
-      *is_new_object = 0;
-    }
-    else
-    {
-      Py_INCREF(ary->descr);
-      result = (PyArrayObject*) PyArray_FromArray(ary, ary->descr, NPY_FORTRAN);
-      *is_new_object = 1;
-    }
-    return result;
-  }
-
-  /* Convert a given PyObject to a contiguous PyArrayObject of the
-   * specified type.  If the input object is not a contiguous
-   * PyArrayObject, a new one will be created and the new object flag
-   * will be set.
-   */
-  PyArrayObject* obj_to_array_contiguous_allow_conversion(PyObject* input,
-                                                          int typecode,
-                                                          int* is_new_object)
-  {
-    int is_new1 = 0;
-    int is_new2 = 0;
-    PyArrayObject* ary2;
-    PyArrayObject* ary1 = obj_to_array_allow_conversion(input, typecode,
-                                                        &is_new1);
-    if (ary1)
-    {
-      ary2 = make_contiguous(ary1, &is_new2, 0, 0);
-      if ( is_new1 && is_new2)
-      {
-        Py_DECREF(ary1);
-      }
-      ary1 = ary2;
-    }
-    *is_new_object = is_new1 || is_new2;
-    return ary1;
-  }
-
-  /* Convert a given PyObject to a Fortran-ordered PyArrayObject of the
-   * specified type.  If the input object is not a Fortran-ordered
-   * PyArrayObject, a new one will be created and the new object flag
-   * will be set.
-   */
-  PyArrayObject* obj_to_array_fortran_allow_conversion(PyObject* input,
-                                                       int typecode,
-                                                       int* is_new_object)
-  {
-    int is_new1 = 0;
-    int is_new2 = 0;
-    PyArrayObject* ary2;
-    PyArrayObject* ary1 = obj_to_array_allow_conversion(input, typecode,
-                                                        &is_new1);
-    if (ary1)
-    {
-      ary2 = make_fortran(ary1, &is_new2, 0, 0);
-      if (is_new1 && is_new2)
-      {
-        Py_DECREF(ary1);
-      }
-      ary1 = ary2;
-    }
-    *is_new_object = is_new1 || is_new2;
-    return ary1;
-  }
-
-
-
-  /* Test whether a python object is contiguous.  If array is
-   * contiguous, return 1.  Otherwise, set the python error string and
-   * return 0.
-   */
-  int require_contiguous(PyArrayObject* ary)
-  {
-    int contiguous = 1;
-    if (!array_is_contiguous(ary))
-    {
-      PyErr_SetString(PyExc_TypeError,
-                      "Array must be contiguous.  A non-contiguous array was given");
-      contiguous = 0;
-    }
-    return contiguous;
-  }
-
-  /* Require that a numpy array is not byte-swapped.  If the array is
-   * not byte-swapped, return 1.  Otherwise, set the python error string
-   * and return 0.
-   */
-  int require_native(PyArrayObject* ary)
-  {
-    int native = 1;
-    if (!array_is_native(ary))
-    {
-      PyErr_SetString(PyExc_TypeError,
-                      "Array must have native byteorder.  "
-                      "A byte-swapped array was given");
-      native = 0;
-    }
-    return native;
-  }
-
-  /* Require the given PyArrayObject to have a specified number of
-   * dimensions.  If the array has the specified number of dimensions,
-   * return 1.  Otherwise, set the python error string and return 0.
-   */
-  int require_dimensions(PyArrayObject* ary, int exact_dimensions)
-  {
-    int success = 1;
-    if (array_numdims(ary) != exact_dimensions)
-    {
-      PyErr_Format(PyExc_TypeError,
-                   "Array must have %d dimensions.  Given array has %d dimensions",
-                   exact_dimensions, array_numdims(ary));
-      success = 0;
-    }
-    return success;
-  }
-
-  /* Require the given PyArrayObject to have one of a list of specified
-   * number of dimensions.  If the array has one of the specified number
-   * of dimensions, return 1.  Otherwise, set the python error string
-   * and return 0.
-   */
-  int require_dimensions_n(PyArrayObject* ary, int* exact_dimensions, int n)
-  {
-    int success = 0;
-    int i;
-    char dims_str[255] = "";
-    char s[255];
-    for (i = 0; i < n && !success; i++)
-    {
-      if (array_numdims(ary) == exact_dimensions[i])
-      {
-        success = 1;
-      }
-    }
-    if (!success)
-    {
-      for (i = 0; i < n-1; i++)
-      {
-        sprintf(s, "%d, ", exact_dimensions[i]);
-        strcat(dims_str,s);
-      }
-      sprintf(s, " or %d", exact_dimensions[n-1]);
-      strcat(dims_str,s);
-      PyErr_Format(PyExc_TypeError,
-                   "Array must have %s dimensions.  Given array has %d dimensions",
-                   dims_str, array_numdims(ary));
-    }
-    return success;
-  }
-
-  /* Require the given PyArrayObject to have a specified shape.  If the
-   * array has the specified shape, return 1.  Otherwise, set the python
-   * error string and return 0.
-   */
-  int require_size(PyArrayObject* ary, npy_intp* size, int n)
-  {
-    int i;
-    int success = 1;
-    int len;
-    char desired_dims[255] = "[";
-    char s[255];
-    char actual_dims[255] = "[";
-    for(i=0; i < n;i++)
-    {
-      if (size[i] != -1 &&  size[i] != array_size(ary,i))
-      {
-        success = 0;
-      }
-    }
-    if (!success)
-    {
-      for (i = 0; i < n; i++)
-      {
-        if (size[i] == -1)
-        {
-          sprintf(s, "*,");
-        }
-        else
-        {
-          sprintf(s, "%ld,", (long int)size[i]);
-        }
-        strcat(desired_dims,s);
-      }
-      len = strlen(desired_dims);
-      desired_dims[len-1] = ']';
-      for (i = 0; i < n; i++)
-      {
-        sprintf(s, "%ld,", (long int)array_size(ary,i));
-        strcat(actual_dims,s);
-      }
-      len = strlen(actual_dims);
-      actual_dims[len-1] = ']';
-      PyErr_Format(PyExc_TypeError,
-                   "Array must have shape of %s.  Given array has shape of %s",
-                   desired_dims, actual_dims);
-    }
-    return success;
-  }
-
-  /* Require the given PyArrayObject to to be FORTRAN ordered.  If the
-   * the PyArrayObject is already FORTRAN ordered, do nothing.  Else,
-   * set the FORTRAN ordering flag and recompute the strides.
-   */
-  int require_fortran(PyArrayObject* ary)
-  {
-    int success = 1;
-    int nd = array_numdims(ary);
-    int i;
-    if (array_is_fortran(ary)) return success;
-    /* Set the FORTRAN ordered flag */
-    ary->flags = NPY_FARRAY;
-    /* Recompute the strides */
-    ary->strides[0] = ary->strides[nd-1];
-    for (i=1; i < nd; ++i)
-      ary->strides[i] = ary->strides[i-1] * array_size(ary,i-1);
-    return success;
-  }
-
- 
-SWIGINTERN void IndexSet_AddOrRemoveWithNumpyInt(struct IndexSet *self,int *IN_ARRAY1,int DIM1,Bool adding){
-        int ii;
-
-        if (adding) {
-            for (ii=0; ii<DIM1; ii++)
-                IndexSet_Add(self, IN_ARRAY1[ii]);
-        } else {
-            for (ii=0; ii<DIM1; ii++)
-                IndexSet_Remove(self, IN_ARRAY1[ii]);
-        }
-        
-    }
-SWIGINTERN void IndexSet_AddOrRemoveWithNumpyLong(struct IndexSet *self,long *IN_ARRAY1,int DIM1,Bool adding){
-        int ii;
-
-        if (adding) {
-            for (ii=0; ii<DIM1; ii++)
-                IndexSet_Add(self, IN_ARRAY1[ii]);
-        } else {
-            for (ii=0; ii<DIM1; ii++)
-                IndexSet_Remove(self, IN_ARRAY1[ii]);
-        }
-    }
-SWIGINTERN void IndexSet_AddOrRemoveWithNumpyUInt(struct IndexSet *self,unsigned int *IN_ARRAY1,int DIM1,Bool adding){
-        int ii;
-
-        if (adding) {
-            for (ii=0; ii<DIM1; ii++)
-                IndexSet_Add(self, IN_ARRAY1[ii]);
-        } else {
-            for (ii=0; ii<DIM1; ii++)
-                IndexSet_Remove(self, IN_ARRAY1[ii]);
-        }
-    }
-SWIGINTERN void IndexSet_AddOrRemoveWithNumpyULong(struct IndexSet *self,unsigned long *IN_ARRAY1,int DIM1,Bool adding){
-        int ii;
-
-        if (adding) {
-            for (ii=0; ii<DIM1; ii++)
-                IndexSet_Add(self, IN_ARRAY1[ii]);
-        } else {
-            for (ii=0; ii<DIM1; ii++)
-                IndexSet_Remove(self, IN_ARRAY1[ii]);
-        }
-    }
-SWIGINTERN void IndexSet_GetAsNumpyArray(struct IndexSet *self,unsigned int *INPLACE_ARRAY1,int DIM1){
-
-        Journal_Firewall( DIM1 == IndexSet_UpdateMembersCount(self), self->error, "Error- %s: Numpy array size (%u) is different to member count (%u). Aborting.",
-            __func__, DIM1, IndexSet_UpdateMembersCount(self));
-
-        IndexSet_GetMembers2( self, INPLACE_ARRAY1 );
-
-    }
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -4225,1197 +3748,6 @@ fail:
   return NULL;
 }
 
-
-SWIGINTERN PyObject *_wrap_STreeNode_data_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct STreeNode *arg1 = (struct STreeNode *) 0 ;
-  void *arg2 = (void *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:STreeNode_data_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_STreeNode, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "STreeNode_data_set" "', argument " "1"" of type '" "struct STreeNode *""'"); 
-  }
-  arg1 = (struct STreeNode *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, SWIG_POINTER_DISOWN);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "STreeNode_data_set" "', argument " "2"" of type '" "void *""'"); 
-  }
-  if (arg1) (arg1)->data = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_STreeNode_data_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct STreeNode *arg1 = (struct STreeNode *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  void *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:STreeNode_data_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_STreeNode, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "STreeNode_data_get" "', argument " "1"" of type '" "struct STreeNode *""'"); 
-  }
-  arg1 = (struct STreeNode *)(argp1);
-  result = (void *) ((arg1)->data);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_STreeNode_left_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct STreeNode *arg1 = (struct STreeNode *) 0 ;
-  STreeNode *arg2 = (STreeNode *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:STreeNode_left_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_STreeNode, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "STreeNode_left_set" "', argument " "1"" of type '" "struct STreeNode *""'"); 
-  }
-  arg1 = (struct STreeNode *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_STreeNode, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "STreeNode_left_set" "', argument " "2"" of type '" "STreeNode *""'"); 
-  }
-  arg2 = (STreeNode *)(argp2);
-  if (arg1) (arg1)->left = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_STreeNode_left_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct STreeNode *arg1 = (struct STreeNode *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  STreeNode *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:STreeNode_left_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_STreeNode, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "STreeNode_left_get" "', argument " "1"" of type '" "struct STreeNode *""'"); 
-  }
-  arg1 = (struct STreeNode *)(argp1);
-  result = (STreeNode *) ((arg1)->left);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_STreeNode, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_STreeNode_right_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct STreeNode *arg1 = (struct STreeNode *) 0 ;
-  STreeNode *arg2 = (STreeNode *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:STreeNode_right_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_STreeNode, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "STreeNode_right_set" "', argument " "1"" of type '" "struct STreeNode *""'"); 
-  }
-  arg1 = (struct STreeNode *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_STreeNode, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "STreeNode_right_set" "', argument " "2"" of type '" "STreeNode *""'"); 
-  }
-  arg2 = (STreeNode *)(argp2);
-  if (arg1) (arg1)->right = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_STreeNode_right_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct STreeNode *arg1 = (struct STreeNode *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  STreeNode *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:STreeNode_right_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_STreeNode, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "STreeNode_right_get" "', argument " "1"" of type '" "struct STreeNode *""'"); 
-  }
-  arg1 = (struct STreeNode *)(argp1);
-  result = (STreeNode *) ((arg1)->right);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_STreeNode, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_STreeNode(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct STreeNode *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_STreeNode")) SWIG_fail;
-  result = (struct STreeNode *)calloc(1, sizeof(struct STreeNode));
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_STreeNode, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_STreeNode(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct STreeNode *arg1 = (struct STreeNode *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_STreeNode",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_STreeNode, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_STreeNode" "', argument " "1"" of type '" "struct STreeNode *""'"); 
-  }
-  arg1 = (struct STreeNode *)(argp1);
-  free((char *) arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *STreeNode_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_STreeNode, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_ISetItem_key_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct ISetItem *arg1 = (struct ISetItem *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:ISetItem_key_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ISetItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ISetItem_key_set" "', argument " "1"" of type '" "struct ISetItem *""'"); 
-  }
-  arg1 = (struct ISetItem *)(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "ISetItem_key_set" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = (int)(val2);
-  if (arg1) (arg1)->key = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_ISetItem_key_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct ISetItem *arg1 = (struct ISetItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:ISetItem_key_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ISetItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ISetItem_key_get" "', argument " "1"" of type '" "struct ISetItem *""'"); 
-  }
-  arg1 = (struct ISetItem *)(argp1);
-  result = (int) ((arg1)->key);
-  resultobj = SWIG_From_int((int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_ISetItem_next_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct ISetItem *arg1 = (struct ISetItem *) 0 ;
-  ISetItem *arg2 = (ISetItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:ISetItem_next_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ISetItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ISetItem_next_set" "', argument " "1"" of type '" "struct ISetItem *""'"); 
-  }
-  arg1 = (struct ISetItem *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_ISetItem, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ISetItem_next_set" "', argument " "2"" of type '" "ISetItem *""'"); 
-  }
-  arg2 = (ISetItem *)(argp2);
-  if (arg1) (arg1)->next = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_ISetItem_next_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct ISetItem *arg1 = (struct ISetItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  ISetItem *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:ISetItem_next_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ISetItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ISetItem_next_get" "', argument " "1"" of type '" "struct ISetItem *""'"); 
-  }
-  arg1 = (struct ISetItem *)(argp1);
-  result = (ISetItem *) ((arg1)->next);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_ISetItem, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_ISetItem(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct ISetItem *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_ISetItem")) SWIG_fail;
-  result = (struct ISetItem *)calloc(1, sizeof(struct ISetItem));
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_ISetItem, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_ISetItem(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct ISetItem *arg1 = (struct ISetItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_ISetItem",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ISetItem, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_ISetItem" "', argument " "1"" of type '" "struct ISetItem *""'"); 
-  }
-  arg1 = (struct ISetItem *)(argp1);
-  free((char *) arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *ISetItem_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_ISetItem, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_IMapItem_key_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IMapItem *arg1 = (struct IMapItem *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IMapItem_key_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IMapItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IMapItem_key_set" "', argument " "1"" of type '" "struct IMapItem *""'"); 
-  }
-  arg1 = (struct IMapItem *)(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IMapItem_key_set" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = (int)(val2);
-  if (arg1) (arg1)->key = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IMapItem_key_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IMapItem *arg1 = (struct IMapItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IMapItem_key_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IMapItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IMapItem_key_get" "', argument " "1"" of type '" "struct IMapItem *""'"); 
-  }
-  arg1 = (struct IMapItem *)(argp1);
-  result = (int) ((arg1)->key);
-  resultobj = SWIG_From_int((int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IMapItem_val_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IMapItem *arg1 = (struct IMapItem *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IMapItem_val_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IMapItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IMapItem_val_set" "', argument " "1"" of type '" "struct IMapItem *""'"); 
-  }
-  arg1 = (struct IMapItem *)(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IMapItem_val_set" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = (int)(val2);
-  if (arg1) (arg1)->val = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IMapItem_val_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IMapItem *arg1 = (struct IMapItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IMapItem_val_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IMapItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IMapItem_val_get" "', argument " "1"" of type '" "struct IMapItem *""'"); 
-  }
-  arg1 = (struct IMapItem *)(argp1);
-  result = (int) ((arg1)->val);
-  resultobj = SWIG_From_int((int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IMapItem_next_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IMapItem *arg1 = (struct IMapItem *) 0 ;
-  IMapItem *arg2 = (IMapItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IMapItem_next_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IMapItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IMapItem_next_set" "', argument " "1"" of type '" "struct IMapItem *""'"); 
-  }
-  arg1 = (struct IMapItem *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_IMapItem, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IMapItem_next_set" "', argument " "2"" of type '" "IMapItem *""'"); 
-  }
-  arg2 = (IMapItem *)(argp2);
-  if (arg1) (arg1)->next = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IMapItem_next_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IMapItem *arg1 = (struct IMapItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  IMapItem *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IMapItem_next_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IMapItem, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IMapItem_next_get" "', argument " "1"" of type '" "struct IMapItem *""'"); 
-  }
-  arg1 = (struct IMapItem *)(argp1);
-  result = (IMapItem *) ((arg1)->next);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IMapItem, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_IMapItem(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IMapItem *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_IMapItem")) SWIG_fail;
-  result = (struct IMapItem *)calloc(1, sizeof(struct IMapItem));
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IMapItem, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_IMapItem(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IMapItem *arg1 = (struct IMapItem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_IMapItem",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IMapItem, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IMapItem" "', argument " "1"" of type '" "struct IMapItem *""'"); 
-  }
-  arg1 = (struct IMapItem *)(argp1);
-  free((char *) arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *IMapItem_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_IMapItem, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_RangeSet_Range_begin_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_Range *arg1 = (RangeSet_Range *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_Range_begin_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_Range, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_Range_begin_set" "', argument " "1"" of type '" "RangeSet_Range *""'"); 
-  }
-  arg1 = (RangeSet_Range *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "RangeSet_Range_begin_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->begin = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_Range_begin_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_Range *arg1 = (RangeSet_Range *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_Range_begin_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_Range, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_Range_begin_get" "', argument " "1"" of type '" "RangeSet_Range *""'"); 
-  }
-  arg1 = (RangeSet_Range *)(argp1);
-  result = (unsigned int) ((arg1)->begin);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_Range_end_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_Range *arg1 = (RangeSet_Range *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_Range_end_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_Range, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_Range_end_set" "', argument " "1"" of type '" "RangeSet_Range *""'"); 
-  }
-  arg1 = (RangeSet_Range *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "RangeSet_Range_end_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->end = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_Range_end_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_Range *arg1 = (RangeSet_Range *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_Range_end_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_Range, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_Range_end_get" "', argument " "1"" of type '" "RangeSet_Range *""'"); 
-  }
-  arg1 = (RangeSet_Range *)(argp1);
-  result = (unsigned int) ((arg1)->end);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_Range_step_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_Range *arg1 = (RangeSet_Range *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_Range_step_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_Range, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_Range_step_set" "', argument " "1"" of type '" "RangeSet_Range *""'"); 
-  }
-  arg1 = (RangeSet_Range *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "RangeSet_Range_step_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->step = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_Range_step_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_Range *arg1 = (RangeSet_Range *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_Range_step_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_Range, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_Range_step_get" "', argument " "1"" of type '" "RangeSet_Range *""'"); 
-  }
-  arg1 = (RangeSet_Range *)(argp1);
-  result = (unsigned int) ((arg1)->step);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_RangeSet_Range(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_Range *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_RangeSet_Range")) SWIG_fail;
-  result = (RangeSet_Range *)calloc(1, sizeof(RangeSet_Range));
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RangeSet_Range, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_RangeSet_Range(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_Range *arg1 = (RangeSet_Range *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_RangeSet_Range",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_Range, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RangeSet_Range" "', argument " "1"" of type '" "RangeSet_Range *""'"); 
-  }
-  arg1 = (RangeSet_Range *)(argp1);
-  free((char *) arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *RangeSet_Range_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_RangeSet_Range, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct__self_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  RangeSet *arg2 = (RangeSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_ParseStruct__self_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct__self_set" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_RangeSet, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RangeSet_ParseStruct__self_set" "', argument " "2"" of type '" "RangeSet *""'"); 
-  }
-  arg2 = (RangeSet *)(argp2);
-  if (arg1) (arg1)->self = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct__self_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  RangeSet *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_ParseStruct__self_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct__self_get" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  result = (RangeSet *) ((arg1)->self);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RangeSet, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_operand_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  RangeSet *arg2 = (RangeSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_ParseStruct_operand_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_operand_set" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_RangeSet, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RangeSet_ParseStruct_operand_set" "', argument " "2"" of type '" "RangeSet *""'"); 
-  }
-  arg2 = (RangeSet *)(argp2);
-  if (arg1) (arg1)->operand = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_operand_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  RangeSet *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_ParseStruct_operand_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_operand_get" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  result = (RangeSet *) ((arg1)->operand);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RangeSet, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_range_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  RangeSet_Range *arg2 = (RangeSet_Range *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_ParseStruct_range_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_range_set" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_RangeSet_Range, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RangeSet_ParseStruct_range_set" "', argument " "2"" of type '" "RangeSet_Range *""'"); 
-  }
-  arg2 = (RangeSet_Range *)(argp2);
-  if (arg1) (arg1)->range = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_range_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  RangeSet_Range *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_ParseStruct_range_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_range_get" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  result = (RangeSet_Range *) ((arg1)->range);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RangeSet_Range, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_newTree_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  BTree *arg2 = (BTree *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_ParseStruct_newTree_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_newTree_set" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_BTree, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RangeSet_ParseStruct_newTree_set" "', argument " "2"" of type '" "BTree *""'"); 
-  }
-  arg2 = (BTree *)(argp2);
-  if (arg1) (arg1)->newTree = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_newTree_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  BTree *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_ParseStruct_newTree_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_newTree_get" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  result = (BTree *) ((arg1)->newTree);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_BTree, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_nInds_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_ParseStruct_nInds_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_nInds_set" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "RangeSet_ParseStruct_nInds_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->nInds = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_nInds_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_ParseStruct_nInds_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_nInds_get" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  result = (unsigned int) ((arg1)->nInds);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_inds_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  unsigned int *arg2 = (unsigned int *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_ParseStruct_inds_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_inds_set" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_unsigned_int, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RangeSet_ParseStruct_inds_set" "', argument " "2"" of type '" "unsigned int *""'"); 
-  }
-  arg2 = (unsigned int *)(argp2);
-  if (arg1) (arg1)->inds = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_inds_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_ParseStruct_inds_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_inds_get" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  result = (unsigned int *) ((arg1)->inds);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_unsigned_int, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_curInd_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_ParseStruct_curInd_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_curInd_set" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "RangeSet_ParseStruct_curInd_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->curInd = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_curInd_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_ParseStruct_curInd_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_curInd_get" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  result = (unsigned int) ((arg1)->curInd);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_bytes_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  Stg_Byte *arg2 = (Stg_Byte *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:RangeSet_ParseStruct_bytes_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_bytes_set" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_unsigned_char, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RangeSet_ParseStruct_bytes_set" "', argument " "2"" of type '" "Stg_Byte *""'"); 
-  }
-  arg2 = (Stg_Byte *)(argp2);
-  if (arg1) (arg1)->bytes = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_RangeSet_ParseStruct_bytes_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Stg_Byte *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:RangeSet_ParseStruct_bytes_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RangeSet_ParseStruct_bytes_get" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  result = (Stg_Byte *) ((arg1)->bytes);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_unsigned_char, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_RangeSet_ParseStruct(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_RangeSet_ParseStruct")) SWIG_fail;
-  result = (RangeSet_ParseStruct *)calloc(1, sizeof(RangeSet_ParseStruct));
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RangeSet_ParseStruct, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_RangeSet_ParseStruct(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  RangeSet_ParseStruct *arg1 = (RangeSet_ParseStruct *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_RangeSet_ParseStruct",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RangeSet_ParseStruct, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RangeSet_ParseStruct" "', argument " "1"" of type '" "RangeSet_ParseStruct *""'"); 
-  }
-  arg1 = (RangeSet_ParseStruct *)(argp1);
-  free((char *) arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *RangeSet_ParseStruct_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_RangeSet_ParseStruct, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
 
 SWIGINTERN PyObject *_wrap_stgGenerateFlattenedXML(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
@@ -38071,8 +36403,8 @@ SWIGINTERN PyObject *_wrap_HashTable_keyType_set(PyObject *SWIGUNUSEDPARM(self),
   KeyType arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
@@ -38082,11 +36414,17 @@ SWIGINTERN PyObject *_wrap_HashTable_keyType_set(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_keyType_set" "', argument " "1"" of type '" "struct HashTable *""'"); 
   }
   arg1 = (struct HashTable *)(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HashTable_keyType_set" "', argument " "2"" of type '" "KeyType""'");
-  } 
-  arg2 = (KeyType)(val2);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_KeyType,  0 );
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HashTable_keyType_set" "', argument " "2"" of type '" "KeyType""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "HashTable_keyType_set" "', argument " "2"" of type '" "KeyType""'");
+    } else {
+      arg2 = *((KeyType *)(argp2));
+    }
+  }
   if (arg1) (arg1)->keyType = arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -38109,8 +36447,8 @@ SWIGINTERN PyObject *_wrap_HashTable_keyType_get(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HashTable_keyType_get" "', argument " "1"" of type '" "struct HashTable *""'"); 
   }
   arg1 = (struct HashTable *)(argp1);
-  result = (KeyType) ((arg1)->keyType);
-  resultobj = SWIG_From_int((int)(result));
+  result =  ((arg1)->keyType);
+  resultobj = SWIG_NewPointerObj((KeyType *)memcpy((KeyType *)malloc(sizeof(KeyType)),&result,sizeof(KeyType)), SWIGTYPE_p_KeyType, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -38164,8 +36502,8 @@ SWIGINTERN PyObject *_wrap_HashTable_New(PyObject *SWIGUNUSEDPARM(self), PyObjec
   HashTable_dataPrintFunction *arg2 = (HashTable_dataPrintFunction *) 0 ;
   HashTable_dataDeleteFunction *arg3 = (HashTable_dataDeleteFunction *) 0 ;
   KeyType arg4 ;
-  int val4 ;
-  int ecode4 = 0 ;
+  void *argp4 ;
+  int res4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -38191,11 +36529,17 @@ SWIGINTERN PyObject *_wrap_HashTable_New(PyObject *SWIGUNUSEDPARM(self), PyObjec
       SWIG_exception_fail(SWIG_ArgError(res), "in method '" "HashTable_New" "', argument " "3"" of type '" "HashTable_dataDeleteFunction *""'"); 
     }
   }
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "HashTable_New" "', argument " "4"" of type '" "KeyType""'");
-  } 
-  arg4 = (KeyType)(val4);
+  {
+    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_KeyType,  0 );
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "HashTable_New" "', argument " "4"" of type '" "KeyType""'"); 
+    }  
+    if (!argp4) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "HashTable_New" "', argument " "4"" of type '" "KeyType""'");
+    } else {
+      arg4 = *((KeyType *)(argp4));
+    }
+  }
   result = (HashTable *)HashTable_New(arg1,arg2,arg3,arg4);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable, 0 |  0 );
   return resultobj;
@@ -38801,2867 +37145,6 @@ SWIGINTERN PyObject *_wrap_HashTable_First(PyObject *SWIGUNUSEDPARM(self), PyObj
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_HashTable_Index, 0 |  0 );
   return resultobj;
 fail:
-  return NULL;
-}
-
-
-SWIGINTERN int Swig_var_IndexMap_Type_set(PyObject *_val SWIGUNUSED) {
-  SWIG_Error(SWIG_AttributeError,"Variable IndexMap_Type is read-only.");
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var_IndexMap_Type_get(void) {
-  PyObject *pyobj = 0;
-  
-  pyobj = SWIG_FromCharPtr(IndexMap_Type);
-  return pyobj;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMapTuple_key_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMapTuple *arg1 = (struct IndexMapTuple *) 0 ;
-  Index arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMapTuple_key_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMapTuple, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMapTuple_key_set" "', argument " "1"" of type '" "struct IndexMapTuple *""'"); 
-  }
-  arg1 = (struct IndexMapTuple *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMapTuple_key_set" "', argument " "2"" of type '" "Index""'");
-  } 
-  arg2 = (Index)(val2);
-  if (arg1) (arg1)->key = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMapTuple_key_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMapTuple *arg1 = (struct IndexMapTuple *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Index result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMapTuple_key_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMapTuple, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMapTuple_key_get" "', argument " "1"" of type '" "struct IndexMapTuple *""'"); 
-  }
-  arg1 = (struct IndexMapTuple *)(argp1);
-  result = (Index) ((arg1)->key);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMapTuple_idx_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMapTuple *arg1 = (struct IndexMapTuple *) 0 ;
-  Index arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMapTuple_idx_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMapTuple, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMapTuple_idx_set" "', argument " "1"" of type '" "struct IndexMapTuple *""'"); 
-  }
-  arg1 = (struct IndexMapTuple *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMapTuple_idx_set" "', argument " "2"" of type '" "Index""'");
-  } 
-  arg2 = (Index)(val2);
-  if (arg1) (arg1)->idx = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMapTuple_idx_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMapTuple *arg1 = (struct IndexMapTuple *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Index result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMapTuple_idx_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMapTuple, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMapTuple_idx_get" "', argument " "1"" of type '" "struct IndexMapTuple *""'"); 
-  }
-  arg1 = (struct IndexMapTuple *)(argp1);
-  result = (Index) ((arg1)->idx);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_IndexMapTuple(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMapTuple *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_IndexMapTuple")) SWIG_fail;
-  result = (struct IndexMapTuple *)calloc(1, sizeof(struct IndexMapTuple));
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexMapTuple, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_IndexMapTuple(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMapTuple *arg1 = (struct IndexMapTuple *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_IndexMapTuple",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMapTuple, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IndexMapTuple" "', argument " "1"" of type '" "struct IndexMapTuple *""'"); 
-  }
-  arg1 = (struct IndexMapTuple *)(argp1);
-  free((char *) arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *IndexMapTuple_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_IndexMapTuple, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_IndexMap__sizeOfSelf_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  SizeT arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap__sizeOfSelf_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__sizeOfSelf_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap__sizeOfSelf_set" "', argument " "2"" of type '" "SizeT""'");
-  } 
-  arg2 = (SizeT)(val2);
-  if (arg1) (arg1)->_sizeOfSelf = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__sizeOfSelf_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  SizeT result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap__sizeOfSelf_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__sizeOfSelf_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (SizeT) ((arg1)->_sizeOfSelf);
-  resultobj = SWIG_From_unsigned_SS_long((unsigned long)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__deleteSelf_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  Bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap__deleteSelf_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__deleteSelf_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap__deleteSelf_set" "', argument " "2"" of type '" "Bool""'");
-  } 
-  arg2 = (Bool)(val2);
-  if (arg1) (arg1)->_deleteSelf = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__deleteSelf_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Bool result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap__deleteSelf_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__deleteSelf_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (Bool) ((arg1)->_deleteSelf);
-  resultobj = SWIG_From_int((int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_type_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  Type arg2 = (Type) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_type_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_type_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexMap_type_set" "', argument " "2"" of type '" "Type""'");
-  }
-  arg2 = (Type)(buf2);
-  if (arg1->type) free((char*)arg1->type);
-  if (arg2) {
-    size_t size = strlen((const char *)(arg2)) + 1;
-    arg1->type = (Type)(char *)memcpy((char *)malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
-  } else {
-    arg1->type = 0;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_type_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Type result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap_type_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_type_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (Type) ((arg1)->type);
-  resultobj = SWIG_FromCharPtr((const char *)result);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_nRefs_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_nRefs_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_nRefs_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap_nRefs_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->nRefs = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_nRefs_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap_nRefs_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_nRefs_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (unsigned int) ((arg1)->nRefs);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__delete_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  Stg_Class_DeleteFunction *arg2 = (Stg_Class_DeleteFunction *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap__delete_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__delete_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "IndexMap__delete_set" "', argument " "2"" of type '" "Stg_Class_DeleteFunction *""'"); 
-    }
-  }
-  if (arg1) (arg1)->_delete = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__delete_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Stg_Class_DeleteFunction *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap__delete_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__delete_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (Stg_Class_DeleteFunction *) ((arg1)->_delete);
-  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void__void);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__print_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  Stg_Class_PrintFunction *arg2 = (Stg_Class_PrintFunction *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap__print_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__print_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "IndexMap__print_set" "', argument " "2"" of type '" "Stg_Class_PrintFunction *""'"); 
-    }
-  }
-  if (arg1) (arg1)->_print = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__print_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Stg_Class_PrintFunction *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap__print_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__print_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (Stg_Class_PrintFunction *) ((arg1)->_print);
-  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__copy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  Stg_Class_CopyFunction *arg2 = (Stg_Class_CopyFunction *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap__copy_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__copy_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "IndexMap__copy_set" "', argument " "2"" of type '" "Stg_Class_CopyFunction *""'"); 
-    }
-  }
-  if (arg1) (arg1)->_copy = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap__copy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Stg_Class_CopyFunction *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap__copy_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap__copy_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (Stg_Class_CopyFunction *) ((arg1)->_copy);
-  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_dictionary_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  Dictionary *arg2 = (Dictionary *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_dictionary_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_dictionary_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p__Dictionary, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexMap_dictionary_set" "', argument " "2"" of type '" "Dictionary *""'"); 
-  }
-  arg2 = (Dictionary *)(argp2);
-  if (arg1) (arg1)->dictionary = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_dictionary_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Dictionary *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap_dictionary_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_dictionary_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (Dictionary *) ((arg1)->dictionary);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__Dictionary, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_delta_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_delta_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_delta_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap_delta_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->delta = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_delta_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap_delta_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_delta_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (unsigned int) ((arg1)->delta);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_maxTuples_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_maxTuples_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_maxTuples_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap_maxTuples_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->maxTuples = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_maxTuples_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap_maxTuples_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_maxTuples_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (unsigned int) ((arg1)->maxTuples);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_tupleCnt_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_tupleCnt_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_tupleCnt_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap_tupleCnt_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->tupleCnt = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_tupleCnt_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap_tupleCnt_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_tupleCnt_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (unsigned int) ((arg1)->tupleCnt);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_tupleTbl_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  IndexMapTuple *arg2 = (IndexMapTuple *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_tupleTbl_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_tupleTbl_set" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_IndexMapTuple, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexMap_tupleTbl_set" "', argument " "2"" of type '" "IndexMapTuple *""'"); 
-  }
-  arg2 = (IndexMapTuple *)(argp2);
-  if (arg1) (arg1)->tupleTbl = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_tupleTbl_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  IndexMapTuple *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap_tupleTbl_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_tupleTbl_get" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  result = (IndexMapTuple *) ((arg1)->tupleTbl);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexMapTuple, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_IndexMap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_IndexMap")) SWIG_fail;
-  result = (struct IndexMap *)calloc(1, sizeof(struct IndexMap));
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexMap, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_IndexMap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexMap *arg1 = (struct IndexMap *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_IndexMap",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IndexMap" "', argument " "1"" of type '" "struct IndexMap *""'"); 
-  }
-  arg1 = (struct IndexMap *)(argp1);
-  free((char *) arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *IndexMap_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_IndexMap, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_IndexMap_New_Param(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  unsigned int arg1 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  IndexMap *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexMap_New_Param",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "IndexMap_New_Param" "', argument " "1"" of type '" "unsigned int""'");
-  } 
-  arg1 = (unsigned int)(val1);
-  result = (IndexMap *)IndexMap_New_Param(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexMap, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexMap_New(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  SizeT arg1 ;
-  Type arg2 = (Type) 0 ;
-  Stg_Class_DeleteFunction *arg3 = (Stg_Class_DeleteFunction *) 0 ;
-  Stg_Class_PrintFunction *arg4 = (Stg_Class_PrintFunction *) 0 ;
-  Stg_Class_CopyFunction *arg5 = (Stg_Class_CopyFunction *) 0 ;
-  unsigned int arg6 ;
-  unsigned long val1 ;
-  int ecode1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  unsigned int val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  IndexMap *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:_IndexMap_New",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_long(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "_IndexMap_New" "', argument " "1"" of type '" "SizeT""'");
-  } 
-  arg1 = (SizeT)(val1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_IndexMap_New" "', argument " "2"" of type '" "Type""'");
-  }
-  arg2 = (Type)(buf2);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj2, (void**)(&arg3), SWIGTYPE_p_f_p_void__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IndexMap_New" "', argument " "3"" of type '" "Stg_Class_DeleteFunction *""'"); 
-    }
-  }
-  {
-    int res = SWIG_ConvertFunctionPtr(obj3, (void**)(&arg4), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IndexMap_New" "', argument " "4"" of type '" "Stg_Class_PrintFunction *""'"); 
-    }
-  }
-  {
-    int res = SWIG_ConvertFunctionPtr(obj4, (void**)(&arg5), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IndexMap_New" "', argument " "5"" of type '" "Stg_Class_CopyFunction *""'"); 
-    }
-  }
-  ecode6 = SWIG_AsVal_unsigned_SS_int(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "_IndexMap_New" "', argument " "6"" of type '" "unsigned int""'");
-  } 
-  arg6 = (unsigned int)(val6);
-  result = (IndexMap *)_IndexMap_New(arg1,arg2,arg3,arg4,arg5,arg6);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_Init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  IndexMap *arg1 = (IndexMap *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_Init",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_Init" "', argument " "1"" of type '" "IndexMap *""'"); 
-  }
-  arg1 = (IndexMap *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap_Init" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  IndexMap_Init(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexMap_Init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  IndexMap *arg1 = (IndexMap *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:_IndexMap_Init",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexMap, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexMap_Init" "', argument " "1"" of type '" "IndexMap *""'"); 
-  }
-  arg1 = (IndexMap *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "_IndexMap_Init" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  _IndexMap_Init(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexMap_Delete(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  int res1 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:_IndexMap_Delete",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexMap_Delete" "', argument " "1"" of type '" "void *""'"); 
-  }
-  _IndexMap_Delete(arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexMap_Print(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Stream *arg2 = (Stream *) 0 ;
-  int res1 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:_IndexMap_Print",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexMap_Print" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Stream, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_IndexMap_Print" "', argument " "2"" of type '" "Stream *""'"); 
-  }
-  arg2 = (Stream *)(argp2);
-  _IndexMap_Print(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexMap_Copy(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  void *arg2 = (void *) 0 ;
-  Bool arg3 ;
-  Name arg4 = (Name) 0 ;
-  struct PtrMap *arg5 = (struct PtrMap *) 0 ;
-  int res1 ;
-  int res2 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  void *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:_IndexMap_Copy",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexMap_Copy" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_IndexMap_Copy" "', argument " "2"" of type '" "void *""'"); 
-  }
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "_IndexMap_Copy" "', argument " "3"" of type '" "Bool""'");
-  } 
-  arg3 = (Bool)(val3);
-  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "_IndexMap_Copy" "', argument " "4"" of type '" "Name""'");
-  }
-  arg4 = (Name)(buf4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_PtrMap, 0 |  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "_IndexMap_Copy" "', argument " "5"" of type '" "struct PtrMap *""'"); 
-  }
-  arg5 = (struct PtrMap *)(argp5);
-  result = (void *)_IndexMap_Copy(arg1,arg2,arg3,arg4,arg5);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
-  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
-  return resultobj;
-fail:
-  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_Append(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Index arg2 ;
-  Index arg3 ;
-  int res1 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:IndexMap_Append",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_Append" "', argument " "1"" of type '" "void *""'"); 
-  }
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap_Append" "', argument " "2"" of type '" "Index""'");
-  } 
-  arg2 = (Index)(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "IndexMap_Append" "', argument " "3"" of type '" "Index""'");
-  } 
-  arg3 = (Index)(val3);
-  IndexMap_Append(arg1,arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_Find(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Index arg2 ;
-  int res1 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Index result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_Find",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_Find" "', argument " "1"" of type '" "void *""'"); 
-  }
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexMap_Find" "', argument " "2"" of type '" "Index""'");
-  } 
-  arg2 = (Index)(val2);
-  result = (Index)IndexMap_Find(arg1,arg2);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexMap_Remap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  void *arg2 = (void *) 0 ;
-  int res1 ;
-  int res2 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexMap_Remap",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexMap_Remap" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexMap_Remap" "', argument " "2"" of type '" "void *""'"); 
-  }
-  IndexMap_Remap(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN int Swig_var_IndexSet_Type_set(PyObject *_val SWIGUNUSED) {
-  SWIG_Error(SWIG_AttributeError,"Variable IndexSet_Type is read-only.");
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var_IndexSet_Type_get(void) {
-  PyObject *pyobj = 0;
-  
-  pyobj = SWIG_FromCharPtr(IndexSet_Type);
-  return pyobj;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__sizeOfSelf_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  SizeT arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet__sizeOfSelf_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__sizeOfSelf_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet__sizeOfSelf_set" "', argument " "2"" of type '" "SizeT""'");
-  } 
-  arg2 = (SizeT)(val2);
-  if (arg1) (arg1)->_sizeOfSelf = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__sizeOfSelf_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  SizeT result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet__sizeOfSelf_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__sizeOfSelf_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (SizeT) ((arg1)->_sizeOfSelf);
-  resultobj = SWIG_From_unsigned_SS_long((unsigned long)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__deleteSelf_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  Bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet__deleteSelf_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__deleteSelf_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet__deleteSelf_set" "', argument " "2"" of type '" "Bool""'");
-  } 
-  arg2 = (Bool)(val2);
-  if (arg1) (arg1)->_deleteSelf = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__deleteSelf_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Bool result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet__deleteSelf_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__deleteSelf_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (Bool) ((arg1)->_deleteSelf);
-  resultobj = SWIG_From_int((int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_type_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  Type arg2 = (Type) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_type_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_type_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexSet_type_set" "', argument " "2"" of type '" "Type""'");
-  }
-  arg2 = (Type)(buf2);
-  if (arg1->type) free((char*)arg1->type);
-  if (arg2) {
-    size_t size = strlen((const char *)(arg2)) + 1;
-    arg1->type = (Type)(char *)memcpy((char *)malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
-  } else {
-    arg1->type = 0;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_type_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Type result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_type_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_type_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (Type) ((arg1)->type);
-  resultobj = SWIG_FromCharPtr((const char *)result);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_nRefs_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  unsigned int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_nRefs_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_nRefs_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet_nRefs_set" "', argument " "2"" of type '" "unsigned int""'");
-  } 
-  arg2 = (unsigned int)(val2);
-  if (arg1) (arg1)->nRefs = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_nRefs_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  unsigned int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_nRefs_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_nRefs_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (unsigned int) ((arg1)->nRefs);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__delete_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  Stg_Class_DeleteFunction *arg2 = (Stg_Class_DeleteFunction *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet__delete_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__delete_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "IndexSet__delete_set" "', argument " "2"" of type '" "Stg_Class_DeleteFunction *""'"); 
-    }
-  }
-  if (arg1) (arg1)->_delete = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__delete_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Stg_Class_DeleteFunction *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet__delete_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__delete_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (Stg_Class_DeleteFunction *) ((arg1)->_delete);
-  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void__void);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__print_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  Stg_Class_PrintFunction *arg2 = (Stg_Class_PrintFunction *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet__print_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__print_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "IndexSet__print_set" "', argument " "2"" of type '" "Stg_Class_PrintFunction *""'"); 
-    }
-  }
-  if (arg1) (arg1)->_print = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__print_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Stg_Class_PrintFunction *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet__print_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__print_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (Stg_Class_PrintFunction *) ((arg1)->_print);
-  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__copy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  Stg_Class_CopyFunction *arg2 = (Stg_Class_CopyFunction *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet__copy_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__copy_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "IndexSet__copy_set" "', argument " "2"" of type '" "Stg_Class_CopyFunction *""'"); 
-    }
-  }
-  if (arg1) (arg1)->_copy = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__copy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Stg_Class_CopyFunction *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet__copy_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__copy_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (Stg_Class_CopyFunction *) ((arg1)->_copy);
-  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__duplicate_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  IndexSet_DuplicateFunction *arg2 = (IndexSet_DuplicateFunction *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet__duplicate_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__duplicate_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj1, (void**)(&arg2), SWIGTYPE_p_f_p_void_p_void__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "IndexSet__duplicate_set" "', argument " "2"" of type '" "IndexSet_DuplicateFunction *""'"); 
-    }
-  }
-  if (arg1) (arg1)->_duplicate = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__duplicate_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  IndexSet_DuplicateFunction *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet__duplicate_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__duplicate_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (IndexSet_DuplicateFunction *) ((arg1)->_duplicate);
-  resultobj = SWIG_NewFunctionPtrObj((void *)(result), SWIGTYPE_p_f_p_void_p_void__void);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_error_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  Stream *arg2 = (Stream *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_error_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_error_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Stream, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexSet_error_set" "', argument " "2"" of type '" "Stream *""'"); 
-  }
-  arg2 = (Stream *)(argp2);
-  if (arg1) (arg1)->error = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_error_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Stream *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_error_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_error_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (Stream *) ((arg1)->error);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Stream, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_size_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  IndexSet_Index arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_size_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_size_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet_size_set" "', argument " "2"" of type '" "IndexSet_Index""'");
-  } 
-  arg2 = (IndexSet_Index)(val2);
-  if (arg1) (arg1)->size = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_size_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  IndexSet_Index result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_size_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_size_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (IndexSet_Index) ((arg1)->size);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__containerSize_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  SizeT arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet__containerSize_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__containerSize_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet__containerSize_set" "', argument " "2"" of type '" "SizeT""'");
-  } 
-  arg2 = (SizeT)(val2);
-  if (arg1) (arg1)->_containerSize = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__containerSize_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  SizeT result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet__containerSize_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__containerSize_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (SizeT) ((arg1)->_containerSize);
-  resultobj = SWIG_From_unsigned_SS_long((unsigned long)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__container_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet__container_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__container_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexSet__container_set" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = (char *)(buf2);
-  if (arg1->_container) free((char*)arg1->_container);
-  if (arg2) {
-    size_t size = strlen((const char *)(arg2)) + 1;
-    arg1->_container = (char *)(char *)memcpy((char *)malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
-  } else {
-    arg1->_container = 0;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet__container_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  char *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet__container_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet__container_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (char *) ((arg1)->_container);
-  resultobj = SWIG_FromCharPtr((const char *)result);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_membersCount_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  IndexSet_Index arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_membersCount_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_membersCount_set" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet_membersCount_set" "', argument " "2"" of type '" "IndexSet_Index""'");
-  } 
-  arg2 = (IndexSet_Index)(val2);
-  if (arg1) (arg1)->membersCount = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_membersCount_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  IndexSet_Index result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_membersCount_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_membersCount_get" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  result = (IndexSet_Index) ((arg1)->membersCount);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_AddOrRemoveWithNumpyInt(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  int *arg2 = (int *) 0 ;
-  int arg3 ;
-  Bool arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyArrayObject *array2 = NULL ;
-  int is_new_object2 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:IndexSet_AddOrRemoveWithNumpyInt",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_AddOrRemoveWithNumpyInt" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    npy_intp size[1] = {
-      -1 
-    };
-    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_INT,
-      &is_new_object2);
-    if (!array2 || !require_dimensions(array2, 1) ||
-      !require_size(array2, size, 1)) SWIG_fail;
-    arg2 = (int*) array_data(array2);
-    arg3 = (int) array_size(array2,0);
-  }
-  ecode4 = SWIG_AsVal_int(obj2, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "IndexSet_AddOrRemoveWithNumpyInt" "', argument " "4"" of type '" "Bool""'");
-  } 
-  arg4 = (Bool)(val4);
-  IndexSet_AddOrRemoveWithNumpyInt(arg1,arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  {
-    if (is_new_object2 && array2)
-    {
-      Py_DECREF(array2); 
-    }
-  }
-  return resultobj;
-fail:
-  {
-    if (is_new_object2 && array2)
-    {
-      Py_DECREF(array2); 
-    }
-  }
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_AddOrRemoveWithNumpyLong(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  long *arg2 = (long *) 0 ;
-  int arg3 ;
-  Bool arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyArrayObject *array2 = NULL ;
-  int is_new_object2 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:IndexSet_AddOrRemoveWithNumpyLong",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_AddOrRemoveWithNumpyLong" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    npy_intp size[1] = {
-      -1 
-    };
-    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_LONG,
-      &is_new_object2);
-    if (!array2 || !require_dimensions(array2, 1) ||
-      !require_size(array2, size, 1)) SWIG_fail;
-    arg2 = (long*) array_data(array2);
-    arg3 = (int) array_size(array2,0);
-  }
-  ecode4 = SWIG_AsVal_int(obj2, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "IndexSet_AddOrRemoveWithNumpyLong" "', argument " "4"" of type '" "Bool""'");
-  } 
-  arg4 = (Bool)(val4);
-  IndexSet_AddOrRemoveWithNumpyLong(arg1,arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  {
-    if (is_new_object2 && array2)
-    {
-      Py_DECREF(array2); 
-    }
-  }
-  return resultobj;
-fail:
-  {
-    if (is_new_object2 && array2)
-    {
-      Py_DECREF(array2); 
-    }
-  }
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_AddOrRemoveWithNumpyUInt(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  unsigned int *arg2 = (unsigned int *) 0 ;
-  int arg3 ;
-  Bool arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyArrayObject *array2 = NULL ;
-  int is_new_object2 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:IndexSet_AddOrRemoveWithNumpyUInt",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_AddOrRemoveWithNumpyUInt" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    npy_intp size[1] = {
-      -1 
-    };
-    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_UINT,
-      &is_new_object2);
-    if (!array2 || !require_dimensions(array2, 1) ||
-      !require_size(array2, size, 1)) SWIG_fail;
-    arg2 = (unsigned int*) array_data(array2);
-    arg3 = (int) array_size(array2,0);
-  }
-  ecode4 = SWIG_AsVal_int(obj2, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "IndexSet_AddOrRemoveWithNumpyUInt" "', argument " "4"" of type '" "Bool""'");
-  } 
-  arg4 = (Bool)(val4);
-  IndexSet_AddOrRemoveWithNumpyUInt(arg1,arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  {
-    if (is_new_object2 && array2)
-    {
-      Py_DECREF(array2); 
-    }
-  }
-  return resultobj;
-fail:
-  {
-    if (is_new_object2 && array2)
-    {
-      Py_DECREF(array2); 
-    }
-  }
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_AddOrRemoveWithNumpyULong(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  unsigned long *arg2 = (unsigned long *) 0 ;
-  int arg3 ;
-  Bool arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyArrayObject *array2 = NULL ;
-  int is_new_object2 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:IndexSet_AddOrRemoveWithNumpyULong",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_AddOrRemoveWithNumpyULong" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    npy_intp size[1] = {
-      -1 
-    };
-    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_ULONG,
-      &is_new_object2);
-    if (!array2 || !require_dimensions(array2, 1) ||
-      !require_size(array2, size, 1)) SWIG_fail;
-    arg2 = (unsigned long*) array_data(array2);
-    arg3 = (int) array_size(array2,0);
-  }
-  ecode4 = SWIG_AsVal_int(obj2, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "IndexSet_AddOrRemoveWithNumpyULong" "', argument " "4"" of type '" "Bool""'");
-  } 
-  arg4 = (Bool)(val4);
-  IndexSet_AddOrRemoveWithNumpyULong(arg1,arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  {
-    if (is_new_object2 && array2)
-    {
-      Py_DECREF(array2); 
-    }
-  }
-  return resultobj;
-fail:
-  {
-    if (is_new_object2 && array2)
-    {
-      Py_DECREF(array2); 
-    }
-  }
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_GetAsNumpyArray(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  unsigned int *arg2 = (unsigned int *) 0 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyArrayObject *array2 = NULL ;
-  int i2 = 1 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_GetAsNumpyArray",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_GetAsNumpyArray" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  {
-    array2 = obj_to_array_no_conversion(obj1, NPY_UINT);
-    if (!array2 || !require_dimensions(array2,1) || !require_contiguous(array2)
-      || !require_native(array2)) SWIG_fail;
-    arg2 = (unsigned int*) array_data(array2);
-    arg3 = 1;
-    for (i2=0; i2 < array_numdims(array2); ++i2) arg3 *= array_size(array2,i2);
-  }
-  IndexSet_GetAsNumpyArray(arg1,arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_IndexSet(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_IndexSet")) SWIG_fail;
-  result = (struct IndexSet *)calloc(1, sizeof(struct IndexSet));
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexSet, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_IndexSet(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct IndexSet *arg1 = (struct IndexSet *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_IndexSet",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IndexSet" "', argument " "1"" of type '" "struct IndexSet *""'"); 
-  }
-  arg1 = (struct IndexSet *)(argp1);
-  free((char *) arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *IndexSet_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_IndexSet, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_IndexSet_New(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  IndexSet_Index arg1 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  IndexSet *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_New",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "IndexSet_New" "', argument " "1"" of type '" "IndexSet_Index""'");
-  } 
-  arg1 = (IndexSet_Index)(val1);
-  result = (IndexSet *)IndexSet_New(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexSet, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_Init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  IndexSet *arg1 = (IndexSet *) 0 ;
-  IndexSet_Index arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_Init",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_Init" "', argument " "1"" of type '" "IndexSet *""'"); 
-  }
-  arg1 = (IndexSet *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet_Init" "', argument " "2"" of type '" "IndexSet_Index""'");
-  } 
-  arg2 = (IndexSet_Index)(val2);
-  IndexSet_Init(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexSet_New(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  SizeT arg1 ;
-  Type arg2 = (Type) 0 ;
-  Stg_Class_DeleteFunction *arg3 = (Stg_Class_DeleteFunction *) 0 ;
-  Stg_Class_PrintFunction *arg4 = (Stg_Class_PrintFunction *) 0 ;
-  Stg_Class_CopyFunction *arg5 = (Stg_Class_CopyFunction *) 0 ;
-  IndexSet_DuplicateFunction *arg6 = (IndexSet_DuplicateFunction *) 0 ;
-  IndexSet_Index arg7 ;
-  unsigned long val1 ;
-  int ecode1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  unsigned int val7 ;
-  int ecode7 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  IndexSet *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOO:_IndexSet_New",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6)) SWIG_fail;
-  ecode1 = SWIG_AsVal_unsigned_SS_long(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "_IndexSet_New" "', argument " "1"" of type '" "SizeT""'");
-  } 
-  arg1 = (SizeT)(val1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_IndexSet_New" "', argument " "2"" of type '" "Type""'");
-  }
-  arg2 = (Type)(buf2);
-  {
-    int res = SWIG_ConvertFunctionPtr(obj2, (void**)(&arg3), SWIGTYPE_p_f_p_void__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IndexSet_New" "', argument " "3"" of type '" "Stg_Class_DeleteFunction *""'"); 
-    }
-  }
-  {
-    int res = SWIG_ConvertFunctionPtr(obj3, (void**)(&arg4), SWIGTYPE_p_f_p_void_p_struct_Stream__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IndexSet_New" "', argument " "4"" of type '" "Stg_Class_PrintFunction *""'"); 
-    }
-  }
-  {
-    int res = SWIG_ConvertFunctionPtr(obj4, (void**)(&arg5), SWIGTYPE_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IndexSet_New" "', argument " "5"" of type '" "Stg_Class_CopyFunction *""'"); 
-    }
-  }
-  {
-    int res = SWIG_ConvertFunctionPtr(obj5, (void**)(&arg6), SWIGTYPE_p_f_p_void_p_void__void);
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "_IndexSet_New" "', argument " "6"" of type '" "IndexSet_DuplicateFunction *""'"); 
-    }
-  }
-  ecode7 = SWIG_AsVal_unsigned_SS_int(obj6, &val7);
-  if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "_IndexSet_New" "', argument " "7"" of type '" "IndexSet_Index""'");
-  } 
-  arg7 = (IndexSet_Index)(val7);
-  result = (IndexSet *)_IndexSet_New(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexSet_Init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  IndexSet *arg1 = (IndexSet *) 0 ;
-  IndexSet_Index arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:_IndexSet_Init",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexSet_Init" "', argument " "1"" of type '" "IndexSet *""'"); 
-  }
-  arg1 = (IndexSet *)(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "_IndexSet_Init" "', argument " "2"" of type '" "IndexSet_Index""'");
-  } 
-  arg2 = (IndexSet_Index)(val2);
-  _IndexSet_Init(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexSet_Delete(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  int res1 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:_IndexSet_Delete",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexSet_Delete" "', argument " "1"" of type '" "void *""'"); 
-  }
-  _IndexSet_Delete(arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexSet_Print(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Stream *arg2 = (Stream *) 0 ;
-  int res1 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:_IndexSet_Print",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexSet_Print" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Stream, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_IndexSet_Print" "', argument " "2"" of type '" "Stream *""'"); 
-  }
-  arg2 = (Stream *)(argp2);
-  _IndexSet_Print(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexSet_Copy(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  void *arg2 = (void *) 0 ;
-  Bool arg3 ;
-  Name arg4 = (Name) 0 ;
-  PtrMap *arg5 = (PtrMap *) 0 ;
-  int res1 ;
-  int res2 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  void *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:_IndexSet_Copy",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexSet_Copy" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_IndexSet_Copy" "', argument " "2"" of type '" "void *""'"); 
-  }
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "_IndexSet_Copy" "', argument " "3"" of type '" "Bool""'");
-  } 
-  arg3 = (Bool)(val3);
-  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "_IndexSet_Copy" "', argument " "4"" of type '" "Name""'");
-  }
-  arg4 = (Name)(buf4);
-  res5 = SWIG_ConvertPtr(obj4, &argp5,SWIGTYPE_p_PtrMap, 0 |  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "_IndexSet_Copy" "', argument " "5"" of type '" "PtrMap *""'"); 
-  }
-  arg5 = (PtrMap *)(argp5);
-  result = (void *)_IndexSet_Copy(arg1,arg2,arg3,arg4,arg5);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
-  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
-  return resultobj;
-fail:
-  if (alloc4 == SWIG_NEWOBJ) free((char*)buf4);
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_Add(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Index arg2 ;
-  int res1 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_Add",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_Add" "', argument " "1"" of type '" "void *""'"); 
-  }
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet_Add" "', argument " "2"" of type '" "Index""'");
-  } 
-  arg2 = (Index)(val2);
-  IndexSet_Add(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_Remove(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Index arg2 ;
-  int res1 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_Remove",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_Remove" "', argument " "1"" of type '" "void *""'"); 
-  }
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet_Remove" "', argument " "2"" of type '" "Index""'");
-  } 
-  arg2 = (Index)(val2);
-  IndexSet_Remove(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_IsMember(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Index arg2 ;
-  int res1 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Bool result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_IsMember",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_IsMember" "', argument " "1"" of type '" "void *""'"); 
-  }
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet_IsMember" "', argument " "2"" of type '" "Index""'");
-  } 
-  arg2 = (Index)(val2);
-  result = (Bool)IndexSet_IsMember(arg1,arg2);
-  resultobj = SWIG_From_int((int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_UpdateMembersCount(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  int res1 ;
-  PyObject * obj0 = 0 ;
-  IndexSet_Index result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_UpdateMembersCount",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_UpdateMembersCount" "', argument " "1"" of type '" "void *""'"); 
-  }
-  result = (IndexSet_Index)IndexSet_UpdateMembersCount(arg1);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_GetIndexOfNthMember(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Index arg2 ;
-  int res1 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  IndexSet_Index result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_GetIndexOfNthMember",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_GetIndexOfNthMember" "', argument " "1"" of type '" "void *""'"); 
-  }
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "IndexSet_GetIndexOfNthMember" "', argument " "2"" of type '" "Index""'");
-  } 
-  arg2 = (Index)(val2);
-  result = (IndexSet_Index)IndexSet_GetIndexOfNthMember(arg1,arg2);
-  resultobj = SWIG_From_unsigned_SS_int((unsigned int)(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_GetMembers2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  Index *arg2 = (Index *) (Index *)0 ;
-  int res1 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_GetMembers2",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_GetMembers2" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_unsigned_int, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexSet_GetMembers2" "', argument " "2"" of type '" "Index *const""'"); 
-  }
-  arg2 = (Index *)(argp2);
-  IndexSet_GetMembers2(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_GetMembers(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  IndexSet_Index *arg2 = (IndexSet_Index *) 0 ;
-  Index **arg3 = (Index **) 0 ;
-  int res1 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:IndexSet_GetMembers",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_GetMembers" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_unsigned_int, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexSet_GetMembers" "', argument " "2"" of type '" "IndexSet_Index *""'"); 
-  }
-  arg2 = (IndexSet_Index *)(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_p_unsigned_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "IndexSet_GetMembers" "', argument " "3"" of type '" "Index **""'"); 
-  }
-  arg3 = (Index **)(argp3);
-  IndexSet_GetMembers(arg1,arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_GetVacancies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  IndexSet_Index *arg2 = (IndexSet_Index *) 0 ;
-  Index **arg3 = (Index **) 0 ;
-  int res1 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:IndexSet_GetVacancies",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_GetVacancies" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_unsigned_int, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexSet_GetVacancies" "', argument " "2"" of type '" "IndexSet_Index *""'"); 
-  }
-  arg2 = (IndexSet_Index *)(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_p_unsigned_int, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "IndexSet_GetVacancies" "', argument " "3"" of type '" "Index **""'"); 
-  }
-  arg3 = (Index **)(argp3);
-  IndexSet_GetVacancies(arg1,arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_Merge_OR(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  void *arg2 = (void *) 0 ;
-  int res1 ;
-  int res2 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_Merge_OR",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_Merge_OR" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexSet_Merge_OR" "', argument " "2"" of type '" "void *""'"); 
-  }
-  IndexSet_Merge_OR(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_Merge_AND(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  void *arg2 = (void *) 0 ;
-  int res1 ;
-  int res2 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:IndexSet_Merge_AND",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_Merge_AND" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IndexSet_Merge_AND" "', argument " "2"" of type '" "void *""'"); 
-  }
-  IndexSet_Merge_AND(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_AddAll(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  int res1 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_AddAll",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_AddAll" "', argument " "1"" of type '" "void *""'"); 
-  }
-  IndexSet_AddAll(arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_RemoveAll(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  int res1 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_RemoveAll",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_RemoveAll" "', argument " "1"" of type '" "void *""'"); 
-  }
-  IndexSet_RemoveAll(arg1);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_IndexSet_Duplicate(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  int res1 ;
-  PyObject * obj0 = 0 ;
-  IndexSet *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:IndexSet_Duplicate",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IndexSet_Duplicate" "', argument " "1"" of type '" "void *""'"); 
-  }
-  result = (IndexSet *)IndexSet_Duplicate(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IndexSet, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexSet_Duplicate(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  void *arg1 = (void *) 0 ;
-  void *arg2 = (void *) 0 ;
-  int res1 ;
-  int res2 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:_IndexSet_Duplicate",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0,SWIG_as_voidptrptr(&arg1), 0, 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexSet_Duplicate" "', argument " "1"" of type '" "void *""'"); 
-  }
-  res2 = SWIG_ConvertPtr(obj1,SWIG_as_voidptrptr(&arg2), 0, 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_IndexSet_Duplicate" "', argument " "2"" of type '" "void *""'"); 
-  }
-  _IndexSet_Duplicate(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap__IndexSet_Abort(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  IndexSet *arg1 = (IndexSet *) 0 ;
-  char *arg2 = (char *) (char *)0 ;
-  IndexSet_Index arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:_IndexSet_Abort",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IndexSet, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "_IndexSet_Abort" "', argument " "1"" of type '" "IndexSet *""'"); 
-  }
-  arg1 = (IndexSet *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "_IndexSet_Abort" "', argument " "2"" of type '" "char const *const""'");
-  }
-  arg2 = (char *)(buf2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "_IndexSet_Abort" "', argument " "3"" of type '" "IndexSet_Index""'");
-  } 
-  arg3 = (IndexSet_Index)(val3);
-  _IndexSet_Abort(arg1,(char const *)arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -42491,8 +37974,8 @@ SWIGINTERN PyObject *_wrap_HierarchyTable_keyType_set(PyObject *SWIGUNUSEDPARM(s
   KeyType arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
@@ -42502,11 +37985,17 @@ SWIGINTERN PyObject *_wrap_HierarchyTable_keyType_set(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_keyType_set" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
   }
   arg1 = (struct HierarchyTable *)(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "HierarchyTable_keyType_set" "', argument " "2"" of type '" "KeyType""'");
-  } 
-  arg2 = (KeyType)(val2);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_KeyType,  0 );
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "HierarchyTable_keyType_set" "', argument " "2"" of type '" "KeyType""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "HierarchyTable_keyType_set" "', argument " "2"" of type '" "KeyType""'");
+    } else {
+      arg2 = *((KeyType *)(argp2));
+    }
+  }
   if (arg1) (arg1)->keyType = arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -42529,8 +38018,8 @@ SWIGINTERN PyObject *_wrap_HierarchyTable_keyType_get(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "HierarchyTable_keyType_get" "', argument " "1"" of type '" "struct HierarchyTable *""'"); 
   }
   arg1 = (struct HierarchyTable *)(argp1);
-  result = (KeyType) ((arg1)->keyType);
-  resultobj = SWIG_From_int((int)(result));
+  result =  ((arg1)->keyType);
+  resultobj = SWIG_NewPointerObj((KeyType *)memcpy((KeyType *)malloc(sizeof(KeyType)),&result,sizeof(KeyType)), SWIGTYPE_p_KeyType, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -71511,59 +67000,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Variable_GetValueAtInt", _wrap_Variable_GetValueAtInt, METH_VARARGS, NULL},
 	 { (char *)"Variable_GetValueAtFloat", _wrap_Variable_GetValueAtFloat, METH_VARARGS, NULL},
 	 { (char *)"Variable_GetValueAtDouble", _wrap_Variable_GetValueAtDouble, METH_VARARGS, NULL},
-	 { (char *)"STreeNode_data_set", _wrap_STreeNode_data_set, METH_VARARGS, NULL},
-	 { (char *)"STreeNode_data_get", _wrap_STreeNode_data_get, METH_VARARGS, NULL},
-	 { (char *)"STreeNode_left_set", _wrap_STreeNode_left_set, METH_VARARGS, NULL},
-	 { (char *)"STreeNode_left_get", _wrap_STreeNode_left_get, METH_VARARGS, NULL},
-	 { (char *)"STreeNode_right_set", _wrap_STreeNode_right_set, METH_VARARGS, NULL},
-	 { (char *)"STreeNode_right_get", _wrap_STreeNode_right_get, METH_VARARGS, NULL},
-	 { (char *)"new_STreeNode", _wrap_new_STreeNode, METH_VARARGS, NULL},
-	 { (char *)"delete_STreeNode", _wrap_delete_STreeNode, METH_VARARGS, NULL},
-	 { (char *)"STreeNode_swigregister", STreeNode_swigregister, METH_VARARGS, NULL},
-	 { (char *)"ISetItem_key_set", _wrap_ISetItem_key_set, METH_VARARGS, NULL},
-	 { (char *)"ISetItem_key_get", _wrap_ISetItem_key_get, METH_VARARGS, NULL},
-	 { (char *)"ISetItem_next_set", _wrap_ISetItem_next_set, METH_VARARGS, NULL},
-	 { (char *)"ISetItem_next_get", _wrap_ISetItem_next_get, METH_VARARGS, NULL},
-	 { (char *)"new_ISetItem", _wrap_new_ISetItem, METH_VARARGS, NULL},
-	 { (char *)"delete_ISetItem", _wrap_delete_ISetItem, METH_VARARGS, NULL},
-	 { (char *)"ISetItem_swigregister", ISetItem_swigregister, METH_VARARGS, NULL},
-	 { (char *)"IMapItem_key_set", _wrap_IMapItem_key_set, METH_VARARGS, NULL},
-	 { (char *)"IMapItem_key_get", _wrap_IMapItem_key_get, METH_VARARGS, NULL},
-	 { (char *)"IMapItem_val_set", _wrap_IMapItem_val_set, METH_VARARGS, NULL},
-	 { (char *)"IMapItem_val_get", _wrap_IMapItem_val_get, METH_VARARGS, NULL},
-	 { (char *)"IMapItem_next_set", _wrap_IMapItem_next_set, METH_VARARGS, NULL},
-	 { (char *)"IMapItem_next_get", _wrap_IMapItem_next_get, METH_VARARGS, NULL},
-	 { (char *)"new_IMapItem", _wrap_new_IMapItem, METH_VARARGS, NULL},
-	 { (char *)"delete_IMapItem", _wrap_delete_IMapItem, METH_VARARGS, NULL},
-	 { (char *)"IMapItem_swigregister", IMapItem_swigregister, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_Range_begin_set", _wrap_RangeSet_Range_begin_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_Range_begin_get", _wrap_RangeSet_Range_begin_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_Range_end_set", _wrap_RangeSet_Range_end_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_Range_end_get", _wrap_RangeSet_Range_end_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_Range_step_set", _wrap_RangeSet_Range_step_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_Range_step_get", _wrap_RangeSet_Range_step_get, METH_VARARGS, NULL},
-	 { (char *)"new_RangeSet_Range", _wrap_new_RangeSet_Range, METH_VARARGS, NULL},
-	 { (char *)"delete_RangeSet_Range", _wrap_delete_RangeSet_Range, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_Range_swigregister", RangeSet_Range_swigregister, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct__self_set", _wrap_RangeSet_ParseStruct__self_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct__self_get", _wrap_RangeSet_ParseStruct__self_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_operand_set", _wrap_RangeSet_ParseStruct_operand_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_operand_get", _wrap_RangeSet_ParseStruct_operand_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_range_set", _wrap_RangeSet_ParseStruct_range_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_range_get", _wrap_RangeSet_ParseStruct_range_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_newTree_set", _wrap_RangeSet_ParseStruct_newTree_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_newTree_get", _wrap_RangeSet_ParseStruct_newTree_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_nInds_set", _wrap_RangeSet_ParseStruct_nInds_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_nInds_get", _wrap_RangeSet_ParseStruct_nInds_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_inds_set", _wrap_RangeSet_ParseStruct_inds_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_inds_get", _wrap_RangeSet_ParseStruct_inds_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_curInd_set", _wrap_RangeSet_ParseStruct_curInd_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_curInd_get", _wrap_RangeSet_ParseStruct_curInd_get, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_bytes_set", _wrap_RangeSet_ParseStruct_bytes_set, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_bytes_get", _wrap_RangeSet_ParseStruct_bytes_get, METH_VARARGS, NULL},
-	 { (char *)"new_RangeSet_ParseStruct", _wrap_new_RangeSet_ParseStruct, METH_VARARGS, NULL},
-	 { (char *)"delete_RangeSet_ParseStruct", _wrap_delete_RangeSet_ParseStruct, METH_VARARGS, NULL},
-	 { (char *)"RangeSet_ParseStruct_swigregister", RangeSet_ParseStruct_swigregister, METH_VARARGS, NULL},
 	 { (char *)"stgGenerateFlattenedXML", _wrap_stgGenerateFlattenedXML, METH_VARARGS, NULL},
 	 { (char *)"stgMainConstruct", _wrap_stgMainConstruct, METH_VARARGS, NULL},
 	 { (char *)"stgMainBuildAndInitialise", _wrap_stgMainBuildAndInitialise, METH_VARARGS, NULL},
@@ -72693,106 +68129,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"expandArray", _wrap_expandArray, METH_VARARGS, NULL},
 	 { (char *)"HashTable_Next", _wrap_HashTable_Next, METH_VARARGS, NULL},
 	 { (char *)"HashTable_First", _wrap_HashTable_First, METH_VARARGS, NULL},
-	 { (char *)"IndexMapTuple_key_set", _wrap_IndexMapTuple_key_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMapTuple_key_get", _wrap_IndexMapTuple_key_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMapTuple_idx_set", _wrap_IndexMapTuple_idx_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMapTuple_idx_get", _wrap_IndexMapTuple_idx_get, METH_VARARGS, NULL},
-	 { (char *)"new_IndexMapTuple", _wrap_new_IndexMapTuple, METH_VARARGS, NULL},
-	 { (char *)"delete_IndexMapTuple", _wrap_delete_IndexMapTuple, METH_VARARGS, NULL},
-	 { (char *)"IndexMapTuple_swigregister", IndexMapTuple_swigregister, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__sizeOfSelf_set", _wrap_IndexMap__sizeOfSelf_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__sizeOfSelf_get", _wrap_IndexMap__sizeOfSelf_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__deleteSelf_set", _wrap_IndexMap__deleteSelf_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__deleteSelf_get", _wrap_IndexMap__deleteSelf_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_type_set", _wrap_IndexMap_type_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_type_get", _wrap_IndexMap_type_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_nRefs_set", _wrap_IndexMap_nRefs_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_nRefs_get", _wrap_IndexMap_nRefs_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__delete_set", _wrap_IndexMap__delete_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__delete_get", _wrap_IndexMap__delete_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__print_set", _wrap_IndexMap__print_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__print_get", _wrap_IndexMap__print_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__copy_set", _wrap_IndexMap__copy_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap__copy_get", _wrap_IndexMap__copy_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_dictionary_set", _wrap_IndexMap_dictionary_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_dictionary_get", _wrap_IndexMap_dictionary_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_delta_set", _wrap_IndexMap_delta_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_delta_get", _wrap_IndexMap_delta_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_maxTuples_set", _wrap_IndexMap_maxTuples_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_maxTuples_get", _wrap_IndexMap_maxTuples_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_tupleCnt_set", _wrap_IndexMap_tupleCnt_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_tupleCnt_get", _wrap_IndexMap_tupleCnt_get, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_tupleTbl_set", _wrap_IndexMap_tupleTbl_set, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_tupleTbl_get", _wrap_IndexMap_tupleTbl_get, METH_VARARGS, NULL},
-	 { (char *)"new_IndexMap", _wrap_new_IndexMap, METH_VARARGS, NULL},
-	 { (char *)"delete_IndexMap", _wrap_delete_IndexMap, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_swigregister", IndexMap_swigregister, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_New_Param", _wrap_IndexMap_New_Param, METH_VARARGS, NULL},
-	 { (char *)"_IndexMap_New", _wrap__IndexMap_New, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_Init", _wrap_IndexMap_Init, METH_VARARGS, NULL},
-	 { (char *)"_IndexMap_Init", _wrap__IndexMap_Init, METH_VARARGS, NULL},
-	 { (char *)"_IndexMap_Delete", _wrap__IndexMap_Delete, METH_VARARGS, NULL},
-	 { (char *)"_IndexMap_Print", _wrap__IndexMap_Print, METH_VARARGS, NULL},
-	 { (char *)"_IndexMap_Copy", _wrap__IndexMap_Copy, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_Append", _wrap_IndexMap_Append, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_Find", _wrap_IndexMap_Find, METH_VARARGS, NULL},
-	 { (char *)"IndexMap_Remap", _wrap_IndexMap_Remap, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__sizeOfSelf_set", _wrap_IndexSet__sizeOfSelf_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__sizeOfSelf_get", _wrap_IndexSet__sizeOfSelf_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__deleteSelf_set", _wrap_IndexSet__deleteSelf_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__deleteSelf_get", _wrap_IndexSet__deleteSelf_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_type_set", _wrap_IndexSet_type_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_type_get", _wrap_IndexSet_type_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_nRefs_set", _wrap_IndexSet_nRefs_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_nRefs_get", _wrap_IndexSet_nRefs_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__delete_set", _wrap_IndexSet__delete_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__delete_get", _wrap_IndexSet__delete_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__print_set", _wrap_IndexSet__print_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__print_get", _wrap_IndexSet__print_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__copy_set", _wrap_IndexSet__copy_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__copy_get", _wrap_IndexSet__copy_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__duplicate_set", _wrap_IndexSet__duplicate_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__duplicate_get", _wrap_IndexSet__duplicate_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_error_set", _wrap_IndexSet_error_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_error_get", _wrap_IndexSet_error_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_size_set", _wrap_IndexSet_size_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_size_get", _wrap_IndexSet_size_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__containerSize_set", _wrap_IndexSet__containerSize_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__containerSize_get", _wrap_IndexSet__containerSize_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__container_set", _wrap_IndexSet__container_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet__container_get", _wrap_IndexSet__container_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_membersCount_set", _wrap_IndexSet_membersCount_set, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_membersCount_get", _wrap_IndexSet_membersCount_get, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_AddOrRemoveWithNumpyInt", _wrap_IndexSet_AddOrRemoveWithNumpyInt, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_AddOrRemoveWithNumpyLong", _wrap_IndexSet_AddOrRemoveWithNumpyLong, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_AddOrRemoveWithNumpyUInt", _wrap_IndexSet_AddOrRemoveWithNumpyUInt, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_AddOrRemoveWithNumpyULong", _wrap_IndexSet_AddOrRemoveWithNumpyULong, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_GetAsNumpyArray", _wrap_IndexSet_GetAsNumpyArray, METH_VARARGS, NULL},
-	 { (char *)"new_IndexSet", _wrap_new_IndexSet, METH_VARARGS, NULL},
-	 { (char *)"delete_IndexSet", _wrap_delete_IndexSet, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_swigregister", IndexSet_swigregister, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_New", _wrap_IndexSet_New, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_Init", _wrap_IndexSet_Init, METH_VARARGS, NULL},
-	 { (char *)"_IndexSet_New", _wrap__IndexSet_New, METH_VARARGS, NULL},
-	 { (char *)"_IndexSet_Init", _wrap__IndexSet_Init, METH_VARARGS, NULL},
-	 { (char *)"_IndexSet_Delete", _wrap__IndexSet_Delete, METH_VARARGS, NULL},
-	 { (char *)"_IndexSet_Print", _wrap__IndexSet_Print, METH_VARARGS, NULL},
-	 { (char *)"_IndexSet_Copy", _wrap__IndexSet_Copy, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_Add", _wrap_IndexSet_Add, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_Remove", _wrap_IndexSet_Remove, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_IsMember", _wrap_IndexSet_IsMember, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_UpdateMembersCount", _wrap_IndexSet_UpdateMembersCount, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_GetIndexOfNthMember", _wrap_IndexSet_GetIndexOfNthMember, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_GetMembers2", _wrap_IndexSet_GetMembers2, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_GetMembers", _wrap_IndexSet_GetMembers, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_GetVacancies", _wrap_IndexSet_GetVacancies, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_Merge_OR", _wrap_IndexSet_Merge_OR, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_Merge_AND", _wrap_IndexSet_Merge_AND, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_AddAll", _wrap_IndexSet_AddAll, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_RemoveAll", _wrap_IndexSet_RemoveAll, METH_VARARGS, NULL},
-	 { (char *)"IndexSet_Duplicate", _wrap_IndexSet_Duplicate, METH_VARARGS, NULL},
-	 { (char *)"_IndexSet_Duplicate", _wrap__IndexSet_Duplicate, METH_VARARGS, NULL},
-	 { (char *)"_IndexSet_Abort", _wrap__IndexSet_Abort, METH_VARARGS, NULL},
 	 { (char *)"HierarchyTable__sizeOfSelf_set", _wrap_HierarchyTable__sizeOfSelf_set, METH_VARARGS, NULL},
 	 { (char *)"HierarchyTable__sizeOfSelf_get", _wrap_HierarchyTable__sizeOfSelf_get, METH_VARARGS, NULL},
 	 { (char *)"HierarchyTable__deleteSelf_set", _wrap_HierarchyTable__deleteSelf_set, METH_VARARGS, NULL},
@@ -73794,24 +69130,16 @@ static PyMethodDef SwigMethods[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static swig_type_info _swigt__p_AbsArray = {"_p_AbsArray", "struct AbsArray *|AbsArray *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_AbstractContext = {"_p_AbstractContext", "struct AbstractContext *|AbstractContext *|Context *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_AllocationType = {"_p_AllocationType", "enum AllocationType *|AllocationType *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_BTree = {"_p_BTree", "struct BTree *|BTree *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_BTreeIterator = {"_p_BTreeIterator", "struct BTreeIterator *|BTreeIterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_BTreeNode = {"_p_BTreeNode", "struct BTreeNode *|BTreeNode *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_BTreeProperty_t = {"_p_BTreeProperty_t", "enum BTreeProperty_t *|BTreeProperty *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_BinaryStream = {"_p_BinaryStream", "struct BinaryStream *|BinaryStream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Bool = {"_p_Bool", "enum Bool *|Bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CFile = {"_p_CFile", "struct CFile *|CFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CStream = {"_p_CStream", "struct CStream *|CStream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CheckpointFileFormat = {"_p_CheckpointFileFormat", "enum CheckpointFileFormat *|CheckpointFileFormat *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Chunk = {"_p_Chunk", "struct Chunk *|Chunk *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_ChunkArray = {"_p_ChunkArray", "struct ChunkArray *|ChunkArray *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ClassHook = {"_p_ClassHook", "struct ClassHook *|ClassHook *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ClassPtrExtensionInfo = {"_p_ClassPtrExtensionInfo", "struct ClassPtrExtensionInfo *|ClassPtrExtensionInfo *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Codelet = {"_p_Codelet", "struct Codelet *|Codelet *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Color_t = {"_p_Color_t", "enum Color_t *|Color *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Comm = {"_p_Comm", "struct Comm *|Comm *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ContextEntryPoint = {"_p_ContextEntryPoint", "struct ContextEntryPoint *|ContextEntryPoint *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Context_CallInfo = {"_p_Context_CallInfo", "struct Context_CallInfo *|Context_CallInfo *", 0, 0, (void*)0, 0};
@@ -73830,42 +69158,23 @@ static swig_type_info _swigt__p_File = {"_p_File", "struct File *|File *", 0, 0,
 static swig_type_info _swigt__p_HashTable = {"_p_HashTable", "struct HashTable *|HashTable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_HashTable_Entry = {"_p_HashTable_Entry", "struct HashTable_Entry *|HashTable_Entry *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_HashTable_Index = {"_p_HashTable_Index", "struct HashTable_Index *|HashTable_Index *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Hasher = {"_p_Hasher", "struct Hasher *|Hasher *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_HierarchyTable = {"_p_HierarchyTable", "struct HierarchyTable *|HierarchyTable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Hook = {"_p_Hook", "struct Hook *|Hook *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_IArray = {"_p_IArray", "struct IArray *|IArray *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_IMap = {"_p_IMap", "struct IMap *|IMap *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_IMapItem = {"_p_IMapItem", "struct IMapItem *|IMapItem *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_IMapIter = {"_p_IMapIter", "struct IMapIter *|IMapIter *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_ISet = {"_p_ISet", "struct ISet *|ISet *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_ISetItem = {"_p_ISetItem", "struct ISetItem *|ISetItem *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_ISetIter = {"_p_ISetIter", "struct ISetIter *|ISetIter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IndentFormatter = {"_p_IndentFormatter", "struct IndentFormatter *|IndentFormatter *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_IndexMap = {"_p_IndexMap", "struct IndexMap *|IndexMap *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_IndexMapTuple = {"_p_IndexMapTuple", "struct IndexMapTuple *|IndexMapTuple *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_IndexSet = {"_p_IndexSet", "struct IndexSet *|IndexSet *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Iter = {"_p_Iter", "struct Iter *|Iter *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IndexSet = {"_p_IndexSet", "IndexSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Journal = {"_p_Journal", "struct Journal *|Journal *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_JournalTypedStream = {"_p_JournalTypedStream", "struct JournalTypedStream *|JournalTypedStream *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_KeyType_t = {"_p_KeyType_t", "KeyType *|enum KeyType_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_KeyType = {"_p_KeyType", "KeyType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_LineFormatter = {"_p_LineFormatter", "struct LineFormatter *|LineFormatter *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_LinkedList = {"_p_LinkedList", "struct LinkedList *|LinkedList *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_LinkedListIterator = {"_p_LinkedListIterator", "struct LinkedListIterator *|LinkedListIterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_LinkedListNode = {"_p_LinkedListNode", "struct LinkedListNode *|LinkedListNode *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_List = {"_p_List", "struct List *|List *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ListEncoding = {"_p_ListEncoding", "enum ListEncoding *|ListEncoding *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_LiveComponentRegister = {"_p_LiveComponentRegister", "struct LiveComponentRegister *|LiveComponentRegister *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MPIFile = {"_p_MPIFile", "struct MPIFile *|MPIFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MPIStream = {"_p_MPIStream", "struct MPIStream *|MPIStream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MPI_Comm = {"_p_MPI_Comm", "MPI_Comm *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_MapTuple = {"_p_MapTuple", "struct MapTuple *|MapTuple *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Mapping = {"_p_Mapping", "struct Mapping *|Mapping *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_MaxHeap = {"_p_MaxHeap", "struct MaxHeap *|MaxHeap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Memory = {"_p_Memory", "struct Memory *|Memory *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MemoryField = {"_p_MemoryField", "struct MemoryField *|MemoryField *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MemoryPointer = {"_p_MemoryPointer", "struct MemoryPointer *|MemoryPointer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MemoryPointerStatus_t = {"_p_MemoryPointerStatus_t", "MemoryPointerStatus *|enum MemoryPointerStatus_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_MemoryPool = {"_p_MemoryPool", "struct MemoryPool *|MemoryPool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MemoryReport = {"_p_MemoryReport", "struct MemoryReport *|MemoryReport *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Module = {"_p_Module", "struct Module *|Module *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ModulesManager = {"_p_ModulesManager", "struct ModulesManager *|ModulesManager *", 0, 0, (void*)0, 0};
@@ -73873,23 +69182,13 @@ static swig_type_info _swigt__p_NameSpaceInfo = {"_p_NameSpaceInfo", "struct Nam
 static swig_type_info _swigt__p_NamedObject_Register = {"_p_NamedObject_Register", "struct NamedObject_Register *|NamedObject_Register *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_NewClass = {"_p_NewClass", "struct NewClass *|NewClass *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_NewObject = {"_p_NewObject", "struct NewObject *|NewObject *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_NumberHasher = {"_p_NumberHasher", "struct NumberHasher *|NumberHasher *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Order_t = {"_p_Order_t", "Order *|enum Order_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Plugin = {"_p_Plugin", "struct Plugin *|Plugin *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PluginsManager = {"_p_PluginsManager", "struct PluginsManager *|PluginsManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Progress = {"_p_Progress", "struct Progress *|Progress *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_PtrMap = {"_p_PtrMap", "struct PtrMap *|PtrMap *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_PtrSet = {"_p_PtrSet", "struct PtrSet *|PtrSet *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_RangeSet = {"_p_RangeSet", "struct RangeSet *|RangeSet *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_RangeSet_ParseStruct = {"_p_RangeSet_ParseStruct", "RangeSet_ParseStruct *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_RangeSet_Range = {"_p_RangeSet_Range", "RangeSet_Range *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_RankFormatter = {"_p_RankFormatter", "struct RankFormatter *|RankFormatter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ReplacementOption = {"_p_ReplacementOption", "enum ReplacementOption *|ReplacementOption *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_STree = {"_p_STree", "struct STree *|STree *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_STreeMap = {"_p_STreeMap", "struct STreeMap *|STreeMap *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_STreeNode = {"_p_STreeNode", "struct STreeNode *|STreeNode *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Scaling = {"_p_Scaling", "struct Scaling *|Scaling *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Set = {"_p_Set", "Set *|struct Set *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SimpleExtensionInfo = {"_p_SimpleExtensionInfo", "struct SimpleExtensionInfo *|SimpleExtensionInfo *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Stg_CallGraph = {"_p_Stg_CallGraph", "struct Stg_CallGraph *|Stg_CallGraph *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Stg_Component = {"_p_Stg_Component", "struct Stg_Component *|Stg_Component *", 0, 0, (void*)0, 0};
@@ -73905,7 +69204,7 @@ static swig_type_info _swigt__p_StreamFormatter_Buffer = {"_p_StreamFormatter_Bu
 static swig_type_info _swigt__p_TestSuite = {"_p_TestSuite", "struct TestSuite *|TestSuite *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Toolbox = {"_p_Toolbox", "struct Toolbox *|Toolbox *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ToolboxesManager = {"_p_ToolboxesManager", "struct ToolboxesManager *|ToolboxesManager *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_UIntMap = {"_p_UIntMap", "struct UIntMap *|UIntMap *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_UIntMap = {"_p_UIntMap", "UIntMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_UnitDefinition_Type = {"_p_UnitDefinition_Type", "UnitDefinition_Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_VariableCondition_ValueType = {"_p_VariableCondition_ValueType", "enum VariableCondition_ValueType *|VariableCondition_ValueType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_VariableCondition_Value_Array = {"_p_VariableCondition_Value_Array", "VariableCondition_Value_Array *", 0, 0, (void*)0, 0};
@@ -73923,14 +69222,13 @@ static swig_type_info _swigt__p__Dictionary_Entry_Value = {"_p__Dictionary_Entry
 static swig_type_info _swigt__p__Dictionary_Entry_Value_List = {"_p__Dictionary_Entry_Value_List", "struct _Dictionary_Entry_Value_List *|Dictionary_Entry_Value_List *|_Dictionary_Entry_Value_List *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Dictionary_Entry_Value_Validator = {"_p__Dictionary_Entry_Value_Validator", "struct _Dictionary_Entry_Value_Validator *|Dictionary_Entry_Value_Validator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Encoding = {"_p__Encoding", "enum _Encoding *|Encoding *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p__Heap = {"_p__Heap", "struct _Heap *|_Heap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__IO_Handler = {"_p__IO_Handler", "struct _IO_Handler *|IO_Handler *|_IO_Handler *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__SetVC = {"_p__SetVC", "struct _SetVC *|SetVC *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__SetVC_Entry = {"_p__SetVC_Entry", "struct _SetVC_Entry *|SetVC_Entry *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Stg_Class = {"_p__Stg_Class", "struct _Stg_Class *|Stg_Class *|_Stg_Class *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Stg_Object = {"_p__Stg_Object", "struct _Stg_Object *|Stg_Object *|_Stg_Object *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Stg_ObjectAdaptor = {"_p__Stg_ObjectAdaptor", "struct _Stg_ObjectAdaptor *|Stg_ObjectAdaptor *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p__Stg_ObjectList = {"_p__Stg_ObjectList", "Pointer_Register *|Register_Register *|struct _Stg_ObjectList *|Stg_ObjectList *|ExtensionList *|_Stg_ObjectList *|EntryPointList *|ExtensionInfoList *|HookList *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p__Stg_ObjectList = {"_p__Stg_ObjectList", "Pointer_Register *|Register_Register *|struct _Stg_ObjectList *|ExtensionList *|Stg_ObjectList *|_Stg_ObjectList *|EntryPointList *|ExtensionInfoList *|HookList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Stg_PrimitiveObject = {"_p__Stg_PrimitiveObject", "struct _Stg_PrimitiveObject *|Stg_PrimitiveObject *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Variable = {"_p__Variable", "struct _Variable *|Variable *|_Variable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__VariableAllVC = {"_p__VariableAllVC", "struct _VariableAllVC *|VariableAllVC *", 0, 0, (void*)0, 0};
@@ -73942,7 +69240,7 @@ static swig_type_info _swigt__p__VariableCondition_Tuple = {"_p__VariableConditi
 static swig_type_info _swigt__p__VariableCondition_Value = {"_p__VariableCondition_Value", "struct _VariableCondition_Value *|VariableCondition_Value *|_VariableCondition_Value *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__Variable_Register = {"_p__Variable_Register", "struct _Variable_Register *|Variable_Register *|_Variable_Register *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__XML_IO_Handler = {"_p__XML_IO_Handler", "struct _XML_IO_Handler *|XML_IO_Handler *|_XML_IO_Handler *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_char = {"_p_char", "char *|BitField *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_double = {"_p_double", "double *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f___p_void = {"_p_f___p_void", "NewFunc *|void *(*)()", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f___void = {"_p_f___void", "EntryPoint_0_Cast *|void (*)()", 0, 0, (void*)0, 0};
@@ -73950,7 +69248,6 @@ static swig_type_info _swigt__p_f_p_AbstractContext_p_Variable_Register_p_Condit
 static swig_type_info _swigt__p_f_p_char__p_void = {"_p_f_p_char__p_void", "void *(*)(char *)|Stg_Component_DefaultConstructorFunction *|Stg_Component_Constructor *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_char_p_struct__Stg_ObjectList__p_Module = {"_p_f_p_char_p_struct__Stg_ObjectList__p_Module", "struct Module *(*)(char *,struct _Stg_ObjectList *)|ModulesManager_ModuleFactoryFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_q_const__char__Bool = {"_p_f_p_q_const__char__Bool", "enum Bool (*)(char const *)|IsSuperFunc *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_q_const__void_p_q_const__void__int = {"_p_f_p_q_const__void_p_q_const__void__int", "int (*)(void const *,void const *)|STree_CompareCB *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int = {"_p_f_p_q_const__void_q_const__unsigned_int__unsigned_int", "unsigned int (*)(void const *,unsigned int const)|HashTable_keyHashFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value = {"_p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value", "struct _Dictionary_Entry_Value *(*)(void *,Dictionary_Entry_Key)|Dictionary_GetFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component = {"_p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component", "Stg_ComponentFactory_ConstructByKeyFunc *|struct Stg_Component *(*)(void *,Name,Dictionary_Entry_Key,Type,Bool,void *)", 0, 0, (void*)0, 0};
@@ -73960,10 +69257,10 @@ static swig_type_info _swigt__p_f_p_void_Name_Type_Bool_p_void__p_Stg_Component 
 static swig_type_info _swigt__p_f_p_void_VariableCondition_ValueIndex___VariableCondition_Value = {"_p_f_p_void_VariableCondition_ValueIndex___VariableCondition_Value", "VariableCondition_GetValueFunc *|struct _VariableCondition_Value (*)(void *,VariableCondition_ValueIndex)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__Bool = {"_p_f_p_void__Bool", "File_CloseFunction *|File_FlushFunction *|enum Bool (*)(void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__double = {"_p_f_p_void__double", "EntryPoint_Minimum_VoidPtr_Cast *|EntryPoint_Maximum_VoidPtr_Cast *|double (*)(void *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void__p_IndexSet = {"_p_f_p_void__p_IndexSet", "struct IndexSet *(*)(void *)|VariableCondition_GetSetFunc *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void__p_IndexSet = {"_p_f_p_void__p_IndexSet", "IndexSet *(*)(void *)|VariableCondition_GetSetFunc *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__p_void = {"_p_f_p_void__p_void", "EntryPoint_GetRunFunction *|void *(*)(void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__unsigned_int = {"_p_f_p_void__unsigned_int", "Variable_ArraySizeFunc *|unsigned int (*)(void *)|VariableCondition_GetValueCountFunc *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "STree_DeleteCB *|EntryPoint_0_CallCast *|EntryPoint_Class_0_CallCast *|EntryPoint_VoidPtr_Cast *|Stg_Class_DeleteFunction *|HashTable_dataDeleteFunction *|IO_Handler_DeleteFunction *|IO_Handler_PrintFunction *|Stg_ObjectList_AllocMoreMemoryFunction *|Stg_ObjectList_DeleteAllObjectsFunction *|EntryPoint_Class_0_Cast *|void (*)(void *)|ConstructFunc *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "EntryPoint_0_CallCast *|EntryPoint_Class_0_CallCast *|EntryPoint_VoidPtr_Cast *|Stg_Class_DeleteFunction *|HashTable_dataDeleteFunction *|IO_Handler_DeleteFunction *|IO_Handler_PrintFunction *|Stg_ObjectList_AllocMoreMemoryFunction *|Stg_ObjectList_DeleteAllObjectsFunction *|EntryPoint_Class_0_Cast *|void (*)(void *)|ConstructFunc *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_double__void = {"_p_f_p_void_double__void", "void (*)(void *,double)|AbstractContext_SetDt *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_enum_Bool__void = {"_p_f_p_void_enum_Bool__void", "XML_IO_Handler_SetWriteExplicitTypesFunction *|void (*)(void *,enum Bool)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_enum_ListEncoding__void = {"_p_f_p_void_enum_ListEncoding__void", "XML_IO_Handler_SetListEncodingFunction *|void (*)(void *,enum ListEncoding)", 0, 0, (void*)0, 0};
@@ -74001,7 +69298,7 @@ static swig_type_info _swigt__p_f_p_void_p_struct__Dictionary_p_struct__Dictiona
 static swig_type_info _swigt__p_f_p_void_p_void__double = {"_p_f_p_void_p_void__double", "EntryPoint_Minimum_VoidPtr_CallCast *|EntryPoint_Maximum_VoidPtr_CallCast *|EntryPoint_Class_Minimum_VoidPtr_Cast *|EntryPoint_Class_Maximum_VoidPtr_Cast *|double (*)(void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void__p__Dictionary_Entry_Value = {"_p_f_p_void_p_void__p__Dictionary_Entry_Value", "ModulesManager_GetModulesListFunction *|struct _Dictionary_Entry_Value *(*)(void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void__unsigned_int = {"_p_f_p_void_p_void__unsigned_int", "Stg_ObjectList_AppendFunction *|Stg_ObjectList_PrependFunction *|unsigned int (*)(void *,void *)", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_void_p_void__void = {"_p_f_p_void_p_void__void", "ConditionFunction_InitFunc *|VariableCondition_BuildSelfFunc *|void (*)(void *,void *)|EntryPoint_Class_VoidPtr_Cast *|EntryPoint_2VoidPtr_Cast *|IndexSet_DuplicateFunction *|Stg_Component_BuildFunction *|Stg_Component_InitialiseFunction *|Stg_Component_ExecuteFunction *|Stg_Component_DestroyFunction *|HashTable_dataPrintFunction *|HashTable_parseFunction *|EntryPoint_VoidPtr_CallCast *|EntryPoint_Class_VoidPtr_CallCast *|VariableCondition_ApplyFunc *|VariableCondition_ReadDictionaryFunc *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_p_void__void = {"_p_f_p_void_p_void__void", "ConditionFunction_InitFunc *|VariableCondition_BuildSelfFunc *|void (*)(void *,void *)|EntryPoint_2VoidPtr_Cast *|EntryPoint_Class_VoidPtr_Cast *|Stg_Component_BuildFunction *|Stg_Component_InitialiseFunction *|Stg_Component_ExecuteFunction *|Stg_Component_DestroyFunction *|HashTable_dataPrintFunction *|HashTable_parseFunction *|EntryPoint_VoidPtr_CallCast *|EntryPoint_Class_VoidPtr_CallCast *|VariableCondition_ApplyFunc *|VariableCondition_ReadDictionaryFunc *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void = {"_p_f_p_void_p_void_enum_Bool_p_char_p_struct_PtrMap__p_void", "Stg_Class_CopyFunction *|HashTable_dataCopyFunction *|void *(*)(void *,void *,enum Bool,char *,struct PtrMap *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_p_void__double = {"_p_f_p_void_p_void_p_void__double", "EntryPoint_Class_Minimum_VoidPtr_CallCast *|EntryPoint_Class_Maximum_VoidPtr_CallCast *|double (*)(void *,void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_void_p_void__void = {"_p_f_p_void_p_void_p_void__void", "EntryPoint_2VoidPtr_CallCast *|EntryPoint_3VoidPtr_Cast *|void (*)(void *,void *,void *)", 0, 0, (void*)0, 0};
@@ -74027,12 +69324,11 @@ static swig_type_info _swigt__p_p__Variable = {"_p_p__Variable", "struct _Variab
 static swig_type_info _swigt__p_p__VariableCondition_Tuple = {"_p_p__VariableCondition_Tuple", "struct _VariableCondition_Tuple **|VariableCondition_Tuple **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **|Name *|Hook_Name *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_p_char = {"_p_p_p_char", "char ***", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_unsigned_int = {"_p_p_unsigned_int", "unsigned int **|Index **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_void = {"_p_p_void", "void **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_xmlChar = {"_p_p_xmlChar", "xmlChar **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_stgComponent = {"_p_stgComponent", "struct stgComponent *|stgComponent *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|Stg_Byte *|stgByte *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "JournalLevel *|EntryPoint_Index *|ExtensionManager_Index *|Stg_Object_Index *|IndexSet_Index *|ConditionFunction_Index *|AnalyticFunction_Index *|Variable_Set_Index *|Dof_Index *|VariableCondition_Index *|VariableCondition_ValueIndex *|CompositeVC_ItemIndex *|Index *|VariableCondition_VariableIndex *|SetVC_Entry_Index *|Variable_Index *|VariableAllVC_Entry_Index *|ExtensionInfo_Index *|Hook_Index *|Dictionary_Index *|unsigned int *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|stgByte *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "JournalLevel *|ExtensionInfo_Index *|Stg_Object_Index *|ConditionFunction_Index *|AnalyticFunction_Index *|Variable_Set_Index *|Dof_Index *|VariableCondition_Index *|ExtensionManager_Index *|EntryPoint_Index *|VariableCondition_ValueIndex *|CompositeVC_ItemIndex *|Index *|VariableCondition_VariableIndex *|SetVC_Entry_Index *|Variable_Index *|VariableAllVC_Entry_Index *|Hook_Index *|Dictionary_Index *|unsigned int *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "SizeT *|MemoryOpStamp *|Stg_Word *|unsigned long *|ArithPointer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_void = {"_p_void", "Func_Ptr|void *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_xmlChar = {"_p_xmlChar", "xmlChar *", 0, 0, (void*)0, 0};
@@ -74041,24 +69337,16 @@ static swig_type_info _swigt__p_xmlNodePtr = {"_p_xmlNodePtr", "xmlNodePtr *", 0
 static swig_type_info _swigt__p_xmlNsPtr = {"_p_xmlNsPtr", "xmlNsPtr *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_AbsArray,
   &_swigt__p_AbstractContext,
   &_swigt__p_AllocationType,
-  &_swigt__p_BTree,
-  &_swigt__p_BTreeIterator,
-  &_swigt__p_BTreeNode,
-  &_swigt__p_BTreeProperty_t,
   &_swigt__p_BinaryStream,
   &_swigt__p_Bool,
   &_swigt__p_CFile,
   &_swigt__p_CStream,
   &_swigt__p_CheckpointFileFormat,
-  &_swigt__p_Chunk,
-  &_swigt__p_ChunkArray,
   &_swigt__p_ClassHook,
   &_swigt__p_ClassPtrExtensionInfo,
   &_swigt__p_Codelet,
-  &_swigt__p_Color_t,
   &_swigt__p_Comm,
   &_swigt__p_ContextEntryPoint,
   &_swigt__p_Context_CallInfo,
@@ -74077,42 +69365,23 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_HashTable,
   &_swigt__p_HashTable_Entry,
   &_swigt__p_HashTable_Index,
-  &_swigt__p_Hasher,
   &_swigt__p_HierarchyTable,
   &_swigt__p_Hook,
-  &_swigt__p_IArray,
-  &_swigt__p_IMap,
-  &_swigt__p_IMapItem,
-  &_swigt__p_IMapIter,
-  &_swigt__p_ISet,
-  &_swigt__p_ISetItem,
-  &_swigt__p_ISetIter,
   &_swigt__p_IndentFormatter,
-  &_swigt__p_IndexMap,
-  &_swigt__p_IndexMapTuple,
   &_swigt__p_IndexSet,
-  &_swigt__p_Iter,
   &_swigt__p_Journal,
   &_swigt__p_JournalTypedStream,
-  &_swigt__p_KeyType_t,
+  &_swigt__p_KeyType,
   &_swigt__p_LineFormatter,
-  &_swigt__p_LinkedList,
-  &_swigt__p_LinkedListIterator,
-  &_swigt__p_LinkedListNode,
-  &_swigt__p_List,
   &_swigt__p_ListEncoding,
   &_swigt__p_LiveComponentRegister,
   &_swigt__p_MPIFile,
   &_swigt__p_MPIStream,
   &_swigt__p_MPI_Comm,
-  &_swigt__p_MapTuple,
-  &_swigt__p_Mapping,
-  &_swigt__p_MaxHeap,
   &_swigt__p_Memory,
   &_swigt__p_MemoryField,
   &_swigt__p_MemoryPointer,
   &_swigt__p_MemoryPointerStatus_t,
-  &_swigt__p_MemoryPool,
   &_swigt__p_MemoryReport,
   &_swigt__p_Module,
   &_swigt__p_ModulesManager,
@@ -74120,23 +69389,13 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_NamedObject_Register,
   &_swigt__p_NewClass,
   &_swigt__p_NewObject,
-  &_swigt__p_NumberHasher,
-  &_swigt__p_Order_t,
   &_swigt__p_Plugin,
   &_swigt__p_PluginsManager,
   &_swigt__p_Progress,
   &_swigt__p_PtrMap,
-  &_swigt__p_PtrSet,
-  &_swigt__p_RangeSet,
-  &_swigt__p_RangeSet_ParseStruct,
-  &_swigt__p_RangeSet_Range,
   &_swigt__p_RankFormatter,
   &_swigt__p_ReplacementOption,
-  &_swigt__p_STree,
-  &_swigt__p_STreeMap,
-  &_swigt__p_STreeNode,
   &_swigt__p_Scaling,
-  &_swigt__p_Set,
   &_swigt__p_SimpleExtensionInfo,
   &_swigt__p_Stg_CallGraph,
   &_swigt__p_Stg_Component,
@@ -74170,7 +69429,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p__Dictionary_Entry_Value_List,
   &_swigt__p__Dictionary_Entry_Value_Validator,
   &_swigt__p__Encoding,
-  &_swigt__p__Heap,
   &_swigt__p__IO_Handler,
   &_swigt__p__SetVC,
   &_swigt__p__SetVC_Entry,
@@ -74197,7 +69455,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_p_char__p_void,
   &_swigt__p_f_p_char_p_struct__Stg_ObjectList__p_Module,
   &_swigt__p_f_p_q_const__char__Bool,
-  &_swigt__p_f_p_q_const__void_p_q_const__void__int,
   &_swigt__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int,
   &_swigt__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value,
   &_swigt__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component,
@@ -74274,7 +69531,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_p__VariableCondition_Tuple,
   &_swigt__p_p_char,
   &_swigt__p_p_p_char,
-  &_swigt__p_p_unsigned_int,
   &_swigt__p_p_void,
   &_swigt__p_p_xmlChar,
   &_swigt__p_stgComponent,
@@ -74288,24 +69544,16 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_xmlNsPtr,
 };
 
-static swig_cast_info _swigc__p_AbsArray[] = {  {&_swigt__p_AbsArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_AbstractContext[] = {  {&_swigt__p_AbstractContext, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_AllocationType[] = {  {&_swigt__p_AllocationType, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_BTree[] = {  {&_swigt__p_BTree, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_BTreeIterator[] = {  {&_swigt__p_BTreeIterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_BTreeNode[] = {  {&_swigt__p_BTreeNode, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_BTreeProperty_t[] = {  {&_swigt__p_BTreeProperty_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_BinaryStream[] = {  {&_swigt__p_BinaryStream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Bool[] = {  {&_swigt__p_Bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CFile[] = {  {&_swigt__p_CFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStream[] = {  {&_swigt__p_CStream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CheckpointFileFormat[] = {  {&_swigt__p_CheckpointFileFormat, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Chunk[] = {  {&_swigt__p_Chunk, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_ChunkArray[] = {  {&_swigt__p_ChunkArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ClassHook[] = {  {&_swigt__p_ClassHook, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ClassPtrExtensionInfo[] = {  {&_swigt__p_ClassPtrExtensionInfo, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Codelet[] = {  {&_swigt__p_Codelet, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Color_t[] = {  {&_swigt__p_Color_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Comm[] = {  {&_swigt__p_Comm, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ContextEntryPoint[] = {  {&_swigt__p_ContextEntryPoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Context_CallInfo[] = {  {&_swigt__p_Context_CallInfo, 0, 0, 0},{0, 0, 0, 0}};
@@ -74324,42 +69572,23 @@ static swig_cast_info _swigc__p_File[] = {  {&_swigt__p_File, 0, 0, 0},{0, 0, 0,
 static swig_cast_info _swigc__p_HashTable[] = {  {&_swigt__p_HashTable, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_HashTable_Entry[] = {  {&_swigt__p_HashTable_Entry, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_HashTable_Index[] = {  {&_swigt__p_HashTable_Index, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Hasher[] = {  {&_swigt__p_Hasher, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_HierarchyTable[] = {  {&_swigt__p_HierarchyTable, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Hook[] = {  {&_swigt__p_Hook, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_IArray[] = {  {&_swigt__p_IArray, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_IMap[] = {  {&_swigt__p_IMap, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_IMapItem[] = {  {&_swigt__p_IMapItem, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_IMapIter[] = {  {&_swigt__p_IMapIter, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_ISet[] = {  {&_swigt__p_ISet, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_ISetItem[] = {  {&_swigt__p_ISetItem, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_ISetIter[] = {  {&_swigt__p_ISetIter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IndentFormatter[] = {  {&_swigt__p_IndentFormatter, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_IndexMap[] = {  {&_swigt__p_IndexMap, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_IndexMapTuple[] = {  {&_swigt__p_IndexMapTuple, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IndexSet[] = {  {&_swigt__p_IndexSet, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Iter[] = {  {&_swigt__p_Iter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Journal[] = {  {&_swigt__p_Journal, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_JournalTypedStream[] = {  {&_swigt__p_JournalTypedStream, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_KeyType_t[] = {  {&_swigt__p_KeyType_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_KeyType[] = {  {&_swigt__p_KeyType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_LineFormatter[] = {  {&_swigt__p_LineFormatter, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_LinkedList[] = {  {&_swigt__p_LinkedList, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_LinkedListIterator[] = {  {&_swigt__p_LinkedListIterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_LinkedListNode[] = {  {&_swigt__p_LinkedListNode, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_List[] = {  {&_swigt__p_List, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ListEncoding[] = {  {&_swigt__p_ListEncoding, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_LiveComponentRegister[] = {  {&_swigt__p_LiveComponentRegister, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MPIFile[] = {  {&_swigt__p_MPIFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MPIStream[] = {  {&_swigt__p_MPIStream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MPI_Comm[] = {  {&_swigt__p_MPI_Comm, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_MapTuple[] = {  {&_swigt__p_MapTuple, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mapping[] = {  {&_swigt__p_Mapping, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_MaxHeap[] = {  {&_swigt__p_MaxHeap, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Memory[] = {  {&_swigt__p_Memory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MemoryField[] = {  {&_swigt__p_MemoryField, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MemoryPointer[] = {  {&_swigt__p_MemoryPointer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MemoryPointerStatus_t[] = {  {&_swigt__p_MemoryPointerStatus_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_MemoryPool[] = {  {&_swigt__p_MemoryPool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MemoryReport[] = {  {&_swigt__p_MemoryReport, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Module[] = {  {&_swigt__p_Module, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ModulesManager[] = {  {&_swigt__p_ModulesManager, 0, 0, 0},{0, 0, 0, 0}};
@@ -74367,23 +69596,13 @@ static swig_cast_info _swigc__p_NameSpaceInfo[] = {  {&_swigt__p_NameSpaceInfo, 
 static swig_cast_info _swigc__p_NamedObject_Register[] = {  {&_swigt__p_NamedObject_Register, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_NewClass[] = {  {&_swigt__p_NewClass, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_NewObject[] = {  {&_swigt__p_NewObject, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_NumberHasher[] = {  {&_swigt__p_NumberHasher, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Order_t[] = {  {&_swigt__p_Order_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Plugin[] = {  {&_swigt__p_Plugin, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PluginsManager[] = {  {&_swigt__p_PluginsManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Progress[] = {  {&_swigt__p_Progress, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_PtrMap[] = {  {&_swigt__p_PtrMap, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_PtrSet[] = {  {&_swigt__p_PtrSet, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_RangeSet[] = {  {&_swigt__p_RangeSet, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_RangeSet_ParseStruct[] = {  {&_swigt__p_RangeSet_ParseStruct, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_RangeSet_Range[] = {  {&_swigt__p_RangeSet_Range, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_RankFormatter[] = {  {&_swigt__p_RankFormatter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ReplacementOption[] = {  {&_swigt__p_ReplacementOption, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_STree[] = {  {&_swigt__p_STree, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_STreeMap[] = {  {&_swigt__p_STreeMap, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_STreeNode[] = {  {&_swigt__p_STreeNode, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Scaling[] = {  {&_swigt__p_Scaling, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Set[] = {  {&_swigt__p_Set, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SimpleExtensionInfo[] = {  {&_swigt__p_SimpleExtensionInfo, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Stg_CallGraph[] = {  {&_swigt__p_Stg_CallGraph, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Stg_Component[] = {  {&_swigt__p_Stg_Component, 0, 0, 0},{0, 0, 0, 0}};
@@ -74417,7 +69636,6 @@ static swig_cast_info _swigc__p__Dictionary_Entry_Value[] = {  {&_swigt__p__Dict
 static swig_cast_info _swigc__p__Dictionary_Entry_Value_List[] = {  {&_swigt__p__Dictionary_Entry_Value_List, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p__Dictionary_Entry_Value_Validator[] = {  {&_swigt__p__Dictionary_Entry_Value_Validator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p__Encoding[] = {  {&_swigt__p__Encoding, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p__Heap[] = {  {&_swigt__p__Heap, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p__IO_Handler[] = {  {&_swigt__p__IO_Handler, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p__SetVC[] = {  {&_swigt__p__SetVC, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p__SetVC_Entry[] = {  {&_swigt__p__SetVC_Entry, 0, 0, 0},{0, 0, 0, 0}};
@@ -74444,7 +69662,6 @@ static swig_cast_info _swigc__p_f_p_AbstractContext_p_Variable_Register_p_Condit
 static swig_cast_info _swigc__p_f_p_char__p_void[] = {  {&_swigt__p_f_p_char__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_char_p_struct__Stg_ObjectList__p_Module[] = {  {&_swigt__p_f_p_char_p_struct__Stg_ObjectList__p_Module, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_q_const__char__Bool[] = {  {&_swigt__p_f_p_q_const__char__Bool, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_f_p_q_const__void_p_q_const__void__int[] = {  {&_swigt__p_f_p_q_const__void_p_q_const__void__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int[] = {  {&_swigt__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value[] = {  {&_swigt__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component[] = {  {&_swigt__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component, 0, 0, 0},{0, 0, 0, 0}};
@@ -74521,7 +69738,6 @@ static swig_cast_info _swigc__p_p__Variable[] = {  {&_swigt__p_p__Variable, 0, 0
 static swig_cast_info _swigc__p_p__VariableCondition_Tuple[] = {  {&_swigt__p_p__VariableCondition_Tuple, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_p_char[] = {  {&_swigt__p_p_p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_p_unsigned_int[] = {  {&_swigt__p_p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_void[] = {  {&_swigt__p_p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_xmlChar[] = {  {&_swigt__p_p_xmlChar, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_stgComponent[] = {  {&_swigt__p_stgComponent, 0, 0, 0},{0, 0, 0, 0}};
@@ -74535,24 +69751,16 @@ static swig_cast_info _swigc__p_xmlNodePtr[] = {  {&_swigt__p_xmlNodePtr, 0, 0, 
 static swig_cast_info _swigc__p_xmlNsPtr[] = {  {&_swigt__p_xmlNsPtr, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_AbsArray,
   _swigc__p_AbstractContext,
   _swigc__p_AllocationType,
-  _swigc__p_BTree,
-  _swigc__p_BTreeIterator,
-  _swigc__p_BTreeNode,
-  _swigc__p_BTreeProperty_t,
   _swigc__p_BinaryStream,
   _swigc__p_Bool,
   _swigc__p_CFile,
   _swigc__p_CStream,
   _swigc__p_CheckpointFileFormat,
-  _swigc__p_Chunk,
-  _swigc__p_ChunkArray,
   _swigc__p_ClassHook,
   _swigc__p_ClassPtrExtensionInfo,
   _swigc__p_Codelet,
-  _swigc__p_Color_t,
   _swigc__p_Comm,
   _swigc__p_ContextEntryPoint,
   _swigc__p_Context_CallInfo,
@@ -74571,42 +69779,23 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_HashTable,
   _swigc__p_HashTable_Entry,
   _swigc__p_HashTable_Index,
-  _swigc__p_Hasher,
   _swigc__p_HierarchyTable,
   _swigc__p_Hook,
-  _swigc__p_IArray,
-  _swigc__p_IMap,
-  _swigc__p_IMapItem,
-  _swigc__p_IMapIter,
-  _swigc__p_ISet,
-  _swigc__p_ISetItem,
-  _swigc__p_ISetIter,
   _swigc__p_IndentFormatter,
-  _swigc__p_IndexMap,
-  _swigc__p_IndexMapTuple,
   _swigc__p_IndexSet,
-  _swigc__p_Iter,
   _swigc__p_Journal,
   _swigc__p_JournalTypedStream,
-  _swigc__p_KeyType_t,
+  _swigc__p_KeyType,
   _swigc__p_LineFormatter,
-  _swigc__p_LinkedList,
-  _swigc__p_LinkedListIterator,
-  _swigc__p_LinkedListNode,
-  _swigc__p_List,
   _swigc__p_ListEncoding,
   _swigc__p_LiveComponentRegister,
   _swigc__p_MPIFile,
   _swigc__p_MPIStream,
   _swigc__p_MPI_Comm,
-  _swigc__p_MapTuple,
-  _swigc__p_Mapping,
-  _swigc__p_MaxHeap,
   _swigc__p_Memory,
   _swigc__p_MemoryField,
   _swigc__p_MemoryPointer,
   _swigc__p_MemoryPointerStatus_t,
-  _swigc__p_MemoryPool,
   _swigc__p_MemoryReport,
   _swigc__p_Module,
   _swigc__p_ModulesManager,
@@ -74614,23 +69803,13 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_NamedObject_Register,
   _swigc__p_NewClass,
   _swigc__p_NewObject,
-  _swigc__p_NumberHasher,
-  _swigc__p_Order_t,
   _swigc__p_Plugin,
   _swigc__p_PluginsManager,
   _swigc__p_Progress,
   _swigc__p_PtrMap,
-  _swigc__p_PtrSet,
-  _swigc__p_RangeSet,
-  _swigc__p_RangeSet_ParseStruct,
-  _swigc__p_RangeSet_Range,
   _swigc__p_RankFormatter,
   _swigc__p_ReplacementOption,
-  _swigc__p_STree,
-  _swigc__p_STreeMap,
-  _swigc__p_STreeNode,
   _swigc__p_Scaling,
-  _swigc__p_Set,
   _swigc__p_SimpleExtensionInfo,
   _swigc__p_Stg_CallGraph,
   _swigc__p_Stg_Component,
@@ -74664,7 +69843,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p__Dictionary_Entry_Value_List,
   _swigc__p__Dictionary_Entry_Value_Validator,
   _swigc__p__Encoding,
-  _swigc__p__Heap,
   _swigc__p__IO_Handler,
   _swigc__p__SetVC,
   _swigc__p__SetVC_Entry,
@@ -74691,7 +69869,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_p_char__p_void,
   _swigc__p_f_p_char_p_struct__Stg_ObjectList__p_Module,
   _swigc__p_f_p_q_const__char__Bool,
-  _swigc__p_f_p_q_const__void_p_q_const__void__int,
   _swigc__p_f_p_q_const__void_q_const__unsigned_int__unsigned_int,
   _swigc__p_f_p_void_Dictionary_Entry_Key__p__Dictionary_Entry_Value,
   _swigc__p_f_p_void_Name_Dictionary_Entry_Key_Type_Bool_p_void__p_Stg_Component,
@@ -74768,7 +69945,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_p__VariableCondition_Tuple,
   _swigc__p_p_char,
   _swigc__p_p_p_char,
-  _swigc__p_p_unsigned_int,
   _swigc__p_p_void,
   _swigc__p_p_xmlChar,
   _swigc__p_stgComponent,
@@ -75467,9 +70643,13 @@ SWIG_init(void) {
   
   SWIG_InstallConstants(d,swig_const_table);
   
-  
-  import_array();
-  
+  SWIG_Python_SetConstant(d, "VC_ValueType_Double",SWIG_From_int((int)(VC_ValueType_Double)));
+  SWIG_Python_SetConstant(d, "VC_ValueType_Int",SWIG_From_int((int)(VC_ValueType_Int)));
+  SWIG_Python_SetConstant(d, "VC_ValueType_Short",SWIG_From_int((int)(VC_ValueType_Short)));
+  SWIG_Python_SetConstant(d, "VC_ValueType_Char",SWIG_From_int((int)(VC_ValueType_Char)));
+  SWIG_Python_SetConstant(d, "VC_ValueType_Ptr",SWIG_From_int((int)(VC_ValueType_Ptr)));
+  SWIG_Python_SetConstant(d, "VC_ValueType_DoubleArray",SWIG_From_int((int)(VC_ValueType_DoubleArray)));
+  SWIG_Python_SetConstant(d, "VC_ValueType_CFIndex",SWIG_From_int((int)(VC_ValueType_CFIndex)));
   SWIG_Python_SetConstant(d, "False",SWIG_From_int((int)(False)));
   SWIG_Python_SetConstant(d, "True",SWIG_From_int((int)(True)));
   SWIG_Python_SetConstant(d, "Name_Invalid",SWIG_From_int((int)(0)));
@@ -75480,22 +70660,6 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "NON_GLOBAL",SWIG_From_int((int)(NON_GLOBAL)));
   SWIG_Python_SetConstant(d, "KEEP",SWIG_From_int((int)(KEEP)));
   SWIG_Python_SetConstant(d, "DELETE",SWIG_From_int((int)(DELETE)));
-  SWIG_Python_SetConstant(d, "BTREE_NODE_RED",SWIG_From_int((int)(BTREE_NODE_RED)));
-  SWIG_Python_SetConstant(d, "BTREE_NODE_BLACK",SWIG_From_int((int)(BTREE_NODE_BLACK)));
-  SWIG_Python_SetConstant(d, "BTREE_ALLOW_DUPLICATES",SWIG_From_int((int)(BTREE_ALLOW_DUPLICATES)));
-  SWIG_Python_SetConstant(d, "BTREE_NO_DUPLICATES",SWIG_From_int((int)(BTREE_NO_DUPLICATES)));
-  SWIG_Python_SetConstant(d, "LINKEDLIST_SORTED",SWIG_From_int((int)(LINKEDLIST_SORTED)));
-  SWIG_Python_SetConstant(d, "LINKEDLIST_UNSORTED",SWIG_From_int((int)(LINKEDLIST_UNSORTED)));
-  SWIG_Python_SetConstant(d, "HASHTABLE_STRING_KEY",SWIG_From_int((int)(HASHTABLE_STRING_KEY)));
-  SWIG_Python_SetConstant(d, "HASHTABLE_INTEGER_KEY",SWIG_From_int((int)(HASHTABLE_INTEGER_KEY)));
-  SWIG_Python_SetConstant(d, "HASHTABLE_POINTER_KEY",SWIG_From_int((int)(HASHTABLE_POINTER_KEY)));
-  SWIG_Python_SetConstant(d, "VC_ValueType_Double",SWIG_From_int((int)(VC_ValueType_Double)));
-  SWIG_Python_SetConstant(d, "VC_ValueType_Int",SWIG_From_int((int)(VC_ValueType_Int)));
-  SWIG_Python_SetConstant(d, "VC_ValueType_Short",SWIG_From_int((int)(VC_ValueType_Short)));
-  SWIG_Python_SetConstant(d, "VC_ValueType_Char",SWIG_From_int((int)(VC_ValueType_Char)));
-  SWIG_Python_SetConstant(d, "VC_ValueType_Ptr",SWIG_From_int((int)(VC_ValueType_Ptr)));
-  SWIG_Python_SetConstant(d, "VC_ValueType_DoubleArray",SWIG_From_int((int)(VC_ValueType_DoubleArray)));
-  SWIG_Python_SetConstant(d, "VC_ValueType_CFIndex",SWIG_From_int((int)(VC_ValueType_CFIndex)));
   SWIG_Python_SetConstant(d, "Dictionary_Entry_Value_Type_String",SWIG_From_int((int)(Dictionary_Entry_Value_Type_String)));
   SWIG_Python_SetConstant(d, "Dictionary_Entry_Value_Type_Double",SWIG_From_int((int)(Dictionary_Entry_Value_Type_Double)));
   SWIG_Python_SetConstant(d, "Dictionary_Entry_Value_Type_UnsignedInt",SWIG_From_int((int)(Dictionary_Entry_Value_Type_UnsignedInt)));
@@ -75556,9 +70720,6 @@ SWIG_init(void) {
   SWIG_addvarlink(SWIG_globals(),(char*)"moduleDirectories",Swig_var_moduleDirectories_get, Swig_var_moduleDirectories_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"NamedObject_Register_Type",Swig_var_NamedObject_Register_Type_get, Swig_var_NamedObject_Register_Type_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"HashTable_Type",Swig_var_HashTable_Type_get, Swig_var_HashTable_Type_set);
-  SWIG_addvarlink(SWIG_globals(),(char*)"IndexMap_Type",Swig_var_IndexMap_Type_get, Swig_var_IndexMap_Type_set);
-  SWIG_Python_SetConstant(d, "INDEXMAP_DEFAULT_DELTA",SWIG_From_int((int)(10)));
-  SWIG_addvarlink(SWIG_globals(),(char*)"IndexSet_Type",Swig_var_IndexSet_Type_get, Swig_var_IndexSet_Type_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"HierarchyTable_Type",Swig_var_HierarchyTable_Type_get, Swig_var_HierarchyTable_Type_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"stgHierarchyTable",Swig_var_stgHierarchyTable_get, Swig_var_stgHierarchyTable_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"IO_Handler_Type",Swig_var_IO_Handler_Type_get, Swig_var_IO_Handler_Type_set);

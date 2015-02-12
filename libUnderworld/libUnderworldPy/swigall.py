@@ -26,7 +26,8 @@ swigfiles = [
               "PICellerator.i",
               "StgFEM.i",
               "StgDomain.i",
-              "StGermain.i"
+              "StGermain.i",
+              "analytic.i"
              ]
 
 for swigfile in swigfiles:

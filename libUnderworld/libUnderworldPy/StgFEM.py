@@ -6656,6 +6656,225 @@ OperatorFeVariable_BinaryValueAtNodeFunc = _StgFEM.OperatorFeVariable_BinaryValu
 def OperatorFeVariable_GradientValueAtNodeFunc(feOperator, dNode_I, value):
     return _StgFEM.OperatorFeVariable_GradientValueAtNodeFunc(feOperator, dNode_I, value)
 OperatorFeVariable_GradientValueAtNodeFunc = _StgFEM.OperatorFeVariable_GradientValueAtNodeFunc
+class P1(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, P1, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, P1, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgFEM.P1__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgFEM.P1__sizeOfSelf_get
+    if _newclass:
+        _sizeOfSelf = _swig_property(_StgFEM.P1__sizeOfSelf_get, _StgFEM.P1__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgFEM.P1__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgFEM.P1__deleteSelf_get
+    if _newclass:
+        _deleteSelf = _swig_property(_StgFEM.P1__deleteSelf_get, _StgFEM.P1__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgFEM.P1_type_set
+    __swig_getmethods__["type"] = _StgFEM.P1_type_get
+    if _newclass:
+        type = _swig_property(_StgFEM.P1_type_get, _StgFEM.P1_type_set)
+    __swig_setmethods__["nRefs"] = _StgFEM.P1_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgFEM.P1_nRefs_get
+    if _newclass:
+        nRefs = _swig_property(_StgFEM.P1_nRefs_get, _StgFEM.P1_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgFEM.P1__delete_set
+    __swig_getmethods__["_delete"] = _StgFEM.P1__delete_get
+    if _newclass:
+        _delete = _swig_property(_StgFEM.P1__delete_get, _StgFEM.P1__delete_set)
+    __swig_setmethods__["_print"] = _StgFEM.P1__print_set
+    __swig_getmethods__["_print"] = _StgFEM.P1__print_get
+    if _newclass:
+        _print = _swig_property(_StgFEM.P1__print_get, _StgFEM.P1__print_set)
+    __swig_setmethods__["_copy"] = _StgFEM.P1__copy_set
+    __swig_getmethods__["_copy"] = _StgFEM.P1__copy_get
+    if _newclass:
+        _copy = _swig_property(_StgFEM.P1__copy_get, _StgFEM.P1__copy_set)
+    __swig_setmethods__["name"] = _StgFEM.P1_name_set
+    __swig_getmethods__["name"] = _StgFEM.P1_name_get
+    if _newclass:
+        name = _swig_property(_StgFEM.P1_name_get, _StgFEM.P1_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgFEM.P1_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgFEM.P1_nameAllocationType_get
+    if _newclass:
+        nameAllocationType = _swig_property(_StgFEM.P1_nameAllocationType_get, _StgFEM.P1_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgFEM.P1__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgFEM.P1__defaultConstructor_get
+    if _newclass:
+        _defaultConstructor = _swig_property(_StgFEM.P1__defaultConstructor_get, _StgFEM.P1__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgFEM.P1__construct_set
+    __swig_getmethods__["_construct"] = _StgFEM.P1__construct_get
+    if _newclass:
+        _construct = _swig_property(_StgFEM.P1__construct_get, _StgFEM.P1__construct_set)
+    __swig_setmethods__["_build"] = _StgFEM.P1__build_set
+    __swig_getmethods__["_build"] = _StgFEM.P1__build_get
+    if _newclass:
+        _build = _swig_property(_StgFEM.P1__build_get, _StgFEM.P1__build_set)
+    __swig_setmethods__["_initialise"] = _StgFEM.P1__initialise_set
+    __swig_getmethods__["_initialise"] = _StgFEM.P1__initialise_get
+    if _newclass:
+        _initialise = _swig_property(_StgFEM.P1__initialise_get, _StgFEM.P1__initialise_set)
+    __swig_setmethods__["_execute"] = _StgFEM.P1__execute_set
+    __swig_getmethods__["_execute"] = _StgFEM.P1__execute_get
+    if _newclass:
+        _execute = _swig_property(_StgFEM.P1__execute_get, _StgFEM.P1__execute_set)
+    __swig_setmethods__["_destroy"] = _StgFEM.P1__destroy_set
+    __swig_getmethods__["_destroy"] = _StgFEM.P1__destroy_get
+    if _newclass:
+        _destroy = _swig_property(_StgFEM.P1__destroy_get, _StgFEM.P1__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgFEM.P1_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgFEM.P1_isConstructed_get
+    if _newclass:
+        isConstructed = _swig_property(_StgFEM.P1_isConstructed_get, _StgFEM.P1_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgFEM.P1_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgFEM.P1_isBuilt_get
+    if _newclass:
+        isBuilt = _swig_property(_StgFEM.P1_isBuilt_get, _StgFEM.P1_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgFEM.P1_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgFEM.P1_isInitialised_get
+    if _newclass:
+        isInitialised = _swig_property(_StgFEM.P1_isInitialised_get, _StgFEM.P1_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgFEM.P1_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgFEM.P1_hasExecuted_get
+    if _newclass:
+        hasExecuted = _swig_property(_StgFEM.P1_hasExecuted_get, _StgFEM.P1_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgFEM.P1_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgFEM.P1_isDestroyed_get
+    if _newclass:
+        isDestroyed = _swig_property(_StgFEM.P1_isDestroyed_get, _StgFEM.P1_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgFEM.P1_constructType_set
+    __swig_getmethods__["constructType"] = _StgFEM.P1_constructType_get
+    if _newclass:
+        constructType = _swig_property(_StgFEM.P1_constructType_get, _StgFEM.P1_constructType_set)
+    __swig_setmethods__["buildType"] = _StgFEM.P1_buildType_set
+    __swig_getmethods__["buildType"] = _StgFEM.P1_buildType_get
+    if _newclass:
+        buildType = _swig_property(_StgFEM.P1_buildType_get, _StgFEM.P1_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgFEM.P1_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgFEM.P1_initialiseType_get
+    if _newclass:
+        initialiseType = _swig_property(_StgFEM.P1_initialiseType_get, _StgFEM.P1_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgFEM.P1_executeType_set
+    __swig_getmethods__["executeType"] = _StgFEM.P1_executeType_get
+    if _newclass:
+        executeType = _swig_property(_StgFEM.P1_executeType_get, _StgFEM.P1_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgFEM.P1_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgFEM.P1_destroyType_get
+    if _newclass:
+        destroyType = _swig_property(_StgFEM.P1_destroyType_get, _StgFEM.P1_destroyType_set)
+    __swig_setmethods__["_evaluateShapeFunctionsAt"] = _StgFEM.P1__evaluateShapeFunctionsAt_set
+    __swig_getmethods__["_evaluateShapeFunctionsAt"] = _StgFEM.P1__evaluateShapeFunctionsAt_get
+    if _newclass:
+        _evaluateShapeFunctionsAt = _swig_property(_StgFEM.P1__evaluateShapeFunctionsAt_get, _StgFEM.P1__evaluateShapeFunctionsAt_set)
+    __swig_setmethods__["_evaluateShapeFunctionLocalDerivsAt"] = _StgFEM.P1__evaluateShapeFunctionLocalDerivsAt_set
+    __swig_getmethods__["_evaluateShapeFunctionLocalDerivsAt"] = _StgFEM.P1__evaluateShapeFunctionLocalDerivsAt_get
+    if _newclass:
+        _evaluateShapeFunctionLocalDerivsAt = _swig_property(_StgFEM.P1__evaluateShapeFunctionLocalDerivsAt_get, _StgFEM.P1__evaluateShapeFunctionLocalDerivsAt_set)
+    __swig_setmethods__["_convertGlobalCoordToElLocal"] = _StgFEM.P1__convertGlobalCoordToElLocal_set
+    __swig_getmethods__["_convertGlobalCoordToElLocal"] = _StgFEM.P1__convertGlobalCoordToElLocal_get
+    if _newclass:
+        _convertGlobalCoordToElLocal = _swig_property(_StgFEM.P1__convertGlobalCoordToElLocal_get, _StgFEM.P1__convertGlobalCoordToElLocal_set)
+    __swig_setmethods__["_jacobianDeterminantSurface"] = _StgFEM.P1__jacobianDeterminantSurface_set
+    __swig_getmethods__["_jacobianDeterminantSurface"] = _StgFEM.P1__jacobianDeterminantSurface_get
+    if _newclass:
+        _jacobianDeterminantSurface = _swig_property(_StgFEM.P1__jacobianDeterminantSurface_get, _StgFEM.P1__jacobianDeterminantSurface_set)
+    __swig_setmethods__["_surfaceNormal"] = _StgFEM.P1__surfaceNormal_set
+    __swig_getmethods__["_surfaceNormal"] = _StgFEM.P1__surfaceNormal_get
+    if _newclass:
+        _surfaceNormal = _swig_property(_StgFEM.P1__surfaceNormal_get, _StgFEM.P1__surfaceNormal_set)
+    __swig_setmethods__["nodeCount"] = _StgFEM.P1_nodeCount_set
+    __swig_getmethods__["nodeCount"] = _StgFEM.P1_nodeCount_get
+    if _newclass:
+        nodeCount = _swig_property(_StgFEM.P1_nodeCount_get, _StgFEM.P1_nodeCount_set)
+    __swig_setmethods__["dim"] = _StgFEM.P1_dim_set
+    __swig_getmethods__["dim"] = _StgFEM.P1_dim_get
+    if _newclass:
+        dim = _swig_property(_StgFEM.P1_dim_get, _StgFEM.P1_dim_set)
+    __swig_setmethods__["debug"] = _StgFEM.P1_debug_set
+    __swig_getmethods__["debug"] = _StgFEM.P1_debug_get
+    if _newclass:
+        debug = _swig_property(_StgFEM.P1_debug_get, _StgFEM.P1_debug_set)
+    __swig_setmethods__["inc"] = _StgFEM.P1_inc_set
+    __swig_getmethods__["inc"] = _StgFEM.P1_inc_get
+    if _newclass:
+        inc = _swig_property(_StgFEM.P1_inc_get, _StgFEM.P1_inc_set)
+    __swig_setmethods__["faceNodes"] = _StgFEM.P1_faceNodes_set
+    __swig_getmethods__["faceNodes"] = _StgFEM.P1_faceNodes_get
+    if _newclass:
+        faceNodes = _swig_property(_StgFEM.P1_faceNodes_get, _StgFEM.P1_faceNodes_set)
+    __swig_setmethods__["GNi"] = _StgFEM.P1_GNi_set
+    __swig_getmethods__["GNi"] = _StgFEM.P1_GNi_get
+    if _newclass:
+        GNi = _swig_property(_StgFEM.P1_GNi_get, _StgFEM.P1_GNi_set)
+    __swig_setmethods__["evaluatedShapeFunc"] = _StgFEM.P1_evaluatedShapeFunc_set
+    __swig_getmethods__["evaluatedShapeFunc"] = _StgFEM.P1_evaluatedShapeFunc_get
+    if _newclass:
+        evaluatedShapeFunc = _swig_property(_StgFEM.P1_evaluatedShapeFunc_get, _StgFEM.P1_evaluatedShapeFunc_set)
+
+    def __init__(self):
+        this = _StgFEM.new_P1()
+        try:
+            self.this.append(this)
+        except:
+            self.this = this
+    __swig_destroy__ = _StgFEM.delete_P1
+    __del__ = lambda self: None
+P1_swigregister = _StgFEM.P1_swigregister
+P1_swigregister(P1)
+P1_Type = cvar.P1_Type
+
+
+def P1_New(name):
+    return _StgFEM.P1_New(name)
+P1_New = _StgFEM.P1_New
+
+def _P1_New(_sizeOfSelf, type, _delete, _print, _copy, name, nameAllocationType, _defaultConstructor, _construct, _build, _initialise, _execute, _destroy, _evaluateShapeFunctionsAt, _evaluateShapeFunctionLocalDerivsAt, _convertGlobalCoordToElLocal, _jacobianDeterminantSurface, _surfaceNormal):
+    return _StgFEM._P1_New(_sizeOfSelf, type, _delete, _print, _copy, name, nameAllocationType, _defaultConstructor, _construct, _build, _initialise, _execute, _destroy, _evaluateShapeFunctionsAt, _evaluateShapeFunctionLocalDerivsAt, _convertGlobalCoordToElLocal, _jacobianDeterminantSurface, _surfaceNormal)
+_P1_New = _StgFEM._P1_New
+
+def _P1_Init(arg1):
+    return _StgFEM._P1_Init(arg1)
+_P1_Init = _StgFEM._P1_Init
+
+def _P1_Delete(elementType):
+    return _StgFEM._P1_Delete(elementType)
+_P1_Delete = _StgFEM._P1_Delete
+
+def _P1_Print(elementType, stream):
+    return _StgFEM._P1_Print(elementType, stream)
+_P1_Print = _StgFEM._P1_Print
+
+def _P1_AssignFromXML(elementType, cf, data):
+    return _StgFEM._P1_AssignFromXML(elementType, cf, data)
+_P1_AssignFromXML = _StgFEM._P1_AssignFromXML
+
+def _P1_Build(elementType, data):
+    return _StgFEM._P1_Build(elementType, data)
+_P1_Build = _StgFEM._P1_Build
+
+def _P1_Initialise(elementType, data):
+    return _StgFEM._P1_Initialise(elementType, data)
+_P1_Initialise = _StgFEM._P1_Initialise
+
+def _P1_Execute(elementType, data):
+    return _StgFEM._P1_Execute(elementType, data)
+_P1_Execute = _StgFEM._P1_Execute
+
+def _P1_Destroy(elementType, data):
+    return _StgFEM._P1_Destroy(elementType, data)
+_P1_Destroy = _StgFEM._P1_Destroy
+
+def P1_EvalBasis(elementType, localCoord, derivs):
+    return _StgFEM.P1_EvalBasis(elementType, localCoord, derivs)
+P1_EvalBasis = _StgFEM.P1_EvalBasis
+
+def P1_EvalLocalDerivs(elementType, localCoord, derivs):
+    return _StgFEM.P1_EvalLocalDerivs(elementType, localCoord, derivs)
+P1_EvalLocalDerivs = _StgFEM.P1_EvalLocalDerivs
+
+def _P1_SurfaceNormal(elementType, element_I, dim, xi, normal):
+    return _StgFEM._P1_SurfaceNormal(elementType, element_I, dim, xi, normal)
+_P1_SurfaceNormal = _StgFEM._P1_SurfaceNormal
 class ShapeFeVariable(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ShapeFeVariable, name, value)
@@ -7469,6 +7688,452 @@ _TrilinearInnerElType_SF_allLocalDerivs_allNodes = _StgFEM._TrilinearInnerElType
 def _TrilinearInnerElType_SurfaceNormal(elementType, element_I, dim, xi, normal):
     return _StgFEM._TrilinearInnerElType_SurfaceNormal(elementType, element_I, dim, xi, normal)
 _TrilinearInnerElType_SurfaceNormal = _StgFEM._TrilinearInnerElType_SurfaceNormal
+class RegularBilinear(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, RegularBilinear, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, RegularBilinear, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgFEM.RegularBilinear__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgFEM.RegularBilinear__sizeOfSelf_get
+    if _newclass:
+        _sizeOfSelf = _swig_property(_StgFEM.RegularBilinear__sizeOfSelf_get, _StgFEM.RegularBilinear__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgFEM.RegularBilinear__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgFEM.RegularBilinear__deleteSelf_get
+    if _newclass:
+        _deleteSelf = _swig_property(_StgFEM.RegularBilinear__deleteSelf_get, _StgFEM.RegularBilinear__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgFEM.RegularBilinear_type_set
+    __swig_getmethods__["type"] = _StgFEM.RegularBilinear_type_get
+    if _newclass:
+        type = _swig_property(_StgFEM.RegularBilinear_type_get, _StgFEM.RegularBilinear_type_set)
+    __swig_setmethods__["nRefs"] = _StgFEM.RegularBilinear_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgFEM.RegularBilinear_nRefs_get
+    if _newclass:
+        nRefs = _swig_property(_StgFEM.RegularBilinear_nRefs_get, _StgFEM.RegularBilinear_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgFEM.RegularBilinear__delete_set
+    __swig_getmethods__["_delete"] = _StgFEM.RegularBilinear__delete_get
+    if _newclass:
+        _delete = _swig_property(_StgFEM.RegularBilinear__delete_get, _StgFEM.RegularBilinear__delete_set)
+    __swig_setmethods__["_print"] = _StgFEM.RegularBilinear__print_set
+    __swig_getmethods__["_print"] = _StgFEM.RegularBilinear__print_get
+    if _newclass:
+        _print = _swig_property(_StgFEM.RegularBilinear__print_get, _StgFEM.RegularBilinear__print_set)
+    __swig_setmethods__["_copy"] = _StgFEM.RegularBilinear__copy_set
+    __swig_getmethods__["_copy"] = _StgFEM.RegularBilinear__copy_get
+    if _newclass:
+        _copy = _swig_property(_StgFEM.RegularBilinear__copy_get, _StgFEM.RegularBilinear__copy_set)
+    __swig_setmethods__["name"] = _StgFEM.RegularBilinear_name_set
+    __swig_getmethods__["name"] = _StgFEM.RegularBilinear_name_get
+    if _newclass:
+        name = _swig_property(_StgFEM.RegularBilinear_name_get, _StgFEM.RegularBilinear_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgFEM.RegularBilinear_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgFEM.RegularBilinear_nameAllocationType_get
+    if _newclass:
+        nameAllocationType = _swig_property(_StgFEM.RegularBilinear_nameAllocationType_get, _StgFEM.RegularBilinear_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgFEM.RegularBilinear__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgFEM.RegularBilinear__defaultConstructor_get
+    if _newclass:
+        _defaultConstructor = _swig_property(_StgFEM.RegularBilinear__defaultConstructor_get, _StgFEM.RegularBilinear__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgFEM.RegularBilinear__construct_set
+    __swig_getmethods__["_construct"] = _StgFEM.RegularBilinear__construct_get
+    if _newclass:
+        _construct = _swig_property(_StgFEM.RegularBilinear__construct_get, _StgFEM.RegularBilinear__construct_set)
+    __swig_setmethods__["_build"] = _StgFEM.RegularBilinear__build_set
+    __swig_getmethods__["_build"] = _StgFEM.RegularBilinear__build_get
+    if _newclass:
+        _build = _swig_property(_StgFEM.RegularBilinear__build_get, _StgFEM.RegularBilinear__build_set)
+    __swig_setmethods__["_initialise"] = _StgFEM.RegularBilinear__initialise_set
+    __swig_getmethods__["_initialise"] = _StgFEM.RegularBilinear__initialise_get
+    if _newclass:
+        _initialise = _swig_property(_StgFEM.RegularBilinear__initialise_get, _StgFEM.RegularBilinear__initialise_set)
+    __swig_setmethods__["_execute"] = _StgFEM.RegularBilinear__execute_set
+    __swig_getmethods__["_execute"] = _StgFEM.RegularBilinear__execute_get
+    if _newclass:
+        _execute = _swig_property(_StgFEM.RegularBilinear__execute_get, _StgFEM.RegularBilinear__execute_set)
+    __swig_setmethods__["_destroy"] = _StgFEM.RegularBilinear__destroy_set
+    __swig_getmethods__["_destroy"] = _StgFEM.RegularBilinear__destroy_get
+    if _newclass:
+        _destroy = _swig_property(_StgFEM.RegularBilinear__destroy_get, _StgFEM.RegularBilinear__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgFEM.RegularBilinear_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgFEM.RegularBilinear_isConstructed_get
+    if _newclass:
+        isConstructed = _swig_property(_StgFEM.RegularBilinear_isConstructed_get, _StgFEM.RegularBilinear_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgFEM.RegularBilinear_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgFEM.RegularBilinear_isBuilt_get
+    if _newclass:
+        isBuilt = _swig_property(_StgFEM.RegularBilinear_isBuilt_get, _StgFEM.RegularBilinear_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgFEM.RegularBilinear_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgFEM.RegularBilinear_isInitialised_get
+    if _newclass:
+        isInitialised = _swig_property(_StgFEM.RegularBilinear_isInitialised_get, _StgFEM.RegularBilinear_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgFEM.RegularBilinear_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgFEM.RegularBilinear_hasExecuted_get
+    if _newclass:
+        hasExecuted = _swig_property(_StgFEM.RegularBilinear_hasExecuted_get, _StgFEM.RegularBilinear_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgFEM.RegularBilinear_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgFEM.RegularBilinear_isDestroyed_get
+    if _newclass:
+        isDestroyed = _swig_property(_StgFEM.RegularBilinear_isDestroyed_get, _StgFEM.RegularBilinear_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgFEM.RegularBilinear_constructType_set
+    __swig_getmethods__["constructType"] = _StgFEM.RegularBilinear_constructType_get
+    if _newclass:
+        constructType = _swig_property(_StgFEM.RegularBilinear_constructType_get, _StgFEM.RegularBilinear_constructType_set)
+    __swig_setmethods__["buildType"] = _StgFEM.RegularBilinear_buildType_set
+    __swig_getmethods__["buildType"] = _StgFEM.RegularBilinear_buildType_get
+    if _newclass:
+        buildType = _swig_property(_StgFEM.RegularBilinear_buildType_get, _StgFEM.RegularBilinear_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgFEM.RegularBilinear_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgFEM.RegularBilinear_initialiseType_get
+    if _newclass:
+        initialiseType = _swig_property(_StgFEM.RegularBilinear_initialiseType_get, _StgFEM.RegularBilinear_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgFEM.RegularBilinear_executeType_set
+    __swig_getmethods__["executeType"] = _StgFEM.RegularBilinear_executeType_get
+    if _newclass:
+        executeType = _swig_property(_StgFEM.RegularBilinear_executeType_get, _StgFEM.RegularBilinear_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgFEM.RegularBilinear_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgFEM.RegularBilinear_destroyType_get
+    if _newclass:
+        destroyType = _swig_property(_StgFEM.RegularBilinear_destroyType_get, _StgFEM.RegularBilinear_destroyType_set)
+    __swig_setmethods__["_evaluateShapeFunctionsAt"] = _StgFEM.RegularBilinear__evaluateShapeFunctionsAt_set
+    __swig_getmethods__["_evaluateShapeFunctionsAt"] = _StgFEM.RegularBilinear__evaluateShapeFunctionsAt_get
+    if _newclass:
+        _evaluateShapeFunctionsAt = _swig_property(_StgFEM.RegularBilinear__evaluateShapeFunctionsAt_get, _StgFEM.RegularBilinear__evaluateShapeFunctionsAt_set)
+    __swig_setmethods__["_evaluateShapeFunctionLocalDerivsAt"] = _StgFEM.RegularBilinear__evaluateShapeFunctionLocalDerivsAt_set
+    __swig_getmethods__["_evaluateShapeFunctionLocalDerivsAt"] = _StgFEM.RegularBilinear__evaluateShapeFunctionLocalDerivsAt_get
+    if _newclass:
+        _evaluateShapeFunctionLocalDerivsAt = _swig_property(_StgFEM.RegularBilinear__evaluateShapeFunctionLocalDerivsAt_get, _StgFEM.RegularBilinear__evaluateShapeFunctionLocalDerivsAt_set)
+    __swig_setmethods__["_convertGlobalCoordToElLocal"] = _StgFEM.RegularBilinear__convertGlobalCoordToElLocal_set
+    __swig_getmethods__["_convertGlobalCoordToElLocal"] = _StgFEM.RegularBilinear__convertGlobalCoordToElLocal_get
+    if _newclass:
+        _convertGlobalCoordToElLocal = _swig_property(_StgFEM.RegularBilinear__convertGlobalCoordToElLocal_get, _StgFEM.RegularBilinear__convertGlobalCoordToElLocal_set)
+    __swig_setmethods__["_jacobianDeterminantSurface"] = _StgFEM.RegularBilinear__jacobianDeterminantSurface_set
+    __swig_getmethods__["_jacobianDeterminantSurface"] = _StgFEM.RegularBilinear__jacobianDeterminantSurface_get
+    if _newclass:
+        _jacobianDeterminantSurface = _swig_property(_StgFEM.RegularBilinear__jacobianDeterminantSurface_get, _StgFEM.RegularBilinear__jacobianDeterminantSurface_set)
+    __swig_setmethods__["_surfaceNormal"] = _StgFEM.RegularBilinear__surfaceNormal_set
+    __swig_getmethods__["_surfaceNormal"] = _StgFEM.RegularBilinear__surfaceNormal_get
+    if _newclass:
+        _surfaceNormal = _swig_property(_StgFEM.RegularBilinear__surfaceNormal_get, _StgFEM.RegularBilinear__surfaceNormal_set)
+    __swig_setmethods__["nodeCount"] = _StgFEM.RegularBilinear_nodeCount_set
+    __swig_getmethods__["nodeCount"] = _StgFEM.RegularBilinear_nodeCount_get
+    if _newclass:
+        nodeCount = _swig_property(_StgFEM.RegularBilinear_nodeCount_get, _StgFEM.RegularBilinear_nodeCount_set)
+    __swig_setmethods__["dim"] = _StgFEM.RegularBilinear_dim_set
+    __swig_getmethods__["dim"] = _StgFEM.RegularBilinear_dim_get
+    if _newclass:
+        dim = _swig_property(_StgFEM.RegularBilinear_dim_get, _StgFEM.RegularBilinear_dim_set)
+    __swig_setmethods__["debug"] = _StgFEM.RegularBilinear_debug_set
+    __swig_getmethods__["debug"] = _StgFEM.RegularBilinear_debug_get
+    if _newclass:
+        debug = _swig_property(_StgFEM.RegularBilinear_debug_get, _StgFEM.RegularBilinear_debug_set)
+    __swig_setmethods__["inc"] = _StgFEM.RegularBilinear_inc_set
+    __swig_getmethods__["inc"] = _StgFEM.RegularBilinear_inc_get
+    if _newclass:
+        inc = _swig_property(_StgFEM.RegularBilinear_inc_get, _StgFEM.RegularBilinear_inc_set)
+    __swig_setmethods__["faceNodes"] = _StgFEM.RegularBilinear_faceNodes_set
+    __swig_getmethods__["faceNodes"] = _StgFEM.RegularBilinear_faceNodes_get
+    if _newclass:
+        faceNodes = _swig_property(_StgFEM.RegularBilinear_faceNodes_get, _StgFEM.RegularBilinear_faceNodes_set)
+    __swig_setmethods__["GNi"] = _StgFEM.RegularBilinear_GNi_set
+    __swig_getmethods__["GNi"] = _StgFEM.RegularBilinear_GNi_get
+    if _newclass:
+        GNi = _swig_property(_StgFEM.RegularBilinear_GNi_get, _StgFEM.RegularBilinear_GNi_set)
+    __swig_setmethods__["evaluatedShapeFunc"] = _StgFEM.RegularBilinear_evaluatedShapeFunc_set
+    __swig_getmethods__["evaluatedShapeFunc"] = _StgFEM.RegularBilinear_evaluatedShapeFunc_get
+    if _newclass:
+        evaluatedShapeFunc = _swig_property(_StgFEM.RegularBilinear_evaluatedShapeFunc_get, _StgFEM.RegularBilinear_evaluatedShapeFunc_set)
+    __swig_setmethods__["minElLocalCoord"] = _StgFEM.RegularBilinear_minElLocalCoord_set
+    __swig_getmethods__["minElLocalCoord"] = _StgFEM.RegularBilinear_minElLocalCoord_get
+    if _newclass:
+        minElLocalCoord = _swig_property(_StgFEM.RegularBilinear_minElLocalCoord_get, _StgFEM.RegularBilinear_minElLocalCoord_set)
+    __swig_setmethods__["maxElLocalCoord"] = _StgFEM.RegularBilinear_maxElLocalCoord_set
+    __swig_getmethods__["maxElLocalCoord"] = _StgFEM.RegularBilinear_maxElLocalCoord_get
+    if _newclass:
+        maxElLocalCoord = _swig_property(_StgFEM.RegularBilinear_maxElLocalCoord_get, _StgFEM.RegularBilinear_maxElLocalCoord_set)
+    __swig_setmethods__["elLocalLength"] = _StgFEM.RegularBilinear_elLocalLength_set
+    __swig_getmethods__["elLocalLength"] = _StgFEM.RegularBilinear_elLocalLength_get
+    if _newclass:
+        elLocalLength = _swig_property(_StgFEM.RegularBilinear_elLocalLength_get, _StgFEM.RegularBilinear_elLocalLength_set)
+    __swig_setmethods__["triInds"] = _StgFEM.RegularBilinear_triInds_set
+    __swig_getmethods__["triInds"] = _StgFEM.RegularBilinear_triInds_get
+    if _newclass:
+        triInds = _swig_property(_StgFEM.RegularBilinear_triInds_get, _StgFEM.RegularBilinear_triInds_set)
+
+    def __init__(self):
+        this = _StgFEM.new_RegularBilinear()
+        try:
+            self.this.append(this)
+        except:
+            self.this = this
+    __swig_destroy__ = _StgFEM.delete_RegularBilinear
+    __del__ = lambda self: None
+RegularBilinear_swigregister = _StgFEM.RegularBilinear_swigregister
+RegularBilinear_swigregister(RegularBilinear)
+RegularBilinear_Type = cvar.RegularBilinear_Type
+
+
+def RegularBilinear_New(name):
+    return _StgFEM.RegularBilinear_New(name)
+RegularBilinear_New = _StgFEM.RegularBilinear_New
+
+def _RegularBilinear_New(_sizeOfSelf, type, _delete, _print, _copy, name, nameAllocationType, _defaultConstructor, _construct, _build, _initialise, _execute, _destroy, _evaluateShapeFunctionsAt, _evaluateShapeFunctionLocalDerivsAt, _convertGlobalCoordToElLocal, _jacobianDeterminantSurface, _surfaceNormal):
+    return _StgFEM._RegularBilinear_New(_sizeOfSelf, type, _delete, _print, _copy, name, nameAllocationType, _defaultConstructor, _construct, _build, _initialise, _execute, _destroy, _evaluateShapeFunctionsAt, _evaluateShapeFunctionLocalDerivsAt, _convertGlobalCoordToElLocal, _jacobianDeterminantSurface, _surfaceNormal)
+_RegularBilinear_New = _StgFEM._RegularBilinear_New
+
+def _RegularBilinear_Init(arg1):
+    return _StgFEM._RegularBilinear_Init(arg1)
+_RegularBilinear_Init = _StgFEM._RegularBilinear_Init
+
+def _RegularBilinear_Delete(elementType):
+    return _StgFEM._RegularBilinear_Delete(elementType)
+_RegularBilinear_Delete = _StgFEM._RegularBilinear_Delete
+
+def _RegularBilinear_Print(elementType, stream):
+    return _StgFEM._RegularBilinear_Print(elementType, stream)
+_RegularBilinear_Print = _StgFEM._RegularBilinear_Print
+
+def _RegularBilinear_AssignFromXML(elementType, cf, data):
+    return _StgFEM._RegularBilinear_AssignFromXML(elementType, cf, data)
+_RegularBilinear_AssignFromXML = _StgFEM._RegularBilinear_AssignFromXML
+
+def _RegularBilinear_Build(elementType, data):
+    return _StgFEM._RegularBilinear_Build(elementType, data)
+_RegularBilinear_Build = _StgFEM._RegularBilinear_Build
+
+def _RegularBilinear_Initialise(elementType, data):
+    return _StgFEM._RegularBilinear_Initialise(elementType, data)
+_RegularBilinear_Initialise = _StgFEM._RegularBilinear_Initialise
+
+def _RegularBilinear_Execute(elementType, data):
+    return _StgFEM._RegularBilinear_Execute(elementType, data)
+_RegularBilinear_Execute = _StgFEM._RegularBilinear_Execute
+
+def _RegularBilinear_Destroy(elementType, data):
+    return _StgFEM._RegularBilinear_Destroy(elementType, data)
+_RegularBilinear_Destroy = _StgFEM._RegularBilinear_Destroy
+class RegularTrilinear(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, RegularTrilinear, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, RegularTrilinear, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["_sizeOfSelf"] = _StgFEM.RegularTrilinear__sizeOfSelf_set
+    __swig_getmethods__["_sizeOfSelf"] = _StgFEM.RegularTrilinear__sizeOfSelf_get
+    if _newclass:
+        _sizeOfSelf = _swig_property(_StgFEM.RegularTrilinear__sizeOfSelf_get, _StgFEM.RegularTrilinear__sizeOfSelf_set)
+    __swig_setmethods__["_deleteSelf"] = _StgFEM.RegularTrilinear__deleteSelf_set
+    __swig_getmethods__["_deleteSelf"] = _StgFEM.RegularTrilinear__deleteSelf_get
+    if _newclass:
+        _deleteSelf = _swig_property(_StgFEM.RegularTrilinear__deleteSelf_get, _StgFEM.RegularTrilinear__deleteSelf_set)
+    __swig_setmethods__["type"] = _StgFEM.RegularTrilinear_type_set
+    __swig_getmethods__["type"] = _StgFEM.RegularTrilinear_type_get
+    if _newclass:
+        type = _swig_property(_StgFEM.RegularTrilinear_type_get, _StgFEM.RegularTrilinear_type_set)
+    __swig_setmethods__["nRefs"] = _StgFEM.RegularTrilinear_nRefs_set
+    __swig_getmethods__["nRefs"] = _StgFEM.RegularTrilinear_nRefs_get
+    if _newclass:
+        nRefs = _swig_property(_StgFEM.RegularTrilinear_nRefs_get, _StgFEM.RegularTrilinear_nRefs_set)
+    __swig_setmethods__["_delete"] = _StgFEM.RegularTrilinear__delete_set
+    __swig_getmethods__["_delete"] = _StgFEM.RegularTrilinear__delete_get
+    if _newclass:
+        _delete = _swig_property(_StgFEM.RegularTrilinear__delete_get, _StgFEM.RegularTrilinear__delete_set)
+    __swig_setmethods__["_print"] = _StgFEM.RegularTrilinear__print_set
+    __swig_getmethods__["_print"] = _StgFEM.RegularTrilinear__print_get
+    if _newclass:
+        _print = _swig_property(_StgFEM.RegularTrilinear__print_get, _StgFEM.RegularTrilinear__print_set)
+    __swig_setmethods__["_copy"] = _StgFEM.RegularTrilinear__copy_set
+    __swig_getmethods__["_copy"] = _StgFEM.RegularTrilinear__copy_get
+    if _newclass:
+        _copy = _swig_property(_StgFEM.RegularTrilinear__copy_get, _StgFEM.RegularTrilinear__copy_set)
+    __swig_setmethods__["name"] = _StgFEM.RegularTrilinear_name_set
+    __swig_getmethods__["name"] = _StgFEM.RegularTrilinear_name_get
+    if _newclass:
+        name = _swig_property(_StgFEM.RegularTrilinear_name_get, _StgFEM.RegularTrilinear_name_set)
+    __swig_setmethods__["nameAllocationType"] = _StgFEM.RegularTrilinear_nameAllocationType_set
+    __swig_getmethods__["nameAllocationType"] = _StgFEM.RegularTrilinear_nameAllocationType_get
+    if _newclass:
+        nameAllocationType = _swig_property(_StgFEM.RegularTrilinear_nameAllocationType_get, _StgFEM.RegularTrilinear_nameAllocationType_set)
+    __swig_setmethods__["_defaultConstructor"] = _StgFEM.RegularTrilinear__defaultConstructor_set
+    __swig_getmethods__["_defaultConstructor"] = _StgFEM.RegularTrilinear__defaultConstructor_get
+    if _newclass:
+        _defaultConstructor = _swig_property(_StgFEM.RegularTrilinear__defaultConstructor_get, _StgFEM.RegularTrilinear__defaultConstructor_set)
+    __swig_setmethods__["_construct"] = _StgFEM.RegularTrilinear__construct_set
+    __swig_getmethods__["_construct"] = _StgFEM.RegularTrilinear__construct_get
+    if _newclass:
+        _construct = _swig_property(_StgFEM.RegularTrilinear__construct_get, _StgFEM.RegularTrilinear__construct_set)
+    __swig_setmethods__["_build"] = _StgFEM.RegularTrilinear__build_set
+    __swig_getmethods__["_build"] = _StgFEM.RegularTrilinear__build_get
+    if _newclass:
+        _build = _swig_property(_StgFEM.RegularTrilinear__build_get, _StgFEM.RegularTrilinear__build_set)
+    __swig_setmethods__["_initialise"] = _StgFEM.RegularTrilinear__initialise_set
+    __swig_getmethods__["_initialise"] = _StgFEM.RegularTrilinear__initialise_get
+    if _newclass:
+        _initialise = _swig_property(_StgFEM.RegularTrilinear__initialise_get, _StgFEM.RegularTrilinear__initialise_set)
+    __swig_setmethods__["_execute"] = _StgFEM.RegularTrilinear__execute_set
+    __swig_getmethods__["_execute"] = _StgFEM.RegularTrilinear__execute_get
+    if _newclass:
+        _execute = _swig_property(_StgFEM.RegularTrilinear__execute_get, _StgFEM.RegularTrilinear__execute_set)
+    __swig_setmethods__["_destroy"] = _StgFEM.RegularTrilinear__destroy_set
+    __swig_getmethods__["_destroy"] = _StgFEM.RegularTrilinear__destroy_get
+    if _newclass:
+        _destroy = _swig_property(_StgFEM.RegularTrilinear__destroy_get, _StgFEM.RegularTrilinear__destroy_set)
+    __swig_setmethods__["isConstructed"] = _StgFEM.RegularTrilinear_isConstructed_set
+    __swig_getmethods__["isConstructed"] = _StgFEM.RegularTrilinear_isConstructed_get
+    if _newclass:
+        isConstructed = _swig_property(_StgFEM.RegularTrilinear_isConstructed_get, _StgFEM.RegularTrilinear_isConstructed_set)
+    __swig_setmethods__["isBuilt"] = _StgFEM.RegularTrilinear_isBuilt_set
+    __swig_getmethods__["isBuilt"] = _StgFEM.RegularTrilinear_isBuilt_get
+    if _newclass:
+        isBuilt = _swig_property(_StgFEM.RegularTrilinear_isBuilt_get, _StgFEM.RegularTrilinear_isBuilt_set)
+    __swig_setmethods__["isInitialised"] = _StgFEM.RegularTrilinear_isInitialised_set
+    __swig_getmethods__["isInitialised"] = _StgFEM.RegularTrilinear_isInitialised_get
+    if _newclass:
+        isInitialised = _swig_property(_StgFEM.RegularTrilinear_isInitialised_get, _StgFEM.RegularTrilinear_isInitialised_set)
+    __swig_setmethods__["hasExecuted"] = _StgFEM.RegularTrilinear_hasExecuted_set
+    __swig_getmethods__["hasExecuted"] = _StgFEM.RegularTrilinear_hasExecuted_get
+    if _newclass:
+        hasExecuted = _swig_property(_StgFEM.RegularTrilinear_hasExecuted_get, _StgFEM.RegularTrilinear_hasExecuted_set)
+    __swig_setmethods__["isDestroyed"] = _StgFEM.RegularTrilinear_isDestroyed_set
+    __swig_getmethods__["isDestroyed"] = _StgFEM.RegularTrilinear_isDestroyed_get
+    if _newclass:
+        isDestroyed = _swig_property(_StgFEM.RegularTrilinear_isDestroyed_get, _StgFEM.RegularTrilinear_isDestroyed_set)
+    __swig_setmethods__["constructType"] = _StgFEM.RegularTrilinear_constructType_set
+    __swig_getmethods__["constructType"] = _StgFEM.RegularTrilinear_constructType_get
+    if _newclass:
+        constructType = _swig_property(_StgFEM.RegularTrilinear_constructType_get, _StgFEM.RegularTrilinear_constructType_set)
+    __swig_setmethods__["buildType"] = _StgFEM.RegularTrilinear_buildType_set
+    __swig_getmethods__["buildType"] = _StgFEM.RegularTrilinear_buildType_get
+    if _newclass:
+        buildType = _swig_property(_StgFEM.RegularTrilinear_buildType_get, _StgFEM.RegularTrilinear_buildType_set)
+    __swig_setmethods__["initialiseType"] = _StgFEM.RegularTrilinear_initialiseType_set
+    __swig_getmethods__["initialiseType"] = _StgFEM.RegularTrilinear_initialiseType_get
+    if _newclass:
+        initialiseType = _swig_property(_StgFEM.RegularTrilinear_initialiseType_get, _StgFEM.RegularTrilinear_initialiseType_set)
+    __swig_setmethods__["executeType"] = _StgFEM.RegularTrilinear_executeType_set
+    __swig_getmethods__["executeType"] = _StgFEM.RegularTrilinear_executeType_get
+    if _newclass:
+        executeType = _swig_property(_StgFEM.RegularTrilinear_executeType_get, _StgFEM.RegularTrilinear_executeType_set)
+    __swig_setmethods__["destroyType"] = _StgFEM.RegularTrilinear_destroyType_set
+    __swig_getmethods__["destroyType"] = _StgFEM.RegularTrilinear_destroyType_get
+    if _newclass:
+        destroyType = _swig_property(_StgFEM.RegularTrilinear_destroyType_get, _StgFEM.RegularTrilinear_destroyType_set)
+    __swig_setmethods__["_evaluateShapeFunctionsAt"] = _StgFEM.RegularTrilinear__evaluateShapeFunctionsAt_set
+    __swig_getmethods__["_evaluateShapeFunctionsAt"] = _StgFEM.RegularTrilinear__evaluateShapeFunctionsAt_get
+    if _newclass:
+        _evaluateShapeFunctionsAt = _swig_property(_StgFEM.RegularTrilinear__evaluateShapeFunctionsAt_get, _StgFEM.RegularTrilinear__evaluateShapeFunctionsAt_set)
+    __swig_setmethods__["_evaluateShapeFunctionLocalDerivsAt"] = _StgFEM.RegularTrilinear__evaluateShapeFunctionLocalDerivsAt_set
+    __swig_getmethods__["_evaluateShapeFunctionLocalDerivsAt"] = _StgFEM.RegularTrilinear__evaluateShapeFunctionLocalDerivsAt_get
+    if _newclass:
+        _evaluateShapeFunctionLocalDerivsAt = _swig_property(_StgFEM.RegularTrilinear__evaluateShapeFunctionLocalDerivsAt_get, _StgFEM.RegularTrilinear__evaluateShapeFunctionLocalDerivsAt_set)
+    __swig_setmethods__["_convertGlobalCoordToElLocal"] = _StgFEM.RegularTrilinear__convertGlobalCoordToElLocal_set
+    __swig_getmethods__["_convertGlobalCoordToElLocal"] = _StgFEM.RegularTrilinear__convertGlobalCoordToElLocal_get
+    if _newclass:
+        _convertGlobalCoordToElLocal = _swig_property(_StgFEM.RegularTrilinear__convertGlobalCoordToElLocal_get, _StgFEM.RegularTrilinear__convertGlobalCoordToElLocal_set)
+    __swig_setmethods__["_jacobianDeterminantSurface"] = _StgFEM.RegularTrilinear__jacobianDeterminantSurface_set
+    __swig_getmethods__["_jacobianDeterminantSurface"] = _StgFEM.RegularTrilinear__jacobianDeterminantSurface_get
+    if _newclass:
+        _jacobianDeterminantSurface = _swig_property(_StgFEM.RegularTrilinear__jacobianDeterminantSurface_get, _StgFEM.RegularTrilinear__jacobianDeterminantSurface_set)
+    __swig_setmethods__["_surfaceNormal"] = _StgFEM.RegularTrilinear__surfaceNormal_set
+    __swig_getmethods__["_surfaceNormal"] = _StgFEM.RegularTrilinear__surfaceNormal_get
+    if _newclass:
+        _surfaceNormal = _swig_property(_StgFEM.RegularTrilinear__surfaceNormal_get, _StgFEM.RegularTrilinear__surfaceNormal_set)
+    __swig_setmethods__["nodeCount"] = _StgFEM.RegularTrilinear_nodeCount_set
+    __swig_getmethods__["nodeCount"] = _StgFEM.RegularTrilinear_nodeCount_get
+    if _newclass:
+        nodeCount = _swig_property(_StgFEM.RegularTrilinear_nodeCount_get, _StgFEM.RegularTrilinear_nodeCount_set)
+    __swig_setmethods__["dim"] = _StgFEM.RegularTrilinear_dim_set
+    __swig_getmethods__["dim"] = _StgFEM.RegularTrilinear_dim_get
+    if _newclass:
+        dim = _swig_property(_StgFEM.RegularTrilinear_dim_get, _StgFEM.RegularTrilinear_dim_set)
+    __swig_setmethods__["debug"] = _StgFEM.RegularTrilinear_debug_set
+    __swig_getmethods__["debug"] = _StgFEM.RegularTrilinear_debug_get
+    if _newclass:
+        debug = _swig_property(_StgFEM.RegularTrilinear_debug_get, _StgFEM.RegularTrilinear_debug_set)
+    __swig_setmethods__["inc"] = _StgFEM.RegularTrilinear_inc_set
+    __swig_getmethods__["inc"] = _StgFEM.RegularTrilinear_inc_get
+    if _newclass:
+        inc = _swig_property(_StgFEM.RegularTrilinear_inc_get, _StgFEM.RegularTrilinear_inc_set)
+    __swig_setmethods__["faceNodes"] = _StgFEM.RegularTrilinear_faceNodes_set
+    __swig_getmethods__["faceNodes"] = _StgFEM.RegularTrilinear_faceNodes_get
+    if _newclass:
+        faceNodes = _swig_property(_StgFEM.RegularTrilinear_faceNodes_get, _StgFEM.RegularTrilinear_faceNodes_set)
+    __swig_setmethods__["GNi"] = _StgFEM.RegularTrilinear_GNi_set
+    __swig_getmethods__["GNi"] = _StgFEM.RegularTrilinear_GNi_get
+    if _newclass:
+        GNi = _swig_property(_StgFEM.RegularTrilinear_GNi_get, _StgFEM.RegularTrilinear_GNi_set)
+    __swig_setmethods__["evaluatedShapeFunc"] = _StgFEM.RegularTrilinear_evaluatedShapeFunc_set
+    __swig_getmethods__["evaluatedShapeFunc"] = _StgFEM.RegularTrilinear_evaluatedShapeFunc_get
+    if _newclass:
+        evaluatedShapeFunc = _swig_property(_StgFEM.RegularTrilinear_evaluatedShapeFunc_get, _StgFEM.RegularTrilinear_evaluatedShapeFunc_set)
+    __swig_setmethods__["minElLocalCoord"] = _StgFEM.RegularTrilinear_minElLocalCoord_set
+    __swig_getmethods__["minElLocalCoord"] = _StgFEM.RegularTrilinear_minElLocalCoord_get
+    if _newclass:
+        minElLocalCoord = _swig_property(_StgFEM.RegularTrilinear_minElLocalCoord_get, _StgFEM.RegularTrilinear_minElLocalCoord_set)
+    __swig_setmethods__["maxElLocalCoord"] = _StgFEM.RegularTrilinear_maxElLocalCoord_set
+    __swig_getmethods__["maxElLocalCoord"] = _StgFEM.RegularTrilinear_maxElLocalCoord_get
+    if _newclass:
+        maxElLocalCoord = _swig_property(_StgFEM.RegularTrilinear_maxElLocalCoord_get, _StgFEM.RegularTrilinear_maxElLocalCoord_set)
+    __swig_setmethods__["elLocalLength"] = _StgFEM.RegularTrilinear_elLocalLength_set
+    __swig_getmethods__["elLocalLength"] = _StgFEM.RegularTrilinear_elLocalLength_get
+    if _newclass:
+        elLocalLength = _swig_property(_StgFEM.RegularTrilinear_elLocalLength_get, _StgFEM.RegularTrilinear_elLocalLength_set)
+    __swig_setmethods__["tetInds"] = _StgFEM.RegularTrilinear_tetInds_set
+    __swig_getmethods__["tetInds"] = _StgFEM.RegularTrilinear_tetInds_get
+    if _newclass:
+        tetInds = _swig_property(_StgFEM.RegularTrilinear_tetInds_get, _StgFEM.RegularTrilinear_tetInds_set)
+
+    def __init__(self):
+        this = _StgFEM.new_RegularTrilinear()
+        try:
+            self.this.append(this)
+        except:
+            self.this = this
+    __swig_destroy__ = _StgFEM.delete_RegularTrilinear
+    __del__ = lambda self: None
+RegularTrilinear_swigregister = _StgFEM.RegularTrilinear_swigregister
+RegularTrilinear_swigregister(RegularTrilinear)
+RegularTrilinear_Type = cvar.RegularTrilinear_Type
+
+
+def RegularTrilinear_New(name):
+    return _StgFEM.RegularTrilinear_New(name)
+RegularTrilinear_New = _StgFEM.RegularTrilinear_New
+
+def _RegularTrilinear_New(_sizeOfSelf, type, _delete, _print, _copy, name, nameAllocationType, _defaultConstructor, _construct, _build, _initialise, _execute, _destroy, _evaluateShapeFunctionsAt, _evaluateShapeFunctionLocalDerivsAt, _convertGlobalCoordToElLocal, _jacobianDeterminantSurface, _surfaceNormal):
+    return _StgFEM._RegularTrilinear_New(_sizeOfSelf, type, _delete, _print, _copy, name, nameAllocationType, _defaultConstructor, _construct, _build, _initialise, _execute, _destroy, _evaluateShapeFunctionsAt, _evaluateShapeFunctionLocalDerivsAt, _convertGlobalCoordToElLocal, _jacobianDeterminantSurface, _surfaceNormal)
+_RegularTrilinear_New = _StgFEM._RegularTrilinear_New
+
+def _RegularTrilinear_Init(arg1):
+    return _StgFEM._RegularTrilinear_Init(arg1)
+_RegularTrilinear_Init = _StgFEM._RegularTrilinear_Init
+
+def _RegularTrilinear_Delete(elementType):
+    return _StgFEM._RegularTrilinear_Delete(elementType)
+_RegularTrilinear_Delete = _StgFEM._RegularTrilinear_Delete
+
+def _RegularTrilinear_Print(elementType, stream):
+    return _StgFEM._RegularTrilinear_Print(elementType, stream)
+_RegularTrilinear_Print = _StgFEM._RegularTrilinear_Print
+
+def _RegularTrilinear_AssignFromXML(elementType, cf, data):
+    return _StgFEM._RegularTrilinear_AssignFromXML(elementType, cf, data)
+_RegularTrilinear_AssignFromXML = _StgFEM._RegularTrilinear_AssignFromXML
+
+def _RegularTrilinear_Build(elementType, data):
+    return _StgFEM._RegularTrilinear_Build(elementType, data)
+_RegularTrilinear_Build = _StgFEM._RegularTrilinear_Build
+
+def _RegularTrilinear_Initialise(elementType, data):
+    return _StgFEM._RegularTrilinear_Initialise(elementType, data)
+_RegularTrilinear_Initialise = _StgFEM._RegularTrilinear_Initialise
+
+def _RegularTrilinear_Execute(elementType, data):
+    return _StgFEM._RegularTrilinear_Execute(elementType, data)
+_RegularTrilinear_Execute = _StgFEM._RegularTrilinear_Execute
+
+def _RegularTrilinear_Destroy(elementType, data):
+    return _StgFEM._RegularTrilinear_Destroy(elementType, data)
+_RegularTrilinear_Destroy = _StgFEM._RegularTrilinear_Destroy
 class Triquadratic(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Triquadratic, name, value)
@@ -17081,6 +17746,30 @@ class SemiLagrangianIntegrator(_object):
     __swig_getmethods__["context"] = _StgFEM.SemiLagrangianIntegrator_context_get
     if _newclass:
         context = _swig_property(_StgFEM.SemiLagrangianIntegrator_context_get, _StgFEM.SemiLagrangianIntegrator_context_set)
+    __swig_setmethods__["ptsX"] = _StgFEM.SemiLagrangianIntegrator_ptsX_set
+    __swig_getmethods__["ptsX"] = _StgFEM.SemiLagrangianIntegrator_ptsX_get
+    if _newclass:
+        ptsX = _swig_property(_StgFEM.SemiLagrangianIntegrator_ptsX_get, _StgFEM.SemiLagrangianIntegrator_ptsX_set)
+    __swig_setmethods__["ptsY"] = _StgFEM.SemiLagrangianIntegrator_ptsY_set
+    __swig_getmethods__["ptsY"] = _StgFEM.SemiLagrangianIntegrator_ptsY_get
+    if _newclass:
+        ptsY = _swig_property(_StgFEM.SemiLagrangianIntegrator_ptsY_get, _StgFEM.SemiLagrangianIntegrator_ptsY_set)
+    __swig_setmethods__["ptsZ"] = _StgFEM.SemiLagrangianIntegrator_ptsZ_set
+    __swig_getmethods__["ptsZ"] = _StgFEM.SemiLagrangianIntegrator_ptsZ_get
+    if _newclass:
+        ptsZ = _swig_property(_StgFEM.SemiLagrangianIntegrator_ptsZ_get, _StgFEM.SemiLagrangianIntegrator_ptsZ_set)
+    __swig_setmethods__["elPatch"] = _StgFEM.SemiLagrangianIntegrator_elPatch_set
+    __swig_getmethods__["elPatch"] = _StgFEM.SemiLagrangianIntegrator_elPatch_get
+    if _newclass:
+        elPatch = _swig_property(_StgFEM.SemiLagrangianIntegrator_elPatch_get, _StgFEM.SemiLagrangianIntegrator_elPatch_set)
+    __swig_setmethods__["lElSize"] = _StgFEM.SemiLagrangianIntegrator_lElSize_set
+    __swig_getmethods__["lElSize"] = _StgFEM.SemiLagrangianIntegrator_lElSize_get
+    if _newclass:
+        lElSize = _swig_property(_StgFEM.SemiLagrangianIntegrator_lElSize_get, _StgFEM.SemiLagrangianIntegrator_lElSize_set)
+    __swig_setmethods__["courant"] = _StgFEM.SemiLagrangianIntegrator_courant_set
+    __swig_getmethods__["courant"] = _StgFEM.SemiLagrangianIntegrator_courant_get
+    if _newclass:
+        courant = _swig_property(_StgFEM.SemiLagrangianIntegrator_courant_get, _StgFEM.SemiLagrangianIntegrator_courant_set)
 
     def __init__(self):
         this = _StgFEM.new_SemiLagrangianIntegrator()
@@ -17139,8 +17828,8 @@ def SemiLagrangianIntegrator_InitSolve(slIntegrator, data):
     return _StgFEM.SemiLagrangianIntegrator_InitSolve(slIntegrator, data)
 SemiLagrangianIntegrator_InitSolve = _StgFEM.SemiLagrangianIntegrator_InitSolve
 
-def SemiLagrangianIntegrator_CubicInterpolator(feVariable, coord, delta, nNodes, result):
-    return _StgFEM.SemiLagrangianIntegrator_CubicInterpolator(feVariable, coord, delta, nNodes, result)
+def SemiLagrangianIntegrator_CubicInterpolator(slIntegrator, feVariable, coord, delta, nNodes, result):
+    return _StgFEM.SemiLagrangianIntegrator_CubicInterpolator(slIntegrator, feVariable, coord, delta, nNodes, result)
 SemiLagrangianIntegrator_CubicInterpolator = _StgFEM.SemiLagrangianIntegrator_CubicInterpolator
 
 def SemiLagrangianIntegrator_PeriodicUpdate(pos, min, max, isPeriodic, nDims):
@@ -17155,13 +17844,21 @@ def SemiLagrangianIntegrator_GetDeltaConst(feVariable, delta, nNodes):
     return _StgFEM.SemiLagrangianIntegrator_GetDeltaConst(feVariable, delta, nNodes)
 SemiLagrangianIntegrator_GetDeltaConst = _StgFEM.SemiLagrangianIntegrator_GetDeltaConst
 
-def SemiLagrangianIntegrator_IntegrateRK4(velocityField, dt, delta, nnodes, origin, position):
-    return _StgFEM.SemiLagrangianIntegrator_IntegrateRK4(velocityField, dt, delta, nnodes, origin, position)
+def SemiLagrangianIntegrator_IntegrateRK4(slIntegrator, dt, delta, nnodes, origin, position):
+    return _StgFEM.SemiLagrangianIntegrator_IntegrateRK4(slIntegrator, dt, delta, nnodes, origin, position)
 SemiLagrangianIntegrator_IntegrateRK4 = _StgFEM.SemiLagrangianIntegrator_IntegrateRK4
 
 def SemiLagrangianIntegrator_Solve(slIntegrator, variableField, variableFieldPrime):
     return _StgFEM.SemiLagrangianIntegrator_Solve(slIntegrator, variableField, variableFieldPrime)
 SemiLagrangianIntegrator_Solve = _StgFEM.SemiLagrangianIntegrator_Solve
+
+def SemiLagrangianIntegrator_InitPatches(slIntegrator):
+    return _StgFEM.SemiLagrangianIntegrator_InitPatches(slIntegrator)
+SemiLagrangianIntegrator_InitPatches = _StgFEM.SemiLagrangianIntegrator_InitPatches
+
+def SemiLagrangianIntegrator_CalcAdvDiffDt(slIntegrator, context):
+    return _StgFEM.SemiLagrangianIntegrator_CalcAdvDiffDt(slIntegrator, context)
+SemiLagrangianIntegrator_CalcAdvDiffDt = _StgFEM.SemiLagrangianIntegrator_CalcAdvDiffDt
 def SquareBracketsFinal(self, index):
 	return self.numpyArray[index]
 

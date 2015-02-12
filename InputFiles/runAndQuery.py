@@ -9,8 +9,7 @@ You might also modify various aspects of the simulation at different times in th
 import underworld
 
 # init using json
-#underworld.Init("RayleighTaylorBenchmark.xml")
-underworld.Init("testVelicSolCx.xml")
+underworld.Init("RayleighTaylorBenchmark.xml")
 
 underworld.Construct()
 
@@ -78,7 +77,7 @@ print ""
 print ""
 
 # continue through till end 
-#underworld.RunMainLoop()
+underworld.RunMainLoop()
 
 
 #underworld.Finalise()

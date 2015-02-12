@@ -111,10 +111,6 @@ OptionsClearValue = _petsc.OptionsClearValue
 def OptionsInsertFile(file):
     return _petsc.OptionsInsertFile(file)
 OptionsInsertFile = _petsc.OptionsInsertFile
-
-def EmptyCall():
-    return _petsc.EmptyCall()
-EmptyCall = _petsc.EmptyCall
 # This file is compatible with both classic and new-style classes.
 
 
