@@ -44,4 +44,7 @@ void OptionsInsertFile(const char file[]){
     PetscOptionsInsertFile(PETSC_COMM_WORLD,file,PETSC_TRUE);
 }
 
+void EmptyCall(){
+  return 1;
+}
 %}

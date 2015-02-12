@@ -35,7 +35,7 @@
 %include "Geometry/Plane.h"
 %include "Geometry/QuadEdge.h"
 %include "Geometry/RMatrix.h"
-#%include "Geometry/Simplex.h"
+/* #%include "Geometry/Simplex.h" */
 %include "Geometry/TensorMath.h"
 %include "Geometry/TensorMultMath.h"
 %include "Geometry/TrigMath.h"

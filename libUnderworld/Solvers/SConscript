@@ -362,6 +362,7 @@ env.PCUTest('tests/testSolvers', suites,
 #
 
 env.Install('lib/StGermain/Solvers', Glob('InputFiles/Solvers_Components/*.xml'))
+env.Install('lib/StGermain/Solvers', Glob('InputFiles/*.xml'))
 env.Install('lib/StGermain/Solvers/Viewports', Glob('InputFiles/Viewports/*.xml'))
 
 env.Alias("install", env.Install(env['prefix'] + '/share/Solvers/', env.GetLaunchDir() + '/Solvers/InputFiles' ) ) 

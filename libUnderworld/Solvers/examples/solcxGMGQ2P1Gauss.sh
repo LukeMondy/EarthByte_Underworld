@@ -40,7 +40,7 @@ export UWEXEC="$UWPATH/build/bin/Underworld"
 
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
 
-for VC in 4 6 8
+for VC in 4 6
 do
 for SC in 0 1
 do
@@ -75,7 +75,7 @@ SCRP="default"
 
 #MG=boomeramg
 #MG="ml"
-MG=gmg
+MG=lu
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
@@ -181,7 +181,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Gauss.xml \
   	-scr_ksp_rtol $SCRTOL \
   	-A11_ksp_rtol $A11TOL \
     -A11_ksp_type $A11 \
-    -A11_ksp_converged_reason \
+    -A11_ksp_converged_reason 1 \
     -change_backsolve 1 \
     -backsolveA11_ksp_type preonly \
     -backsolveA11_pc_type lu \
@@ -192,7 +192,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Gauss.xml \
     -rhsA11_ksp_rtol 1.0e-6 \
   	--elementResI=$RES --elementResJ=$RES \
   	--maxTimeSteps=0 -Xdump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_"  \
-    -Xmatdumpdir $OUT -Xsolutiondumpdir $OUT \
+    -Xmatdumpdir $OUT -Xsolutiondumpdir $OUT -help \
     > "./$OUT/output.txt" 2>&1
 
 mv  "$OUT/window.00000.png" "png/${NAME}_${RES}x${RES}_10e${VC}_p${PEN}_tol${SCRTOL}.png"

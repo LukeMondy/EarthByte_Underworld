@@ -39,13 +39,13 @@ def cartesianMeshCreate( componentName="",
         maxY (double)
         maxZ (double)
         dim  (int)
-        meshElementType (string)       : Must be one of ( constant, linear, quadratic ). Defaults to linear
+        meshElementType (string)       : Must be one of ( constant, linear, linear-inner, quadratic ). Defaults to linear
         primaryMeshName (string)       : Only needed for the 'constant' Mesh.
     """
-    meshAllowedTypes = ["linear", "constant", "quadratic"]
+    meshAllowedTypes = ["linear", "constant", "linear-inner", "quadratic"]
 
     if meshElementType not in meshAllowedTypes:
-        print "Error: Need to choose one of  ( constant, linear, quadratic ) for meshElementType"
+        print "Error: Need to choose one of  ( constant, linear, linear-inner, quadratic ) for meshElementType"
         return
 
     globalDict = _uw.dictionary.GetDictionary()
@@ -103,6 +103,8 @@ def cartesianMeshCreate( componentName="",
         genType = "CartesianGenerator"
     if( meshElementType == "quadratic"):
         genType = "C2Generator"
+    if( meshElementType == "linear-inner"):
+        genType = "Inner2DGenerator"
 
     minCoordList = [minX, minY, minZ]
     maxCoordList = [maxX, maxY, maxZ]

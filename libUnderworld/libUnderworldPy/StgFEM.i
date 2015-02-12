@@ -2,8 +2,6 @@
 
 %module StgFEM
 
-%import "StGermain.i"
-%import "StgDomain.i"
 
 %{
 /* Includes the header in the wrapper code */
@@ -19,6 +17,8 @@
 import_array();
 %}
 
+%import "StGermain.i"
+%import "StgDomain.i"
 
 %include "Discretisation/FeVariable.h"
 %include "Discretisation/Element.h"
@@ -46,15 +46,12 @@ import_array();
 %include "Discretisation/LinearTriangleElementType.h"
 %include "Discretisation/LinkedDofInfo.h"
 %include "Discretisation/OperatorFeVariable.h"
-%include "Discretisation/P1.h"
 /*%include "Discretisation/P1Generator.h"*/
 %include "Discretisation/PETScErrorChecking.h"
 %include "Discretisation/ShapeFeVariable.h"
 %include "Discretisation/shortcuts.h"
 %include "Discretisation/TrilinearElementType.h"
 %include "Discretisation/TrilinearInnerElType.h"
-%include "Discretisation/RegularBilinear.h"
-%include "Discretisation/RegularTrilinear.h"
 %include "Discretisation/Triquadratic.h"
 %include "Discretisation/types.h"
 %include "Discretisation/units.h"
@@ -106,7 +103,7 @@ import_array();
 %include "Utils/types.h"
 
 
-#  the following extends the FeVariable class such that we can extract a numpy style array via numpy.i magic
+/* #  the following extends the FeVariable class such that we can extract a numpy style array via numpy.i magic */
 %extend FeVariable
 {
 
@@ -162,9 +159,11 @@ import_array();
 	FeMesh.__getitem__ = SquareBracketsFixed
 %}
 
+/*
 
 # add this to the FeVariable constructor
 # %feature("pythonappend") FeVariable %{
 #  #do something after C++ call
 #  self.numpyArray = self.getAsNumpyArray()
 # %}
+*/

@@ -4,6 +4,7 @@
 
 %{
 /* Includes the header in the wrapper code */
+#define SWIG_FILE_WITH_INIT
 #include <StGermain/StGermain.h>
 %}
 
@@ -14,6 +15,15 @@ int    Variable_GetValueAtInt(Variable*   , unsigned int, unsigned int);
 float  Variable_GetValueAtFloat(Variable* , unsigned int, unsigned int);
 double Variable_GetValueAtDouble(Variable*, unsigned int, unsigned int);
 
+%include "numpy.i"
+
+%init %{
+import_array();
+%}
+
+
+%include "Base/Foundation/types.h"       
+%include "Base/Container/types.h"       
 %include "libStGermain/main.h"
 %include "Base/Automation/types.h"
 %include "Base/Context/types.h"
@@ -42,6 +52,8 @@ double Variable_GetValueAtDouble(Variable*, unsigned int, unsigned int);
 %include "Base/Extensibility/ModulesManager.h"
 %include "Base/Foundation/NamedObject_Register.h"       
 %include "Base/Container/HashTable.h"
+%include "Base/Container/IndexMap.h"
+%include "Base/Container/IndexSet.h"
 %include "Base/Automation/HierarchyTable.h"
 %include "Base/IO/IO_Handler.h"       
 %include "Base/IO/XML_IO_Handler.h"       
@@ -56,3 +68,83 @@ double Variable_GetValueAtDouble(Variable*, unsigned int, unsigned int);
 %include "Base/Context/Codelet.h"
 %include "Utils/DummyComponent.h"
 %include "Utils/Scaling.h"
+
+
+/* # The following allows us to add values to IndexSets from numpy arrays */
+%extend IndexSet
+{
+
+    void AddOrRemoveWithNumpyInt( int* IN_ARRAY1, int DIM1, Bool adding ){
+        int ii;
+
+        if (adding) {
+            for (ii=0; ii<DIM1; ii++)
+                IndexSet_Add($self, IN_ARRAY1[ii]);
+        } else {
+            for (ii=0; ii<DIM1; ii++)
+                IndexSet_Remove($self, IN_ARRAY1[ii]);
+        }
+        
+    }
+
+}
+%extend IndexSet
+{
+
+    void AddOrRemoveWithNumpyLong( long* IN_ARRAY1, int DIM1, Bool adding ){
+        int ii;
+
+        if (adding) {
+            for (ii=0; ii<DIM1; ii++)
+                IndexSet_Add($self, IN_ARRAY1[ii]);
+        } else {
+            for (ii=0; ii<DIM1; ii++)
+                IndexSet_Remove($self, IN_ARRAY1[ii]);
+        }
+    }
+
+}
+%extend IndexSet
+{
+
+    void AddOrRemoveWithNumpyUInt( unsigned int* IN_ARRAY1, int DIM1, Bool adding ){
+        int ii;
+
+        if (adding) {
+            for (ii=0; ii<DIM1; ii++)
+                IndexSet_Add($self, IN_ARRAY1[ii]);
+        } else {
+            for (ii=0; ii<DIM1; ii++)
+                IndexSet_Remove($self, IN_ARRAY1[ii]);
+        }
+    }
+
+}
+%extend IndexSet
+{
+
+    void AddOrRemoveWithNumpyULong( unsigned long* IN_ARRAY1, int DIM1, Bool adding ){
+        int ii;
+
+        if (adding) {
+            for (ii=0; ii<DIM1; ii++)
+                IndexSet_Add($self, IN_ARRAY1[ii]);
+        } else {
+            for (ii=0; ii<DIM1; ii++)
+                IndexSet_Remove($self, IN_ARRAY1[ii]);
+        }
+    }
+
+}
+/* # The following allows us to retrieve values from IndexSets from numpy arrays */
+%extend IndexSet
+{
+    void GetAsNumpyArray( unsigned int* INPLACE_ARRAY1, int DIM1 ){
+
+        Journal_Firewall( DIM1 == IndexSet_UpdateMembersCount($self), $self->error, "Error- %s: Numpy array size (%u) is different to member count (%u). Aborting.",
+            __func__, DIM1, IndexSet_UpdateMembersCount($self));
+
+        IndexSet_GetMembers2( $self, INPLACE_ARRAY1 );
+
+    }
+}

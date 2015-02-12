@@ -37,11 +37,11 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
-#export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
+export UWEXEC="mpirun -n 4 $UWPATH/build/bin/Underworld"
 
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
 
-for VC in 2
+for VC in 2 4 6
 do
 for SC in 0
 do
@@ -51,15 +51,15 @@ for SCR in fgmres
 do
 for A11 in fgmres
 do
-for SCRTOL in 1e-4
+for SCRTOL in 1e-9
 do
-for A11TOL in 1e-3
+for A11TOL in 1e-10
 do
 #echo "|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----|" | tee -a var.txt
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
-for PEN in 0.0
+for PEN in 0.0 1000.0
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 ##PEN=`echo "0.25*$PEN" | bc -l`
@@ -111,7 +111,7 @@ ID=$SCR$A11
 RES=$1
 RESX=$RES
 RESY=$RES
-PP=40
+PP=400
 
 SCALETEXT=no_scale
 
@@ -131,15 +131,14 @@ VV=`echo "10^($VC)" | bc -l`
 #VC=0
 #VB=`echo "10^(-$VC)" | bc -l`
 VB=1.0
-PCRES=15
+PCRES=50
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
 #NAME="solcxGMG"
 #NAME="Q2P1Solcx"
 NAME="q2p1runsSolCx_conditionNumberMatrices"
 NAME="cxq2p1nearest"
-NAME="cxCHECKPOINTINGq2p1nearest"
-##NAME="hires_cxq2p1_6x6gp"
+NAME="hires_cxq2p1_6x6gp"
 #DIR="${NAME}_${RESX}x${RESY}_${BVISC}_${PP}"
 #OUT="$DIR/${PEN}_$count"
 DIR="${NAME}_${RESX}x${RESY}"
@@ -202,7 +201,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Nearest.xml \
     -Xmatdumpdir $OUT -Xsolutiondumpdir $OUT \
     > "./$OUT/output.txt" 2>&1
 
-cp  "$OUT/window.00000.png" "png/${NAME}_${RES}x${RES}_10e${VC}_p${PEN}_tol${SCRTOL}.png"
+mv  "$OUT/window.00000.png" "png/${NAME}_${RES}x${RES}_10e${VC}_p${PEN}_tol${SCRTOL}.png"
 
 #./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt
 

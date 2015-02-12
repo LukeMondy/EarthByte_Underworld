@@ -36,7 +36,7 @@ PROCS=1
 
 export UWPATH=`./getUWD.sh`
 export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
-export UWEXEC="mpirun -n 4 $UWPATH/build/bin/Underworld"
+export UWEXEC="mpirun -n 2 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
 for VC in 8
