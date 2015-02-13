@@ -156,7 +156,7 @@ void _MeshVariable_AssignFromXML( void* meshVariable, Stg_ComponentFactory* cf, 
 	mesh = Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"mesh", Mesh, True, data  );
 	MeshVariable_SetMesh( self, mesh );
 
-	/* Get the topological element we're intereseted in. */
+	/* Get the topological element we're interested in. */
 	self->topoDim = Stg_ComponentFactory_GetUnsignedInt( cf, self->name, (Dictionary_Entry_Key)"topologicalDim", 0  );
 			
 	/* Get Type of Variable */

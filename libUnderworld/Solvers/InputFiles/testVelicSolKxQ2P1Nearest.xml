@@ -25,9 +25,9 @@ is the y-axis in the code
 	</list>
 
 	<!-- Component Stuff -->
-	<include>../InputFiles/StokesFlowQ2P1Nearest.xml </include>
-        <include>StgFEM/ConstantMesh.xml</include>
-        <include>StgFEM/TemperatureField.xml         </include>
+	<include>Solvers/StokesFlowQ2P1Nearest.xml </include>
+    <include>StgFEM/ConstantMesh.xml</include>
+    <include>StgFEM/TemperatureField.xml         </include>
 	<include>StgFEM/TempAdvDiff.xml              </include>
 
 	<struct name="components" mergeType="merge">
@@ -110,7 +110,7 @@ is the y-axis in the code
       </struct>
       <struct name="rheology">
          <param name="Type">DepthDependentViscosity</param>
-         <param name="Mesh">linearMesh</param>
+         <param name="Mesh">velocityMesh</param>
          <param name="eta0">solKx_sigma</param>
          <param name="gamma">solKx_twiceB</param>
          <param name="referencePoint">0.0</param>

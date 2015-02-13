@@ -331,12 +331,21 @@ void _FieldTest_AssignFromXML( void* fieldTest, Stg_ComponentFactory* cf, void* 
       context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", DomainContext, True, data );
 
    /* Get the integration swarm. */
-   integrationSwarm = (Swarm*)LiveComponentRegister_Get( cf->LCRegister,
-      Dictionary_GetString( dictionary, (Dictionary_Entry_Key)"IntegrationSwarm" ) );
+   //integrationSwarm = (Swarm*)LiveComponentRegister_Get( cf->LCRegister,
+   //   Dictionary_GetString( dictionary, (Dictionary_Entry_Key)"IntegrationSwarm" ) );
+   
+   /* Use Stg_ComponentFactory_ConstructByKey instead of LiveComponentRegister_Get here */
+   /* It appears LiveComponentRegister_Get cannot find things that are aliased in XML */
+   integrationSwarm = (Swarm*)Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"IntegrationSwarm", Swarm, True, data  ) ;
+
 
    /* Get the element mesh. */
-   elementMesh = (FeMesh*)LiveComponentRegister_Get( cf->LCRegister,
-      Dictionary_GetString( dictionary, (Dictionary_Entry_Key)"ElementMesh" ) );
+   //elementMesh = (FeMesh*)LiveComponentRegister_Get( cf->LCRegister,
+   //   Dictionary_GetString( dictionary, (Dictionary_Entry_Key)"ElementMesh" ) );
+   
+   /* This method can handle aliased XML names: The above cannot do this correctly */
+   /* Construct/Get the element mesh. */
+   elementMesh = (FeMesh*)Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"ElementMesh", Mesh, True, data  );
 
    /* Get flag for normalisation. */
    normalise = Dictionary_Entry_Value_AsBool(
@@ -636,7 +645,7 @@ void FieldTest_LoadReferenceSolutionFromFile(
    int      sizes[3];
    double*  data;
    int      dataPos = 0;
-   double   nodeDummy;
+   //double   nodeDummy;
 
    Stg_Component_Initialise( feMesh, context, False );
    Stg_Component_Initialise( feVariable, context, False );
@@ -696,7 +705,7 @@ void FieldTest_LoadReferenceSolutionFromFile(
       H5Dread( dataSet, H5T_NATIVE_DOUBLE, memSpace, dataSpace, H5P_DEFAULT, data );
 
       dataPos  = 0;
-      nodeDummy = data[dataPos++];
+      //nodeDummy = data[dataPos++];
       posx[lineNum] = data[dataPos++];
       posy[lineNum] = data[dataPos++];
 
@@ -863,16 +872,16 @@ void FieldTest_LoadReferenceSolutionFromFile(
 }
 
 void _FieldTest_DumpToAnalysisFile( FieldTest* self, Stream* analysisStream ) {
-   int              field_I, dim, dof_I;
+   int              field_I,  dof_I;
    Index            numDofs;
-   ErrorFeVariable* errorField;
+   //ErrorFeVariable* errorField;
    /* double        error; */
 
    for( field_I = 0; field_I < self->fieldCount; field_I++ ) {
       /* Should be using MT_VOLUME for the reference field mesh, but seems to have a bug. */
-      errorField = self->fieldMappings[field_I]->errorField;
+      //errorField = self->fieldMappings[field_I]->errorField;
       numDofs = self->fieldMappings[field_I]->numericField->fieldComponentCount;
-      dim = self->fieldMappings[field_I]->numericField->dim;
+      //dim = self->fieldMappings[field_I]->numericField->dim;
 
 #if 0
       /* Fancy error measurements of magnitudes and 2ndInvars, not needed
