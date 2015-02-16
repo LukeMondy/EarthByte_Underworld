@@ -397,6 +397,21 @@ def StgConstruct( pyUWDict, setAsRootDict=False):
 
     cf = StGermain.Stg_ComponentFactory_New( stgRootDict, stgCompDict )
 
+    #
+    # It is currently necessary to ensure that the context gets built/constructed first
+    # It is currently possible to have components trying to build themselves with unitialised data
+    # from other components if the context has not been built already.
+    #
+    if "components" in pyUWDict:
+        for compName, compDict in pyUWDict["components"].iteritems():
+            try:
+                compPointer = StGermain.LiveComponentRegister_Get( StGermain.LiveComponentRegister_GetLiveComponentRegister(), compName )
+                if "context" in compName:
+                    StGermain.Stg_Component_AssignFromXML( compPointer, cf, None, False )
+            except:
+                utils.sendWarning("Component \'%s\' not found in the live component register." % compName)
+    
+    
     # lets go ahead and construct component
     if "components" in pyUWDict:
         for compName, compDict in pyUWDict["components"].iteritems():
