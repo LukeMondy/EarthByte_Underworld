@@ -45,7 +45,7 @@ def MergeEnv(env, merge, replaceDupes=False):
 def SetFlags(env):
     #Set debug and optimise settings (call last to override any from PETSc)
     if env.get('with_debugging', None):
-        env.MergeFlags('-g -DDEBUG -O0')
+        env.MergeFlags('-ggdb3 -DDEBUG -O0')
     else:
         env.MergeFlags('-O2 -DNDEBUG')
 
@@ -60,6 +60,8 @@ def SaveConfig(env, filename='config.cfg'):
         return
 
     env.SetFlags()
+
+    import pdb; pdb.set_trace()
 
     if 'LIBS' in env:
         # Need to make sure there are no SCons files in the
