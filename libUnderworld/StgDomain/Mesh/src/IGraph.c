@@ -35,6 +35,7 @@
 #include "Decomp.h"
 #include "Sync.h"
 #include "MeshTopology.h"
+#include "Grid.h"
 #include "IGraph.h"
 
 
@@ -198,6 +199,9 @@ void IGraph_SetDomain( void* _self, int dim, Sync* sync ) {
     }
 }
 
+/* dim: 	topolocigcal dimensionality of the input objects
+   globals: 	global index numbers of the local objects;
+		0: vertex, 1: edge, 2: face, 3: volume */
 void IGraph_SetElements( void* _self, int dim, int nEls, const int* globals ) {
     IGraph* self = (IGraph*)_self;
     int rank;
@@ -238,17 +242,21 @@ void IGraph_SetElements( void* _self, int dim, int nEls, const int* globals ) {
     nNbrEls = AllocArray( int, nNbrs );
     nbrEls = AllocArray( int*, nNbrs );
 
+    /* only grab 1000 objects from the neighbour processors at a time */
     do {
         Comm_AllgatherInit( self->comm, nSubEls, nNbrEls, sizeof(int) );
 
         for( n_i = 0; n_i < nNbrs; n_i++ )
             nbrEls[n_i] = AllocArray( int, nNbrEls[n_i] );
 
+	/* for each neighbour processor, obtain its topological objects */
         Comm_AllgatherBegin( self->comm, subEls, (void**)nbrEls );
         Comm_AllgatherEnd( self->comm );
 
         for( n_i = 0; n_i < nNbrs; n_i++ ) {
             for( e_i = 0; e_i < nNbrEls[n_i]; e_i++ ) {
+		/* if the neighbour processor object is also local processor object, 
+		   add it to the list of intersecting objects  */
                 if( ISet_Has( locals, nbrEls[n_i][e_i] ) )
                     IArray_Append( isects[n_i], nbrEls[n_i][e_i] );
             }
@@ -263,6 +271,8 @@ void IGraph_SetElements( void* _self, int dim, int nEls, const int* globals ) {
     FreeArray( nNbrEls );
     FreeArray( nbrEls );
 
+    /* on the lower index processor remove the intersecting objects from the local processor 
+       and add them to the list of remote objects belonging to other processors */
     ISet_Init( remotes );
     ISet_SetMaxSize( remotes, nEls );
     for( n_i = 0; n_i < nNbrs; n_i++ ) {
@@ -414,6 +424,11 @@ void IGraph_SetBoundaryElements( void* _self, int dim, int nEls, const int* els 
     memcpy( self->bndEls[dim], els, sizeof(int) * nEls );
 }
 
+/* fromDim:	topological dimension of the object whose incidence is being set
+   fromEl:	local index of the object whose incidence is being set
+   toDim:	topological dimension of the objects that are being set as incident
+   nIncEls:	number of incident objects
+   incEls:	local indices of the incident objects */
 void IGraph_SetIncidence( void* _self, int fromDim, int fromEl, int toDim, int nIncEls, const int* incEls  ) {
     IGraph* self = (IGraph*)_self;
     int nDoms;
@@ -501,6 +516,8 @@ void IGraph_InvertIncidence( void* _self, int fromDim, int toDim ) {
 }
 
 void IGraph_ExpandIncidence( void* _self, int dim ) {
+/* create the incidence relations for a single topological dimension with itself (ie: faces to faces)
+   assumes the incidence relation for the topolgical dimension to the vertices has already been constructed */
     IGraph* self = (IGraph*)_self;
     ISet nbrSetObj, *nbrSet = &nbrSetObj;
     int nEls;
@@ -960,6 +977,7 @@ void IGraph_PrintIncidence( const void* _self, int fromDim, int toDim ) {
 }
 
 void IGraph_PickleIncidenceInit( IGraph* self, int dim, int nEls, int* els, int* nBytes ) {
+/* determine how large (in bytes) the 2d incidence array is for a given topological dimension */
     int size;
     int d_i, e_i;
 
