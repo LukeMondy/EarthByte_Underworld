@@ -6,13 +6,14 @@
    Definitions of wall is misleading and needs fixing:
    So for now:
 
-      top/bottom wall are perpendicular to E-W 
-      right/left wall are perpendicular to OUTER/INNER radius
-      front/back wall are perpendicular to N-S 
+      right/left walls are perpendicular to OUTER/INNER radius vector
+      top/bottom walls are perpendicular to the great circles that go through E-W
+      front/back walls are perpendicular to the great circles that go through N-S
 
-        vx - is radial
-        vy - is E-W
-        vz - is N-S
+    With in the wall velcity definition the:
+        'vx' is radial component
+        'vy' is angular component along E-W walls. Note the vector is NOT aligned with E-W direction
+        'vz' is angular component along N-S walls. Note the vector is aligned with N-S direction
 	-->
 
   <!-- Velocity BCs -->

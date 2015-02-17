@@ -4,15 +4,16 @@
 <StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
 
 <!--
-wall conversion:
-in xml == in model
-bottom  == clockwise facing out wall
-top     == anticlockwise facing out wall
-left    == inner radius wall
-right   == outer radius wall
+   The wall and bc redefinitions:
+      right/left wall are perpendicular to OUTER/INNER radius vector 
+      bottom  == clockwise facing out wall
+      top     == anticlockwise facing out wall
 
-vx is radial velocity
-vy is angular velocity anticlockwise
+    for a periodic annulus we set periodic_y == True, causing the top/bottom walls to become period
+
+    With in the wall velcity definition the:
+        'vx' is radial component
+        'vy' is angular (anticlockwise) component
 -->
 
   <!-- Velocity BCs -->

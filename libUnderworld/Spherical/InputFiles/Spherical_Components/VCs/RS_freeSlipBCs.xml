@@ -22,7 +22,7 @@
 
     With in the wall velcity definition the:
         'vx' is radial component
-        'vy' is angular component along E-W walls. Note the vector is not aligned with E-W direction
+        'vy' is angular component along E-W walls. Note the vector is NOT aligned with E-W direction
         'vz' is angular component along N-S walls. Note the vector is aligned with N-S direction
 	-->
   <!-- Velocity BCs -->
