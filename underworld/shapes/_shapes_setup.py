@@ -84,7 +84,7 @@ def sphereCreate( componentName="sphereShape",
     globalDict = _uw.dictionary.GetDictionary()
 
     cZ = 0.0
-    if centrelist.__len__() == 3:
+    if centreList.__len__() == 3:
         cZ = centreList[2]
     newComponentShapeDict = _uw.dictionary.UpdateDictWithComponent( globalDict,
                                                                     name    = componentName,
