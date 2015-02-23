@@ -1,14 +1,18 @@
 include ${PETSC_DIR}/conf/variables
 PVARFOUND = "0"
-ifneq ("$(wildcard $(PETSC_DIR)/$(PETSC_ARCH)/conf/petscvariables)","")
-     include ${PETSC_DIR}/${PETSC_ARCH}/conf/petscvariables
-     PVARFOUND = 1
-endif
-ifneq ("$(wildcard $(PETSC_DIR)/conf/petscvariables)","")
-     include ${PETSC_DIR}/conf/petscvariables
-     PVARFOUND = 1
-endif
 
+ifeq ($(PVARFOUND), "0")
+	ifneq ("$(wildcard $(PETSC_DIR)/$(PETSC_ARCH)/conf/petscvariables)","")
+		include ${PETSC_DIR}/${PETSC_ARCH}/conf/petscvariables
+		PVARFOUND = 1
+	endif
+endif
+ifeq ($(PVARFOUND), "0")
+	ifneq ("$(wildcard $(PETSC_DIR)/conf/petscvariables)","")
+		include ${PETSC_DIR}/conf/petscvariables
+		PVARFOUND = 1
+	endif
+endif
 
 include ${PETSCEXT2_DIR}/${PETSC_ARCH}/petscextconf
 
