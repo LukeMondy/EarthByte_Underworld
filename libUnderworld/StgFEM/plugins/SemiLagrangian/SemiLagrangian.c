@@ -123,8 +123,6 @@ double SemiLagrangian_EvaluateError( FiniteElementContext* context, FeVariable* 
     ElementType*         	elementType;
     double               	detJac;
     double			gCoord[3];
-    double			delta[3];
-    unsigned			nNodes[3];
     double			xo   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_shiftX", 0.5 );
     double			yo		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_shiftY", 0.5 );
     double			ax   		= Dictionary_GetDouble_WithDefault( context->dictionary, "solWave_scaleX", 5.0 );
@@ -146,8 +144,7 @@ double SemiLagrangian_EvaluateError( FiniteElementContext* context, FeVariable* 
 
             initialValue = func( gCoord, xo, yo, ax, ay );
             
-            SemiLagrangianIntegrator_GetDeltaConst( phiField, delta, nNodes );
-            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, phiField, gCoord, delta, nNodes, &finalValue );
+            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, phiField, gCoord, &finalValue );
  
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
@@ -228,16 +225,6 @@ void StgFEM_SemiLagrangian_AssignFromXML( void* _self, Stg_ComponentFactory* cf,
 
     condFunc = ConditionFunction_New( SemiLagrangian_Block, (Name)"Block", NULL  );
     ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    //condFunc = ConditionFunction_New( SemiLagrangian_SolWave, (Name)"SolWave", NULL  );
-    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    //condFunc = ConditionFunction_New( SemiLagrangian_ShearCellX, (Name)"ShearCellX", NULL  );
-    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    //condFunc = ConditionFunction_New( SemiLagrangian_ShearCellY, (Name)"ShearCellY", NULL  );
-    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    //condFunc = ConditionFunction_New( SemiLagrangian_ParametricCircleX, (Name)"ParametricCircleX", NULL  );
-    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
-    //condFunc = ConditionFunction_New( SemiLagrangian_ParametricCircleY, (Name)"ParametricCircleY", NULL  );
-    //ConditionFunction_Register_Add( condFunc_Register, condFunc );
 
     ContextEP_ReplaceAll( context, AbstractContext_EP_Dt, SemiLagrangian_Dt );
     ContextEP_Append( context, AbstractContext_EP_UpdateClass, SemiLagrangian_UpdatePositions );
