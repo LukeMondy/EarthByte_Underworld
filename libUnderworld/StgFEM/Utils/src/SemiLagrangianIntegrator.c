@@ -215,12 +215,12 @@ void _SemiLagrangianIntegrator_Initialise( void* slIntegrator, void* data ) {
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
     unsigned			field_i, el_i;
-    unsigned 			dim 		= Mesh_GetDimSize( self->velocityField->feMesh );
-    unsigned 			patchSize 	= ( dim == 2 ) ? 16 : 64;
+    unsigned 			patchSize 	= ( Mesh_GetDimSize( self->velocityField->feMesh ) == 2 ) ? 16 : 64;
     unsigned			nInc;
 
-    //self->lElSize = Mesh_GetLocalSize( self->velocityField->feMesh, dim );
-    self->lElSize = Mesh_GetDomainSize( self->velocityField->feMesh, dim );
+    self->dim = Mesh_GetDimSize( self->velocityField->feMesh );
+
+    self->lElSize = Mesh_GetDomainSize( self->velocityField->feMesh, self->dim );
 
     if( self->velocityField ) Stg_Component_Initialise( self->velocityField, data, False );
 
@@ -235,8 +235,10 @@ void _SemiLagrangianIntegrator_Initialise( void* slIntegrator, void* data ) {
     self->ptsY = Memory_Alloc_2DArray_Unnamed( double, 4, 3 );
     self->ptsZ = Memory_Alloc_2DArray_Unnamed( double, 4, 3 );
 
-    FeMesh_GetElementNodes( self->velocityField->feMesh, 0, ((FeVariable*)self->variableList->data[0])->inc );
-    nInc = IArray_GetSize( feVariable->inc );
+    self->iArray = IArray_New();
+
+    FeMesh_GetElementNodes( self->velocityField->feMesh, 0, self->iArray );
+    nInc = IArray_GetSize( self->iArray );
     self->isQuad = ( nInc%3==0 ) ? True : False;
 
     if( !self->isQuad ) {
@@ -248,7 +250,7 @@ void _SemiLagrangianIntegrator_Initialise( void* slIntegrator, void* data ) {
         SemiLagrangianIntegrator_InitPatches( self );
     }
     else {
-        unsigned nSections = ( dim == 2 ) ? 4 : 8;
+        unsigned nSections = ( self->dim == 2 ) ? 4 : 8;
         unsigned section_i;
 
         self->elPatch = NULL;
@@ -267,7 +269,6 @@ void _SemiLagrangianIntegrator_Execute( void* slIntegrator, void* data ) {}
 
 void _SemiLagrangianIntegrator_Destroy( void* slIntegrator, void* data ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
-    unsigned 			dim 		= Mesh_GetDimSize( self->velocityField->feMesh );
     FeVariable*			feVariable;
     FeVariable*			feVarStar;
     unsigned			field_i, el_i;
@@ -279,7 +280,7 @@ void _SemiLagrangianIntegrator_Destroy( void* slIntegrator, void* data ) {
         free( self->elPatch );
     }
     else {
-        unsigned nSections = ( dim == 2 ) ? 4 : 8;
+        unsigned nSections = ( self->dim == 2 ) ? 4 : 8;
         unsigned section_i;
 
         for( el_i = 0; el_i < self->lElSize; el_i++ ) {
@@ -304,6 +305,8 @@ void _SemiLagrangianIntegrator_Destroy( void* slIntegrator, void* data ) {
     Memory_Free( self->ptsZ );
 
     if( self->velocityField ) Stg_Component_Destroy( self->velocityField, data, False );
+
+    Stg_Class_Delete( self->iArray );
 }
 
 void SemiLagrangianIntegrator_InitSolve( void* _self, void* _context ) {
@@ -335,7 +338,7 @@ void SemiLagrangianIntegrator_InitSolve( void* _self, void* _context ) {
 void SemiLagrangianIntegrator_IntegrateRK4( void* slIntegrator, double dt, double* origin, double* position ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
     FeVariable*			velocityField	= self->velocityField;
-    unsigned			ndims		= Mesh_GetDimSize( velocityField->feMesh );
+    unsigned			ndims		= self->dim;
     unsigned			dim_i;
     double			min[3], max[3];
     double			k[4][3];
@@ -413,45 +416,88 @@ Bool SemiLagrangianIntegrator_PeriodicUpdate( double* pos, double* min, double* 
     return result;
 }
 
-void SemiLagrangianIntegrator_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
+void SemiLagrangianIntegrator_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* pos, double* result ) {
     SemiLagrangianIntegrator*	self 			= (SemiLagrangianIntegrator*)slIntegrator;
     FeMesh*			feMesh			= feVariable->feMesh;
+    int				dim			= self->dim;
     double			px[4], py[4], pz[4];
     unsigned			nDims			= Mesh_GetDimSize( feMesh );
     unsigned			numdofs			= feVariable->dofLayout->dofCounts[0];
     unsigned			elInd, index = 0;
     unsigned			x_i, y_i, z_i;
+    unsigned*			patch;
 
-    Mesh_SearchElements( feMesh, position, &elInd );
+    Mesh_SearchElements( feMesh, pos, &elInd );
+
+    if( !self->isQuad ) {
+        patch = self->elPatch[elInd];
+    }
+    else {
+        int* inc;
+        double* mid;
+
+        FeMesh_GetElementNodes( feMesh, elInd, self->iArray );
+        inc = IArray_GetPtr( self->iArray );        
+        if( dim == 3 ) {
+            mid = Mesh_GetVertex( feMesh, inc[13] );
+            if( pos[0] < mid[0] && pos[1] < mid[1] && pos[2] < mid[2] )
+                patch = self->elPatchQuad[elInd][0];
+            else if( pos[0] > mid[0] && pos[1] < mid[1] && pos[2] < mid[2] )
+                patch = self->elPatchQuad[elInd][1];
+            else if( pos[0] < mid[0] && pos[1] > mid[1] && pos[2] < mid[2] )
+                patch = self->elPatchQuad[elInd][2];
+            else if( pos[0] > mid[0] && pos[1] > mid[1] && pos[2] < mid[2] )
+                patch = self->elPatchQuad[elInd][3];
+            else if( pos[0] < mid[0] && pos[1] < mid[1] && pos[2] > mid[2] )
+                patch = self->elPatchQuad[elInd][4];
+            else if( pos[0] > mid[0] && pos[1] < mid[1] && pos[2] > mid[2] )
+                patch = self->elPatchQuad[elInd][5];
+            else if( pos[0] < mid[0] && pos[1] > mid[1] && pos[2] > mid[2] )
+                patch = self->elPatchQuad[elInd][6];
+            else
+                patch = self->elPatchQuad[elInd][7];
+        }
+        else {
+            mid = Mesh_GetVertex( feMesh, inc[4] );
+            if( pos[0] < mid[0] && pos[1] < mid[1] )
+                patch = self->elPatchQuad[elInd][0];
+            else if( pos[0] > mid[0] && pos[1] < mid[1] )
+                patch = self->elPatchQuad[elInd][1];
+            else if( pos[0] < mid[0] && pos[1] > mid[1] )
+                patch = self->elPatchQuad[elInd][2];
+            else
+                patch = self->elPatchQuad[elInd][3];
+        }
+    }
 
     for( x_i = 0; x_i < 4; x_i++ )
-        px[x_i] = Mesh_GetVertex( feMesh, self->elPatch[elInd][x_i] )[0];
+        px[x_i] = Mesh_GetVertex( feMesh, patch[x_i] )[0];
     for( y_i = 0; y_i < 4; y_i++ )
-        py[y_i] = Mesh_GetVertex( feMesh, self->elPatch[elInd][4*y_i] )[1];
+        py[y_i] = Mesh_GetVertex( feMesh, patch[4*y_i] )[1];
 
     if( nDims == 3 ) {
         for( z_i = 0; z_i < 4; z_i++ )
-            pz[z_i] = Mesh_GetVertex( feMesh, self->elPatch[elInd][16*z_i] )[2];
+            pz[z_i] = Mesh_GetVertex( feMesh, patch[16*z_i] )[2];
 
         for( z_i = 0; z_i < 4; z_i++ ) {
             for( y_i = 0; y_i < 4; y_i++ ) {
                 for( x_i = 0; x_i < 4; x_i++ )
-                    FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][index++], self->ptsX[x_i] );
+                    FeVariable_GetValueAtNode( feVariable, patch[index++], self->ptsX[x_i] );
 
-                SemiLagrangianIntegrator_InterpLagrange( position[0], px, self->ptsX, numdofs, self->ptsY[y_i] );
+                SemiLagrangianIntegrator_InterpLagrange( pos[0], px, self->ptsX, numdofs, self->ptsY[y_i] );
             }
-            SemiLagrangianIntegrator_InterpLagrange( position[1], py, self->ptsY, numdofs, self->ptsZ[z_i] );
+            SemiLagrangianIntegrator_InterpLagrange( pos[1], py, self->ptsY, numdofs, self->ptsZ[z_i] );
         }
-        SemiLagrangianIntegrator_InterpLagrange( position[2], pz, self->ptsZ, numdofs, result );
+        SemiLagrangianIntegrator_InterpLagrange( pos[2], pz, self->ptsZ, numdofs, result );
     }
     else {
         for( y_i = 0; y_i < 4; y_i++ ) {
             for( x_i = 0; x_i < 4; x_i++ )
-                FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][index++], self->ptsX[x_i] );
+                FeVariable_GetValueAtNode( feVariable, patch[index++], self->ptsX[x_i] );
 
-            SemiLagrangianIntegrator_InterpLagrange( position[0], px, self->ptsX, numdofs, self->ptsY[y_i] );
+            SemiLagrangianIntegrator_InterpLagrange( pos[0], px, self->ptsX, numdofs, self->ptsY[y_i] );
         }
-        SemiLagrangianIntegrator_InterpLagrange( position[1], py, self->ptsY, numdofs, result );
+        SemiLagrangianIntegrator_InterpLagrange( pos[1], py, self->ptsY, numdofs, result );
     }
 }
 
@@ -481,8 +527,8 @@ void SemiLagrangianIntegrator_Solve( void* slIntegrator, FeVariable* variableFie
     FeVariable_SyncShadowValues( varStarField );
 }
 
-Bool SemiLagrangianIntegrator_HasSide2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
-    unsigned	nInc;
+Bool SemiLagrangianIntegrator_HasSide2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes, int* sideNodes ) {
+    int	nInc;
 
     Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[0]], MT_FACE, inc );
     nInc   = IArray_GetSize( inc );
@@ -494,40 +540,40 @@ Bool SemiLagrangianIntegrator_HasSide2D( FeMesh* feMesh, IArray* inc, unsigned e
     return False;
 }
 
-Bool SemiLagrangianIntegrator_HasLeft2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasLeft2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = 0;
     sideNodes[1] = (nNodes%3==0) ? 6 : 2;
     return SemiLagrangianIntegrator_HasSide2D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasRight2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasRight2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = (nNodes%3==0) ? 2 : 1;
     sideNodes[1] = (nNodes%3==0) ? 8 : 3;
     return SemiLagrangianIntegrator_HasSide2D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasBottom2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasBottom2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = 0;
     sideNodes[1] = (nNodes%3==0) ? 2 : 1;
     return SemiLagrangianIntegrator_HasSide2D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasTop2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasTop2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = (nNodes%3==0) ? 6 : 2;
     sideNodes[1] = (nNodes%3==0) ? 8 : 3;
     return SemiLagrangianIntegrator_HasSide2D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasSide3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
-    unsigned	nInc = 0, ii;
+Bool SemiLagrangianIntegrator_HasSide3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes, int* sideNodes ) {
+    int	nInc = 0, ii;
 
     for( ii = 0; ii < 4; ii++ ) {
         Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[ii]], Mesh_GetDimSize( feMesh ), inc );
@@ -539,8 +585,8 @@ Bool SemiLagrangianIntegrator_HasSide3D( FeMesh* feMesh, IArray* inc, unsigned e
     return False;
 }
 
-Bool SemiLagrangianIntegrator_HasLeft3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasLeft3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = 0;
     sideNodes[1] = (nNodes%3==0) ?  6 : 2;
@@ -550,8 +596,8 @@ Bool SemiLagrangianIntegrator_HasLeft3D( FeMesh* feMesh, IArray* inc, unsigned e
     return SemiLagrangianIntegrator_HasSide3D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasRight3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasRight3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = (nNodes%3==0) ?  2 : 1;
     sideNodes[1] = (nNodes%3==0) ?  8 : 3;
@@ -561,8 +607,8 @@ Bool SemiLagrangianIntegrator_HasRight3D( FeMesh* feMesh, IArray* inc, unsigned 
     return SemiLagrangianIntegrator_HasSide3D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasBottom3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasBottom3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = 0;
     sideNodes[1] = (nNodes%3==0) ?  2 : 1;
@@ -572,8 +618,8 @@ Bool SemiLagrangianIntegrator_HasBottom3D( FeMesh* feMesh, IArray* inc, unsigned
     return SemiLagrangianIntegrator_HasSide3D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasTop3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasTop3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = (nNodes%3==0) ?  6 : 2;
     sideNodes[1] = (nNodes%3==0) ?  8 : 3;
@@ -583,8 +629,8 @@ Bool SemiLagrangianIntegrator_HasTop3D( FeMesh* feMesh, IArray* inc, unsigned el
     return SemiLagrangianIntegrator_HasSide3D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasFront3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasFront3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = 0;
     sideNodes[1] = (nNodes%3==0) ? 2 : 1;
@@ -594,8 +640,8 @@ Bool SemiLagrangianIntegrator_HasFront3D( FeMesh* feMesh, IArray* inc, unsigned 
     return SemiLagrangianIntegrator_HasSide3D( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
-Bool SemiLagrangianIntegrator_HasBack3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    unsigned	sideNodes[4];
+Bool SemiLagrangianIntegrator_HasBack3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes ) {
+    int	sideNodes[4];
 
     sideNodes[0] = (nNodes%3==0) ? 18 : 4;
     sideNodes[1] = (nNodes%3==0) ? 20 : 5;
@@ -609,13 +655,13 @@ void SemiLagrangianIntegrator_InitPatches( void* slIntegrator ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
     FeMesh*			feMesh		= self->velocityField->feMesh;
     Grid*			grid		= ((CartesianGenerator*)feMesh->generator)->vertGrid;
-    int				dim		= Mesh_GetDimSize( feMesh );
-    int				nInc, *inc, lNode, gNode, el_i;
-    int				index, IJK[3], IJK_test[3];
+    int				nInc, *inc;
+    unsigned			lNode, gNode, el_i;
+    unsigned			index, IJK[3], IJK_test[3];
     IArray*			iArray1		= IArray_New();
     IArray*			iArray2		= IArray_New();
 
-    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, dim ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, self->dim ); el_i++ ) {
         FeMesh_GetElementNodes( feMesh, el_i, iArray1 );
         inc  = IArray_GetPtr( iArray1 );
         nInc = IArray_GetSize( iArray1 );
@@ -623,7 +669,7 @@ void SemiLagrangianIntegrator_InitPatches( void* slIntegrator ) {
         gNode = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
         Grid_Lift( grid, gNode, IJK );
 
-        if( dim == 3 ) {
+        if( self->dim == 3 ) {
             if( !SemiLagrangianIntegrator_HasRight3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
             if( !SemiLagrangianIntegrator_HasTop3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
             if( !SemiLagrangianIntegrator_HasBack3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
@@ -644,7 +690,7 @@ void SemiLagrangianIntegrator_InitPatches( void* slIntegrator ) {
 
         index = 0;
         /* interpolate using Lagrange polynomial shape functions */
-        if( dim == 3 ) {
+        if( self->dim == 3 ) {
             for( IJK_test[2] = IJK[2]; IJK_test[2] < IJK[2] + 4; IJK_test[2]++ ) {
                 for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
                     for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
@@ -676,6 +722,126 @@ void SemiLagrangianIntegrator_InitPatches_Quad( void* slIntegrator ) {
     SemiLagrangianIntegrator*	self 		= (SemiLagrangianIntegrator*)slIntegrator;
     FeMesh*			feMesh		= self->velocityField->feMesh;
     Grid*			grid		= ((CartesianGenerator*)feMesh->generator)->vertGrid;
+    IArray*			iArray1		= IArray_New();
+    IArray*			iArray2		= IArray_New();
+    unsigned			el_i, lNode, gNode;
+    unsigned			IJK[3], IJK_test[3], index;
+    int				*inc, nInc;
+    int				gOrig[8], orig_i;
+
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, self->dim ); el_i++ ) {
+        FeMesh_GetElementNodes( feMesh, el_i, iArray1 );
+        inc  = IArray_GetPtr( iArray1 );
+        nInc = IArray_GetSize( iArray1 );
+
+        if( self->dim == 3 ) {
+            gNode = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
+            /* left-bottom-front */
+            Grid_Lift( grid, gNode, IJK );
+            if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
+            gOrig[0] = Grid_Project( grid, IJK );
+            /* right-bottom-front */
+            Grid_Lift( grid, gNode, IJK );
+            if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
+            gOrig[1] = Grid_Project( grid, IJK );
+            /* left-top-front */
+            Grid_Lift( grid, gNode, IJK );
+            if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
+            gOrig[2] = Grid_Project( grid, IJK );
+            /* right-top-front */
+            Grid_Lift( grid, gNode, IJK );
+            if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
+            gOrig[3] = Grid_Project( grid, IJK );
+            /* left-bottom-back */
+            Grid_Lift( grid, gNode, IJK );
+            if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
+            gOrig[4] = Grid_Project( grid, IJK );
+            /* right-bottom-back */
+            Grid_Lift( grid, gNode, IJK );
+            if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
+            gOrig[5] = Grid_Project( grid, IJK );
+            /* left-top-back */
+            Grid_Lift( grid, gNode, IJK );
+            if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
+            gOrig[6] = Grid_Project( grid, IJK );
+            /* right-top-back */
+            Grid_Lift( grid, gNode, IJK );
+            if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
+            gOrig[7] = Grid_Project( grid, IJK );
+
+            for( orig_i = 0; orig_i < 8; orig_i++ ) {
+                Grid_Lift( grid, gOrig[orig_i], IJK );
+                FeMesh_NodeGlobalToDomain( feMesh, gOrig[orig_i], &lNode );
+                index = 0;
+                for( IJK_test[2] = IJK[2]; IJK_test[2] < IJK[2] + 4; IJK_test[2]++ ) {
+                    for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+                        for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                            gNode = Grid_Project( grid, IJK_test );
+                            if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode, &lNode ) ) abort();
+                            else
+                                self->elPatchQuad[el_i][orig_i][index++] = lNode;
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            gNode = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
+            /* left-bottom-front */
+            Grid_Lift( grid, gNode, IJK );
+            if(  SemiLagrangianIntegrator_HasLeft2D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if(  SemiLagrangianIntegrator_HasBottom2D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            gOrig[0] = Grid_Project( grid, IJK );
+            /* right-bottom-front */
+            Grid_Lift( grid, gNode, IJK );
+            if( !SemiLagrangianIntegrator_HasRight2D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if(  SemiLagrangianIntegrator_HasBottom2D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            gOrig[1] = Grid_Project( grid, IJK );
+            /* left-top-front */
+            Grid_Lift( grid, gNode, IJK );
+            if(  SemiLagrangianIntegrator_HasLeft2D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if( !SemiLagrangianIntegrator_HasTop2D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            gOrig[2] = Grid_Project( grid, IJK );
+            /* right-top-front */
+            Grid_Lift( grid, gNode, IJK );
+            if( !SemiLagrangianIntegrator_HasRight2D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+            if( !SemiLagrangianIntegrator_HasTop2D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+            gOrig[3] = Grid_Project( grid, IJK );
+
+            for( orig_i = 0; orig_i < 4; orig_i++ ) {
+                Grid_Lift( grid, gOrig[orig_i], IJK );
+                FeMesh_NodeGlobalToDomain( feMesh, gOrig[orig_i], &lNode );
+                index = 0;
+                for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+                    for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                        gNode = Grid_Project( grid, IJK_test );
+                        if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode, &lNode ) ) abort();
+                        else
+                            self->elPatchQuad[el_i][orig_i][index++] = lNode;
+                    }
+                }
+            }
+        }
+    }
+
+    Stg_Class_Delete( iArray1 );
+    Stg_Class_Delete( iArray2 );
 }
 #if 0
 void SemiLagrangianIntegrator_InitPatches( void* slIntegrator ) {

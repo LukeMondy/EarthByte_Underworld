@@ -73,6 +73,8 @@
       unsigned***                  elPatchQuad;            \
       unsigned                     lElSize;                \
       double                       courant;                \
+      IArray*                      iArray;                 \
+      int			   dim;                    \
 
    /** Abstract class defining the interface for a SemiLagrangianIntegrator solver - see SemiLagrangianIntegrator.h */
    struct SemiLagrangianIntegrator { __SemiLagrangianIntegrator };
@@ -135,18 +137,18 @@
 
    double SemiLagrangianIntegrator_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context );
 
-   Bool SemiLagrangianIntegrator_HasSide2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes );
-   Bool SemiLagrangianIntegrator_HasLeft2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SemiLagrangianIntegrator_HasRight2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SemiLagrangianIntegrator_HasBottom2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SemiLagrangianIntegrator_HasTop2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasSide2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes, int* sideNodes );
+   Bool SemiLagrangianIntegrator_HasLeft2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
+   Bool SemiLagrangianIntegrator_HasRight2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
+   Bool SemiLagrangianIntegrator_HasBottom2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
+   Bool SemiLagrangianIntegrator_HasTop2D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
 
-   Bool SemiLagrangianIntegrator_HasSide3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes );
-   Bool SemiLagrangianIntegrator_HasLeft3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SemiLagrangianIntegrator_HasRight3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SemiLagrangianIntegrator_HasBottom3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SemiLagrangianIntegrator_HasTop3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SemiLagrangianIntegrator_HasFront3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
-   Bool SemiLagrangianIntegrator_HasBack3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasSide3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes, int* sideNodes );
+   Bool SemiLagrangianIntegrator_HasLeft3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
+   Bool SemiLagrangianIntegrator_HasRight3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
+   Bool SemiLagrangianIntegrator_HasBottom3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
+   Bool SemiLagrangianIntegrator_HasTop3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
+   Bool SemiLagrangianIntegrator_HasFront3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
+   Bool SemiLagrangianIntegrator_HasBack3D( FeMesh* feMesh, IArray* inc, int elInd, int* elNodes, int nNodes );
 #endif
 
