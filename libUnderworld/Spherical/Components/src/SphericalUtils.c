@@ -119,30 +119,8 @@ void Spherical_GetRotationMatrixIJK_RSNodes( Mesh* mesh, int dNodeID, double* ro
    r_vec[1] = vert[1]/r;
    r_vec[2] = vert[2]/r;
 
-   /*
-   if( inds[0] == grid[0]->sizes[0]-1 ) {
-      double t = xi;
-      double p = asin( vert[1]/r );
-      rot[0] = sin(t)*cos(p) ;  rot[1] = r*cos(t)*cos(p)  ;  rot[2] = -r*sin(t)*sin(p);
-      rot[3] = sin(p)        ;  rot[4] = 0                ;  rot[5] = r*cos(p);
-      rot[6] = cos(t)*cos(p) ;  rot[7] = -r*sin(t)*cos(p) ;  rot[8] = -r*cos(t)*sin(p);
-
-      mag = sqrt( rot[0]*rot[0] + rot[3]*rot[3] + rot[6]*rot[6] );
-      rot[0] = rot[0] / mag;
-      rot[3] = rot[3] / mag;
-      rot[6] = rot[6] / mag;
-
-      mag = sqrt( rot[1]*rot[1] + rot[4]*rot[4] + rot[7]*rot[7] );
-      rot[1] = rot[1] / mag;
-      rot[4] = rot[4] / mag;
-      rot[7] = rot[7] / mag;
-
-      mag = sqrt( rot[2]*rot[2] + rot[5]*rot[5] + rot[8]*rot[8] );
-      rot[2] = rot[2] / mag;
-      rot[5] = rot[5] / mag;
-      rot[8] = rot[8] / mag;
-
-   } else */ if( inds[1] == 0 || inds[1] == (grid[0]->sizes[2]-1) || inds[0] == (grid[0]->sizes[0]-1) ) {
+   /* if the node is on the south or north. (bottom or top wall) */
+   if( inds[1] == 0 || inds[1] == (grid[0]->sizes[2]-1) ) {
       tang1_vec[0]= cos(xi);
       tang1_vec[1] = 0;
       tang1_vec[2] = -1*sin(xi);
@@ -152,7 +130,6 @@ void Spherical_GetRotationMatrixIJK_RSNodes( Mesh* mesh, int dNodeID, double* ro
       rot[3] = r_vec[1];  rot[4] = tang1_vec[1];  rot[5] = tang2_vec[1];
       rot[6] = r_vec[2];  rot[7] = tang1_vec[2];  rot[8] = tang2_vec[2];
    } else {
-      ///if (inds[2] == 0 || inds[2] == (grid->sizes[2]-1) )*/ {
       tang1_vec[0] = 0;
       tang1_vec[1] = cos(eta);
       tang1_vec[2] = -sin(eta);

@@ -2,112 +2,65 @@
 <!-- A StGermain input file -->
 <!-- DTD to validate against -->
 <StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
   <!--
+   Definitions of wall is misleading and needs fixing:
+   So for now:
 
-               z
-                |
-                |            
-                |____ x    
-               / 
-              /
-             /
-            -y
-
-
-   The wall and bc redefinitions:
-
-      right/left walls are perpendicular to OUTER/INNER radius vector
-      top/bottom walls are perpendicular to the great circles that go through E-W
-      front/back walls are perpendicular to the great circles that go through N-S
+      right/left wall are perpendicular to OUTER/INNER radius
+      top/bottom wall are perpendicular to E-W 
+      front/back wall are perpendicular to N-S 
 
     With in the wall velcity definition the:
         'vx' is radial component
-        'vy' is angular component along E-W walls. Note the vector is NOT aligned with E-W direction
+        'vy' is angular component along E-W walls. Note the vector is aligned with E-W direction
         'vz' is angular component along N-S walls. Note the vector is aligned with N-S direction
 	-->
+
+
   <!-- Velocity BCs -->
   <struct name="velocityBCs">
     <param name="type">CompositeVC</param>
     <list name="vcList">
       <struct>
         <param name="type"> WallVC </param>
-        <param name="wall"> left </param>
-        <list name="variables">
-	  <struct>
-            <param name="name">vx</param>
-            <param name="type">double</param>
-            <param name="value"> 0 </param>
-          </struct> 
-        </list>
-      </struct>
-      <struct>
-        <param name="type"> WallVC </param>
-        <param name="wall"> right </param>
-        <list name="variables">
-          <struct>
-            <param name="name">vx</param>
-            <param name="type">double</param>
-            <param name="value"> 0 </param>
-          </struct> 
-        </list>
-      </struct>
-      <struct>
-        <param name="type"> WallVC </param>
+        <!-- wall of longitude -->
         <param name="wall"> bottom </param>
-        <list name="variables">
-	 <struct>
-            <param name="name">vy</param>
-            <param name="type">double</param>
-            <param name="value"> 0 </param>
-          </struct> 
-        <!--
-	 <struct>
-            <param name="name">vz</param>
-            <param name="type">double</param>
-            <param name="value"> 1 </param>
-          </struct> 
-          -->
-        </list>
-      </struct>
-
-      <struct>
-        <param name="type"> WallVC </param>
-        <param name="wall"> top </param>
         <list name="variables">
           <struct>
             <param name="name">vy</param>
             <param name="type">double</param>
             <param name="value"> 0 </param>
           </struct>
-        <!--
-	 <struct>
-            <param name="name">vz</param>
-            <param name="type">double</param>
-            <param name="value"> 1 </param>
-          </struct> 
-          -->
         </list>
       </struct>
       <struct>
         <param name="type"> WallVC </param>
+        <!-- inner radius -->
+        <param name="wall"> left </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vx</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- walls of latidtude, normal is perpendicular to N-S directions -->
         <param name="wall"> front </param>
         <list name="variables">
           <struct>
             <param name="name">vz</param>
             <param name="type">double</param>
-            <param name="value"> 0</param>
+            <param name="value"> 0 </param>
           </struct>
-          <!--
-          <struct>
-            <param name="name">vy</param>
-            <param name="type">double</param>
-            <param name="value"> 1</param>
-          </struct>
-          -->
         </list>
       </struct>
       <struct>
         <param name="type"> WallVC </param>
+        <!-- walls of latidtude, normal is perpendicular to N-S directions -->
         <param name="wall"> back </param>
         <list name="variables">
           <struct>
@@ -115,13 +68,30 @@
             <param name="type">double</param>
             <param name="value"> 0 </param>
           </struct>
-        <!--
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- wall of longitude -->
+        <param name="wall"> top </param>
+        <list name="variables">
           <struct>
             <param name="name">vy</param>
             <param name="type">double</param>
-            <param name="value"> 1 </param>
+            <param name="value"> 0 </param>
           </struct>
-          -->
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <!-- Outer radius - surface -->
+        <param name="wall"> right </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vx</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
         </list>
       </struct>
     </list>

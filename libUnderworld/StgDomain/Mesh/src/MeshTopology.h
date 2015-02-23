@@ -58,7 +58,7 @@ typedef void (MeshTopology_GetIncidenceFunc)( void* self, int fromDim, int fromE
     MeshTopology_GetNumCellsFunc* getNumCellsFunc;              \
     MeshTopology_GetIncidenceFunc* getIncidenceFunc;            \
     int nDims;                                                  \
-    int nTDims;                                                 \
+    int nTDims;/* number of topological dimensions (nDims+1) */ \
     int shadDepth;                                              \
     Comm* comm;
 

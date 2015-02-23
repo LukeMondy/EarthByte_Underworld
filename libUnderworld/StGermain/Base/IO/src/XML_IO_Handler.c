@@ -1889,7 +1889,7 @@ char* _XML_IO_Handler_WriteAllMem(
    int size;
    xmlDocDumpMemory( self->currDoc, &mem, &size);
    /* ok, lets copy this into standard c guy */
-   char* cmem = (char*) malloc(size);    
+   char* cmem = (char*) malloc(size+1);    
    strcpy(cmem,(char*)mem);
    /* lets free xml mem */
    xmlFree(mem);

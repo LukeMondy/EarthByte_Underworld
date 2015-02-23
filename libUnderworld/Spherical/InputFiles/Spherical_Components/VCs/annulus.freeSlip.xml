@@ -2,7 +2,6 @@
 <!-- A StGermain input file -->
 <!-- DTD to validate against -->
 <StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
-
 <!--
    The wall and bc redefinitions:
       right/left wall are perpendicular to OUTER/INNER radius vector 
@@ -17,16 +16,31 @@
 -->
 
   <!-- Velocity BCs -->
-  <struct name="components" mergeType="merge">
-    <!-- enable periodic mesh in theta (y-axis) -->
-    <struct name="linearMeshGenerator" mergeType="merge">
-      <param name="periodic_y" mergeType="replace">True</param>
-    </struct>
-  </struct>
-
   <struct name="velocityBCs">
     <param name="type">CompositeVC</param>
     <list name="vcList">
+      <struct>
+        <param name="type"> WallVC </param>
+        <param name="wall"> bottom </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vy</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type"> WallVC </param>
+        <param name="wall"> top </param>
+        <list name="variables">
+          <struct>
+            <param name="name">vy</param>
+            <param name="type">double</param>
+            <param name="value"> 0 </param>
+          </struct>
+        </list>
+      </struct>
       <struct>
         <param name="type"> WallVC </param>
         <param name="wall"> left </param>
@@ -36,13 +50,6 @@
             <param name="type">double</param>
             <param name="value"> 0 </param>
           </struct>
-          <!--
-          <struct>
-            <param name="name">vy</param>
-            <param name="type">double</param>
-            <param name="value"> 0 </param>
-          </struct>
-          -->
         </list>
       </struct>
       <struct>
@@ -54,13 +61,6 @@
             <param name="type">double</param>
             <param name="value"> 0 </param>
           </struct>
-          <!--
-          <struct>
-            <param name="name">vy</param>
-            <param name="type">double</param>
-            <param name="value"> 0 </param>
-          </struct>
-          -->
         </list>
       </struct>
     </list>

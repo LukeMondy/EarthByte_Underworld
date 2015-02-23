@@ -68,7 +68,9 @@
       double**                     ptsX;                   \
       double**                     ptsY;                   \
       double**                     ptsZ;                   \
+      Bool                         isQuad;                 \
       unsigned**                   elPatch;                \
+      unsigned***                  elPatchQuad;            \
       unsigned                     lElSize;                \
       double                       courant;                \
 
@@ -117,11 +119,10 @@
    void SemiLagrangianIntegrator_InitSolve( void* slIntegrator, void* data );
 
    /* --- Public functions --- */
-   void SemiLagrangianIntegrator_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* coord, double* delta, unsigned* nNodes, double* result );
+   void SemiLagrangianIntegrator_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* coord, double* result );
    Bool SemiLagrangianIntegrator_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic, unsigned nDims );
    void SemiLagrangianIntegrator_InterpLagrange( double x, double* coords, double** values, unsigned numdofs, double* result );
-   void SemiLagrangianIntegrator_GetDeltaConst( FeVariable* feVariable, double* delta, unsigned* nNodes );
-   void SemiLagrangianIntegrator_IntegrateRK4( void* slIntegrator, double dt, double* delta, unsigned* nnodes, double* origin, double* position );
+   void SemiLagrangianIntegrator_IntegrateRK4( void* slIntegrator, double dt, double* origin, double* position );
 
    /** Does any required solver setup beyond assembly of the matrices to be solved: e.g. priming the Matrix solvers
    etc. */
@@ -130,7 +131,22 @@
    void SemiLagrangianIntegrator_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* variableFieldPrime );
 
    void SemiLagrangianIntegrator_InitPatches( void* slIntegrator );
+   void SemiLagrangianIntegrator_InitPatches_Quad( void* slIntegrator );
 
    double SemiLagrangianIntegrator_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context );
+
+   Bool SemiLagrangianIntegrator_HasSide2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes );
+   Bool SemiLagrangianIntegrator_HasLeft2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasRight2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasBottom2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasTop2D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+
+   Bool SemiLagrangianIntegrator_HasSide3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes );
+   Bool SemiLagrangianIntegrator_HasLeft3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasRight3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasBottom3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasTop3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasFront3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
+   Bool SemiLagrangianIntegrator_HasBack3D( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes );
 #endif
 

@@ -56,7 +56,7 @@ extern const Type Sync_Type;
    int* shared;                                 \
    int* nSharers;                               \
    int** sharers;                               \
-   IMap* gr;                                    \
+   IMap* gr; /* global remote indices */        \
    IMap grObj;                                  \
    IMap* ls;                                    \
    IMap lsObj;                                  \
