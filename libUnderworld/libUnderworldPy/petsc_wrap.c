@@ -2981,6 +2981,9 @@ void OptionsInsertFile(const char file[]){
     PetscOptionsInsertFile(PETSC_COMM_WORLD,file,PETSC_TRUE);
 }
 
+int EmptyCall(){
+  return 1;
+}
 
 
 SWIGINTERN swig_type_info*
@@ -3073,6 +3076,13 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 
 
 
+
+
+SWIGINTERNINLINE PyObject*
+  SWIG_From_int  (int value)
+{
+  return PyInt_FromLong((long) value);
+}
 
 #ifdef __cplusplus
 extern "C" {
@@ -3209,6 +3219,19 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_EmptyCall(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)":EmptyCall")) SWIG_fail;
+  result = (int)EmptyCall();
+  resultobj = SWIG_From_int((int)(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { (char *)"OptionsInsertString", _wrap_OptionsInsertString, METH_VARARGS, NULL},
@@ -3217,6 +3240,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"OptionsSetValue", _wrap_OptionsSetValue, METH_VARARGS, NULL},
 	 { (char *)"OptionsClearValue", _wrap_OptionsClearValue, METH_VARARGS, NULL},
 	 { (char *)"OptionsInsertFile", _wrap_OptionsInsertFile, METH_VARARGS, NULL},
+	 { (char *)"EmptyCall", _wrap_EmptyCall, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 

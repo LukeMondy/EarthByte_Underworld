@@ -182,8 +182,8 @@ double SemiLagrangianIntegratorSuite_EvaluateError( SemiLagrangianIntegrator* sl
             FeMesh_CoordLocalToGlobal( feMesh, lElement_I, gaussPoint->xi, gCoord );
             initialValue = func( gCoord );
 
-            SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
-            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, temperatureField, gCoord, delta, nNodes, &finalValue );
+            //SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
+            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, temperatureField, gCoord, &finalValue );
 
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
 
@@ -285,7 +285,7 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
     temperatureField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
     gaussSwarm       = (Swarm*)LiveComponentRegister_Get( cf->LCRegister, (Name)"gaussSwarm" );
 
-    SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
+    //SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
 
     for( node_i = 0; node_i < Mesh_GetLocalSize( temperatureField->feMesh, MT_VERTEX ); node_i++ ) {
         temperature = f( a, Mesh_GetVertex( temperatureField->feMesh, node_i ) );
@@ -303,7 +303,7 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
         for( pt_i = 0; pt_i < nGaussPts; pt_i++ ) {
             gaussPoint = (IntegrationPoint*)Swarm_ParticleInCellAt( gaussSwarm, cell_i, pt_i );
             FeMesh_CoordLocalToGlobal( temperatureField->feMesh, el_i, gaussPoint->xi, gCoord );
-            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, temperatureField, gCoord, delta, nNodes, &temperature );
+            SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, temperatureField, gCoord, &temperature );
 
             temperature_a = f( a, gCoord );
  
@@ -356,10 +356,10 @@ void SemiLagrangianIntegratorSuite_RK4Integration( SemiLagrangianIntegratorSuite
     nSteps   = Dictionary_GetUnsignedInt_WithDefault( context->dictionary, "maxTimeSteps", 1 );
     dt       = 0.5*M_PI/nSteps; //quarter circle
 
-    SemiLagrangianIntegrator_GetDeltaConst( velField, delta, nnodes );
+    //SemiLagrangianIntegrator_GetDeltaConst( velField, delta, nnodes );
 
     for( step_i = 1; step_i <= nSteps; step_i++ ) {
-        SemiLagrangianIntegrator_IntegrateRK4( slIntegrator, dt, delta, nnodes, coord, cNew );
+        SemiLagrangianIntegrator_IntegrateRK4( slIntegrator, dt, coord, cNew );
         coord[0] = cNew[0];
         coord[1] = cNew[1];
     }

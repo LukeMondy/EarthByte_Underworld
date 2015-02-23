@@ -17758,10 +17758,18 @@ class SemiLagrangianIntegrator(_object):
     __swig_getmethods__["ptsZ"] = _StgFEM.SemiLagrangianIntegrator_ptsZ_get
     if _newclass:
         ptsZ = _swig_property(_StgFEM.SemiLagrangianIntegrator_ptsZ_get, _StgFEM.SemiLagrangianIntegrator_ptsZ_set)
+    __swig_setmethods__["isQuad"] = _StgFEM.SemiLagrangianIntegrator_isQuad_set
+    __swig_getmethods__["isQuad"] = _StgFEM.SemiLagrangianIntegrator_isQuad_get
+    if _newclass:
+        isQuad = _swig_property(_StgFEM.SemiLagrangianIntegrator_isQuad_get, _StgFEM.SemiLagrangianIntegrator_isQuad_set)
     __swig_setmethods__["elPatch"] = _StgFEM.SemiLagrangianIntegrator_elPatch_set
     __swig_getmethods__["elPatch"] = _StgFEM.SemiLagrangianIntegrator_elPatch_get
     if _newclass:
         elPatch = _swig_property(_StgFEM.SemiLagrangianIntegrator_elPatch_get, _StgFEM.SemiLagrangianIntegrator_elPatch_set)
+    __swig_setmethods__["elPatchQuad"] = _StgFEM.SemiLagrangianIntegrator_elPatchQuad_set
+    __swig_getmethods__["elPatchQuad"] = _StgFEM.SemiLagrangianIntegrator_elPatchQuad_get
+    if _newclass:
+        elPatchQuad = _swig_property(_StgFEM.SemiLagrangianIntegrator_elPatchQuad_get, _StgFEM.SemiLagrangianIntegrator_elPatchQuad_set)
     __swig_setmethods__["lElSize"] = _StgFEM.SemiLagrangianIntegrator_lElSize_set
     __swig_getmethods__["lElSize"] = _StgFEM.SemiLagrangianIntegrator_lElSize_get
     if _newclass:
@@ -17828,8 +17836,8 @@ def SemiLagrangianIntegrator_InitSolve(slIntegrator, data):
     return _StgFEM.SemiLagrangianIntegrator_InitSolve(slIntegrator, data)
 SemiLagrangianIntegrator_InitSolve = _StgFEM.SemiLagrangianIntegrator_InitSolve
 
-def SemiLagrangianIntegrator_CubicInterpolator(slIntegrator, feVariable, coord, delta, nNodes, result):
-    return _StgFEM.SemiLagrangianIntegrator_CubicInterpolator(slIntegrator, feVariable, coord, delta, nNodes, result)
+def SemiLagrangianIntegrator_CubicInterpolator(slIntegrator, feVariable, coord, result):
+    return _StgFEM.SemiLagrangianIntegrator_CubicInterpolator(slIntegrator, feVariable, coord, result)
 SemiLagrangianIntegrator_CubicInterpolator = _StgFEM.SemiLagrangianIntegrator_CubicInterpolator
 
 def SemiLagrangianIntegrator_PeriodicUpdate(pos, min, max, isPeriodic, nDims):
@@ -17840,12 +17848,8 @@ def SemiLagrangianIntegrator_InterpLagrange(x, coords, values, numdofs, result):
     return _StgFEM.SemiLagrangianIntegrator_InterpLagrange(x, coords, values, numdofs, result)
 SemiLagrangianIntegrator_InterpLagrange = _StgFEM.SemiLagrangianIntegrator_InterpLagrange
 
-def SemiLagrangianIntegrator_GetDeltaConst(feVariable, delta, nNodes):
-    return _StgFEM.SemiLagrangianIntegrator_GetDeltaConst(feVariable, delta, nNodes)
-SemiLagrangianIntegrator_GetDeltaConst = _StgFEM.SemiLagrangianIntegrator_GetDeltaConst
-
-def SemiLagrangianIntegrator_IntegrateRK4(slIntegrator, dt, delta, nnodes, origin, position):
-    return _StgFEM.SemiLagrangianIntegrator_IntegrateRK4(slIntegrator, dt, delta, nnodes, origin, position)
+def SemiLagrangianIntegrator_IntegrateRK4(slIntegrator, dt, origin, position):
+    return _StgFEM.SemiLagrangianIntegrator_IntegrateRK4(slIntegrator, dt, origin, position)
 SemiLagrangianIntegrator_IntegrateRK4 = _StgFEM.SemiLagrangianIntegrator_IntegrateRK4
 
 def SemiLagrangianIntegrator_Solve(slIntegrator, variableField, variableFieldPrime):
@@ -17856,9 +17860,61 @@ def SemiLagrangianIntegrator_InitPatches(slIntegrator):
     return _StgFEM.SemiLagrangianIntegrator_InitPatches(slIntegrator)
 SemiLagrangianIntegrator_InitPatches = _StgFEM.SemiLagrangianIntegrator_InitPatches
 
+def SemiLagrangianIntegrator_InitPatches_Quad(slIntegrator):
+    return _StgFEM.SemiLagrangianIntegrator_InitPatches_Quad(slIntegrator)
+SemiLagrangianIntegrator_InitPatches_Quad = _StgFEM.SemiLagrangianIntegrator_InitPatches_Quad
+
 def SemiLagrangianIntegrator_CalcAdvDiffDt(slIntegrator, context):
     return _StgFEM.SemiLagrangianIntegrator_CalcAdvDiffDt(slIntegrator, context)
 SemiLagrangianIntegrator_CalcAdvDiffDt = _StgFEM.SemiLagrangianIntegrator_CalcAdvDiffDt
+
+def SemiLagrangianIntegrator_HasSide2D(feMesh, inc, elInd, elNodes, nNodes, sideNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasSide2D(feMesh, inc, elInd, elNodes, nNodes, sideNodes)
+SemiLagrangianIntegrator_HasSide2D = _StgFEM.SemiLagrangianIntegrator_HasSide2D
+
+def SemiLagrangianIntegrator_HasLeft2D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasLeft2D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasLeft2D = _StgFEM.SemiLagrangianIntegrator_HasLeft2D
+
+def SemiLagrangianIntegrator_HasRight2D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasRight2D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasRight2D = _StgFEM.SemiLagrangianIntegrator_HasRight2D
+
+def SemiLagrangianIntegrator_HasBottom2D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasBottom2D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasBottom2D = _StgFEM.SemiLagrangianIntegrator_HasBottom2D
+
+def SemiLagrangianIntegrator_HasTop2D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasTop2D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasTop2D = _StgFEM.SemiLagrangianIntegrator_HasTop2D
+
+def SemiLagrangianIntegrator_HasSide3D(feMesh, inc, elInd, elNodes, nNodes, sideNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasSide3D(feMesh, inc, elInd, elNodes, nNodes, sideNodes)
+SemiLagrangianIntegrator_HasSide3D = _StgFEM.SemiLagrangianIntegrator_HasSide3D
+
+def SemiLagrangianIntegrator_HasLeft3D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasLeft3D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasLeft3D = _StgFEM.SemiLagrangianIntegrator_HasLeft3D
+
+def SemiLagrangianIntegrator_HasRight3D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasRight3D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasRight3D = _StgFEM.SemiLagrangianIntegrator_HasRight3D
+
+def SemiLagrangianIntegrator_HasBottom3D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasBottom3D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasBottom3D = _StgFEM.SemiLagrangianIntegrator_HasBottom3D
+
+def SemiLagrangianIntegrator_HasTop3D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasTop3D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasTop3D = _StgFEM.SemiLagrangianIntegrator_HasTop3D
+
+def SemiLagrangianIntegrator_HasFront3D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasFront3D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasFront3D = _StgFEM.SemiLagrangianIntegrator_HasFront3D
+
+def SemiLagrangianIntegrator_HasBack3D(feMesh, inc, elInd, elNodes, nNodes):
+    return _StgFEM.SemiLagrangianIntegrator_HasBack3D(feMesh, inc, elInd, elNodes, nNodes)
+SemiLagrangianIntegrator_HasBack3D = _StgFEM.SemiLagrangianIntegrator_HasBack3D
 def SquareBracketsFinal(self, index):
 	return self.numpyArray[index]
 
