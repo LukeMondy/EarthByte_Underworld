@@ -12,10 +12,10 @@
 			<param name="Type">StgFEM_StandardConditionFunctions</param>
 			<param name="Context">context</param>
 		</struct>
-		<struct>
-    		<param name="Type">Underworld_Ra_Scaling</param>
-			<param name="Context">context</param>
-		</struct>
+		<!-- <struct> -->
+    	<!-- 	<param name="Type">Underworld_Ra_Scaling</param> -->
+		<!-- 	<param name="Context">context</param> -->
+		<!-- </struct> -->
 	</list>
 
 	<!-- Component Stuff -->
