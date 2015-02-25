@@ -221,6 +221,8 @@ void _SLIntegrator_Polar_Initialise( void* slIntegrator, void* data ) {
     FeVariable*			feVarStar;
     unsigned			field_i, el_i;
 
+    self->dElSize = Mesh_GetDomainSize( self->velocityField->feMesh, MT_FACE );
+
     if( self->velocityField ) Stg_Component_Initialise( self->velocityField, data, False );
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
@@ -241,13 +243,8 @@ void _SLIntegrator_Polar_Initialise( void* slIntegrator, void* data ) {
     self->abcissa[2] = -1.0*self->abcissa[1];
     self->abcissa[3] = -1.0*self->abcissa[0];
 
-    self->elPatch = malloc(Mesh_GetDomainSize( self->velocityField->feMesh, 2 )*sizeof(unsigned*));
-    for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, 2 ); el_i++ ) {
-        self->elPatch[el_i] = malloc( 16*sizeof(unsigned) );
-    }
-
     /* sanity checks */
-    if( Mesh_GetDimSize( self->velocityField->feMesh ) != 2 ) {
+    if( Mesh_GetDimSize( self->velocityField->feMesh ) != MT_FACE ) {
         printf( "ERROR: component %s requires mesh of dimension 2\n", self->type );
         abort();
     }
@@ -256,7 +253,30 @@ void _SLIntegrator_Polar_Initialise( void* slIntegrator, void* data ) {
         abort();
     }
 
-    SLIntegrator_Polar_InitPatches( self );
+    FeMesh_GetElementNodes( self->velocityField->feMesh, 0, self->inc );
+    self->elQuad = ( IArray_GetSize( self->inc )%3 == 0 ) ? True : False;
+
+    if( !self->elQuad ) {
+        self->elPatch = malloc(Mesh_GetDomainSize( self->velocityField->feMesh, MT_FACE )*sizeof(unsigned*));
+        for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, MT_FACE ); el_i++ ) {
+            self->elPatch[el_i] = malloc( 16*sizeof(unsigned) );
+        }
+        self->elPatchQuad = NULL;
+        SLIntegrator_Polar_InitPatches( self );
+    }
+    else {
+        int section_i;
+
+        self->elPatch = NULL;
+        self->elPatchQuad = malloc(Mesh_GetDomainSize( self->velocityField->feMesh, MT_FACE )*sizeof(unsigned**));
+        for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, MT_FACE ); el_i++ ) {
+            self->elPatchQuad[el_i] = malloc( 4*sizeof(unsigned*) );
+            for( section_i = 0; section_i < 4; section_i++ ) {
+                self->elPatchQuad[el_i][section_i] = malloc( 16*sizeof(unsigned) );
+            }
+        }
+        SLIntegrator_Polar_InitPatches_Quad( self );
+    }
 }
 
 void _SLIntegrator_Polar_Execute( void* slIntegrator, void* data ) {}
@@ -281,10 +301,23 @@ void _SLIntegrator_Polar_Destroy( void* slIntegrator, void* data ) {
     free(self->GNix[1]);
     free(self->GNix);
 
-    for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, 2 ); el_i++ ) {
-        free( self->elPatch[el_i] );
+    if( !self->elQuad ) {
+        for( el_i = 0; el_i < self->dElSize; el_i++ ) {
+            free( self->elPatch[el_i] );
+        }
+        free( self->elPatch );
     }
-    free( self->elPatch );
+    else {
+        int section_i;
+
+        for( el_i = 0; el_i < self->dElSize; el_i++ ) {
+            for( section_i = 0; section_i < 4; section_i++ ) {
+                free( self->elPatchQuad[el_i][section_i] );
+            }
+            free( self->elPatchQuad[el_i] );
+        }
+        free( self->elPatchQuad );
+    }
 
     Stg_Class_Delete( self->inc );
 
@@ -355,55 +388,6 @@ void SLIntegrator_Polar_IntegrateRK4( void* slIntegrator, FeVariable* velocityFi
     if( !fullAnnulus ) SLIntegrator_Polar_PeriodicUpdate( position, min, max, periodic );
 }
 
-Bool HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
-    unsigned	nInc;
-
-    Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[0]], 2, inc );
-    nInc   = IArray_GetSize( inc );
-    Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[1]], 2, inc );
-    nInc  += IArray_GetSize( inc );
-    if( nInc > 5 )
-        return True;
-
-    return False;
-}
-
-Bool HasLeft( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = 0;
-    sideNodes[1] = (quad) ? 6 : 2;
-    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
-Bool HasRight( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = (quad) ? 2 : 1;
-    sideNodes[1] = (quad) ? 8 : 3;
-    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
-Bool HasBottom( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = 0;
-    sideNodes[1] = (quad) ? 2 : 1;
-    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
-Bool HasTop( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = (quad) ? 6 : 2;
-    sideNodes[1] = (quad) ? 8 : 3;
-    return HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
 void SLIntegrator_Polar_PeriodicUpdate( double* pos, double* min, double* max, Bool* isPeriodic ) {
     unsigned 	dim_i;
     double	rt[2];
@@ -422,24 +406,6 @@ void SLIntegrator_Polar_PeriodicUpdate( double* pos, double* min, double* max, B
     Spherical_RTP2XYZ( rt, pos );
 }
 
-void SLIntegrator_Polar_GlobalNodeToIJK( FeMesh* feMesh, unsigned gNode, unsigned* IJK ) {
-    Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
-    unsigned*   sizes           = Grid_GetSizes( *grid );
-
-    IJK[0] = gNode%sizes[0];
-    IJK[1] = (gNode/sizes[0])%sizes[1];
-}
-
-unsigned SLIntegrator_Polar_IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
-    Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
-    unsigned*   sizes           = Grid_GetSizes( *grid );
-    unsigned	gNode;
-
-    gNode = sizes[0]*IJK[1] + IJK[0];
-
-    return gNode;
-}
-
 void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
     SLIntegrator_Polar*	self 			= (SLIntegrator_Polar*)slIntegrator;
     FeMesh*		feMesh			= feVariable->feMesh;
@@ -449,84 +415,46 @@ void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVar
     unsigned		node_i, dof_i;
     Grid**      	grid            	= (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
     unsigned*   	sizes           	= Grid_GetSizes( *grid );
+    unsigned*		patch;
 
     Mesh_SearchElements( feMesh, position, &elInd );
 
+    if( !self->elQuad ) {
+        patch = self->elPatch[elInd];
+    }
+    else {
+        int* inc;
+        double mid[2], rt[2];
+
+        FeMesh_GetElementNodes( feMesh, elInd, self->inc );
+        inc = IArray_GetPtr( self->inc );
+
+        Spherical_XYZ2RTP2D( Mesh_GetVertex( feMesh, inc[4] ), mid );
+        Spherical_XYZ2RTP2D( position, rt );
+
+        if( rt[0] < mid[0] && rt[1] < mid[1] )
+            patch = self->elPatchQuad[elInd][0];
+        else if( rt[0] > mid[0] && rt[1] < mid[1] )
+            patch = self->elPatchQuad[elInd][1];
+        else if( rt[0] < mid[0] && rt[1] > mid[1] )
+            patch = self->elPatchQuad[elInd][2];
+        else
+            patch = self->elPatchQuad[elInd][3];
+    }
+
     /* map to master element and interpolate */
-    SLIntegrator_Polar_GlobalToLocal( self, feMesh, self->elPatch[elInd], position, lCoord );
+    SLIntegrator_Polar_GlobalToLocal( self, feMesh, patch, position, lCoord );
     SLIntegrator_Polar_ShapeFuncs( self, lCoord, self->Ni );
     for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
         result[dof_i] = 0.0;
     }
     for( node_i = 0; node_i < 16; node_i++ ) {
-        FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][node_i], phi_i );
+        FeVariable_GetValueAtNode( feVariable, patch[node_i], phi_i );
         for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
             result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
         }
     }
 }
-
-#if 0
-void SLIntegrator_Polar_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
-    SLIntegrator_Polar*	self 			= (SLIntegrator_Polar*)slIntegrator;
-    FeMesh*		feMesh			= feVariable->feMesh;
-    unsigned		elInd, nInc, *inc;
-    unsigned		IJK[3], IJK_test[3], index = 0;
-    unsigned		gNode_I, lNode_I;
-    unsigned		nodeIndex[64];
-    unsigned		numdofs			= feVariable->dofLayout->dofCounts[0];
-    double		lCoord[3], phi_i[3];
-    unsigned		node_i, dof_i;
-    Grid**      	grid            	= (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
-    unsigned*   	sizes           	= Grid_GetSizes( *grid );
-
-    Mesh_SearchElements( feMesh, position, &elInd );
-    FeMesh_GetElementNodes( feMesh, elInd, feVariable->inc );
-    nInc = IArray_GetSize( feVariable->inc );
-    inc  = IArray_GetPtr( feVariable->inc );
-
-    gNode_I = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
-    SLIntegrator_Polar_GlobalNodeToIJK( feMesh, gNode_I, IJK );
-
-    if( nInc%3 == 0 ) { /* quadratic mesh */
-        double*  cCoord = Mesh_GetVertex( feMesh, inc[4] );
-
-        if( position[0] > cCoord[0] && !HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0] -= 2;
-        if( position[1] > cCoord[1] && !HasTop(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[1] -= 2;
-        if( position[0] < cCoord[0] && HasLeft(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
-        if( position[1] < cCoord[1] && HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
-    }
-    else { /* linear mesh */
-        if( !HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
-        if( !HasTop( feMesh, self->inc, elInd, inc, nInc ) )   IJK[1]--;
-        if( HasLeft( feMesh, self->inc, elInd, inc, nInc ) )   IJK[0]--;
-        if( HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
-    }
-    FeMesh_NodeGlobalToDomain( feMesh, SLIntegrator_Polar_IJKToGlobalNode( feMesh, IJK ), &lNode_I );
-
-    /* interpolate using SLIntegrator_Polar_Lagrange polynomial shape functions */
-    for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
-        for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
-            gNode_I = SLIntegrator_Polar_IJKToGlobalNode( feMesh, IJK_test );
-            if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_I, &lNode_I ) ) abort();
-            else
-                nodeIndex[index++] = lNode_I;
-        }
-    }
-    /* map to master element and interpolate */
-    SLIntegrator_Polar_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
-    SLIntegrator_Polar_ShapeFuncs( self, lCoord, self->Ni );
-    for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
-        result[dof_i] = 0.0;
-    }
-    for( node_i = 0; node_i < 16; node_i++ ) {
-        FeVariable_GetValueAtNode( feVariable, nodeIndex[node_i], phi_i );
-        for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
-            result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
-        }
-    }
-}
-#endif
 
 void SLIntegrator_Polar_Solve( void* slIntegrator, FeVariable* variableField, FeVariable* varStarField ) {
     SLIntegrator_Polar*		self 		     = (SLIntegrator_Polar*)slIntegrator;
@@ -701,33 +629,93 @@ void SLIntegrator_Polar_GlobalToLocal( void* slIntegrator, void* _mesh, unsigned
 void SLIntegrator_Polar_InitPatches( void* slIntegrator ) {
     SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
     FeMesh*			feMesh		= self->velocityField->feMesh;
-    unsigned			el_i, lNode_i, gNode_i, index, nInc, *inc, IJK[2], IJK_test[2];
+    unsigned			el_i, lNode_i, gNode_i, index;
+    int				nInc, *inc;
+    Grid*			vertGrid	= ((CartesianGenerator*)feMesh->generator)->vertGrid;
+    unsigned			IJK[2], IJK_test[2];
 
-    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, 2 ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, MT_FACE ); el_i++ ) {
         FeMesh_GetElementNodes( feMesh, el_i, self->velocityField->inc );
         inc  = IArray_GetPtr( self->velocityField->inc );
         nInc = IArray_GetSize( self->velocityField->inc );
 
         gNode_i = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
-        SLIntegrator_Polar_GlobalNodeToIJK( feMesh, gNode_i, IJK );
+        Grid_Lift( vertGrid, gNode_i, IJK );
 
-        if( !HasRight( feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
-        if( !HasTop(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
-        if( HasLeft(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
-        if( HasBottom( feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasRight2D(  feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SemiLagrangianIntegrator_HasTop2D(    feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasLeft2D(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
+        if(  SemiLagrangianIntegrator_HasBottom2D( feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
 
-        FeMesh_NodeGlobalToDomain( feMesh, SLIntegrator_Polar_IJKToGlobalNode( feMesh, IJK ), &lNode_i );
+        FeMesh_NodeGlobalToDomain( feMesh, Grid_Project( vertGrid, IJK ), &lNode_i );
 
         index = 0;
-        for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
-            for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
-                gNode_i = SLIntegrator_Polar_IJKToGlobalNode( feMesh, IJK_test );
-                if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_i, &lNode_i ) ) abort();
-                else
-                    self->elPatch[el_i][index++] = lNode_i;
+         for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+             for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                 gNode_i = Grid_Project( vertGrid, IJK_test );
+                 if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_i, &lNode_i ) ) abort();
+                 else
+                     self->elPatch[el_i][index++] = lNode_i;
+             }
+         }
+    }
+}
+
+void SLIntegrator_Polar_InitPatches_Quad( void* slIntegrator ) {
+    SLIntegrator_Polar*		self 		= (SLIntegrator_Polar*)slIntegrator;
+    FeMesh*			feMesh		= self->velocityField->feMesh;
+    Grid*                       grid            = ((CartesianGenerator*)feMesh->generator)->vertGrid;
+    IArray*			iArray1		= IArray_New();
+    IArray*			iArray2		= IArray_New();
+    unsigned			el_i, lNode, gNode;
+    unsigned			IJK[2], IJK_test[2], index;
+    int				nInc, *inc;
+    int				gOrig[4], orig_i;
+
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, MT_FACE ); el_i++ ) {
+        FeMesh_GetElementNodes( feMesh, el_i, iArray1 );
+        nInc = IArray_GetSize( iArray1 );
+        inc  = IArray_GetPtr( iArray1 );
+
+        gNode = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
+        /* left-bottom-front */
+        Grid_Lift( grid, gNode, IJK );
+        if(  SemiLagrangianIntegrator_HasLeft2D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if(  SemiLagrangianIntegrator_HasBottom2D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[0] = Grid_Project( grid, IJK );
+        /* right-bottom-front */
+        Grid_Lift( grid, gNode, IJK );
+        if( !SemiLagrangianIntegrator_HasRight2D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if(  SemiLagrangianIntegrator_HasBottom2D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[1] = Grid_Project( grid, IJK );
+        /* left-top-front */
+        Grid_Lift( grid, gNode, IJK );
+        if(  SemiLagrangianIntegrator_HasLeft2D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SemiLagrangianIntegrator_HasTop2D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[2] = Grid_Project( grid, IJK );
+        /* right-top-front */
+        Grid_Lift( grid, gNode, IJK );
+        if( !SemiLagrangianIntegrator_HasRight2D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SemiLagrangianIntegrator_HasTop2D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[3] = Grid_Project( grid, IJK );
+
+        for( orig_i = 0; orig_i < 4; orig_i++ ) {
+            Grid_Lift( grid, gOrig[orig_i], IJK );
+            FeMesh_NodeGlobalToDomain( feMesh, gOrig[orig_i], &lNode );
+            index = 0;
+            for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+                for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                    gNode = Grid_Project( grid, IJK_test );
+                    if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode, &lNode ) ) abort();
+                    else
+                        self->elPatchQuad[el_i][orig_i][index++] = lNode;
+                }
             }
         }
     }
+
+    Stg_Class_Delete( iArray1 );
+    Stg_Class_Delete( iArray2 );
 }
 
 double SLIntegrator_Polar_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context ) {

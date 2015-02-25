@@ -71,6 +71,9 @@
       IArray*			   inc;			   \
       double			   courant;		   \
       unsigned**		   elPatch;		   \
+      unsigned***                  elPatchQuad;            \
+      Bool                         elQuad;                 \
+      int                          dElSize;                \
 
    /** Abstract class defining the interface for a SLIntegrator_Polar solver - see SLIntegrator_Polar.h */
    struct SLIntegrator_Polar { __SLIntegrator_Polar };
@@ -90,7 +93,7 @@
    #define SLINTEGRATOR_POLAR_PASSARGS \
                 STG_COMPONENT_PASSARGS
 
-   SLIntegrator_Polar* _SLIntegrator_Polar_New(  SLINTEGRATOR_POLAR_DEFARGS  );
+   SLIntegrator_Polar* _SLIntegrator_Polar_New( SLINTEGRATOR_POLAR_DEFARGS );
 
    /* --- Virtual function implementations --- */
 
@@ -131,6 +134,6 @@
    double SLIntegrator_Polar_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context );
 
    void SLIntegrator_Polar_InitPatches( void* slIntegrator );
-
+   void SLIntegrator_Polar_InitPatches_Quad( void* slIntegrator );
 #endif
 

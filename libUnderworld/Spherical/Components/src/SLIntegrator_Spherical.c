@@ -49,8 +49,6 @@
 
 #include <assert.h>
 
-#define SL_DIM 3
-
 /** Textual name of this class */
 const Type SLIntegrator_Spherical_Type = "SLIntegrator_Spherical";
 
@@ -225,6 +223,8 @@ void _SLIntegrator_Spherical_Initialise( void* slIntegrator, void* data ) {
 
     if( self->velocityField ) Stg_Component_Initialise( self->velocityField, data, False );
 
+    self->dElSize = Mesh_GetDomainSize( self->velocityField->feMesh, MT_VOLUME );
+
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
         feVarStar  = (FeVariable*) self->varStarList->data[field_i];
@@ -234,24 +234,13 @@ void _SLIntegrator_Spherical_Initialise( void* slIntegrator, void* data ) {
 
     self->abcissa = malloc(4*sizeof(double));
     self->Ni      = malloc(64*sizeof(double));
-    self->GNix    = malloc(SL_DIM*sizeof(double*));
+    self->GNix    = malloc(MT_VOLUME*sizeof(double*));
     self->GNix[0] = malloc(64*sizeof(double));
     self->GNix[1] = malloc(64*sizeof(double));
     self->GNix[2] = malloc(64*sizeof(double));
 
-    self->elPatch = malloc(Mesh_GetDomainSize( feMesh, SL_DIM )*sizeof(unsigned*));
-    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, SL_DIM ); el_i++ ) {
-        self->elPatch[el_i] = malloc( 64*sizeof(unsigned) );
-    }
-
-    self->abcissa[0] = -1.0;
-    self->abcissa[0] = -1.0;
-    self->abcissa[1] = -0.33333333333333333;
-    self->abcissa[2] = -1.0*self->abcissa[1];
-    self->abcissa[3] = -1.0*self->abcissa[0];
-
     /* sanity checks */
-    if( Mesh_GetDimSize( feMesh ) != SL_DIM ) {
+    if( Mesh_GetDimSize( feMesh ) != MT_VOLUME ) {
         printf( "ERROR: component %s requires mesh of dimension 3\n", self->type );
         abort();
     }
@@ -260,7 +249,36 @@ void _SLIntegrator_Spherical_Initialise( void* slIntegrator, void* data ) {
         abort();
     }
 
-    SLIntegrator_Spherical_InitPatches( self );
+    FeMesh_GetElementNodes( feMesh, 0, self->inc );
+    self->elQuad = ( IArray_GetSize( self->inc )%3==0 ) ? True : False;
+
+    if( !self->elQuad ) {
+        self->elPatch = malloc(Mesh_GetDomainSize( feMesh, MT_VOLUME )*sizeof(unsigned*));
+        for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, MT_VOLUME ); el_i++ ) {
+            self->elPatch[el_i] = malloc( 64*sizeof(unsigned) );
+        }
+        self->elPatchQuad = NULL;
+        SLIntegrator_Spherical_InitPatches( self );
+    }
+    else {
+        int section_i;
+
+        self->elPatch = NULL;
+        self->elPatchQuad = malloc(Mesh_GetDomainSize( self->velocityField->feMesh, MT_VOLUME )*sizeof(unsigned**));
+        for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, MT_VOLUME ); el_i++ ) {
+            self->elPatchQuad[el_i] = malloc( 8*sizeof(unsigned*) );
+            for( section_i = 0; section_i < 4; section_i++ ) {
+                self->elPatchQuad[el_i][section_i] = malloc( 16*sizeof(unsigned) );
+            }
+        }
+        SLIntegrator_Spherical_InitPatches_Quad( self );
+    }
+
+    self->abcissa[0] = -1.0;
+    self->abcissa[0] = -1.0;
+    self->abcissa[1] = -0.33333333333333333;
+    self->abcissa[2] = -1.0*self->abcissa[1];
+    self->abcissa[3] = -1.0*self->abcissa[0];
 }
 
 void _SLIntegrator_Spherical_Execute( void* slIntegrator, void* data ) {}
@@ -271,10 +289,23 @@ void _SLIntegrator_Spherical_Destroy( void* slIntegrator, void* data ) {
     FeVariable*			feVarStar;
     unsigned			field_i, el_i;
 
-    for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, SL_DIM ); el_i++ ) {
-        free( self->elPatch[el_i] );
+    if( !self->elQuad ) {
+        for( el_i = 0; el_i < self->dElSize; el_i++ ) {
+            free( self->elPatch[el_i] );
+        }
+        free( self->elPatch );
     }
-    free( self->elPatch );
+    else {
+        int section_i;
+
+        for( el_i = 0; el_i < self->dElSize; el_i++ ) {
+            for( section_i = 0; section_i < 8; section_i++ ) {
+                free( self->elPatchQuad[el_i][section_i] );
+            }
+            free( self->elPatchQuad[el_i] );
+        }
+        free( self->elPatchQuad );
+    }
 
     for( field_i = 0; field_i < self->variableList->count; field_i++ ) {
         feVariable = (FeVariable*) self->variableList->data[field_i];
@@ -329,113 +360,28 @@ void SLIntegrator_Spherical_IntegrateRK4( void* slIntegrator, FeVariable* veloci
     double			coordPrime[3];
 
     SLIntegrator_Spherical_CubicInterpolator( self, velocityField, origin, k[0] );
-    for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[0][dim_i];
     }
     SLIntegrator_Spherical_BoundaryUpdate3D( velocityField->feMesh, self->inc, coordPrime );
     SLIntegrator_Spherical_CubicInterpolator( self, velocityField, coordPrime, k[1] );
 
-    for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - 0.5*dt*k[1][dim_i];
     }
     SLIntegrator_Spherical_BoundaryUpdate3D( velocityField->feMesh, self->inc, coordPrime );
     SLIntegrator_Spherical_CubicInterpolator( self, velocityField, coordPrime, k[2] );
 
-    for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
         coordPrime[dim_i] = origin[dim_i] - dt*k[2][dim_i];
     }
     SLIntegrator_Spherical_BoundaryUpdate3D( velocityField->feMesh, self->inc, coordPrime );
     SLIntegrator_Spherical_CubicInterpolator( self, velocityField, coordPrime, k[3] );
 
-    for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
         position[dim_i] = origin[dim_i] - INV6*dt*( k[0][dim_i] + 2.0*k[1][dim_i] + 2.0*k[2][dim_i] + k[3][dim_i] );
     }
     SLIntegrator_Spherical_BoundaryUpdate3D( velocityField->feMesh, self->inc, position );
-}
-
-Bool SLIntegrator_Spherical_HasSide( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes, unsigned* sideNodes ) {
-    unsigned	nInc = 0, ii;
-
-    for( ii = 0; ii < 4; ii++ ) {
-        Mesh_GetIncidence( feMesh, MT_VERTEX, elNodes[sideNodes[ii]], SL_DIM, inc );
-        nInc += IArray_GetSize( inc );
-    }
-    if( nInc > 17 )
-        return True;
-
-    return False;
-}
-
-Bool SLIntegrator_Spherical_HasLeft( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = 0;
-    sideNodes[1] = (quad) ?  6 : 2;
-    sideNodes[2] = (quad) ? 18 : 4;
-    sideNodes[3] = (quad) ? 24 : 6;
-
-    return SLIntegrator_Spherical_HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
-Bool SLIntegrator_Spherical_HasRight( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = (quad) ?  2 : 1;
-    sideNodes[1] = (quad) ?  8 : 3;
-    sideNodes[2] = (quad) ? 20 : 5;
-    sideNodes[3] = (quad) ? 26 : 7;
-
-    return SLIntegrator_Spherical_HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
-Bool SLIntegrator_Spherical_HasBottom( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = 0;
-    sideNodes[1] = (quad) ?  2 : 1;
-    sideNodes[2] = (quad) ? 18 : 4;
-    sideNodes[3] = (quad) ? 20 : 5;
-
-    return SLIntegrator_Spherical_HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
-Bool SLIntegrator_Spherical_HasTop( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = (quad) ?  6 : 2;
-    sideNodes[1] = (quad) ?  8 : 3;
-    sideNodes[2] = (quad) ? 24 : 6;
-    sideNodes[3] = (quad) ? 26 : 7;
-
-    return SLIntegrator_Spherical_HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
-Bool SLIntegrator_Spherical_HasFront( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = 0;
-    sideNodes[1] = (quad) ? 2 : 1;
-    sideNodes[2] = (quad) ? 6 : 2;
-    sideNodes[3] = (quad) ? 8 : 3;
-
-    return SLIntegrator_Spherical_HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
-}
-
-Bool SLIntegrator_Spherical_HasBack( FeMesh* feMesh, IArray* inc, unsigned elInd, unsigned* elNodes, unsigned nNodes ) {
-    Bool 	quad		= (nNodes%3==0) ? True : False;
-    unsigned	sideNodes[4];
-
-    sideNodes[0] = (quad) ? 18 : 4;
-    sideNodes[1] = (quad) ? 20 : 5;
-    sideNodes[2] = (quad) ? 24 : 6;
-    sideNodes[3] = (quad) ? 26 : 7;
-
-    return SLIntegrator_Spherical_HasSide( feMesh, inc, elInd, elNodes, nNodes, sideNodes );
 }
 
 void Spherical_XYZ2regionalSphere( double *xyz, double* rs ) {
@@ -491,11 +437,11 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
     unsigned*   sizes           = Grid_GetSizes( *grid );
     unsigned	dim_i;
 
-    for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
         min[dim_i] = ((RSGenerator*)feMesh->generator)->crdMin[dim_i];
         max[dim_i] = ((RSGenerator*)feMesh->generator)->crdMax[dim_i];
     }
-    for( dim_i = 1; dim_i < SL_DIM; dim_i++ ) {
+    for( dim_i = 1; dim_i < MT_VOLUME; dim_i++ ) {
         min[dim_i] *= M_PI/180;
         max[dim_i] *= M_PI/180;
     }
@@ -508,7 +454,7 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
         unsigned nInc, *inc, ind0, ind1, ind2;
         if( rs[0] > max[0] - SL_EPS ) {
             testRS[0] = rs[0] - 0.5*dr;
-            for( dim_i = 1; dim_i < SL_DIM; dim_i++ ) {
+            for( dim_i = 1; dim_i < MT_VOLUME; dim_i++ ) {
                 testRS[dim_i] = rs[dim_i];
                 if( testRS[dim_i] > max[dim_i] ) testRS[dim_i] = max[dim_i];
                 if( testRS[dim_i] < min[dim_i] ) testRS[dim_i] = min[dim_i];
@@ -523,7 +469,7 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
             } else {
                 ind0 = 1; ind1 = 3; ind2 = 5;
             }
-            for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+            for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
                 v1[dim_i] = Mesh_GetVertex( feMesh, inc[ind1] )[dim_i] - Mesh_GetVertex( feMesh, inc[ind0] )[dim_i];
                 v2[dim_i] = Mesh_GetVertex( feMesh, inc[ind2] )[dim_i] - Mesh_GetVertex( feMesh, inc[ind0] )[dim_i];
             }
@@ -532,13 +478,13 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
             norm[2] = v1[0]*v2[1] - v1[1]*v2[0];
             nMag = sqrt( norm[0]*norm[0] + norm[1]*norm[1] + norm[2]*norm[2] );
             norm[0] /= nMag; norm[1] /= nMag; norm[2] /= nMag;
-            for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+            for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
                 hyp[dim_i] = pos[dim_i] - Mesh_GetVertex( feMesh, inc[ind0] )[dim_i];
             }
             hNorm  = sqrt( hyp[0]*hyp[0] + hyp[1]*hyp[1] + hyp[2]*hyp[2] );
             theta  = 0.25*M_PI - acos( ( norm[0]*hyp[0] + norm[1]*hyp[1] + norm[2]*hyp[2] )/hNorm );
             lambda = fabs( hNorm*sin( theta ) );
-            for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+            for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
                 pos[dim_i] -= lambda*norm[dim_i];
             }
             Spherical_XYZ2regionalSphere( pos, rs );
@@ -548,7 +494,7 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
         }
     }*/
 
-    for( dim_i = 0; dim_i < SL_DIM; dim_i++ ) {
+    for( dim_i = 0; dim_i < MT_VOLUME; dim_i++ ) {
         if( rs[dim_i] < min[dim_i] ) {
             rs[dim_i] = (periodic[dim_i]) ? max[dim_i] - min[dim_i] + rs[dim_i] : min[dim_i];
         }
@@ -559,26 +505,6 @@ void SLIntegrator_Spherical_BoundaryUpdate3D( FeMesh* feMesh, IArray* iArray, do
     Spherical_RegionalSphere2XYZ( rs, pos );
 }
 
-void GlobalNodeToIJK( FeMesh* feMesh, unsigned gNode, unsigned* IJK ) {
-    Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
-    unsigned*   sizes           = Grid_GetSizes( *grid );
-
-    IJK[0] = gNode%sizes[0];
-    IJK[1] = (gNode/sizes[0])%sizes[1];
-    IJK[2] = gNode/(sizes[0]*sizes[1]);
-}
-
-unsigned IJKToGlobalNode( FeMesh* feMesh, unsigned* IJK ) {
-    Grid**      grid            = (Grid**) Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
-    unsigned*   sizes           = Grid_GetSizes( *grid );
-    unsigned	gNode;
-
-    gNode = sizes[0]*IJK[1] + IJK[0];
-    gNode += IJK[2]*(sizes[0]*sizes[1]);
-
-    return gNode;
-}
-
 void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* feVariable, double* position, double* result ) {
     SLIntegrator_Spherical*	self 			= (SLIntegrator_Spherical*)slIntegrator;
     FeMesh*			feMesh			= feVariable->feMesh;
@@ -587,58 +513,48 @@ void SLIntegrator_Spherical_CubicInterpolator( void* slIntegrator, FeVariable* f
     double			lCoord[3], phi_i[3];
     unsigned			node_i, dof_i;
     Grid**      		grid                    = (Grid**)Mesh_GetExtension( feMesh, Grid*, feMesh->vertGridId );
+    unsigned*			patch;
 
     Mesh_SearchElements( feMesh, position, &elInd );
-#if 0
-    FeMesh_GetElementNodes( feMesh, elInd, feVariable->inc );
-    nInc = IArray_GetSize( feVariable->inc );
-    inc  = IArray_GetPtr( feVariable->inc );
 
-    gNode_I = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
-    GlobalNodeToIJK( feMesh, gNode_I, IJK );
-
-    if( nInc%3 == 0 ) { /* quadratic mesh */
-        double*  cCoord = Mesh_GetVertex( feMesh, inc[13] ); /* central node of the element */
-
-        if( position[0] > cCoord[0] && !SLIntegrator_Spherical_HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0] -= 2;
-        if( position[1] > cCoord[1] && !SLIntegrator_Spherical_HasTop(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[1] -= 2;
-        if( position[2] > cCoord[2] && !SLIntegrator_Spherical_HasBack(  feMesh, self->inc, elInd, inc, nInc ) ) IJK[2] -= 2;
-
-        if( position[0] < cCoord[0] && SLIntegrator_Spherical_HasLeft(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
-        if( position[1] < cCoord[1] && SLIntegrator_Spherical_HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
-        if( position[2] < cCoord[2] && SLIntegrator_Spherical_HasFront(  feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
+    if( !self->elQuad ) {
+        patch = self->elPatch[elInd];
     }
-    else { /* linear mesh */
-        if( !SLIntegrator_Spherical_HasRight( feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
-        if( !SLIntegrator_Spherical_HasTop(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
-        if( !SLIntegrator_Spherical_HasBack(  feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
+    else {
+        int* inc;
+        double mid[3], rez[3];
 
-        if( SLIntegrator_Spherical_HasLeft(   feMesh, self->inc, elInd, inc, nInc ) ) IJK[0]--;
-        if( SLIntegrator_Spherical_HasBottom( feMesh, self->inc, elInd, inc, nInc ) ) IJK[1]--;
-        if( SLIntegrator_Spherical_HasFront(  feMesh, self->inc, elInd, inc, nInc ) ) IJK[2]--;
-    }
-    FeMesh_NodeGlobalToDomain( feMesh, IJKToGlobalNode( feMesh, IJK ), &lNode_I );
+        FeMesh_GetElementNodes( feMesh, elInd, self->inc );
+        inc = IArray_GetPtr( self->inc );
+        
+        Spherical_XYZ2regionalSphere( Mesh_GetVertex( feMesh, inc[13] ), mid );
+        Spherical_XYZ2regionalSphere( position, rez );
 
-    /* interpolate using Lagrange polynomial shape functions */
-    for( IJK_test[2] = IJK[2]; IJK_test[2] < IJK[2] + 4; IJK_test[2]++ ) {
-        for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
-            for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
-                gNode_I = IJKToGlobalNode( feMesh, IJK_test );
-                if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_I, &lNode_I ) ) abort();
-                else
-                    nodeIndex[index++] = lNode_I;
-            }
-        }
+        if( rez[0] < mid[0] && rez[1] < mid[1] && rez[2] < mid[2] )
+            patch = self->elPatchQuad[elInd][0];
+        else if( rez[0] > mid[0] && rez[1] < mid[1] && rez[2] < mid[2] )
+            patch = self->elPatchQuad[elInd][1];
+        else if( rez[0] < mid[0] && rez[1] > mid[1] && rez[2] < mid[2] )
+            patch = self->elPatchQuad[elInd][2];
+        else if( rez[0] > mid[0] && rez[1] > mid[1] && rez[2] < mid[2] )
+            patch = self->elPatchQuad[elInd][3];
+        else if( rez[0] < mid[0] && rez[1] < mid[1] && rez[2] > mid[2] )
+            patch = self->elPatchQuad[elInd][4];
+        else if( rez[0] > mid[0] && rez[1] < mid[1] && rez[2] > mid[2] )
+            patch = self->elPatchQuad[elInd][5];
+        else if( rez[0] < mid[0] && rez[1] > mid[1] && rez[2] > mid[2] )
+            patch = self->elPatchQuad[elInd][6];
+        else
+            patch = self->elPatchQuad[elInd][7];
     }
-    SLIntegrator_Spherical_GlobalToLocal( self, feMesh, nodeIndex, position, lCoord );
-#endif
-    SLIntegrator_Spherical_GlobalToLocal( self, feMesh, self->elPatch[elInd], position, lCoord );
+
+    SLIntegrator_Spherical_GlobalToLocal( self, feMesh, patch, position, lCoord );
     SLIntegrator_Spherical_ShapeFuncs3D( self, lCoord, self->Ni );
     for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
         result[dof_i] = 0.0;
     }
     for( node_i = 0; node_i < 64; node_i++ ) {
-        FeVariable_GetValueAtNode( feVariable, self->elPatch[elInd][node_i], phi_i );
+        FeVariable_GetValueAtNode( feVariable, patch[node_i], phi_i );
         for( dof_i = 0; dof_i < numdofs; dof_i++ ) {
             result[dof_i] += phi_i[dof_i]*self->Ni[node_i];
         }
@@ -776,7 +692,7 @@ void SLIntegrator_Spherical_GlobalToLocal( void* slIntegrator, void* _mesh, unsi
     double**	    		GNix		= self->GNix;
 
     /* Initial guess for element local coordinate is in the centre of the element - ( 0.0, 0.0, 0.0 ) */
-    memset( lCoord, 0, SL_DIM*sizeof(double) );
+    memset( lCoord, 0, MT_VOLUME*sizeof(double) );
 
     /* Do Newton-Raphson Iteration */
     for ( iteration_I = 0 ; iteration_I < maxIterations ; iteration_I++ ) {
@@ -816,7 +732,7 @@ void SLIntegrator_Spherical_GlobalToLocal( void* slIntegrator, void* _mesh, unsi
         rightHandSide[ K_AXIS ] += gCoord[ K_AXIS ];
 
         /* Solve for xi increment */
-        TensorArray_SolveSystem( jacobiMatrix, xiIncrement, rightHandSide, SL_DIM );
+        TensorArray_SolveSystem( jacobiMatrix, xiIncrement, rightHandSide, MT_VOLUME );
 
         /* Update xi */
         lCoord[ I_AXIS ] += xiIncrement[ I_AXIS ];
@@ -841,31 +757,33 @@ void SLIntegrator_Spherical_GlobalToLocal( void* slIntegrator, void* _mesh, unsi
 void SLIntegrator_Spherical_InitPatches( void* slIntegrator ) {
     SLIntegrator_Spherical* 	self 		= (SLIntegrator_Spherical*)slIntegrator;
     FeMesh*			feMesh		= self->velocityField->feMesh;
-    unsigned			el_i, *inc, nInc, IJK[3], IJK_test[3], lNode_i, gNode_i, index;
+    Grid*			vertGrid	= ((CartesianGenerator*)feMesh->generator)->vertGrid;
+    unsigned			el_i, IJK[3], IJK_test[3], lNode_i, gNode_i, index;
+    int				*inc, nInc;
 
-    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, SL_DIM ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, MT_VOLUME ); el_i++ ) {
         FeMesh_GetElementNodes( feMesh, el_i, self->velocityField->inc );
         nInc = IArray_GetSize( self->velocityField->inc );
         inc  = IArray_GetPtr( self->velocityField->inc );
 
         gNode_i = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
-        GlobalNodeToIJK( feMesh, gNode_i, IJK );
+        Grid_Lift( vertGrid, gNode_i, IJK );
 
-        if( !SLIntegrator_Spherical_HasRight( feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
-        if( !SLIntegrator_Spherical_HasTop(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
-        if( !SLIntegrator_Spherical_HasBack(  feMesh, self->inc, el_i, inc, nInc ) ) IJK[2]--;
+        if( !SemiLagrangianIntegrator_HasRight3D( feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SemiLagrangianIntegrator_HasTop3D(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(  feMesh, self->inc, el_i, inc, nInc ) ) IJK[2]--;
 
-        if( SLIntegrator_Spherical_HasLeft(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
-        if( SLIntegrator_Spherical_HasBottom( feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
-        if( SLIntegrator_Spherical_HasFront(  feMesh, self->inc, el_i, inc, nInc ) ) IJK[2]--;
-        FeMesh_NodeGlobalToDomain( feMesh, IJKToGlobalNode( feMesh, IJK ), &lNode_i );
+        if( SemiLagrangianIntegrator_HasLeft3D(   feMesh, self->inc, el_i, inc, nInc ) ) IJK[0]--;
+        if( SemiLagrangianIntegrator_HasBottom3D( feMesh, self->inc, el_i, inc, nInc ) ) IJK[1]--;
+        if( SemiLagrangianIntegrator_HasFront3D(  feMesh, self->inc, el_i, inc, nInc ) ) IJK[2]--;
+        FeMesh_NodeGlobalToDomain( feMesh, Grid_Project( vertGrid, IJK ), &lNode_i );
 
         index = 0;
         /* interpolate using Lagrange polynomial shape functions */
         for( IJK_test[2] = IJK[2]; IJK_test[2] < IJK[2] + 4; IJK_test[2]++ ) {
             for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
                 for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
-                    gNode_i = IJKToGlobalNode( feMesh, IJK_test );
+                    gNode_i = Grid_Project( vertGrid, IJK_test );
                     if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode_i, &lNode_i ) ) abort();
                     else
                         self->elPatch[el_i][index++] = lNode_i;
@@ -873,6 +791,90 @@ void SLIntegrator_Spherical_InitPatches( void* slIntegrator ) {
             }
         }
     }
+}
+
+void SLIntegrator_Spherical_InitPatches_Quad( void* slIntegrator ) {
+    SLIntegrator_Spherical* 	self 		= (SLIntegrator_Spherical*)slIntegrator;
+    FeMesh*			feMesh		= self->velocityField->feMesh;
+    Grid*                       grid            = ((CartesianGenerator*)feMesh->generator)->vertGrid;
+    IArray*                     iArray1         = IArray_New();
+    IArray*                     iArray2         = IArray_New();
+    unsigned                    el_i, lNode, gNode;
+    unsigned                    IJK[3], IJK_test[3], index;
+    int                         nInc, *inc;
+    int                         gOrig[8], orig_i;
+
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, MT_FACE ); el_i++ ) {
+        FeMesh_GetElementNodes( feMesh, el_i, iArray1 );
+        nInc = IArray_GetSize( iArray1 );
+        inc  = IArray_GetPtr( iArray1 );
+
+        gNode = Mesh_DomainToGlobal( feMesh, MT_VERTEX, inc[0] );
+        /* left-bottom-front */
+        Grid_Lift( grid, gNode, IJK );
+        if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[0] = Grid_Project( grid, IJK );
+        /* right-bottom-front */
+        Grid_Lift( grid, gNode, IJK );
+        if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[1] = Grid_Project( grid, IJK );
+        /* left-top-front */
+        Grid_Lift( grid, gNode, IJK );
+        if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[2] = Grid_Project( grid, IJK );
+        /* right-top-front */
+        Grid_Lift( grid, gNode, IJK );
+        if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[3] = Grid_Project( grid, IJK );
+        /* left-bottom-back */
+        Grid_Lift( grid, gNode, IJK );
+        if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[4] = Grid_Project( grid, IJK );
+        /* right-bottom-back */
+        Grid_Lift( grid, gNode, IJK );
+        if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[5] = Grid_Project( grid, IJK );
+        /* left-top-back */
+        Grid_Lift( grid, gNode, IJK );
+        if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[6] = Grid_Project( grid, IJK );
+        /* right-top-back */
+        Grid_Lift( grid, gNode, IJK );
+        if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
+        if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        gOrig[7] = Grid_Project( grid, IJK );
+
+        for( orig_i = 0; orig_i < 8; orig_i++ ) {
+            Grid_Lift( grid, gOrig[orig_i], IJK );
+            FeMesh_NodeGlobalToDomain( feMesh, gOrig[orig_i], &lNode );
+            index = 0;
+            for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+                for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                    gNode = Grid_Project( grid, IJK_test );
+                    if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode, &lNode ) ) abort();
+                    else
+                        self->elPatchQuad[el_i][orig_i][index++] = lNode;
+                }
+            }
+        }
+    }
+    Stg_Class_Delete( iArray1 );
+    Stg_Class_Delete( iArray2 );
 }
 
 double SLIntegrator_Spherical_CalcAdvDiffDt( void* slIntegrator, FiniteElementContext* context ) {

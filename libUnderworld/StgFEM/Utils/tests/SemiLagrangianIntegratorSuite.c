@@ -164,8 +164,7 @@ double SemiLagrangianIntegratorSuite_EvaluateError( SemiLagrangianIntegrator* sl
     double			elErrorSq, elAnalyticSq;
     ElementType*		elementType;
     double			detJac;
-    double			gCoord[3], delta[3];
-    unsigned			nNodes[3];
+    double			gCoord[3];
 
     for( lElement_I = 0; lElement_I < numMeshElements; lElement_I++ ) {
         lCell_I = CellLayout_MapElementIdToCellId( gaussSwarm->cellLayout, lElement_I );
@@ -182,7 +181,6 @@ double SemiLagrangianIntegratorSuite_EvaluateError( SemiLagrangianIntegrator* sl
             FeMesh_CoordLocalToGlobal( feMesh, lElement_I, gaussPoint->xi, gCoord );
             initialValue = func( gCoord );
 
-            //SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
             SemiLagrangianIntegrator_CubicInterpolator( slIntegrator, temperatureField, gCoord, &finalValue );
 
             detJac = ElementType_JacobianDeterminant( elementType, feMesh, lElement_I, gaussPoint->xi, nDims );
@@ -270,8 +268,6 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
     Index			nGaussPts;
     double			temperature, temperature_a;
     double			a[2]		= { 4.0, 6.0 };
-    double			delta[2];
-    unsigned			nNodes[2];
     double			gCoord[2];
     double			detJac, elErrorSq, elAnalyticSq;
     double			lError = 0.0, lAnalytic = 0.0, gError, gAnalytic, l2Error;
@@ -284,8 +280,6 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
     slIntegrator     = (SemiLagrangianIntegrator*)LiveComponentRegister_Get( cf->LCRegister, (Name)"integrator" );
     temperatureField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"TemperatureField" );
     gaussSwarm       = (Swarm*)LiveComponentRegister_Get( cf->LCRegister, (Name)"gaussSwarm" );
-
-    //SemiLagrangianIntegrator_GetDeltaConst( temperatureField, delta, nNodes );
 
     for( node_i = 0; node_i < Mesh_GetLocalSize( temperatureField->feMesh, MT_VERTEX ); node_i++ ) {
         temperature = f( a, Mesh_GetVertex( temperatureField->feMesh, node_i ) );
@@ -329,15 +323,12 @@ void SemiLagrangianIntegratorSuite_LagrangianInterpolation( SemiLagrangianIntegr
 void SemiLagrangianIntegratorSuite_RK4Integration( SemiLagrangianIntegratorSuiteData* data ) {
     Stg_ComponentFactory*	cf;
     AbstractContext*		context;
-    FeVariable*			velField;
     ConditionFunction*      	condFunc;
     unsigned                  	nSteps, step_i;
     double			dt;
     double			coord[2]	= { 0.75, 0.0 };
     double			cNew[2];
     int				pass;
-    double			delta[2];
-    unsigned			nnodes[2];
     SemiLagrangianIntegrator*	slIntegrator;
 
     cf = stgMainInitFromXML( "StgFEM/Utils/input/testSemiLagrangianIntegrator3.xml", MPI_COMM_WORLD, NULL );
@@ -352,11 +343,8 @@ void SemiLagrangianIntegratorSuite_RK4Integration( SemiLagrangianIntegratorSuite
 
     stgMainBuildAndInitialise( cf );
 
-    velField = (FeVariable*)LiveComponentRegister_Get( cf->LCRegister, (Name)"VelocityField" );
     nSteps   = Dictionary_GetUnsignedInt_WithDefault( context->dictionary, "maxTimeSteps", 1 );
     dt       = 0.5*M_PI/nSteps; //quarter circle
-
-    //SemiLagrangianIntegrator_GetDeltaConst( velField, delta, nnodes );
 
     for( step_i = 1; step_i <= nSteps; step_i++ ) {
         SemiLagrangianIntegrator_IntegrateRK4( slIntegrator, dt, coord, cNew );
