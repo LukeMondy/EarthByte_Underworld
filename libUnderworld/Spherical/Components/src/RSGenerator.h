@@ -69,14 +69,14 @@ struct RSGenerator
 #define ZERO 0
 #endif
 
-#define SPHERICALGENERATOR_DEFARGS \
+#define RSGENERATOR_DEFARGS \
 								CARTESIANGENERATOR_DEFARGS \
  
-#define SPHERICALGENERATOR_PASSARGS \
+#define RSGENERATOR_PASSARGS \
 								CARTESIANGENERATOR_PASSARGS \
  
 void* _RSGenerator_DefaultNew( Name name );
-RSGenerator* _RSGenerator_New(  SPHERICALGENERATOR_DEFARGS  );
+RSGenerator* _RSGenerator_New(  RSGENERATOR_DEFARGS  );
 
 void _RSGenerator_AssignFromXML( void* meshGenerator, Stg_ComponentFactory* cf, void* data );
 void _RSGenerator_Initialise( void* meshGenerator, void* data );

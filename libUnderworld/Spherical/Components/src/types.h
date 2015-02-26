@@ -5,6 +5,7 @@ typedef struct Mesh_SphericalAlgorithms Mesh_SphericalAlgorithms;
 typedef struct Mesh_ProjectionAlgorithms Mesh_ProjectionAlgorithms;
 typedef struct SphericalGenerator SphericalGenerator;
 typedef struct RSGenerator RSGenerator;
+typedef struct Q2RSGenerator Q2RSGenerator;
 typedef struct Q2SphericalGenerator Q2SphericalGenerator;
 typedef struct Q2ProjectionGenerator Q2ProjectionGenerator;
 typedef struct ProjectionGenerator ProjectionGenerator;

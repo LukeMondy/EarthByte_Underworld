@@ -50,12 +50,12 @@ void* _RSGenerator_DefaultNew( Name name )
    CartesianGenerator_GenElementTypesFunc*         genElementTypesFunc = _RSGenerator_GenElementTypes;
    CartesianGenerator_CalcGeomFunc*                calcGeomFunc = RSGenerator_CalcCurvilinearGeom;
 
-   RSGenerator* self = _RSGenerator_New(  SPHERICALGENERATOR_PASSARGS  );
+   RSGenerator* self = _RSGenerator_New(  RSGENERATOR_PASSARGS  );
 
    return self;
 }
 
-RSGenerator* _RSGenerator_New(  SPHERICALGENERATOR_DEFARGS  )
+RSGenerator* _RSGenerator_New(  RSGENERATOR_DEFARGS  )
 {
    RSGenerator* self;
 

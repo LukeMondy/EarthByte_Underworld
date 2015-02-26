@@ -267,8 +267,8 @@ void _SLIntegrator_Spherical_Initialise( void* slIntegrator, void* data ) {
         self->elPatchQuad = malloc(Mesh_GetDomainSize( self->velocityField->feMesh, MT_VOLUME )*sizeof(unsigned**));
         for( el_i = 0; el_i < Mesh_GetDomainSize( self->velocityField->feMesh, MT_VOLUME ); el_i++ ) {
             self->elPatchQuad[el_i] = malloc( 8*sizeof(unsigned*) );
-            for( section_i = 0; section_i < 4; section_i++ ) {
-                self->elPatchQuad[el_i][section_i] = malloc( 16*sizeof(unsigned) );
+            for( section_i = 0; section_i < 8; section_i++ ) {
+                self->elPatchQuad[el_i][section_i] = malloc( 64*sizeof(unsigned) );
             }
         }
         SLIntegrator_Spherical_InitPatches_Quad( self );
@@ -804,7 +804,7 @@ void SLIntegrator_Spherical_InitPatches_Quad( void* slIntegrator ) {
     int                         nInc, *inc;
     int                         gOrig[8], orig_i;
 
-    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, MT_FACE ); el_i++ ) {
+    for( el_i = 0; el_i < Mesh_GetDomainSize( feMesh, MT_VOLUME ); el_i++ ) {
         FeMesh_GetElementNodes( feMesh, el_i, iArray1 );
         nInc = IArray_GetSize( iArray1 );
         inc  = IArray_GetPtr( iArray1 );
@@ -814,61 +814,63 @@ void SLIntegrator_Spherical_InitPatches_Quad( void* slIntegrator ) {
         Grid_Lift( grid, gNode, IJK );
         if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
         if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
-        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
         gOrig[0] = Grid_Project( grid, IJK );
         /* right-bottom-front */
         Grid_Lift( grid, gNode, IJK );
         if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
         if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
-        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
         gOrig[1] = Grid_Project( grid, IJK );
         /* left-top-front */
         Grid_Lift( grid, gNode, IJK );
         if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
         if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
-        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
         gOrig[2] = Grid_Project( grid, IJK );
         /* right-top-front */
         Grid_Lift( grid, gNode, IJK );
         if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
         if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
-        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if(  SemiLagrangianIntegrator_HasFront3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
         gOrig[3] = Grid_Project( grid, IJK );
         /* left-bottom-back */
         Grid_Lift( grid, gNode, IJK );
         if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
         if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
-        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
         gOrig[4] = Grid_Project( grid, IJK );
         /* right-bottom-back */
         Grid_Lift( grid, gNode, IJK );
         if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
         if(  SemiLagrangianIntegrator_HasBottom3D( feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
-        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
         gOrig[5] = Grid_Project( grid, IJK );
         /* left-top-back */
         Grid_Lift( grid, gNode, IJK );
         if(  SemiLagrangianIntegrator_HasLeft3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
         if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
-        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
         gOrig[6] = Grid_Project( grid, IJK );
         /* right-top-back */
         Grid_Lift( grid, gNode, IJK );
         if( !SemiLagrangianIntegrator_HasRight3D(  feMesh, iArray2, el_i, inc, nInc ) ) IJK[0]--;
         if( !SemiLagrangianIntegrator_HasTop3D(    feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
-        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[1]--;
+        if( !SemiLagrangianIntegrator_HasBack3D(   feMesh, iArray2, el_i, inc, nInc ) ) IJK[2]--;
         gOrig[7] = Grid_Project( grid, IJK );
 
         for( orig_i = 0; orig_i < 8; orig_i++ ) {
             Grid_Lift( grid, gOrig[orig_i], IJK );
             FeMesh_NodeGlobalToDomain( feMesh, gOrig[orig_i], &lNode );
             index = 0;
-            for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
-                for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
-                    gNode = Grid_Project( grid, IJK_test );
-                    if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode, &lNode ) ) abort();
-                    else
-                        self->elPatchQuad[el_i][orig_i][index++] = lNode;
+            for( IJK_test[2] = IJK[2]; IJK_test[2] < IJK[2] + 4; IJK_test[2]++ ) {
+                for( IJK_test[1] = IJK[1]; IJK_test[1] < IJK[1] + 4; IJK_test[1]++ ) {
+                    for( IJK_test[0] = IJK[0]; IJK_test[0] < IJK[0] + 4; IJK_test[0]++ ) {
+                        gNode = Grid_Project( grid, IJK_test );
+                        if( !Mesh_GlobalToDomain( feMesh, MT_VERTEX, gNode, &lNode ) ) abort();
+                        else
+                            self->elPatchQuad[el_i][orig_i][index++] = lNode;
+                    }
                 }
             }
         }

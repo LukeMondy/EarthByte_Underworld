@@ -33,7 +33,7 @@ Q2SphericalGenerator* Q2SphericalGenerator_New( Name name, AbstractContext* cont
    Stg_Component_BuildFunction*                                  _build = _C2Generator_Build;
    Stg_Component_InitialiseFunction*                        _initialise = _C2Generator_Initialise;
    Stg_Component_ExecuteFunction*                              _execute = _C2Generator_Execute;
-   Stg_Component_DestroyFunction*                              _destroy = NULL;
+   Stg_Component_DestroyFunction*                              _destroy = _C2Generator_Destroy;
    AllocationType                                    nameAllocationType = NON_GLOBAL;
    MeshGenerator_SetDimSizeFunc*                         setDimSizeFunc = CartesianGenerator_SetDimSize;
    MeshGenerator_GenerateFunc*                             generateFunc = CartesianGenerator_Generate;

@@ -13,6 +13,9 @@ Bool Spherical_Components_Init( int* argc, char** argv[] ) {
    Stg_ComponentRegister_Add( compReg, RSGenerator_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_RSGenerator_DefaultNew );
    RegisterParent( RSGenerator_Type, CartesianGenerator_Type );
 
+   Stg_ComponentRegister_Add( compReg, Q2RSGenerator_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)_Q2RSGenerator_DefaultNew );
+   RegisterParent( Q2RSGenerator_Type, RSGenerator_Type );
+
    Stg_ComponentRegister_Add( compReg, Q2SphericalGenerator_Type, (Name)"0", (Stg_Component_DefaultConstructorFunction*)Q2SphericalGenerator_New );
    RegisterParent( Q2SphericalGenerator_Type, CartesianGenerator_Type );
 

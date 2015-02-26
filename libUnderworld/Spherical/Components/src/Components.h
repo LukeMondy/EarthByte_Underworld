@@ -15,6 +15,7 @@
 #include "Mesh_ProjectionAlgorithms.h"
 #include "SphericalGenerator.h"
 #include "RSGenerator.h"
+#include "Q2RSGenerator.h"
 #include "ProjectionGenerator.h"
 #include "C0SphericalGenerator.h"
 #include "SphericalStiffnessMatrix.h"
