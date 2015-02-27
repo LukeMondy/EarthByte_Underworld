@@ -58,9 +58,6 @@
       </list>
     </struct>
 
-    <struct name="linearMeshGenerator" mergeType="merge">
-      <param name="sixthOnly" mergeType="replace">True</param>
-    </struct>
     <struct name="materialSwarmParticleLayout" mergeType="merge">
       <param name="Type" mergeType="replace">IrregularMeshParticleLayout</param>
       <param name="cellParticleCount">20</param>

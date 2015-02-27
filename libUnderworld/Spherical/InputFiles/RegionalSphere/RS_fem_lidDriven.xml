@@ -35,9 +35,6 @@
                 <struct name="context">
                         <param name="Type">UnderworldContext</param>
                 </struct>	
-		<struct name="linearMeshGenerator" mergeType="merge">
-			<param name="sixthOnly" mergeType="replace">True</param>
-		</struct>	
                 <struct name="everywhere">
                         <param name="Type">Everywhere</param>
                 </struct>
