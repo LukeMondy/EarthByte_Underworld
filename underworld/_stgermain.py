@@ -473,6 +473,13 @@ def StgBuild( pyUWDict=None ):
             except:
                 utils.sendWarning("Component \'%s\' not found in the live component register in Build phase!" % guy["Type"])
 
+    # now run the original c-code Build,
+    # by looping over the LiveComponentRegister and Build each component
+    lcr = StGermain.LiveComponentRegister_GetLiveComponentRegister()
+    for ii in range(0,StGermain.LiveComponentRegister_GetCount(lcr)):
+        component = StGermain.LiveComponentRegister_At( lcr, ii );
+        StGermain.Stg_Component_Build( component, None, False )
+
 def StgInitialise( pyUWDict ):
     """
        Calls the Initialise phase for all components & plugins found in provided dictionary.
@@ -496,6 +503,13 @@ def StgInitialise( pyUWDict ):
         for guy in pyUWDict["plugins"]:
             compPointer = GetLiveComponent( guy["Type"] )
             StGermain.Stg_Component_Initialise( compPointer, None, False )
+
+    # now run the original c-code Initialise,
+    # by looping over the LiveComponentRegister and Initialise each component
+    lcr = StGermain.LiveComponentRegister_GetLiveComponentRegister()
+    for ii in range(0,StGermain.LiveComponentRegister_GetCount(lcr)):
+        component = StGermain.LiveComponentRegister_At( lcr, ii );
+        StGermain.Stg_Component_Build( component, None, False )
 
 
 def StgDestroy( pyUWDict ):
