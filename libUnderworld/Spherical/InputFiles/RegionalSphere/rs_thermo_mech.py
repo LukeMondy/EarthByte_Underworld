@@ -11,7 +11,7 @@ pwd=os.getcwd();
 # init using simple models
 
 # standard model
-model_input_files = pwd+"/RS_pic.xml "
+model_input_files = pwd+"/RS_themal.xml "
 ### command line modifications ###
 # model_input_files += " -Uzawa_velSolver_ksp_type preonly -Uzawa_velSolver_pc_type lu " 
 

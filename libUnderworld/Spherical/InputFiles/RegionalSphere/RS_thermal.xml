@@ -29,6 +29,8 @@
   <include>Spherical/StokesFlowUzawaPIC.xml</include>
   <include>PICellerator/MaterialPointSwarm.xml</include>
   <include>PICellerator/AllowOutflow.xml</include>
+  <include>StgFEM/TemperatureField.xml</include>
+  <include>StgFEM/TempAdvDiff.xml</include>
 
   <struct name="components" mergeType="merge">
     <struct name="context">
@@ -51,7 +53,7 @@
          <struct>
             <param name="PropertyName"> DENSITY </param>
             <param name="StoreOnParticles"> True </param>
-            <param name="StoreOnMesh"> False </param>
+            <param name="StoreOnMesh"> True </param>
          </struct>
       </list>
     </struct>
@@ -60,6 +62,17 @@
       <param name="Type" mergeType="replace">IrregularMeshParticleLayout</param>
       <param name="cellParticleCount">20</param>
       <param name="FeMesh">linearMesh</param>
+    </struct>
+
+    <!-- overwrite SUPG method -->
+    <struct type="struct" name="defaultResidualForceTerm" mergeType="replace">
+      <param name="Type">SUPGAdvDiffTermPpc</param>
+      <param name="ForceVector">residual</param>
+      <param name="EnergyEqn">EnergyEqn</param>
+      <param name="Swarm">picIntegrationPoints</param>
+      <param name="VelocityField">VelocityField</param>
+      <param name="PhiField">TemperatureField</param>
+      <param name="DiffusivityLabel">1e-2</param>
     </struct>
 
     <struct type="struct" name="buoyancyForceTerm" mergeType="replace">
@@ -108,13 +121,13 @@
     </struct>
 
     <struct name="tempPpc">
-      <param name="Type">Ppc_Constant</param>
-      <param name="Value">0</param>
+      <param name="Type">Ppc_Variable</param>
+      <param name="FieldVariable">TemperatureField</param>
     </struct>
 
     <struct name="gravity">
       <param name="Type">Ppc_Constant</param>
-      <param name="Value" units="m*s^-2">9.8</param>
+      <param name="Value" units="m*s^-2">-9.8</param>
     </struct>
  
     <struct name="everywhere">
@@ -124,21 +137,21 @@
       <param name="Type">RheologyMaterial</param>
       <param name="Shape">everywhere</param>
       <param name="Rheology">viscosity</param>
-      <param name="DENSITY">1</param>
+      <param name="DENSITY">tempPpc</param>
     </struct>
      <struct name="ball">
-        <param name="Type">Sphere</param>
-        <param name="radius">1</param>
-        <param name="CentreX">0</param>
-        <param name="CentreY">0.000</param>
-        <param name="CentreZ">4.5</param>
-     </struct>
-     <struct name="heavy">
-        <param name="Type">RheologyMaterial</param>
-        <param name="Shape">ball</param>
-        <param name="Rheology">viscosity</param>
-        <param name="DENSITY">2</param>
-     </struct>
+         <param name="Type">Sphere</param>
+         <param name="radius">1</param>
+         <param name="CentreX">0</param>
+         <param name="CentreY">0.000</param>
+         <param name="CentreZ">4.5</param>
+       </struct>
+       <struct name="heavy">
+         <param name="Type">RheologyMaterial</param>
+         <param name="Shape">ball</param>
+         <param name="Rheology">viscosity</param>
+         <param name="DENSITY">tempPpc</param>
+       </struct>
          <struct name="viscosity">
             <param name="Type">MaterialViscosity</param>
             <param name="eta">1</param>
@@ -169,5 +182,6 @@
   <param name="gaussParticlesZ"> 2 </param>
   <!-- Set up BCs -->
   <include> Spherical/VCs/RS_freeSlipBCs.xml </include>
+  <include> Spherical/VCs/temperatureBCs.xml </include>
 
 </StGermainData>
