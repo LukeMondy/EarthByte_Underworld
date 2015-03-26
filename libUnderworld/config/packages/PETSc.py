@@ -12,6 +12,8 @@ class PETSc(Package):
         Package.setup_options(self)
         AddOption('--petsc-arch', dest='petsc_arch', nargs=1, type='string',
                   action='store', help='PETSc architecture.')
+        AddOption('--petsc-library', dest='petsc_library', nargs=1, type='string',
+                  action='store', help='PETSc library name.')
 
     def gen_locations(self):
         yield ('/usr/lib/petsc', [], [])
@@ -26,6 +28,7 @@ class PETSc(Package):
 
         # Must have the architecture as well.
         self.arch = self.get_option('petsc_arch')
+        self.library = self.get_option('petsc_library')
 
         # Try to find PETSc information.
         extra_libs = []
@@ -76,8 +79,11 @@ class PETSc(Package):
                     petscconf = None
 
         # Can we locate static or shared libs?
-        libs = ['petscsnes', 'petscksp', 'petscdm',
-                'petscmat', 'petscvec', 'petsc']
+        if self.library is not None:
+	    libs = [ self.library, ] 
+        else:
+	    libs = ['petscsnes', 'petscksp', 'petscdm',
+                    'petscmat', 'petscvec', 'petsc']
         lib_types = self.find_libraries(loc[2], libs)
         # If we couldn't find any libs, try PETSc 3 installed.
         if lib_types is None:

@@ -82,10 +82,6 @@ class cd:
     def __exit__(self, etype, value, traceback):
         os.chdir(self.savedPath)
 
-import subprocess
-with cd("./Solvers/PetscExt"):
-    subprocess.call('./config/configure.py',shell=True)
-    subprocess.call('make all',shell=True)
 
 #
 # Declare which packages we're going to use.
@@ -158,6 +154,10 @@ if not (GetOption('help') or GetOption('clean')):
     if env.get('with_solvers', None):
         if os.path.isdir("Solvers"):
             print("Checking for Solvers... yes");
+            import subprocess
+            with cd("./Solvers/PetscExt"):
+                subprocess.call('./config/configure.py',shell=True)
+                subprocess.call('make all',shell=True)
         else:
             print("Solvers not found");
             env.Exit()
