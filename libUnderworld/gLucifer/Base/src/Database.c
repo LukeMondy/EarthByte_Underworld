@@ -822,9 +822,14 @@ void lucDatabase_GatherGeometry(lucDatabase* self, lucGeometryType type, lucGeom
 
       /* Reduce to get minimum & maximum from all procs */
       float min, max;
+      float bmin[3], bmax[3];
       int width = 0;
       MPI_Reduce( &block->minimum, &min, 1, MPI_FLOAT, MPI_MIN, 0, self->communicator );
       MPI_Reduce( &block->maximum, &max, 1, MPI_FLOAT, MPI_MAX, 0, self->communicator );
+      MPI_Reduce( block->min, &bmin, 3, MPI_FLOAT, MPI_MIN, 0, self->communicator );
+      MPI_Reduce( block->max, &bmax, 3, MPI_FLOAT, MPI_MAX, 0, self->communicator );
+      memcpy(block->min, bmin, sizeof(float) * 3);
+      memcpy(block->max, bmax, sizeof(float) * 3);
       if (data_type == lucVertexData)
          MPI_Reduce( &block->width, &width, 1, MPI_INT, MPI_SUM, 0, self->communicator );
       /* (keep dimcoeff and units from root proc) */
