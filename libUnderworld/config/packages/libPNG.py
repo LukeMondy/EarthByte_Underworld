@@ -11,5 +11,5 @@ class libPNG(Package):
         for env in Package.gen_envs(self, loc):
             self.headers = ['png.h']
             if self.find_libraries(loc[2], 'png'):
-                env.PrependUnique(LIBS=['png'])
+                env.PrependUnique(LIBS=['png', 'z'])
                 yield env
