@@ -1,6 +1,6 @@
 #!/bin/bash
 #Script to write images or any other actions to be executed every dump timestep
-#Assumes gLucifer installed in same dir as script, set GLUCIFER_PATH to override
+#Assumes LavaVu installed in same dir as script, set LAVAVU_PATH to override
 BASEDIR=$(dirname $0)
 #Get first three known args and pass rest on as listed
 OUTDIR=$1; shift
@@ -18,7 +18,7 @@ DBPATH=$1; shift
 #Where to send files / create links with above command
 #UWDEST=""
 
-GLUCIFER_PATH=${GLUCIFER_PATH-$BASEDIR}
+LAVAVU_PATH=${LAVAVU_PATH-$BASEDIR}
 
 IDFILE=${OUTDIR}/id.txt
 
@@ -29,10 +29,10 @@ if [ ! -f ${IDFILE} ]; then
 
   #Create symlink for static content
   rm html
-  ln -s ${GLUCIFER_PATH}/html ${OUTDIR}
+  ln -s ${LAVAVU_PATH}/html ${OUTDIR}
 
   #Launch viewer server in background
-  #${GLUCIFER_PATH}/gLucifer -h -p8080 "$@" ${DBPATH}&
+  #${LAVAVU_PATH}/LavaVu -h -p8080 "$@" ${DBPATH}&
 
   #Server sync enabled?
   if [ ! -z "$UWSYNC" ]; then
@@ -68,11 +68,11 @@ else
 fi
 
 #Dump images
-echo ${GLUCIFER_PATH}/gLuciferOS -I -${TIMESTEP} "$@" ${DBPATH}
-$GLUCIFER_PATH/gLuciferOS -I -J -${TIMESTEP} "$@" ${DBPATH}
+echo ${LAVAVU_PATH}/LavaVuOS -I -${TIMESTEP} "$@" ${DBPATH}
+$LAVAVU_PATH/LavaVuOS -I -J -${TIMESTEP} "$@" ${DBPATH}
 
-#Run html.py if exists in gLucifer path
-[ -f ${GLUCIFER_PATH}/html.py ] && python ${GLUCIFER_PATH}/html.py -d ${DBPATH} -u ${BASEDIR}/ -o ${OUTDIR} -j ${ID} > ${OUTDIR}/index.html
+#Run html.py if exists in LavaVu path
+[ -f ${LAVAVU_PATH}/html.py ] && python ${LAVAVU_PATH}/html.py -d ${DBPATH} -u ${BASEDIR}/ -o ${OUTDIR} -j ${ID} > ${OUTDIR}/index.html
 
 #Output link to results
 if [ ! -z "$UWSYNC" ]; then
