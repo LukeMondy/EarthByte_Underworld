@@ -36,7 +36,7 @@
 #ifndef __lucDatabase_h__
 #define __lucDatabase_h__
 
-#include <gLucifer/Viewer/Types.h>
+#include "Types.h"
 #include <gLucifer/DrawingObjects/DrawingObjects.h>
 #include "sqlite3.h"
 
