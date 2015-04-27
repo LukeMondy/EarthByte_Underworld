@@ -13,6 +13,7 @@
 #include <petscsnes.h>
 #include <petscext.h>
 #include <petscext_pc.h>
+#include <petscis.h> 
 
 #include <petscversion.h>
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
@@ -274,12 +275,17 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	Mat stokes_A;
 	Vec stokes_x;
 	Vec stokes_b;
-
+    Mat a[2][2];
+    Vec x[2];
+    Vec b[2];
 
 	KSP stokes_ksp;
 	PC  stokes_pc;
+	IS  isr[2];
+    PetscInt rowsizeK, colsizeK, rowsizeG, colsizeG;
+
 	char name[100];
-	
+
 	PetscTruth sym,flg;
 
 	SBKSP_GetStokesOperators( stokesSLE, &K,&G,&D,&C, &approxS, &f,&h, &u,&p );
@@ -295,26 +301,48 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	    sym = PETSC_FALSE;
 	    Solver->DIsSym = sym;
 	}
-	
-	SBKSP_CreateStokesBlockOperators( PETSC_COMM_WORLD, K,G,Gt,C, u,p, f,h, &stokes_A, &stokes_x, &stokes_b );
+	/* Need an Index Set (IS) */
+    
+    /* So create MatNest here */
+    /*
+    PetscErrorCode MatCreateNest(MPI_Comm comm,PetscInt nr,const IS is_row[],PetscInt nc,const IS is_col[],const Mat a[],Mat *B)
+    for stokes_A
+
+    #include "petscvec.h"   
+    PetscErrorCode  VecCreateNest(MPI_Comm comm,PetscInt nb,IS is[],Vec x[],Vec *Y)
+    for stokes_x and stokes_b
+    */
+    MatGetSize(K, &rowsizeK, &colsizeK);    
+    MatGetSize(G, &rowsizeG, &colsizeG);
+    /*                                               length, start_pos */
+    ISCreateStride(PetscObjectComm((PetscObject) K), rowsizeK, 0       , 1, &isr[0]);
+    ISCreateStride(PetscObjectComm((PetscObject) K), colsizeG, rowsizeK, 1, &isr[1]);
+
+    a[0][0]=K;  a[0][1]=G;
+    a[1][0]=Gt; a[1][1]=C;
+    MatCreateNest(PetscObjectComm((PetscObject) K), 2, isr, 2, isr, (Mat *)a, &stokes_A);
+    MatAssemblyBegin( stokes_A, MAT_FINAL_ASSEMBLY );
+    MatAssemblyEnd( stokes_A, MAT_FINAL_ASSEMBLY );
+
+    x[0]=u;
+    x[1]=p;
+    VecCreateNest(PetscObjectComm((PetscObject) u), 2, isr, x, &stokes_x);
+    VecAssemblyBegin( stokes_x );
+    VecAssemblyEnd( stokes_x);
+
+    b[0]=f;
+    b[1]=h;
+    VecCreateNest(PetscObjectComm((PetscObject) f), 2, isr, b, &stokes_b);
+    VecAssemblyBegin( stokes_b );
+    VecAssemblyEnd( stokes_b);
+	//SBKSP_CreateStokesBlockOperators( PETSC_COMM_WORLD, K,G,Gt,C, u,p, f,h, &stokes_A, &stokes_x, &stokes_b );
 
 	if( approxS ) {
-	    MatCreate( PETSC_COMM_WORLD, &stokes_P );
-	    MatSetSizes( stokes_P, 2, 2, 2, 2 );
-	    MatSetType( stokes_P, "block" );
-
-#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
-            MatSetUp(stokes_P);
-#endif
-#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
-	    MatSetSizes_Block( stokes_P, 2, 2, 2, 2 );
-#endif
-
-	    MatBlockSetValue( stokes_P, 0, 0, K, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
-	    MatBlockSetValue( stokes_P, 0, 1, G, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
-	    MatBlockSetValue( stokes_P, 1, 1, approxS, DIFFERENT_NONZERO_PATTERN, INSERT_VALUES );
-	    MatAssemblyBegin( stokes_P, MAT_FINAL_ASSEMBLY );
-	    MatAssemblyEnd( stokes_P, MAT_FINAL_ASSEMBLY );
+      a[0][0]=K;    a[0][1]=G;
+      a[1][0]=NULL; a[1][1]=approxS;
+      MatCreateNest(PetscObjectComm((PetscObject) K), 2, isr, 2, isr, (Mat *)a, &stokes_P);
+      MatAssemblyBegin( stokes_P, MAT_FINAL_ASSEMBLY );
+      MatAssemblyEnd( stokes_P, MAT_FINAL_ASSEMBLY );
 	}
 	else {
 	    stokes_P = stokes_A;
@@ -335,11 +363,11 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	KSPSetFromOptions( stokes_ksp );
 
 
-#if( PETSC_VERSION_MAJOR < 3 )
-	PCBlock_SetBlockType( stokes_pc, PC_BLOCK_UPPER );
-#elif( PETSC_VERSION >= 3 )
-	PCBlockSetBlockType( stokes_pc, PC_BLOCK_UPPER );
-#endif
+/* #if( PETSC_VERSION_MAJOR < 3 ) */
+/* 	PCBlock_SetBlockType( stokes_pc, PC_BLOCK_UPPER ); */
+/* #elif( PETSC_VERSION >= 3 ) */
+/* 	PCBlockSetBlockType( stokes_pc, PC_BLOCK_UPPER ); */
+/* #endif */
 
 	/*
 	   Doing this so the KSP Solver has access to the StgFEM Multigrid struct (PETScMGSolver).
@@ -364,7 +392,7 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	Stg_KSPDestroy(&stokes_ksp );
 	if( ((StokesBlockKSPInterface*)stokesSLE->solver)->preconditioner ){ Stg_MatDestroy(&stokes_P ); }
 
-	MatBlockRestoreSubMatrices( stokes_A );
+	//MatBlockRestoreSubMatrices( stokes_A );
 	Stg_MatDestroy(&stokes_A );
 
 	Stg_VecDestroy(&stokes_x);

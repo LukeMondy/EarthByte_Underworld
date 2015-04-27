@@ -41,7 +41,7 @@ export UWEXEC="mpirun -n 4 $UWPATH/build/bin/Underworld"
 
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID |" | tee var.txt
 
-for VC in 2 4 6
+for VC in 2 4
 do
 for SC in 0
 do
@@ -51,15 +51,15 @@ for SCR in fgmres
 do
 for A11 in fgmres
 do
-for SCRTOL in 1e-9
+for SCRTOL in 1e-3
 do
-for A11TOL in 1e-10
+for A11TOL in 1e-4
 do
 #echo "|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----|" | tee -a var.txt
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0
 #for PEN in 0.0 0.02 0.1 1.0 2.0 10.0 20.0 100.0 200.0 1000.0
-for PEN in 0.0 1000.0
+for PEN in 0.0
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 ##PEN=`echo "0.25*$PEN" | bc -l`
@@ -111,7 +111,7 @@ ID=$SCR$A11
 RES=$1
 RESX=$RES
 RESY=$RES
-PP=400
+PP=40
 
 SCALETEXT=no_scale
 
@@ -179,7 +179,7 @@ $UWEXEC $UWPATH/Solvers/InputFiles/testVelicSolCxQ2P1Nearest.xml \
   	-Q22_pc_type $UW \
   	-remove_checkerboard_pressure_null_space 0 \
   	-remove_constant_pressure_null_space 1 \
-  	--mgLevels=5 \
+  	--mgLevels=2 \
     -scr_ksp_type $SCR \
     -Xscr_ksp_view \
     $SCRNORMTYPE \

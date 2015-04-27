@@ -37,7 +37,7 @@ PetscErrorCode KSPBuildPressure_CB_Nullspace_BSSCR(KSP ksp)
     PetscFunctionBegin;
     /* get G matrix from Amat matrix operator on ksp */
     ierr=Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
-    MatBlockGetSubMatrix( Amat, 0,1, &G );/* G should always exist */
+    MatNestGetSubMat( Amat, 0,1, &G );/* G should always exist */
     /* now create Vecs t and v to match size of G: i.e. pressure */ /* NOTE: not using "h" vector from ksp->vec_rhs because this part of the block vector doesn't always exist */
     MatGetVecs( G, &t, PETSC_NULL );/* t and v are destroyed in KSPDestroy_BSSCR */
     MatGetVecs( G, &v, PETSC_NULL );/* t and v such that can do G*t */
@@ -63,7 +63,7 @@ PetscErrorCode KSPBuildPressure_CB_Nullspace_BSSCR(KSP ksp)
     if( BA->scaling_exists == PETSC_TRUE ){
 	Vec R2;
 	/* Get the scalings out the block mat data */
-	VecBlockGetSubVector( BA->Rz, 1, &R2 );
+	VecNestGetSubVec( BA->Rz, 1, &R2 );
 	VecPointwiseDivide( t, t, R2); /* x <- x * 1/R2 */
 	VecPointwiseDivide( v, v, R2);
     }
@@ -96,7 +96,7 @@ PetscErrorCode KSPBuildPressure_Const_Nullspace_BSSCR(KSP ksp)
     PetscFunctionBegin;
     /* get G matrix from Amat matrix operator on ksp */
     ierr=Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
-    MatBlockGetSubMatrix( Amat, 0,1, &G );/* G should always exist */
+    MatNestGetSubMat( Amat, 0,1, &G );/* G should always exist */
     /* now create Vec t to match size of G: i.e. pressure */ /* NOTE: not using "h" vector from ksp->vec_rhs because this part of the block vector doesn't always exist */
     MatGetVecs( G, &t, PETSC_NULL );/* t is destroyed in KSPDestroy_BSSCR */
 
@@ -109,7 +109,7 @@ PetscErrorCode KSPBuildPressure_Const_Nullspace_BSSCR(KSP ksp)
     if( BA->scaling_exists == PETSC_TRUE ){
 	Vec R2;
 	/* Get the scalings out the block mat data */
-	VecBlockGetSubVector( BA->Rz, 1, &R2 );
+	VecNestGetSubVec( BA->Rz, 1, &R2 );
 	VecPointwiseDivide( t, t, R2); /* x <- x * 1/R2 */
     }
     bsscr_writeVec( t, "t", "Writing t vector");
@@ -136,8 +136,8 @@ PetscErrorCode KSPRemovePressureNullspace_BSSCR(KSP ksp, Vec h_hat)
     v=bsscr->v;
     /* get G matrix from Amat matrix operator on ksp */
     ierr=Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
-    //MatBlockGetSubMatrix( Amat, 0,1, &G );/* G should always exist */
-    MatBlockGetSubMatrix( Amat, 1,0, &D );/* D should always exist */
+    //MatNestGetSubMat( Amat, 0,1, &G );/* G should always exist */
+    MatNestGetSubMat( Amat, 1,0, &D );/* D should always exist */
     /* now create Vec t2 to match left hand size of G: i.e. velocity */
     MatGetVecs( D, &t2, PETSC_NULL );
     MatNorm(D,NORM_INFINITY,&gnorm); /* seems like not a bad estimate of the largest eigenvalue for this matrix */

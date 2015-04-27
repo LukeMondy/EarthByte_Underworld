@@ -1,3 +1,2 @@
 | p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |
 |-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----+----|
-| 35 | 169 | 0.4618 | 7.92573844e-09 |  | 1 | 35 |-1.305649e+00 | 1.952800e+00 | -2.905674e-03 | 4.468953e-03 | 0.0 | gkgdiag | 0 | fgmres | 1e-5 | default  | fgmres | 1e-6 | 32 | gmg | q1p0xsinkerGMG_conditionNumber_32x32 | fgmresfgmres | 6 |

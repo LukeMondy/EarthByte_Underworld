@@ -128,7 +128,7 @@
     <!-- Set up BCs and ICs -->
     <include>Underworld/VariableConditions/velocityBCs.freeslip.xml</include>
     
-<!--    <include>Underworld/Viewports/VelocityMagnitudeVP.xml</include>
+    <include>Underworld/Viewports/VelocityMagnitudeVP.xml</include>
     <include>Underworld/Viewports/PressureVP.xml</include>
     
     <include>gLucifer/window.xml</include>
@@ -139,6 +139,5 @@
 	    </list>
 	</struct>
     </struct>
--->
-
+    
 </StGermainData>	

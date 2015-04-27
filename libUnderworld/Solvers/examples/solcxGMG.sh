@@ -35,12 +35,12 @@ count=0
 PROCS=1
 
 export UWPATH=`./getUWD.sh`
-export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
+#export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
-export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
+#export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
 
 echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
-for VC in 2 4 6
+for VC in 4
 do
 for SC in 0
 do
@@ -50,9 +50,9 @@ for SCR in fgmres
 do
 for A11 in fgmres
 do
-for SCRTOL in 1e-9
+for SCRTOL in 1e-5
 do
-for A11TOL in 1e-11
+for A11TOL in 1e-7
 do
 echo "|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----+----|" | tee -a var.txt
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
@@ -61,12 +61,12 @@ echo "|-------+-------+------------+----------+------+------+------+------+-----
 #for PEN in 0.0 10.0 100.0 1000.0 10000.0
 #10.0 100.0 1000.0
 #for PENEXP in -4 -1 0 1 2 3 4 5
-for PENEXP in 0
+for PENEXP in 6
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 #PEN=`echo "0.25*$PEN" | bc -l`
 PEN=`echo "10^($PENEXP)" | bc -l`
-PEN=0.0
+#PEN=0.0
 #SCRP="unpreconditioned"
 SCRP="default"
 #SCRP="unpreconditioned"
@@ -84,7 +84,7 @@ MGOP=" "
     if [ "$MG" = "gmg" ]
         then
 	    #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg.opt "
-	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml  -options_file ./options-scr-mg-rob.opt"
+	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml "
     fi
     if [ "$MG" = "boomeramg" ]                                            
         then                                                                                                                                                                                          
@@ -115,7 +115,7 @@ RES=$1
 
 RESX=$RES
 RESY=$RES
-PP=100
+PP=40
 
 SCALETEXT=no_scale
 
@@ -136,12 +136,12 @@ VV=`echo "10^($VC)" | bc -l`
 #VCC=0
 #VB=`echo "10^(-$VCC)" | bc -l`
 VB=1.0
-PCRES=25
+PCRES=15
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
 #NAME="solcxGMG"
 NAME="crunsSolCx_conditionNumberMatrices_procs=${PROCS}"
-NAME="test_cx"
+#NAME="penTest"
 DIR="${NAME}_${RESX}x${RESY}"
 OUT="$DIR/cx_10e${VC}_${SCALETEXT}"
 mkdir $DIR >& /dev/null
@@ -172,6 +172,11 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     -XscrPCKSP_ksp_converged_reason \
     -XscrPCKSP_ksp_view \
   	-ksp_type bsscr -pc_type none -ksp_k2_type GMG -augmented_lagrangian 1 --penaltyNumber=$PEN \
+    -ksp_type fgmres -pc_type fieldsplit -pc_fieldsplit_detect_saddle_point \
+      -pc_fieldsplit_type schur -pc_fieldsplit_schur_fact_type full \
+      -pc_fieldsplit_schur_precondition full \
+      -fieldsplit_0_pc_type lu \
+      -fieldsplit_1_pc_type lu -ksp_view \
   	-Q22_pc_type $UW \
   	-XQ22_pc_type gtkg -Xrestore_K $SCALE \
     -Xscr_pc_gtkg_ksp_view -Xscr_pc_gtkg_ksp_monitor -scr_pc_gtkg_ksp_rtol 1e-6 -scr_pc_gtkg_ksp_type cg \
@@ -196,9 +201,11 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     -XA11_ksp_monitor_true_residual \
   	--elementResI=$RES --elementResJ=$RES \
   	--maxTimeSteps=0 -XA11_ksp_view -XA11_mg_levels_ksp_view \
-    -xdump_matvec -xmatsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -xmatdumpdir $OUT -xsolutiondumpdir $OUT \
-   --components.stokesblockkspinterface.OptionsString="-scr_ksp_monitor -A11_ksp_monitor " \
-    > "./$OUT/output.txt" 2>&1
+    -dump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -matdumpdir $OUT -solutiondumpdir $OUT \
+   --components.stokesblockkspinterface.OptionsString=" -A11_ksp_monitor -scr_ksp_view -A11_ksp_view -backsolveA11_ksp_type preonly -backsolveA11_pc_type lu " \
+#
+
+#    > "./$OUT/output.txt" 2>&1
 
 #./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt
 

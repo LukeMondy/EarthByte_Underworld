@@ -175,7 +175,7 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     }
 
     /* get sub matrix / vector objects */
-    MatBlockGetSubMatrix( Amat, 0,0, &K );
+    MatNestGetSubMat( Amat, 0,0, &K );
     /* Underworld preconditioner matrix*/
     ApproxS = PETSC_NULL;
     if( ((StokesBlockKSPInterface*)SLE->solver)->preconditioner ) { /* SLE->solver->st_sle == SLE here, by the way */
@@ -189,7 +189,7 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     KSPCreate(PETSC_COMM_WORLD, &A11_ksp);
     Stg_KSPSetOperators(A11_ksp, K, K, DIFFERENT_NONZERO_PATTERN);
 
-    MatBlockGetSubMatrix( Amat, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
+    MatNestGetSubMat( Amat, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
 
     /**********************************************************/
     /******* SOLVE!! ******************************************/

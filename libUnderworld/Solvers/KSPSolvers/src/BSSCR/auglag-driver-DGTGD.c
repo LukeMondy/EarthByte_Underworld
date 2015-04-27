@@ -5,6 +5,7 @@
 #include <petscvec.h>
 #include <petscksp.h>
 #include <petscpc.h>
+#include <petscis.h> 
 
 #include <petscversion.h>
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
@@ -71,6 +72,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     PC pc_S, pcInner;
     Mat K,G,D,C, S, K2;// Korig;
     Vec u,p,f,f2,f3=0,h, h_hat,t;
+    IS  isr[2];
     MGContext mgCtx;
     double mgSetupTime, scrSolveTime, a11SingleSolveTime, penaltyNumber, hFactor;
     static int been_here = 0;  /* Ha Ha Ha !! */
@@ -88,15 +90,18 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     }
     /* get sub matrix / vector objects */
     /* note that here, the matrix D should always exist. It is set up in  _StokesBlockKSPInterface_Solve in StokesBlockKSPInterface.c */
-    MatBlockGetSubMatrix( stokes_A, 0,0, &K );
-    MatBlockGetSubMatrix( stokes_A, 0,1, &G );
-    MatBlockGetSubMatrix( stokes_A, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
-    MatBlockGetSubMatrix( stokes_A, 1,1, &C );  
-    VecBlockGetSubVector( stokes_x, 0, &u );
-    VecBlockGetSubVector( stokes_x, 1, &p );
-    VecBlockGetSubVector( stokes_b, 0, &f );
-    VecBlockGetSubVector( stokes_b, 1, &h );
+    /* now extract K,G etc from a MatNest object */
+    /* {VecGetSubVector(y,bA->isglobal.row[i],&by[i]);} */
 
+    MatNestGetSubMat( stokes_A, 0,0, &K );
+    MatNestGetSubMat( stokes_A, 0,1, &G );
+    MatNestGetSubMat( stokes_A, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
+    MatNestGetSubMat( stokes_A, 1,1, &C );  
+    VecNestGetSubVec( stokes_x, 0, &u );
+    VecNestGetSubVec( stokes_x, 1, &p );
+    VecNestGetSubVec( stokes_b, 0, &f );
+    VecNestGetSubVec( stokes_b, 1, &h );
+    
     PetscPrintf( PETSC_COMM_WORLD,  "\n\n----------  AUGMENTED LAGRANGIAN K2 METHOD ---------\n\n" );
     PetscPrintf( PETSC_COMM_WORLD,      "----------- Penalty = %f\n\n", stokesSLE->penaltyNumber );
     sprintf(suffix,"%s","x");
@@ -201,15 +206,18 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     }
 
     /* Create Schur complement matrix */
-    MatCreateSchurFromBlock( stokes_A, 0.0, "MatSchur_A11", &S );
+    MatCreateSchurComplement(K,K,G,D,C, &S);
+    //MatCreateSchurFromBlock( stokes_A, 0.0, "MatSchur_A11", &S );
     MatAssemblyBegin( S, MAT_FINAL_ASSEMBLY );
     MatAssemblyEnd( S, MAT_FINAL_ASSEMBLY );
 
     /* configure inner solver */
     if (!ksp_K) {  PetscPrintf( PETSC_COMM_WORLD,"ksp_K cannot be NULL\n"); abort();}
 
-    MatSchurSetKSP( S, ksp_K );
-    MatSchurGetKSP( S, &ksp_inner );
+    //MatSchurSetKSP( S, ksp_K );
+    MatSchurComplementSetKSP( S, ksp_K);
+    //MatSchurGetKSP( S, &ksp_inner );
+    MatSchurComplementGetKSP( S, &ksp_inner);
     KSPGetPC( ksp_inner, &pcInner );
     /***************************************************************************************************************/
     /***************************************************************************************************************/
@@ -250,7 +258,13 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
       KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
     }
     MatGetVecs( S, PETSC_NULL, &h_hat );
-    MatSchurApplyReductionToVecFromBlock( S, stokes_b, h_hat );/* A11 KSPSolve in here */
+    //MatSchurApplyReductionToVecFromBlock( S, stokes_b, h_hat );/* A11 KSPSolve in here */
+    Vec f_tmp;
+    MatGetVecs( K, PETSC_NULL, &f_tmp );
+    KSPSolve(ksp_inner, f, f_tmp);    
+    MatMult(D, f_tmp, h_hat);
+    VecAXPY(h, -1, h_hat);/* h_hat = h - Gt*K^(-1)*f */
+    Stg_VecDestroy(&f_tmp);
 
     if(bsscrp_self->mg && change_A11rhspresolve) {
       Stg_KSPDestroy(&ksp_inner );
@@ -448,9 +462,9 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
 //    if(change_backsolve){
 //      Stg_KSPDestroy(&backsolve_ksp);
 //    }
-    MatBlockRestoreSubMatrices( stokes_A );
-    VecBlockRestoreSubVectors( stokes_b );
-    VecBlockRestoreSubVectors( stokes_x );
+//    MatBlockRestoreSubMatrices( stokes_A );
+//    VecBlockRestoreSubVectors( stokes_b );
+//    VecBlockRestoreSubVectors( stokes_x );
     been_here = 1;
     PetscFunctionReturn(0);
 }
