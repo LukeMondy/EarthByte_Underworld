@@ -40,7 +40,7 @@ EXTERN_C_BEGIN
 EXTERN PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_BSSCR(KSP);
 EXTERN_C_END
 
-PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stokes_b, Mat approxS, KSP ksp_K,
+PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stokes_b, Mat approxS,
                                     MatStokesBlockScaling BA, PetscTruth sym, KSP_BSSCR * bsscrp_self );
 PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stokes_b, Mat approxS, KSP ksp_K,
                                   MatStokesBlockScaling BA, PetscTruth sym, KSP_BSSCR * bsscrp_self );
@@ -186,8 +186,8 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
 
     sym = bsscr->DIsSym;
 
-    KSPCreate(PETSC_COMM_WORLD, &A11_ksp);
-    Stg_KSPSetOperators(A11_ksp, K, K, DIFFERENT_NONZERO_PATTERN);
+    //KSPCreate(PETSC_COMM_WORLD, &A11_ksp);
+    //Stg_KSPSetOperators(A11_ksp, K, K, DIFFERENT_NONZERO_PATTERN);
 
     MatNestGetSubMat( Amat, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
 
@@ -197,10 +197,13 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     flg = PETSC_FALSE;
     augment = PETSC_TRUE;
     PetscOptionsGetTruth(PETSC_NULL, "-augmented_lagrangian", &augment, &flg);
-    if(augment){
-        BSSCR_DRIVER_auglag( ksp, Amat, X, B, ApproxS, A11_ksp, BA, sym, bsscr ); }
-    else{
-        BSSCR_DRIVER_flex( ksp, Amat, X, B, ApproxS, A11_ksp, BA, sym, bsscr ); }
+    BSSCR_DRIVER_auglag( ksp, Amat, X, B, ApproxS, BA, sym, bsscr ); 
+    //if(augment){
+    //  BSSCR_DRIVER_auglag( ksp, Amat, X, B, ApproxS, BA, sym, bsscr ); }
+    //else{
+      //BSSCR_DRIVER_flex( ksp, Amat, X, B, ApproxS, A11_ksp, BA, sym, bsscr ); 
+    //}
+    
 
     /**********************************************************/
     /***** END SOLVE!! ****************************************/

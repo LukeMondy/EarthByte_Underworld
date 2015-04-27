@@ -59,7 +59,7 @@ PetscErrorCode BSSCR_KSPSetNormInfConvergenceTest(KSP ksp);
 
 #undef __FUNCT__  
 #define __FUNCT__ "BSSCR_DRIVER_auglag"
-PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stokes_b, Mat approxS, KSP ksp_K,
+PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stokes_b, Mat approxS,
                                           MatStokesBlockScaling BA, PetscTruth sym, KSP_BSSCR * bsscrp_self )
 {
     AugLagStokes_SLE *    stokesSLE = (AugLagStokes_SLE*)bsscrp_self->st_sle;
@@ -208,14 +208,14 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /* Create Schur complement matrix */
     MatCreateSchurComplement(K,K,G,D,C, &S);
     //MatCreateSchurFromBlock( stokes_A, 0.0, "MatSchur_A11", &S );
-    MatAssemblyBegin( S, MAT_FINAL_ASSEMBLY );
-    MatAssemblyEnd( S, MAT_FINAL_ASSEMBLY );
+    //MatAssemblyBegin( S, MAT_FINAL_ASSEMBLY );
+    //MatAssemblyEnd( S, MAT_FINAL_ASSEMBLY );
 
     /* configure inner solver */
-    if (!ksp_K) {  PetscPrintf( PETSC_COMM_WORLD,"ksp_K cannot be NULL\n"); abort();}
+    //if (!ksp_K) {  PetscPrintf( PETSC_COMM_WORLD,"ksp_K cannot be NULL\n"); abort();}
 
     //MatSchurSetKSP( S, ksp_K );
-    MatSchurComplementSetKSP( S, ksp_K);
+    //MatSchurComplementSetKSP( S, ksp_K);
     //MatSchurGetKSP( S, &ksp_inner );
     MatSchurComplementGetKSP( S, &ksp_inner);
     KSPGetPC( ksp_inner, &pcInner );
