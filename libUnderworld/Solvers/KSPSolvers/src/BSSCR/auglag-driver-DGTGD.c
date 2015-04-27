@@ -260,10 +260,16 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     MatGetVecs( S, PETSC_NULL, &h_hat );
     //MatSchurApplyReductionToVecFromBlock( S, stokes_b, h_hat );/* A11 KSPSolve in here */
     Vec f_tmp;
+    /* It may be the case that the current velocity solution might not be bad guess for f_tmp? */
     MatGetVecs( K, PETSC_NULL, &f_tmp );
-    KSPSolve(ksp_inner, f, f_tmp);    
+    scrSolveTime = MPI_Wtime();
+    KSPSolve(ksp_inner, f, f_tmp);
+    scrSolveTime =  MPI_Wtime() - scrSolveTime;
+    PetscPrintf( PETSC_COMM_WORLD, "\n\t*  KSPSolve for RHS setup Finished in time: %lf seconds\n\n", scrSolveTime);
+    //bsscr_writeVec( t, "ts", "Writing t vector");
     MatMult(D, f_tmp, h_hat);
-    VecAXPY(h, -1, h_hat);/* h_hat = h - Gt*K^(-1)*f */
+    //VecAXPY(h, -1, h_hat);/* h_hat = h - Gt*K^(-1)*f */
+    VecAYPX(h_hat, -1.0, h); /* Computes y = x + alpha y.  h_hat -> h - Gt*K^(-1)*f*/
     Stg_VecDestroy(&f_tmp);
 
     if(bsscrp_self->mg && change_A11rhspresolve) {

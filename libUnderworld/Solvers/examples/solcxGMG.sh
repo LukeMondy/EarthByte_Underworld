@@ -172,11 +172,6 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     -XscrPCKSP_ksp_converged_reason \
     -XscrPCKSP_ksp_view \
   	-ksp_type bsscr -pc_type none -ksp_k2_type GMG -augmented_lagrangian 1 --penaltyNumber=$PEN \
-    -ksp_type fgmres -pc_type fieldsplit -pc_fieldsplit_detect_saddle_point \
-      -pc_fieldsplit_type schur -pc_fieldsplit_schur_fact_type full \
-      -pc_fieldsplit_schur_precondition full \
-      -fieldsplit_0_pc_type lu \
-      -fieldsplit_1_pc_type lu -ksp_view \
   	-Q22_pc_type $UW \
   	-XQ22_pc_type gtkg -Xrestore_K $SCALE \
     -Xscr_pc_gtkg_ksp_view -Xscr_pc_gtkg_ksp_monitor -scr_pc_gtkg_ksp_rtol 1e-6 -scr_pc_gtkg_ksp_type cg \
@@ -184,7 +179,7 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
   	-remove_constant_pressure_null_space 1 \
   	--mgLevels=5 \
   	-Xscr_ksp_max_it 1000 \
-    -Xscr_ksp_type $SCR \
+    -scr_ksp_type $SCR \
     -Xscr_ksp_view \
     $SCRNORMTYPE \
     -Xscr_ksp_left_pc \
@@ -192,7 +187,7 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     -Xscr_ksp_monitor_true_residual \
     -XA11_pc_type hypre -XA11_pc_hypre_type boomeramg -XA11_pc_hypre_boomeramg_print_statistics \
   	-XA11_ksp_rtol $A11TOL \
-    -XA11_ksp_type $A11 \
+    -A11_ksp_type $A11 \
     -XA11_pc_hypre_boomeramg_grid_sweeps_all 5 \
     -XA11_pc_hypre_boomeramg_tol 1e-3 \
     -A11_ksp_converged_reason \
@@ -211,7 +206,11 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
 
 cp "$OUT/window.00000.png" "$PNGNAME"
 #echo " $PEN | $UW | $SC | $SCR | $SCRTOL | $SCRP  | $A11 | $A11TOL | $RES | $MG | $DIR | $ID |" | tee -a  var.txt
-
+#    -ksp_type fgmres -pc_type fieldsplit -pc_fieldsplit_detect_saddle_point \
+#      -pc_fieldsplit_type schur -pc_fieldsplit_schur_fact_type full \
+#      -pc_fieldsplit_schur_precondition full \
+#      -fieldsplit_0_pc_type lu \
+#      -fieldsplit_1_pc_type lu -ksp_view \
 done
 done
 done

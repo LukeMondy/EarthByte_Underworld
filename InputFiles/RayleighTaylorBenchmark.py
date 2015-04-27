@@ -80,10 +80,13 @@ material.setup.materialCreate( componentName = "lightLayer",
 
 
 # Need a system of Equations and Solver                                                                                         
-#eq.stokesSystemCreate(solver="stokesblockkspinterface", buoyancy=True, pic=True)                                                         
+uw.equations.setup.stokesSystemCreate(solver="stokesblockkspinterface", buoyancy=True, pic=True, penaltyNumber=5.0)                                                         
 # The uzawa by default at the moment                                                                                            
-eq.setup.stokesSystemCreate(buoyancy=True, pic=True)
+#eq.setup.stokesSystemCreate(buoyancy=True, pic=True)
 #help(eq.setup.stokesSystemCreate)
+uw.solvers.setup.multigrid(3)
+
+uw.solvers.setup.options(optionsString="-ksp_type bsscr -pc_type none -ksp_k2_type GMG -A11_ksp_type fgmres -A11_ksp_converged_reason -xxscr_ksp_view -Q22_pc_type gkgdiag -log_summary", optionsFilename="options/options-scr-mg.opt")
 
 # Create BC's                                                                                                                   
 
