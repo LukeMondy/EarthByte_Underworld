@@ -240,18 +240,18 @@ PetscErrorCode BSSCR_FormSchurApproximation1( Mat A11, Mat A12, Mat A21, Mat A22
    MatGetDiagonal( A11, diag );
    VecReciprocal( diag );
 
-   if( sym ) {
-#if( PETSC_VERSION_MAJOR <= 2 )
-      MatTranspose( A12, &A21_cpy );
-#else
-      MatTranspose( A12, MAT_INITIAL_MATRIX, &A21_cpy );
-#endif
-      MatDiagonalScale(A21_cpy, PETSC_NULL, diag );
-   }
-   else {
+/*    if( sym ) { */
+/* #if( PETSC_VERSION_MAJOR <= 2 ) */
+/*       MatTranspose( A12, &A21_cpy ); */
+/* #else */
+/*       MatTranspose( A12, MAT_INITIAL_MATRIX, &A21_cpy ); */
+/* #endif */
+/*       MatDiagonalScale(A21_cpy, PETSC_NULL, diag ); */
+/*    } */
+/*    else { */
       MatDuplicate( A21, MAT_COPY_VALUES, &A21_cpy );
       MatDiagonalScale(A21_cpy, PETSC_NULL, diag );
-   }
+   /* } */
 
    MatMatMult( A21_cpy, A12, MAT_INITIAL_MATRIX, 1.2, &Shat );  /* A21 diag(K)^{-1} A12 */
 
@@ -275,18 +275,18 @@ PetscErrorCode BSSCR_FormSchurApproximationDiag( Mat A11, Mat A12, Mat A21, Mat 
    MatGetDiagonal( A11, diag );
    VecReciprocal( diag );
 
-   if( sym ) {
-#if( PETSC_VERSION_MAJOR <= 2 )
-      MatTranspose( A12, &A21_cpy );
-#else
-      MatTranspose( A12, MAT_INITIAL_MATRIX, &A21_cpy );
-#endif
-      MatDiagonalScale(A21_cpy, PETSC_NULL, diag );
-   }
-   else {
+/*    if( sym ) { */
+/* #if( PETSC_VERSION_MAJOR <= 2 ) */
+/*       MatTranspose( A12, &A21_cpy ); */
+/* #else */
+/*       MatTranspose( A12, MAT_INITIAL_MATRIX, &A21_cpy ); */
+/* #endif */
+/*       MatDiagonalScale(A21_cpy, PETSC_NULL, diag ); */
+/*    } */
+/*    else { */
       MatDuplicate( A21, MAT_COPY_VALUES, &A21_cpy );
       MatDiagonalScale(A21_cpy, PETSC_NULL, diag );
-   }
+   /* } */
 
    MatMatMult( A21_cpy, A12, MAT_INITIAL_MATRIX, 1.2, &Shat );  /* A21 diag(K)^{-1} A12 */
 

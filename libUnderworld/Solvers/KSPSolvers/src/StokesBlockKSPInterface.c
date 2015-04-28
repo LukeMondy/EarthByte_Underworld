@@ -290,9 +290,12 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 
 	SBKSP_GetStokesOperators( stokesSLE, &K,&G,&D,&C, &approxS, &f,&h, &u,&p );
 
-        /* create a symbolic Gt */
+    /* create a symbolic Gt */
 	if( !D ) {
-	    MatCreateSymTrans( PETSC_COMM_WORLD, G, &Gt );
+      //MatCreateSymTrans( PETSC_COMM_WORLD, G, &Gt );
+      PetscPrintf( PETSC_COMM_WORLD, "\t* BUILDING TRANSPOSE of G!! \n");
+      //MatCreateTranspose( G, &Gt);
+      MatTranspose( G, MAT_INITIAL_MATRIX, &Gt);
 	    sym = PETSC_TRUE;
 	    Solver->DIsSym = sym;
 	}

@@ -23,8 +23,8 @@
 
 # These more aggressive options give a pretty robust / efficient solve
 
--A11_pc_mg_smoothup 2
--A11_pc_mg smoothdown 2
+-A11_pc_mg_smoothup 5
+-A11_pc_mg smoothdown 5
 
 #-A11_mg_levels_ksp_type minres
 -A11_mg_levels_ksp_max_its 3

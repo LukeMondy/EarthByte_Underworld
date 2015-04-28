@@ -61,7 +61,7 @@ echo "|-------+-------+------------+----------+------+------+------+------+-----
 #for PEN in 0.0 10.0 100.0 1000.0 10000.0
 #10.0 100.0 1000.0
 #for PENEXP in -4 -1 0 1 2 3 4 5
-for PENEXP in 6
+for PENEXP in 4
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 #PEN=`echo "0.25*$PEN" | bc -l`
@@ -84,7 +84,7 @@ MGOP=" "
     if [ "$MG" = "gmg" ]
         then
 	    #MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml -options_file ./options-scr-mg.opt "
-	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml "
+	    MGOP="$UWPATH/Solvers/InputFiles/MultigridForRegularSCR.xml  -options_file ./options-scr-mg-rob.opt "
     fi
     if [ "$MG" = "boomeramg" ]                                            
         then                                                                                                                                                                                          

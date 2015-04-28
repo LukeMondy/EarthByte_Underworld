@@ -462,7 +462,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /***************************************************************************************************************/
     Stg_VecDestroy(&t );
     Stg_KSPDestroy(&ksp_S );
-    Stg_KSPDestroy(&ksp_inner );// pcInner == pc_MG and is destroyed when ksp_inner is 
+    //Stg_KSPDestroy(&ksp_inner );// pcInner == pc_MG and is destroyed when ksp_inner is 
     Stg_VecDestroy(&h_hat );
     Stg_MatDestroy(&S );
 //    if(change_backsolve){
