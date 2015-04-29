@@ -169,7 +169,7 @@ void _MeshGenerator_AssignFromXML( void* meshGenerator, Stg_ComponentFactory* cf
         nEnabledDims = Dictionary_Entry_Value_GetCount( enabledDimsList );
         for( d_i = 0; d_i < nEnabledDims; d_i++ ) {
             dim = Dictionary_Entry_Value_AsUnsignedInt( Dictionary_Entry_Value_GetElement( enabledDimsList, d_i ) );
-            if (dim > nDims + 1)
+            if (dim > nDims)
                 Journal_Printf(Mesh_Warning, "Warning - in %s: *** Skipping out of range dimension: %d\n", __func__, dim);
             else
                 MeshGenerator_SetDimState( self, dim, True );
