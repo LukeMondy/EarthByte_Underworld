@@ -134,8 +134,6 @@ int main( int argc, char* argv[] ) {
    MPI_Comm_size( CommWorld, &numProcessors );
    MPI_Comm_rank( CommWorld, &rank );
    
-   mtrace ();
-
    StGermain_Init( &argc, &argv );
    stream = Journal_Register( Info_Type, StGermain_Type );
 

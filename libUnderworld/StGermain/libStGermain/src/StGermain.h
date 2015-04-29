@@ -49,5 +49,4 @@
 	#include "Init.h"
 	#include "main.h"
 	#include "Finalise.h"
-	#include <mcheck.h> 
 #endif /* __StGermain_StGermain_h__ */
