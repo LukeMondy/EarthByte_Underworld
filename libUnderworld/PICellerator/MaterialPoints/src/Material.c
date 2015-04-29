@@ -180,7 +180,7 @@ void _Material_AssignFromXML( void* material, Stg_ComponentFactory* cf, void* da
 		context = Stg_ComponentFactory_ConstructByName( cf, (Name)"context", PICelleratorContext, True, data  );
 
 	materialDictionary = Dictionary_GetDictionary( cf->componentDict, self->name );
-	shape =  Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Shape", Stg_Shape, True, data   ) ;
+	shape =  Stg_ComponentFactory_ConstructByKey( cf, self->name, (Dictionary_Entry_Key)"Shape", Stg_Shape, False, data   ) ;
 	materials_Register = context->materials_Register;
 
 	_Material_Init( self, context, shape, materialDictionary, materials_Register );
@@ -214,15 +214,17 @@ void Material_Layout( void* material, MaterialPointsSwarm* swarm ) {
 	Particle_Index        particleLocalCount = swarm->particleLocalCount;
 	Stream*               stream             = Journal_MyStream( Info_Type, self );
 
-	Journal_RPrintf( stream, "Laying out material '%s' within %s '%s':\n", self->name, shape->type, shape->name );
-	
-	for ( lParticle_I = 0 ; lParticle_I < particleLocalCount ; lParticle_I++ ) {
-		particle = (MaterialPoint*)Swarm_ParticleAt( swarm, lParticle_I );
-		
-		if ( Stg_Shape_IsCoordInside( shape, particle->coord ) ) {
-			particle->materialIndex = self->index;
-		}
-	}
+    if( shape ){
+        Journal_RPrintf( stream, "Laying out material '%s' within %s '%s':\n", self->name, shape->type, shape->name );
+        
+        for ( lParticle_I = 0 ; lParticle_I < particleLocalCount ; lParticle_I++ ) {
+            particle = (MaterialPoint*)Swarm_ParticleAt( swarm, lParticle_I );
+            
+            if ( Stg_Shape_IsCoordInside( shape, particle->coord ) ) {
+                particle->materialIndex = self->index;
+            }
+        }
+    }
 }
 
 double Material_Volume( void* material, IntegrationPointsSwarm* swarm, Coord centroid ) {
