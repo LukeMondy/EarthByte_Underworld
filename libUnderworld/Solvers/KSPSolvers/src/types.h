@@ -38,7 +38,7 @@
 #define __Solvers_KSPSolvers_types_h__
 
 typedef struct StokesBlockKSPInterface  StokesBlockKSPInterface;
-typedef struct StokesBlockSNESInterface  StokesBlockSNESInterface;
+//typedef struct StokesBlockSNESInterface  StokesBlockSNESInterface;
 
 
 //#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR==2) )

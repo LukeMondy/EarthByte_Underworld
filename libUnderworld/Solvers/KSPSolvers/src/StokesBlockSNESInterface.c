@@ -1,3 +1,4 @@
+#if 0
 #include <mpi.h>
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
@@ -563,7 +564,7 @@ PetscErrorCode SBSNES_FormJacobian(
 
    /* create a symbolic Gt if no D */
    if( !D ) {
-       MatCreateSymTrans( PETSC_COMM_WORLD, G, &Gt );
+       MatTranspose( G, MAT_INITIAL_MATRIX, &Gt);
        self->DIsSym = PETSC_TRUE;
    }
    else {
@@ -646,7 +647,7 @@ void _StokesBlockSNESInterface_Solve( void* solver, void* _stokesSLE ) {
 
         /* create a symbolic Gt */
 	if( !D ) {
-	    MatCreateSymTrans( PETSC_COMM_WORLD, G, &Gt );
+        MatTranspose( G, MAT_INITIAL_MATRIX, &Gt);
 	    sym = PETSC_TRUE;
 	    self->DIsSym = sym;
 	}
@@ -742,3 +743,4 @@ void _StokesBlockSNESInterface_Solve( void* solver, void* _stokesSLE ) {
 
 	if(!D){ Stg_MatDestroy(&Gt); }
 }
+#endif

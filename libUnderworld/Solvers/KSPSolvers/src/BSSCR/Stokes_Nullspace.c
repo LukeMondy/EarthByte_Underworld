@@ -159,7 +159,6 @@ PetscErrorCode BSSCR_CheckNullspace(KSP ksp_S, Mat S, Vec h_hat, MatStokesBlockS
 	    Vec R2;
 	    VecNestGetSubVec(BA->Rz, 1, &R2);
 	    VecPointwiseDivide(nsp_vec, nsp_vec, R2);
-	    VecBlockRestoreSubVectors(BA->Rz);
 	}
 
 	BSSCR_MatContainsConstNullSpace(S, nsp_vec, &has_cnst_nullspace);

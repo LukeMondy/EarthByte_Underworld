@@ -23,7 +23,6 @@
 #include <StgFEM/FrequentOutput/FrequentOutput.h>
 #include "Solvers/SLE/SLE.h" /* to give the AugLagStokes_SLE type */
 #include "Solvers/KSPSolvers/KSPSolvers.h"
-#include "petscext.h"
 #include "BSSCR.h"
 #include "stokes_block_scaling.h"
 #include "stokes_mvblock_scaling.h"
@@ -337,7 +336,6 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
         KSPSetInitialGuessNonzero( ksp_S, PETSC_TRUE ); }
     else {
         KSPSetInitialGuessNonzero( ksp_S, PETSC_FALSE ); }
-    KSPSetRelativeRhsConvergenceTest( ksp_S );
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /*******     SET CONVERGENCE TESTS     *************************************************************************/
@@ -412,7 +410,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
 
     /* obtain solution for u */
     VecDuplicate( u, &t );   MatMult( G, p, t);  VecAYPX( t, -1.0, f ); /*** t <- -t + f   = f - G*p  ***/
-    MatSchurGetKSP( S, &ksp_inner );
+    MatSchurComplementGetKSP( S, &ksp_inner );
     a11SingleSolveTime = MPI_Wtime();           /* ----------------------------------  Final V Solve */
     if(usePreviousGuess) KSPSetInitialGuessNonzero( ksp_inner, PETSC_TRUE );
 
@@ -465,15 +463,8 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /***************************************************************************************************************/
     Stg_VecDestroy(&t );
     Stg_KSPDestroy(&ksp_S );
-    //Stg_KSPDestroy(&ksp_inner );// pcInner == pc_MG and is destroyed when ksp_inner is 
     Stg_VecDestroy(&h_hat );
     Stg_MatDestroy(&S );//This will destroy ksp_inner: also.. pcInner == pc_MG and is destroyed when ksp_inner is 
-//    if(change_backsolve){
-//      Stg_KSPDestroy(&backsolve_ksp);
-//    }
-//    MatBlockRestoreSubMatrices( stokes_A );
-//    VecBlockRestoreSubVectors( stokes_b );
-//    VecBlockRestoreSubVectors( stokes_x );
     been_here = 1;
     PetscFunctionReturn(0);
 }

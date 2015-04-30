@@ -52,8 +52,8 @@ Bool Solvers_KSPSolvers_Init( int* argc, char** argv[] ) {
 	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister( ), StokesBlockKSPInterface_Type, "0", (Stg_Component_DefaultConstructorFunction*)_StokesBlockKSPInterface_DefaultNew );
 	RegisterParent( StokesBlockKSPInterface_Type, SLE_Solver_Type );
 
-	Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister( ), StokesBlockSNESInterface_Type, "0", (Stg_Component_DefaultConstructorFunction*)_StokesBlockSNESInterface_DefaultNew );
-	RegisterParent( StokesBlockSNESInterface_Type, SLE_Solver_Type );
+	/* Stg_ComponentRegister_Add( Stg_ComponentRegister_Get_ComponentRegister( ), StokesBlockSNESInterface_Type, "0", (Stg_Component_DefaultConstructorFunction*)_StokesBlockSNESInterface_DefaultNew ); */
+	/* RegisterParent( StokesBlockSNESInterface_Type, SLE_Solver_Type ); */
 
 
 #if ( (PETSC_VERSION_MAJOR>=3) && (PETSC_VERSION_MINOR>=2) )

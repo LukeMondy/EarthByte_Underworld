@@ -41,7 +41,7 @@
 #include "types.h"
 
 #include "StokesBlockKSPInterface.h"
-#include "StokesBlockSNESInterface.h"
+//#include "StokesBlockSNESInterface.h"
 
 
 #include "StokesFullMatrixSNESInterface.h"

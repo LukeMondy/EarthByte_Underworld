@@ -72,8 +72,6 @@ PetscErrorCode BSSCR_MatStokesMVBlock_ApplyScaling( MatStokesBlockScaling BA, Ma
 		
 		VecPointwiseDivide( u, u,R1); /* x <- x * 1/R1 */
 		VecPointwiseDivide( p, p,R2);
-		
-		VecBlockRestoreSubVectors( x );
 	}
 	if( b != PETSC_NULL ) {
 		VecNestGetSubVec( b, 0, &f );
@@ -81,8 +79,6 @@ PetscErrorCode BSSCR_MatStokesMVBlock_ApplyScaling( MatStokesBlockScaling BA, Ma
 		
 		VecPointwiseMult( f, f,L1); /* f <- f * L1 */
 		VecPointwiseMult( h, h,L2);
-		
-		VecBlockRestoreSubVectors( b );
 	}
 	
 	
@@ -97,11 +93,7 @@ PetscErrorCode BSSCR_MatStokesMVBlock_ApplyScaling( MatStokesBlockScaling BA, Ma
 	if( D != PETSC_NULL && !sym ) {	MatDiagonalScale( D, L2,R1 );		}
 	if( C != PETSC_NULL ) {		MatDiagonalScale( C, L2,R2 );		}
 	if( S != PETSC_NULL ) {		MatDiagonalScale( S, L2,R2 );		}
-	
-	MatBlockRestoreSubMatrices( A );
-	
-	VecBlockRestoreSubVectors( BA->Lz );
-	VecBlockRestoreSubVectors( BA->Rz );
+
 	
 	PetscFunctionReturn(0);
 }
@@ -209,9 +201,6 @@ PetscErrorCode BSSCR_mat_mvblock_invert_scalings( MatStokesBlockScaling BA )
 	/* toggle inversion flag */
 	if( BA->scalings_have_been_inverted == PETSC_TRUE ) {   BA->scalings_have_been_inverted = PETSC_FALSE;  }
 	if( BA->scalings_have_been_inverted == PETSC_FALSE ) {  BA->scalings_have_been_inverted = PETSC_TRUE;   }
-	
-	VecBlockRestoreSubVectors( BA->Lz );
-	VecBlockRestoreSubVectors( BA->Rz );
 	
 	PetscFunctionReturn(0);
 }
@@ -434,11 +423,6 @@ PetscErrorCode BSSCR_MatStokesMVBlockDefaultBuildScaling( MatStokesBlockScaling 
 
 	VecCopy( L1, R1 );
 	VecCopy( L2, R2 );
-	
-	MatBlockRestoreSubMatrices( A );
-	VecBlockRestoreSubVectors( BA->Lz );
-	VecBlockRestoreSubVectors( BA->Rz );
-	
-	
+
 	PetscFunctionReturn(0);
 }

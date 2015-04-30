@@ -55,8 +55,8 @@ PetscErrorCode BSSCR_BSSCR_StokesReadPCSchurMat_ascii( MPI_Comm comm, Mat *S )
 	*S = PETSC_NULL;
 	if (flg) {
 		if (!S)	Stg_SETERRQ(1,"Memory space for Smat is NULL");	
-		
-		MatAIJLoad_MatrixMarket( comm, op_name, S );
+		Stg_SETERRQ(1,"Currently Disabled");	
+		//MatAIJLoad_MatrixMarket( comm, op_name, S );
 	}
 	
 	PetscFunctionReturn(0);

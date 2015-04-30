@@ -60,48 +60,26 @@ PetscErrorCode BSSCR_MatStokesKBlock_ApplyScaling( MatStokesBlockScaling BA, Mat
 	
 	/* Get the scalings out the block mat data */
 	VecNestGetSubVec( BA->Lz, 0, &L1 );
-	//VecNestGetSubVec( BA->Lz, 1, &L2 );
 	VecNestGetSubVec( BA->Rz, 0, &R1 );
-	//VecNestGetSubVec( BA->Rz, 1, &R2 );
-	
 	
 	/* get the subblock solution and rhs */
 	if( x != PETSC_NULL ) {
 		VecNestGetSubVec( x, 0, &u );
-		//VecNestGetSubVec( x, 1, &p );
-		
 		VecPointwiseDivide( u, u,R1); /* x <- x * 1/R1 */
-		//VecPointwiseDivide( p, p,R2);
-		
-		VecBlockRestoreSubVectors( x );
 	}
 	if( b != PETSC_NULL ) {
 		VecNestGetSubVec( b, 0, &f );
-		//VecNestGetSubVec( b, 1, &h );
-		
 		VecPointwiseMult( f, f,L1); /* f <- f * L1 */
-		//VecPointwiseMult( h, h,L2);
-		
-		VecBlockRestoreSubVectors( b );
 	}
-	
 	
 	/* Scale matrices */
 	MatNestGetSubMat( A, 0,0, &K );
 	MatNestGetSubMat( A, 0,1, &G );
 	MatNestGetSubMat( A, 1,0, &D );
-	//MatNestGetSubMat( A, 1,1, &C );
 	
 	if( K != PETSC_NULL ) {		MatDiagonalScale( K, L1,R1 );		}
 	if( G != PETSC_NULL ) {		MatDiagonalScale( G, L1,PETSC_NULL );		}
 	if( D != PETSC_NULL && !sym ) {	MatDiagonalScale( D, PETSC_NULL,R1 );		}
-	//if( C != PETSC_NULL ) {		MatDiagonalScale( C, L2,R2 );		}
-	//if( S != PETSC_NULL ) {		MatDiagonalScale( S, L2,R2 );		}
-	
-	MatBlockRestoreSubMatrices( A );
-	
-	VecBlockRestoreSubVectors( BA->Lz );
-	VecBlockRestoreSubVectors( BA->Rz );
 	
 	PetscFunctionReturn(0);
 }
@@ -193,25 +171,17 @@ PetscErrorCode BSSCR_MatKBlock_ConstructScaling( MatStokesBlockScaling BA, Mat A
 // updated
 PetscErrorCode BSSCR_mat_kblock_invert_scalings( MatStokesBlockScaling BA )
 {
-	Vec L1,L2, R1,R2;
+	Vec L1,R1;
 	
 	VecNestGetSubVec( BA->Lz, 0, &L1 );
-	//VecNestGetSubVec( BA->Lz, 1, &L2 );
 	VecNestGetSubVec( BA->Rz, 0, &R1 );
-	//VecNestGetSubVec( BA->Rz, 1, &R2 );
-	
 	
 	VecReciprocal(L1);
-	//VecReciprocal(L2);
 	VecReciprocal(R1);
-	//VecReciprocal(R2);
-	
+
 	/* toggle inversion flag */
 	if( BA->scalings_have_been_inverted == PETSC_TRUE ) {   BA->scalings_have_been_inverted = PETSC_FALSE;  }
 	if( BA->scalings_have_been_inverted == PETSC_FALSE ) {  BA->scalings_have_been_inverted = PETSC_TRUE;   }
-	
-	VecBlockRestoreSubVectors( BA->Lz );
-	VecBlockRestoreSubVectors( BA->Rz );
 	
 	PetscFunctionReturn(0);
 }
@@ -349,26 +319,18 @@ PetscErrorCode BSSCR_MatStokesKBlockReportOperatorScales( Mat A, PetscTruth sym 
 // updated
 PetscErrorCode BSSCR_MatStokesKBlockDefaultBuildScaling( MatStokesBlockScaling BA, Mat A, Vec b, Vec x, PetscTruth sym )
 {
-	Mat K,G,D,C;
-	PetscScalar rg2, rg, ra;  
+	Mat K;
 	PetscInt N;
-	Vec rA, rC;
-	Vec L1,L2, R1,R2;
+	Vec rA;
+	Vec L1, R1;
 	Mat S;
 	
 	VecNestGetSubVec( BA->Lz, 0, &L1 );
-	//VecNestGetSubVec( BA->Lz, 1, &L2 );
-	
 	VecNestGetSubVec( BA->Rz, 0, &R1 );
-	//VecNestGetSubVec( BA->Rz, 1, &R2 );
 	
 	rA = L1;
-	//rC = L2;
 	
 	MatNestGetSubMat( A, 0,0, &K );
-	//MatNestGetSubMat( A, 0,1, &G );
-	//MatNestGetSubMat( A, 1,0, &D );
-	//MatNestGetSubMat( A, 1,1, &C );
 	
 	/* Get diag of K */  
 	MatGetDiagonal( K, rA);
@@ -384,12 +346,6 @@ PetscErrorCode BSSCR_MatStokesKBlockDefaultBuildScaling( MatStokesBlockScaling B
 	//VecSet( rC, 1.0 );
 	
 	VecCopy( L1, R1 );
-	//VecCopy( L2, R2 );
-	
-	MatBlockRestoreSubMatrices( A );
-	VecBlockRestoreSubVectors( BA->Lz );
-	VecBlockRestoreSubVectors( BA->Rz );
-	
 	
 	PetscFunctionReturn(0);
 }

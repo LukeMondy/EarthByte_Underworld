@@ -159,11 +159,6 @@ PetscErrorCode BSSCR_stokes_output( PetscViewer v, Mat stokes_A, Vec stokes_b, V
 	
 	PetscViewerASCIIPopTab(v);
 	
-	
-	MatBlockRestoreSubMatrices( stokes_A );
-	VecBlockRestoreSubVectors( stokes_b );
-	VecBlockRestoreSubVectors( stokes_x );
-	
 	PetscFunctionReturn(0);
 }
 
