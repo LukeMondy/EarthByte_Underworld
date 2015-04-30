@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #include <petsc.h>
 #include <petscmat.h>
 
@@ -309,5 +308,3 @@ PetscErrorCode BSSCR_FormSchurApproximationDiag( Mat A11, Mat A12, Mat A21, Mat 
 
    PetscFunctionReturn(0);
 }
-
-#endif

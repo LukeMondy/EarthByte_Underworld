@@ -1,3 +1,0 @@
-EXEC 		= ./test-VecBlock.app
-NPROCS 		= 2
-TEST_TYPE       = tolerance_diff_pl,1.0e-10

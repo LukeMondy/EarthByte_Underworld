@@ -1,3 +1,0 @@
-EXEC 		= ./test-PCBlock-Apply2.app -sw_pc_type block -sw_pc_block_Q11_pc_type lu -sw_pc_block_Q22_pc_type ilu -pc_block_type upper
-NPROCS 		= 1
-TEST_TYPE       = tolerance_diff_pl,1.0e-10

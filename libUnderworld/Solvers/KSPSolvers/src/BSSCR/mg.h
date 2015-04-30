@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #ifndef __BSSCR_MG_h__
 #define __BSSCR_MG_h__
 
@@ -46,4 +45,4 @@ PetscErrorCode MG_inner_solver_pcmg_shutdown( PC pc_MG );
 //PetscErrorCode BSSCR_mgPCAccelerating( void *ctx, Vec x, Vec y );
 double setupMG( KSP_BSSCR * bsscrp_self, KSP ksp_inner, PC pc_MG, Mat K, MGContext *mgCtx );
 #endif
-#endif
+

@@ -53,10 +53,6 @@ Bool Solvers_Finalise( void ) {
 		Solvers_Assembly_Finalise();
 		Solvers_KSPSolvers_Finalise();
 
-#ifdef HAVE_PETSCEXT
-		PetscExtFinalize( );
-#endif
-
 		return True;
 	} else {
 		return False;

@@ -1,3 +1,0 @@
-EXEC 		= ./test-ksp-cgr.app -ksp_cgr_restart 30 -pc_type sor
-NPROCS 		= 1
-TEST_TYPE       = tolerance_diff_pl,1

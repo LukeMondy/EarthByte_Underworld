@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <petsc.h>
 #include <petscmat.h>
 #include <petscvec.h>
@@ -23,7 +21,7 @@
 #include <Underworld/Underworld.h>
 #include <StgFEM/FrequentOutput/FrequentOutput.h>
 #include "Solvers/KSPSolvers/KSPSolvers.h"
-#include "petscext.h"
+#include "petsccompat.h"
 #include "BSSCR.h"
 #include "stokes_block_scaling.h"
 #include "stokes_mvblock_scaling.h"
@@ -97,16 +95,16 @@ PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stoke
     static int been_here = 0;  /* Ha Ha Ha !! */
 
     /* get sub matrix / vector objects */
-    MatBlockGetSubMatrix( stokes_A, 0,0, &K );
-    MatBlockGetSubMatrix( stokes_A, 0,1, &G );
-    MatBlockGetSubMatrix( stokes_A, 1,0, &D );
-    MatBlockGetSubMatrix( stokes_A, 1,1, &C );
+    MatNestGetSubMat( stokes_A, 0,0, &K );
+    MatNestGetSubMat( stokes_A, 0,1, &G );
+    MatNestGetSubMat( stokes_A, 1,0, &D );
+    MatNestGetSubMat( stokes_A, 1,1, &C );
         
-    VecBlockGetSubVector( stokes_x, 0, &u );
-    VecBlockGetSubVector( stokes_x, 1, &p );
+    VecNestGetSubVec( stokes_x, 0, &u );
+    VecNestGetSubVec( stokes_x, 1, &p );
         
-    VecBlockGetSubVector( stokes_b, 0, &f );
-    VecBlockGetSubVector( stokes_b, 1, &h );
+    VecNestGetSubVec( stokes_b, 0, &f );
+    VecNestGetSubVec( stokes_b, 1, &h );
 
     /* PetscPrintf( PETSC_COMM_WORLD,  "\t Adress of stokes_x is %p\n", stokes_x); */
     /* VecNorm( u, NORM_2, &uNorm ); */
@@ -115,18 +113,16 @@ PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stoke
     /* PetscPrintf( PETSC_COMM_WORLD,  "\t p Norm is %.6e in %s: addres is %p\n",pNorm,__func__,p); */
     /* Create Schur complement matrix */
         
-    MatCreateSchurFromBlock( stokes_A, 0.0, "MatSchur_A11", &S );
-    MatAssemblyBegin( S, MAT_FINAL_ASSEMBLY );
-    MatAssemblyEnd( S, MAT_FINAL_ASSEMBLY );
-
+    //MatCreateSchurFromBlock( stokes_A, 0.0, "MatSchur_A11", &S );
+    MatCreateSchurComplement(K,K,G,D,C, &S);
     /* configure inner solver */
     if (ksp_K!=PETSC_NULL) {
-        MatSchurSetKSP( S, ksp_K );
-        MatSchurGetKSP( S, &ksp_inner );
+        MatSchurComplementSetKSP( S, ksp_K );
+        MatSchurComplementGetKSP( S, &ksp_inner );
     }
     else {
         abort();
-        MatSchurGetKSP( S, &ksp_inner );
+        MatSchurComplementGetKSP( S, &ksp_inner );
         KSPSetType( ksp_inner, "cg" );
     }
     KSPGetPC( ksp_inner, &pcInner );
@@ -205,7 +201,7 @@ PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stoke
         KSPSetInitialGuessNonzero( ksp_S, PETSC_FALSE );
     }
     
-    KSPSetRelativeRhsConvergenceTest( ksp_S );
+    //KSPSetRelativeRhsConvergenceTest( ksp_S );
 
     useNormInfStoppingConditions = PETSC_FALSE;
     PetscOptionsGetTruth( PETSC_NULL ,"-scr_use_norm_inf_stopping_condition", &useNormInfStoppingConditions, &found );
@@ -263,7 +259,7 @@ PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stoke
     VecDuplicate( u, &t );
     MatMult( G, p, t);
     VecAYPX( t, -1.0, f ); /* t <- -t + f */
-    MatSchurGetKSP( S, &ksp_inner );
+    MatSchurComplementGetKSP( S, &ksp_inner );
         
  
     a11SingleSolveTime = MPI_Wtime();         /* ----------------------------------  Final V Solve */
@@ -367,18 +363,14 @@ PetscErrorCode BSSCR_DRIVER_flex( KSP ksp, Mat stokes_A, Vec stokes_x, Vec stoke
 //      KSPLogDestroyMonitor( ksp_S );
         
     Stg_KSPDestroy(&ksp_S );
-    Stg_KSPDestroy(&ksp_inner );
+    //Stg_KSPDestroy(&ksp_inner );
     Stg_VecDestroy(&h_hat );
     Stg_MatDestroy(&S );
 
     /* Destroy nullspace vector if it exists. */
     if(nsp_vec)
         Stg_VecDestroy(&nsp_vec);
-        
-    MatBlockRestoreSubMatrices( stokes_A );
-    VecBlockRestoreSubVectors( stokes_b );
-    VecBlockRestoreSubVectors( stokes_x );
-        
+       
     //been_here = 1;
     been_here++;
     PetscFunctionReturn(0);
@@ -714,5 +706,3 @@ PetscErrorCode BSSCR_KSPSetNormInfConvergenceTest(KSP ksp)
 
     PetscFunctionReturn(0);   
 }
-
-#endif

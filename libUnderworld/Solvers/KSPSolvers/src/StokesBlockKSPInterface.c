@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <mpi.h>
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
@@ -11,8 +9,6 @@
 #include <petscksp.h>
 #include <petscpc.h>
 #include <petscsnes.h>
-#include <petscext.h>
-#include <petscext_pc.h>
 #include <petscis.h> 
 
 #include <petscversion.h>
@@ -30,8 +26,6 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
-
-#include "petscext.h"
 
 /* Macro for checking number integrity - i.e. checks if number is infinite or "not a number" */
 #define SBKSP_isGoodNumber( number ) ( (! isnan( number ) ) && ( ! isinf( number ) ) )
@@ -404,4 +398,3 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	if(!D){ Stg_MatDestroy(&Gt); }
 }
 
-#endif

@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 /*
 This provides a couple of routines which allowed the time per iteration
 to be stored. This is achieved useing the KSPMonitors. The issue with using
@@ -17,6 +15,12 @@ is required whenever you wish to extract the timing information.
 
 
 */
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif /* _GNU_SOURCE needed for asprintf */
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
@@ -328,4 +332,3 @@ PetscErrorCode BSSCR_BSSCR_KSPLogSolveSummary(PetscViewer v,PetscInt monitor_ind
 	
 	PetscFunctionReturn(0);
 }
-#endif

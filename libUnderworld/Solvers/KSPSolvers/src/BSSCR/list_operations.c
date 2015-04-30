@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
@@ -223,79 +222,6 @@ PetscErrorCode BSSCR_VecListOperations( Vec x, PetscViewer v )
 	
 	PetscViewerASCIIPushTab( v );
 	
-	i=0;
-	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->duplicate, v,     i++, "VecDuplicate" );
-	BSSCR_report_op( ops->duplicatevecs, v, i++, "VecDuplicateVecs" );
-	BSSCR_report_op( ops->destroyvecs, v,   i++, "VecDestroyVecs" );
-	BSSCR_report_op( ops->dot, v,           i++, "VecDot" );
-	BSSCR_report_op( ops->mdot, v,          i++, "VecMDot" );
-	
-	BSSCR_report_op( ops->norm, v,  i++, "VecNorm" );
-	BSSCR_report_op( ops->tdot, v,  i++, "VecTDot" );
-	BSSCR_report_op( ops->mtdot, v, i++, "VecMTDot" );
-	BSSCR_report_op( ops->scale, v, i++, "VecScale" );
-	BSSCR_report_op( ops->copy, v,  i++, "VecCopy" );
-	
-	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->set, v,   i++, "VecSet" );
-	BSSCR_report_op( ops->swap, v,  i++, "VecSwap" );
-	BSSCR_report_op( ops->axpy, v,  i++, "VecAXPY" );
-	BSSCR_report_op( ops->axpby, v, i++, "VecAXPBY" );
-	BSSCR_report_op( ops->maxpy, v, i++, "VecMAXPY" );
-	
-	BSSCR_report_op( ops->aypx, v,            i++, "VecAYPX" );
-	BSSCR_report_op( ops->waxpy, v,           i++, "VecWAXPY" );
-	BSSCR_report_op( ops->pointwisemult, v,   i++, "VecPointwiseMult" );
-	BSSCR_report_op( ops->pointwisedivide, v, i++, "VecPointwiseDivide" );
-	BSSCR_report_op( ops->setvalues, v,       i++, "VecSetValues" );
-	
-	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->assemblybegin, v, i++, "VecAssemblyBegin" );
-	BSSCR_report_op( ops->assemblyend, v,   i++, "VecAssemblyEnd" );
-	BSSCR_report_op( ops->getarray, v,      i++, "VecGetArray" );
-	BSSCR_report_op( ops->getsize, v,       i++, "VecGetSize" );
-	BSSCR_report_op( ops->getlocalsize, v,  i++, "VecGetLocalSize" );
-	
-	BSSCR_report_op( ops->restorearray, v, i++, "VecRestoreArray" );
-	BSSCR_report_op( ops->max, v,          i++, "VecMax" );
-	BSSCR_report_op( ops->min, v,          i++, "VecMin" );
-	BSSCR_report_op( ops->setrandom, v,    i++, "VecSetRandom" );
-	BSSCR_report_op( ops->setoption, v,    i++, "VecSetOption" );
-	
-	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->setvaluesblocked, v, i++, "VecSetValuesBlocked" );
-	BSSCR_report_op( ops->destroy, v,          i++, "VecDestroy" );
-	BSSCR_report_op( ops->view, v,             i++, "VecView" );
-	BSSCR_report_op( ops->placearray, v,       i++, "VecPlaceArray" );
-	BSSCR_report_op( ops->replacearray, v,     i++, "VecReplaceArray" );
-	
-	BSSCR_report_op( ops->dot_local, v,   i++, "VecDot_local" );
-	BSSCR_report_op( ops->tdot_local, v,  i++, "VecTDot_local" );
-	BSSCR_report_op( ops->norm_local, v,  i++, "VecNorm_local" );
-	BSSCR_report_op( ops->mdot_local, v,  i++, "VecMDot_local" );
-	BSSCR_report_op( ops->mtdot_local, v, i++, "VecMTDot_local" );
-
-	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->loadintovector, v,          i++, "VecLocalIntoVector" );
-	BSSCR_report_op( ops->reciprocal, v,              i++, "VecReciprocal" );
-#if( ( ( PETSC_VERSION_MAJOR == 3 ) && ( PETSC_VERSION_MINOR < 2 ) ) )
-	BSSCR_report_op( ops->viewnative, v,              i++, "VecViewNative" );
-#endif
-	BSSCR_report_op( ops->conjugate, v,               i++, "VecConjugate" );
-	BSSCR_report_op( ops->setlocaltoglobalmapping, v, i++, "VecSetLocalToGlobalMapping" );
-	
-	BSSCR_report_op( ops->setvalueslocal, v,     i++, "VecSetValuesLocal" );
-	BSSCR_report_op( ops->resetarray, v,         i++, "VecResetArray" );
-	BSSCR_report_op( ops->setfromoptions, v,     i++, "VecSetFromOptions" );
-	BSSCR_report_op( ops->maxpointwisedivide, v, i++, "VecMaxPointwiseDivide" );
-	BSSCR_report_op( ops->load, v,               i++, "VecLoad" );
-	
-	PetscViewerASCIIPrintf(v, "------------------------------------------------\n");
-	BSSCR_report_op( ops->pointwisemax, v,    i++, "VecPointwiseMax" );
-	BSSCR_report_op( ops->pointwisemaxabs, v, i++, "VecPointwiseMaxAbs" );
-	BSSCR_report_op( ops->pointwisemin, v,    i++, "VecPointwiseMin" );
-	BSSCR_report_op( ops->getvalues, v,       i++, "VecGetValues" );
 	
 	
 	PetscViewerASCIIPopTab( v );
@@ -401,5 +327,3 @@ PetscErrorCode BSSCR_SNESListOperations( SNES snes, PetscViewer v )
 	
 	PetscFunctionReturn(0);
 }
-
-#endif

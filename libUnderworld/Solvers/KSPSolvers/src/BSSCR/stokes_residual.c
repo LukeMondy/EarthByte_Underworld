@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
@@ -65,4 +63,4 @@ double BSSCR_StokesContinuityResidual( Mat G, Mat C, Vec H, Vec u, Vec p )
 	//      return ( (double)(r2_norm/u_norm) );
 	return ( (double)(r2_norm) );
 }
-#endif
+

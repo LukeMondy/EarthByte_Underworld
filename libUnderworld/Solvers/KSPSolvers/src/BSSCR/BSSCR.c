@@ -1,6 +1,3 @@
-
-#ifdef HAVE_PETSCEXT
-
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -11,8 +8,6 @@
 #include <petscksp.h>
 #include <petscpc.h>
 #include <petscsnes.h>
-#include <petscext.h>
-#include <petscext_pc.h>
 
 #include <petscversion.h>
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
@@ -413,4 +408,3 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_BSSCR(KSP ksp)
 }
 EXTERN_C_END
 
-#endif

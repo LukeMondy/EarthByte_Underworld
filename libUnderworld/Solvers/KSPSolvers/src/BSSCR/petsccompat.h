@@ -3,7 +3,7 @@
 
 #include "petsc.h"
 
-#include "../../../../../StgDomain/Utils/src/PETScCompatibility.h"
+#include "../../../../StgDomain/Utils/src/PETScCompatibility.h"
 
 /* Some defines that existed in petsc 3.1 but no longer in 3.2 */
 #if !defined(EXTERN)

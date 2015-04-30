@@ -2,8 +2,6 @@
 
 #ifndef __PETSC_EXT_PC_BFBT_H__
 #define __PETSC_EXT_PC_BFBT_H__
-#ifdef HAVE_PETSCEXT
-
 
 #include <petscmat.h>
 #include <petscvec.h>
@@ -18,5 +16,4 @@ PetscErrorCode BSSCR_PCGtKGAttachNullSpace( PC pc );
 PetscErrorCode BSSCR_PCGtKGSet_OperatorForAlgebraicCommutator( PC pc, Mat M );
 PetscErrorCode BSSCR_PCGtKGSet_KSP( PC pc, KSP ksp );
 
-#endif
 #endif

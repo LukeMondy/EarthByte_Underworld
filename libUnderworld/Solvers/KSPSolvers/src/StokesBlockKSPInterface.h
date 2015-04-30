@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #ifndef __StokesBlockKSPInterface_h__
 #define __StokesBlockKSPInterface_h__
 
@@ -80,5 +78,4 @@
 		Mat *K,Mat *G,Mat *D,Mat *C,Mat *approxS,
 		Vec *f,Vec *h,Vec *u,Vec *p );
 
-#endif	
 #endif

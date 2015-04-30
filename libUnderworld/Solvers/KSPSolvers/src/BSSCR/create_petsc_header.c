@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #include "common-driver-utils.h"
 
 
@@ -69,4 +68,3 @@ PetscErrorCode BSSCR_GeneratePetscHeader_for_viewer( PetscViewer viewer )
 
         PetscFunctionReturn(0);
 }
-#endif

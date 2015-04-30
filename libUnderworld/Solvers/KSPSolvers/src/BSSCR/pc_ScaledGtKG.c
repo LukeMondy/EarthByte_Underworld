@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #if 0
 /*
 
@@ -723,7 +722,7 @@ PetscErrorCode BSSCR_PCScGtKGUseStandardScaling( PC pc )
 	VecDuplicate( rA, &rG );
 	
 	/* Get magnitude of K */  
-	PetscExtMatGetRowMax( K, rA, PETSC_NULL );
+	MatGetRowMax( K, rA, PETSC_NULL );
 	
 	VecSqrt( rA );  
 	VecReciprocal( rA );
@@ -734,7 +733,7 @@ PetscErrorCode BSSCR_PCScGtKGUseStandardScaling( PC pc )
 	
 	
 	/* Get magnitude of G */
-	PetscExtMatGetRowMax( G, rG, PETSC_NULL );
+	MatGetRowMax( G, rG, PETSC_NULL );
 	
 	VecDot( rG, rG, &rg2 );
 	VecGetSize( rG, &N );
@@ -841,6 +840,5 @@ PetscErrorCode BSSCR_PCScGtKGUseStandardBBtOperator( PC pc )
 	PetscFunctionReturn(0);
 }
 
-#endif
 #endif
 

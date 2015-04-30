@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #include <petsc.h>
 #include <petscmat.h>
 #include <petscvec.h>
@@ -175,4 +174,3 @@ PetscErrorCode KSPRemovePressureNullspace_BSSCR(KSP ksp, Vec h_hat)
     PetscFunctionReturn(0);
 }
 
-#endif

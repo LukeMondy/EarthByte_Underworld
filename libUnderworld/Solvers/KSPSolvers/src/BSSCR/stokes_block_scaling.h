@@ -1,6 +1,5 @@
 #ifndef __STOKES_MAT_BLOCK_SCALING_H__
 #define __STOKES_MAT_BLOCK_SCALING_H__
-#ifdef HAVE_PETSCEXT
 
 struct _p_MatStokesBlockScaling {
       Vec             Lz, Rz;
@@ -20,5 +19,4 @@ PetscErrorCode BSSCR_MatBlock_ConstructScaling( MatStokesBlockScaling BA, Mat A,
 PetscErrorCode BSSCR_MatStokesBlockDefaultBuildScaling( MatStokesBlockScaling BA, Mat A );
 PetscErrorCode BSSCR_mat_block_invert_scalings( MatStokesBlockScaling BA );
 
-#endif
 #endif

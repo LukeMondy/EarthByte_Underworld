@@ -97,18 +97,6 @@ def getsubdirs(dir):
             if 'archive'!=x.lower(): # convert to lowercase. So Archive, ARChive etc get ignored
                 subdirs.append(x)
     return subdirs
-
-def buildpetscext():
-    # set up some environment variables
-    extwd=Dir('#').abspath + '/Solvers/PetscExt'
-    if not env['PETSC_ARCH']:
-        env.AppendUnique(PETSC_ARCH="arch-linux2-c")
-    if not env['PETSCEXT_DIR']:
-        env.AppendUnique(PETSCEXT_DIR=extwd)
-    if not env['PETSCEXT2_DIR']:
-        env.AppendUnique(PETSCEXT2_DIR=extwd)
-
-
      
 import glob
 

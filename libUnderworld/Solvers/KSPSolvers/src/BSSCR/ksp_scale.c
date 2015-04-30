@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #include <petsc.h>
 #include <petscmat.h>
 #include <petscvec.h>
@@ -116,4 +115,3 @@ PetscErrorCode KSPScale_BSSCR(KSP ksp)
     PetscFunctionReturn(0);
 }
 
-#endif

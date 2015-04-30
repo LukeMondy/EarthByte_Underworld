@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <petsc.h>
 #include <petscmat.h>
 #include <petscvec.h>
@@ -25,7 +23,6 @@
 #include <StgFEM/FrequentOutput/FrequentOutput.h>
 #include "Solvers/SLE/SLE.h" /* to give the AugLagStokes_SLE type */
 #include "Solvers/KSPSolvers/KSPSolvers.h"
-#include "petscext.h"
 #include "BSSCR.h"
 #include "stokes_block_scaling.h"
 #include "stokes_mvblock_scaling.h"
@@ -214,9 +211,9 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /* configure inner solver */
     //if (!ksp_K) {  PetscPrintf( PETSC_COMM_WORLD,"ksp_K cannot be NULL\n"); abort();}
 
-    //MatSchurSetKSP( S, ksp_K );
+    //MatSchurComplementSetKSP( S, ksp_K );
     //MatSchurComplementSetKSP( S, ksp_K);
-    //MatSchurGetKSP( S, &ksp_inner );
+    //MatSchurComplementGetKSP( S, &ksp_inner );
     MatSchurComplementGetKSP( S, &ksp_inner);
     KSPGetPC( ksp_inner, &pcInner );
     /***************************************************************************************************************/
@@ -253,7 +250,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
       KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
       Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
       KSPSetOptionsPrefix(ksp_inner, "rhsA11_");
-      MatSchurSetKSP( S, ksp_inner );
+      MatSchurComplementSetKSP( S, ksp_inner );
       KSPGetPC( ksp_inner, &pcInner );
       KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
     }
@@ -277,7 +274,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
       KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
       Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
       KSPSetOptionsPrefix( ksp_inner, "A11_" );
-      MatSchurSetKSP( S, ksp_inner );
+      MatSchurComplementSetKSP( S, ksp_inner );
       KSPGetPC( ksp_inner, &pcInner );
       KSPSetFromOptions( ksp_inner );
       mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); 
@@ -336,7 +333,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
         KSPSetInitialGuessNonzero( ksp_S, PETSC_TRUE ); }
     else {
         KSPSetInitialGuessNonzero( ksp_S, PETSC_FALSE ); }
-    KSPSetRelativeRhsConvergenceTest( ksp_S );
+    //KSPSetRelativeRhsConvergenceTest( ksp_S );
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /*******     SET CONVERGENCE TESTS     *************************************************************************/
@@ -411,7 +408,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
 
     /* obtain solution for u */
     VecDuplicate( u, &t );   MatMult( G, p, t);  VecAYPX( t, -1.0, f ); /*** t <- -t + f   = f - G*p  ***/
-    MatSchurGetKSP( S, &ksp_inner );
+    MatSchurComplementGetKSP( S, &ksp_inner );
     a11SingleSolveTime = MPI_Wtime();           /* ----------------------------------  Final V Solve */
     if(usePreviousGuess) KSPSetInitialGuessNonzero( ksp_inner, PETSC_TRUE );
 
@@ -475,4 +472,3 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     PetscFunctionReturn(0);
 }
 
-#endif

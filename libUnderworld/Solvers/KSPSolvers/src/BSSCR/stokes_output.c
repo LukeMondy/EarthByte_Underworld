@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
@@ -46,16 +45,16 @@ PetscErrorCode BSSCR_stokes_output( PetscViewer v, Mat stokes_A, Vec stokes_b, V
 	f = h = PETSC_NULL;
 	u = p = PETSC_NULL;
 	
-	MatBlockGetSubMatrix( stokes_A, 0,0, &K );
-	MatBlockGetSubMatrix( stokes_A, 0,1, &G );
-	MatBlockGetSubMatrix( stokes_A, 1,0, &D );
-	MatBlockGetSubMatrix( stokes_A, 1,1, &C );
+	MatNestGetSubMat( stokes_A, 0,0, &K );
+	MatNestGetSubMat( stokes_A, 0,1, &G );
+	MatNestGetSubMat( stokes_A, 1,0, &D );
+	MatNestGetSubMat( stokes_A, 1,1, &C );
 	
-	VecBlockGetSubVector( stokes_x, 0, &u );
-	VecBlockGetSubVector( stokes_x, 1, &p );
+	VecNestGetSubVec( stokes_x, 0, &u );
+	VecNestGetSubVec( stokes_x, 1, &p );
 	
-	VecBlockGetSubVector( stokes_b, 0, &f );
-	VecBlockGetSubVector( stokes_b, 1, &h );
+	VecNestGetSubVec( stokes_b, 0, &f );
+	VecNestGetSubVec( stokes_b, 1, &h );
 	
 	
 	PetscViewerASCIIPrintf( v, "Stokes Output:\n");
@@ -168,4 +167,3 @@ PetscErrorCode BSSCR_stokes_output( PetscViewer v, Mat stokes_A, Vec stokes_b, V
 	PetscFunctionReturn(0);
 }
 
-#endif

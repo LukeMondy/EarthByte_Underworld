@@ -1,3 +1,0 @@
-block_type: diagonal 
-(1,1) pc_type: ilu 
-(2,2) pc_type: ilu 

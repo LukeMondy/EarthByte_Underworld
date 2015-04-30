@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
@@ -92,5 +90,3 @@ PetscErrorCode BSSCR_KSPLogConvergenceRate(PetscViewer v,PetscInt monitor_index,
 	
 	PetscFunctionReturn(0);
 }
-
-#endif

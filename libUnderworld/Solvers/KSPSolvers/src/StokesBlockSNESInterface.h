@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #ifndef __StokesBlockSNESInterface_h__
 #define __StokesBlockSNESInterface_h__
 
@@ -54,7 +53,6 @@
 
 	void _StokesBlockSNESInterface_Solve( void* solver, void* stokesSLE );
         PetscErrorCode SBSNES_Check(Mat M, Vec V, const char *f, char* Mname, char* Vname);
-#endif	
 #endif
 
 

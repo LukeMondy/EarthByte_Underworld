@@ -65,23 +65,6 @@ def UWExit( self ):
 
 env.AddMethod( UWExit )
 
-#
-# Build PetscExt here.
-#
-import os
-
-class cd:
-    """Create a context manager to work in an insulated environment with a changed directory"""
-    def __init__(self, newPath):
-        self.newPath = newPath
-
-    def __enter__(self):
-        self.savedPath = os.getcwd()
-        os.chdir(self.newPath)
-
-    def __exit__(self, etype, value, traceback):
-        os.chdir(self.savedPath)
-
 
 #
 # Declare which packages we're going to use.
@@ -89,7 +72,6 @@ class cd:
 
 env.UsePackage(packages.libm)
 env.UsePackage(packages.libXML2)
-env.UsePackage(packages.PETScExt)
 env.UsePackage(packages.HDF5)
 env.UsePackage(packages.OSMesa)
 env.UsePackage(packages.OpenGL)
@@ -102,6 +84,8 @@ env.UsePackage(packages.libavcodec)
 env.UsePackage(packages.gl2ps)
 env.UsePackage(packages.Python)
 env.UsePackage(packages.Numpy)
+env.UsePackage(packages.MPI)
+env.UsePackage(packages.PETSc)
 
 # this flag is required to prevent possible issues with AssertMacro.h defining 'check' 
 if platform.system() == 'Darwin':
@@ -154,10 +138,6 @@ if not (GetOption('help') or GetOption('clean')):
     if env.get('with_solvers', None):
         if os.path.isdir("Solvers"):
             print("Checking for Solvers... yes");
-            import subprocess
-            with cd("./Solvers/PetscExt"):
-                subprocess.call('./config/configure.py',shell=True)
-                subprocess.call('make all',shell=True)
         else:
             print("Solvers not found");
             env.Exit()
@@ -216,7 +196,6 @@ if not (GetOption('help') or GetOption('clean')):
     env.ConfigurePackage(packages.HDF5, required=True)
     env.ConfigurePackage(packages.Python, required=True)
     env.ConfigurePackage(packages.PETSc)
-    env.ConfigurePackage(packages.PETScExt, required=False)
     env.ConfigurePackage(packages.Numpy, required=True)
 
     #Set debug and optimise settings last to override any from PETSc

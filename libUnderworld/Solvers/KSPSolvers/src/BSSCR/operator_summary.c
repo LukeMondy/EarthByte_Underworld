@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <petsc.h>
 #include <petscvec.h>
 #include <petscmat.h>
@@ -134,4 +132,3 @@ PetscErrorCode BSSCR_StokesCreateOperatorSummary( Mat K, Mat G, Mat C, Vec f, Ve
 	
 	PetscFunctionReturn(0);
 }
-#endif

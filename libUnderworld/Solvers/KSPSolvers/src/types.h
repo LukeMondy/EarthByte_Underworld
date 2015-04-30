@@ -36,10 +36,10 @@
 
 #ifndef __Solvers_KSPSolvers_types_h__
 #define __Solvers_KSPSolvers_types_h__
-#ifdef HAVE_PETSCEXT
+
 typedef struct StokesBlockKSPInterface  StokesBlockKSPInterface;
 typedef struct StokesBlockSNESInterface  StokesBlockSNESInterface;
-#endif
+
 
 //#if ( (PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR==2) )
 //#if 1

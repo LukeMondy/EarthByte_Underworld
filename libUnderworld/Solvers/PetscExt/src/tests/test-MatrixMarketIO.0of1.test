@@ -1,3 +1,0 @@
-EXEC 		= ./test-MatrixMarketIO.app
-NPROCS 		= 1
-TEST_TYPE 	= literal_diff

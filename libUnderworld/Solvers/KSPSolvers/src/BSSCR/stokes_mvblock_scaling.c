@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 /*
 
 Given a block system
@@ -60,16 +59,16 @@ PetscErrorCode BSSCR_MatStokesMVBlock_ApplyScaling( MatStokesBlockScaling BA, Ma
 	
 	
 	/* Get the scalings out the block mat data */
-	VecBlockGetSubVector( BA->Lz, 0, &L1 );
-	VecBlockGetSubVector( BA->Lz, 1, &L2 );
-	VecBlockGetSubVector( BA->Rz, 0, &R1 );
-	VecBlockGetSubVector( BA->Rz, 1, &R2 );
+	VecNestGetSubVec( BA->Lz, 0, &L1 );
+	VecNestGetSubVec( BA->Lz, 1, &L2 );
+	VecNestGetSubVec( BA->Rz, 0, &R1 );
+	VecNestGetSubVec( BA->Rz, 1, &R2 );
 	
 	
 	/* get the subblock solution and rhs */
 	if( x != PETSC_NULL ) {
-		VecBlockGetSubVector( x, 0, &u );
-		VecBlockGetSubVector( x, 1, &p );
+		VecNestGetSubVec( x, 0, &u );
+		VecNestGetSubVec( x, 1, &p );
 		
 		VecPointwiseDivide( u, u,R1); /* x <- x * 1/R1 */
 		VecPointwiseDivide( p, p,R2);
@@ -77,8 +76,8 @@ PetscErrorCode BSSCR_MatStokesMVBlock_ApplyScaling( MatStokesBlockScaling BA, Ma
 		VecBlockRestoreSubVectors( x );
 	}
 	if( b != PETSC_NULL ) {
-		VecBlockGetSubVector( b, 0, &f );
-		VecBlockGetSubVector( b, 1, &h );
+		VecNestGetSubVec( b, 0, &f );
+		VecNestGetSubVec( b, 1, &h );
 		
 		VecPointwiseMult( f, f,L1); /* f <- f * L1 */
 		VecPointwiseMult( h, h,L2);
@@ -88,10 +87,10 @@ PetscErrorCode BSSCR_MatStokesMVBlock_ApplyScaling( MatStokesBlockScaling BA, Ma
 	
 	
 	/* Scale matrices */
-	MatBlockGetSubMatrix( A, 0,0, &K );
-	MatBlockGetSubMatrix( A, 0,1, &G );
-	MatBlockGetSubMatrix( A, 1,0, &D );
-	MatBlockGetSubMatrix( A, 1,1, &C );
+	MatNestGetSubMat( A, 0,0, &K );
+	MatNestGetSubMat( A, 0,1, &G );
+	MatNestGetSubMat( A, 1,0, &D );
+	MatNestGetSubMat( A, 1,1, &C );
 	
 	if( K != PETSC_NULL ) {		MatDiagonalScale( K, L1,R1 );		}
 	if( G != PETSC_NULL ) {		MatDiagonalScale( G, L1,R2 );		}
@@ -196,10 +195,10 @@ PetscErrorCode BSSCR_mat_mvblock_invert_scalings( MatStokesBlockScaling BA )
 {
 	Vec L1,L2, R1,R2;
 	
-	VecBlockGetSubVector( BA->Lz, 0, &L1 );
-	VecBlockGetSubVector( BA->Lz, 1, &L2 );
-	VecBlockGetSubVector( BA->Rz, 0, &R1 );
-	VecBlockGetSubVector( BA->Rz, 1, &R2 );
+	VecNestGetSubVec( BA->Lz, 0, &L1 );
+	VecNestGetSubVec( BA->Lz, 1, &L2 );
+	VecNestGetSubVec( BA->Rz, 0, &R1 );
+	VecNestGetSubVec( BA->Rz, 1, &R2 );
 	
 	
 	VecReciprocal(L1);
@@ -279,10 +278,10 @@ PetscErrorCode BSSCR_MatStokesMVBlockReportOperatorScales( Mat A, PetscTruth sym
 	}
 	
 	
-	MatBlockGetSubMatrix( A, 0,0, &K );
-	MatBlockGetSubMatrix( A, 0,1, &G );
-	MatBlockGetSubMatrix( A, 1,0, &D );
-	MatBlockGetSubMatrix( A, 1,1, &C );
+	MatNestGetSubMat( A, 0,0, &K );
+	MatNestGetSubMat( A, 0,1, &G );
+	MatNestGetSubMat( A, 1,0, &D );
+	MatNestGetSubMat( A, 1,1, &C );
 	
 	
 	MatGetVecs( K, PETSC_NULL, &rA );
@@ -290,21 +289,21 @@ PetscErrorCode BSSCR_MatStokesMVBlockReportOperatorScales( Mat A, PetscTruth sym
 	
 	/* Report the row max and mins */
 	if (K!=PETSC_NULL) {
-		PetscExtMatGetRowMax( K, rA, PETSC_NULL );
+		MatGetRowMax( K, rA, PETSC_NULL );
 		VecMax( rA, &loc, &max );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_max(K) = %g \n", max );
 		
-		PetscExtMatGetRowMinAbs( K, rA, PETSC_NULL );
+		MatGetRowMinAbs( K, rA, PETSC_NULL );
 		VecMin( rA, &loc, &min );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_min(K) = %g \n\n", min );
 	}
 	
 	if( G != PETSC_NULL ) {       
-		PetscExtMatGetRowMax( G, rG, PETSC_NULL );
+		MatGetRowMax( G, rG, PETSC_NULL );
 		VecMax( rG, &loc, &max );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_max(G) = %g \n", max );
 		
-		PetscExtMatGetRowMinAbs( G, rG, PETSC_NULL );
+		MatGetRowMinAbs( G, rG, PETSC_NULL );
 		VecMin( rG, &loc, &min );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_min(G) = %g \n", min );
 	}
@@ -313,11 +312,11 @@ PetscErrorCode BSSCR_MatStokesMVBlockReportOperatorScales( Mat A, PetscTruth sym
                 Vec rD;
 
                 MatGetVecs( D, PETSC_NULL, &rD );
-		PetscExtMatGetRowMax( D, rD, PETSC_NULL );
+		MatGetRowMax( D, rD, PETSC_NULL );
 		VecMax( rD, &loc, &max );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_max(D) = %g \n", max );
 		
-		PetscExtMatGetRowMinAbs( D, rD, PETSC_NULL );
+		MatGetRowMinAbs( D, rD, PETSC_NULL );
 		VecMin( rD, &loc, &min );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_min(D) = %g \n", min );
 
@@ -328,11 +327,11 @@ PetscErrorCode BSSCR_MatStokesMVBlockReportOperatorScales( Mat A, PetscTruth sym
 		Vec cG;
 
 		MatGetVecs( G, &cG, PETSC_NULL );
-		PetscExtMatGetRowMax( C, cG, PETSC_NULL );
+		MatGetRowMax( C, cG, PETSC_NULL );
 		VecMax( cG, &loc, &max );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_max(C) = %g \n", max );
 		
-		PetscExtMatGetRowMin( C, cG, PETSC_NULL );
+		MatGetRowMin( C, cG, PETSC_NULL );
 		VecMin( cG, &loc, &min );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_min(C) = %g \n\n", min );
 	
@@ -358,26 +357,26 @@ PetscErrorCode BSSCR_MatStokesMVBlockDefaultBuildScaling( MatStokesBlockScaling 
 	Vec L1,L2, R1,R2;
 	Mat S;
 	
-	VecBlockGetSubVector( BA->Lz, 0, &L1 );
-	VecBlockGetSubVector( BA->Lz, 1, &L2 );
+	VecNestGetSubVec( BA->Lz, 0, &L1 );
+	VecNestGetSubVec( BA->Lz, 1, &L2 );
 	
-	VecBlockGetSubVector( BA->Rz, 0, &R1 );
-	VecBlockGetSubVector( BA->Rz, 1, &R2 );
+	VecNestGetSubVec( BA->Rz, 0, &R1 );
+	VecNestGetSubVec( BA->Rz, 1, &R2 );
 	
 	rA = L1;
 	rC = L2;
 	
-	MatBlockGetSubMatrix( A, 0,0, &K );
-	MatBlockGetSubMatrix( A, 0,1, &G );
-	MatBlockGetSubMatrix( A, 1,0, &D );
-	MatBlockGetSubMatrix( A, 1,1, &C );
+	MatNestGetSubMat( A, 0,0, &K );
+	MatNestGetSubMat( A, 0,1, &G );
+	MatNestGetSubMat( A, 1,0, &D );
+	MatNestGetSubMat( A, 1,1, &C );
 	
 	VecDuplicate( rA, &rG );
 	
 	
 	/* Get magnitude of K */  
 	//px_MatGetAbsRowSum( K, rA );
-        //PetscExtMatGetRowMax( K, rA, PETSC_NULL );
+        //MatGetRowMax( K, rA, PETSC_NULL );
 	MatGetDiagonal( K, rA);
 
 	VecSqrt( rA );  
@@ -390,7 +389,7 @@ PetscErrorCode BSSCR_MatStokesMVBlockDefaultBuildScaling( MatStokesBlockScaling 
 	
 	/* Get magnitude of G */
 	//px_MatGetAbsRowSum( G, rG );
-	//PetscExtMatGetRowMax( G, rG, PETSC_NULL );
+	//MatGetRowMax( G, rG, PETSC_NULL );
 
 	Mat A21_cpy;
 	Mat Shat;
@@ -408,7 +407,7 @@ PetscErrorCode BSSCR_MatStokesMVBlockDefaultBuildScaling( MatStokesBlockScaling 
 	    MatTranspose( G, MAT_INITIAL_MATRIX, &A21_cpy );
 #endif
 	else {
-	    //MatBlockGetSubMatrix( A, 1, 0, &A21 );
+	    //MatNestGetSubMat( A, 1, 0, &A21 );
 	    MatDuplicate( D, MAT_COPY_VALUES, &A21_cpy );
 	}
 	
@@ -421,7 +420,7 @@ PetscErrorCode BSSCR_MatStokesMVBlockDefaultBuildScaling( MatStokesBlockScaling 
 	Stg_MatDestroy(&A21_cpy );
 		
 	/* should now have Shat = Gt.rA.rA.G -C */
-	//PetscExtMatGetRowMax( Shat, rC, PETSC_NULL );
+	//MatGetRowMax( Shat, rC, PETSC_NULL );
 	MatGetDiagonal( Shat, rC);
 	VecSqrt( rC );  
 	VecReciprocal( rC );
@@ -443,5 +442,3 @@ PetscErrorCode BSSCR_MatStokesMVBlockDefaultBuildScaling( MatStokesBlockScaling 
 	
 	PetscFunctionReturn(0);
 }
-
-#endif

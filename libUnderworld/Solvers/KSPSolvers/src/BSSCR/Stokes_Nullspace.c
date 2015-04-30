@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #if 0
 #include <petsc.h>
 #include <petscvec.h>
@@ -158,7 +157,7 @@ PetscErrorCode BSSCR_CheckNullspace(KSP ksp_S, Mat S, Vec h_hat, MatStokesBlockS
 	//if(!flg || flg2) {
 	if( BA ) {
 	    Vec R2;
-	    VecBlockGetSubVector(BA->Rz, 1, &R2);
+	    VecNestGetSubVec(BA->Rz, 1, &R2);
 	    VecPointwiseDivide(nsp_vec, nsp_vec, R2);
 	    VecBlockRestoreSubVectors(BA->Rz);
 	}
@@ -184,4 +183,4 @@ PetscErrorCode BSSCR_CheckNullspace(KSP ksp_S, Mat S, Vec h_hat, MatStokesBlockS
     PetscFunctionReturn(0);
 }
 #endif
-#endif
+

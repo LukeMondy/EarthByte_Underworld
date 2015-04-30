@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <mpi.h>
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
@@ -15,8 +13,6 @@
 #include <petscpc.h>
 #include <petscsnes.h>
 #include <petscsys.h>
-#include <petscext.h>
-#include <petscext_pc.h>
 
 #include <petscversion.h>
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
@@ -33,8 +29,6 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
-
-#include "petscext.h"
 
 /* Macro for checking number integrity - i.e. checks if number is infinite or "not a number" */
 #define SBSNES_isGoodNumber( number ) ( (! isnan( number ) ) && ( ! isinf( number ) ) )
@@ -748,5 +742,3 @@ void _StokesBlockSNESInterface_Solve( void* solver, void* _stokesSLE ) {
 
 	if(!D){ Stg_MatDestroy(&Gt); }
 }
-
-#endif

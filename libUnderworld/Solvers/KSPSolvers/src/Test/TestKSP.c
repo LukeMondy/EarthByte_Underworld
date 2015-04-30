@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -10,8 +8,6 @@
 #include <petscksp.h>
 #include <petscpc.h>
 #include <petscsnes.h>
-#include <petscext.h>
-#include <petscext_pc.h>
 
 #include <petscversion.h>
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
@@ -26,6 +22,8 @@
 #include <PICellerator/PICellerator.h>
 #include <Underworld/Underworld.h>
 #include <Solvers/Solvers.h>
+
+#include "petsccompat.h"
 
 #include "TestKSP.h"
 
@@ -117,4 +115,3 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_TEST(KSP ksp)
 }
 EXTERN_C_END
 
-#endif
