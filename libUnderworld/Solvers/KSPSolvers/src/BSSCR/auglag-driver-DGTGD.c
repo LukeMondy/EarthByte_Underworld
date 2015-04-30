@@ -23,6 +23,7 @@
 #include <StgFEM/FrequentOutput/FrequentOutput.h>
 #include "Solvers/SLE/SLE.h" /* to give the AugLagStokes_SLE type */
 #include "Solvers/KSPSolvers/KSPSolvers.h"
+#include "petscext.h"
 #include "BSSCR.h"
 #include "stokes_block_scaling.h"
 #include "stokes_mvblock_scaling.h"
@@ -65,7 +66,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     PetscTruth change_backsolve;
     PetscErrorCode ierr;
     PetscInt monitor_index,max_it,min_it;
-    KSP ksp_inner, ksp_S, backsolve_ksp, presolve_ksp;
+    KSP ksp_inner, ksp_S, ksp_new_inner;
     PC pc_S, pcInner;
     Mat K,G,D,C, S, K2;// Korig;
     Vec u,p,f,f2,f3=0,h, h_hat,t;
@@ -211,9 +212,9 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /* configure inner solver */
     //if (!ksp_K) {  PetscPrintf( PETSC_COMM_WORLD,"ksp_K cannot be NULL\n"); abort();}
 
-    //MatSchurComplementSetKSP( S, ksp_K );
+    //MatSchurSetKSP( S, ksp_K );
     //MatSchurComplementSetKSP( S, ksp_K);
-    //MatSchurComplementGetKSP( S, &ksp_inner );
+    //MatSchurGetKSP( S, &ksp_inner );
     MatSchurComplementGetKSP( S, &ksp_inner);
     KSPGetPC( ksp_inner, &pcInner );
     /***************************************************************************************************************/
@@ -246,11 +247,12 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /***************************************************************************************************************/
     /* create right hand side */
     if(change_A11rhspresolve){
-      Stg_KSPDestroy(&ksp_inner );
-      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
-      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
-      KSPSetOptionsPrefix(ksp_inner, "rhsA11_");
-      MatSchurComplementSetKSP( S, ksp_inner );
+      //Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_new_inner);
+      Stg_KSPSetOperators(ksp_new_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix(ksp_new_inner, "rhsA11_");
+      MatSchurComplementSetKSP( S, ksp_new_inner );/* this call destroys the ksp_inner that is already set on S */
+      ksp_inner=ksp_new_inner;
       KSPGetPC( ksp_inner, &pcInner );
       KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
     }
@@ -270,11 +272,13 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     Stg_VecDestroy(&f_tmp);
 
     if(bsscrp_self->mg && change_A11rhspresolve) {
-      Stg_KSPDestroy(&ksp_inner );
-      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
-      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
-      KSPSetOptionsPrefix( ksp_inner, "A11_" );
-      MatSchurComplementSetKSP( S, ksp_inner );
+      //Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_new_inner);
+      Stg_KSPSetOperators(ksp_new_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix( ksp_new_inner, "A11_" );
+      MatSchurComplementSetKSP( S, ksp_new_inner );
+      ksp_inner=ksp_new_inner;
+      //MatSchurSetKSP( S, ksp_inner );
       KSPGetPC( ksp_inner, &pcInner );
       KSPSetFromOptions( ksp_inner );
       mgSetupTime=setupMG( bsscrp_self, ksp_inner, pcInner, K, &mgCtx ); 
@@ -333,7 +337,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
         KSPSetInitialGuessNonzero( ksp_S, PETSC_TRUE ); }
     else {
         KSPSetInitialGuessNonzero( ksp_S, PETSC_FALSE ); }
-    //KSPSetRelativeRhsConvergenceTest( ksp_S );
+    KSPSetRelativeRhsConvergenceTest( ksp_S );
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /*******     SET CONVERGENCE TESTS     *************************************************************************/
@@ -408,7 +412,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
 
     /* obtain solution for u */
     VecDuplicate( u, &t );   MatMult( G, p, t);  VecAYPX( t, -1.0, f ); /*** t <- -t + f   = f - G*p  ***/
-    MatSchurComplementGetKSP( S, &ksp_inner );
+    MatSchurGetKSP( S, &ksp_inner );
     a11SingleSolveTime = MPI_Wtime();           /* ----------------------------------  Final V Solve */
     if(usePreviousGuess) KSPSetInitialGuessNonzero( ksp_inner, PETSC_TRUE );
 
@@ -419,11 +423,13 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     change_backsolve=PETSC_FALSE;
     PetscOptionsGetTruth( PETSC_NULL, "-change_backsolve", &change_backsolve, &found );
     if(change_backsolve){
-      Stg_KSPDestroy(&ksp_inner );
-      KSPCreate(PETSC_COMM_WORLD, &ksp_inner);
-      Stg_KSPSetOperators(ksp_inner, K, K, DIFFERENT_NONZERO_PATTERN);
-      KSPSetOptionsPrefix(ksp_inner, "backsolveA11_");
-      KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
+      //Stg_KSPDestroy(&ksp_inner );
+      KSPCreate(PETSC_COMM_WORLD, &ksp_new_inner);
+      Stg_KSPSetOperators(ksp_new_inner, K, K, DIFFERENT_NONZERO_PATTERN);
+      KSPSetOptionsPrefix(ksp_new_inner, "backsolveA11_");
+      KSPSetFromOptions(ksp_new_inner); /* make sure we are setting up our solver how we want it */
+      MatSchurComplementSetKSP( S, ksp_new_inner );/* need to give the Schur it's inner ksp back for when we destroy it at end */
+      ksp_inner=ksp_new_inner;
     }
     KSPSolve(ksp_inner, t, u);         /* Solve, then restore default tolerance and initial guess */
     a11SingleSolveTime = MPI_Wtime() - a11SingleSolveTime;              /* ------------------ Final V Solve */
@@ -461,7 +467,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     Stg_KSPDestroy(&ksp_S );
     //Stg_KSPDestroy(&ksp_inner );// pcInner == pc_MG and is destroyed when ksp_inner is 
     Stg_VecDestroy(&h_hat );
-    Stg_MatDestroy(&S );
+    Stg_MatDestroy(&S );//This will destroy ksp_inner: also.. pcInner == pc_MG and is destroyed when ksp_inner is 
 //    if(change_backsolve){
 //      Stg_KSPDestroy(&backsolve_ksp);
 //    }
@@ -471,4 +477,3 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     been_here = 1;
     PetscFunctionReturn(0);
 }
-

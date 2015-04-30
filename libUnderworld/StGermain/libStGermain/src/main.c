@@ -47,7 +47,6 @@
 
 #include <stdio.h>
 #include <time.h>
-#include <mcheck.h> 
 
 void stgGenerateFlattenedXML( Dictionary* dictionary, Dictionary* sources, char* timeStamp ) {
    XML_IO_Handler* ioHandler;
