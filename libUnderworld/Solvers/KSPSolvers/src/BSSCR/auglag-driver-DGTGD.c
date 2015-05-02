@@ -3,18 +3,12 @@
 #include <petscvec.h>
 #include <petscksp.h>
 #include <petscpc.h>
-#include <petscis.h> 
-
 #include <petscversion.h>
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
   #include <petsc-private/kspimpl.h>
 #else
   #include <private/kspimpl.h>
 #endif
-
-
-//#include "common-driver-utils.h"
-
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
 #include <StgFEM/StgFEM.h>
@@ -64,14 +58,14 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     PetscTruth usePreviousGuess, useNormInfStoppingConditions, useNormInfMonitor, found, forcecorrection;
     PetscTruth change_backsolve;
     PetscErrorCode ierr;
-    PetscInt monitor_index,max_it,min_it;
+    //PetscInt monitor_index;
+    PetscInt max_it,min_it;
     KSP ksp_inner, ksp_S, ksp_new_inner;
     PC pc_S, pcInner;
     Mat K,G,D,C, S, K2;// Korig;
     Vec u,p,f,f2,f3=0,h, h_hat,t;
-    IS  isr[2];
     MGContext mgCtx;
-    double mgSetupTime, scrSolveTime, a11SingleSolveTime, penaltyNumber, hFactor;
+    double mgSetupTime, scrSolveTime, a11SingleSolveTime, penaltyNumber;// hFactor;
     static int been_here = 0;  /* Ha Ha Ha !! */
 
     char name[PETSC_MAX_PATH_LEN];
@@ -88,8 +82,6 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     /* get sub matrix / vector objects */
     /* note that here, the matrix D should always exist. It is set up in  _StokesBlockKSPInterface_Solve in StokesBlockKSPInterface.c */
     /* now extract K,G etc from a MatNest object */
-    /* {VecGetSubVector(y,bA->isglobal.row[i],&by[i]);} */
-
     MatNestGetSubMat( stokes_A, 0,0, &K );
     MatNestGetSubMat( stokes_A, 0,1, &G );
     MatNestGetSubMat( stokes_A, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
@@ -121,29 +113,22 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     }
 
     penaltyNumber = stokesSLE->penaltyNumber;
-    hFactor = stokesSLE->hFactor;
+    //hFactor = stokesSLE->hFactor;
     /***************************************************************************************************************/
     /***************************************************************************************************************/
     /******  GET K2   ****************************************************************************************/
     if(penaltyNumber > 1e-10 && bsscrp_self->k2type){
-
         flg=0;
         PetscOptionsGetString( PETSC_NULL, "-matdumpdir", name, PETSC_MAX_PATH_LEN-1, &flg );
         if(flg){
             sprintf(str,"%s/",name);   sprintf(matname,"K2%s",suffix);
             bsscr_dirwriteMat( bsscrp_self->K2, matname,str, "Writing K2 matrix in al Solver");
         }
-
         K2=bsscrp_self->K2;
         scrSolveTime = MPI_Wtime();
         ierr=MatAXPY(K,penaltyNumber,K2,DIFFERENT_NONZERO_PATTERN);CHKERRQ(ierr);/* Computes K = penaltyNumber*K2 + K */
         scrSolveTime =  MPI_Wtime() - scrSolveTime;
         PetscPrintf( PETSC_COMM_WORLD, "\n\t* K+p*K2 in time: %lf seconds\n\n", scrSolveTime);
-
-        //ierr=MatAYPX(K2,penaltyNumber,K,DIFFERENT_NONZERO_PATTERN);CHKERRQ(ierr);/* Computes K2 = penaltyNumber*K2 + K */
-        //Korig=K;
-        //K=K2; /* we are doing K2=a*K2+K because K2s non-zero pattern is larger than Ks. The other way round is very slow due to extra memory allocation in K. */
-
         KisJustK=PETSC_FALSE;
         forcecorrection=PETSC_TRUE;
         PetscOptionsGetTruth( PETSC_NULL ,"-force_correction", &forcecorrection, &found );
@@ -204,16 +189,6 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
 
     /* Create Schur complement matrix */
     MatCreateSchurComplement(K,K,G,D,C, &S);
-    //MatCreateSchurFromBlock( stokes_A, 0.0, "MatSchur_A11", &S );
-    //MatAssemblyBegin( S, MAT_FINAL_ASSEMBLY );
-    //MatAssemblyEnd( S, MAT_FINAL_ASSEMBLY );
-
-    /* configure inner solver */
-    //if (!ksp_K) {  PetscPrintf( PETSC_COMM_WORLD,"ksp_K cannot be NULL\n"); abort();}
-
-    //MatSchurSetKSP( S, ksp_K );
-    //MatSchurComplementSetKSP( S, ksp_K);
-    //MatSchurGetKSP( S, &ksp_inner );
     MatSchurComplementGetKSP( S, &ksp_inner);
     KSPGetPC( ksp_inner, &pcInner );
     /***************************************************************************************************************/
@@ -256,7 +231,6 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
       KSPSetFromOptions(ksp_inner); /* make sure we are setting up our solver how we want it */
     }
     MatGetVecs( S, PETSC_NULL, &h_hat );
-    //MatSchurApplyReductionToVecFromBlock( S, stokes_b, h_hat );/* A11 KSPSolve in here */
     Vec f_tmp;
     /* It may be the case that the current velocity solution might not be bad guess for f_tmp? */
     MatGetVecs( K, PETSC_NULL, &f_tmp );
@@ -264,9 +238,7 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     KSPSolve(ksp_inner, f, f_tmp);
     scrSolveTime =  MPI_Wtime() - scrSolveTime;
     PetscPrintf( PETSC_COMM_WORLD, "\n\t*  KSPSolve for RHS setup Finished in time: %lf seconds\n\n", scrSolveTime);
-    //bsscr_writeVec( t, "ts", "Writing t vector");
     MatMult(D, f_tmp, h_hat);
-    //VecAXPY(h, -1, h_hat);/* h_hat = h - Gt*K^(-1)*f */
     VecAYPX(h_hat, -1.0, h); /* Computes y = x + alpha y.  h_hat -> h - Gt*K^(-1)*f*/
     Stg_VecDestroy(&f_tmp);
 
@@ -297,14 +269,13 @@ PetscErrorCode BSSCR_DRIVER_auglag( KSP ksp, Mat stokes_A, Vec stokes_x, Vec sto
     flg=0;
     PetscOptionsGetString( PETSC_NULL, "-NN", name, PETSC_MAX_PATH_LEN-1, &flg );
     if(flg){
-	Mat Smat, Pmat;                                                                                                 
-	MatStructure mstruct;  
-	Stg_PCGetOperators( pc_S, &Smat, &Pmat, &mstruct );
-        sprintf(str,"%s/",name); sprintf(matname,"Pmat%s",suffix);
-        bsscr_dirwriteMat( Pmat, matname,str, "Writing Pmat matrix in al Solver");
+      Mat Smat, Pmat;                                                                                                 
+      //MatStructure mstruct;  
+      Stg_PCGetOperators( pc_S, &Smat, &Pmat, NULL );
+      sprintf(str,"%s/",name); sprintf(matname,"Pmat%s",suffix);
+      bsscr_dirwriteMat( Pmat, matname,str, "Writing Pmat matrix in al Solver");
     }
-
-    
+   
     uzawastyle=PETSC_FALSE;
     PetscOptionsGetTruth( PETSC_NULL, "-uzawa_style", &uzawastyle, &found );
     if(uzawastyle){

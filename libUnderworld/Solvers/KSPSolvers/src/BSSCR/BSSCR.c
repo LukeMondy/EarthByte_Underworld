@@ -65,12 +65,19 @@ PetscErrorCode BSSCR_KSPSetConvergenceMinIts(KSP ksp, PetscInt n, KSP_BSSCR * bs
 
       bsscr->min_it = n; /* set minimum its */
 
-#if(PETSC_VERSION_MAJOR == 3)
+#if ( (PETSC_VERSION_MAJOR == 3) && (PETSC_VERSION_MINOR >= 5 ) )
+      ierr = Stg_PetscNew(BSSCR_KSPConverged_Ctx,&ctx);CHKERRQ(ierr);
+      ierr = KSPConvergedDefaultCreate(&ctx->ctx);CHKERRQ(ierr);
+      ctx->bsscr=bsscr;
+      ierr = KSPSetConvergenceTest(ksp,BSSCR_KSPConverged,ctx,BSSCR_KSPConverged_Destroy);CHKERRQ(ierr);
+#endif
+#if ( (PETSC_VERSION_MAJOR == 3) && (PETSC_VERSION_MINOR <=4 ) )
       ierr = Stg_PetscNew(BSSCR_KSPConverged_Ctx,&ctx);CHKERRQ(ierr);
       ierr = KSPDefaultConvergedCreate(&ctx->ctx);CHKERRQ(ierr);
       ctx->bsscr=bsscr;
       ierr = KSPSetConvergenceTest(ksp,BSSCR_KSPConverged,ctx,BSSCR_KSPConverged_Destroy);CHKERRQ(ierr);
-#else
+#endif
+#if ( PETSC_VERSION_MAJOR < 3)
       ierr = KSPSetConvergenceTest(ksp,BSSCR_KSPConverged,(void*)bsscr);CHKERRQ(ierr);
 #endif
 
@@ -91,9 +98,13 @@ PetscErrorCode BSSCR_KSPConverged(KSP ksp,PetscInt n,PetscReal rnorm,KSPConverge
 
 
   PetscFunctionBegin;
-#if(PETSC_VERSION_MAJOR == 3)
+#if ( (PETSC_VERSION_MAJOR == 3) && (PETSC_VERSION_MINOR >=5 ) )
+  ierr = KSPConvergedDefault(ksp,n,rnorm,reason,ctx->ctx);CHKERRQ(ierr);
+#endif
+#if ( (PETSC_VERSION_MAJOR == 3) && (PETSC_VERSION_MINOR <=4 ) )
   ierr = KSPDefaultConverged(ksp,n,rnorm,reason,ctx->ctx);CHKERRQ(ierr);
-#else
+#endif
+#if ( PETSC_VERSION_MAJOR < 3)
   ierr = KSPDefaultConverged(ksp,n,rnorm,reason,cctx);CHKERRQ(ierr);
 #endif
   if (*reason) {
@@ -113,7 +124,11 @@ PetscErrorCode BSSCR_KSPConverged_Destroy(void *cctx)
   PetscErrorCode           ierr;
 
   PetscFunctionBegin;
+#if ( (PETSC_VERSION_MAJOR == 3) && (PETSC_VERSION_MINOR >=5 ) )
+  ierr = KSPConvergedDefaultDestroy(ctx->ctx);CHKERRQ(ierr);
+#else
   ierr = KSPDefaultConvergedDestroy(ctx->ctx);CHKERRQ(ierr);
+#endif
   ierr = PetscFree(ctx);CHKERRQ(ierr);
   PetscFunctionReturn(0);
 }
@@ -137,25 +152,24 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
 {
     Mat            Amat,Pmat; /* Stokes Matrix and it's Preconditioner matrix: Both 2x2 PetscExt block matrices */
     Vec            B, X; /* rhs and solution vectors */
-    MatStructure   pflag;
+    //MatStructure   pflag;
     PetscErrorCode ierr;
     KSP_BSSCR *    bsscr;    
     Stokes_SLE *    SLE;
-    PETScMGSolver * MG;
+    //PETScMGSolver * MG;
     Mat K,D,ApproxS;
-    KSP A11_ksp; /* Velocity Solve KSP */
     MatStokesBlockScaling BA;
     PetscTruth flg, sym, augment;
     
     PetscFunctionBegin;
     PetscPrintf( PETSC_COMM_WORLD, "**** BSSCR -- Block Stokes Schur Compliment Reduction Solver **** \n");
     /** Get the stokes Block matrix and its preconditioner matrix */
-    ierr = Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,&pflag);CHKERRQ(ierr);
+    ierr = Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,PETSC_NULL);CHKERRQ(ierr);
     /** In Petsc proper, KSP's ksp->data is usually set in KSPCreate_XXX function. 
         Here it is set in the _StokesBlockKSPInterface_Solve function instead so that we can ensure that the solver
         has everything it needs */
     bsscr         = (KSP_BSSCR*)ksp->data;
-    MG            = (PETScMGSolver*)bsscr->mg;
+    //MG            = (PETScMGSolver*)bsscr->mg;
     SLE           = (Stokes_SLE*)bsscr->st_sle;
     X             = ksp->vec_sol;
     B             = ksp->vec_rhs;
@@ -165,8 +179,8 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
         BA =  bsscr->BA;
     }
 
-    if( bsscr->k2type != PETSC_NULL && bsscr->buildK2 ){
-        (*bsscr->buildK2)(ksp); /* building K2 from scaled version of stokes operators: K2 lives on bsscr struct = ksp->data */  
+    if( (bsscr->k2type != PETSC_NULL) ){
+      if(bsscr->buildK2 != PETSC_NULL)(*bsscr->buildK2)(ksp); /* building K2 from scaled version of stokes operators: K2 lives on bsscr struct = ksp->data */  
     }
 
     /* get sub matrix / vector objects */
@@ -181,9 +195,6 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
 
     sym = bsscr->DIsSym;
 
-    //KSPCreate(PETSC_COMM_WORLD, &A11_ksp);
-    //Stg_KSPSetOperators(A11_ksp, K, K, DIFFERENT_NONZERO_PATTERN);
-
     MatNestGetSubMat( Amat, 1,0, &D );if(!D){ PetscPrintf( PETSC_COMM_WORLD, "D does not exist but should!!\n"); exit(1); }
 
     /**********************************************************/
@@ -192,20 +203,14 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     flg = PETSC_FALSE;
     augment = PETSC_TRUE;
     PetscOptionsGetTruth(PETSC_NULL, "-augmented_lagrangian", &augment, &flg);
-    BSSCR_DRIVER_auglag( ksp, Amat, X, B, ApproxS, BA, sym, bsscr ); 
-    //if(augment){
-    //  BSSCR_DRIVER_auglag( ksp, Amat, X, B, ApproxS, BA, sym, bsscr ); }
-    //else{
-      //BSSCR_DRIVER_flex( ksp, Amat, X, B, ApproxS, A11_ksp, BA, sym, bsscr ); 
-    //}
-    
+    BSSCR_DRIVER_auglag( ksp, Amat, X, B, ApproxS, BA, sym, bsscr );   
 
     /**********************************************************/
     /***** END SOLVE!! ****************************************/
     /**********************************************************/
     if( bsscr->do_scaling ){ 
         (*bsscr->unscale)(ksp);  }
-    if( bsscr->k2type != PETSC_NULL && bsscr->K2 != PETSC_NULL ){
+    if( (bsscr->k2type != PETSC_NULL) && bsscr->K2 != PETSC_NULL ){
         if(bsscr->k2type != K2_SLE){/* don't destroy here, as in this case, K2 is just pointing to an existing matrix on the SLE */
             Stg_MatDestroy(&bsscr->K2 );
         }
@@ -270,37 +275,26 @@ PetscErrorCode KSPView_BSSCR(KSP ksp,PetscViewer viewer)
 #define __FUNCT__ "KSPSetUp_BSSCR" 
 PetscErrorCode KSPSetUp_BSSCR(KSP ksp)
 {
-    Vec            B,X;
     KSP_BSSCR  *bsscr = (KSP_BSSCR *)ksp->data;
-    Mat K,G, ApproxS;
+    Mat K;
     Stokes_SLE*  stokesSLE  = (Stokes_SLE*)bsscr->st_sle;
-    PetscTruth sym,flg,ismumps,augment,scale,konly,found,conp,checkerp;
-    char name[PETSC_MAX_PATH_LEN];
+    PetscTruth ismumps,augment,scale,konly,found,conp,checkerp;
 
     PetscFunctionBegin;
 
     BSSCR_PetscExtStokesSolversInitialize();
 
-    ApproxS = bsscr->preconditioner->matrix;
-
     K = stokesSLE->kStiffMat->matrix;
-    G = stokesSLE->gStiffMat->matrix;
-
     bsscr->K2=PETSC_NULL;
-    X             = ksp->vec_sol;
-    B             = ksp->vec_rhs;
 
     BSSCR_MatStokesBlockScalingCreate( &(bsscr->BA) );/* allocate memory for scaling struct */
     found = PETSC_FALSE;
     augment = PETSC_TRUE;
     PetscOptionsGetTruth(PETSC_NULL, "-augmented_lagrangian", &augment, &found);
-    //PetscOptionsGetString( PETSC_NULL, "-no_augmented_lagrangian", name, PETSC_MAX_PATH_LEN-1, &flg );
     if(augment){
         bsscr->buildK2 = bsscr_buildK2; }
     else {
         bsscr->buildK2 = PETSC_NULL; }
-
-    sym = bsscr->DIsSym;
 
     /***************************************************************************************************************/
     /** Do scaling *************************************************************************************************/
@@ -308,15 +302,6 @@ PetscErrorCode KSPSetUp_BSSCR(KSP ksp)
     found = PETSC_FALSE;
     scale = PETSC_FALSE;/* scaling off by default */
     PetscOptionsGetTruth(PETSC_NULL, "-rescale_equations", &scale, &found);
-    /* if -rescale_equations option given then found and scale are PETSC_TRUE */
-    /* keeping the -no_scale option around for time being if above option not given */
-    //if(!found){
-    //    flg = PETSC_FALSE;
-    //    scale = PETSC_TRUE;/* scaling on by default */
-    //    PetscOptionsGetString( PETSC_NULL, "-no_scale", name, PETSC_MAX_PATH_LEN-1, &flg );
-    //    if(flg){ scale = PETSC_FALSE; }
-    //}
-    //Stg_PetscObjectTypeCompare((PetscObject)K, MATAIJMUMPS, &ismumps);
     Stg_PetscObjectTypeCompare((PetscObject)K, "mataijmumps", &ismumps);/** older versions of petsc have this */
     if(ismumps && scale){
         PetscPrintf( PETSC_COMM_WORLD, "\t* Not applying scaling to matrices as MatGetRowMax operation not defined for MATAIJMUMPS matrix type \n");
@@ -330,26 +315,20 @@ PetscErrorCode KSPSetUp_BSSCR(KSP ksp)
         konly = PETSC_TRUE;
         found = PETSC_FALSE;
         PetscOptionsGetTruth(PETSC_NULL, "-k_scale_only", &konly, &found);
-        //PetscOptionsGetString( PETSC_NULL, "-k_scale", name, PETSC_MAX_PATH_LEN-1, &flg2 );/* scaling on K only*/
         if(!konly){ bsscr->scaletype = DEFAULT; }
     }
-    //else {
-    //    PetscPrintf( PETSC_COMM_WORLD, "\t* Not applying any scaling to matrices \n");
-    //}
+
     /***************************************************************************************************************/
     /**  Set up functions for building Pressure Null Space Vectors *************************************************/
     /***************************************************************************************************************/
     found = PETSC_FALSE;
     checkerp = PETSC_FALSE;
-    //PetscOptionsGetString( PETSC_NULL, "-build_cb_pressure_nullspace", name, PETSC_MAX_PATH_LEN-1, &flg );
     PetscOptionsGetTruth(PETSC_NULL, "-remove_checkerboard_pressure_null_space", &checkerp, &found );
     if(checkerp){
         bsscr->check_cb_pressureNS    = PETSC_TRUE;
         bsscr->check_pressureNS       = PETSC_TRUE;
         bsscr->buildPNS               = KSPBuildPressure_CB_Nullspace_BSSCR;
     }
-    //flg = PETSC_FALSE;
-    //PetscOptionsGetString( PETSC_NULL, "-build_const_pressure_nullspace", name, PETSC_MAX_PATH_LEN-1, &flg );
     found = PETSC_FALSE;
     conp = PETSC_FALSE;
     PetscOptionsGetTruth(PETSC_NULL, "-remove_constant_pressure_null_space", &conp, &found );
@@ -371,7 +350,7 @@ PetscErrorCode PETSCKSP_DLLEXPORT KSPCreate_BSSCR(KSP ksp)
     PetscErrorCode ierr;
     PetscFunctionBegin;
     ierr = Stg_PetscNew(KSP_BSSCR,&bsscr);CHKERRQ(ierr);
-    ierr = PetscLogObjectMemory(ksp,sizeof(KSP_BSSCR));CHKERRQ(ierr);
+    ierr = PetscLogObjectMemory((PetscObject)ksp,sizeof(KSP_BSSCR));CHKERRQ(ierr);
     //ierr = PetscNewLog(ksp,KSP_BSSCR,&bsscr);CHKERRQ(ierr);
     ksp->data                              = (void*)bsscr;
     
