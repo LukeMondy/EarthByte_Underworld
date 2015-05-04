@@ -1,3 +1,0 @@
-EXEC 		= ./test-picard.app -n 100 -ksp_type richardson -snes_atol 1.0e-10 -ksp_converged_use_initial_residual_norm
-NPROCS 		= 1
-TEST_TYPE       = tolerance_diff_pl,1.0e-10

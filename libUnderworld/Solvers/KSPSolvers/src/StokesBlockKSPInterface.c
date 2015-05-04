@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include <mpi.h>
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
@@ -11,8 +9,6 @@
 #include <petscksp.h>
 #include <petscpc.h>
 #include <petscsnes.h>
-#include <petscext.h>
-#include <petscext_pc.h>
 #include <petscis.h> 
 
 #include <petscversion.h>
@@ -31,11 +27,8 @@
 #include <assert.h>
 #include <string.h>
 
-#include "petscext.h"
-
 /* Macro for checking number integrity - i.e. checks if number is infinite or "not a number" */
 #define SBKSP_isGoodNumber( number ) ( (! isnan( number ) ) && ( ! isinf( number ) ) )
-
 #define SBKSP_GetPetscMatrix( matrix ) ( (Mat)(matrix) )
 #define SBKSP_GetPetscVector( vector ) ( (Vec)(vector) )
 #define SBKSP_GetPetscKSP( solver ) ( (KSP)(solver)  )
@@ -180,43 +173,6 @@ void _StokesBlockKSPInterface_SolverSetup( void* solver, void* stokesSLE ) {
 /***********************************************************************************************************/
 /***********************************************************************************************************/
 /***********************************************************************************************************/
-PetscErrorCode SBKSP_CreateStokesBlockOperators( MPI_Comm comm, 
-					   Mat K, Mat G, Mat D, Mat C,
-					   Vec u, Vec p, Vec f, Vec h,
-					   Mat *A, Vec *x, Vec *b )
-{
-    
-    MatCreate( comm, A );
-    MatSetSizes( *A, 2,2, 2,2 );
-    MatSetType( *A, "block" );
-#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
-    MatSetUp(*A);
-#endif
-#if (((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=3)) || (PETSC_VERSION_MAJOR>3) )
-    MatSetSizes_Block( *A, 2,2, 2,2 ); /* maybe need different name for this */
-#endif
-    if(K) {MatBlockSetValue( *A, 0,0, K, SAME_NONZERO_PATTERN, INSERT_VALUES );}
-    if(G) {MatBlockSetValue( *A, 0,1, G, SAME_NONZERO_PATTERN, INSERT_VALUES );}
-    if(D) {MatBlockSetValue( *A, 1,0, D, SAME_NONZERO_PATTERN, INSERT_VALUES );}
-    if(C) {MatBlockSetValue( *A, 1,1, C, SAME_NONZERO_PATTERN, INSERT_VALUES );}
-    MatAssemblyBegin( *A, MAT_FINAL_ASSEMBLY );
-    MatAssemblyEnd( *A, MAT_FINAL_ASSEMBLY );
-    
-    MatGetVecs( *A, x, b );
-    
-    if(u) {VecBlockSetValue( *x, 0, u, INSERT_VALUES );}
-    if(p) {VecBlockSetValue( *x, 1, p, INSERT_VALUES );}
-    VecAssemblyBegin( *x );
-    VecAssemblyEnd( *x );
-    
-    if(f) {VecBlockSetValue( *b, 0, f, INSERT_VALUES );}
-    if(h) {VecBlockSetValue( *b, 1, h, INSERT_VALUES );}
-    VecAssemblyBegin( *b );
-    VecAssemblyEnd( *b );
-    
-    
-    PetscFunctionReturn(0);
-}
 
 void SBKSP_GetStokesOperators( 
 		Stokes_SLE *stokesSLE,
@@ -304,17 +260,7 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	    sym = PETSC_FALSE;
 	    Solver->DIsSym = sym;
 	}
-	/* Need an Index Set (IS) */
     
-    /* So create MatNest here */
-    /*
-    PetscErrorCode MatCreateNest(MPI_Comm comm,PetscInt nr,const IS is_row[],PetscInt nc,const IS is_col[],const Mat a[],Mat *B)
-    for stokes_A
-
-    #include "petscvec.h"   
-    PetscErrorCode  VecCreateNest(MPI_Comm comm,PetscInt nb,IS is[],Vec x[],Vec *Y)
-    for stokes_x and stokes_b
-    */
     MatGetSize(K, &rowsizeK, &colsizeK);    
     MatGetSize(G, &rowsizeG, &colsizeG);
     /*                                               length, start_pos */
@@ -338,7 +284,6 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
     VecCreateNest(PetscObjectComm((PetscObject) f), 2, isr, b, &stokes_b);
     VecAssemblyBegin( stokes_b );
     VecAssemblyEnd( stokes_b);
-	//SBKSP_CreateStokesBlockOperators( PETSC_COMM_WORLD, K,G,Gt,C, u,p, f,h, &stokes_A, &stokes_x, &stokes_b );
 
 	if( approxS ) {
       a[0][0]=K;    a[0][1]=G;
@@ -395,7 +340,6 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	Stg_KSPDestroy(&stokes_ksp );
 	if( ((StokesBlockKSPInterface*)stokesSLE->solver)->preconditioner ){ Stg_MatDestroy(&stokes_P ); }
 
-	//MatBlockRestoreSubMatrices( stokes_A );
 	Stg_MatDestroy(&stokes_A );
 
 	Stg_VecDestroy(&stokes_x);
@@ -404,4 +348,3 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 	if(!D){ Stg_MatDestroy(&Gt); }
 }
 
-#endif

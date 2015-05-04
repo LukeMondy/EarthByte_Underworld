@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #ifndef __TestKSP_h__
 #define __TestKSP_h__
 
@@ -9,5 +8,4 @@ typedef struct {
 
 PetscErrorCode PETSCKSP_DLLEXPORT KSPRegisterTEST(const char path[]);
 
-#endif
 #endif

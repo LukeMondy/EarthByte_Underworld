@@ -2,8 +2,6 @@
 #ifndef __DRIVERS_common_utils_h__
 #define __DRIVERS_common_utils_h__
 
-#ifdef HAVE_PETSCEXT
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,12 +32,7 @@
   #include "private/snesimpl.h"
 #endif
 
-#include "petscext.h"
-#include "petscext_vec.h"
-#include "petscext_mat.h"
-#include "petscext_pc.h"
-#include "petscext_ksp.h"
-
+#include "../../../../StgDomain/Utils/src/PETScCompatibility.h"
 
 #include "pc_GtKG.h"
 #include "pc_ScaledGtKG.h"
@@ -128,5 +121,4 @@ PetscErrorCode BSSCR_stokes_output( PetscViewer v, Mat stokes_A, Vec stokes_b, V
 
 //PetscErrorCode BSSCR_NSPRemoveAll(Vec v, void *_data);
 //PetscErrorCode BSSCR_CheckNullspace(KSP ksp_S, Mat S, Vec h_hat, MatStokesBlockScaling BA, Vec * _nsp_vec);
-#endif
 #endif

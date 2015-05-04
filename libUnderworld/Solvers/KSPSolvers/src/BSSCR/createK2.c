@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include "createK2.h"
 #include <StGermain/StGermain.h>
 #include <StgDomain/StgDomain.h>
@@ -35,7 +33,8 @@ PetscErrorCode bsscr_buildK2(KSP ksp){
 
 	  if (stokesSLE->mStiffMat){      
 	      MatGetVecs( K, PETSC_NULL, &D );
-	      PetscExtMatGetRowMax( K, D, PETSC_NULL );
+	      //MatGetRowMax( K, D, PETSC_NULL );
+          MatGetDiagonal( K, D );
 	      VecSqrt( D );  
 	      M = stokesSLE->mStiffMat->matrix;
 	      bsscr_GMiGt(&K2,K,G,M);      /* K2 created */
@@ -177,4 +176,4 @@ PetscErrorCode bsscr_GGt( Mat *_K2, Mat K, Mat G){
     *_K2=K2;
     PetscFunctionReturn(0);
 }
-#endif
+

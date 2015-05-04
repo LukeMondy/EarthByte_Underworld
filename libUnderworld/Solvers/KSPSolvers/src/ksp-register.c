@@ -9,11 +9,6 @@
 #include <petscpc.h>
 #include <petscsnes.h>
 
-#ifdef HAVE_PETSCEXT
-#include <petscext.h>
-#include <petscext_pc.h>
-#endif
-
 #include <petscversion.h>
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
   #include "petsc-private/kspimpl.h"   /*I "petscksp.h" I*/
@@ -28,11 +23,10 @@
 #include <Underworld/Underworld.h>
 
 #include "Solvers/KSPSolvers/KSPSolvers.h"
+#include "BSSCR/petsccompat.h"
 
-#ifdef HAVE_PETSCEXT
 #include "Test/TestKSP.h"
 #include "BSSCR/BSSCR.h"
-#endif
 
 /************************************************************************/
 /*** This function is called from _StokesBlockKSPInterface_Initialise **************/
@@ -43,10 +37,8 @@ PetscErrorCode KSPRegisterAllKSP(const char path[])
 {
 
     PetscFunctionBegin;
-    #ifdef HAVE_PETSCEXT
     KSPRegisterTEST(path);/* not sure if the path matters much here. everything still worked even though I had it wrong */
     KSPRegisterBSSCR (path);
-    #endif
     PetscFunctionReturn(0);
 }
 

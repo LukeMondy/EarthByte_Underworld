@@ -75,10 +75,6 @@ Bool Solvers_Init( int* argc, char** argv[] ) {
 
 		/* Add the plugin path to the global plugin list */
 		ModulesManager_AddDirectory( "Solvers", LIB_DIR );
-
-                #ifdef HAVE_PETSCEXT
-		PetscExtInitialize( );
-                #endif
 	
 		return True;
 	}

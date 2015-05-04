@@ -39,10 +39,10 @@
 #define __Solvers_KSPSolvers_h__
 
 #include "types.h"
-#ifdef HAVE_PETSCEXT
+
 #include "StokesBlockKSPInterface.h"
-#include "StokesBlockSNESInterface.h"
-#endif
+//#include "StokesBlockSNESInterface.h"
+
 
 #include "StokesFullMatrixSNESInterface.h"
 

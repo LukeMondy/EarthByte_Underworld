@@ -1,4 +1,8 @@
-#ifdef HAVE_PETSCEXT
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif /* _GNU_SOURCE needed for asprintf */
+#include <stdio.h>
+#include <stdlib.h>
 #include "common-driver-utils.h"
 
 int BSSCR_create_execute_script( void )
@@ -51,6 +55,6 @@ int BSSCR_create_execute_script( void )
         return 0;
 
 }
-#endif
+
 
 

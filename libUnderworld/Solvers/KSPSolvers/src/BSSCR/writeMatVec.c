@@ -1,5 +1,3 @@
-#ifdef HAVE_PETSCEXT
-
 #include "writeMatVec.h"
 #include "../../../../StgDomain/Utils/src/PETScCompatibility.h"
 
@@ -91,4 +89,3 @@ void bsscr_dirwriteVec(Vec V, char name[], char dir[], char message[]){
     }
     }
 }
-#endif

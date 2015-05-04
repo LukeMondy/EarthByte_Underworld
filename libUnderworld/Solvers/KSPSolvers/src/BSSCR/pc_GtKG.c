@@ -9,7 +9,6 @@ where Q_S^-1 can only be performed implicitly via an iterative
 method.
 
 */
-#ifdef HAVE_PETSCEXT
 #if 1
 
 #include <stdio.h>
@@ -670,6 +669,5 @@ PetscErrorCode BSSCR_PCGtKGSet_KSP( PC pc, KSP ksp )
 	
 	PetscFunctionReturn(0);
 }
-#endif
 #endif
 

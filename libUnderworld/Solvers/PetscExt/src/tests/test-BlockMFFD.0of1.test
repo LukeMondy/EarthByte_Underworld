@@ -1,3 +1,0 @@
-EXEC 		= ./test-BlockMFFD.app -mat_fd_type ds
-NPROCS 		= 1
-TEST_TYPE 	= tolerance_diff_pl,1.0e-7

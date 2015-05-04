@@ -1,4 +1,3 @@
-#ifdef HAVE_PETSCEXT
 #include <petsc.h>
 #include <petscmat.h>
 #include <petscvec.h>
@@ -184,4 +183,3 @@ void bsscr_summary(KSP_BSSCR * bsscrp_self, KSP ksp_S, KSP ksp_inner,
       }
 
 }
-#endif

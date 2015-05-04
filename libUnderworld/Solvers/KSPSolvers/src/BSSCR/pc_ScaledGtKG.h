@@ -1,6 +1,5 @@
 #ifndef __PETSC_EXT_PC_SCALEDBFBT_H__
 #define __PETSC_EXT_PC_SCALEDBFBT_H__
-#ifdef HAVE_PETSCEXT
 
 #include <petscmat.h>
 #include <petscvec.h>
@@ -18,5 +17,4 @@ PetscErrorCode BSSCR_PCScGtKGSetSubKSPMonitor( PC pc, PetscTruth flg );
 PetscErrorCode BSSCR_PCScGtKGUseStandardScaling( PC pc );
 PetscErrorCode BSSCR_PCScGtKGUseStandardBBtOperator( PC pc );
 
-#endif
 #endif

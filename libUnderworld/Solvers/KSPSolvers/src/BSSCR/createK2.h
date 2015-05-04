@@ -1,6 +1,5 @@
 #ifndef _createK2_h
 #define _createK2_h
-#ifdef HAVE_PETSCEXT
 
 #include <petsc.h>
 #include <petscmat.h>
@@ -11,5 +10,4 @@ PetscErrorCode bsscr_buildK2(KSP ksp);
 PetscErrorCode bsscr_DGMiGtD( Mat *_K2, Mat K, Mat G, Mat M);
 PetscErrorCode bsscr_GMiGt( Mat *_K2, Mat K, Mat G, Mat M);
 PetscErrorCode bsscr_GGt( Mat *_K2, Mat K, Mat G);
-#endif
 #endif
