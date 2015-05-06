@@ -257,7 +257,7 @@ PetscErrorCode BSSCR_MatStokesKBlockReportOperatorScales( Mat A, PetscTruth sym 
 	
 	/* Report the row max and mins */
 	if (K!=PETSC_NULL) {
-		MatGetRowMax( K, rA, PETSC_NULL );
+		MatGetRowMaxAbs( K, rA, PETSC_NULL );
 		VecMax( rA, &loc, &max );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_max(K) = %g \n", max );
 		
@@ -267,7 +267,7 @@ PetscErrorCode BSSCR_MatStokesKBlockReportOperatorScales( Mat A, PetscTruth sym 
 	}
 	
 	if( G != PETSC_NULL ) {       
-		MatGetRowMax( G, rG, PETSC_NULL );
+		MatGetRowMaxAbs( G, rG, PETSC_NULL );
 		VecMax( rG, &loc, &max );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_max(G) = %g \n", max );
 		
@@ -280,7 +280,7 @@ PetscErrorCode BSSCR_MatStokesKBlockReportOperatorScales( Mat A, PetscTruth sym 
                 Vec rD;
 
                 MatGetVecs( D, PETSC_NULL, &rD );
-		MatGetRowMax( D, rD, PETSC_NULL );
+		MatGetRowMaxAbs( D, rD, PETSC_NULL );
 		VecMax( rD, &loc, &max );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_max(D) = %g \n", max );
 		
@@ -295,11 +295,11 @@ PetscErrorCode BSSCR_MatStokesKBlockReportOperatorScales( Mat A, PetscTruth sym 
 		Vec cG;
 
 		MatGetVecs( G, &cG, PETSC_NULL );
-		MatGetRowMax( C, cG, PETSC_NULL );
+		MatGetRowMaxAbs( C, cG, PETSC_NULL );
 		VecMax( cG, &loc, &max );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_max(C) = %g \n", max );
 		
-		MatGetRowMin( C, cG, PETSC_NULL );
+		MatGetRowMinAbs( C, cG, PETSC_NULL );
 		VecMin( cG, &loc, &min );
 		PetscPrintf( PETSC_COMM_WORLD, "Sup_min(C) = %g \n\n", min );
 	
