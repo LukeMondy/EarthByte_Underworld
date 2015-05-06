@@ -179,7 +179,7 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
         BA =  bsscr->BA;
     }
 
-    if( (bsscr->k2type != PETSC_NULL) ){
+    if( (bsscr->k2type != 0) ){
       if(bsscr->buildK2 != PETSC_NULL)(*bsscr->buildK2)(ksp); /* building K2 from scaled version of stokes operators: K2 lives on bsscr struct = ksp->data */  
     }
 
@@ -210,7 +210,7 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     /**********************************************************/
     if( bsscr->do_scaling ){ 
         (*bsscr->unscale)(ksp);  }
-    if( (bsscr->k2type != PETSC_NULL) && bsscr->K2 != PETSC_NULL ){
+    if( (bsscr->k2type != 0) && bsscr->K2 != PETSC_NULL ){
         if(bsscr->k2type != K2_SLE){/* don't destroy here, as in this case, K2 is just pointing to an existing matrix on the SLE */
             Stg_MatDestroy(&bsscr->K2 );
         }

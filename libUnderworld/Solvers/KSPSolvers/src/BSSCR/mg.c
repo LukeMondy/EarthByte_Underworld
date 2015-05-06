@@ -76,11 +76,12 @@ PetscErrorCode MG_inner_solver_pcmg_shutdown( PC pc_MG ) {
 }
 #undef __FUNCT__  
 #define __FUNCT__ "KSPCycleEffectivenessMonitorAndAdjust"
-PetscErrorCode KSPCycleEffectivenessMonitorAndAdjust(KSP ksp, PetscInt n, PetscReal rnorm, MGContext *mgctx )
+PetscErrorCode KSPCycleEffectivenessMonitorAndAdjust(KSP ksp, PetscInt n, PetscReal rnorm, void *_mgctx )
 {
     PetscErrorCode          ierr;
     //PetscViewerASCIIMonitor viewer;
-    PetscViewerASCIIMonitor viewer  = PETSC_VIEWER_STDOUT_(((PetscObject)ksp)->comm);			
+    PetscViewerASCIIMonitor viewer  = PETSC_VIEWER_STDOUT_(((PetscObject)ksp)->comm);
+    MGContext * mgctx= (MGContext *)_mgctx;
     PetscFunctionBegin;
 	
     if(n==0) {

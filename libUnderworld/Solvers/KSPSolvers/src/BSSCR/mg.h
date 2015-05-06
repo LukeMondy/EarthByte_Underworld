@@ -38,7 +38,7 @@ typedef struct {
   PetscInt totalMgCycleCount;  
 } MGContext;
 
-PetscErrorCode KSPCycleEffectivenessMonitorAndAdjust(KSP ksp, PetscInt n, PetscReal rnorm, MGContext *mgctx );
+PetscErrorCode KSPCycleEffectivenessMonitorAndAdjust(KSP ksp, PetscInt n, PetscReal rnorm, void *_mgctx );
 //PetscErrorCode MG_inner_solver_mgContext_initialise(MGContext *mgCtx);
 PetscErrorCode MG_inner_solver_pcmg_shutdown( PC pc_MG );
 //PetscErrorCode BSSCR_mgPCApply( void *ctx, Vec x, Vec y );
