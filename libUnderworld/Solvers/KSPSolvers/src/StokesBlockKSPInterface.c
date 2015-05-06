@@ -10,6 +10,7 @@
 #include <petscpc.h>
 #include <petscsnes.h>
 #include <petscis.h> 
+#include <petscviewer.h>
 
 #include <petscversion.h>
 #if ( (PETSC_VERSION_MAJOR >= 3) && (PETSC_VERSION_MINOR >=3) )
@@ -209,107 +210,166 @@ void SBKSP_GetStokesOperators(
 /***********************************************************************************************************/
 /* Sets up Solver to be a custom ksp (KSP_BSSCR) solve by default: */
 /* requires PetscExt */
-void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
-        Stokes_SLE*  stokesSLE  = (Stokes_SLE*)_stokesSLE;
-	StokesBlockKSPInterface* Solver    = (StokesBlockKSPInterface*)solver;
+PetscErrorCode _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
+  Stokes_SLE*  stokesSLE  = (Stokes_SLE*)_stokesSLE;
+  StokesBlockKSPInterface* Solver    = (StokesBlockKSPInterface*)solver;
 
-	/* Create shortcuts to stuff needed on sle */
-	Mat       K;
-	Mat       G;
-	Mat       Gt;
-	Mat       D;
-	Mat       C;
-	Mat       approxS;
-	Vec       u;
-	Vec       p;
-	Vec       f;
-	Vec       h;
+  /* Create shortcuts to stuff needed on sle */
+  Mat       K;
+  Mat       G;
+  Mat       Gt;
+  Mat       D;
+  Mat       C;
+  Mat       approxS;
+  Vec       u;
+  Vec       p;
+  Vec       f;
+  Vec       h;
 
-	Stream*   errorStream = Journal_Register( Error_Type, (Name)StokesBlockKSPInterface_Type  );
+  //Stream*   errorStream = Journal_Register( Error_Type, (Name)StokesBlockKSPInterface_Type  );
 
-	Mat stokes_P;
-	Mat stokes_A;
-	Vec stokes_x;
-	Vec stokes_b;
-    Mat a[2][2];
-    Vec x[2];
-    Vec b[2];
+  Mat stokes_P;
+  Mat stokes_A;
+  Vec stokes_x;
+  Vec stokes_b;
+  Mat a[2][2];
+  Vec x[2];
+  Vec b[2];
 
-	KSP stokes_ksp;
-	PC  stokes_pc;
-	IS  isr[2];
-    PetscInt rowsizeK, colsizeK, rowsizeG, colsizeG;
+  KSP stokes_ksp;
+  PC  stokes_pc;
+  IS  isr[2];
+  IS  isc[2];
+  PetscInt rowsizeK, colsizeK, rowsizeG, colsizeG, i, first,step, globalstartK, globalstartG, globalrowsizeK, globalcolsizeG;
+  PetscInt globalendK, globalendG, globalcolsizeK;;
+  //char name[100];
 
-	char name[100];
+  PetscTruth sym,flg;
+  PetscErrorCode ierr;
 
-	PetscTruth sym,flg;
+  const PetscInt *indices;
 
-	SBKSP_GetStokesOperators( stokesSLE, &K,&G,&D,&C, &approxS, &f,&h, &u,&p );
+  SBKSP_GetStokesOperators( stokesSLE, &K,&G,&D,&C, &approxS, &f,&h, &u,&p );
 
-    /* create a symbolic Gt */
-	if( !D ) {
-      //MatCreateSymTrans( PETSC_COMM_WORLD, G, &Gt );
-      PetscPrintf( PETSC_COMM_WORLD, "\t* BUILDING TRANSPOSE of G!! \n");
-      //MatCreateTranspose( G, &Gt);
-      MatTranspose( G, MAT_INITIAL_MATRIX, &Gt);
-	    sym = PETSC_TRUE;
-	    Solver->DIsSym = sym;
-	}
-	else {
-	    Gt = D;
-	    sym = PETSC_FALSE;
-	    Solver->DIsSym = sym;
-	}
+  /* create a symbolic Gt */
+  if( !D ) {
+    //MatCreateSymTrans( PETSC_COMM_WORLD, G, &Gt );
+    //PetscPrintf( PETSC_COMM_WORLD, "\t* BUILDING TRANSPOSE of G!! \n");
+    //MatCreateTranspose( G, &Gt);
+    ierr = MatTranspose( G, MAT_INITIAL_MATRIX, &Gt);CHKERRQ(ierr);
+    sym = PETSC_TRUE;
+    Solver->DIsSym = sym;
+  }
+  else {
+    Gt = D;
+    sym = PETSC_FALSE;
+    Solver->DIsSym = sym;
+  }
+#if 0
+  PetscMPIInt rank;
+  MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+
+  ierr = MatGetLocalSize(K, &rowsizeK, &colsizeK);CHKERRQ(ierr);
+  ierr = MatGetLocalSize(Gt, &rowsizeG, &colsizeG);CHKERRQ(ierr);
+  ierr = MatGetSize(K, &globalrowsizeK, &globalcolsizeK);CHKERRQ(ierr);
+  //ierr = MatGetSize(G, NULL, &globalcolsizeG);CHKERRQ(ierr);
+  printf("\t [%d]:K  matrix local sizes: %dx%d\n",rank,rowsizeK,colsizeK);
+  printf("\t [%d]:Gt matrix local sizes: %dx%d\n",rank,rowsizeG,colsizeG);
+  MatGetOwnershipRange(K, &globalstartK, &globalendK);
+  MatGetOwnershipRange(Gt, &globalstartG, &globalendG);
+  printf("\t [%d]:global row indices: K, Gt: %d-%d %d-%d\n",rank,globalstartK,globalendK-1, globalstartG, globalendG-1);
+  /*                                                        length, start_pos */
+  rowsizeK=globalendK-globalstartK;
+  rowsizeG=globalendG-globalstartG;
+  printf("\t [%d]:Global row sizes for K G: %d %d\n",rank,rowsizeK,rowsizeG);
+  ierr = ISCreateStride(PetscObjectComm((PetscObject) K), rowsizeK, globalstartK, 1, &isr[0]);CHKERRQ(ierr);
+  ierr = ISCreateStride(PetscObjectComm((PetscObject) K), rowsizeG, globalrowsizeK+globalstartG, 1, &isr[1]);CHKERRQ(ierr);
+  ierr = MatGetSize(Gt, NULL, &globalcolsizeG);CHKERRQ(ierr);
+  //colsizeK=globalcolsizeK;
+  //colsizeG=globalcolsizeG;
+  MatGetOwnershipRange(G, &globalstartG, &globalendG);
+  ierr = MatGetLocalSize(G, &rowsizeG, &colsizeG);CHKERRQ(ierr);
+  ierr = ISCreateStride(PetscObjectComm((PetscObject) K), colsizeK, 0, 1, &isc[0]);CHKERRQ(ierr);
+  ierr = ISCreateStride(PetscObjectComm((PetscObject) K), colsizeG, globalcolsizeK, 1, &isc[1]);CHKERRQ(ierr);
     
-    MatGetSize(K, &rowsizeK, &colsizeK);    
-    MatGetSize(G, &rowsizeG, &colsizeG);
-    /*                                               length, start_pos */
-    ISCreateStride(PetscObjectComm((PetscObject) K), rowsizeK, 0       , 1, &isr[0]);
-    ISCreateStride(PetscObjectComm((PetscObject) K), colsizeG, rowsizeK, 1, &isr[1]);
 
-    a[0][0]=K;  a[0][1]=G;
-    a[1][0]=Gt; a[1][1]=C;
-    MatCreateNest(PetscObjectComm((PetscObject) K), 2, isr, 2, isr, (Mat *)a, &stokes_A);
-    MatAssemblyBegin( stokes_A, MAT_FINAL_ASSEMBLY );
-    MatAssemblyEnd( stokes_A, MAT_FINAL_ASSEMBLY );
+  printf("\t [%d]:rowK colG: %d %d\n",rank,rowsizeK,colsizeG );
 
-    x[0]=u;
-    x[1]=p;
-    VecCreateNest(PetscObjectComm((PetscObject) u), 2, isr, x, &stokes_x);
-    VecAssemblyBegin( stokes_x );
-    VecAssemblyEnd( stokes_x);
+  ierr = ISGetIndices(isr[0],&indices);CHKERRQ(ierr);
+  ierr = PetscPrintf(PETSC_COMM_WORLD,"\t [%d]:Printing indices directly\n",rank);CHKERRQ(ierr);
+  for (i=0; i<rowsizeK; i++) {
+    ierr = PetscPrintf(PETSC_COMM_WORLD,"\t [%d]:%D\n",rank,indices[i]);CHKERRQ(ierr);
+  }
+  ierr = ISRestoreIndices(isr[0],&indices);CHKERRQ(ierr);
 
-    b[0]=f;
-    b[1]=h;
-    VecCreateNest(PetscObjectComm((PetscObject) f), 2, isr, b, &stokes_b);
-    VecAssemblyBegin( stokes_b );
-    VecAssemblyEnd( stokes_b);
+  ierr = ISGetIndices(isr[1],&indices);CHKERRQ(ierr);
+  ierr = PetscPrintf(PETSC_COMM_WORLD,"\t [%d]:Printing indices directly\n",rank);CHKERRQ(ierr);
+  for (i=0; i<colsizeG; i++) {
+    ierr = PetscPrintf(PETSC_COMM_WORLD,"\t [%d]:%D\n",rank,indices[i]);CHKERRQ(ierr);
+  }
+  ierr = ISRestoreIndices(isr[1],&indices);CHKERRQ(ierr);
 
-	if( approxS ) {
-      a[0][0]=K;    a[0][1]=G;
-      a[1][0]=NULL; a[1][1]=approxS;
-      MatCreateNest(PetscObjectComm((PetscObject) K), 2, isr, 2, isr, (Mat *)a, &stokes_P);
-      MatAssemblyBegin( stokes_P, MAT_FINAL_ASSEMBLY );
-      MatAssemblyEnd( stokes_P, MAT_FINAL_ASSEMBLY );
-	}
-	else {
-	    stokes_P = stokes_A;
-	}
+  ierr = ISStrideGetInfo(isr[0],&first,&step);CHKERRQ(ierr);
+  ierr = PetscPrintf(PETSC_COMM_WORLD,"\t [%d]:isr[0]: %D %D\n",rank,first, step);CHKERRQ(ierr);
+  printf("\t [%d]:--isr[0]: %d %d\n",rank,first,step);
+  ierr = ISStrideGetInfo(isr[1],&first,&step);CHKERRQ(ierr);
+  ierr = PetscPrintf(PETSC_COMM_WORLD,"\t [%d]:isr[1]: %D %D\n",rank,first, step);CHKERRQ(ierr);
+  printf("\t [%d]:--isr[1]: %d %d\n",rank,first,step);
+  
+  printf("[%d]: ISR[0]--------------\n",rank);
+  ierr = ISView(isr[0],PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+  printf("[%d]: ISR[1]--------------\n",rank);
+  ierr = ISView(isr[1],PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+  printf("[%d]: ISC[0]--------------\n",rank);
+  ierr = ISView(isc[0],PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+  printf("[%d]: ISC[1]--------------\n",rank);
+  ierr = ISView(isc[1],PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+#endif
+  a[0][0]=K;  a[0][1]=G;
+  a[1][0]=Gt; a[1][1]=C;
+  ierr = MatCreateNest(PetscObjectComm((PetscObject) K), 2, NULL, 2, NULL, (Mat *)a, &stokes_A);CHKERRQ(ierr);
+  ierr = MatAssemblyBegin( stokes_A, MAT_FINAL_ASSEMBLY );CHKERRQ(ierr);
+  ierr = MatAssemblyEnd( stokes_A, MAT_FINAL_ASSEMBLY );CHKERRQ(ierr);
+
+
+
+  x[0]=u;
+  x[1]=p;
+  ierr = VecCreateNest(PetscObjectComm((PetscObject) u), 2, NULL, x, &stokes_x);CHKERRQ(ierr);
+  ierr = VecAssemblyBegin( stokes_x );CHKERRQ(ierr);
+  ierr = VecAssemblyEnd( stokes_x);CHKERRQ(ierr);
     
-    /* probably should make a Destroy function for these two */
-    /* Update options from file and/or string here so we can change things on the fly */
-	PetscOptionsInsertFile(PETSC_COMM_WORLD, Solver->optionsFile, PETSC_FALSE);
-	PetscOptionsInsertString(Solver->optionsString);
+  b[0]=f;
+  b[1]=h;
+  ierr = VecCreateNest(PetscObjectComm((PetscObject) f), 2, NULL, b, &stokes_b);CHKERRQ(ierr);
+  ierr = VecAssemblyBegin( stokes_b );CHKERRQ(ierr);
+  ierr = VecAssemblyEnd( stokes_b);CHKERRQ(ierr);
+    
+  if( approxS ) {
+    a[0][0]=K;    a[0][1]=G;
+    a[1][0]=NULL; a[1][1]=approxS;
+    ierr = MatCreateNest(PetscObjectComm((PetscObject) K), 2, NULL, 2, NULL, (Mat *)a, &stokes_P);CHKERRQ(ierr);
+    ierr = MatAssemblyBegin( stokes_P, MAT_FINAL_ASSEMBLY );CHKERRQ(ierr);
+    ierr = MatAssemblyEnd( stokes_P, MAT_FINAL_ASSEMBLY );CHKERRQ(ierr);
+  }
+  else {
+    stokes_P = stokes_A;
+  }
+    
+  /* probably should make a Destroy function for these two */
+  /* Update options from file and/or string here so we can change things on the fly */
+  PetscOptionsInsertFile(PETSC_COMM_WORLD, Solver->optionsFile, PETSC_FALSE);
+  PetscOptionsInsertString(Solver->optionsString);
 
-	KSPCreate( PETSC_COMM_WORLD, &stokes_ksp );
-	Stg_KSPSetOperators( stokes_ksp, stokes_A, stokes_P, SAME_NONZERO_PATTERN );
-	KSPSetType( stokes_ksp, "bsscr" );/* i.e. making this the default solver : calls KSPCreate_XXX */
-
-	KSPGetPC( stokes_ksp, &stokes_pc );
-	PCSetType( stokes_pc, PCNONE );
-	KSPSetInitialGuessNonzero( stokes_ksp, PETSC_TRUE );
-	KSPSetFromOptions( stokes_ksp );
-
+  ierr = KSPCreate( PETSC_COMM_WORLD, &stokes_ksp );CHKERRQ(ierr);
+  Stg_KSPSetOperators( stokes_ksp, stokes_A, stokes_P, SAME_NONZERO_PATTERN );
+  ierr = KSPSetType( stokes_ksp, "bsscr" );/* i.e. making this the default solver : calls KSPCreate_XXX */CHKERRQ(ierr);
+    
+  ierr = KSPGetPC( stokes_ksp, &stokes_pc );CHKERRQ(ierr);
+  ierr = PCSetType( stokes_pc, PCNONE );CHKERRQ(ierr);
+  ierr = KSPSetInitialGuessNonzero( stokes_ksp, PETSC_TRUE );CHKERRQ(ierr);
+  ierr = KSPSetFromOptions( stokes_ksp );CHKERRQ(ierr);
+    
 
 /* #if( PETSC_VERSION_MAJOR < 3 ) */
 /* 	PCBlock_SetBlockType( stokes_pc, PC_BLOCK_UPPER ); */
@@ -317,34 +377,36 @@ void _StokesBlockKSPInterface_Solve( void* solver, void* _stokesSLE ) {
 /* 	PCBlockSetBlockType( stokes_pc, PC_BLOCK_UPPER ); */
 /* #endif */
 
-	/*
-	   Doing this so the KSP Solver has access to the StgFEM Multigrid struct (PETScMGSolver).
-	   As well as any custom stuff on the Stokes_SLE struct 
-	*/
-	if( stokes_ksp->data ){/* then ksp->data has been created in a KSpSetUp_XXX function */
-	    /* testing for our KSP types that need the data that is on Solver... */
-	    /* for the moment then, this function not completely agnostic about our KSPs */
-	    //if(!strcmp("bsscr",stokes_ksp->type_name)){/* if is bsscr then set up the data on the ksp */
-	    flg=PETSC_FALSE;
-	    PetscOptionsHasName(PETSC_NULL,"-use_petsc_ksp",&flg);
-	    if (!flg) {
-		((KSP_COMMON*)(stokes_ksp->data))->st_sle         = Solver->st_sle;
-		((KSP_COMMON*)(stokes_ksp->data))->mg             = Solver->mg;
-		((KSP_COMMON*)(stokes_ksp->data))->DIsSym         = Solver->DIsSym;
-		((KSP_COMMON*)(stokes_ksp->data))->preconditioner = Solver->preconditioner;
-	    }
-	}
+  /*
+    Doing this so the KSP Solver has access to the StgFEM Multigrid struct (PETScMGSolver).
+    As well as any custom stuff on the Stokes_SLE struct 
+  */
+  if( stokes_ksp->data ){/* then ksp->data has been created in a KSpSetUp_XXX function */
+    /* testing for our KSP types that need the data that is on Solver... */
+    /* for the moment then, this function not completely agnostic about our KSPs */
+    //if(!strcmp("bsscr",stokes_ksp->type_name)){/* if is bsscr then set up the data on the ksp */
+    flg=PETSC_FALSE;
+    PetscOptionsHasName(PETSC_NULL,"-use_petsc_ksp",&flg);
+    if (!flg) {
+      ((KSP_COMMON*)(stokes_ksp->data))->st_sle         = Solver->st_sle;
+      ((KSP_COMMON*)(stokes_ksp->data))->mg             = Solver->mg;
+      ((KSP_COMMON*)(stokes_ksp->data))->DIsSym         = Solver->DIsSym;
+      ((KSP_COMMON*)(stokes_ksp->data))->preconditioner = Solver->preconditioner;
+    }
+  }
 
-	KSPSolve( stokes_ksp, stokes_b, stokes_x );
+  ierr = KSPSolve( stokes_ksp, stokes_b, stokes_x );CHKERRQ(ierr);
+    
+  Stg_KSPDestroy(&stokes_ksp );
+  if( ((StokesBlockKSPInterface*)stokesSLE->solver)->preconditioner ){ Stg_MatDestroy(&stokes_P ); }
 
-	Stg_KSPDestroy(&stokes_ksp );
-	if( ((StokesBlockKSPInterface*)stokesSLE->solver)->preconditioner ){ Stg_MatDestroy(&stokes_P ); }
+  Stg_MatDestroy(&stokes_A );
 
-	Stg_MatDestroy(&stokes_A );
+  Stg_VecDestroy(&stokes_x);
+  Stg_VecDestroy(&stokes_b);
 
-	Stg_VecDestroy(&stokes_x);
-	Stg_VecDestroy(&stokes_b);
+  if(!D){ Stg_MatDestroy(&Gt); }
 
-	if(!D){ Stg_MatDestroy(&Gt); }
+  PetscFunctionReturn(0);
 }
 

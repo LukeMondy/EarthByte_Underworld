@@ -71,7 +71,7 @@
 
 	void _StokesBlockKSPInterface_SolverSetup( void* stokesSle, void* stokesSLE );
 
-	void _StokesBlockKSPInterface_Solve( void* solver, void* stokesSLE );
+	PetscErrorCode _StokesBlockKSPInterface_Solve( void* solver, void* stokesSLE );
 
         void SBKSP_GetStokesOperators( 
 		Stokes_SLE *stokesSLE,

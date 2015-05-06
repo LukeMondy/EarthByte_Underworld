@@ -37,9 +37,9 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 #export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
-#export UWEXEC="mpirun -n 8 $UWPATH/build/bin/Underworld"
-
-echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
+export UWEXEC="mpirun -n 4 $UWPATH/build/bin/Underworld"
+#export UWEXEC="mpirun -n 2 xterm -e cgdb --args $UWPATH/build/bin/Underworld"
+#echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
 for VC in 4
 do
 for SC in 0
@@ -204,7 +204,7 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
 
 #./getconv2.pl < "$OUT/output.txt"  | tee -a var.txt
 
-cp "$OUT/window.00000.png" "$PNGNAME"
+#cp "$OUT/window.00000.png" "$PNGNAME"
 #echo " $PEN | $UW | $SC | $SCR | $SCRTOL | $SCRP  | $A11 | $A11TOL | $RES | $MG | $DIR | $ID |" | tee -a  var.txt
 #    -ksp_type fgmres -pc_type fieldsplit -pc_fieldsplit_detect_saddle_point \
 #      -pc_fieldsplit_type schur -pc_fieldsplit_schur_fact_type full \
