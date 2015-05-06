@@ -53,9 +53,9 @@ Note this routine actually modifies the matrix and rhs b.
 // updated
 PetscErrorCode BSSCR_MatStokesKBlock_ApplyScaling( MatStokesBlockScaling BA, Mat A, Vec b, Vec x, Mat S, PetscTruth sym )
 {
-	Mat K,G,D,C;
-	Vec L1,L2, R1,R2;
-	Vec f,h, u,p;
+	Mat K,G,D;
+	Vec L1,R1;
+	Vec f,u;
 	
 	
 	/* Get the scalings out the block mat data */
@@ -90,7 +90,7 @@ PetscErrorCode BSSCR_MatStokesKBlockScalingCreate( MatStokesBlockScaling *_BA )
 	MatStokesBlockScaling BA;
 	PetscErrorCode ierr;
 
-	ierr = PetscMalloc( sizeof(struct _p_MatStokesBlockScaling), &BA );
+	ierr = PetscMalloc( sizeof(struct _p_MatStokesBlockScaling), &BA );CHKERRQ(ierr);
 	
 	BA->Lz = PETSC_NULL;
 	BA->Rz = PETSC_NULL;
@@ -135,20 +135,18 @@ PetscErrorCode BSSCR_MatKBlock_ConstructScaling( MatStokesBlockScaling BA, Mat A
 	
 	
 	if( BA->scaling_exists == PETSC_FALSE ) {
-		PetscInt M,N;
-		PetscTruth is_block;
+      //PetscInt M,N;
+		//PetscTruth is_block;
 		
 		/* check A is 2x2 block matrix */
-		Stg_PetscTypeCompare( (PetscObject)A, "block", &is_block );
-		if (is_block==PETSC_FALSE) {
-			Stg_SETERRQ( PETSC_ERR_SUP, "Only valid for MatType = block" );
-		}
-		MatGetSize( A, &M, &N );
-		if ( (M!=2) || (N!=2) ) {
-			Stg_SETERRQ2( PETSC_ERR_SUP, "Only valid for 2x2 block. Yours has dimension %Dx%D", M,N );
-		}
-		
-		
+		/* Stg_PetscTypeCompare( (PetscObject)A, "block", &is_block ); */
+		/* if (is_block==PETSC_FALSE) { */
+		/* 	Stg_SETERRQ( PETSC_ERR_SUP, "Only valid for MatType = block" ); */
+		/* } */
+		/* MatGetSize( A, &M, &N ); */
+		/* if ( (M!=2) || (N!=2) ) { */
+		/* 	Stg_SETERRQ2( PETSC_ERR_SUP, "Only valid for 2x2 block. Yours has dimension %Dx%D", M,N ); */
+		/* } */
 		
 		VecDuplicate( x, &BA->Lz ); 
 		VecDuplicate( x, &BA->Rz );
@@ -231,21 +229,21 @@ PetscErrorCode BSSCR_MatStokesKBlockUnScaleSystem( MatStokesBlockScaling BA, Mat
 PetscErrorCode BSSCR_MatStokesKBlockReportOperatorScales( Mat A, PetscTruth sym )
 {
 	Vec rA, rG;
-	PetscInt loc,M,N;
+	PetscInt loc;
 	PetscReal min, max;
 	Mat K,G,D,C;
-	PetscTruth is_block;
+	//PetscTruth is_block;
 	
 	
 	/* check A is 2x2 block matrix */
-	Stg_PetscTypeCompare( (PetscObject)A, "block", &is_block );
-	if (is_block==PETSC_FALSE) {
-		Stg_SETERRQ( PETSC_ERR_SUP, "Only valid for MatType = block" );
-	}
-	MatGetSize( A, &M, &N );
-	if ( (M!=2) || (N!=2) ) {
-		Stg_SETERRQ2( PETSC_ERR_SUP, "Only valid for 2x2 block. Yours has dimension %Dx%D", M,N );
-	}
+	/* Stg_PetscTypeCompare( (PetscObject)A, "block", &is_block ); */
+	/* if (is_block==PETSC_FALSE) { */
+	/* 	Stg_SETERRQ( PETSC_ERR_SUP, "Only valid for MatType = block" ); */
+	/* } */
+	/* MatGetSize( A, &M, &N ); */
+	/* if ( (M!=2) || (N!=2) ) { */
+	/* 	Stg_SETERRQ2( PETSC_ERR_SUP, "Only valid for 2x2 block. Yours has dimension %Dx%D", M,N ); */
+	/* } */
 	
 	
 	MatNestGetSubMat( A, 0,0, &K );
@@ -320,10 +318,8 @@ PetscErrorCode BSSCR_MatStokesKBlockReportOperatorScales( Mat A, PetscTruth sym 
 PetscErrorCode BSSCR_MatStokesKBlockDefaultBuildScaling( MatStokesBlockScaling BA, Mat A, Vec b, Vec x, PetscTruth sym )
 {
 	Mat K;
-	PetscInt N;
 	Vec rA;
 	Vec L1, R1;
-	Mat S;
 	
 	VecNestGetSubVec( BA->Lz, 0, &L1 );
 	VecNestGetSubVec( BA->Rz, 0, &R1 );
