@@ -14,6 +14,7 @@
          <param name="resolution">24</param>
          <param name="lineWidth">2</param>
          <param name="showValues">True</param>
+         <param name="lit">False</param>
          <param name="printUnits">False</param>
       </struct>
 
