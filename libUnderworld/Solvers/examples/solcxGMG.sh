@@ -37,13 +37,13 @@ PROCS=1
 export UWPATH=`./getUWD.sh`
 #export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 export UWEXEC="$UWPATH/build/bin/Underworld"
-export UWEXEC="mpirun -n 2 $UWPATH/build/bin/Underworld"
+#export UWEXEC="mpirun -n 2 $UWPATH/build/bin/Underworld"
 #export UWEXEC="mpirun -n 2 xterm -e cgdb --args $UWPATH/build/bin/Underworld"
 #export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
-for VC in 4
+for VC in 2
 do
-for SC in 1
+for SC in 0
 do
 for UW in gkgdiag
 do
@@ -62,7 +62,7 @@ echo "|-------+-------+------------+----------+------+------+------+------+-----
 #for PEN in 0.0 10.0 100.0 1000.0 10000.0
 #10.0 100.0 1000.0
 #for PENEXP in -4 -1 0 1 2 3 4 5
-for PENEXP in 1
+for PENEXP in 2
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 #PEN=`echo "0.25*$PEN" | bc -l`
@@ -134,9 +134,9 @@ SCALE="-rescale_equations $SC "
 let "count+=1"
 #VC=3
 VV=`echo "10^($VC)" | bc -l`
-#VCC=0
-#VB=`echo "10^(-$VCC)" | bc -l`
-VB=1.0
+VCC=1
+VB=`echo "10^($VCC)" | bc -l`
+#VB=1.0
 PCRES=15
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
@@ -178,14 +178,14 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     -Xscr_pc_gtkg_ksp_view -Xscr_pc_gtkg_ksp_monitor -scr_pc_gtkg_ksp_rtol 1e-6 -scr_pc_gtkg_ksp_type cg \
   	-remove_checkerboard_pressure_null_space 0 \
   	-remove_constant_pressure_null_space 0 \
-  	--mgLevels=5 \
+  	--mgLevels=4 \
   	-Xscr_ksp_max_it 1000 \
     -scr_ksp_type $SCR \
     -Xscr_ksp_view \
     $SCRNORMTYPE \
     -Xscr_ksp_left_pc \
   	-scr_ksp_rtol $SCRTOL \
-    -Xscr_ksp_monitor_true_residual \
+    -scr_ksp_monitor_true_residual \
     -XA11_pc_type hypre -XA11_pc_hypre_type boomeramg -XA11_pc_hypre_boomeramg_print_statistics \
   	-XA11_ksp_rtol $A11TOL \
     -A11_ksp_type $A11 \
@@ -196,7 +196,7 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     -XA11_use_norm_inf_stopping_condition \
     -XA11_ksp_monitor_true_residual \
   	--elementResI=$RES --elementResJ=$RES \
-  	--maxTimeSteps=0 -XA11_ksp_view -XA11_mg_levels_ksp_view \
+  	--maxTimeSteps=0 -XA11_ksp_view -XA11_mg_levels_ksp_view -log_summary \
     -xdump_matvec -matsuffix "_${RES}x${RES}_${SCALETEXT}_10e${VC}_cx_" -xmatdumpdir $OUT -xsolutiondumpdir $OUT \
    --components.stokesblockkspinterface.OptionsString=" -A11_ksp_monitor -xscr_ksp_view -xA11_ksp_view -backsolveA11_ksp_type preonly -backsolveA11_pc_type lu " \
 #

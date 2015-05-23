@@ -160,8 +160,12 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
     Mat K,D,ApproxS;
     MatStokesBlockScaling BA;
     PetscTruth flg, sym, augment;
-    
+    double TotalSolveTime;
+
     PetscFunctionBegin;
+
+    TotalSolveTime = MPI_Wtime();
+
     PetscPrintf( PETSC_COMM_WORLD, "**** BSSCR -- Block Stokes Schur Compliment Reduction Solver **** \n");
     /** Get the stokes Block matrix and its preconditioner matrix */
     ierr = Stg_PCGetOperators(ksp->pc,&Amat,&Pmat,PETSC_NULL);CHKERRQ(ierr);
@@ -219,6 +223,8 @@ PetscErrorCode  KSPSolve_BSSCR(KSP ksp)
 
     ksp->reason = KSP_CONVERGED_RTOL;
 
+    TotalSolveTime =  MPI_Wtime() - TotalSolveTime;
+    PetscPrintf( PETSC_COMM_WORLD, "\n\t* Total BSSCR Linear solve time: %lf seconds\n\n", TotalSolveTime);
     PetscFunctionReturn(0);
 }
 
