@@ -237,6 +237,11 @@ void _lucEigenvectorsCrossSection_DrawCrossSection( void* drawingObject, lucData
                         vec[2] = 0;
                   }
                   lucDatabase_AddVectors(database, 1, lucVectorType, 0, 1, vec);
+
+                  //Apply a tiny shift so all 3 vectors can be seen even if exactly same position/magnitude
+                  pos[0] += 0.000001;
+                  pos[1] += 0.000001;
+                  pos[2] += 0.000001;
                }
             }
             if (self->plotEigenValue)
