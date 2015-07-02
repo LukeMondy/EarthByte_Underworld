@@ -88,7 +88,7 @@ void _lucMeshViewer_Init(
    self->pointSmooth = pointSmooth;
    self->pointSize = pointSize;
    /* Append to property string */
-   lucDrawingObject_AppendProps(self, "pointSmooth=%d\npointSize=%g\n", pointSmooth, pointSize); 
+   lucDrawingObject_AppendProps(self, "pointsmooth=%d\npointsize=%g\n", pointSmooth, pointSize); 
 }
 
 void _lucMeshViewer_Delete( void* drawingObject )

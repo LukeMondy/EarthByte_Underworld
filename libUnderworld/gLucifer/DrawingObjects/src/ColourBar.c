@@ -91,7 +91,7 @@ void _lucColourBar_Init(
    self->scaleValue = scaleValue;
 
    /* Append to property string */
-   lucDrawingObject_AppendProps(self, "colourbar=1\nheight=%d\nlengthfactor=%g\nmargin=%d\nborder=%d\nprecision=%d\nscientific=%d\nticks=%d\nprintTicks=%d\nprintUnits=%d\nscaleValue=%g\n", height, lengthFactor, margin, borderWidth, precision, scientific, ticks, printTickValue, printUnits, scaleValue);
+   lucDrawingObject_AppendProps(self, "colourbar=1\nheight=%d\nlengthfactor=%g\nmargin=%d\nborder=%d\nprecision=%d\nscientific=%d\nticks=%d\nprintticks=%d\nprintunits=%d\nscalevalue=%g\n", height, lengthFactor, margin, borderWidth, precision, scientific, ticks, printTickValue, printUnits, scaleValue);
 
    for (i = 1; i <= ticks; i++)
    {

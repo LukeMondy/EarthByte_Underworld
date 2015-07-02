@@ -105,7 +105,7 @@ void _lucSwarmViewer_Init(
    self->geomType = lucPointType;   /* Draws points by default */
 
    /* Append to property string */
-   lucDrawingObject_AppendProps(self, "pointSmooth=%d\npointSize=%g\n", pointSmoothing, pointSize);
+   lucDrawingObject_AppendProps(self, "pointsmooth=%d\npointsize=%g\n", pointSmoothing, pointSize);
 }
 
 void _lucSwarmViewer_Delete( void* drawingObject )
