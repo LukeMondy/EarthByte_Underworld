@@ -41,7 +41,7 @@ export UWEXEC="$UWPATH/build/bin/Underworld"
 #export UWEXEC="mpirun -n 2 xterm -e cgdb --args $UWPATH/build/bin/Underworld"
 #export UWEXEC="cgdb --args $UWPATH/build/bin/Underworld"
 #echo "| p its | v its | p solve time | constraint | gperror | NL its | avg P its | minp | maxp | minv | maxv | penalty | -Q22_pc_type | scale | scr | scr tol | scr norm type | A11 | A11 tol |res | MG | DIR | ID | VC |" | tee var.txt
-for VC in 2
+for VC in 12
 do
 for SC in 0
 do
@@ -51,9 +51,9 @@ for SCR in fgmres
 do
 for A11 in fgmres
 do
-for SCRTOL in 1e-5
+for SCRTOL in 1e-8
 do
-for A11TOL in 1e-7
+for A11TOL in 1e-10
 do
 echo "|-------+-------+------------+----------+------+------+------+------+---------+----------------+-------+-----+---------+---------------+-----+---------+-----+----+----|" | tee -a var.txt
 #for PEN in 0.0 0.0001 0.05 0.1 1.0 5.0 10.0 20.0 50.0 100.0 200.0 500.0 1000.0 2000.0
@@ -62,7 +62,7 @@ echo "|-------+-------+------------+----------+------+------+------+------+-----
 #for PEN in 0.0 10.0 100.0 1000.0 10000.0
 #10.0 100.0 1000.0
 #for PENEXP in -4 -1 0 1 2 3 4 5
-for PENEXP in 2
+for PENEXP in 5
 do
 #dividing penalty by 4 to make equivalent to NaiNbj examples
 #PEN=`echo "0.25*$PEN" | bc -l`
@@ -80,7 +80,7 @@ SCRP="default"
 
 #MG=boomeramg
 #MG="ml"
-MG=gmg
+MG=lu
 MGOP=" "
     if [ "$MG" = "gmg" ]
         then
@@ -136,7 +136,8 @@ let "count+=1"
 VV=`echo "10^($VC)" | bc -l`
 VCC=1
 VB=`echo "10^($VCC)" | bc -l`
-#VB=1.0
+VB=1.0
+
 PCRES=15
 
 #NAME="solcxGMG_vc${VC}_${A11TOL}_${SCRTOL}_${SCALE}_${UW}_ppc=${PP}_procs_${PROCS}_${MG}"
@@ -164,8 +165,8 @@ $UWEXEC $UWPATH/Underworld/SysTest/PerformanceTests/testVelicSolCx.xml \
     --solCx_etaA=$VV \
     --solCx_xc=0.5 \
     --solCx_etaB=$VB \
-    --solCx_n=2.0 \
-    --wavenumberY=2.0 \
+    --solCx_n=7.0 \
+    --wavenumberY=7.0 \
     -scr_ksp_set_min_it_converge 1 \
     -force_correction 1 -k_scale_only 1 \
     -uzawastyle 0 \

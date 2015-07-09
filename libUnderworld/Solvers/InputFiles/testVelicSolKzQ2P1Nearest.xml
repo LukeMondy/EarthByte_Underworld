@@ -3,7 +3,7 @@
 
 <StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
 
-<!-- VelicSolKx
+<!-- VelicSolKz
 the z-axis defined in the solution pdf
 is the y-axis in the code 
 -->
@@ -18,14 +18,14 @@ is the y-axis in the code
 			<param name="Type">StgFEM_StandardConditionFunctions</param>
 			<param name="Context">context</param>
 		</struct>
-		<!-- <struct> -->
-    	<!-- 	<param name="Type">Underworld_Ra_Scaling</param> -->
-		<!-- 	<param name="Context">context</param> -->
-		<!-- </struct> -->
+		<struct>
+    		<param name="Type">Underworld_Ra_Scaling</param>
+			<param name="Context">context</param>
+		</struct>
 	</list>
 
 	<!-- Component Stuff -->
-	<include>Solvers/StokesFlowQ2Q1Nearest.xml </include>
+	<include>Solvers/StokesFlowQ2P1Nearest.xml </include>
     <include>StgFEM/ConstantMesh.xml</include>
     <include>StgFEM/TemperatureField.xml         </include>
 	<include>StgFEM/TempAdvDiff.xml              </include>
@@ -39,7 +39,7 @@ is the y-axis in the code
 			<param name="Ra">Ra</param>
 		</struct>
 	</struct>
-
+   
    <list name="plugins" mergeType="merge">
       <struct>
          <param name="Type">StgFEM_FrequentOutput</param>
@@ -68,14 +68,14 @@ is the y-axis in the code
       The available analytic functions from this analytic plugin
       which are then used in the AnalyticFeVariable component for performing
       the analytic tests via the FieldTest component: 
-       - Underworld_Velic_solKx_VelocityFunction
-       - Underworld_Velic_solKx_PressureFunction
-       - Underworld_Velic_solKx_StressFunction
-       - Underworld_Velic_solKx_StrainRateFunction 
-       - Underworld_Velic_solKx_ViscosityFunction 
+       - Underworld_Velic_solKz_VelocityFunction
+       - Underworld_Velic_solKz_PressureFunction
+       - Underworld_Velic_solKz_StressFunction
+       - Underworld_Velic_solKz_StrainRateFunction 
+       - Underworld_Velic_solKz_ViscosityFunction 
       -->
       <struct>
-         <param name="Type">Underworld_Velic_solKx</param>
+         <param name="Type">Underworld_Velic_solKz</param>
          <param name="Context">context</param>
       </struct>
    </list>
@@ -90,19 +90,18 @@ is the y-axis in the code
                   <param name="name">temperature</param>
                   <param name="type">func</param>
                   <param name="value">VelicTemperatureIC</param>
-                  <!-- <param name="value">VelicIC_Sinusoidal</param> -->
                </struct>
             </list>
          </struct>
       </list>
    </struct>
    
-   <param name="solKx_sigma">1.0</param>
-   <param name="solKx_twiceB">2.0</param>
-   <!-- solKx_m and wavenumberY must be equal -->
-   <param name="solKx_m">1.0</param><param name="wavenumberY">1.0</param>
-   <!-- solKx_n and wavenumberX must be equal -->
-   <param name="solKx_n">1.0</param><param name="wavenumberX">1.0</param>
+   <param name="solKz_sigma">1.0</param>
+   <param name="solKz_twiceB">2.0</param>
+   <!-- solKz_m and wavenumberY must be equal -->
+   <param name="solKz_m">1.0</param><param name="wavenumberY">1.0</param>
+   <!-- solKz_n and wavenumberX must be equal -->
+   <param name="solKz_n">1.0</param><param name="wavenumberX">1.0</param>
 
    <struct name="components" mergeType="merge">
       <struct name="context">
@@ -111,10 +110,10 @@ is the y-axis in the code
       <struct name="rheology">
          <param name="Type">DepthDependentViscosity</param>
          <param name="Mesh">velocityMesh</param>
-         <param name="eta0">solKx_sigma</param>
-         <param name="gamma">solKx_twiceB</param>
+         <param name="eta0">solKz_sigma</param>
+         <param name="gamma">solKz_twiceB</param>
          <param name="referencePoint">0.0</param>
-         <param name="variationAxis">x</param>
+         <param name="variationAxis">y</param>
       </struct>
       <struct name="shape">
          <param name="Type">Everywhere</param>
@@ -127,7 +126,7 @@ is the y-axis in the code
       <struct name="AnalyticVelocityField">
          <param name="Type">AnalyticFeVariable</param>
          <param name="NumericField">VelocityField</param>
-         <param name="Function">Underworld_Velic_solKx_VelocityFunction</param>
+         <param name="Function">Underworld_Velic_solKz_VelocityFunction</param>
       </struct>
       <struct name="AnalyticVelocityField-Mag">
          <param name="Type">OperatorFeVariable</param>
@@ -147,7 +146,7 @@ is the y-axis in the code
       <struct name="AnalyticPressureField">
          <param name="Type">AnalyticFeVariable</param>
          <param name="NumericField">PressureField</param>
-         <param name="Function">Underworld_Velic_solKx_PressureFunction</param>
+         <param name="Function">Underworld_Velic_solKz_PressureFunction</param>
       </struct>
       <struct name="AnalyticPressureField-Mag">
          <param name="Type">OperatorFeVariable</param>
@@ -167,7 +166,7 @@ is the y-axis in the code
       <struct name="AnalyticStrainRateField">
          <param name="Type">AnalyticFeVariable</param>
          <param name="NumericField">StrainRateField</param>
-         <param name="Function">Underworld_Velic_solKx_StrainRateFunction</param>
+         <param name="Function">Underworld_Velic_solKz_StrainRateFunction</param>
       </struct>
       <struct name="AnalyticStrainRateField-Mag">
          <param name="Type">OperatorFeVariable</param>
@@ -217,7 +216,6 @@ is the y-axis in the code
          </list>
       </struct>
    </struct>
-
    <list name="FieldVariablesToCheckpoint" mergeType="merge">
       <param>VelocityField</param>
       <param>TemperatureField</param>
