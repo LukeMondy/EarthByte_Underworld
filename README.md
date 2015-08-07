@@ -19,6 +19,7 @@ Dependencies
   * hdf5 (optional, but recommended)
   * numpy
   * libpng
+  * libXML2
   * build tools (gcc etc)
 
 Note: Headers will be required for above libraries (-dev packages).  Required libraries regularly included in system distributions are not listed. 
