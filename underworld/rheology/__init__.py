@@ -1,5 +1,0 @@
-'''
-  create Rheologies
-
-'''
-import setup
