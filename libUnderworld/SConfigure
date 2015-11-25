@@ -22,8 +22,6 @@ options = [
     ('--cxx', 'CXX', 'C++ compiler', None),
     ('--cflags', 'CFLAGS', 'Flags for the C compiler', None),
     ('--with-credo', 'with_credo', 'Enable the CREDO sys test system (default 1)', eval(os.getenv('WITH_CREDO','1')), 'int'),
-    ('--with-glucifer', 'with_glucifer', 'Enable gLucifer (default 1)', eval(os.getenv('WITH_GLUCIFER','1')), 'int'),
-    ('--with-viewer', 'with_viewer', 'Enable gLucifer viewer (default 1)', eval(os.getenv('WITH_VIEWER','1')), 'int'),
     ('--with-geothermal', 'with_geothermal', 'Enable Geothermal repository compile', os.path.isdir("Geothermal"), 'int'),
     ('--with-solvers', 'with_solvers', 'Enable Solvers repository compile', os.path.isdir("Solvers"), 'int'),
     ('--with-importers', 'with_importers', 'Enable importer toolbox compile', os.path.isdir("ImportersToolbox"), 'int'),
@@ -73,17 +71,6 @@ env.AddMethod( UWExit )
 env.UsePackage(packages.libm)
 env.UsePackage(packages.libXML2)
 env.UsePackage(packages.HDF5)
-env.UsePackage(packages.OSMesa)
-env.UsePackage(packages.OpenGL)
-env.UsePackage(packages.SDL)
-env.UsePackage(packages.X11)
-env.UsePackage(packages.Glut)
-env.UsePackage(packages.AGL)
-env.UsePackage(packages.libPNG)
-env.UsePackage(packages.libavcodec)
-env.UsePackage(packages.gl2ps)
-env.UsePackage(packages.Python)
-env.UsePackage(packages.Numpy)
 env.UsePackage(packages.MPI)
 env.UsePackage(packages.PETSc)
 
@@ -194,9 +181,7 @@ if not (GetOption('help') or GetOption('clean')):
     env.ConfigurePackage(packages.libXML2)
     env.ConfigurePackage(packages.MPI)
     env.ConfigurePackage(packages.HDF5, required=True)
-    env.ConfigurePackage(packages.Python, required=True)
     env.ConfigurePackage(packages.PETSc)
-    env.ConfigurePackage(packages.Numpy, required=True)
 
     #Set debug and optimise settings last to override any from PETSc
     if env.get('optimisation_flag', None) == 'default':
@@ -216,96 +201,14 @@ if not (GetOption('help') or GetOption('clean')):
     # Save environment
     uw_env = env
 
-    # If we're building gLucifer viewer then we need some more packages.
-    offscreen_env = 0
-    viewer_env = 0
-    if env.get('with_glucifer', None):
-
-        # Configure auxilliary gLucifer packages.
-        vis_env = base_env.Clone()
-        env = vis_env
-        if env.get('with_png'):
-            env.ConfigurePackage(packages.libPNG, required=False)
-        if env.get('with_avcodec'):
-            env.ConfigurePackage(packages.libavcodec, required=False)
-        if env.get('with_gl2ps'):
-            env.ConfigurePackage(packages.gl2ps, required=False)
-
-        # Have base gLucifer environment, clone it
-        offscreen_env = base_env.Clone()
-        viewer_env = base_env.Clone()
-
-        #gLucifer output env
-        env = offscreen_env
-        # Try for OSMesa first
-        osmesa = 0
-        if env.get('with_osmesa'):
-           osmesa = env.ConfigurePackage(packages.OSMesa, required=False).result
-
-        # If OSMesa found, use it for gLucifer in Underworld
-        # If not, try AGL (mac) or use config of other windowing systems detected for interactive
-        agl = 0
-        if not osmesa:
-           # Try for AGL window if on Darwin...
-           if platform.system() == 'Darwin' and env.get('with_agl'):
-               agl = env.ConfigurePackage(packages.AGL, required=False).result
-           else:
-               offscreen_env = 0
-
-        #Interactive mode viewer window (also for offscreen if no config found yet)
-        if not (agl or osmesa) or env.get('with_viewer', None):
-            env = viewer_env
-            win = 0
-
-            # Try for Glut window first on OS X
-            glut = 0
-            if platform.system() == 'Darwin' and env.get('with_glut'):
-                glut = win = env.ConfigurePackage(packages.Glut, required=False).result
-
-            #Try configuring X11
-            x11 = 0
-            if (not win or platform.system() != 'Darwin') and env.get('with_x11'):
-                x11 = win = env.ConfigurePackage(packages.X11, required=False).result
-
-            # Try for SDL window 
-            sdl = 0
-            if (not win or platform.system() != 'Darwin') and env.get('with_sdl'):
-                sdl = win = env.ConfigurePackage(packages.SDL, required=False).result
-
-            # Try for Glut window on Linux
-            if platform.system() != 'Darwin' and env.get('with_glut'):
-                glut = win = env.ConfigurePackage(packages.Glut, required=False).result
-
-            #Configure OpenGL
-            if x11 or platform.system() != 'Darwin':
-                env.ConfigurePackage(packages.OpenGL, required=False).result
-
-            # An interactive windowing system is required for viewer
-            viewer_env = env
-            if not (x11 or glut or sdl or agl or osmesa):
-                print
-                print '****  WARNING ****'
-                print 'Need a windowing system for gLucifer Viewer, either'
-                print 'X11, SDL, Glut, AGL or OSMesa. None of these could be found.'
-                print 'The viewer will not be compiled.'
-
-                uw_env['with_viewer'] = 0
-                viewer_env = 0
 
     # Export the environments
     uw_env.SaveConfig()
     
-    if env.get('with_glucifer'):
-        vis_env.SaveConfig('output.cfg')
 
     Execute(Delete(File('viewer.cfg')))
     Execute(Delete(File('offscreen.cfg')))
 
-    if env.get('with_viewer'):
-        if viewer_env:
-            viewer_env.SaveConfig('viewer.cfg')
-        if offscreen_env:
-            offscreen_env.SaveConfig('offscreen.cfg')
 
 
 #
