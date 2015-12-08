@@ -88,6 +88,7 @@ extern const Type PCDVC_Type;
     double                lowerT;                                       \
     Bool                  splitInInterfaceCells;                        \
     Bool                  deleteInInterfaceCells;                       \
+    Bool                  allowSplittingInBoundaryInterfaceCells;       \
     int                   maxDeletions;                                 \
     int                   maxSplits;                                    \
     Bool                  Inflow;                                       \
@@ -102,6 +103,7 @@ extern const Type PCDVC_Type;
     Bool                  Inflow_orig;                                  \
     Bool                  splitInInterfaceCells_orig;                   \
     Bool                  deleteInInterfaceCells_orig;                  \
+    Bool                  allowSplittingInBoundaryInterfaceCells_orig;  \
     int                   pcdvcvisited;
 
 
@@ -121,6 +123,7 @@ struct deleteParticle{
 PCDVC* PCDVC_New( Name name, Dimension_Index dim, int* res,
                   MaterialPointsSwarm* mps, double upT, double lowT,
                   int maxDeletions, int maxSplits, Bool splitInInterfaceCells,
+                  Bool allowSplittingInBoundaryInterfaceCells, 
                   Bool deleteInInterfaceCells, Bool Inflow, double CentPosRatio,
                   int ParticlesPerCell, double Threshold ) ;
 
@@ -140,7 +143,8 @@ PCDVC* _PCDVC_New(  PCDVC_DEFARGS  );
 
 void _PCDVC_Init( void* pcdvc, MaterialPointsSwarm* mps, double upT, double lowT,
                   int maxDeletions, int maxSplits, Bool splitInInterfaceCells,
-                  Bool deleteInInterfaceCells, Bool Inflow, double CentPosRatio,
+                  Bool deleteInInterfaceCells, Bool allowSplittingInBoundaryInterfaceCells,
+                  Bool Inflow, double CentPosRatio,
                   int ParticlesPerCell, double Threshold ) ;
 
 

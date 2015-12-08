@@ -132,6 +132,7 @@ PCDVC* PCDVC_New(
 	int						maxSplits,
 	Bool						splitInInterfaceCells,
  	Bool						deleteInInterfaceCells,
+	Bool					        allowSplittingInBoundaryInterfaceCells,
 	Bool						Inflow,
 	double					CentPosRatio,
 	int						ParticlesPerCell,
@@ -142,7 +143,7 @@ PCDVC* PCDVC_New(
     self->isConstructed = True;
     _WeightsCalculator_Init( self, dim );
     _DVCWeights_Init( self, res );
-    _PCDVC_Init( self, mps, upT, lowT, maxDeletions, maxSplits, splitInInterfaceCells, deleteInInterfaceCells, Inflow, CentPosRatio, ParticlesPerCell, Threshold );
+    _PCDVC_Init( self, mps, upT, lowT, maxDeletions, maxSplits, splitInInterfaceCells, deleteInInterfaceCells, allowSplittingInBoundaryInterfaceCells, Inflow, CentPosRatio, ParticlesPerCell, Threshold );
 
 	return self;
 }
@@ -168,7 +169,8 @@ PCDVC* _PCDVC_New(  PCDVC_DEFARGS  ) {
 
 void _PCDVC_Init( void* pcdvc, MaterialPointsSwarm* mps, double upT, double lowT,
                   int maxDeletions, int maxSplits, Bool splitInInterfaceCells,
-                  Bool deleteInInterfaceCells, Bool Inflow, double CentPosRatio,
+                  Bool deleteInInterfaceCells, Bool allowSplittingInBoundaryInterfaceCells,
+                  Bool Inflow, double CentPosRatio,
                   int ParticlesPerCell, double Threshold )
 {
     PCDVC* self = (PCDVC*)pcdvc;
@@ -181,6 +183,7 @@ void _PCDVC_Init( void* pcdvc, MaterialPointsSwarm* mps, double upT, double lowT
     self->Inflow       = self->Inflow_orig       = Inflow;
     self->splitInInterfaceCells = self->splitInInterfaceCells_orig = splitInInterfaceCells;
     self->deleteInInterfaceCells = self->deleteInInterfaceCells_orig = deleteInInterfaceCells;
+    self->allowSplittingInBoundaryInterfaceCells = self->allowSplittingInBoundaryInterfaceCells_orig = allowSplittingInBoundaryInterfaceCells;
     self->Threshold = Threshold;
     self->CentPosRatio = CentPosRatio;
     self->ParticlesPerCell = ParticlesPerCell;
@@ -241,6 +244,7 @@ void _PCDVC_AssignFromXML( void* pcdvc, Stg_ComponentFactory* cf, void *data ) {
     int maxD, maxS;
     Bool splitInInterfaceCells;
     Bool deleteInInterfaceCells;
+    Bool allowSplittingInBoundaryInterfaceCells;
     Bool Inflow;
     double CentPosRatio;
     int ParticlesPerCell;
@@ -261,6 +265,7 @@ void _PCDVC_AssignFromXML( void* pcdvc, Stg_ComponentFactory* cf, void *data ) {
     // note that the default for splitInInterfaceCells is True if Inflow is True
     splitInInterfaceCells  = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"splitInInterfaceCells", Inflow );
     deleteInInterfaceCells = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"deleteInInterfaceCells", False );
+    allowSplittingInBoundaryInterfaceCells = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"allowSplittingInBoundaryInterfaceCells", False );
     Thresh = Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"Threshold", 0.8  );
     //CentPosRatio is ratio of allowable distance of a centroid from generating particle to distance across a FEM cell.
     // I think the centroid distance idea is not ideal in the end...can create some weirdness...even thought the code "works"
@@ -276,7 +281,7 @@ void _PCDVC_AssignFromXML( void* pcdvc, Stg_ComponentFactory* cf, void *data ) {
     }
 
     _PCDVC_Init( self, materialPointsSwarm,  upT, lowT, maxD, maxS, splitInInterfaceCells,
-                 deleteInInterfaceCells, Inflow, CentPosRatio, ParticlesPerCell, Thresh );
+                 deleteInInterfaceCells, allowSplittingInBoundaryInterfaceCells, Inflow, CentPosRatio, ParticlesPerCell, Thresh );
 }
 
 void _PCDVC_Build( void* pcdvc, void* data ) {
@@ -671,6 +676,7 @@ void _PCDVC_Calculate3D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
     int matType;
     Bool splitInInterfaceCells  = self->splitInInterfaceCells;
     Bool deleteInInterfaceCells = self->deleteInInterfaceCells;
+    Bool allowSplittingInBoundaryInterfaceCells  = self->allowSplittingInBoundaryInterfaceCells;
     Bool Inflow = self->Inflow;
     Bool cellIsInterfaceCell = False;
     double Thresh = self->Threshold;
@@ -685,9 +691,12 @@ void _PCDVC_Calculate3D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
 
     /* end decs needed for particle control */
     /*************************************/
-	
-
-
+    
+    FeMesh* mesh = (FeMesh*)((ElementCellLayout*)matSwarm->cellLayout)->mesh;
+    Bool cellIsBoundaryCell = False;	
+    unsigned int elParam[3];
+    Grid *grid;
+    
     numx = self->resX;
     numy = self->resY;
     numz = self->resZ;
@@ -746,6 +755,16 @@ void _PCDVC_Calculate3D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
             break;
         }
     }
+
+    grid = *Mesh_GetExtension(mesh, Grid**, mesh->elGridId );
+    Grid_Lift( grid, FeMesh_ElementDomainToGlobal(mesh, lCell_I), elParam );
+    if ( elParam[0] == 0 || elParam[0] == (grid->sizes[0] - 1) ||   /* Check to see if we're in a global boundary cell */
+         elParam[1] == 0 || elParam[1] == (grid->sizes[1] - 1) ||
+         elParam[2] == 0 || elParam[2] == (grid->sizes[2] - 1)   )
+    {
+        cellIsBoundaryCell = True;
+    }
+
     /************************************/
     /************************************/
     /*    Start 3D Population Control   */
@@ -766,6 +785,9 @@ void _PCDVC_Calculate3D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
     /**********************************************************************************/
     if(!splitInInterfaceCells && cellIsInterfaceCell){
         Inflow = False;
+    }
+    if (cellIsBoundaryCell && allowSplittingInBoundaryInterfaceCells){
+       Inflow = True;  // If we are not allowed to split, but we ARE in a boundary cell, we need inflow.
     }
     int *VCsize;
     int **particleVoronoiCellList;
@@ -911,7 +933,7 @@ void _PCDVC_Calculate3D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
     if(cellIsInterfaceCell){
         if(!deleteInInterfaceCells) maxDeletions = 0; /* no deletions in an interface cell */
         /* this may be inadequate...we may need to do something in the neighbouring cells to interface cells as well */
-        if(!splitInInterfaceCells)  maxSplits    = 0;
+        if(!splitInInterfaceCells && !cellIsBoundaryCell)  maxSplits    = 0;
     }
 
     /* need a struct for the deleteList because we must sort it by indexOnCPU and delete in reverse order
@@ -1076,11 +1098,17 @@ void _PCDVC_Calculate2D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
     int matType;
     Bool splitInInterfaceCells  = self->splitInInterfaceCells;
     Bool deleteInInterfaceCells = self->deleteInInterfaceCells;
+    Bool allowSplittingInBoundaryInterfaceCells = self->allowSplittingInBoundaryInterfaceCells;
     Bool Inflow = self->Inflow;
     Bool cellIsInterfaceCell = False;
     double Thresh = self->Threshold;
     int ParticlesPerCell = self->ParticlesPerCell;
     double CentPosRatio = self->CentPosRatio;
+
+    FeMesh* mesh = (FeMesh*)((ElementCellLayout*)matSwarm->cellLayout)->mesh;
+    Grid *grid;
+    unsigned int elParam[3];
+    Bool cellIsBoundaryCell = False;
     //time_t tm;
 	
 
@@ -1152,7 +1180,18 @@ void _PCDVC_Calculate2D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
             cellIsInterfaceCell=True;
             break;
         }
-    } 
+    }
+    
+
+    grid = *Mesh_GetExtension(mesh, Grid**, mesh->elGridId );
+    Grid_Lift( grid, FeMesh_ElementDomainToGlobal(mesh, lCell_I), elParam );
+    if ( elParam[0] == 0 || elParam[0] == (grid->sizes[0] - 1) ||   /* Check to see if we're in a global boundary cell */
+         elParam[1] == 0 || elParam[1] == (grid->sizes[1] - 1) )
+    {
+        cellIsBoundaryCell = True;
+    }
+
+
     /************************************/
     /************************************/
     /*    Start 2D Population Control   */
@@ -1170,6 +1209,9 @@ void _PCDVC_Calculate2D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
     /**********************************************************************************/
     if(!splitInInterfaceCells && cellIsInterfaceCell){
         Inflow = False;
+    }
+    if (cellIsBoundaryCell && allowSplittingInBoundaryInterfaceCells){
+	   Inflow = True;  // If we are not allowed to split, but we ARE in a boundary cell, we need inflow.
     }
 //	if(0){
     int *VCsize;
@@ -1238,7 +1280,7 @@ void _PCDVC_Calculate2D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
                 splitCount++;
             }
         }
-
+        
         if(splitCount){// then redo Voronoi diagram.
             for(k=0;k<nump_orig;k++){
                 free(bchain[k].new_claimed_cells);
@@ -1308,7 +1350,7 @@ void _PCDVC_Calculate2D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
     if(cellIsInterfaceCell){
         if(!deleteInInterfaceCells) maxDeletions = 0; /* no deletions in an interface cell */
         /* this may be inadequate...we may need to do something in the neighbouring cells to interface cells as well */
-        if(!splitInInterfaceCells)  maxSplits    = 0;
+        if(!splitInInterfaceCells && !cellIsBoundaryCell)  maxSplits    = 0;
     }
 
     /* need a struct for the deleteList because we must sort it by indexOnCPU and delete in reverse order
@@ -1417,7 +1459,6 @@ void _PCDVC_Calculate2D( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ) {
     /**************************************/
     /**************************************/
 
-
     // We are setting the integration points to be the centroids of the Voronoi regions here and
     // the weight is the volume of each Voronoi region.
     for(i=0;i<nump;i++){
@@ -1477,6 +1518,7 @@ void _PCDVC_Calculate( void* pcdvc, void* _swarm, Cell_LocalIndex lCell_I ){
         self->Inflow                 = self->Inflow_orig;
         self->splitInInterfaceCells  = self->splitInInterfaceCells_orig;
         self->deleteInInterfaceCells = self->deleteInInterfaceCells_orig;
+        self->allowSplittingInBoundaryInterfaceCells = self->allowSplittingInBoundaryInterfaceCells_orig;
     }
 
 }
