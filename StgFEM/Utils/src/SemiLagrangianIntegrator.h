@@ -73,6 +73,7 @@
       unsigned***                  elPatchQuad;            \
       unsigned                     lElSize;                \
       double                       courant;                \
+      double                       forced_dt;              \
       IArray*                      iArray;                 \
       int			   dim;                    \
 

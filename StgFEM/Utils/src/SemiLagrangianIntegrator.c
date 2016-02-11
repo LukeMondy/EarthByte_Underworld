@@ -190,7 +190,7 @@ void _SemiLagrangianIntegrator_AssignFromXML( void* slIntegrator, Stg_ComponentF
     }
 
     self->courant = Dictionary_GetDouble_WithDefault( self->context->dictionary, "courantFactor", 0.5 );
-
+    self->forced_dt = Dictionary_GetDouble_WithDefault( self->context->dictionary, "forced_dt", -1. );
     self->isConstructed = True;
 }
 
@@ -918,7 +918,13 @@ double SemiLagrangianIntegrator_CalcAdvDiffDt( void* slIntegrator, FiniteElement
     FeVariable_GetMinimumSeparation( self->velocityField, &dxMin, dx );
     vMag = FieldVariable_GetMaxGlobalFieldMagnitude( self->velocityField );
     lAdv = self->courant*dxMin/vMag;
-    lDif = self->courant*dxMin*dxMin;
+    /* The SLADE is unconditionally stable, so we can force our own dt if
+     * we want. If we don't want though, go back to using the SUPG condition.
+     */
+    if( self->forced_dt < 0 )
+        lDif = self->courant*dxMin*dxMin/vMag;
+    else
+        lDif = self->forced_dt;
 
     MPI_Allreduce( &lAdv, &gAdv, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
     MPI_Allreduce( &lDif, &gDif, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
