@@ -190,7 +190,7 @@ void _SemiLagrangianIntegrator_AssignFromXML( void* slIntegrator, Stg_ComponentF
     }
 
     self->courant = Dictionary_GetDouble_WithDefault( self->context->dictionary, "courantFactor", 0.5 );
-    self->forced_dt = Dictionary_GetDouble_WithDefault( self->context->dictionary, "forced_dt", -1. );
+    self->forced_dt = Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"forced_dt", -1. );
     self->isConstructed = True;
 }
 
