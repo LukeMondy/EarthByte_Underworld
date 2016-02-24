@@ -275,7 +275,7 @@ void _DVCWeights_ClaimCells(struct chain **bbchain,struct cell **ccells,struct p
         if(cells[cell_num0].p == -1){//if cell unowned then claim cell
             /* This is the bit needed for mallocing */
             /* do a test here to see if we need to realloc bchain->new_claimed_cells and bchain->new_bound_cells */
-            if( count > bchain->new_claimed_cells_malloced - 1 ){
+            if( count > bchain->new_claimed_cells_malloced - 2 ){
                 temp = (int *)realloc( bchain->new_claimed_cells, (bchain->new_claimed_cells_malloced + DVC_INC)*sizeof(int) );
                 bchain->new_claimed_cells = temp;
                 bchain->new_claimed_cells_malloced += DVC_INC;
@@ -333,7 +333,7 @@ void _DVCWeights_ClaimCells2D(struct chain **bbchain,struct cell2d **ccells,stru
         if(cells[cell_num0].p == -1){//if cell unowned then claim cell
             /* This is the bit needed for mallocing */
             /* do a test here to see if we need to realloc bchain->new_claimed_cells and bchain->new_bound_cells */
-            if( count > bchain->new_claimed_cells_malloced - 1 ){
+            if( count > bchain->new_claimed_cells_malloced - 2 ){
                 temp = (int *)realloc( bchain->new_claimed_cells, (bchain->new_claimed_cells_malloced + DVC_INC)*sizeof(int) );
                 bchain->new_claimed_cells = temp;
                 bchain->new_claimed_cells_malloced += DVC_INC;
@@ -420,7 +420,7 @@ void _DVCWeights_UpdateBchain(struct chain **bbchain,struct cell **ccells,int p_
                 if(cells[cell_num1].p != p_i && cells[cell_num1].done != 1){
                     /* This is the bit needed for mallocing */     
                     /* do a test here to see if we need to realloc bchain->new_claimed_cells and bchain->new_bound_cells */
-                    if( count > bchain->new_bound_cells_malloced - 1 ){
+                    if( count > bchain->new_bound_cells_malloced - 2 ){
                         temp = (int *)realloc( bchain->new_claimed_cells, (bchain->new_claimed_cells_malloced + DVC_INC)*sizeof(int) );
                         bchain->new_claimed_cells = temp;
                         bchain->new_claimed_cells_malloced += DVC_INC;
@@ -471,7 +471,7 @@ void _DVCWeights_UpdateBchain2D(struct chain **bbchain,struct cell2d **ccells,in
                 if(cells[cell_num1].p != p_i && cells[cell_num1].done != 1){
                     /* This is the bit needed for mallocing */     
                     /* do a test here to see if we need to realloc bchain->new_claimed_cells and bchain->new_bound_cells */
-                    if( count > bchain->new_bound_cells_malloced - 1 ){
+                    if( count > bchain->new_bound_cells_malloced - 2 ){
                         temp = (int *)realloc( bchain->new_claimed_cells, (bchain->new_claimed_cells_malloced + DVC_INC)*sizeof(int) );
                         bchain->new_claimed_cells = temp;
                         bchain->new_claimed_cells_malloced += DVC_INC;
