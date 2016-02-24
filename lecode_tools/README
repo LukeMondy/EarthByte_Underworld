@@ -1,0 +1,4 @@
+Configure and compile this toolbox separately from the Underworld code.
+REMEMBER, before running configure.py or scons.py you must set the UW_DIR env variable to point to the Underworld build you'd like this toolbox to run with.
+
+There is a template for a component in Base/src/lecode_toolsExampleComponent.c (.h, .meta)

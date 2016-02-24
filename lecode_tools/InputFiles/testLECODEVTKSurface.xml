@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<!DOCTYPE StGermainData SYSTEM "stgermain.dtd">
+
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+   <list name="import" mergeType="merge">
+      <param> Underworld </param>
+      <param> ImportersToolbox </param>
+   </list>
+
+   <include>StgFEM/LinearMesh.xml</include>
+   <include>PICellerator/MaterialPointSwarm.xml</include>
+   <include>StgFEM/TimeIntegrator.xml</include>
+   <include>StgFEM/VelocityField.xml</include>
+
+   <param name="elementMesh">linearMesh</param>
+   <param name="particlesPerCell">20</param>
+
+   <!-- Geometry configuration -->
+   <param name="shadowDepth"> 1 </param>
+   <param name="minX">     210000.000 </param>
+   <param name="maxX">     235000.000 </param>
+   <param name="minY">    4790000.000 </param>
+   <param name="maxY">    4825000.000 </param>
+   <param name="minZ">          0.000 </param>
+   <param name="maxZ">        700.000 </param>
+
+   <!-- Mesh configuration -->
+   <param name="dim"> 3 </param>
+   <param name="elementResI"> 16 </param>
+   <param name="elementResJ"> 16 </param>
+   <param name="elementResK"> 16 </param>
+   <param name="checkpointEvery"> 1 </param>
+   <param name="outputPath"> ./output </param>
+
+   <struct name="components" mergeType="merge">
+      <struct name="context">
+         <param name="Type">UnderworldContext</param>
+      </struct>
+
+
+      <!-- Material configuration -->
+      <struct name="EverywhereMaterial">
+         <param name="Type">Material</param>
+         <param name="Shape">backgroundShape</param>
+      </struct>
+
+      <struct name="backgroundShape">
+         <param name="Type">Everywhere</param>
+      </struct>
+    
+      <struct name="voxel_datahandlerLECODEelevation" mergeType="merge">
+         <param name="Type">VoxelDataHandler_VTKStructuredPoints</param>
+         <param name="filename">topsurface.vtk</param>
+         <param name="KAxisScale">1000000000</param>
+         <param name="DatasetName">elevation</param>
+         <param name="mapIAxisToStgAxis">x</param>
+         <param name="mapJAxisToStgAxis">y</param>
+         <param name="mapKAxisToStgAxis">z</param>
+      </struct>
+
+      <struct name="LECODEHeightField">
+         <param name="Type">VoxelFieldVariable</param>
+         <param name="VoxelDataHandler">voxel_datahandlerLECODEelevation</param>
+      </struct>
+
+      <struct name="belowLECODEShape">
+         <param name="Type">BelowHeightField</param>
+         <param name="HeightField">LECODEHeightField</param>
+         <param name="VerticalAxis">2</param>
+      </struct>
+         <struct name="belowLECODEMaterial">
+         <param name="Type">Material</param>
+         <param name="Shape">belowLECODEShape</param>
+      </struct>
+
+
+
+
+
+
+
+      <!-- Passive swarm configuration -->
+      <struct name="ParticleData">
+         <param name="Type">Variable</param>
+         <param name="Rank">Scalar</param>
+         <param name="DataType">Int</param>
+      </struct>
+      <struct name="passiveTracerSwarm-LECODEGlobalID">
+         <param name="Type">SwarmVariable</param>
+         <param name="Swarm">passiveTracerSwarm</param>
+         <param name="Variable">ParticleData</param>
+      </struct>
+
+      <struct name="pMovementHandler" mergeType="replace"> 
+         <param name="Type">ParticleMovementHandler</param>
+      </struct>
+
+      <struct name="passiveTracerSwarm">
+         <param name="Type">MaterialPointsSwarm</param>
+         <param name="CellLayout">elementCellLayout</param>
+         <param name="ParticleLayout">voxelParticleLayout</param>
+         <param name="FeMesh">elementMesh</param>
+         <list name="ParticleCommHandlers">
+            <param>pMovementHandler</param>
+         </list>
+      </struct>
+
+      <struct name="voxel_datahandlerLECODGlobalIds" mergeType="merge">
+         <param name="Type">VoxelDataHandler_VTKStructuredPoints</param>
+         <param name="filename">topsurface.vtk</param>
+         <param name="KAxisScale">1000000000</param>
+         <param name="DatasetName">fieldID</param>
+         <param name="mapIAxisToStgAxis">x</param>
+         <param name="mapJAxisToStgAxis">y</param>
+         <param name="mapKAxisToStgAxis">z</param>
+      </struct>
+
+      <struct name="passiveTracerAdvector">
+         <param name="Type">SwarmAdvectionIJK</param>
+         <param name="Swarm">materialSwarm</param>
+         <param name="TimeIntegrator">timeIntegrator</param>
+         <param name="VelocityField">VelocityField</param>  
+         <param name="PeriodicBCsManager">periodicBCsManager</param>
+            <!-- For moving mesh or problems involving outflow, need the following
+            enabled -->
+            <param name="allowFallbackToFirstOrder">True</param>
+            <param name="suppressAxisI"> True </param>   
+            <param name="suppressAxisJ"> True </param>   
+            <param name="suppressAxisK"> False </param>   
+      </struct>
+
+      <struct name="voxelParticleLayout">
+         <param name="Type">VoxelParticleLayout</param>
+         <param name="swarmVariableName">passiveTracerSwarm-LECODEGlobalID</param>
+         <param name="VoxelDataHandler">voxel_datahandlerLECODGlobalIds</param>
+         <param name="PeriodicBCsManager">periodicBCsManager</param>
+      </struct>
+
+
+
+
+
+
+
+
+   </struct>
+
+</StGermainData>

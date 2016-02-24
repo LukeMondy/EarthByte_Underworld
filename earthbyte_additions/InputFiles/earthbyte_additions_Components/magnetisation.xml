@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+
+    <struct name="components" mergeType="merge">
+        <struct name="default_ppcManager" mergeType="merge">
+            <list name="Properties" mergeType="merge">
+                <struct>
+                    <param name="PropertyName"> CuriePoint </param>
+                    <param name="PassiveProperty"> True </param>  
+                    <param name="StorePreviousValue"> True </param>
+                    <param name="StoreOnParticles"> True </param>
+                    <param name="StoreOnMesh"> True </param>          
+                </struct>
+            </list>            
+        </struct>
+        
+        <struct name="current_time" mergeType="replace">
+            <param name="Type"> Ppc_Current_Time </param>
+        </struct>
+
+        <!-- ==== README ======================================== 
+            To enable this to work, you need to add:
+                <param name="CuriePoint"> curie_calc</param>
+             to all of your material definitions. If you do not want a particular
+             material to record magnetisation, instead use:
+                <param name="CuriePoint"> -1 </param>
+            
+            The magnetic orientation at a given time is defined by the mag_orient_in_time
+            struct defined below. Change it to match your timescales. Note that 0 and 1
+            are arbitrary, and can be changed to be whatever you like. The only caveat is
+            that -1 is reserved for meaning "over the Curie point".
+        -->
+
+        <!-- === Curie Point ================================================ -->
+        <struct name="curie_calc">
+            <param name="CuriePoint" units="K"> 673.15 </param> <!-- 400 C - approx avg value for MORB, as per Harlan (2007) -->
+            <param name="MagneticOrientation"> mag_orient_in_time </param>
+            
+            <param name="Type"> Ppc_Curie_Condition </param>
+            <param name="TemperatureField"> temperature_ppc_wrapper </param>
+            <param name="StorageProperty"> CuriePoint </param>
+        </struct>
+
+        <struct name="mag_orient_in_time">
+            <param name="Type"> Ppc_Switch </param>
+            <param name="Field"> current_time </param>
+            <param name="Interpolate"> f </param> <!-- f means floor, meaning always round down. -->
+            <list name="CaseList">
+                <struct>
+                    <param name="Case" units="Myr"> 0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 0.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 1 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 1.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 2.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 2.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 3 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 3.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 4.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 4.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 5.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 6.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 7.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 7.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 8 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 8.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 9.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 9.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 10.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 10.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 11.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 11.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 12 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 12.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 13.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 13.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 14 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 14.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 15.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 15.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 16.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 16.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 17 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 17.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 18.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 18.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 19.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 19.5 </param>
+                    <param name="Value"> 0 </param>
+                </struct>
+                <struct>
+                    <param name="Case" units="Myr"> 20.0 </param>
+                    <param name="Value"> 1 </param>
+                </struct>
+            </list>
+
+        </struct>
+        <!-- === End of Curie Point ========================================== -->
+    </struct>
+</StGermainData>

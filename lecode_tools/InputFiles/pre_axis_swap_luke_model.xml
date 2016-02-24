@@ -1,0 +1,1095 @@
+<?xml version="1.0"?>
+<StGermainData xmlns="http://www.vpac.org/StGermain/XML_IO_Handler/Jun2003">
+  <list name="import">
+    <param>Underworld</param>
+    <param> ImportersToolbox </param>
+    <param> lecode_tools</param>
+  </list>
+  <list name="plugins">
+    <struct>
+      <param name="Type" source="source-1">StgFEM_FrequentOutput</param>
+      <param name="Context" source="source-1">context</param>
+    </struct>
+    <struct>
+      <param name="Type" source="source-1">StgFEM_StandardConditionFunctions</param>
+      <param name="Context" source="source-1">context</param>
+    </struct>
+    <struct>
+      <param name="Type" source="source-1">Underworld_Vrms</param>
+      <param name="Context" source="source-1">context</param>
+      <param name="GaussSwarm" source="source-1">gaussSwarm</param>
+      <param name="VelocityField" source="source-1">VelocityField</param>
+    </struct>
+    <struct>
+      <param name="Type" source="source-1">StgFEM_CPUTime</param>
+      <param name="Context" source="source-1">context</param>
+    </struct>
+    <struct>
+      <param name="Type" source="source-1">StgFEM_SwarmVariableList</param>
+      <param name="Context" source="source-1">context</param>
+    </struct>
+    <struct>
+      <param name="Type" source="source-1">StgFEM_FeVariableList</param>
+      <param name="Context" source="source-1">context</param>
+    </struct>
+    <struct>
+      <param name="Type" source="source-1"> lecode_tools_Isostasy </param>
+      <param name="Context" source="source-1">context</param>
+      <param name="mesh" source="source-1">linearMesh</param>
+      <param name="swarm" source="source-1">picIntegrationPoints</param>
+      <param name="velocityField" source="source-1">VelocityField</param>
+      <param name="rhoZeroMaterial" source="source-1">mantle</param>
+      <param name="sle" source="source-1">stokesEqn</param>
+      <param name="SurfaceIndex" source="source-1">elementResJ</param>
+      <param name="UseAverage" source="source-1">True</param>
+      <param name="buoyancy" source="source-1">buoyancyForceTerm</param>
+      <param name="MaxIterations" source="source-1">-1</param>
+    </struct>
+    <!--struct>
+			<param name="Type">lecode_tools_LecodePlugin</param>
+			<param name="Context">context</param>
+			<param name="passive_tracer_swarm">pts</param>
+			<param name="sync_folder">./</param>
+			<param name="sleep_interval">2</param>
+			<param name="sync_time">20</param>
+			<param name="topology_surface">belowLECODEShape</param>
+			<param name="air_material">air</param>
+			<param name="sediment_material">belowLECODEMaterial</param>
+		</struct-->
+    <!--
+    <struct>
+      <param name="Type" source="source-22">StgFEM_Multigrid</param>
+      <param name="Context" source="source-22">context</param>
+    </struct>
+    -->
+  </list>
+  <struct name="components">
+    <struct name="context">
+      <param name="Type" source="source-2">UnderworldContext</param>
+    </struct>
+    <struct name="voxel_datahandlerLECODEelevation" mergeType="merge">
+         <param name="Type">VoxelDataHandler_VTKStructuredPoints</param>
+         <param name="filename">topsurface.vtk</param>
+         <param name="KAxisScale">1000000000</param>
+         <param name="DatasetName">elevation</param>
+         <param name="mapIAxisToStgAxis">x</param>
+         <param name="mapJAxisToStgAxis">y</param>
+         <param name="mapKAxisToStgAxis">z</param>
+      </struct>
+
+      <struct name="LECODEHeightField">
+         <param name="Type">VoxelFieldVariable</param>
+         <param name="VoxelDataHandler">voxel_datahandlerLECODEelevation</param>
+      </struct>
+
+      <struct name="belowLECODEShape">
+         <param name="Type">BelowHeightField</param>
+         <param name="HeightField">LECODEHeightField</param>
+         <param name="VerticalAxis">2</param>
+      </struct>
+      <struct name="sedimentViscosity">
+        <param name="Type">MaterialViscosity</param>
+        <param name="Value" units="Pa*s">3</param>
+      </struct>
+       <struct name="belowLECODEMaterial">
+         <param name="Type">RheologyMaterial</param>
+         <param name="Shape">belowLECODEShape</param>
+         <param name="Rheology">sedimentViscosity</param>
+         <param name="DensityProperty">100</param>
+      </struct>
+      <!-- Passive swarm configuration -->
+      <struct name="ParticleData">
+         <param name="Type">Variable</param>
+         <param name="Rank">Scalar</param>
+         <param name="DataType">Int</param>
+      </struct>
+      <struct name="pts-LECODEGlobalID">
+         <param name="Type">SwarmVariable</param>
+         <param name="Swarm">pts</param>
+         <param name="Variable">ParticleData</param>
+      </struct>
+
+      <struct name="pts">
+         <param name="Type">MaterialPointsSwarm</param>
+         <param name="CellLayout">elementCellLayout</param>
+         <param name="ParticleLayout">voxelParticleLayout</param>
+         <param name="FeMesh">elementMesh</param>
+         <list name="ParticleCommHandlers">
+            <param>pMovementHandler</param>
+         </list>
+      </struct>
+
+      <struct name="voxel_datahandlerLECODGlobalIds" mergeType="merge">
+         <param name="Type">VoxelDataHandler_VTKStructuredPoints</param>
+         <param name="filename">topsurface.vtk</param>
+         <param name="KAxisScale">1000000000</param>
+         <param name="DatasetName">fieldID</param>
+         <param name="mapIAxisToStgAxis">x</param>
+         <param name="mapJAxisToStgAxis">y</param>
+         <param name="mapKAxisToStgAxis">z</param>
+      </struct>
+      <struct name="voxelParticleLayout">
+         <param name="Type">VoxelParticleLayout</param>
+         <param name="swarmVariableName">pts-LECODEGlobalID</param>
+         <param name="VoxelDataHandler">voxel_datahandlerLECODGlobalIds</param>
+         <param name="PeriodicBCsManager">periodicBCsManager</param>
+      </struct>
+    <struct name="constantMesh">
+      <param name="Type" source="source-3">FeMesh</param>
+      <param name="elementType" source="source-3">constant</param>
+    </struct>
+    <struct name="constantMeshGenerator">
+      <param name="Type" source="source-3">C0Generator</param>
+      <param name="mesh" source="source-3">constantMesh</param>
+      <param name="elementMesh" source="source-3">elementMesh</param>
+    </struct>
+    <struct name="linearMesh">
+      <param name="Type" source="source-4">FeMesh</param>
+      <param name="elementType" source="source-4">linear</param>
+    </struct>
+    <struct name="linearMeshGenerator">
+      <param name="Type" source="source-4">CartesianGenerator</param>
+      <param name="mesh" source="source-4">linearMesh</param>
+      <param name="dims" source="source-4">dim</param>
+      <param name="shadowDepth" source="source-4">shadowDepth</param>
+      <list name="size">
+        <param>elementResI</param>
+        <param>elementResJ</param>
+        <param>elementResK</param>
+      </list>
+      <list name="minCoord">
+        <param>minX</param>
+        <param>minY</param>
+        <param>minZ</param>
+      </list>
+      <list name="maxCoord">
+        <param>maxX</param>
+        <param>maxY</param>
+        <param>maxZ</param>
+      </list>
+      <param name="regular" source="source-21">False</param>
+    </struct>
+    <struct name="velocity">
+      <param name="Type" source="source-5">MeshVariable</param>
+      <param name="mesh" source="source-5">velocityMesh</param>
+      <param name="Rank" source="source-5">Vector</param>
+      <param name="DataType" source="source-5">Double</param>
+      <param name="VectorComponentCount" source="source-5">dim</param>
+      <list name="names">
+        <param>vx</param>
+        <param>vy</param>
+        <param>vz</param>
+      </list>
+    </struct>
+    <struct name="velocityBCs">
+      <param name="Type" source="source-5">CompositeVC</param>
+      <param name="Data" source="source-5">velocityMesh</param>
+    </struct>
+    <struct name="velocityICs">
+      <param name="Type" source="source-5">CompositeVC</param>
+      <param name="Data" source="source-5">velocityMesh</param>
+    </struct>
+    <struct name="velocityDofLayout">
+      <param name="Type" source="source-5">DofLayout</param>
+      <param name="MeshVariable" source="source-5">velocity</param>
+    </struct>
+    <struct name="VelocityField">
+      <param name="Type" source="source-5">FeVariable</param>
+      <param name="FEMesh" source="source-5">velocityMesh</param>
+      <param name="DofLayout" source="source-5">velocityDofLayout</param>
+      <param name="BC" source="source-5">velocityBCs</param>
+      <param name="IC" source="source-5">velocityICs</param>
+      <param name="LinkedDofInfo" source="source-5">velocityLinkedDofs</param>
+      <param name="outputUnits" source="source-5">cm/yr</param>
+    </struct>
+    <struct name="VelocityMagnitudeField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">Magnitude</param>
+      <param name="Operand" source="source-5">VelocityField</param>
+    </struct>
+    <struct name="VelocityGradientsField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">Gradient</param>
+      <param name="Operand" source="source-5">VelocityField</param>
+    </struct>
+    <struct name="VelocityGradientsInvariantField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">TensorInvariant</param>
+      <param name="Operand" source="source-5">VelocityGradientsField</param>
+      <param name="outputUnits" source="source-5">yr^-1</param>
+    </struct>
+    <struct name="VelocityXXField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">TakeFirstComponent</param>
+      <param name="Operand" source="source-5">VelocityField</param>
+      <param name="outputUnits" source="source-5">cm/yr</param>
+    </struct>
+    <struct name="VelocityYYField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">TakeSecondComponent</param>
+      <param name="Operand" source="source-5">VelocityField</param>
+      <param name="outputUnits" source="source-5">cm/yr</param>
+    </struct>
+    <struct name="StrainRateField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">TensorSymmetricPart</param>
+      <param name="Operand" source="source-5">VelocityGradientsField</param>
+      <param name="outputUnits" source="source-5">yr^-1</param>
+    </struct>
+    <struct name="VorticityField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">TensorAntisymmetricPart</param>
+      <param name="Operand" source="source-5">VelocityGradientsField</param>
+      <param name="outputUnits" source="source-5">yr^-1</param>
+    </struct>
+    <struct name="StrainRateInvariantField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">SymmetricTensor_Invariant</param>
+      <param name="Operand" source="source-5">StrainRateField</param>
+      <param name="outputUnits" source="source-5">yr^-1</param>
+    </struct>
+    <struct name="StrainRateXXField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">TakeFirstComponent</param>
+      <param name="Operand" source="source-5">StrainRateField</param>
+      <param name="outputUnits" source="source-5">yr^-1</param>
+    </struct>
+    <struct name="StrainRateYYField">
+      <param name="Type" source="source-5">OperatorFeVariable</param>
+      <param name="Operator" source="source-5">TakeSecondComponent</param>
+      <param name="Operand" source="source-5">StrainRateField</param>
+      <param name="outputUnits" source="source-5">yr^-1</param>
+    </struct>
+    <struct name="pressure">
+      <param name="Type" source="source-6">MeshVariable</param>
+      <param name="mesh" source="source-6">pressureMesh</param>
+      <param name="Rank" source="source-6">Scalar</param>
+      <param name="DataType" source="source-6">Double</param>
+    </struct>
+    <struct name="pressureBCs">
+      <param name="Type" source="source-6">CompositeVC</param>
+      <param name="Data" source="source-6">pressureMesh</param>
+    </struct>
+    <struct name="pressureICs">
+      <param name="Type" source="source-6">CompositeVC</param>
+      <param name="Data" source="source-6">pressureMesh</param>
+    </struct>
+    <struct name="pressureDofLayout">
+      <param name="Type" source="source-6">DofLayout</param>
+      <param name="MeshVariable" source="source-6">pressure</param>
+    </struct>
+    <struct name="PressureField">
+      <param name="Type" source="source-6">FeVariable</param>
+      <param name="FEMesh" source="source-6">pressureMesh</param>
+      <param name="DofLayout" source="source-6">pressureDofLayout</param>
+      <param name="BC" source="source-6">pressureBCs</param>
+      <param name="IC" source="source-6">pressureICs</param>
+      <param name="LinkedDofInfo" source="source-6">pressureLinkedDofs</param>
+      <param name="outputUnits" source="source-6">GPa</param>
+    </struct>
+    <struct name="cellLayout">
+      <param name="Type" source="source-7">SingleCellLayout</param>
+    </struct>
+    <struct name="particleLayout">
+      <param name="Type" source="source-7">GaussParticleLayout</param>
+    </struct>
+    <struct name="gaussSwarm">
+      <param name="Type" source="source-7">IntegrationPointsSwarm</param>
+      <param name="CellLayout" source="source-7">cellLayout</param>
+      <param name="ParticleLayout" source="source-7">particleLayout</param>
+      <param name="FeMesh" source="source-7">elementMesh</param>
+      <param name="TimeIntegrator" source="source-7">timeIntegrator</param>
+    </struct>
+    <struct name="timeIntegrator">
+      <param name="Type" source="source-8">TimeIntegrator</param>
+      <param name="order" source="source-8">timeIntegratorOrder</param>
+      <param name="simultaneous" source="source-8">f</param>
+      <param name="Context" source="source-8">context</param>
+    </struct>
+    <struct name="elementCellLayout">
+      <param name="Type" source="source-9">ElementCellLayout</param>
+      <param name="Mesh" source="source-9">elementMesh</param>
+    </struct>
+    <struct name="weights">
+      <param name="Type" source="source-21">PCDVC</param>
+      <param name="resolutionX" source="source-21">10</param>
+      <param name="resolutionY" source="source-21">10</param>
+      <param name="resolutionZ" source="source-21">10</param>
+      <param name="lowerT" source="source-21">0.6</param>
+      <param name="upperT" source="source-21">25</param>
+      <param name="maxDeletions" source="source-21">5</param>
+      <param name="maxSplits" source="source-21">100</param>
+      <param name="Inflow" source="source-21">True</param>
+      <param name="Threshold" source="source-21">0.8</param>
+      <param name="CentPosRatio" source="source-21">0.01</param>
+      <param name="MaterialPointsSwarm" source="source-21">materialSwarm</param>
+      <param name="splitInInterfaceCells" source="source-21">True</param>
+    </struct>
+    <struct name="localLayout">
+      <param name="Type" source="source-9">MappedParticleLayout</param>
+    </struct>
+    <struct name="picIntegrationPoints">
+      <param name="Type" source="source-9">IntegrationPointsSwarm</param>
+      <param name="CellLayout" source="source-9">elementCellLayout</param>
+      <param name="ParticleLayout" source="source-9">localLayout</param>
+      <param name="FeMesh" source="source-9">elementMesh</param>
+      <param name="WeightsCalculator" source="source-9">weights</param>
+      <param name="TimeIntegrator" source="source-9">timeIntegrator</param>
+      <param name="IntegrationPointMapper" source="source-9">mapper</param>
+    </struct>
+    <struct name="mapper">
+      <param name="Type" source="source-9">CoincidentMapper</param>
+      <param name="IntegrationPointsSwarm" source="source-9">picIntegrationPoints</param>
+      <param name="MaterialPointsSwarm" source="source-9">materialSwarm</param>
+    </struct>
+    <struct name="materialSwarmParticleLayout">
+      <param name="Type" source="source-9">SpaceFillerParticleLayout</param>
+      <param name="averageInitialParticlesPerCell" source="source-9">particlesPerCell</param>
+    </struct>
+    <struct name="pMovementHandler">
+      <param name="Type" source="source-9">ParticleMovementHandler</param>
+    </struct>
+    <struct name="pShadowSync">
+      <param name="Type" source="source-9">ParticleShadowSync</param>
+    </struct>
+    <struct name="materialSwarm">
+      <param name="Type" source="source-9">MaterialPointsSwarm</param>
+      <param name="CellLayout" source="source-9">elementCellLayout</param>
+      <param name="ParticleLayout" source="source-9">materialSwarmParticleLayout</param>
+      <param name="FeMesh" source="source-9">elementMesh</param>
+      <list name="ParticleCommHandlers">
+        <param>pMovementHandler</param>
+        <param>pShadowSync</param>
+      </list>
+      <param name="SplittingRoutine" source="source-9">splittingRoutine</param>
+      <param name="RemovalRoutine" source="source-9">removalRoutine</param>
+      <param name="EscapedRoutine" source="source-9">escapedRoutine</param>
+    </struct>
+    <struct name="materialSwarmAdvector">
+      <param name="Type" source="source-9">SwarmAdvector</param>
+      <param name="Swarm" source="source-9">materialSwarm</param>
+      <param name="TimeIntegrator" source="source-9">timeIntegrator</param>
+      <param name="VelocityField" source="source-9">VelocityField</param>
+      <param name="PeriodicBCsManager" source="source-9">periodicBCsManager</param>
+      <param name="allowFallbackToFirstOrder" source="source-9">True</param>
+    </struct>
+    <struct name="solutionVelocity">
+      <param name="Type" source="source-12">SolutionVector</param>
+      <param name="FeVariable" source="source-12">VelocityField</param>
+    </struct>
+    <struct name="solutionPressure">
+      <param name="Type" source="source-12">SolutionVector</param>
+      <param name="FeVariable" source="source-12">PressureField</param>
+    </struct>
+    <struct name="mom_force">
+      <param name="Type" source="source-12">ForceVector</param>
+      <param name="FeVariable" source="source-12">VelocityField</param>
+      <param name="ExtraInfo" source="source-12">context</param>
+    </struct>
+    <struct name="cont_force">
+      <param name="Type" source="source-12">ForceVector</param>
+      <param name="FeVariable" source="source-12">PressureField</param>
+      <param name="ExtraInfo" source="source-12">context</param>
+    </struct>
+    <struct name="k_matrix">
+      <param name="Type" source="source-12">StiffnessMatrix</param>
+      <param name="RowVariable" source="source-12">VelocityField</param>
+      <param name="ColumnVariable" source="source-12">VelocityField</param>
+      <param name="RHS" source="source-12">mom_force</param>
+      <param name="allowZeroElementContributions" source="source-12">False</param>
+    </struct>
+    <struct name="constitutiveMatrix">
+      <param name="Type" source="source-11">ConstitutiveMatrixCartesian</param>
+      <param name="Swarm" source="source-11">picIntegrationPoints</param>
+      <param name="StiffnessMatrix" source="source-11">k_matrix</param>
+      <param name="storeConstitutiveMatrix" source="source-16">1</param>
+    </struct>
+    <struct name="g_matrix">
+      <param name="Type" source="source-12">StiffnessMatrix</param>
+      <param name="RowVariable" source="source-12">VelocityField</param>
+      <param name="ColumnVariable" source="source-12">PressureField</param>
+      <param name="RHS" source="source-12">mom_force</param>
+      <param name="transposeRHS" source="source-12">cont_force</param>
+      <param name="allowZeroElementContributions" source="source-12">False</param>
+    </struct>
+    <struct name="gradientStiffnessMatrixTerm">
+      <param name="Type" source="source-12">GradientStiffnessMatrixTerm</param>
+      <param name="Swarm" source="source-12">gaussSwarm</param>
+      <param name="StiffnessMatrix" source="source-12">g_matrix</param>
+    </struct>
+    <struct name="preconditioner">
+      <param name="Type" source="source-12">StiffnessMatrix</param>
+      <param name="RowVariable" source="source-12">PressureField</param>
+      <param name="ColumnVariable" source="source-12">PressureField</param>
+      <param name="RHS" source="source-12">cont_force</param>
+      <param name="allowZeroElementContributions" source="source-12">True</param>
+    </struct>
+    <struct name="preconditionerTerm">
+      <param name="Type" source="source-11">UzawaPreconditionerTerm</param>
+      <param name="Swarm" source="source-11">picIntegrationPoints</param>
+      <param name="StiffnessMatrix" source="source-11">preconditioner</param>
+    </struct>
+    <struct name="uzawa">
+      <param name="Type" source="source-21">Stokes_SLE_UzawaSolver</param>
+      <param name="velocitySolver" source="source-21">matrixSolver</param>
+      <param name="Preconditioner" source="source-21">preconditioner</param>
+      <param name="tolerance" source="overridden">5e-4</param>
+      <param name="monitor" source="overridden">True</param>
+      <param name="maxIterations" source="overridden">15000</param>
+      <param name="minIterations" source="source-21">10</param>
+    </struct>
+    <struct name="stokesEqn">
+      <param name="Type" source="source-12">Stokes_SLE</param>
+      <param name="SLE_Solver" source="source-12">uzawa</param>
+      <param name="Context" source="source-12">context</param>
+      <param name="StressTensorMatrix" source="source-12">k_matrix</param>
+      <param name="GradientMatrix" source="source-12">g_matrix</param>
+      <param name="DivergenceMatrix" source="source-12"></param>
+      <param name="CompressibilityMatrix" source="source-12">c_matrix</param>
+      <param name="VelocityVector" source="source-12">solutionVelocity</param>
+      <param name="PressureVector" source="source-12">solutionPressure</param>
+      <param name="ForceVector" source="source-12">mom_force</param>
+      <param name="ContinuityForceVector" source="source-12">cont_force</param>
+      <param name="killNonConvergent" source="source-12">false</param>
+      <param name="nonLinearMaxIterations" source="source-12">nonLinearMaxIterations</param>
+      <param name="nonLinearTolerance" source="source-12">nonLinearTolerance</param>
+      <param name="makeConvergenceFile" source="source-12">false</param>
+    </struct>
+    <struct name="c_matrix">
+      <param name="Type" source="source-10">StiffnessMatrix</param>
+      <param name="RowVariable" source="source-10">PressureField</param>
+      <param name="ColumnVariable" source="source-10">PressureField</param>
+      <param name="RHS" source="source-10">cont_force</param>
+      <param name="allowZeroElementContributions" source="source-10">True</param>
+    </struct>
+    <struct name="buoyancyForceTerm">
+      <param name="Type" source="source-2">BuoyancyForceTerm</param>
+      <param name="ForceVector" source="source-2">mom_force</param>
+      <param name="TemperatureField" source="source-2">TemperatureField</param>
+      <param name="Swarm" source="source-2">picIntegrationPoints</param>
+      <param name="gravity" source="source-2">gravity</param>
+    </struct>
+    <struct name="escapedRoutine">
+      <param name="Type" source="source-13">EscapedRoutine</param>
+    </struct>
+    <struct name="temperature">
+      <param name="Type" source="source-14">MeshVariable</param>
+      <param name="Rank" source="source-14">Scalar</param>
+      <param name="DataType" source="source-14">Double</param>
+      <param name="mesh" source="source-14">temperatureMesh</param>
+    </struct>
+    <struct name="temperatureBCs">
+      <param name="Type" source="source-14">CompositeVC</param>
+      <param name="Data" source="source-14">temperatureMesh</param>
+    </struct>
+    <struct name="temperatureICs">
+      <param name="Type" source="source-14">CompositeVC</param>
+      <param name="Data" source="source-14">temperatureMesh</param>
+    </struct>
+    <struct name="temperatureDofLayout">
+      <param name="Type" source="source-14">DofLayout</param>
+      <param name="MeshVariable" source="source-14">temperature</param>
+    </struct>
+    <struct name="TemperatureField">
+      <param name="Type" source="source-14">FeVariable</param>
+      <param name="FEMesh" source="source-14">temperatureMesh</param>
+      <param name="DofLayout" source="source-14">temperatureDofLayout</param>
+      <param name="BC" source="source-14">temperatureBCs</param>
+      <param name="IC" source="source-14">temperatureICs</param>
+      <param name="LinkedDofInfo" source="source-14">temperatureLinkedDofs</param>
+      <param name="outputUnits" source="source-14">K</param>
+    </struct>
+    <struct name="TemperatureGradientsField">
+      <param name="Type" source="source-14">OperatorFeVariable</param>
+      <param name="Operator" source="source-14">Gradient</param>
+      <param name="Operand" source="source-14">TemperatureField</param>
+      <param name="outputUnits" source="source-14">K/m</param>
+    </struct>
+    <struct name="residual">
+      <param name="Type" source="source-15">ForceVector</param>
+      <param name="FeVariable" source="source-15">TemperatureField</param>
+    </struct>
+    <struct name="massMatrix">
+      <param name="Type" source="source-15">ForceVector</param>
+      <param name="FeVariable" source="source-15">TemperatureField</param>
+    </struct>
+    <struct name="predictorMulticorrector">
+      <param name="Type" source="source-15">AdvDiffMulticorrector</param>
+    </struct>
+    <struct name="EnergyEqn">
+      <param name="Type" source="source-15">AdvectionDiffusionSLE</param>
+      <param name="SLE_Solver" source="source-15">predictorMulticorrector</param>
+      <param name="Context" source="source-15">context</param>
+      <param name="PhiField" source="source-15">TemperatureField</param>
+      <param name="Residual" source="source-15">residual</param>
+      <param name="MassMatrix" source="source-15">massMatrix</param>
+      <param name="courantFactor" source="source-15">courantFactor</param>
+    </struct>
+    <struct name="lumpedMassMatrixForceTerm">
+      <param name="Type" source="source-15">LumpedMassMatrixForceTerm</param>
+      <param name="Swarm" source="source-15">gaussSwarm</param>
+      <param name="ForceVector" source="source-15">massMatrix</param>
+    </struct>
+    <struct name="defaultResidualForceTerm">
+      <param name="Type" source="source-15">AdvDiffResidualForceTerm</param>
+      <param name="Swarm" source="source-15">gaussSwarm</param>
+      <param name="ForceVector" source="source-15">residual</param>
+      <param name="ExtraInfo" source="source-15">EnergyEqn</param>
+      <param name="VelocityField" source="source-15">VelocityField</param>
+      <param name="defaultDiffusivity" source="source-15">defaultDiffusivity</param>
+      <param name="UpwindXiFunction" source="source-15">DoublyAsymptoticAssumption</param>
+    </struct>
+    <struct name="recoveredStrainRateField">
+      <param name="Type" source="source-16">RecoveredFeVariable</param>
+      <param name="RawField" source="source-16">StrainRateField</param>
+      <param name="recoverPressure" source="source-16">False</param>
+      <param name="coeffInterpolation" source="source-16">1</param>
+      <param name="recoverStrain" source="source-16">True</param>
+    </struct>
+    <struct name="recoveredStressField">
+      <param name="Type" source="source-16">RecoveredFeVariable</param>
+      <param name="RawField" source="source-16">StrainRateField</param>
+      <param name="recoverPressure" source="source-16">True</param>
+      <param name="RawPressureField" source="source-16">PressureField</param>
+      <param name="coeffInterpolation" source="source-16">1</param>
+    </struct>
+    <struct name="REP">
+      <param name="Type" source="source-16">REP_Algorithm</param>
+      <param name="ConstitutiveMatrix" source="source-16">constitutiveMatrix</param>
+      <list name="RepFieldList">
+        <param>recoveredStressField</param>
+        <param>recoveredStrainRateField</param>
+      </list>
+    </struct>
+    <struct name="recoveredStressInvariantField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">SymmetricTensor_Invariant</param>
+      <param name="Operand" source="source-16">recoveredStressField</param>
+    </struct>
+    <struct name="recoveredPressureField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">SymmetricTensor_NegAverageTrace</param>
+      <param name="Operand" source="source-16">recoveredStressField</param>
+    </struct>
+    <struct name="recoveredDeviatoricStressField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">SymmetricTensor_MakeDeviatoric</param>
+      <param name="Operand" source="source-16">recoveredStressField</param>
+    </struct>
+    <struct name="recoveredDeviatoricStressInvariantField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">SymmetricTensor_Invariant</param>
+      <param name="Operand" source="source-16">recoveredDeviatoricStressField</param>
+    </struct>
+    <struct name="recoveredStrainRateInvariantField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">SymmetricTensor_Invariant</param>
+      <param name="Operand" source="source-16">recoveredStrainRateField</param>
+    </struct>
+    <struct name="recoveredStressXXField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeFirstComponent</param>
+      <param name="Operand" source="source-16">recoveredStressField</param>
+    </struct>
+    <struct name="recoveredStressYYField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeSecondComponent</param>
+      <param name="Operand" source="source-16">recoveredStressField</param>
+    </struct>
+    <struct name="recoveredStressXYField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeThirdComponent</param>
+      <param name="Operand" source="source-16">recoveredStressField</param>
+    </struct>
+    <struct name="recoveredDeviatoricStressXXField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeFirstComponent</param>
+      <param name="Operand" source="source-16">recoveredDeviatoricStressField</param>
+    </struct>
+    <struct name="recoveredDeviatoricStressYYField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeSecondComponent</param>
+      <param name="Operand" source="source-16">recoveredDeviatoricStressField</param>
+    </struct>
+    <struct name="recoveredDeviatoricStressXYField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeThirdComponent</param>
+      <param name="Operand" source="source-16">recoveredDeviatoricStressField</param>
+    </struct>
+    <struct name="recoveredStrainRateXXField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeFirstComponent</param>
+      <param name="Operand" source="source-16">recoveredStrainRateField</param>
+    </struct>
+    <struct name="recoveredStrainRateYYField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeSecondComponent</param>
+      <param name="Operand" source="source-16">recoveredStrainRateField</param>
+    </struct>
+    <struct name="recoveredStrainRateXYField">
+      <param name="Type" source="source-16">OperatorFeVariable</param>
+      <param name="Operator" source="source-16">TakeThirdComponent</param>
+      <param name="Operand" source="source-16">recoveredStrainRateField</param>
+    </struct>
+    <struct name="MaterialIndexField">
+      <param name="Type" source="source-17">MaterialIndexField</param>
+      <param name="Context" source="source-17">context</param>
+      <param name="Swarm" source="source-17">picIntegrationPoints</param>
+      <param name="Mesh" source="source-17">elementMesh</param>
+    </struct>
+    <struct name="ViscosityField">
+      <param name="Type" source="source-18">ViscosityField</param>
+      <param name="Context" source="source-18">context</param>
+      <param name="Swarm" source="source-18">picIntegrationPoints</param>
+      <param name="Mesh" source="source-18">elementMesh</param>
+      <param name="ConstitutiveMatrix" source="source-18">constitutiveMatrix</param>
+    </struct>
+    <struct name="DensityField">
+      <param name="Type" source="source-19">DensityField</param>
+      <param name="Context" source="source-19">context</param>
+      <param name="Swarm" source="source-19">picIntegrationPoints</param>
+      <param name="Mesh" source="source-19">elementMesh</param>
+      <param name="BuoyancyForceTerm" source="source-19">buoyancyForceTerm</param>
+      <param name="ConstitutiveMatrix" source="source-19">constitutiveMatrix</param>
+    </struct>
+    <struct name="StressField">
+      <param name="Type" source="source-20">StressField</param>
+      <param name="StrainRateField" source="source-20">StrainRateField</param>
+      <param name="Context" source="source-20">context</param>
+      <param name="ConstitutiveMatrix" source="source-20">constitutiveMatrix</param>
+      <param name="Swarm" source="source-20">picIntegrationPoints</param>
+      <param name="Mesh" source="source-20">elementMesh</param>
+    </struct>
+    <struct name="StressInvariantField">
+      <param name="Type" source="source-20">OperatorFeVariable</param>
+      <param name="Operator" source="source-20">SymmetricTensor_Invariant</param>
+      <param name="Operand" source="source-20">StressField</param>
+    </struct>
+    <struct name="StressXXField">
+      <param name="Type" source="source-20">OperatorFeVariable</param>
+      <param name="Operator" source="source-20">TakeFirstComponent</param>
+      <param name="Operand" source="source-20">StressField</param>
+    </struct>
+    <struct name="StressYYField">
+      <param name="Type" source="source-20">OperatorFeVariable</param>
+      <param name="Operator" source="source-20">TakeSecondComponent</param>
+      <param name="Operand" source="source-20">StressField</param>
+    </struct>
+    <struct name="StressZZField">
+      <param name="Type" source="source-20">OperatorFeVariable</param>
+      <param name="Operator" source="source-20">TakeThirdComponent</param>
+      <param name="Operand" source="source-20">StressField</param>
+    </struct>
+    <struct name="default_scaling">
+      <param name="Type" source="source-21">Scaling</param>
+      <param name="spaceCoefficient_meters" source="source-21">1.0</param>
+      <param name="timeCoefficient_seconds" source="source-21">1.0</param>
+      <param name="massCoefficient_kilograms" source="source-21">1.0</param>
+      <param name="temperatureCoefficient_kelvin" source="source-21">1.0</param>
+      <param name="electricCurrentCoefficient_amperes" source="source-21">1</param>
+    </struct>
+    <!--
+    <struct name="mgSolver">
+      <param name="Type" source="source-22">PETScMGSolver</param>
+      <param name="levels" source="source-22">mgLevels</param>
+      <param name="opGenerator" source="source-22">mgOpGenerator</param>
+    </struct>
+    <struct name="mgOpGenerator">
+      <param name="Type" source="source-22">SROpGenerator</param>
+      <param name="fineVariable" source="source-22">VelocityField</param>
+    </struct>
+    -->
+    <struct name="airShape">
+      <param name="Type" source="source-23">Box</param>
+      <param name="startX" source="source-23">minX</param>
+      <param name="endX" source="source-23">maxX</param>
+      <param name="startY" source="source-23">60000</param>
+      <param name="endY" source="source-23">maxY</param>
+      <param name="startZ" source="source-23">minZ</param>
+      <param name="endZ" source="source-23">maxZ</param>
+    </struct>
+    <struct name="uppercrustShape">
+      <param name="Type" source="source-23">Box</param>
+      <param name="startX" source="source-23">minX</param>
+      <param name="endX" source="source-23">maxX</param>
+      <param name="startY" source="source-23">40000</param>
+      <param name="endY" source="source-23">60000</param>
+      <param name="startZ" source="source-23">minZ</param>
+      <param name="endZ" source="source-23">maxZ</param>
+    </struct>
+    <struct name="notchShape">
+      <param name="Type" source="source-23">Box</param>
+      <param name="startX" source="source-23">61500</param>
+      <param name="endX" source="source-23">66500</param>
+      <param name="startY" source="source-23">40000</param>
+      <param name="endY" source="source-23">45000</param>
+      <param name="startZ" source="source-23">minZ</param>
+      <param name="endZ" source="source-23">maxZ</param>
+    </struct>
+    <struct name="lowercrustShape">
+      <param name="Type" source="source-23">Box</param>
+      <param name="startX" source="source-23">minX</param>
+      <param name="endX" source="source-23">maxX</param>
+      <param name="startY" source="source-23">10000</param>
+      <param name="endY" source="source-23">40000</param>
+      <param name="startZ" source="source-23">minZ</param>
+      <param name="endZ" source="source-23">maxZ</param>
+    </struct>
+    <struct name="mantleShape">
+      <param name="Type" source="source-23">Box</param>
+      <param name="startX" source="source-23">minX</param>
+      <param name="endX" source="source-23">maxX</param>
+      <param name="startY" source="source-23">minY</param>
+      <param name="endY" source="source-23">10000</param>
+      <param name="startZ" source="source-23">minZ</param>
+      <param name="endZ" source="source-23">maxZ</param>
+    </struct>
+    <struct name="timeIntegrator_aux">
+      <param name="Type" source="source-23">TimeIntegrator</param>
+      <param name="order" source="source-23">timeIntegratorOrder</param>
+      <param name="simultaneous" source="source-23">f</param>
+      <param name="Context" source="source-23">context</param>
+    </struct>
+    <struct name="strainWeakening">
+      <param name="Type" source="source-23">StrainWeakening</param>
+      <param name="TimeIntegrator" source="source-23">timeIntegrator_aux</param>
+      <param name="MaterialPointsSwarm" source="source-23">materialSwarm</param>
+      <param name="softeningStrain" source="source-23">0.2</param>
+      <param name="initialDamageFraction" source="source-23">0.0</param>
+      <param name="initialDamageWavenumber" source="source-23">2e-6</param>
+      <param name="initialDamageFactor" source="source-23">0.7</param>
+      <param name="healingRate" source="source-23">0</param>
+    </struct>
+    <struct name="crustyielding">
+      <param name="Type" source="source-23">DruckerPrager</param>
+      <param name="PressureField" source="source-23">recoveredPressureField</param>
+      <param name="MaterialPointsSwarm" source="source-23">materialSwarm</param>
+      <param name="StrainRateField" source="source-23">recoveredStrainRateField</param>
+      <param name="cohesion" source="source-23">8e+07</param>
+      <param name="cohesionAfterSoftening" source="source-23">8e+06</param>
+      <param name="frictionCoefficient" source="source-23">0.4</param>
+      <param name="frictionCoefficientAfterSoftening" source="source-23">0.04</param>
+      <param name="minimumViscosity" source="source-23">1e+19</param>
+      <param name="StrainWeakening" source="source-23">strainWeakening</param>
+    </struct>
+    <struct name="airVisc">
+      <param name="Type" source="source-23">MaterialViscosity</param>
+      <param name="eta0" source="source-23">1e+20</param>
+    </struct>
+    <struct name="uppercrustVisc">
+      <param name="Type" source="source-23">FrankKamenetskii</param>
+      <param name="TemperatureField" source="source-23">TemperatureField</param>
+      <param name="eta0" source="source-23">5.35e23</param>
+      <param name="theta" source="source-23">0.00632</param>
+    </struct>
+    <struct name="notchVisc">
+      <param name="Type" source="source-23">MaterialViscosity</param>
+      <param name="eta0" source="source-23">1e+20</param>
+    </struct>
+    <struct name="lowercrustVisc">
+      <param name="Type" source="source-23">FrankKamenetskii</param>
+      <param name="TemperatureField" source="source-23">TemperatureField</param>
+      <param name="eta0" source="source-23">5.35e22</param>
+      <param name="theta" source="source-23">0.00632</param>
+    </struct>
+    <struct name="mantleVisc">
+      <param name="Type" source="source-23">MaterialViscosity</param>
+      <param name="eta0" source="source-23">1e+20</param>
+    </struct>
+    <struct name="viscosityLimiter">
+      <param name="Type" source="source-23">ViscosityLimiter</param>
+      <param name="maxViscosity" source="source-23">1e24</param>
+      <param name="minViscosity" source="source-23">1e20</param>
+    </struct>
+    <struct name="air">
+      <param name="Type" source="source-23">RheologyMaterial</param>
+      <param name="Shape" source="source-23">airShape</param>
+      <param name="density" source="source-23">22</param>
+      <list name="Rheology">
+        <param>airVisc</param>
+        <param>viscosityLimiter</param>
+      </list>
+    </struct>
+    <struct name="uppercrust">
+      <param name="Type" source="source-23">RheologyMaterial</param>
+      <param name="Shape" source="source-23">uppercrustShape</param>
+      <param name="density" source="source-23">2600</param>
+      <param name="alpha" source="source-23">3e-5</param>
+      <list name="Rheology">
+        <param>uppercrustVisc</param>
+        <param>crustyielding</param>
+        <param>viscosityLimiter</param>
+      </list>
+    </struct>
+    <struct name="notch">
+      <param name="Type" source="source-23">RheologyMaterial</param>
+      <param name="Shape" source="source-23">notchShape</param>
+      <param name="density" source="source-23">2600</param>
+      <param name="alpha" source="source-23">3e-5</param>
+      <list name="Rheology">
+        <param>notchVisc</param>
+      </list>
+    </struct>
+    <struct name="lowercrust">
+      <param name="Type" source="source-23">RheologyMaterial</param>
+      <param name="Shape" source="source-23">lowercrustShape</param>
+      <param name="density" source="source-23">2700</param>
+      <param name="alpha" source="source-23">3e-5</param>
+      <list name="Rheology">
+        <param>uppercrustVisc</param>
+        <param>crustyielding</param>
+        <param>viscosityLimiter</param>
+      </list>
+    </struct>
+    <struct name="mantle">
+      <param name="Type" source="source-23">RheologyMaterial</param>
+      <param name="Shape" source="source-23">mantleShape</param>
+      <param name="density" source="source-23">3300</param>
+      <list name="Rheology">
+        <param>mantleVisc</param>
+        <param>viscosityLimiter</param>
+      </list>
+    </struct>
+    <struct name="passiveSwarmMovementHandler">
+      <param name="Type" source="source-23">ParticleMovementHandler</param>
+    </struct>
+    <struct name="ElementCellLayoutTracer">
+      <param name="Type" source="source-23">ElementCellLayout</param>
+      <param name="Mesh" source="source-23">linearMesh</param>
+    </struct>
+    <struct name="passiveTracerLayout">
+      <param name="Type" source="source-23">PlaneParticleLayout</param>
+      <param name="totalInitialParticles" source="source-23">6000</param>
+      <param name="planeAxis" source="source-23">y</param>
+      <param name="planeCoord" source="source-23">60000</param>
+    </struct>
+    <struct name="passiveTracerSwarm">
+      <param name="Type" source="source-23">MaterialPointsSwarm</param>
+      <param name="CellLayout" source="source-23">ElementCellLayoutTracer</param>
+      <param name="ParticleLayout" source="source-23">passiveTracerLayout</param>
+      <param name="FiniteElement_Mesh" source="source-23">linearMesh</param>
+      <param name="FeMesh" source="source-23">elementMesh</param>
+      <list name="ParticleCommHandlers">
+        <param>passiveSwarmMovementHandler</param>
+      </list>
+      <param name="RemovalRoutine" source="source-23">removalRoutine</param>
+      <param name="EscapedRoutine" source="source-23">escapedRoutine</param>
+    </struct>
+    <struct name="passiveTracerAdvect">
+      <param name="Type" source="source-23">SwarmAdvector</param>
+      <param name="Swarm" source="source-23">passiveTracerSwarm</param>
+      <param name="TimeIntegrator" source="source-23">timeIntegrator</param>
+      <param name="VelocityField" source="source-23">VelocityField</param>
+    </struct>
+    <!--struct name="passiveTracerAdvector">
+       <param name="Type">SwarmAdvectionIJK</param>
+       <param name="Swarm">materialSwarm</param>
+       <param name="TimeIntegrator">timeIntegrator</param>
+       <param name="VelocityField">VelocityField</param>  
+       <param name="PeriodicBCsManager">periodicBCsManager</param>
+          <param name="allowFallbackToFirstOrder">True</param>
+          <param name="suppressAxisI"> True </param>   
+          <param name="suppressAxisJ"> True </param>   
+          <param name="suppressAxisK"> False </param>   
+    </struct-->
+    <struct name="swarmOutput">
+      <param name="Type" source="source-23">Underworld_SwarmOutput</param>
+      <param name="Swarm" source="source-23">passiveTracerSwarm</param>
+      <param name="usoOutputEvery" source="source-23">2</param>
+      <list name="FeVariables">
+        <param>VelocityField</param>
+      </list>
+    </struct>
+  </struct>
+  <param name="velocityMesh" source="source-5">linearMesh</param>
+  <param name="elementMesh" source="source-6">linearMesh</param>
+  <param name="pressureMesh" source="source-6">constantMesh</param>
+  <list name="FieldVariablesToCheckpoint">
+    <param>VelocityField</param>
+    <param>DensityField</param>
+    <param>TemperatureField</param>
+    <param>MatYieldedField</param>
+    <param>PostFailureWeakeningField</param>
+    <param>PostFailureWeakeningIncField</param>
+    <param>ViscosityField</param>
+    <param>MaterialIndexField</param>
+    <param>recoveredStrainRateInvariantField</param>
+    <param>PressureField</param>
+    <param>recoveredPressureField</param>
+    <param>recoveredStressField</param>
+    <param>recoveredDeviatoricStressField</param>
+    <param>recoveredDeviatoricStressInvariantField</param>
+  </list>
+  <param name="timeIntegratorOrder" source="source-2">1</param>
+  <param name="temperatureMesh" source="source-14">linearMesh</param>
+  <param name="MeshAdvectionCorrection_UseArtDisplacementField" source="source-1">True</param>
+  <param name="dim" source="source-21">3</param>
+  <param name="elementResI" source="overridden">10</param>
+  <param name="minX" source="source-21">0</param>
+  <param name="maxX" source="source-21">128000</param>
+  <param name="elementResJ" source="overridden">10</param>
+  <param name="minY" source="source-21">0</param>
+  <param name="maxY" source="source-21">64000</param>
+  <param name="elementResK" source="overridden">10</param>
+  <param name="minZ" source="source-21">0</param>
+  <param name="maxZ" source="source-21">128000</param>
+  <param name="particlesPerCell" source="source-21">20</param>
+  <param name="defaultDiffusivity" source="source-21">1e-6</param>
+  <param name="gravity" source="source-21">9.81</param>
+  <param name="nonLinearMaxIterations" source="source-21">500</param>
+  <param name="nonLinearTolerance" source="overridden">5e-3</param>
+  <param name="maxTimeSteps" source="source-21">20000</param>
+  <param name="end" source="source-21">1.5768e+14</param>
+  <param name="outputPath" source="overridden">./output</param>
+  <param name="dumpEvery" source="source-21">5</param>
+  <param name="checkpointEvery" source="source-21">5</param>
+  <param name="shadowDepth" source="source-21">1</param>
+  <param name="allowUnbalancing" source="source-21">True</param>
+  <param name="journal.info.Context-verbose" source="source-21">True</param>
+  <param name="journal-level.info.Stg_ComponentFactory" source="source-21">2</param>
+  <param name="journal.debug" source="source-21">true</param>
+  <param name="journal.debug.PluginsManager" source="source-21">true</param>
+  <param name="journal-enable-branch.debug.StgFEM" source="source-21">true</param>
+  <param name="journal-level-branch.debug.StgFEM" source="source-21">2</param>
+  <param name="mgLevels" source="source-22">6</param>
+  <param name="SinusoidalTempIC_TopLayerCoord" source="source-24">maxY</param>
+  <param name="SinusoidalTempIC_TopLayerBC" source="source-24">193</param>
+  <param name="SinusoidalTempIC_BottomLayerCoord" source="source-24">minY</param>
+  <param name="SinusoidalTempIC_BottomLayerBC" source="source-24">1200</param>
+  <param name="SinusoidalTempIC_PerturbationAmplitude" source="source-24">0.0</param>
+  <param name="SinusoidalTempIC_HorizontalWaveNumber" source="source-24">0</param>
+  <param name="SinusoidalTempIC_VerticalWaveNumber" source="source-24">0</param>
+  <struct name="temperatureICs">
+    <param name="type" source="source-24">CompositeVC</param>
+    <list name="vcList">
+      <struct>
+        <param name="type" source="source-24">AllNodesVC</param>
+        <list name="variables">
+          <struct>
+            <param name="name" source="source-24">temperature</param>
+            <param name="type" source="source-24">func</param>
+            <param name="value" source="source-24">LinearWithSinusoidalPerturbation</param>
+          </struct>
+        </list>
+      </struct>
+    </list>
+  </struct>
+  <struct name="velocityBCs">
+    <param name="type" source="source-25">CompositeVC</param>
+    <list name="vcList">
+      <struct>
+        <param name="type" source="source-25">WallVC</param>
+        <param name="wall" source="source-25">bottom</param>
+        <list name="variables">
+          <struct>
+            <param name="name" source="source-25">vy</param>
+            <param name="type" source="source-25">func</param>
+            <param name="value" source="source-25">lecode_tools_Isostasy</param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type" source="source-25">WallVC</param>
+        <param name="wall" source="source-25">left</param>
+        <list name="variables">
+          <struct>
+            <param name="name" source="source-25">vx</param>
+            <param name="type" source="source-25">double</param>
+            <param name="value" source="source-25">-6.34196e-10</param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type" source="source-25">WallVC</param>
+        <param name="wall" source="source-25">right</param>
+        <list name="variables">
+          <struct>
+            <param name="name" source="source-25">vx</param>
+            <param name="type" source="source-25">double</param>
+            <param name="value" source="source-25">6.34196e-10</param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type" source="source-25">WallVC</param>
+        <param name="wall" source="source-25">front</param>
+        <list name="variables">
+          <struct>
+            <param name="name" source="source-25">vz</param>
+            <param name="type" source="source-25">double</param>
+            <param name="value" source="source-25">0.0</param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type" source="source-25">WallVC</param>
+        <param name="wall" source="source-25">back</param>
+        <list name="variables">
+          <struct>
+            <param name="name" source="source-25">vz</param>
+            <param name="type" source="source-25">double</param>
+            <param name="value" source="source-25">0.0</param>
+          </struct>
+        </list>
+      </struct>
+    </list>
+  </struct>
+  <struct name="temperatureBCs">
+    <param name="type" source="source-25">CompositeVC</param>
+    <list name="vcList">
+      <struct>
+        <param name="type" source="source-25">WallVC</param>
+        <param name="wall" source="source-25">bottom</param>
+        <list name="variables">
+          <struct>
+            <param name="name" source="source-25">temperature</param>
+            <param name="type" source="source-25">double</param>
+            <param name="value" source="source-25">1200</param>
+          </struct>
+        </list>
+      </struct>
+      <struct>
+        <param name="type" source="source-25">WallVC</param>
+        <param name="wall" source="source-25">top</param>
+        <list name="variables">
+          <struct>
+            <param name="name" source="source-25">temperature</param>
+            <param name="type" source="source-25">double</param>
+            <param name="value" source="source-25">293</param>
+          </struct>
+        </list>
+      </struct>
+    </list>
+  </struct>
+  <param name="nonLinearMinIterations" source="overridden">10</param>
+  <param name="outputSlimmedXML">true</param>
+  <!--The list of files (in the order they've been included) referenced to generate this flattened file.-->
+  <list name="sources">
+    <param name="source-0">/home/mon13k/scratch/coupling3D/main3Dmg.xml</param>
+    <param name="source-1">/home/mon13k/scratch/coupling3D//riftBaseApp.xml</param>
+    <param name="source-2">./ExtensionBaseApp.xml</param>
+    <param name="source-3">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/StgFEM/ConstantMesh.xml</param>
+    <param name="source-4">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/StgFEM/LinearMesh.xml</param>
+    <param name="source-5">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/StgFEM/VelocityField.xml</param>
+    <param name="source-6">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/StgFEM/PressureField.xml</param>
+    <param name="source-7">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld/GaussSwarm.xml</param>
+    <param name="source-8">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/StgFEM/TimeIntegrator.xml</param>
+    <param name="source-9">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/PICellerator/MaterialPointSwarm.xml</param>
+    <param name="source-10">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld/StokesFlowUzawaCompressible.xml</param>
+    <param name="source-11">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld//StokesFlowUzawaPIC.xml</param>
+    <param name="source-12">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld/StokesFlowUzawa.xml</param>
+    <param name="source-13">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/PICellerator/AllowOutflow.xml</param>
+    <param name="source-14">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/StgFEM/TemperatureField.xml</param>
+    <param name="source-15">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/StgFEM/TempAdvDiff.xml</param>
+    <param name="source-16">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld/REP_Setup.xml</param>
+    <param name="source-17">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld/MaterialIndexField.xml</param>
+    <param name="source-18">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld/ViscosityField.xml</param>
+    <param name="source-19">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld/DensityField.xml</param>
+    <param name="source-20">/group/geosciences495/programs/uwbleeding_27-June-2013/build/lib/StGermain/Underworld/StressField3D.xml</param>
+    <param name="source-21">/home/mon13k/scratch/coupling3D//riftNumerics.xml</param>
+    <param name="source-22">/home/mon13k/scratch/coupling3D//riftMultiGrid.xml</param>
+    <param name="source-23">/home/mon13k/scratch/coupling3D//riftMaterials.xml</param>
+    <param name="source-24">/home/mon13k/scratch/coupling3D//riftInitials.xml</param>
+    <param name="source-25">/home/mon13k/scratch/coupling3D//riftBoundaries.xml</param>
+  </list>
+</StGermainData>
