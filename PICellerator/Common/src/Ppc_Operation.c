@@ -20,27 +20,41 @@ void _Ppc_Operation_Init( void* _self, char* op ) {
   Ppc_Operation* self = (Ppc_Operation*)_self;
 
   Journal_Firewall( op[0] == '*' || op[0] == '/' ||
-						  op[0] == '+' || op[0] == '-' ||
-						  strcmp( op, "min" ) == 0 ||
-						  strcmp( op, "max" ) == 0 ||
-						  strcmp( op, "max" ) == 0 ||
-						  strcmp( op, "geometricMean" ) == 0 ||
-						  strcmp( op, "harmonicMean" ) == 0 ||
-						  strcmp( op, "mean" ) == 0,
-						  self->error_stream, "\n\n\n"
+					op[0] == '+' || op[0] == '-' ||
+					strcmp( op, "min" ) == 0 ||
+    				strcmp( op, "max" ) == 0 ||
+    				strcmp( op, "max" ) == 0 ||
+    				strcmp( op, "geometricMean" ) == 0 ||
+    				strcmp( op, "harmonicMean" ) == 0 ||
+    				strcmp( op, "mean" ) == 0 ||
+            strcmp( op, "hypot" ) == 0 ||
+            strcmp( op, "arctan" ) == 0 ||
+            strcmp( op, "sin" ) == 0 ||
+            strcmp( op, "cos" ) == 0,
+    				self->error_stream, "\n\n\n"
 						  "Error in configuration of Ppc_Operation %s\n"
 						  "unknown operation <%s>"
 						  "\n\n\n", self->name, op );
 
 						  
-  if( op[0] == '/' || op[0] == '-' ) 
+  if( op[0] == '/' || op[0] == '-' || strcmp( op, "hypot" ) == 0) {
   	Journal_Firewall( self->propertyTagCount == 2, 
 						  self->error_stream, "\n\n\n"
 						  "Error in configuration of Ppc_Operation %s\n"
-						  "The operations '-' and '/' need exacly TWO properties."
+						  "The operations '-', '/' and 'hypot' need exacly TWO properties."
 						  "\n\n\n", self->name );
-						  	  
-	self->operation = op;
+  }
+   if( strcmp( op, "arctan" ) == 0 ||
+       strcmp( op, "sin" ) == 0 ||
+       strcmp( op, "cos" ) == 0 ) { 
+      Journal_Firewall( self->propertyTagCount == 1, 
+                          self->error_stream, "\n\n\n"
+                          "Error in configuration of Ppc_Operation %s\n"
+                          "The operations 'arctan', 'sin', and 'cos' need exacly one property."
+                          "\n\n\n", self->name );		  	  
+   }
+
+   self->operation = op;
 }
 
 
@@ -196,6 +210,7 @@ void _Ppc_Operation_Destroy( void* _self, void* data ) {
 int _Ppc_Operation_Get( void* _self, Element_LocalIndex lElement_I, IntegrationPoint* particle, double* result ) {
   Ppc_Operation* self = (Ppc_Operation*) _self;
   double aux = 0;
+  double radians = 0;
   char* op = self->operation;
   double* values = self->values;
   int I, err;
@@ -210,51 +225,71 @@ int _Ppc_Operation_Get( void* _self, Element_LocalIndex lElement_I, IntegrationP
 	}
   
   switch( op[0] ) {
-  case '*':
-  	aux = 1;
-		for( I = 0 ; I < self->propertyTagCount ; I++ )
-	 		aux *= values[I];
-		break;
-  case '/':
-		aux = values[0] / values[1];
-		break;
-  case '+':
- 		aux = 0;
-		for( I = 0 ; I < self->propertyTagCount ; I++ )
-			aux += values[I];
-		break;
-  case '-':
-		aux = values[0] - values[1];
-		break;
-  default:
-		if( strcmp( op, "min" ) == 0 ) {
-			aux = values[0];
-			for( I = 1 ; I < self->propertyTagCount ; I++ )
-				aux = values[I] < aux ? values[I] : aux;
-				
-		} else if( strcmp( op, "max" ) == 0 ) {
-			aux = values[0];
-			for( I = 1 ; I < self->propertyTagCount ; I++ )
-				aux = values[I] > aux ? values[I] : aux;
-				
-		} else if( strcmp( op, "mean" ) == 0 ) {
-	 		aux = 0;
-			for( I = 0 ; I < self->propertyTagCount ; I++ )
-				aux += values[I];
-			aux /= self->propertyTagCount;
-			 	
-		} else if( strcmp( op, "geometricMean" ) == 0 ) {
-	  	aux = 1;
-			for( I = 0 ; I < self->propertyTagCount ; I++ )
-	 			aux *= values[I];
-			aux = sqrt( aux );
-			
-		} else if( strcmp( op, "harmonicMean" ) == 0 ) {
-	  	aux = 0;
-			for( I = 0 ; I < self->propertyTagCount ; I++ )
-	 			aux += 1.0/values[I];
-			aux = self->propertyTagCount / aux;
-		}
+    case '*':
+    	aux = 1;
+  		for( I = 0 ; I < self->propertyTagCount ; I++ )
+  	 		aux *= values[I];
+  		break;
+    case '/':
+  		aux = values[0] / values[1];
+  		break;
+    case '+':
+   		aux = 0;
+  		for( I = 0 ; I < self->propertyTagCount ; I++ )
+  			aux += values[I];
+  		break;
+    case '-':
+  		aux = values[0] - values[1];
+  		break;
+    default:
+  		if( strcmp( op, "min" ) == 0 ) {
+  			aux = values[0];
+  			for( I = 1 ; I < self->propertyTagCount ; I++ )
+  				aux = values[I] < aux ? values[I] : aux;
+  				
+  		} else if( strcmp( op, "max" ) == 0 ) {
+  			aux = values[0];
+  			for( I = 1 ; I < self->propertyTagCount ; I++ )
+  				aux = values[I] > aux ? values[I] : aux;
+  				
+  		} else if( strcmp( op, "mean" ) == 0 ) {
+  	 		aux = 0;
+  			for( I = 0 ; I < self->propertyTagCount ; I++ )
+  				aux += values[I];
+  			aux /= self->propertyTagCount;
+  			 	
+  		} else if( strcmp( op, "geometricMean" ) == 0 ) {
+  	  	aux = 1;
+  			for( I = 0 ; I < self->propertyTagCount ; I++ )
+  	 			aux *= values[I];
+  			aux = sqrt( aux );
+  			
+  		} else if( strcmp( op, "harmonicMean" ) == 0 ) {
+  	  	aux = 0;
+  			for( I = 0 ; I < self->propertyTagCount ; I++ )
+  	 			aux += 1.0/values[I];
+  			aux = self->propertyTagCount / aux;
+
+      } else if( strcmp( op, "hypot" ) == 0 ) {
+        aux = hypot(values[0], values[1]);
+
+      } else if( strcmp( op, "arctan" ) == 0 ) {
+        aux = atan(values[0]) * (180.0/M_PI);
+
+      } else if( strcmp( op, "sin" ) == 0 ) {
+        radians = (values[0] * M_PI)/180;
+        aux = sin(radians);
+
+      } else if( strcmp( op, "cos" ) == 0 ) {
+        radians = (values[0] * M_PI)/180;
+        aux = cos(radians);
+
+      } else {
+        Journal_Firewall( 0,
+                  self->error_stream, "\n\n\n"
+                  "Error in configuration of Ppc_Operation %s\n"
+                  "\n\n\n", self->name );
+      }
 	}
 
   result[0] = aux;
