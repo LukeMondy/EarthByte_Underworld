@@ -52,6 +52,7 @@
       \
       /* AdvDiffMulticorrector info */ \
       double          gamma; \
+      double          safetyFactor; \
       Iteration_Index multiCorrectorIterations; \
       KSP             matrixSolver;
 

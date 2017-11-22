@@ -48,6 +48,7 @@
 #include "AdvectionDiffusionSLE.h"
 #include "Multicorrector.h"
 #include "Residual.h"
+#include "Timestep.h"
 
 #include <assert.h>
 
@@ -150,6 +151,13 @@ void _AdvDiffMulticorrector_AssignFromXML( void* solver, Stg_ComponentFactory* c
    gamma = Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"gamma", 0.5 );
    multiCorrectorIterations = Stg_ComponentFactory_GetUnsignedInt( cf, self->name, (Dictionary_Entry_Key)"multiCorrectorIterations", 2 );
 
+
+   /* 'safetyFactor' is the fraction of the advection timestep the solver 
+      will try and reach if the system is diffusion dominated
+      and multiple diffusion timesteps are being solved per stokesEqn
+    */
+   self->safetyFactor = Stg_ComponentFactory_GetDouble( cf, self->name, (Dictionary_Entry_Key)"safetyFactor", 0.75 );
+
    _AdvDiffMulticorrector_Init( self, gamma, multiCorrectorIterations );
 
    if( self->matrixSolver == PETSC_NULL ) {
@@ -170,7 +178,62 @@ void _AdvDiffMulticorrector_Initialise( void* solver, void* data ) {
 }
 
 void _AdvDiffMulticorrector_Execute( void* solver, void* data ) {
-   _SLE_Solver_Execute( solver, data );
+   AdvDiffMulticorrector* self   = Stg_CheckType( solver, AdvDiffMulticorrector );
+   AdvectionDiffusionSLE* sle = Stg_CheckType( data, AdvectionDiffusionSLE );
+
+   /* Test code for doing multiple Energy equation steps if diffusion is quicker
+      process than advection. The follow code makes assumption like:
+      */
+   double local_diff_t = 0.;
+   double diff_t = 0.;
+   double adv_t = 0.;
+   double fraction = 0.;
+   double safetyFactor = 1.0;  // this needs to be 1.0, now, given that the timestep is selected before all this (see timestep.c)
+
+   //safetyFactor = self->safetyFactor;
+   local_diff_t = AdvectionDiffusionSLE_DiffusiveTimestep( sle );
+
+   (void)MPI_Allreduce( &local_diff_t, &diff_t, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
+   
+   adv_t = self->context->dt;  // this will be the advective timestep
+
+
+   if (adv_t < 1e-7 ) 
+     fraction=0;
+   else
+     fraction = diff_t/adv_t;	   
+
+   if( diff_t>=adv_t || fraction < 1e-5 ) { 
+     if( self->context->rank == 0 ) { 
+       printf("\nAdvection is dominating - adv: %g\t dif: %g\n", adv_t, diff_t );
+     }
+     _SLE_Solver_Execute( solver, data );
+   } else {
+     //adv_t = safetyFactor*adv_t; // for timestep safety
+     if( self->context->rank == 0 ) { 
+	     printf("\nDiffusion is dominating - running multiple steps to catch advection timestep \n" );
+     }
+     //double interval_t = diff_t;
+     double interval_t = 0.;
+     while( interval_t < adv_t ) {
+       local_diff_t = AdvectionDiffusionSLE_DiffusiveTimestep( sle );
+       (void)MPI_Allreduce( &local_diff_t, &diff_t, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
+
+       if ( interval_t + diff_t > adv_t ) {
+	       sle->currentDt = diff_t + (adv_t - (interval_t + diff_t));
+       }
+       else {
+	       sle->currentDt = diff_t; // first set the deltaT for the solver. Because it needs to know.
+       }
+       _SLE_Solver_Execute( solver, data );
+
+       interval_t += sle->currentDt;
+
+       if( self->context->rank == 0 ) { 
+           printf( "Diffusive Timestep = %g -- Cumulative Timestep %g -- Advection Time - %g\n", sle->currentDt, interval_t, adv_t ); 
+       }
+     }
+   }
 }
 
 void _AdvDiffMulticorrector_Destroy( void* solver, void* data ) {
@@ -185,10 +248,10 @@ void _AdvDiffMulticorrector_SolverSetup( void* solver, void* data ) {
 
    /* The following is disabled, as it appears the stiffness matrix Mat is destroyed during the 
       SystemLinearEquations_MatrixSetup call below.. this results in no ksp mat being set effectively.
-      Instead we call Stg_KSPSetOperators just before solve in _AdvDiffMulticorrector_CalculatePhiDot_Implicit */
+      Instead we call KSPSetOperators just before solve in _AdvDiffMulticorrector_CalculatePhiDot_Implicit */
    /* if ( self->matrixSolver && Stg_Class_IsInstance( sle->massMatrix, StiffnessMatrix_Type ) ) {
       StiffnessMatrix* massMatrix = Stg_CheckType( sle->massMatrix, StiffnessMatrix );
-      Stg_KSPSetOperators( self->matrixSolver, massMatrix->matrix, massMatrix->matrix, DIFFERENT_NONZERO_PATTERN );
+      KSPSetOperators( self->matrixSolver, massMatrix->matrix, massMatrix->matrix, DIFFERENT_NONZERO_PATTERN );
    } */ 
 }
 

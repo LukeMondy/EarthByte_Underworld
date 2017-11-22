@@ -266,6 +266,7 @@ void _AdvectionDiffusionSLE_AssignFromXML( void* sle, Stg_ComponentFactory* cf, 
 		__func__, courantFactor );
 
         self->pureDiffusion = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"pureDiffusion", False  );
+        self->multiThermalSteps = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"multiThermalSteps", False  );
 
 	_AdvectionDiffusionSLE_Init(
 		self,
@@ -529,7 +530,7 @@ Vec _AdvectionDiffusionSLE_GetResidual( void* sle, Index fv_I ) {
 void AdvectionDiffusionSLE_ResetStoredValues( void* sle ) {
 	AdvectionDiffusionSLE* self  = (AdvectionDiffusionSLE*) sle;
 	
-	self->maxDiffusivity = SMALL_VALUE;
+	//self->maxDiffusivity = SMALL_VALUE;
 }
 
 

@@ -66,7 +66,8 @@
 		Variable_Register*			variableReg; \
 		FieldVariable_Register*		fieldVariableReg;\
                                                                  \
-                Bool pureDiffusion;
+                Bool pureDiffusion;                               \
+                Bool multiThermalSteps;
 	
 	struct AdvectionDiffusionSLE { __AdvectionDiffusionSLE };
 		

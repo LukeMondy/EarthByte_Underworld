@@ -77,13 +77,21 @@ double AdvectionDiffusionSLE_CalculateDt( void* advectionDiffusionSLE, FiniteEle
 	(void)MPI_Allreduce( &advectionTimestep, &advectionTimestepGlobal, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
 	(void)MPI_Allreduce( &diffusionTimestep, &diffusionTimestepGlobal, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD );
 
-	Journal_DPrintf( self->debug, "%s Dominating. - Advective Timestep = %g - Diffusive Timestep = %g\n", 
-			advectionTimestepGlobal < diffusionTimestepGlobal ? "Advection" : "Diffusion",
-			advectionTimestepGlobal, diffusionTimestepGlobal);
-	
-	/* Calculate Time Step */
-	timestep = MIN( advectionTimestepGlobal, diffusionTimestepGlobal );
+	if( self->context->rank == 0 ) { 
+		printf("%s Dominating. - Advective Timestep = %g - Diffusive Timestep = %g\n", 
+				advectionTimestepGlobal < diffusionTimestepGlobal ? "Advection" : "Diffusion",
+				advectionTimestepGlobal, diffusionTimestepGlobal);
+	}
 
+	/* Calculate Time Step */
+	if(self->multiThermalSteps) {
+		if( self->context->rank == 0 ) { 
+			printf("multiThermalSteps enabled, using advective timestep!\n");
+		}
+		timestep = advectionTimestepGlobal;
+	} else {
+		timestep = MIN( advectionTimestepGlobal, diffusionTimestepGlobal );
+	}
 	return timestep;
 }
 
