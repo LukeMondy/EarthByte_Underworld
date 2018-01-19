@@ -249,7 +249,7 @@ void _Energy_SLE_Solver_Solve( void* sleSolver, void* standardSLE ) {
         isNull = Energy_SLE_HasNullSpace(((StiffnessMatrix**)sle->stiffnessMatrices->data)[0]->matrix);
         if(isNull) {
             MatNullSpaceCreate(PETSC_COMM_WORLD, PETSC_TRUE, 0, PETSC_NULL, &nsp);
-            KSPSetNullSpace(self->matrixSolver, nsp);
+            MatSetNullSpace(self->matrixSolver, nsp);
         }
 
 	KSPSolve( self->matrixSolver,

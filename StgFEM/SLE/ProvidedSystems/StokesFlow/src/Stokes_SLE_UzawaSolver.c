@@ -564,7 +564,7 @@ void _Stokes_SLE_UzawaSolver_Solve( void* solver, void* stokesSLE ) {
 	*/
 	
 	Journal_DPrintfL( self->debug, 2, "Building Fhat - h.\n" );
-	PetscOptionsHasName(PETSC_NULL,"-uzawa_printksptimes",&flg);
+	PetscOptionsHasName(PETSC_NULL,PETSC_NULL,"-uzawa_printksptimes",&flg);
 	KSPSetTolerances( velSolver, self->tolerance, PETSC_DEFAULT, PETSC_DEFAULT, PETSC_DEFAULT );
 	if (flg) {
 	    ksptime = MPI_Wtime();
@@ -702,7 +702,7 @@ void _Stokes_SLE_UzawaSolver_Solve( void* solver, void* stokesSLE ) {
 		*/
 		
 		if ( pcSolver ) {
-		    PetscOptionsHasName(PETSC_NULL,"-uzawa_printksptimes",&flg);
+		    PetscOptionsHasName(PETSC_NULL,PETSC_NULL,"-uzawa_printksptimes",&flg);
 		    if (flg) {
 			ksptime = MPI_Wtime();
 		    }
@@ -757,7 +757,7 @@ void _Stokes_SLE_UzawaSolver_Solve( void* solver, void* stokesSLE ) {
 		Journal_DPrintfL( self->debug, 2, "Uzawa inner iteration step\n");
 		
 		//START OF INNER ITERATIONS!!!!
-		PetscOptionsHasName(PETSC_NULL,"-uzawa_printksptimes",&flg);
+		PetscOptionsHasName(PETSC_NULL,PETSC_NULL,"-uzawa_printksptimes",&flg);
 		/*get initial wall time for inner loop*/
 		self->inneritsinitialtime = MPI_Wtime();
 		if (flg) {
