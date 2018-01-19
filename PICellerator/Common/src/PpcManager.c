@@ -727,10 +727,10 @@ int _PpcManager_GetWithOneToManyMap( void* _self, Element_LocalIndex lElement_I,
 int PpcManager_GetGravity( void* _self, Element_LocalIndex lElement_I, IntegrationPoint* particle, double result[3] )
 {
    PpcManager* self = (PpcManager*) _self;
-   int I;
+   int i;
    /* FIXME: this function should use the ppc */
-   for ( I = 0 ; I < 3 ; I++ )
-      result[I] = self->gravity[I];
+   for ( i = 0 ; i < 3 ; i++ )
+      result[i] = self->gravity[i];
 
    return 0;
 }

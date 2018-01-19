@@ -118,12 +118,12 @@ void _Ppc_MineralPhase_Build( void* _self, void* data ) {
 void _Ppc_MineralPhase_Initialise( void* _self, void* data ) {
   Ppc_MineralPhase* self = (Ppc_MineralPhase*)_self;
   Ppc_MineralPhase_Phase* phase;
-  int I;
+  int i;
   /* Initialize parent */
   _Ppc_Initialise( self, data );
 
-  for( I = 0 ; I < self->phasesCount ; I ++ ) {
-	 phase = &self->phasesList[I];
+  for( i = 0 ; i < self->phasesCount ; i ++ ) {
+	 phase = &self->phasesList[i];
 	 phase->B  = phase->referencePressure - phase->referenceTemperature * phase->clapeyronSlope;
 	}
 }
@@ -168,11 +168,11 @@ Bool _Ppc_MineralPhase_AboveClapeyronCurve( void* _self, double temperature, dou
 
 int _Ppc_MineralPhase_GetPhase( void* _self, double temperature, double pressure ) {
   Ppc_MineralPhase* self = (Ppc_MineralPhase*)_self;
-  int I, res = 0;
+  int i, res = 0;
 
-  for( I = 0 ; I < self->phasesCount ; I ++ ) 
-	 if( _Ppc_MineralPhase_AboveClapeyronCurve( self, temperature, pressure, &self->phasesList[I] ) )
-		res = I;
+  for( i = 0 ; i < self->phasesCount ; i ++ ) 
+	 if( _Ppc_MineralPhase_AboveClapeyronCurve( self, temperature, pressure, &self->phasesList[i] ) )
+		res = i;
   
   return res;
 }

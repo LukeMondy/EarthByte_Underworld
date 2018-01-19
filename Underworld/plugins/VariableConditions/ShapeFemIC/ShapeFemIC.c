@@ -157,7 +157,7 @@ void Underworld_LinearShapeIC( Node_LocalIndex node_lI, Variable_Index var_I, vo
 		  */
 
 		double aux, theSum, expTerm, sinTerm;
-		int I, numberOfTerms;
+		int II, numberOfTerms;
 
 		/* do linear interpolation to calculate lithosphericAge: it's a function of x coord only */
 		double phi = (coord[0] - box_min[0]) / box->width[0];
@@ -169,10 +169,10 @@ void Underworld_LinearShapeIC( Node_LocalIndex node_lI, Variable_Index var_I, vo
 		
 		numberOfTerms = 200;
 		theSum = 0;
-		for( I = 1; I < numberOfTerms; I++ ) { 
-		  expTerm = exp( aux*I*I );
+		for( II = 1; II < numberOfTerms; II++ ) { 
+		  expTerm = exp( aux*II*II );
 		  sinTerm = sin( I*M_PI*depth/plateThickness );
-		  theSum += expTerm * sinTerm / I; 
+		  theSum += expTerm * sinTerm / II; 
 		}
 		*result =  surfaceTemperature + (lithosphereBaseTemperature - surfaceTemperature) * (depth/plateThickness + 2.0/M_PI * theSum);
 		break;

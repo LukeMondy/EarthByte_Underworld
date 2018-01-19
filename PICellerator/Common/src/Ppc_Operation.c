@@ -60,15 +60,15 @@ void _Ppc_Operation_Init( void* _self, char* op ) {
 
 Ppc_Operation* Ppc_Operation_New( Name name, PpcManager* mgr, int* tagList, int nPpc, char* operation ) {
   Ppc_Operation* self = _Ppc_Operation_DefaultNew( name );
-  int I;
+  int i;
 
   self->isConstructed = True;
   _Ppc_Init( self, mgr, HUGE_VAL, HUGE_VAL, 0 );
 
   self->propertyTagCount = nPpc;
   self->propertyTagList = Memory_Alloc_Array( int, self->propertyTagCount, "Ppc_Operation_propertyTagList" );
-  for( I = 0 ; I < nPpc ; I++ ) {
-	 self->propertyTagList[I] = tagList[I];
+  for( i = 0 ; i < nPpc ; i++ ) {
+	 self->propertyTagList[i] = tagList[i];
   }
 
   _Ppc_Operation_Init( self, operation );
@@ -213,10 +213,10 @@ int _Ppc_Operation_Get( void* _self, Element_LocalIndex lElement_I, IntegrationP
   double radians = 0;
   char* op = self->operation;
   double* values = self->values;
-  int I, err;
+  int i, err;
   
-	for( I = 0 ; I < self->propertyTagCount ; I++ ) {
-	  err = PpcManager_Get( self->manager, lElement_I, particle, self->propertyTagList[I], &values[I] );
+	for( i = 0 ; i < self->propertyTagCount ; i++ ) {
+	  err = PpcManager_Get( self->manager, lElement_I, particle, self->propertyTagList[i], &values[i] );
 
 	  Journal_Firewall( err == 0,
 							  self->error_stream, "\n\n\n"
@@ -227,16 +227,16 @@ int _Ppc_Operation_Get( void* _self, Element_LocalIndex lElement_I, IntegrationP
   switch( op[0] ) {
     case '*':
     	aux = 1;
-  		for( I = 0 ; I < self->propertyTagCount ; I++ )
-  	 		aux *= values[I];
+  		for( i = 0 ; i < self->propertyTagCount ; i++ )
+  	 		aux *= values[i];
   		break;
     case '/':
   		aux = values[0] / values[1];
   		break;
     case '+':
    		aux = 0;
-  		for( I = 0 ; I < self->propertyTagCount ; I++ )
-  			aux += values[I];
+  		for( i = 0 ; i < self->propertyTagCount ; i++ )
+  			aux += values[i];
   		break;
     case '-':
   		aux = values[0] - values[1];
@@ -244,30 +244,30 @@ int _Ppc_Operation_Get( void* _self, Element_LocalIndex lElement_I, IntegrationP
     default:
   		if( strcmp( op, "min" ) == 0 ) {
   			aux = values[0];
-  			for( I = 1 ; I < self->propertyTagCount ; I++ )
-  				aux = values[I] < aux ? values[I] : aux;
+  			for( i = 1 ; i < self->propertyTagCount ; i++ )
+  				aux = values[i] < aux ? values[i] : aux;
   				
   		} else if( strcmp( op, "max" ) == 0 ) {
   			aux = values[0];
-  			for( I = 1 ; I < self->propertyTagCount ; I++ )
-  				aux = values[I] > aux ? values[I] : aux;
+  			for( i = 1 ; i < self->propertyTagCount ; i++ )
+  				aux = values[i] > aux ? values[i] : aux;
   				
   		} else if( strcmp( op, "mean" ) == 0 ) {
   	 		aux = 0;
-  			for( I = 0 ; I < self->propertyTagCount ; I++ )
-  				aux += values[I];
+  			for( i = 0 ; i < self->propertyTagCount ; i++ )
+  				aux += values[i];
   			aux /= self->propertyTagCount;
   			 	
   		} else if( strcmp( op, "geometricMean" ) == 0 ) {
   	  	aux = 1;
-  			for( I = 0 ; I < self->propertyTagCount ; I++ )
-  	 			aux *= values[I];
+  			for( i = 0 ; i < self->propertyTagCount ; i++ )
+  	 			aux *= values[i];
   			aux = sqrt( aux );
   			
   		} else if( strcmp( op, "harmonicMean" ) == 0 ) {
   	  	aux = 0;
-  			for( I = 0 ; I < self->propertyTagCount ; I++ )
-  	 			aux += 1.0/values[I];
+  			for( i = 0 ; i < self->propertyTagCount ; i++ )
+  	 			aux += 1.0/values[i];
   			aux = self->propertyTagCount / aux;
 
       } else if( strcmp( op, "hypot" ) == 0 ) {

@@ -1376,13 +1376,13 @@ int GenerateEquationNumbering(
 		
 		c = 0;
 		for( i=0; i<npx; i++ ) {
-			PetscInt I,J,K,gid,from_gid;
+			PetscInt ii,J,K,gid,from_gid;
 			
 			gid = periodic_x_gnode_id[i];
 			K = gid/(NX*NY);
 			J = (gid - K*(NX*NY))/NX;
-			I = gid - K*(NX*NY) - J*NX;
-			from_gid = (I-(NX-1)) + J*NX + K*(NX*NY);
+			ii = gid - K*(NX*NY) - J*NX;
+			from_gid = (ii-(NX-1)) + J*NX + K*(NX*NY);
 			
 			for( d=0; d<dof; d++ ) {
 				to[c] = gid * dof + d;
@@ -1430,13 +1430,13 @@ int GenerateEquationNumbering(
 		
 		c = 0;
 		for( i=0; i<npy; i++ ) {
-			PetscInt I,J,K,gid,from_gid;
+			PetscInt ii,J,K,gid,from_gid;
 			
 			gid = periodic_y_gnode_id[i];
 			K = gid/(NX*NY);
 			J = (gid - K*(NX*NY))/NX;
-			I = gid - K*(NX*NY) - J*NX;
-			from_gid = I + (J - (NY - 1))*NX + K*(NX*NY);
+			ii = gid - K*(NX*NY) - J*NX;
+			from_gid = ii + (J - (NY - 1))*NX + K*(NX*NY);
 			
 			for( d=0; d<dof; d++ ) {
 				to[c] = gid * dof + d;
@@ -1483,13 +1483,13 @@ int GenerateEquationNumbering(
 		
 		c = 0;
 		for( i=0; i<npz; i++ ) {
-			PetscInt I,J,K,gid,from_gid;
+			PetscInt ii,J,K,gid,from_gid;
 			
 			gid = periodic_z_gnode_id[i];
 			K = gid/(NX*NY);
 			J = (gid - K*(NX*NY))/NX;
-			I = gid - K*(NX*NY) - J*NX;
-			from_gid = I + J*NX + (K - (NZ-1))*(NX*NY);
+			ii = gid - K*(NX*NY) - J*NX;
+			from_gid = ii + J*NX + (K - (NZ-1))*(NX*NY);
 			
 			for( d=0; d<dof; d++ ) {
 				to[c] = gid * dof + d;

@@ -159,7 +159,7 @@ void _Ppc_Polynomial_Destroy( void* _self, void* data ) {
 int _Ppc_Polynomial_Get( void* _self, Element_LocalIndex lElement_I, IntegrationPoint* particle, double* result ) {
   Ppc_Polynomial* self = (Ppc_Polynomial*) _self;
   double referenceValue, fieldValue, coeff, power, x;
-  int I, err;
+  int i, err;
 
   /* get reference value */
   referenceValue = self->referenceValue;
@@ -170,9 +170,9 @@ int _Ppc_Polynomial_Get( void* _self, Element_LocalIndex lElement_I, Integration
 
   /* compute result */
   result[0] = 0;
-  for( I = 0 ; I < self->termsCount ; I++ ) {
-	 coeff = self->coefficient[I];
-	 power = self->power[I];
+  for( i = 0 ; i < self->termsCount ; i++ ) {
+	 coeff = self->coefficient[i];
+	 power = self->power[i];
 	 x = fieldValue - referenceValue;
 
 	 Journal_Firewall( !(x < 0 && !isInteger( power )) , 
@@ -180,7 +180,7 @@ int _Ppc_Polynomial_Get( void* _self, Element_LocalIndex lElement_I, Integration
 							 "Error in configuration of Ppc_Polynomial %s\n"
 							 "The term number %i is invalid: %g * %g^%g\n"
 							 "You cannot raise a negative number to an non-integer number."
-							 "\n\n\n", self->name, I, coeff, x, power );
+							 "\n\n\n", self->name, i, coeff, x, power );
 
 	 if( x != 0 ) {
 		if( x == 1 )

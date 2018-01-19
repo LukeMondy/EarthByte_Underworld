@@ -513,7 +513,7 @@ void NodeBunching_ReplaceAxis(
    NodeBunching*               self = (NodeBunching*)_self;
    linearSpaceAdaptor_Segment* table = NULL;
    double                      elementSize, x, y;
-   Index                       I;
+   Index                       i;
 
    /* allocate mem */
    tablePtr[0] = Memory_Alloc_Array( linearSpaceAdaptor_Segment, nCoords, "mapping table" );
@@ -524,18 +524,18 @@ void NodeBunching_ReplaceAxis(
    elementSize = (axisMax - axisMin) / (nNodes - 1);
    NodeBunching_Debug_1(self,axis);
 
-   for( I = 1 ; I < nCoords ; I++ ) {
+   for( i = 1 ; i < nCoords ; i++ ) {
       /* get */
-      x = axisMin + elementSize*I;
-      y = newCoords[I];
+      x = axisMin + elementSize*i;
+      y = newCoords[i];
       /* normalize */
       x = (x - axisMin) / (axisMax - axisMin);
       y = (y - axisMin) / (axisMax - axisMin);
       assert( 0<=x && x<=1 );
       assert( 0<=y && y<=1 );
       /* store */
-      table[I].x = x;
-      table[I].y = y;
+      table[i].x = x;
+      table[i].y = y;
       NodeBunching_Debug_2(self,axis,x,y);
    }    
    NodeBunching_Debug_3(self,axis);
