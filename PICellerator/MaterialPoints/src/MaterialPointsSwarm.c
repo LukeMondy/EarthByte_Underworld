@@ -234,6 +234,7 @@ void _MaterialPointsSwarm_AssignFromXML( void* swarm, Stg_ComponentFactory* cf, 
 			material,
 			materials_Register );
 
+	self->uniqueIDs = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"uniqueIDs", False );
 	self->overrideMaterialCheck = Stg_ComponentFactory_GetBool( cf, self->name, (Dictionary_Entry_Key)"overrideMaterialCheck", False );
 	self->geomodHack = Dictionary_GetBool_WithDefault( cf->rootDict, (Dictionary_Entry_Key)"geomodHacks", False  );
 }
@@ -267,7 +268,11 @@ void _MaterialPointsSwarm_Initialise( void* swarm, void* data ) {
       /* Beforehand, set each particle to have UNDEFINED_MATERIAL */
       for ( lParticle_I = 0; lParticle_I < self->particleLocalCount; lParticle_I++ ) {
          matPoint = (MaterialPoint*)Swarm_ParticleAt( self, lParticle_I );
-         matPoint->materialIndex = UNDEFINED_MATERIAL;
+         if (self->uniqueIDs == False) {
+             matPoint->materialIndex = UNDEFINED_MATERIAL;
+         } else {
+             matPoint->materialIndex = 200;
+         }
       }
 		if( self->material == NULL ) {
 			/* Do it by the layout of all known materials */

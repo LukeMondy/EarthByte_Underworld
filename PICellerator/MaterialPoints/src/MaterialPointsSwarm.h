@@ -65,7 +65,8 @@
 		Materials_Register*                   materials_Register;   \
 		SwarmVariable*                        materialIndexVariable; \
 		Bool                                  geomodHack; \
-		Bool                                  overrideMaterialCheck;
+		Bool                                  overrideMaterialCheck; \
+		Bool                                  uniqueIDs;
 
 	struct MaterialPointsSwarm { __MaterialPointsSwarm };
 	
