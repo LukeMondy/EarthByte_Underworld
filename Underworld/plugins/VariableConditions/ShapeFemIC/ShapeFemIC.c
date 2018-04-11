@@ -171,7 +171,7 @@ void Underworld_LinearShapeIC( Node_LocalIndex node_lI, Variable_Index var_I, vo
 		theSum = 0;
 		for( II = 1; II < numberOfTerms; II++ ) { 
 		  expTerm = exp( aux*II*II );
-		  sinTerm = sin( I*M_PI*depth/plateThickness );
+		  sinTerm = sin( II*M_PI*depth/plateThickness );
 		  theSum += expTerm * sinTerm / II; 
 		}
 		*result =  surfaceTemperature + (lithosphereBaseTemperature - surfaceTemperature) * (depth/plateThickness + 2.0/M_PI * theSum);
