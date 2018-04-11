@@ -659,7 +659,7 @@ void PETScMGSolver_UpdateSolvers( PETScMGSolver* self ) {
 	ec = PCMGSetType( pc, PC_MG_MULTIPLICATIVE );
 	CheckPETScError( ec );
 
-	ec=PetscOptionsGetTruth( PETSC_NULL, PETSC_NULL, "-pc_mg_different_smoothers", &smoothers_differ, &flag ); CheckPETScError(ec);
+	ec=PetscOptionsGetTruth( PETSC_NULL, "-pc_mg_different_smoothers", &smoothers_differ, &flag ); CheckPETScError(ec);
 
 	ec=PetscObjectGetComm( (PetscObject)pc, &comm ); CheckPETScError(ec);
 	MPI_Comm_size( comm, &size );

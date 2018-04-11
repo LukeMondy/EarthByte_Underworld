@@ -219,7 +219,7 @@ void _UnderworldContext_GenerateOptionsFile( UnderworldContext* context ) {
    /* Generate PETSc options file. */
    #if ((PETSC_VERSION_MAJOR==3) && (PETSC_VERSION_MINOR>=2))
    PetscViewerASCIIOpen( context->communicator, optionsFilename, &options );
-   PetscOptionsView( PETSC_NULL, options );
+   PetscOptionsView( options );
    PetscViewerDestroy( &options );
    #else
    options = fopen( optionsFilename, "w" );
