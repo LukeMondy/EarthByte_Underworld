@@ -257,23 +257,21 @@ void _MaterialPointsSwarm_Initialise( void* swarm, void* data ) {
 	Index            	var_I	= 0;
 	Particle_Index          lParticle_I=0;
 	MaterialPoint*		matPoint=NULL;
+	int rank;
+
+	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
 	_GeneralSwarm_Initialise( self, data );
 
 	if( self->material       != NULL) Stg_Component_Initialise( self->material,       data , False );
 
 	/* Now setup the material properties */
-   if(  (False == context->loadFromCheckPoint) || False == (context->loadSwarmsFromCheckpoint) ) {
-
-      /* Beforehand, set each particle to have UNDEFINED_MATERIAL */
-      for ( lParticle_I = 0; lParticle_I < self->particleLocalCount; lParticle_I++ ) {
-         matPoint = (MaterialPoint*)Swarm_ParticleAt( self, lParticle_I );
-         if (self->uniqueIDs == False) {
-             matPoint->materialIndex = UNDEFINED_MATERIAL;
-         } else {
-             matPoint->materialIndex = 200;
-         }
-      }
+	if(  (False == context->loadFromCheckPoint) || False == (context->loadSwarmsFromCheckpoint) ) {
+		/* Beforehand, set each particle to have UNDEFINED_MATERIAL */
+		for ( lParticle_I = 0; lParticle_I < self->particleLocalCount; lParticle_I++ ) {
+		   matPoint = (MaterialPoint*)Swarm_ParticleAt( self, lParticle_I );
+		       matPoint->materialIndex = UNDEFINED_MATERIAL;
+		}
 		if( self->material == NULL ) {
 			/* Do it by the layout of all known materials */
 			Materials_Register_SetupSwarm( self->materials_Register, self );
@@ -285,20 +283,30 @@ void _MaterialPointsSwarm_Initialise( void* swarm, void* data ) {
 					self, 
 					self->swarmVariable_Register->variable_Register );
 		}
+
+		// This should only really be used for passive tracers. We attempt to assign a unique ID to each
+		// particle, which should persist through the entire model run, so we can track it through time.
+		if (self->uniqueIDs == True ) {
+			for ( lParticle_I = 0; lParticle_I < self->particleLocalCount; lParticle_I++ ) {
+			   matPoint = (MaterialPoint*)Swarm_ParticleAt( self, lParticle_I );
+			       matPoint->materialIndex = ((rank + 1) * 100000) + lParticle_I; // hopefully there will be less than 100k particles in a single rank
+			}
+		}
 	}
 
-   if( self->overrideMaterialCheck == False ) {
-      /* Check to ensure all particles have a valid material  */
-      for ( lParticle_I = 0; lParticle_I < self->particleLocalCount; lParticle_I++ ) {
-         matPoint = (MaterialPoint*)Swarm_ParticleAt( self, lParticle_I );
-         Journal_Firewall( (matPoint->materialIndex != UNDEFINED_MATERIAL), Journal_MyStream( Error_Type, self ),
-               "Error in function %s for swarm '%s'. Material point at (%.5g, %.5g, %.5g), has no material assigned to it.\n"
-               "This is most likely because the material geometries don't cover the entire domain - check material/geometry definitions\n\n"
-               "To check: visualise the material index field initialisation by running your model with the commandline options\n"
-               "\t\'--maxTimeSteps=-1 --components.%s.overrideMaterialCheck=True\'\n", __func__, self->name, matPoint->coord[0], matPoint->coord[1], matPoint->coord[2], self->name);  
-      }
-   }
+        if( self->overrideMaterialCheck == False ) {
+           /* Check to ensure all particles have a valid material  */
+           for ( lParticle_I = 0; lParticle_I < self->particleLocalCount; lParticle_I++ ) {
+              matPoint = (MaterialPoint*)Swarm_ParticleAt( self, lParticle_I );
+              Journal_Firewall( (matPoint->materialIndex != UNDEFINED_MATERIAL), Journal_MyStream( Error_Type, self ),
+                    "Error in function %s for swarm '%s'. Material point at (%.5g, %.5g, %.5g), has no material assigned to it.\n"
+                    "This is most likely because the material geometries don't cover the entire domain - check material/geometry definitions\n\n"
+                    "To check: visualise the material index field initialisation by running your model with the commandline options\n"
+                    "\t\'--maxTimeSteps=-1 --components.%s.overrideMaterialCheck=True\'\n", __func__, self->name, matPoint->coord[0], matPoint->coord[1], matPoint->coord[2], self->name);  
+           }
+        }
 }
+
 void _MaterialPointsSwarm_Execute( void* swarm, void* data ) {
 	MaterialPointsSwarm*	self = (MaterialPointsSwarm*)swarm;
 	
