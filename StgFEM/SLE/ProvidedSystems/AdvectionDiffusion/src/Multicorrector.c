@@ -232,6 +232,11 @@ void _AdvDiffMulticorrector_Execute( void* solver, void* data ) {
        if( self->context->rank == 0 ) { 
            printf( "Diffusive Timestep = %g -- Cumulative Timestep %g -- Advection Time - %g\n", sle->currentDt, interval_t, adv_t ); 
        }
+
+       if( abs(adv_t - interval_t) < 1e-2 && diff_t / adv_t > 1e-1 ) {
+          // Detect if we have hit float errors, where the diff_t was unable to exactly match the adv_t
+          break;
+       }
      }
    }
 }
