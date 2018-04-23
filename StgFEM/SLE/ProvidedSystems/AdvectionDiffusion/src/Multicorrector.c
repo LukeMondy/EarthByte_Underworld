@@ -233,9 +233,15 @@ void _AdvDiffMulticorrector_Execute( void* solver, void* data ) {
            printf( "Diffusive Timestep = %g -- Cumulative Timestep %g -- Advection Time - %g\n", sle->currentDt, interval_t, adv_t ); 
        }
 
-       if( abs(adv_t - interval_t) < 1e-2 && diff_t / adv_t > 1e-1 ) {
+       if( fabs(adv_t - interval_t) < 1e-2 && (diff_t / adv_t > 1e-2) ) {
           // Detect if we have hit float errors, where the diff_t was unable to exactly match the adv_t
-          break;
+	  // If the abs diff between the desired timestep and the current is very
+	  // small, break out and say close enough. Make sure that it's because 
+	  // the diffusive timestep is actually very small compared to what is should be.
+	       if( self->context->rank == 0 ) { 
+		   printf( "Finished multithermal stepping: fabs(adv - diff) = %g, diff / adv: %g\n", fabs(adv_t - interval_t), diff_t / adv_t ); 
+		  break;
+	       }
        }
      }
    }
