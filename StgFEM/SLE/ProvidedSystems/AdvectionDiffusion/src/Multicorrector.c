@@ -240,8 +240,8 @@ void _AdvDiffMulticorrector_Execute( void* solver, void* data ) {
 	  // the diffusive timestep is actually very small compared to what is should be.
 	       if( self->context->rank == 0 ) { 
 		   printf( "Finished multithermal stepping: fabs(adv - diff) = %g, diff / adv: %g\n", fabs(adv_t - interval_t), diff_t / adv_t ); 
-		  break;
 	       }
+	  break;
        }
      }
    }
