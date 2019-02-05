@@ -39,7 +39,7 @@ RUN wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.5.4.tar.gz \
     && rm -rf petsc-3.5.4.tar.gz \
     && rm -rf petsc-3.5.4-src
 
-RUN git clone --depth=1 https://github.com/OlympusMonds/EarthByte_Underworld.git \
+RUN git clone --depth=1 https://github.com/LukeMondy/EarthByte_Underworld.git  \
     && cd /EarthByte_Underworld \
     && ./configure.py \
         --hdf5-lib-dir=/usr/lib/x86_64-linux-gnu/hdf5/serial \
@@ -66,10 +66,10 @@ RUN git clone --depth=1 https://github.com/OlympusMonds/EarthByte_Underworld.git
         --cflags="-Wno-error=format-security" \
     && ./scons.py 
 
-RUN mkdir /models
-WORKDIR /models
-
-RUN git clone https://github.com/OlympusMonds/lithospheric_modelling_recipe.git
-VOLUME /models/your_files
+RUN mkdir /models \
+    && chmod o+rwx /models \
+    && cd /models \
+    && git clone https://github.com/LukeMondy/lithospheric_modelling_recipe.git \
+    && chmod o+rwx lithospheric_modelling_recipe \
 
 

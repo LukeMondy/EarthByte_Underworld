@@ -1,7 +1,8 @@
 
-imgname := olympusmonds/earthbyte_underworld
+imgname := lmondy/earthbyte_underworld
 cntname := ebuw
 
+WORKDIR ?= $(shell pwd)
 
 .PHONY: build
 build:
@@ -14,7 +15,7 @@ build:
 run: 
 	docker run \
 		-u "$(shell id -u)" \
-		-w "$(shell echo $$HOME)" \
+		-w /models \
 		--hostname EarthByteUnderworld \
 		-it \
 		--rm \
@@ -22,5 +23,5 @@ run:
 		-v /etc/group:/etc/group:ro \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /home:/home \
-		-v /:/host \
+		-v $(WORKDIR):/host \
 		$(imgname) bash
