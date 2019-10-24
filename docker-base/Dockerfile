@@ -46,7 +46,9 @@ ARG CONFIG_OPTIONS="--hdf5-lib-dir=/usr/lib/x86_64-linux-gnu/hdf5/serial \
         --with-debugging=0 \
         --cflags='-Wno-error=format-security'"
 
-RUN git clone --depth=1 https://github.com/rbeucher/EarthByte_Underworld.git  \
+ARG UW_GIT_URL="https://github.com/LukeMondy/EarthByte_Underworld.git"
+
+RUN git clone --depth=1 ${UW_GIT_URL}  \
     && cd /EarthByte_Underworld \
     && ./configure.py ${CONFIG_OPTIONS} \
     && ./scons.py \
