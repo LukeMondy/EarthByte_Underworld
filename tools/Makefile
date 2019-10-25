@@ -1,6 +1,5 @@
 
 imgname := lmondy/earthbyte_underworld
-cntname := ebuw
 
 WORKDIR ?= $(shell pwd)
 
@@ -8,7 +7,7 @@ WORKDIR ?= $(shell pwd)
 build:
 	docker build \
 		-t $(imgname) \
-		-f ebuw.dockerfile \
+		-f ../docker-base/Dockerfile \
 		.
 
 .PHONY: run

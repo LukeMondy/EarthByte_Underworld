@@ -1,0 +1,16 @@
+
+version: '3' 
+services:     
+    underworld:
+        container_name: EarthByte-Underworld
+        image: lukemondy/earthbyte_underworld
+        build:
+          context: $PWD
+          dockerfile: Dockerfile
+        hostname: "EarthByteUnderworld"
+        volumes:
+          - $HOME:/home
+          - $PWD:/host
+        working_dir: /host
+        stdin_open: true
+        tty: true
